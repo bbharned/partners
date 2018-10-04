@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Partners</title>
+    <title>ThinManager Partner Portal</title>
+    <%= favicon_link_tag 'favicon.png' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,7 @@
   </head>
 
   <body>
+  	<%= render 'layouts/navbar' %>
     <%= yield %>
   </body>
 </html>

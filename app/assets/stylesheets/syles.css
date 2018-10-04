@@ -1,0 +1,210 @@
+/* Styles CSS */
+
+
+/**** Global ***/
+.appear, .appear-sooner {
+    display: none;
+}
+.goAway,
+.goAwaySooner {
+    display:inline;
+}
+.centered {
+    text-align:center;
+}
+.well {
+    background-color:#ff1f1f1
+}
+
+
+
+
+/** Rockwell Top Bar **/
+.content-box {
+    width:96%; padding:0px 2% 0px 2%; max-width:1100px; margin:auto;
+    position:relative;  
+}
+.ra-top-bar {
+    width:100%; position: relative; height:40px; background-color: #808285;
+}
+.ra-top-left {
+    width:35%; min-width: 350px; max-width: 450px; height: 40px; background-color: #555555; margin-left: -20px;
+    -webkit-transform: skew(-10deg); /* Safari */
+    -moz-transform: skew(-10deg); /* Firefox */
+    -ms-transform: skew(-10deg); /* Microsoft */
+    -o-transform: skew(-10deg); /* Microsoft */
+    transform: skew(-10deg); /* General */  
+}
+.ra-top-left .ra-links ul {
+    list-style: none; height:30px; width:300px; padding-top: 5px;  
+    float:right; margin-right: 15px;
+    -webkit-transform: skew(10deg); /* Safari */
+    -moz-transform: skew(10deg); /* Firefox */
+    -ms-transform: skew(10deg); /* Microsoft */
+    -o-transform: skew(10deg); /* Microsoft */
+    transform: skew(10deg); /* General */   
+}
+.ra-top-left .ra-links ul li {
+    float:left; padding: 4px 0px 4px 0px; width:100px;
+    
+}
+#rockwell-logo {margin-top: -3px;}
+#rockwell-software {width:125px; padding-top: 0px; height: 35px;}
+.ra-top-left .ra-links ul li.divider-bar {
+    width:4px !important; padding-left: 5px;
+    font-size: 1.5em; color:#999999; margin-left: 7px;
+    margin-right: 10px; padding-top: 0px;
+    -webkit-transform: skew(-10deg); /* Safari */
+    -moz-transform: skew(-10deg); /* Firefox */
+    -ms-transform: skew(-10deg); /* Microsoft */
+    -o-transform: skew(-10deg); /* Microsoft */
+    transform: skew(-10deg); /* General */
+}
+.ra-top-left .ra-links ul li.divider-bar:hover {
+    border-bottom:none;
+}
+.ra-top-left .ra-links ul li:hover {
+    border-bottom:5px solid #118CBC;
+}
+.ra-top-left .ra-links ul a li img {
+    width:90%; margin-left:5%;
+}
+.quick-nav-icons {
+    position: absolute; height: 20px; width:105px;
+    right:5px; top: -30px;
+}
+.quick-nav-icons a {text-decoration: none; color: inherit;}
+.qn-icon {
+    height:20px; width:20px; float:left; margin-right: 15px; background-size: contain;
+}
+.qn-icon-download {
+    background-image:url("https://thinmanager.com/images/icon-downloads.png"); 
+}
+.qn-icon-download:hover {
+    background-image:url("https://thinmanager.com/images/icon-downloads-blue.png"); 
+}
+.qn-icon-search {
+    background-image:url("https://thinmanager.com/images/icon-search.png"); 
+}
+.qn-icon-search:hover {
+    background-image:url("https://thinmanager.com/images/icon-search-blue.png"); 
+}
+.qn-icon-questions {
+    background-image:url("https://thinmanager.com/images/icon-questions.png");
+}
+.qn-icon-questions:hover {
+    background-image:url("https://thinmanager.com/images/icon-questions-blue.png");
+}
+/** Rockwell Top Bar **/
+
+/*************** Main Nav ******************/
+.main-nav {
+    position:relative; width:100%; top: -6px; 
+    background-color: #084673 !important; color:#FFFFFF !important;
+    margin-bottom: 35px;
+}
+.main-nav ul a {color: #FFFFFF !important;}
+.main-nav ul a.dropdown-item {color: #272727 !important;}
+.navbar-toggler .navbar-roggler-icon {border-color:#FFFFFF !important;}
+.main-nav .nav-right-options {
+    position:absolute; left:-180px; margin-top:10px;
+}
+.main-nav .nav-right-options li a {color: #272727 !important;}
+
+button.navbar-toggler span {
+    /*overwriting*/
+    color: #FFFFFF !important;
+}
+
+
+
+
+
+
+
+/************************ Footer Specific CSS *************************/
+.footer-text {
+    font-size:.85em;
+}
+#footer a {
+    color:#FFFFFF;
+}
+#footer {
+    width:100%; background-color:#323232;  border-top:thin solid #5C5C5C;
+    font-family: 'Roboto', sans-serif; color:#ffffff; min-height:330px; 
+    padding-bottom:65px;
+}
+.lower-footer-boxes h4 {
+    line-height:30px !important; color:#878686;
+}
+.lower-footer-boxes p {
+    color:#D1CFCF; padding-left: 35px; 
+    padding-right:35px; font-size: .85em;
+}
+.lower-footer-boxes a {
+    color:#D1CFCF; text-transform:uppercase; font-weight:500;  
+}
+.lower-footer-boxes .lower-foot-box {
+    border-right:1px solid #878686; min-height: 120px;
+}
+.lower-footer-boxes .lower-foot-box:last-child {
+    border-right:none;
+}
+.footIcon1 {
+    background-color:#00457c; width:45px; height:45px; border-radius:50%;
+}
+.footIcon1:hover {
+    -webkit-box-shadow:0px 0px 12px 2px #02A5F7;
+    -moz-box-shadow:0px 0px 12px 2px #02A5F7;
+    -ms-box-shadow:0px 0px 12px 2px #02A5F7;
+    -o-box-shadow:0px 0px 12px 2px #02A5F7;
+    -chrome-box-shadow:0px 0px 12px 2px #02A5F7;
+    box-shadow:0px 0px 12px 2px #02A5F7;    
+}
+/* Disclaimer box css */
+#disclaimer {
+    width:100%; background-color:#000000; padding-top:15px; padding-bottom: 25px; margin-bottom: -20px !important;
+    color:#666666; 
+}
+.disLogo {
+    opacity:.4;
+}
+#disclaimer ul.nav a {
+    color:#666666;
+}
+#disclaimer ul.nav a:hover {
+    background-color:transparent; color:#FFFFFF;
+}
+/************************ END Footer Specific CSS *************************/
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:992px) {
+    .goAwaySooner {
+        display:none;
+    } 
+    .appear-sooner {
+        display:inline;
+    }
+
+
+}
+
+@media screen and (max-width:766px) {
+    .appear {
+        display:inline;
+    }
+    .goAway {
+        display:none !important;
+}
+
+}
