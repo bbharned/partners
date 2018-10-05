@@ -115,6 +115,9 @@ button.navbar-toggler span {
     /*overwriting*/
     color: #FFFFFF !important;
 }
+.burger {
+    margin-right:5px; 
+}
 
 
 
