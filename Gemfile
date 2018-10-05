@@ -15,6 +15,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'will_paginate', '~> 3.1', '>=3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 
+#gem 'devise'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
