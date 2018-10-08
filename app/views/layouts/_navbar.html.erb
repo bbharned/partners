@@ -21,8 +21,9 @@
   <div class="logo">
       <%= link_to image_tag("thinMan.png"), root_path %>
   </div>
-  <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="background-color:#305CAA;">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
@@ -51,7 +52,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Video Learning Issue Report"">Having technical issues?</a></li>
       <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
               <li><a class="dropdown-item" href="http://www.thinmanager.com">ThinManager.com</a></li>
               <li><a class="dropdown-item" href="http://www.thinmanager.com/support/">ThinManager Support</a></li>
