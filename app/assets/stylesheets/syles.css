@@ -13,7 +13,7 @@
     text-align:center;
 }
 .well {
-    background-color:#ff1f1f1
+    background-color:#f1f1f1; padding: 15px;
 }
 
 
@@ -97,6 +97,8 @@
 }
 /** Rockwell Top Bar **/
 
+
+
 /*************** Main Nav ******************/
 .main-nav {
     position:relative; width:100%; top: -6px; 
@@ -107,7 +109,7 @@
 .main-nav ul a.dropdown-item {color: #272727 !important;}
 .navbar-toggler .navbar-roggler-icon {border-color:#FFFFFF !important;}
 .main-nav .nav-right-options {
-    position:absolute; left:-180px; margin-top:10px;
+    position:absolute; left:-160px; margin-top:10px;
 }
 .main-nav .nav-right-options li a {color: #272727 !important;}
 
@@ -116,8 +118,15 @@ button.navbar-toggler span {
     color: #FFFFFF !important;
 }
 .burger {
+<<<<<<< HEAD
     margin-right:5px; 
 }
+=======
+    margin-right:7px;
+}
+
+
+>>>>>>> devise
 
 
 
