@@ -1,60 +1,14 @@
-<h1 class="page-header">Log In</h1>
-<br /><br />
+<div class="container">
+
+  <h2 class="page-header">Welcome Partners</h2>
+  <hr />
+  <br /><br />
 
 <%= render 'login' %>
 
-
-<!--
-	<div class="container">
-
-<h2>Welcome Partners</h2>
-<hr />
-<br />
-<div class="row">
+<div class="row" style="margin-top:50px; color:#787878;">
   <div class="col-md-6 offset-md-3">
-    <div class="card bg-light" style="padding:35px; border-radius:10px;">
-      <h4>Log In</h4>
-      <hr style="margin-top:0px; margin-bottom: 25px;" />
-      <%= form_for(resource, #:html => {class: "form-horizontal", role: "form"}, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-group">
-          <div class="field">
-            <%= f.label #:email %><br />
-            <%= f.email_field #:email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter Email" %>
-          </div>
-        </div>
-        <div class="form-group">    
-          <div class="field">
-            <%= f.label #:password %><br />
-            <%= f.password_field #:password, class: "form-control", autocomplete: "current-password", placeholder: "Enter Password" %>
-          </div>
-      </div>
-
-        <% #if devise_mapping.rememberable? -%>
-          <div class="field">
-            <%= f.check_box #:remember_me %>
-            <%= f.label #:remember_me %>
-          </div>
-        <% #end %>
-        <br />
-        <div class="actions" align="right">
-          <%= #f.submit "Log in", class: "btn btn-primary btn-lg" %>
-        </div>
-      <% #end %>
-    </div>
+    <p align="center">Are you a ThinManager partner that needs a login? Email&nbsp;us&nbsp;at&nbsp;<%= link_to "info@thinmanager.com", "mailto:info@thinmanager.com" %></p>
   </div>
 </div>
-
-
-<br />
-  
-
-  <div class="row" align="center">
-  <div class="col-md-6 offset-md-3">
-    <hr />
-    <p>Are you a Rockwell partner that needs&nbsp;a&nbsp;login?<br />Email us at info@thinmanager.com</p>
-  </div>
 </div>
-
-
-</div>
--->

@@ -15,6 +15,9 @@
 .well {
     background-color:#f1f1f1; padding: 15px;
 }
+.control-label {
+    margin-bottom: -7px !important;
+}
 
 
 
@@ -158,6 +161,7 @@ button.navbar-toggler span {
 }
 .footIcon1 {
     background-color:#00457c; width:45px; height:45px; border-radius:50%;
+    margin-bottom: 10px;
 }
 .footIcon1:hover {
     -webkit-box-shadow:0px 0px 12px 2px #02A5F7;
@@ -173,7 +177,7 @@ button.navbar-toggler span {
     color:#666666; 
 }
 .disLogo {
-    opacity:.4;
+    opacity:.4; margin-bottom: 25px; margin-top:-6px;
 }
 #disclaimer ul.nav a {
     color:#666666;
@@ -201,7 +205,9 @@ button.navbar-toggler span {
     .appear-sooner {
         display:inline;
     }
-
+    .lower-footer-boxes .lower-foot-box {
+        border-right:none;
+    }
 
 }
 
