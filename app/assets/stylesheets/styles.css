@@ -18,6 +18,21 @@
 .control-label {
     margin-bottom: -7px !important;
 }
+.right-to-center-button {
+    text-align: right; margin-top: -50px;
+}
+.well-space {
+    margin-bottom: 4px; padding:10px;
+}
+.delete-action {
+    text-align: right;
+}
+.paginate {
+    margin-bottom:45px;
+}
+ul.pagination {
+    justify-content:center;
+}
 
 
 

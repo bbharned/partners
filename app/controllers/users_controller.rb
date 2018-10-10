@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
+    before_action :require_same_user, only: [:edit, :update, :show]
+    before_action :require_admin, only: [:index, :new, :create, :destroy]
 
 
 def index
-
+    @users = User.paginate(page: params[:page], per_page: 20).order(:lastname)
 end
 
 
@@ -20,7 +22,7 @@ end
 
 
 def show
-
+    #Todd Garmon is user 5 for testing
 end
 
 
@@ -68,7 +70,7 @@ private
     def require_same_user
         if current_user != @user && !current_user.admin
             flash[:danger] = "You can only edit your own profile information"
-            redirect_to dashboard_path
+            redirect_to root_path
         end
     end
 
