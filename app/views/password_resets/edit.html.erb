@@ -1,7 +1,7 @@
-<p>Paragraph about resetting your password.</p>
-
+<div class="container">
 <h1>Reset password</h1>
-
+<hr />
+<p>Please enter your new secure password for the ThinManager Partner Portal</p>
 <%= render 'shared/errors', obj: @user %>
 
 <div class="row">
@@ -14,7 +14,8 @@
       <%= f.password_field :password, class: 'form-control', placeholder: "Enter New Password" %>
 
     <br />      
-      <%= f.submit "Update password", class: "btn btn-primary" %>
+      <%= f.submit "Update password", class: "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", root_path %>
     <% end %>
   </div>
+</div>
 </div>

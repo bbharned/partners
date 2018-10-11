@@ -1,8 +1,10 @@
+<div class="container">
 <h1>Request To Reset Password</h1>
+<hr />
 <p>Simply submit the email address your account is associated with and check your inbox after submission.</p>
 <br />
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6">
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -13,8 +15,9 @@
 </div>
 <div style="margin-top: 50px;">
 <div class="row">
-	<div class="col-md-5" align="center">
+	<div class="col-md-6">
 		[ <%= link_to "Cancel and Return to Login", root_path %> ]
 	</div>
+</div>
 </div>
 </div>

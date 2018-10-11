@@ -41,7 +41,11 @@ class PasswordResetsController < ApplicationController
   private
 
     def get_user
-      @user = User.find_by(email: params[:email])
+      if @user = User.find_by(email: params[:email])
+      else
+        flash[:danger] = "You dont have an email found to edit a password"
+        redirect_to new_password_reset_path
+      end
     end
 
     def user_params
