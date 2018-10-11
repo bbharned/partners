@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
-    before_action :require_same_user, only: [:edit, :update, :show]
+    before_action :require_same_user, only: [:index, :edit, :update, :show]
     before_action :require_admin, only: [:index, :new, :create, :destroy]
 
 
@@ -17,12 +17,12 @@ end
 
 
 def edit
-    @user = User.find(params[:id])
+    
 end
 
 
 def show
-    #Todd Garmon is user 5 for testing
+        
 end
 
 
@@ -30,7 +30,6 @@ def create
     @user = User.new(user_params)
 
     if @user.save
-        session[:user_id] = @user.id
         flash[:success] = "User has been created"
         redirect_to users_path
     else
@@ -43,7 +42,7 @@ end
 def update
     if @user.update(user_params)
         flash[:success] = "Account information was successfully updated"
-        redirect_to users_path
+        redirect_to user_path(@user)
     else
         render 'edit'
     end
@@ -69,13 +68,13 @@ private
 
     def require_same_user
         if current_user != @user && !current_user.admin
-            flash[:danger] = "You can only edit your own profile information"
+            flash[:danger] = "You are not permitted for that action"
             redirect_to root_path
         end
     end
 
     def require_admin
-        if logged_in? and !current_user.admin?
+        if (logged_in? and !current_user.admin?) || !logged_in? 
             flash[:danger] = "Only admin users can perform that action"
             redirect_to root_path
         end

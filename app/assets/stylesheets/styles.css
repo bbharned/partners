@@ -127,7 +127,7 @@ ul.pagination {
 .main-nav ul a.dropdown-item {color: #272727 !important;}
 .navbar-toggler .navbar-roggler-icon {border-color:#FFFFFF !important;}
 .main-nav .nav-right-options {
-    position:absolute; left:-160px; margin-top:10px;
+    position:absolute; left:-160px; margin-top:0px;
 }
 .main-nav .nav-right-options li a {color: #272727 !important;}
 
@@ -137,6 +137,9 @@ button.navbar-toggler span {
 }
 .burger {
     margin-right:7px;
+}
+.admin-menu li a {
+    color:#272727 !important;
 }
 
 

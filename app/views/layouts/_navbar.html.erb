@@ -26,36 +26,43 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
-      </li>
+      
+        <li class="nav-item">
+          <%= link_to "Dashboard", root_path, class: 'nav-link' %>
+        </li>
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+          </a>
+          <div class="dropdown-menu admin-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", user_path(@current_user), class: 'dropdown-item' %>
+            <%= link_to "Dashboard", root_path, class: 'dropdown-item' %>
+            <% if @current_user.admin || (@current_user.continent == "North America") %>
+              <a href="#" class="dropdown-item">Pricing</a>
+            <% end %>
+            <div class="dropdown-divider"></div>
+            <% if @current_user.admin %>
+            <%= link_to "Partners", users_path, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <% end %>
+            <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% else %>
+        
+      <% end %>
     </ul>
   </div>
   <div class="goAwaySooner">
     <ul class="nav navbar-nav navbar-right">
-      <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Video Learning Issue Report"">Having technical issues?</a></li>
-      <li class="dropdown">
+      <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Video Learning Issue Report" class="nav-link">Having technical issues?</a></li>
+      <li class="dropdown" style="padding-top: 5px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
               <li><a class="dropdown-item" href="http://www.thinmanager.com">ThinManager.com</a></li>
               <li><a class="dropdown-item" href="http://www.thinmanager.com/support/">ThinManager Support</a></li>
-              <li><a class="dropdown-item" href="http://www.thinmanager.com/acp/contactus.php">Contact Us</a></li>
+              <li><a class="dropdown-item" href="http://www.thinmanager.com/corp/contactus.php">Contact Us</a></li>
             </ul>
           </li>
     </ul>
