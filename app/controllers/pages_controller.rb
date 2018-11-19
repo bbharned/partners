@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 	before_action :must_login, only: [:dashboard]
 
 def dashboard
-
+	
 end
 
 

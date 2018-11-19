@@ -1,19 +1,79 @@
 <div class="container">
-	<h1 class="page-header">Welcome</h1>
+	<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
+	<% if @current_user.prttype != "" && @current_user.prttype != nil %>
+	<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
+	<% end %>
 	<hr />
 	
-	<div class="row">
-		
-		<div class="col">
-			<div class="well well-sm">
-				Column 1
-			</div>
-		</div>
-		<div class="col">Column 2</div>
+	<div class="card-columns hp-cards">
+
+	  <div class="card pricing-card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">ThinManager Pricing</h5>
+	      <p class="card-text">Find all ThinManager Part numbers and know that they are current and up to date. Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
+	      <p class="card-text"><small class="text-muted">Last updated: January 2019</small></p>
+	      <div align="right"><a href="#"><button type="button" class="btn btn-primary">View Pricing</button></a></div>
+	    </div>
+	  </div>
+
+
+	  <div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Card title</h5>
+	      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+
+
+	  <div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Card title</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+	
+
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Card title</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	</div>
+	
+
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Card title</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	</div>
+	
+
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Card title</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
 	</div>
 
 
+</div>
 
-	<br /><br /><br />
+	
+
+
+
+	<br /><br /><br /><br /><br />
 
 </div>

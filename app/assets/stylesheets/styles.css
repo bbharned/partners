@@ -145,6 +145,18 @@ button.navbar-toggler span {
 
 
 
+/********************** Home Page / Dashboard **************************/
+
+.hp-cards .card-img-top {
+    max-height: 200px;
+}
+.hp-cards .card {
+    margin-bottom: 35px;
+}
+
+
+
+
 
 
 
