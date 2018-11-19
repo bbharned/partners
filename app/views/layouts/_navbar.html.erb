@@ -26,11 +26,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      
+      <% if logged_in? %>
         <li class="nav-item">
           <%= link_to "Dashboard", root_path, class: 'nav-link' %>
         </li>
-      <% if logged_in? %>
+      
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Admin
