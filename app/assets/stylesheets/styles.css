@@ -158,6 +158,13 @@ button.navbar-toggler span {
 
 
 
+/*********************** Prciing Page ****************************/
+.tm-downloadables {
+    text-align: right;
+}
+
+
+
 
 
 
@@ -238,7 +245,11 @@ button.navbar-toggler span {
     .lower-footer-boxes .lower-foot-box {
         border-right:none;
     }
-
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
 }
 
 @media screen and (max-width:766px) {
@@ -247,6 +258,13 @@ button.navbar-toggler span {
     }
     .goAway {
         display:none !important;
+    }
+    .card-columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
 }
 
-}
+
+

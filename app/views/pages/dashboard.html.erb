@@ -1,27 +1,30 @@
 <div class="container">
 	<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
-	<% if @current_user.prttype != "" && @current_user.prttype != nil %>
+	<% if @current_user.admin? %>
+	<p>User Type: <span style="font-weight:bold;">Admin</span></p>
+	<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
 	<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
 	<% end %>
 	<hr />
 	
 	<div class="card-columns hp-cards">
-
-	  <div class="card pricing-card">
-	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager Pricing</h5>
-	      <p class="card-text">Find all ThinManager Part numbers and know that they are current and up to date. Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
-	      <p class="card-text"><small class="text-muted">Last updated: January 2019</small></p>
-	      <div align="right"><a href="#"><button type="button" class="btn btn-primary">View Pricing</button></a></div>
-	    </div>
-	  </div>
-
+	  
+	  <% if @current_user.admin? || (@current_user.continent == "North America")%>
+		  <div class="card pricing-card">
+		    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+		    <div class="card-body">
+		      <h5 class="card-title">ThinManager Pricing</h5>
+		      <p class="card-text">Need to make a quote? Find ThinManager Part Numbers and prices, with piece of mind knowing that they are kept current and up to date. Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
+		      <p class="card-text"><small class="text-muted">Last updated: January 2019</small></p>
+		      <div align="right"><%= link_to "View Pricing", pricing_path, class: "btn btn-primary" %></div>
+		    </div>
+		  </div>
+	  <% end %>
 
 	  <div class="card">
 	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
+	      <h5 class="card-title">ThinManager Branding</h5>
 	      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
@@ -31,7 +34,7 @@
 	  <div class="card">
 	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
+	      <h5 class="card-title">Resource Documents</h5>
 	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
@@ -41,7 +44,7 @@
 	<div class="card">
 	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
+	      <h5 class="card-title">Upcoming Events</h5>
 	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
@@ -51,22 +54,51 @@
 	<div class="card">
 	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
+	      <h5 class="card-title">Legal Documents</h5>
 	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
 	</div>
 	
-
+	<% if @current_user.admin? || @current_user.prttype == "Rockwell Automation" %>
 	<div class="card">
 	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
 	    <div class="card-body">
-	      <h5 class="card-title">Card title</h5>
+	      <h5 class="card-title">Rockwell Channel Support</h5>
 	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
 	</div>
-
+	<% end %>
+	<% if @current_user.admin? || @current_user.prttype == "Wonderware" %>
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Wonderware Channel Support</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	</div>
+	<% end %>
+	<% if @current_user.admin? || (@current_user.prttype != "Rockwell Automation" && @current_user.prttype != "Wonderware") %>
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">Channel Partner Support</h5>
+	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	</div>
+	<% end %>
+	<div class="card">
+	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+	    <div class="card-body">
+	      <h5 class="card-title">ThinManager Contact</h5>
+	      <p class="card-text">Looking for something specific? Confused with wehat you found? Have Questions? We can help.</p>
+	      <p class="card-text">Ph: 678-990-0945<br />
+	      Email: <a href="mailto:insidesales@thinmanager.com">insidesales@thinmanager.com</a></p>
+	    </div>
+	</div>
 
 </div>
 

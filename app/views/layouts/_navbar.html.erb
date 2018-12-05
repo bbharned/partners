@@ -39,7 +39,7 @@
             <%= link_to "Profile", user_path(@current_user), class: 'dropdown-item' %>
             <%= link_to "Dashboard", root_path, class: 'dropdown-item' %>
             <% if @current_user.admin || (@current_user.continent == "North America") %>
-              <a href="#" class="dropdown-item">Pricing</a>
+              <%= link_to "Pricing", pricing_path, class: "dropdown-item" %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if @current_user.admin %>
