@@ -1,19 +1,292 @@
-<div class="container">
+<div class="container" style="padding-bottom: 150px;">
+
+
 <% if @channel == nil || @channel == "" %>
 	<p>No Channel Defined</p>
 	<p>Please <%= link_to "contact us", "mailto:bharned@thinmanager.com" %> to set your distribution channel for pricing.</p>
 <% else %>
 	<div class="row">
-		<div class="col">
+		<div class="col-md-8">
 			<h1>ThinManager Pricing</h1>
 			<p style="padding-left: 5px; margin-top: -7px;"><span style="font-weight:bold;">Channel:</span> <%= @channel %></p>
 		</div>
-		<div class="col tm-downloadables">
-			<< Downloables Here >>
+		<div class="col-md-4 tm-downloadables">
+			<< Downloads Here >>
 		</div>
 	</div>
 	 
 	 <hr />
+
+	 <ul class="nav nav-pills nav-fill">
+	  <li class="nav-item">
+	    <%= link_to "XLr Licensing", "#xlr", class: "nav-link pricing-nav" %>
+	  </li>
+	  <li class="nav-item">
+	    <%= link_to "Redundancy Upgrades", "#rupgrades", class: "nav-link pricing-nav" %>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link pricing-nav" href="#">XLi Upgrades</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link pricing-nav" href="#">Relevance XLr Upgrades</a>
+	  </li>
+	  <li class="nav-item">
+	    <%= link_to "Platform Maintenance", "#pm", class: "nav-link pricing-nav" %>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link pricing-nav" href="#">Training & Services</a>
+	  </li>
+	</ul>
+
+	
+
+
+
+
+
+<!----------------------------- ThinManager XLr Licensing ---------------------------->
+
+<a name="xlr" id="xlr"></a>
+<h2 class="section-heading">ThinManager XLr Licensing</h2>
+		
+
+
+
+<!-- TM XLr 5 pack -->
+<div class="product-wrapper">	
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-md-9 offset-md-3">
+			<span class="product-title">ThinManager XLr Software with five (5) ThinManager Client Licenses.</span>
+		</div>
+	</div>
+	
+	<div class="row tm-product">
+
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9541-TM-005-XLR<br /><br />
+			<span class="bold">List Price:</span> $5,500.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Electronic Software Delivery includes:</span>
+			<p>5 concurrent license pack. Features include: Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Electronic Software Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $1,815.00<br />
+			<span class="bold">Cost: </span>$3,685.00</div>
+	</div>
+	<div class="row tm-product-2">
+
+		<div class="col-md-3 border-right">
+			<span class="bold">Part#:</span><br />
+			9541-TM-005-XLRM<br /><br />
+			<span class="bold">List Price:</span> $5,600.00</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Physical Media Delivery includes:</span>
+			<p>5 concurrent license pack. Features include: Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Physical Media Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $1,848.00<br />
+			<span class="bold">Cost:</span> $3,752.00</div>
+	</div>
+</div>
+
+
+<!-- TM XLr 10 pack -->
+<div class="product-wrapper">	
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-md-9 offset-md-3">
+			<span class="product-title">ThinManager XLr Software with ten (10) ThinManager Client Licenses.</span>
+		</div>
+	</div>
+	
+	<div class="row tm-product">
+
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9541-TM-010-XLR<br /><br />
+			<span class="bold">List Price:</span> $11,000.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Electronic Software Delivery includes:</span>
+			<p>Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Electronic Software Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $3630.00<br />
+			<span class="bold">Cost: </span> $7,370.00</div>
+	</div>
+	<div class="row tm-product-2">
+
+		<div class="col-md-3 border-right">
+			<span class="bold">Part#:</span><br />
+			9541-TM-010-XLRM<br /><br />
+			<span class="bold">List Price:</span> $11,100.00</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Physical Media Delivery includes:</span>
+			<p>Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Physical Media Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $3,663.00<br />
+			<span class="bold">Cost:</span> $7,437.00</div>
+	</div>
+</div>
+
+
+<!-- TM XLr 25 pack -->
+<div class="product-wrapper">	
+	<div class="row" style="padding-top: 10px;">
+		<div class="col-md-9 offset-md-3">
+			<span class="product-title">ThinManager XLr Software with twenty five (25) ThinManager Client Licenses.</span>
+		</div>
+	</div>
+	
+	<div class="row tm-product">
+
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9541-TM-025-XLR<br /><br />
+			<span class="bold">List Price:</span> $27,500.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Electronic Software Delivery includes:</span>
+			<p>Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Electronic Software Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $9,075.00<br />
+			<span class="bold">Cost: </span> $18,425.00</div>
+	</div>
+	<div class="row tm-product-2">
+
+		<div class="col-md-3 border-right">
+			<span class="bold">Part#:</span><br />
+			9541-TM-025-XLRM<br /><br />
+			<span class="bold">List Price:</span> $27,600.00</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">Physical Media Delivery includes:</span>
+			<p>Relevance, MultiMonitor, WinTMC, MultiSession, SmartSession, IP and USB Camera support, Shadowing, Instant Failover, Redundant Ethernet, Virtual Screens, etc. Physical Media Delivery.</p>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $9,108.00<br />
+			<span class="bold">Cost:</span> $18,492.00</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-----------------------------     Redundancy Upgrades   -------------------------------------->
+
+<a name="rupgrades" id="rupgrades"></a>
+<h2 class="section-heading" style="margin-top: 145px;">Redundancy Upgrades</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-----------------------------     Platform Maintenance   ----------------------------------->
+
+<a name="pm" id="pm"></a>
+<h2 class="section-heading" style="margin-top: 145px;">Platform Maintenance</h2>
+
+
+<!-- TMPM 5 pack -->
+<div class="product-wrapper">	
+	
+	<div class="row tm-product">
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9542-TM-PM-005<br /><br />
+			<span class="bold">List Price:</span> $1,025.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">1-year Platform Maintenance Plan for TM-005, TMM-005,TMR-005</span>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $338.25<br />
+			<span class="bold">Cost: </span> $686.75</div>
+	</div>
+	
+</div>
+
+
+<!-- TMPM 10 pack -->
+<div class="product-wrapper">	
+	
+	<div class="row tm-product">
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9542-TM-PM-010<br /><br />
+			<span class="bold">List Price:</span> $2,050.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">1-year Platform Maintenance Plan for TM-010, TMM-010, TMR-010</span>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $676.50<br />
+			<span class="bold">Cost: </span> $1,373.50</div>
+	</div>
+	
+</div>
+
+
+<!-- TMPM 25 pack -->
+<div class="product-wrapper">	
+	
+	<div class="row tm-product">
+		<div class="col-md-3 border-right"><span class="bold">
+			Part#:</span><br />
+			9542-TM-PM-025<br /><br />
+			<span class="bold">List Price:</span> $5,125.00
+		</div>
+		<div class="col-md-6 border-right">
+			
+			<span class="pr-description-bold">1-year Platform Maintenance Plan for TM-025, TMM-025,TMR-025</span>
+		</div>
+		<div class="col-md-3"><span class="bold">Margin:</span> 33% or $1,691.25<br />
+			<span class="bold">Cost: </span> $3,433.75</div>
+	</div>
+	
+</div>
+
+
+
+
+
+
 
 
 
