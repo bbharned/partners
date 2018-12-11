@@ -7,11 +7,31 @@
 	<% end %>
 	<hr />
 	
+	<div class="row">
+		
+		<div class="col">
+			<p style="font-size: .65em;">By using this partner portal you agree that any information viewed, copied and/or downloaded will remain as non-disclosable information. This includes, but is not limited to, the ThinManager product price list, partner-specific videos, strategic information such as product path planning, etc. This portal is for the sole benefit of your specific channel and access to confidential information in the portal is only meant to be shared within the ThinManager/Channel Partner relationship.</p>
+		</div>
+
+	</div>
+<br />
+	<div class="row">
+		<h4 style="padding-left: 1.5%;">Here and Happy to Help</h4>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-6 inside-sales-pic" style="text-align: center;"><%= image_tag "inside-sales.png" %></div>
+		<div class="col-md-6"><p>We are invested in helping you succeed. Whether you are presenting ThinManager to a customer or looking to upgrade them to the newest version, we are here to help. Our talented and trained sales staff can help you with almost anything you need and they are very easy to deal with. </p>
+		<p><%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %></p>
+		</div>
+	</div>
+
+<br /><br />
 	<div class="card-columns hp-cards">
 	  
 	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor")%>
 		  <div class="card pricing-card">
-		    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+		    <!--<img class="card-img-top" src="#" alt="Card image cap">-->
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager Pricing</h5>
 		      <p class="card-text">Need to make a quote? Find ThinManager Part Numbers and prices, with piece of mind knowing that they are kept current and up to date.<br />Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
@@ -20,13 +40,25 @@
 		    </div>
 		  </div>
 	  <% end %>
-<!--
-	  <div class="card">-->
-	    <!--<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
-<!--	    <div class="card-body">
+
+
+	  <div class="card">
+	    <%= image_tag "thePlant.jpg", class: "card-img-top" %>
+	    <div class="card-body">
+	      <h5 class="card-title">The Plant Podcast</h5>
+	      <p class="card-text">We host a monthly Podcast called "The Plant". Listen as we interview guests to about ThinManager, integration stories, customer use cases and much more.</p>
+	      <div align="right"><%= link_to "Listen Now", "https://blogs.thinmanager.com/thinclients/?cat=286", class: "btn btn-primary", target: "_blank" %></div>
+	    </div>
+	  </div>
+
+
+
+	  <div class="card">
+	    <%= image_tag "Authorized-Logo.png", class: "card-img-top" %>
+	    <div class="card-body">
 	      <h5 class="card-title">ThinManager Branding</h5>
-	      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <p class="card-text">Looking to get ThinManager Partner status represented on your website?  Take a look at this guide to getting it done.</p>
+	      <div align="right"><%= link_to "Learn More", "https://thinmanager.com/partners/branding", class: "btn btn-primary", target: "_blank" %></div>
 	    </div>
 	  </div>
 
@@ -36,11 +68,11 @@
 	    <div class="card-body">
 	      <h5 class="card-title">Resource Documents</h5>
 	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <div align="right"><%= link_to "Learn More", "#", class: "btn btn-primary", target: "_blank" %></div>
 	    </div>
 	  </div>
 	
-
+<!-- 
 	<div class="card">
 	    
 	    <div class="card-body">
@@ -89,17 +121,19 @@
 	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 	    </div>
 	</div>
-	<% end %>
+	<% end %>-->
+
+
 	<div class="card">
 	    
 	    <div class="card-body">
 	      <h5 class="card-title">ThinManager Contact</h5>
-	      <p class="card-text">Looking for something specific? Confused with wehat you found? Have Questions? We can help.</p>
+	      <p class="card-text">Looking for something specific? Confused with what you found? Have Questions? We can help.</p>
 	      <p class="card-text">Ph: 678-990-0945<br />
 	      Email: <a href="mailto:insidesales@thinmanager.com">insidesales@thinmanager.com</a></p>
 	    </div>
 	</div>
--->
+
 </div>
 
 	

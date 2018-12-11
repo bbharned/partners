@@ -148,10 +148,13 @@ button.navbar-toggler span {
 /********************** Home Page / Dashboard **************************/
 
 .hp-cards .card-img-top {
-    max-height: 200px;
+    /*max-height: 200px;*/
 }
 .hp-cards .card {
     margin-bottom: 35px;
+}
+.inside-sales-pic img {
+    width:100%; max-width: 400px;
 }
 
 
@@ -316,6 +319,9 @@ button.navbar-toggler span {
     .border-right {border-right: 0px !important;} 
     .col-downloads .row {
         float:none; margin: auto;
+    }
+    .inside-sales-pic {
+        margin-bottom: 25px;
     }
 }
 
