@@ -15,4 +15,5 @@ delete 'logout', to: 'sessions#destroy'
 
 resources :password_resets, only: [:new, :create, :edit, :update]
 
+
 end

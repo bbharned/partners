@@ -158,7 +158,7 @@ button.navbar-toggler span {
 
 
 
-/*********************** Prcing Page ****************************/
+/*********************** Pricing Page ****************************/
 .tm-downloadables {
     text-align: right;
 }
@@ -198,8 +198,17 @@ button.navbar-toggler span {
 .product-description {
 
 }
+.product-sub-title {
+    color:#FFFFFF; font-size: 1.1em;
+}
 .border-right {border-right: 1px solid #d1d1d1;}
 .bold {font-weight: bold;}
+.tm-downloadables img {
+    max-width: 50px;
+}
+.col-downloads .row {
+    width:120px; text-align:center; float:right;
+}
 
 
 
@@ -303,6 +312,10 @@ button.navbar-toggler span {
         -webkit-column-count: 1;
         -moz-column-count: 1;
         column-count: 1;
+    }
+    .border-right {border-right: 0px !important;} 
+    .col-downloads .row {
+        float:none; margin: auto;
     }
 }
 

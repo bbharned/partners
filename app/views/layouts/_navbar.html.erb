@@ -36,9 +36,9 @@
             Menu
           </a>
           <div class="dropdown-menu admin-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", user_path(@current_user), class: 'dropdown-item' %>
             <%= link_to "Dashboard", root_path, class: 'dropdown-item' %>
-            <% if @current_user.admin || (@current_user.continent == "North America") %>
+            <%= link_to "Profile", user_path(@current_user), class: 'dropdown-item' %>
+             <% if @current_user.admin || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
               <%= link_to "Pricing", pricing_path, class: "dropdown-item" %>
             <% end %>
             <div class="dropdown-divider"></div>

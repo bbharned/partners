@@ -11,6 +11,19 @@ def pricing
 end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 private
 
 def must_login
@@ -27,6 +40,8 @@ def can_see_pricing
 		redirect_to root_path
 	end
 end
+
+
 
 
 end
