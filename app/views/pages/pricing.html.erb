@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom: 150px;">
 
 
-<% if @channel == nil || @channel == "" %>
+<% if !@current_user.admin && (@channel == nil || @channel == "") %>
 	
 	<p>No Channel Defined</p>
 	<p>Please <%= link_to "contact us", "mailto:bharned@thinmanager.com" %> to set your distribution channel for pricing.</p>
