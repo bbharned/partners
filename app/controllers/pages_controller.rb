@@ -1,17 +1,21 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing]
+	before_action :must_login, only: [:dashboard, :pricing, :documents]
 	before_action :can_see_pricing, only: [:pricing]
+
 
 def dashboard
 	
 end
+
 
 def pricing
 	@channel = @current_user.channel
 end
 
 
+def documents
 
+end
 
 
 

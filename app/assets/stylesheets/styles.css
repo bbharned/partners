@@ -220,6 +220,51 @@ button.navbar-toggler span {
 
 
 
+
+
+
+
+/******************************* User Show Page *************************/
+.user-show-well {
+    padding-left: 40px; padding-right: 40px; border-radius:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************* Documents Page *************************/
+.document-table {
+    border:1px solid #e1e1e1;
+}
+.document-table .row {
+    padding: 10px; margin-left: 0px; margin-right: 0px;
+}
+.document-table .even {
+    background-color: #e1e1e1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /************************ Footer Specific CSS *************************/
 .footer-text {
     font-size:.85em;

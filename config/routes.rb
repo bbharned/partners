@@ -8,6 +8,7 @@ get 'password_resets/edit'
 root 'pages#dashboard'
 resources :users
 get 'pricing', to: 'pages#pricing'
+get 'documents', to: 'pages#documents'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
