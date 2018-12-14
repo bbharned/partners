@@ -1,7 +1,7 @@
 <div class="container">
 
 
-		<h1 class="page-header">All Partners <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
+		<h1 class="page-header">Partners by Company<span style="font-size: .4em; font-style: italic; font-weight:normal;"> &nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
 	
 	<div class="right-to-center-button">
 		<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
@@ -16,7 +16,7 @@
 				<%= link_to "Name", users_path, style: "color:inherit;", class: "dropdown-toggle" %>
 			</div>
 			<div class="col-md-3">
-				<%= link_to "Company", user_company_sorted_path, style: "color:inherit;", class: "dropdown-toggle" %>
+				<%= link_to "Company", user_company_sorted_path, style: "color:inherit;", class: "dropdown-toggle" %> 
 			</div>
 			<div class="col-md-2">
 				Type

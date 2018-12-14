@@ -43,8 +43,11 @@
             <% end %>
             <div class="dropdown-divider"></div>
             <% if @current_user.admin %>
-            <%= link_to "Partners", users_path, class: 'dropdown-item' %>
-            <div class="dropdown-divider"></div>
+                <%= link_to "View Users", users_path, class: 'dropdown-item' %>
+                <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">Reports</a>
+                <div class="dropdown-divider"></div>
             <% end %>
             <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
           </div>
