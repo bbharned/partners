@@ -10,6 +10,7 @@ resources :users
 get 'user/company-sorted', to: 'users#company'
 get 'user/type', to: 'users#type'
 get 'user/inactive', to: 'users#inactive'
+get 'user/lastlogin', to: 'users#lastlogin'
 get 'pricing', to: 'pages#pricing'
 get 'documents', to: 'pages#documents'
 
