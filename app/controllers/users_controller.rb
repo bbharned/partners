@@ -45,7 +45,7 @@ def inactive
 end
 
 def lastlogin
-    @users = User.paginate(page: params[:page], per_page: 25).order("lastlogin desc")
+    @users = User.where("lastlogin != ''").paginate(page: params[:page], per_page: 25).order("lastlogin desc")
     @allusers = User.all
 
     respond_to do |format|
