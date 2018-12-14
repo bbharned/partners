@@ -4,30 +4,16 @@
 		<h1 class="page-header">Partners by Company<span style="font-size: .4em; font-style: italic; font-weight:normal;"> &nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
 	
 	<div class="right-to-center-button">
-		<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
+		<a href="/users.csv" class="btn">Export (CSV)</a>&nbsp;&nbsp;&nbsp;<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
 	</div>
 	
-<hr /><br />
+<hr />
+<%= render 'user_filters' %>
+<br />
 	<div class="paginate">
 		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 	</div>
-		<div class="row" style="padding-left: 7px; margin-bottom: 5px; font-weight:bold;">		
-			<div class="col-md-3">
-				<%= link_to "Name", users_path, style: "color:inherit;", class: "dropdown-toggle" %>
-			</div>
-			<div class="col-md-3">
-				<%= link_to "Company", user_company_sorted_path, style: "color:inherit;", class: "dropdown-toggle" %> 
-			</div>
-			<div class="col-md-2">
-				Type
-			</div>
-			<div class="col-md-2">
-				Channel
-			</div>
-			<div class="col-md-2 ">
-				
-			</div>
-		</div>
+		<%= render 'userTableTop' %>
 	<% if @users.any? %>
 	<% @users.each do |user| %>
 		<div class="well well-space">

@@ -8,6 +8,8 @@ get 'password_resets/edit'
 root 'pages#dashboard'
 resources :users
 get 'user/company-sorted', to: 'users#company'
+get 'user/type', to: 'users#type'
+get 'user/inactive', to: 'users#inactive'
 get 'pricing', to: 'pages#pricing'
 get 'documents', to: 'pages#documents'
 

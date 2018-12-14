@@ -161,6 +161,32 @@ button.navbar-toggler span {
 
 
 
+
+/****************************** User Pages and Filtering ***********************/
+.user-sorting {
+    margin-top: -12px;
+}
+.user-sorting li {
+    border-right:1px solid #e1e1e1;
+}
+.user-sorting li:last-child {
+    border-right:0px;
+}
+.user-sorting li a {
+    color:inherit;
+}
+.user-sorting li a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
 /*********************** Pricing Page ****************************/
 .tm-downloadables {
     text-align: right;
