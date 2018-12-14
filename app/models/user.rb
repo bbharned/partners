@@ -17,6 +17,17 @@ class User < ApplicationRecord
     has_secure_password
 
 
+def self.to_csv
+      attributes = %w{id firstname lastname email company prttype channel continent created_at lastlogin}
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |user|
+          csv << attributes.map{ |attr| user.send(attr) }
+        end
+      end
+end
 
 
 # Sets the password reset attributes.
