@@ -45,7 +45,7 @@ def inactive
 end
 
 def lastlogin
-    @loggedin_before = User.where.not(lastlogin: nil, lastlogin: '')
+    @loggedin_before = User.where.not(lastlogin: nil)
     @users = @loggedin_before.paginate(page: params[:page], per_page: 25).order("lastlogin desc")
     @allusers = User.all
 
