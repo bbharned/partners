@@ -1,9 +1,9 @@
 <div class="container">
 	<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
 	<% if @current_user.admin? %>
-	<p>User Type: <span style="font-weight:bold;">Admin</span></p>
+		<p>User Type: <span style="font-weight:bold;">Admin</span></p>
 	<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
-	<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
+		<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
 	<% end %>
 	<hr />
 	
@@ -83,7 +83,17 @@
 	    </div>
 	</div>
 
-	
+	<% if @current_user.admin? || @current_user.channel == "Rockwell Automation" %>
+	<div class="card">
+	    <%= image_tag "Stratus_ztC_tile-image.png", class: "card-img-top" %>
+	    <div class="card-body">
+	      <h5 class="card-title">Stratus ztC Edge</h5>
+	      <p class="card-text">Purpose-built for operational technology (OT), ztC Edge is easy to set up, configure and manage...</p>
+	      <div align="right"><%= link_to "Learn More", "https://thinmanager.com/hardware/stratus", class: "btn btn-primary", target: "_blank" %></div>
+	    </div>
+	</div>
+	<% end %>
+
 <!--
 	<div class="card">
 	    
