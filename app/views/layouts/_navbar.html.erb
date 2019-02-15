@@ -25,38 +25,47 @@
     <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="nav nav-fill">
       <% if logged_in? %>
-        <!--<li class="nav-item">
-          <%= link_to "Dashboard", root_path, class: 'nav-link' %>
-        </li>-->
-      
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-          </a>
-          <div class="dropdown-menu admin-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Dashboard", root_path, class: 'dropdown-item' %>
-            <%= link_to "Profile", user_path(@current_user), class: 'dropdown-item' %>
-             <% if @current_user.admin || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
-              <%= link_to "Pricing", pricing_path, class: "dropdown-item" %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", root_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Profile", user_path(@current_user), class: 'nav-link' %>
+            </li>
+            <% if @current_user.admin || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
+            <li class="nav-item">
+              <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
+            </li>
             <% end %>
-            <div class="dropdown-divider"></div>
+            <li class="nav-item horizontal-divider">
+              <div class="nav-divider-horizatonal"></div>
+            </li>
             <% if @current_user.admin %>
-                <%= link_to "View Users", users_path, class: 'dropdown-item' %>
-                <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">Reports</a>
-                <div class="dropdown-divider"></div>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin
+              </a>
+              <div class="dropdown-menu admin-menu" aria-labelledby="navbarDropdown">
+                
+                
+                    <%= link_to "View Users", users_path, class: 'dropdown-item' %>
+                    <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Reports</a>
+                    <div class="dropdown-divider"></div>
+                
+                <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
+              </div>
+            </li>
             <% end %>
-            <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
-          </div>
-        </li>
-      <% else %>
-        
+            <li class="nav-item">
+              <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
+            </li>
       <% end %>
     </ul>
   </div>
+
   <div class="goAwaySooner">
     <ul class="nav navbar-nav navbar-right">
       <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Video Learning Issue Report" class="nav-link">Having technical issues?</a></li>

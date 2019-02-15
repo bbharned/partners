@@ -141,6 +141,10 @@ button.navbar-toggler span {
 .admin-menu li a {
     color:#272727 !important;
 }
+.nav-divider-horizatonal {
+    height:30px; width:2px; background-color: #f1f1f1; margin-left: 25px; margin-right: 25px;
+    margin-top: 5px; opacity: .3;
+}
 
 
 
@@ -372,6 +376,10 @@ button.navbar-toggler span {
         -webkit-column-count: 2;
         -moz-column-count: 2;
         column-count: 2;
+    }
+    .nav-divider-horizatonal,
+    .horizontal-divider {
+        display:none;
     }
 }
 
