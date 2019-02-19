@@ -1,10 +1,26 @@
 <div class="container">
-	<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
-	<% if @current_user.admin? %>
-		<p>User Type: <span style="font-weight:bold;">Admin</span></p>
-	<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
-		<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
-	<% end %>
+	
+	<div class="row">
+		<div class="col-md-9">
+			<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
+			<% if @current_user.admin? %>
+				<p>User Type: <span style="font-weight:bold;">Admin</span></p>
+			<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
+				<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span></p>
+			<% end %>
+		</div>
+		<div class="col-md-3 dist-logo">
+			<% if @current_user.channel == "Rockwell Automation" %>
+				<%= image_tag "RA-Logo.png" %>
+			<% elsif @current_user.channel == "Wonderware" %>
+				<%= image_tag "ww-logo.png" %>
+			<% end %>
+		</div>
+	</div>
+
+
+	
+	
 	<hr />
 	
 	<div class="row">

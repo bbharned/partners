@@ -160,6 +160,8 @@ button.navbar-toggler span {
 .inside-sales-pic img {
     width:100%; max-width: 400px;
 }
+.dist-logo {text-align: right;}
+.dist-logo img {width:100%;}
 
 
 
@@ -383,7 +385,7 @@ button.navbar-toggler span {
     }
 }
 
-@media screen and (max-width:766px) {
+@media screen and (max-width:767px) {
     .appear {
         display:inline;
     }
@@ -405,6 +407,7 @@ button.navbar-toggler span {
     .right-to-center-button {
         margin-top: 25px;
     }
+    .dist-logo {display: none;}
 }
 
 
