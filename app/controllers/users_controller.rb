@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:index, :edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :inactive, :lastlogin]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin]
 
 
 def index
@@ -26,6 +26,16 @@ end
 
 def type
     @users = User.paginate(page: params[:page], per_page: 25).order(:prttype)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+    end
+end
+
+def active
+    @users = User.where.not(active: false).paginate(page: params[:page], per_page: 25).order(:lastname)
     @allusers = User.all
 
     respond_to do |format|

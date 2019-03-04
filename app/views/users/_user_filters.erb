@@ -1,6 +1,9 @@
 <ul class="nav nav-fill user-sorting">
   <li class="nav-item">
-    <%= link_to "Active", "#", class: "nav-link" %>
+    <%= link_to "All", users_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Active", user_active_path, class: "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to "Inactive", user_inactive_path, class: "nav-link" %>
@@ -13,8 +16,5 @@
   </li>
   <li class="nav-item">
     <%= link_to "Integrators", "#", class: "nav-link" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "International", "#", class: "nav-link" %>
   </li>
 </ul>
