@@ -9,7 +9,7 @@ def index
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html { render "index" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
@@ -19,7 +19,7 @@ def company
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html 
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
