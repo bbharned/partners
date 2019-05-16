@@ -19,7 +19,7 @@ def company
     @allusers = User.all
 
     respond_to do |format|
-      format.html 
+      format.html { render "company" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
@@ -29,7 +29,7 @@ def type
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html { render "type" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
@@ -39,7 +39,7 @@ def active
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html { render "active" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
@@ -49,7 +49,7 @@ def inactive
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html { render "inactive" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
@@ -60,7 +60,7 @@ def lastlogin
     @allusers = User.all
 
     respond_to do |format|
-      format.html
+      format.html { render "lastlogin" }
       format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
     end
 end
