@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex]
 	before_action :can_see_pricing, only: [:pricing]
 
 
@@ -18,7 +18,9 @@ def documents
 end
 
 
-
+def vflex
+	@user = @current_user
+end
 
 
 
