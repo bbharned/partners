@@ -4,22 +4,32 @@ class PagesController < ApplicationController
 
 
 def dashboard
-	
-end
+	respond_to do |format| 
+      format.html { render "dashboard" } 
+    end 
+end 
 
 
 def pricing
 	@channel = @current_user.channel
+	respond_to do |format| 
+      format.html { render "pricing" } 
+    end 
 end
 
 
 def documents
-
+	respond_to do |format| 
+      format.html { render "documents" } 
+    end 
 end
 
 
 def vflex
 	@user = @current_user
+	respond_to do |format| 
+      format.html { render "vflex" } 
+    end 
 end
 
 
