@@ -9,44 +9,74 @@
 <p align="center" style="font-weight:lighter; font-size: .75em; margin-top: -10px;">Officially Avaiable: Late August, 2019</p>
 
 
+
+<% if @user.admin? || (@user.channel != nil && @user.channel != "" && @user.channel != "Rockwell Automation") %>
+
 <div class="video-webinar">
-	<% if (@user.channel != nil && @user.channel != "") && @user.channel != "Rockwell Automation" %>
-
 	<iframe width="853" height="480" src="https://www.youtube.com/embed/FIxeVW1aGC0?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-<% elsif (@user.channel != nil && @user.channel != "") && @user.channel == "Rockwell Automation" %>
-
-	<iframe width="853" height="480" src="https://www.youtube.com/embed/p7LCyGcWvZ8?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<% else %>
-
-	<p align="center" style="color:orange;">We do not seem to know your partner channel affiliation<br />Please <a href="mailto:bharned@thinmanager.com">contact us</a>.</p>
+</div>
 
 <% end %>
 
+<% if @user.admin? || (@user.channel != nil && @user.channel != "" && @user.channel == "Rockwell Automation") %>
+
+<div class="video-webinar">
+	<iframe width="853" height="480" src="https://www.youtube.com/embed/p7LCyGcWvZ8?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+<% elsif !@user.admin? && (@user.channel == nil || @user.channel == "") %>
+
+<div class="video-webinar">
+	<p align="center" style="color:orange;">We do not seem to know your partner channel affiliation<br />Please <a href="mailto:bharned@thinmanager.com">contact us</a>.</p>
+</div>
+
+<% end %>
+
+
 
 
 
 <br />
+	
 	<div class="document-table">
-		<div class="row">
-			<div class="col-md-6"><span class="bold">V-FLEX PowerPoint Deck</span></div>
-			<div class="col-md-5">PDF Document</div>
-			<div class="col-md-1">
+		
 
-				<% if (@user.channel != nil && @user.channel != "") && @user.channel != "Rockwell Automation" %>
-					<%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/TM-V-FLEX-Deck_20190726_3P.pdf", target: "_blank" %>
-				<% elsif (@user.channel != nil && @user.channel != "") && @user.channel == "Rockwell Automation" %> <!-- Rockwell Distributors -->
-					<%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/TM-V-FLEX-Deck_20190726_RA.pdf", target: "_blank" %> 
-				<% else %>
-					&nbsp;
+				<% if @user.admin? || (@user.channel != nil && @user.channel != "" && @user.channel != "Rockwell Automation") %>
+
+					<div class="row">
+						<div class="col-md-6"><span class="bold">V-FLEX PowerPoint Deck</span><% if @user.admin? %> &nbsp; (3rd Party)<% end %></div>
+						<div class="col-md-5">PDF Document</div>
+						<div class="col-md-1">
+							<%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/TM-V-FLEX-Deck_20190726_3P.pdf", target: "_blank" %>
+						</div>
+					</div>
+
+				<% end %>	
+
+				<% if @user.admin? || (@user.channel != nil && @user.channel != "" && @user.channel == "Rockwell Automation") %> <!-- Rockwell Distributors -->
+					
+					<div class="row">
+						<div class="col-md-6"><span class="bold">V-FLEX PowerPoint Deck</span><% if @user.admin? %> &nbsp; (Rockwell)<% end %></div>
+						<div class="col-md-5">PDF Document</div>
+						<div class="col-md-1">
+							<%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/TM-V-FLEX-Deck_20190726_RA.pdf", target: "_blank" %> 
+						</div>
+					</div>
+
+				<% elsif !@user.admin? && (@user.channel == nil || @user.channel == "") %>
+					
+					<div class="row">
+						<div class="col-md-6"><span class="bold">V-FLEX PowerPoint Deck</span></div>
+						<div class="col-md-5">PDF Document</div>
+						<div class="col-md-1">
+							&nbsp;
+						</div>
+					</div>
+				
+
 				<% end %>		
 			
-			</div>
-				
-		</div>
+			
 		<!--
 		<div class="row even">
 			<div class="col-md-6"><span class="bold">V-FLEX Datasheet</span></div>
