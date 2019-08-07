@@ -247,6 +247,73 @@ button.navbar-toggler span {
 
 
 
+/************************ New Pricing Page 2019 *************************/
+/* 
+Light Blue: #a7d9f8; 
+Dark Blue: #3fa0dd; 
+Very Light Blue: #e9f7fb;
+ */
+.pricing-instruction {
+    width:100%; padding:20px 2.5%; background-color:yellow; color:red;
+    margin-top:65px; border:5px solid #e8b10b;
+}
+.section {
+    width:96%; margin: auto; margin-top: 55px; 
+}
+.sect-heading {
+    font-size: 1.25em; text-align: center; padding: 3px 0px; /*background-color:#3fa0dd;*/
+    margin-bottom: 0; color:003366 !important;
+}
+.sect-heading span {
+    font-size:.9em; font-weight:bolder; color:#000000;
+}
+.pricing-grid {
+    width:75%; margin-top: 70px; margin-bottom: 150px;
+}
+.pricing-grid .sect-heading {
+    background-color:#3fa0dd; color:#FFFFFF; /*font-size:1em;*/ padding: 10px 0px;
+}
+.pricing-grid .sect-sub-heading {
+    font-size:.9em; padding: 5px 0px; font-weight:bold;
+}
+.pricing-grid .sect-sub-heading span {
+    font-weight:lighter;
+}
+.sect-sub-heading {
+    font-size: 1em; text-align: center; padding: 3px 0px; background-color:#a7d9f8; 
+    margin-bottom: 0;
+}
+.part-row, .part-heading {
+    position:100%; display:flex; flex-direction: row; justify-content: flex-start;
+    align-items: stretch; flex-wrap: wrap; font-size:.85em;
+}
+.part-heading {
+    background-color: #b3b3b4; font-weight:bold;
+}
+.part-row:nth-child(even) {
+    background-color: #f1f1f1;
+}
+.pricing-grid .part-row:nth-child(even) {
+    background-color: #e9f7fb;
+}
+.for-above {
+    text-align: right !important; font-size: 1.25em; font-weight: lighter;
+}
+
+
+.cat-number {width:19%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-description {width:39%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-list-price {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-mrg-prct {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-mrg {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-cost {width:9%; padding: 1px 0.5%;}
+
+
+.term-count {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.list-price-per {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.red-adder {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.break-point {width:25%; padding:1px 0 1px 1%;}
+
 
 
 /**************************** V-FLEX Page ****************************/
@@ -399,6 +466,9 @@ button.navbar-toggler span {
     .nav-divider-horizatonal,
     .horizontal-divider {
         display:none;
+    }
+    .section {
+        width:100%; margin: auto; margin-top: 55px; 
     }
 }
 
