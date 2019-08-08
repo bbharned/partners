@@ -258,18 +258,38 @@ Very Light Blue: #e9f7fb;
     margin-top:65px; border:5px solid #e8b10b;
 }
 .pricing-instruction p {
-    font-size:.9em;
+    font-size:.75em;
+}
+.pricing-instruction p:last-child {
+    margin-bottom:0px;
 }
 .section {
     width:96%; margin: auto; margin-top: 55px; 
 }
 .sect-heading {
-    font-size: 1.25em; text-align: center; padding: 3px 0px; /*background-color:#3fa0dd;*/
-    margin-bottom: 0; color:003366 !important;
+    font-size: 1.25em; text-align: center; padding: 3px 0px; 
+    margin-bottom: 0; color:003366 !important; position: relative;
 }
 .sect-heading span {
     font-size:.9em; font-weight:bolder; color:#000000;
 }
+.more-info, .more-info-2, .more-info-3, .more-info-4 {
+    position:absolute; width:20px; height: 20px; border-radius: 50%; background-color: #F1f1f1;
+    right:15px; cursor: pointer;
+}
+.more-box {
+    position: absolute; width:300px; padding:10px; background-color: #f1f1f1;
+    color:#272727; font-size: .65em; right:7px; top: 42px; border:5px solid #9E9E9E;
+    display:none;
+}
+.more-box .up-triangle { width:20px; height:12px; position:absolute; top:-17px; right:2.5px;}
+.more-box .up-triangle img {width:100%;}
+.more-box ul {
+    margin-left:-27px; text-align: left;
+}
+.more-box ul li {margin-bottom:5px;}
+.close-this p {margin-bottom: 0px; cursor:pointer; text-align: right;}
+.close-this p:hover {text-decoration: underline;}
 .pricing-grid {
     width:75%; margin-top: 70px; margin-bottom: 150px;
 }

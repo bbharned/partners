@@ -222,7 +222,19 @@
 <!-------------- Pricing Table for V-Flex with 8x5 support -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
-<h2 class="sect-heading">ThinManager V-FLEX Perpetual Licensing<br />- <span>8x5 Software Maintenance</span> -</h2>
+<h2 class="sect-heading"><div class="more-info"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Perpetual Licensing<br />- <span>8x5 Software Maintenance</span> - 
+<div class="more-box more-box-1">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
 
 <h3 class="sect-sub-heading">Pricing Table</h3>		
 <div class="parts">
@@ -400,7 +412,19 @@
 <!-------------- Pricing Table for V-Flex with 24x7 support -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
-<h2 class="sect-heading">ThinManager V-FLEX Perpetual Licensing<br />- <span>24x7 Software Maintenance</span> -</h2>
+<h2 class="sect-heading"><div class="more-info-2"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Perpetual Licensing<br />- <span>24x7 Software Maintenance</span> -
+<div class="more-box more-box-2">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
 
 <h3 class="sect-sub-heading">Pricing Table</h3>		
 <div class="parts">
@@ -531,7 +555,19 @@
 <!-------------- Pricing Table for V-Flex Subscription with 8x5 support -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
-<h2 class="sect-heading">ThinManager V-FLEX Subscription Licensing<br />- <span>8x5 Software Maintenance</span> -</h2>
+<h2 class="sect-heading"><div class="more-info-3"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Subscription Licensing<br />- <span>8x5 Software Maintenance</span> -
+<div class="more-box more-box-3">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
 
 <h3 class="sect-sub-heading">Pricing Table <span>( per year )</span></h3>		
 <div class="parts">
@@ -651,7 +687,19 @@
 <!-------------- Pricing Table for V-Flex Subscription with 24x7 support -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
-<h2 class="sect-heading">ThinManager V-FLEX Subscription Licensing<br />- <span>24x7 Software Maintenance</span> -</h2>
+<h2 class="sect-heading"><div class="more-info-4"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Subscription Licensing<br />- <span>24x7 Software Maintenance</span> -
+<div class="more-box more-box-4">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
 
 <h3 class="sect-sub-heading">Pricing Table <span>( per year )</span></h3>		
 <div class="parts">
@@ -868,6 +916,8 @@
 
 
 
+
+
 <!----------------------------- ThinManager Xli Upgrades ---------------------------->
 <a name="xli" id="xli"></a>
 <div class="section">
@@ -975,6 +1025,8 @@
 
 
 <hr style="border: 2px solid #787878; margin-top: 250px; margin-bottom: 200px;" />
+
+
 
 
 
@@ -1228,6 +1280,74 @@
 
 <br /><br /><br /><br /><br />
 
+<script>
+(function(){
+
+	"use strict";
+
+	var open1 = false;
+	var open2 = false;
+	var open3 = false;
+	var open4 = false;
+	
+	$(".more-info").on("click", function() {
+		if (open1 == false) {
+			$('.more-box-1').toggle(400);
+			open1 = true;
+		} 
+	});
+
+	$(".more-info-2").on("click", function() {
+		if (open2 == false) {
+			$('.more-box-2').toggle(400);
+			open2 = true;
+		} 
+	});
+
+	$(".more-info-3").on("click", function() {
+		if (open3 == false) {
+			$('.more-box-3').toggle(400);
+			open3 = true;
+		}
+	});
+
+	$(".more-info-4").on("click", function() {
+		if (open4 == false) {
+			$('.more-box-4').toggle(400);
+			open4 = true;
+		} 
+	});
+
+	$('.more-box-1 .close-this').on('click', function() {
+		if (open1 == true) {
+			$('.more-box-1').toggle(400);
+			open1 = false;
+		} 
+	});
+
+	$('.more-box-2 .close-this').on('click', function() {
+		if (open2 == true) {
+			$('.more-box-2').toggle(400);
+			open2 = false;
+		} 
+	});
+
+	$('.more-box-3 .close-this').on('click', function() {
+		if (open3 == true) {
+			$('.more-box-3').toggle(400);
+			open3 = false;
+		} 
+	});
+
+	$('.more-box-4 .close-this').on('click', function() {
+		if (open4 == true) {
+			$('.more-box-4').toggle(400);
+			open4 = false;
+		} 
+	});
+
+})();
+</script>
 
 <% end %>
 </div>
