@@ -25,9 +25,9 @@
 				<!-- Rockwell Downloads -->
 				<div class="col col-downloads">
 					<div class="row">
-						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_Mar2019.xlsx", target: "_blank" %>
+						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Aug19.xlsx", target: "_blank" %>
 						&nbsp;
-						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_Mar2019.pdf", target: "_blank" %>
+						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Aug19.pdf", target: "_blank" %>
 					</div>
 					<% if @current_user.admin %>
 						<div class="row"><span style="font-size: .65em;">Rockwell</span></div>
@@ -40,9 +40,9 @@
 				<!-- Other downloads, not Rockwell -->
 				<div class="col col-downloads">
 					<div class="row">
-						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_Mar2019.xlsx", target: "_blank" %>
+						<%= link_to image_tag("icon-excel.jpg"), "#", target: "_blank" %>
 						&nbsp;
-						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_Mar2019.pdf", target: "_blank" %>
+						<%= link_to image_tag("icon_pdf_large.png"), "#", target: "_blank" %>
 					</div>
 					<% if @current_user.admin %>
 						<div class="row"><span style="font-size: .65em;">WW, GE, Other</span></div>
@@ -501,6 +501,7 @@
 <a name="subscription" id="subscription"></a>
 <div class="section">
 <h2 class="sect-heading">ThinManager V-FLEX Subscription Licensing<br />- <span>8x5 Software Maintenance</span> -</h2>					
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel == "Rockwell Automation") %> <!-- Rockwell Distributors -->
 <h3 class="sect-sub-heading">FactoryTalk Activation (FTA)</h3>		
 <div class="parts">
 	<div class="part-heading">
@@ -544,6 +545,52 @@
 		<div class="prt-cost">See Table&nbsp;&#9662;</div>
 	</div>
 </div>
+<% end %>
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel != "Rockwell Automation") %> <!-- 3rd Party -->
+<h3 class="sect-sub-heading">ThinManager Activation (TMA)</h3>		
+<div class="parts">
+	<div class="part-heading">
+		<div class="cat-number">Catalog #</div>
+		<div class="prt-description">Description</div>
+		<div class="prt-list-price">List Price</div>
+		<div class="prt-mrg-prct">Margin %</div>
+		<div class="prt-mrg">Margin</div>
+		<div class="prt-cost">Cost</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+</div>
+<% end %>
 </div>
 
 
@@ -633,6 +680,7 @@
 <a name="subscription" id="subscription"></a>
 <div class="section">
 <h2 class="sect-heading">ThinManager V-FLEX Subscription Licensing<br />- <span>24x7 Software Maintenance</span> -</h2>					
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel == "Rockwell Automation") %> <!-- Rockwell Distributors -->
 <h3 class="sect-sub-heading">FactoryTalk Activation (FTA)</h3>		
 <div class="parts">
 	<div class="part-heading">
@@ -676,6 +724,55 @@
 		<div class="prt-cost">See Table&nbsp;&#9662;</div>
 	</div>
 </div>
+<% end %>
+
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel != "Rockwell Automation") %> <!-- 3rd Party -->
+<h3 class="sect-sub-heading">ThinManager Activation (TMA)</h3>		
+<div class="parts">
+	<div class="part-heading">
+		<div class="cat-number">Catalog #</div>
+		<div class="prt-description">Description</div>
+		<div class="prt-list-price">List Price</div>
+		<div class="prt-mrg-prct">Margin %</div>
+		<div class="prt-mrg">Margin</div>
+		<div class="prt-cost">Cost</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+	<div class="part-row">
+		<div class="cat-number"></div>
+		<div class="prt-description"></div>
+		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
+		<div class="prt-mrg-prct">33%</div>
+		<div class="prt-mrg">See Table&nbsp;&#9662;</div>
+		<div class="prt-cost">See Table&nbsp;&#9662;</div>
+	</div>
+</div>
+<% end %>
+
+
 </div>
 
 
@@ -1193,84 +1290,84 @@
 		<div class="prt-cost">Cost</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-TMTT-01</div>
+		<div class="prt-description">1 Day Training in ATL</div>
+		<div class="prt-list-price">$1,230.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$405.90</div>
+		<div class="prt-cost">$824.10</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-TMTT-01-S</div>
+		<div class="prt-description">1 Day Training in ATL with Software&nbsp;Maintenance&nbsp;Discount</div>
+		<div class="prt-list-price">$1,025.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$338.25</div>
+		<div class="prt-cost">$686.75</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-TMTT-02-V</div>
+		<div class="prt-description">2 Day Online Training</div>
+		<div class="prt-list-price">$2,460.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$811.80</div>
+		<div class="prt-cost">$1,648.20</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-TMTT-02-V-S</div>
+		<div class="prt-description">2 Day Online Training with Software&nbsp;Maintenance&nbsp;Discount</div>
+		<div class="prt-list-price">$2,050.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$676.50</div>
+		<div class="prt-cost">$1,373.50</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-04</div>
+		<div class="prt-description">2 Day Training Onsite for 4 Students&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$9,840.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$3,247.20</div>
+		<div class="prt-cost">$6,592.80</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-04-S</div>
+		<div class="prt-description">2 Day Training Onsite for 4 Students with Software&nbsp;Maintenance&nbsp;Discount&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$8,200.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$2,706.00</div>
+		<div class="prt-cost">$5,494.00</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-08</div>
+		<div class="prt-description">2 Day Training Onsite for 8 Students&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$14,760.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$4,870.80</div>
+		<div class="prt-cost">$9,889.20</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-08-S</div>
+		<div class="prt-description">2 Day Training Onsite for 8 Students with Software&nbsp;Maintenance&nbsp;Discount&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$12,300.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$4,059.00</div>
+		<div class="prt-cost">$8,241.00</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-12</div>
+		<div class="prt-description">2 Day Training Onsite for 12 Students&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$19,700.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$6,501.00</div>
+		<div class="prt-cost">$13,199.00</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number"></div>
-		<div class="prt-description"></div>
-		<div class="prt-list-price"></div>
+		<div class="cat-number">9542-OST-02-12-S</div>
+		<div class="prt-description">2 Day Training Onsite for 12 Students with Software&nbsp;Maintenance&nbsp;Discount&nbsp;<span class="red">*</span></div>
+		<div class="prt-list-price">$16,400.00</div>
 		<div class="prt-mrg-prct">33%</div>
-		<div class="prt-mrg"></div>
-		<div class="prt-cost"></div>
+		<div class="prt-mrg">$5,412.00</div>
+		<div class="prt-cost">$10,988.00</div>
 	</div>
 </div>
 </div>
@@ -1280,8 +1377,8 @@
 	<h6>Onsite Training</h6>
 	<div class="flex-boxes">
 		<div class="flex-box-left">
-			<p>* For all onsite training you must fill out the questionaire linked to the right. Please return to <%= link_to "services@thinmanager.com", "mailto:services@thinmanager.com" %></p>
-			<p style="margin-bottom:0px;">* Please allow 4-6 weeks’ notice prior to scheduling. Complete questionnaire, return and consult with your ThinManager Sales Manager.</p>
+			<p><span class="red">*</span> For all onsite training you must fill out the questionaire linked to the right. Please return to <%= link_to "services@thinmanager.com", "mailto:services@thinmanager.com" %></p>
+			<p style="margin-bottom:0px;"><span class="red">*</span> Please allow 4-6 weeks’ notice prior to scheduling. Complete questionnaire, return and consult with your ThinManager Sales Manager.</p>
 		</div>
 		<div class="flex-box-right" align="right"><%= link_to "Questionaire", "https://thinmanager.com/partner-resources/ThinManager%20Installation%20Services%20Questionnaire.pdf", class: "btn btn-primary", target: "_blank" %></div>
 	</div>
@@ -1289,6 +1386,16 @@
 </div>
 
 <br /><br /><br /><br /><br />
+
+
+
+
+
+
+
+
+
+
 
 <script>
 (function(){
