@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
 
 def dashboard
+	@user = current_user
 	respond_to do |format| 
       format.html { render "dashboard" } 
     end 
