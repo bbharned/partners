@@ -254,14 +254,17 @@ Dark Blue: #3fa0dd;
 Very Light Blue: #e9f7fb;
  */
 .pricing-instruction {
-    width:100%; padding:20px 2.5%; background-color:yellow; color:red;
-    margin-top:65px; border:5px solid #e8b10b;
+    width:100%; padding:20px 2.5%; background-color:red; color:white;
+    margin-top:65px; border:5px solid #b90c0c;
 }
 .pricing-instruction p {
     font-size:.75em;
 }
 .pricing-instruction p:last-child {
     margin-bottom:0px;
+}
+.pricing-instruction a {
+    color:yellow; text-decoration: underline;
 }
 .section {
     width:96%; margin: auto; margin-top: 55px; 
