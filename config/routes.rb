@@ -15,6 +15,7 @@ get 'user/lastlogin', to: 'users#lastlogin'
 get 'pricing', to: 'pages#pricing'
 get 'documents', to: 'pages#documents'
 get 'vflex', to: 'pages#vflex'
+get 'downloads', to: 'downloads#index'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
