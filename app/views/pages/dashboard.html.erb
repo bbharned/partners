@@ -56,17 +56,21 @@
 		    </div>
 		  </div>
 	  <% end %>
-<!--
+
+
 	  <div class="card">
 	    
 	    <div class="card-body">
 	      <h5 class="card-title">ThinManager Download</h5>
 	      <p class="card-text">Download the lastest version of ThinManager, Version 11.1</p>
 	      <p class="card-text"><small class="text-muted">Need activation instructions? <%= link_to "Learn More", "https://thinmanager.com/activate", target: "_blank" %></small></p>
-	      <div align="right"><%= link_to "Download Now", "#", class: "btn btn-primary", target: "_blank" %></div>
+	      	<div align="right">
+	      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-success", onclick: "window.open('https://google.com' + location.search)" %>
+	  		</div>
 	    </div>
 	  </div>
--->
+
+
 	  <div class="card">
 	    <%= image_tag "thePlant.jpg", class: "card-img-top" %>
 	    <div class="card-body">

@@ -16,6 +16,7 @@ get 'pricing', to: 'pages#pricing'
 get 'documents', to: 'pages#documents'
 get 'vflex', to: 'pages#vflex'
 get 'downloads', to: 'downloads#index'
+post 'download', to: 'pages#new_dl'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'

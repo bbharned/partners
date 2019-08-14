@@ -4,7 +4,9 @@ class DownloadsController < ApplicationController
 
 def index
 	@user = current_user
-	@downloads = Download.paginate(page: params[:page], per_page: 25).order(:created_at)
+	@downloads = Download.order("created_at desc").paginate(page: params[:page], per_page: 25) 
+
+	
 end
 
 
@@ -14,7 +16,12 @@ end
 
 
 
+
 private
+
+def download_params
+        params.require(:download).permit(:user_id)
+    end
 
 	def require_admin
         if (logged_in? and !current_user.admin?) || !logged_in? 

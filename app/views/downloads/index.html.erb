@@ -7,7 +7,7 @@
 	
 <hr />
 
-
+<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 <br />
 	
 <div class="row" style="font-weight:bold;">
@@ -17,5 +17,19 @@
 	<div class="col-md-2">Date</div>
 </div>
 
-
+<% if @downloads.any? %>
+	<% @downloads.each do |download| %>
+		<div class="well-sm">
+		<div class="row">
+			<div class="col-md-2"><%= link_to download.user.firstname + ' ' + download.user.lastname, user_path(download.user) %></div>
+			<div class="col-md-4"><%= download.user.company %></div> 
+			<div class="col-md-4"><%= download.user.email %></div>
+			<div class="col-md-2"><%= download.created_at.strftime("%b %d, %Y") %></div>
+		</div>
+		</div>
+	<% end %>
+<% end %>
+<br /><br />
+<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+<br /><br />
 </div>

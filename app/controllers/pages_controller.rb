@@ -2,6 +2,18 @@ class PagesController < ApplicationController
 	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex]
 	before_action :can_see_pricing, only: [:pricing]
 
+def new_dl
+	@download = Download.new(user_id: current_user.id)
+
+    if @download.save
+        
+        flash[:success] = "Your Download should have iniated on a new tab. If you have issues, please contact us."
+        redirect_to root_path
+    else
+        flash[:danger] = "There seems to have been a problem with the download. Feel free to contact us."
+        redirect_to root_path
+    end
+end
 
 def dashboard
 	@user = current_user
@@ -9,6 +21,14 @@ def dashboard
       format.html { render "dashboard" } 
     end
      
+    # @download = Download.new(user_id: current_user.id)
+    # if @download.save
+    #     flash[:success] = "success"
+    #     redirect_to root_path
+    # else
+    #     flash[:danger] = "Didn't work"
+    #     redirect_to root_path
+    # end
 end 
 
 
