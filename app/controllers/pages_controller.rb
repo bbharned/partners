@@ -7,7 +7,7 @@ def new_dl
 
     if @download.save
         
-        flash[:success] = "Your Download should have iniated on a new tab. If you have issues, please contact us."
+        flash[:success] = "Your Download should have iniated. If you have issues, please contact us."
         redirect_to root_path
     else
         flash[:danger] = "There seems to have been a problem with the download. Feel free to contact us."
