@@ -296,6 +296,9 @@ Very Light Blue: #e9f7fb;
 .more-box ul li {margin-bottom:5px;}
 .close-this p {margin-bottom: 0px; cursor:pointer; text-align: right;}
 .close-this p:hover {text-decoration: underline;}
+.sub-section-divider {
+    margin: auto; margin-top:-35px; margin-bottom: 100px; width:65%;
+}
 .pricing-grid {
     width:75%; margin-top: 70px; margin-bottom: 150px;
 }
@@ -339,9 +342,14 @@ Very Light Blue: #e9f7fb;
 
 
 .term-count {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .term-count {width:20%;}
 .list-price-per {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .list-price-per {width:20%;}
 .red-adder {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .red-adder {width:20%;}
 .break-point {width:25%; padding:1px 0 1px 1%;}
+.perpetual-p-chart .break-point {width:20%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .sm-renewal {width:20%; padding:1px 0 1px 1%;}
 
 .training-more-info {
     width:100%; max-width: 500px; margin: auto; padding: 20px 1.5%;
@@ -532,6 +540,15 @@ Very Light Blue: #e9f7fb;
     }
     .section {
         width:100%; margin: auto; margin-top: 55px; 
+    }
+    .parts {
+        font-size: .75em;
+    }
+    .part-row {
+        font-size: .5em;
+    }
+    .sub-section-divider {
+        margin: auto; margin-top:100px; 
     }
 }
 
