@@ -45,7 +45,7 @@
 <br /><br />
 	<div class="card-columns hp-cards">
 	  
-	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor")%>
+	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
 		  <div class="card pricing-card">
 		    <!--<img class="card-img-top" src="#" alt="Card image cap">-->
 		    <div class="card-body">
@@ -82,7 +82,7 @@
 	  </div>
 
 
-
+	  <% if @current_user.admin? || (@current_user.prttype != "Integrator" && @current_user.prttype != "" && @current_user.prttype != nil) %>
 	  <div class="card">
 	    <%= image_tag "Authorized-Logo.png", class: "card-img-top" %>
 	    <div class="card-body">
@@ -91,7 +91,7 @@
 	      <div align="right"><%= link_to "Learn More", "https://thinmanager.com/partners/branding", class: "btn btn-primary", target: "_blank" %></div>
 	    </div>
 	  </div>
-
+	  <% end %>
 
 	  <div class="card">
 	    
@@ -172,7 +172,7 @@
 	      <h5 class="card-title">ThinManager V-FLEX Licensing</h5>
 	      <p class="card-text">We are please to announce V-FLEX licensing for ThinManager.</p>
 	      <p class="card-text">ThinManager Licensing has never been so flexibile. We can't wait to tell you more about it.</p>
-	      <p class="card-text"><small class="text-muted">Officially Available: Late August, 2019</small></p>
+	      <p class="card-text"><small class="text-muted">Now Officially Available!</small></p>
 	      <div align="right"><%= link_to "Learn More", vflex_path, class: "btn btn-primary" %></div>
 	    </div>
 	</div>
