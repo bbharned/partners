@@ -333,23 +333,26 @@ Very Light Blue: #e9f7fb;
 }
 
 
-.cat-number {width:19%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
-.prt-description {width:39%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.cat-number {width:18%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.prt-description {width:34%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
 .prt-list-price {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
 .prt-mrg-prct {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
 .prt-mrg {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
-.prt-cost {width:9%; padding: 1px 0.5%;}
+.prt-cost {width:9%; padding: 1px 0.5%; border-right:1px inset #C2C2C2;}
+.usd {width:4%; padding: 1px 0.5%; border-right:1px inset #C2C2C2; text-align: center;}
+.usd:last-child {border-right:0px;}
 
 
-.term-count {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
-.perpetual-p-chart .term-count {width:20%;}
+.term-count {width:20%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .term-count {width:15%;}
 .list-price-per {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
 .perpetual-p-chart .list-price-per {width:20%;}
 .red-adder {width:25%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
 .perpetual-p-chart .red-adder {width:20%;}
-.break-point {width:25%; padding:1px 0 1px 1%;}
-.perpetual-p-chart .break-point {width:20%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
-.perpetual-p-chart .sm-renewal {width:20%; padding:1px 0 1px 1%;}
+.break-point {width:15%; padding:1px 0 1px 1%;}
+.perpetual-p-chart .break-point {width:12%; border-right:1px inset #C2C2C2; padding:1px 0 1px 1%;}
+.perpetual-p-chart .sm-renewal {width:20%; padding:1px 0 1px 1%; border-right:1px inset #C2C2C2;}
+.pricing-grid .usd {font-size: .8em; padding-top: 2px;}
 
 .training-more-info {
     width:100%; max-width: 500px; margin: auto; padding: 20px 1.5%;
