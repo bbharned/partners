@@ -65,6 +65,8 @@ end
     end
 
 
+
+
 private
 
 # Creates and assigns the activation token and digest.

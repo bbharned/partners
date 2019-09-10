@@ -67,6 +67,8 @@ end
 
 
 
+
+
 def new
     @user = User.new
 end
@@ -116,7 +118,7 @@ end
 private
 
 	def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel)
+        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel, :certdate, :certexpire)
     end
 
     def set_user

@@ -139,6 +139,45 @@
                     </div>
 
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "Certification Date" %>
+                        </div>
+                        <div class="col-md-8" style="margin-bottom: 20px;">
+                            <%= f.text_field :certdate, class: "datepicker form-control" %>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "Certification Expiration" %>
+                        </div>
+                        <div class="col-md-8" style="margin-bottom: 20px;">
+                            <%= f.text_field :certexpire, class: "datepicker2 form-control" %>
+                        </div>
+                    </div>
+                </div>
+
+                    <script type="text/javascript">
+                      $(document).ready(function(){
+                        $('.datepicker').datepicker({
+                          //format: "mm/dd/yyyy",
+                          autoclose: true,
+                          todayBtn: "linked",
+                          todayHighlight: true
+                        });
+                        $('.datepicker2').datepicker({
+                          //format: "mm/dd/yyyy",
+                          autoclose: true,
+                          todayBtn: "linked",
+                          todayHighlight: true
+                        });
+                      });
+                    </script>
+
+                
             </div>
             <% end %>
             <br />
