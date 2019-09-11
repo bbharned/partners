@@ -26,10 +26,25 @@
 				<span class="bold">Channel:</span> &nbsp;<%= @user.channel %><br />
 				<% end %>
 				<span class="bold">Type:</span> &nbsp;<%= @user.prttype %><br />
-				<% if @user.silevel != nil && @user.silevel != "" %>
-					<span class="bold">Integrator Level:</span> &nbsp;<%= @user.silevel %><br />
+				<% if @user.continent != nil && @user.continent != "" %>
+					<span class="bold">Region:</span> &nbsp;<%= @user.continent %><br />
 				<% end %>
-				<span class="bold">Region:</span> &nbsp;<%= @user.continent %>
+				<% if @user.certexpire != nil && @user.certexpire != "" %>
+					<% if @user.silevel != nil && @user.silevel != "" %>
+						<span class="bold">Integrator Level:</span> 
+							<% if @user.certexpire < Date.today %>
+								&nbsp;<span style="color:red;"><%= @user.silevel %></span><br />
+							<% else %>
+								&nbsp;<%= @user.silevel %><br />
+							<% end %>
+					<% end %>
+					<span class="bold">Certification Expiration:</span> 
+						<% if @user.certexpire < Date.today %>
+							&nbsp;<spa style="color:red;"><%= @user.certexpire %></span><br />
+						<% else %>
+							&nbsp;<%= @user.certexpire %><br />
+						<% end %>
+				<% end %>
 			</div>
 		</div>
 		<br />

@@ -91,20 +91,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="control-label col-sm-12">
-                            <%= f.label "SI Level" %>
-                        </div>
-                        <div class="col-md-12" style="margin-bottom: 20px;">
-                            <%= f.select :silevel, options_for_select([
-                                  [""],
-                                  ["Certified"], 
-                                  ["Platinum"]
-                            ], @user.silevel), class: "form-control" %>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+
                     <div class="col-md-6">
                         <div class="control-label col-sm-12">
                             <%= f.label "Channel" %>
@@ -117,6 +104,22 @@
                                   ["GE"],
                                   ["Independent"]
                             ], @user.channel), class: "form-control" %>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "SI Level" %>
+                        </div>
+                        <div class="col-md-12" style="margin-bottom: 20px;">
+                            <%= f.select :silevel, options_for_select([
+                                  [""],
+                                  ["Certified"], 
+                                  ["Platinum"]
+                            ], @user.silevel), class: "form-control" %>
                         </div>
                     </div>
 
@@ -146,7 +149,7 @@
                             <%= f.label "Certification Date" %>
                         </div>
                         <div class="col-md-8" style="margin-bottom: 20px;">
-                            <%= f.text_field :certdate, class: "datepicker form-control" %>
+                            <%= f.date_field :certdate, class: "form-control" %>
                         </div>
                     </div>
 
@@ -155,27 +158,27 @@
                             <%= f.label "Certification Expiration" %>
                         </div>
                         <div class="col-md-8" style="margin-bottom: 20px;">
-                            <%= f.text_field :certexpire, class: "datepicker2 form-control" %>
+                            <%= f.date_field :certexpire, class: "form-control" %>
                         </div>
                     </div>
                 </div>
 
-                    <script type="text/javascript">
+                    <!-- <script type="text/javascript">
                       $(document).ready(function(){
                         $('.datepicker').datepicker({
-                          //format: "mm/dd/yyyy",
+                          format: "dd/mm/yyyy",
                           autoclose: true,
                           todayBtn: "linked",
                           todayHighlight: true
                         });
                         $('.datepicker2').datepicker({
-                          //format: "mm/dd/yyyy",
+                          format: "dd/mm/yyyy",
                           autoclose: true,
                           todayBtn: "linked",
                           todayHighlight: true
                         });
                       });
-                    </script>
+                    </script> -->
 
                 
             </div>
