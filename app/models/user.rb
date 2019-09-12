@@ -7,7 +7,7 @@ class User < ApplicationRecord
     validates :email, confirmation: true, :on => :create
     validates :email_confirmation, presence: true, :on => :create
     validates :password_confirmation, presence: true, :on => :create
-    has_many :downloads
+    has_many :downloads, dependent: :destroy
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i 
     validates :email,  presence: true,  length: { maximum: 75 },
