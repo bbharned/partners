@@ -58,8 +58,11 @@
 
 	</div>
 <br />
+
+<% if @current_user.admin || @current_user.prttype == "Distributor" %>
+
 	<div class="row">
-		<h4 style="padding-left: 1.5%;">Here and Happy to Help</h4>
+		<h4 style="padding-left: 1.5%;">Here and Happy to Help <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Distributors)</span><% end %></h4>
 	</div>
 	<br />
 	<div class="row">
@@ -69,7 +72,32 @@
 		</div>
 	</div>
 
+
+
 <br /><br />
+<% end %>
+
+<% if @current_user.admin || @current_user.prttype == "Integrator" %>
+
+	<div class="row">
+		<h4 style="padding-left: 1.5%;">We Are Here If You Need <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Integrators)</span><% end %></h4>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-6 inside-sales-pic" style="text-align: center;"><%= image_tag "SI_Support.jpg" %></div>
+		<div class="col-md-6"><p>Integration of ThinManager software is the life blood of getting our customers up and keeping them running. Your knowledge and understanding of ThinManager is vital to our success.</p>
+		<p>If you can't find what you are looking for here and need help with questions, contact us. We are here to help.</p>
+		<p><%= link_to "Email Address @ Link", "mailto:#" %></p>
+		</div>
+	</div>
+
+
+
+<br /><br /><br />
+<% end %>
+
+
+
 	<div class="card-columns hp-cards">
 	  
 	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
@@ -97,6 +125,26 @@
 	  		</div>
 	    </div>
 	  </div>
+
+
+	  <% if @current_user.admin || @current_user.prttype == "Integrator" %>
+
+	  <div class="card">
+	  	<div class="card-body">
+	  		<h5 class="card-title" style="margin-bottom: 4px;">Feature Snapshot</h5>
+	  		<h6 class="card-subtitle text-muted">5 New Features of ThinManager</h6>
+	  		<br />
+	  		<ul class="list-group list-group-flush">
+	  			<li class="list-group-item">Freeform MultiMonitor</li>
+	  			<li class="list-group-item">PIN Obscurity</li>
+	  			<li class="list-group-item">PIN Complexity</li>
+	  			<li class="list-group-item">Nymiband Authentication</li>
+	  			<li class="list-group-item">Tiling, Virtual Screens, IP Camera for aTMC, iTMC</li>
+	  		</ul>
+	  	</div>
+	  </div>
+
+	  <% end %>
 
 
 	  <div class="card">
