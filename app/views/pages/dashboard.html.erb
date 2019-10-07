@@ -145,26 +145,27 @@
 	  </div>
 
 
-	  <div class="card">
+	  <div class="card" style="text-align: center;">
+	  	<%= image_tag "hardware-card-image.jpg", class: "card-img-top" %>
 	  	<div class="card-body">
-	  		<h5 class="card-title" style="margin-bottom: 4px;">Featured Hardware</h5>
-	  		<h6 class="card-subtitle text-muted">ThinManager supports many hardware options and choices.  Learn more about a few featured brands.</h6>
-	  		<br />
+	  		<h5 class="card-title" style="">Featured Hardware</h5> <!-- Margin-bottom on title was 4px with subtitle visible, left aligned -->
+	  		<!--<h6 class="card-subtitle text-muted">ThinManager supports many hardware options and choices.  Learn more about a few featured brands.</h6>
+	  		<br />-->
 	  		<ul class="list-group list-group-flush">
-	  			<li class="list-group-item">Rockwell VersaView thin clients
+	  			<li class="list-group-item">Allen-Bradley VersaView
 	  				<ul style="list-style: none; margin-left: -15%;">
-	  					<small><li><%= link_to "Learn More »", "#", target: "_blank" %></li></small>
+	  					<small><li><%= link_to "Learn More »", "https://ab.rockwellautomation.com/Computers/6200-VersaView-5200-Thin-Client", target: "_blank" %></li></small>
 	  				</ul>
 	  			</li>
 	  				
-	  			<li class="list-group-item">Logic Supply thin clients
+	  			<li class="list-group-item">Logic Supply Industrial clients
 	  				<ul style="list-style: none; margin-left: -15%;">
 	  					<small><li><%= link_to "Learn More »", "https://www.logicsupply.com/markets/manufacturing/industrial-thin-clients/", target: "_blank" %></li></small>
 	  				</ul>
 	  			</li>
-	  			<li class="list-group-item">Stratus servers
+	  			<li class="list-group-item">Stratus ztC Edge servers
 	  				<ul style="list-style: none; margin-left: -15%;">
-	  					<small><li><%= link_to "Learn More »", "#", target: "_blank" %></li></small>
+	  					<small><li><%= link_to "Learn More »", "https://www.stratus.com/solutions/platforms/ztc-edge/", target: "_blank" %></li></small>
 	  				</ul>
 	  			</li>
 	  		</ul>
