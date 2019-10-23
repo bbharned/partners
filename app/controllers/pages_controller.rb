@@ -15,6 +15,19 @@ def new_dl
     end
 end
 
+def new_calc
+    @calculator = Calculator.new(user_id: current_user.id)
+
+    if @calculator.save
+        
+        flash[:success] = "Your ROI Calculator download should have iniated. If you have issues, please contact us."
+        redirect_to root_path
+    else
+        flash[:danger] = "There seems to have been a problem with the download. Feel free to contact us."
+        redirect_to root_path
+    end
+end
+
 def dashboard
 	@user = current_user
 	respond_to do |format| 

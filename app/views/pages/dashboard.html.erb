@@ -126,6 +126,19 @@
 	    </div>
 	  </div>
 
+	  <% if @current_user.admin || @current_user.prttype == "Distributor" %>
+	  <div class="card">
+	    
+	    <div class="card-body">
+	      <h5 class="card-title">ThinManager ROI Calculator</h5>
+	      <p class="card-text">Download our ROI Calculator</p>
+	      <p class="card-text" style="line-height: 12px;"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
+	      	<div align="right" style="margin-top: 22px;">
+	      		<%= link_to 'Download Now', calculators_path(current_user), method: :new_calc, class: "btn btn-primary", onclick: "window.open('https://thinmanager.com/roi/program/ThinManagerROI.exe' + location.search)" %>
+	  		</div>
+	    </div>
+	  </div>
+	  <% end %>
 
 	  <% if @current_user.admin || @current_user.prttype == "Integrator" %>
 
@@ -158,7 +171,7 @@
 	  				</ul>
 	  			</li>
 	  				
-	  			<li class="list-group-item">Logic Supply Industrial clients
+	  			<li class="list-group-item">OnLogic Supply Industrial clients
 	  				<ul style="list-style: none; margin-left: -15%;">
 	  					<small><li><%= link_to "Learn More »", "https://www.logicsupply.com/markets/manufacturing/industrial-thin-clients/", target: "_blank" %></li></small>
 	  				</ul>
