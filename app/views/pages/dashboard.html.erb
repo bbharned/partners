@@ -121,6 +121,22 @@
 	  <% end %>
 
 
+
+
+	  <!-- Flex Forward here -->
+	  <% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") %>
+	  	<div class="card">
+		    <div class="card-body">
+		      <h5 class="card-title">Flex Forward to V-FLEX</h5>
+		      <p class="card-text">Now that ThinManager has moved to our new V-FLEX pricing mondel, many customers need to calculate expanding under the new model. You're in luck!  We are working on a solution for you.</p>
+		      
+		      <p class="card-text"><small class="text-muted">Coming Soon!</small></p>
+		      <!--<div align="right"><%= link_to "Learn More", flexforward_path, class: "btn btn-primary" %></div>-->
+		    </div>
+		</div>
+	  <% end %>
+
+
 	  <div class="card">
 	    
 	    <div class="card-body">
@@ -299,16 +315,16 @@
 	<% end %>-->
 
 	<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") %>
-	<div class="card">
-	    <%= image_tag "v-flex.jpg", class: "card-img-top" %>
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager V-FLEX Licensing</h5>
-	      <p class="card-text">We are please to announce V-FLEX licensing for ThinManager.</p>
-	      <p class="card-text">ThinManager Licensing has never been so flexibile. We can't wait to tell you more about it.</p>
-	      <p class="card-text"><small class="text-muted">Now Officially Available!</small></p>
-	      <div align="right"><%= link_to "Learn More", vflex_path, class: "btn btn-primary" %></div>
-	    </div>
-	</div>
+		<div class="card">
+		    <%= image_tag "v-flex.jpg", class: "card-img-top" %>
+		    <div class="card-body">
+		      <h5 class="card-title">ThinManager V-FLEX Licensing</h5>
+		      <p class="card-text">We are please to announce V-FLEX licensing for ThinManager.</p>
+		      <p class="card-text">ThinManager Licensing has never been so flexibile. We can't wait to tell you more about it.</p>
+		      <p class="card-text"><small class="text-muted">Now Officially Available!</small></p>
+		      <div align="right"><%= link_to "Learn More", vflex_path, class: "btn btn-primary" %></div>
+		    </div>
+		</div>
 	<% end %>
 
 	<div class="card">
