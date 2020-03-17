@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward]
 	before_action :can_see_pricing, only: [:pricing]
 
 def new_dl
@@ -67,6 +67,12 @@ def vflex
     end 
 end
 
+def flexforward
+    @user = @current_user
+    respond_to do |format| 
+      format.html { render "flexforward" } 
+    end 
+end
 
 
 
