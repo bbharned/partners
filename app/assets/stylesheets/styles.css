@@ -411,6 +411,18 @@ Very Light Blue: #e9f7fb;
 
 
 
+/********************** Flex Forward Page **********************/
+
+#flex-forward-table {
+    margin-top: 55px; font-size: .75em;
+}
+#flex-forward-table .form-control-sm {
+    padding:0px 5px;
+}
+
+
+
+
 
 
 
