@@ -125,7 +125,8 @@
 
 	  <!-- Flex Forward here -->
 	  <% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") %>
-	  	<div class="card">
+	  	<div class="card" style="padding-top: 20px;">
+		    <%= image_tag "ff-logo.png", class: "card-img-top" %>
 		    <div class="card-body">
 		      <h5 class="card-title">Flex Forward to V-FLEX</h5>
 		      <p class="card-text">Now that ThinManager has moved to our new V-FLEX pricing model, many customers need to calculate expanding under the new model. You're in luck!  We are working on a solution for you and should have it ready soon.</p>

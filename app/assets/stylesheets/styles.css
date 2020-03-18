@@ -419,6 +419,10 @@ Very Light Blue: #e9f7fb;
 #flex-forward-table .form-control-sm {
     padding:0px 5px;
 }
+.ff-top-logo {
+    max-width:400px;
+}
+.ff-top-logo img {max-width:100%; margin:auto;}
 
 
 
@@ -590,6 +594,10 @@ Very Light Blue: #e9f7fb;
         margin-top: 25px;
     }
     .dist-logo {display: none;}
+    .ff-top-logo {
+        max-width:100%;
+    }
+    .ff-top-logo img {width:90%; max-width:400px; margin:auto;}
 }
 
 
