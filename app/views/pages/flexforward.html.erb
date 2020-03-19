@@ -9,11 +9,21 @@
 </div>
 <hr />
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu bibendum at varius vel pharetra. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Odio morbi quis commodo odio aenean sed adipiscing diam. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. Tellus integer feugiat scelerisque varius morbi enim nunc faucibus a. Tellus in hac habitasse platea.</p> 
+<p>Flex Forward is an elective commercial initiative that provides customers a path forward to the V-FLEX licensing model from legacy 5/10/25-pack, Enterprise Server, and Enterprise Site licensing models.</p> 
 
-<p>Viverra accumsan in nisl nisi scelerisque eu ultrices. Placerat orci nulla pellentesque dignissim. Sit amet purus gravida quis blandit turpis. Et netus et malesuada fames ac turpis egestas integer eget. Sed faucibus turpis in eu mi bibendum. Eget mi proin sed libero enim sed faucibus. Mauris a diam maecenas sed. Orci nulla pellentesque dignissim enim sit amet venenatis urna.</p>
+<p>In order to execute the program, the following information will be important to understand:</p>
+<ul style="margin-top: -15px; margin-bottom: 20px;">
+	<li>Which locations/sites are interested in participating in the program</li>
+	<li>Existing licensing at each site including Product License numbers</li>
+	<li>Number of desired terminals at each site (for Enterprise Site/Server customers)</li>
+	<li>Support status of each license (current, or what date expired)</li>
+</ul>
 
-<form>
+<p>Once this information is collected, your ThinManager Strategic Account Manager can assist with generating a quote. 
+To identify your representative, please visit <%= link_to "https://thinmanager.com/corp/contactus.php", "https://thinmanager.com/corp/contactus.php", target: "_blank" %>.</p>
+
+
+<form id="ff-form">
 <table class="table table-bordered table-sm" id="flex-forward-table" width="100%">
 	<div class="form-group">
 		<tr style="background-color: #d1d1d1;">
@@ -26,28 +36,28 @@
 		</tr>
 		<tr>
 	      	<td scope="row" colspan="2" style="font-weight:bold;"># of Licenses in Support</td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="1" id="field1"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field2"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field3"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field4"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="1" id="field1" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="2" id="field2" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="3" id="field3" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="4" id="field4" placeholder="0"></td>
 	      	<td colspan="3" style="border-right: 0px; border-left: 0px; background-color: #d1d1d1; border-color: #d1d1d1;">&nbsp;</td>
 	    </tr>
 
 	    <tr>
 	      	<td scope="row" colspan="2" style="font-weight:bold;"># of Licenses Out of Support</td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field5"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field6"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field7"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field8"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="5" id="field5" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="6" id="field6" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="7" id="field7" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="8" id="field8" placeholder="0"></td>
 	      	<td colspan="3" style="border-right: 0px; border-left: 0px; background-color: #d1d1d1; border-color: #d1d1d1;">&nbsp;</td>
 	    </tr>
 
 	    <tr>
 	      	<td scope="row" colspan="2" style="font-weight:bold;"># of years Expired</td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field9"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field10"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field11"></td>
-	      	<td><input class="form-control form-control-sm" type="text" size="2" id="field12"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="9" id="field9" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="10" id="field10" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="11" id="field11" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="12" id="field12" placeholder="0"></td>
 	      	<td colspan="3" style="border-right: 0px; border-left: 0px; background-color: #d1d1d1; border-color: #d1d1d1;">&nbsp;</td>
 	    </tr>
 	    <tr><td colspan="9" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF;">&nbsp;</td></tr>
@@ -141,6 +151,16 @@
 	</div>	
 </table>
 </form>
+<br /><br />
+<div class="range-display1"></div><br />
+<div class="range-display2"></div><br />
+<div class="range-display3"></div><br />
+<div class="range-display4"></div><br />
+<div class="range-display5"></div>
+
+
+
+
 </div>
 
 
@@ -150,39 +170,58 @@
 
 		"use strict";
 
-		var field1 = 0;
-		var field2 = 0;
-		var field3 = 0;
-		var field4 = 0;
-		var field5 = 0;
-		var field6 = 0;
-		var field7 = 0;
-		var field8 = 0;
-		var field9 = 0;
-		var field10 = 0;
-		var field11 = 0;
-		var field12 = 0;
-		$("#field1").val(field1);
-		$("#field2").val(field2);
-		$("#field3").val(field3);
-		$("#field4").val(field4);
-		$("#field5").val(field5);
-		$("#field6").val(field6);
-		$("#field7").val(field7);
-		$("#field8").val(field8);
-		$("#field9").val(field9);
-		$("#field10").val(field10);
-		$("#field11").val(field11);
-		$("#field12").val(field12);
-
-
 		
-
-
-
-
 		$('input').on('change', function() {
 			// calculations function call here
+
+			function range(start, end) {
+			    var ans = [];
+			    for (let i = start; i <= end; i++) {
+			        ans.push(i);
+			    }
+			    return ans;
+			}
+
+			var terminalCountRange1 = range(1,4);
+			var terminalCountRange2 = range(5,49);
+			var terminalCountRange3 = range(50,99);
+			var terminalCountRange4 = range(100,249);
+			var terminalCountRange5 = range(250,499);
+			var terminalCountRange6 = range(500,100000);
+
+			var field1 = $("#field1").val();
+			var field2 = $("#field2").val();
+			// var field3;
+			// var field4;
+			// var field5;
+			// var field6;
+			// var field7;
+			// var field8;
+			// var field9;
+			// var field10;
+			// var field11;
+			// var field12;
+
+
+			var h;
+			for (h=0; h < terminalCountRange1.length; h++) {
+				$(".range-display1").append(terminalCountRange1[h] + " ");
+			}
+
+			var i;
+			for (i=0; i < terminalCountRange2.length; i++) {
+				$(".range-display2").append(terminalCountRange2[i] + " ");
+			}
+
+			var j;
+			for (j=0; j < terminalCountRange3.length; j++) {
+				$(".range-display3").append(terminalCountRange3[j] + " ");
+			}
+			
+			
+
+				
+
 		})
 
 	})();
