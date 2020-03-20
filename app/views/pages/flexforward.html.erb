@@ -1,3 +1,6 @@
+<style>
+@media print and (min-width:100px) {.ra-top-bar, .ff-instructions, #footer, #disclaimer, #control-buttons {display:none !important;}}
+</style>
 <div class="container" style="padding-bottom: 150px;">
 <div class="row">
 	<div class="col-md-8">
@@ -8,7 +11,7 @@
 	</div>
 </div>
 <hr />
-
+<div class="ff-instructions">
 <p>Flex Forward is an elective commercial initiative that provides customers a path forward to the V-FLEX licensing model from legacy 5/10/25-pack, Enterprise Server, and Enterprise Site licensing models.</p> 
 
 <p>In order to execute the program, the following information will be important to understand:</p>
@@ -21,7 +24,7 @@
 
 <p>Once this information is collected, your ThinManager Strategic Account Manager can assist with generating a quote. 
 To identify your representative, please visit <%= link_to "https://thinmanager.com/corp/contactus.php", "https://thinmanager.com/corp/contactus.php", target: "_blank" %>.</p>
-
+</div>
 
 <form id="ff-form">
 <table class="table table-bordered table-sm" id="flex-forward-table" width="100%">
@@ -72,7 +75,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			<th scope="col">Trade for R Pack</th>
 			<th scope="col">New Simplex</th>
 			<th scope="col">New Redundant</th>
-			<th scope="col">TOTALS</th>
+			<th scope="col" style="text-align: center;">TOTAL</th>
 		</tr>
 
 		<tr>
@@ -83,7 +86,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 	      	<td id="field16"></td>
 	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="15" id="field17" placeholder="0"></td>
 	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="16" id="field18" placeholder="0"></td>
-	      	<td id="field19"></td>
+	      	<td id="field19" style="text-align: right;"></td>
 	    </tr>
 
 	    <tr>
@@ -94,7 +97,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 	      	<td id="field23"></td>
 	      	<td id="field24"></td>
 	      	<td id="field25"></td>
-	      	<td id="field26"></td>
+	      	<td id="field26" style="text-align: right;"></td>
 	    </tr>
 
 	    <tr>
@@ -105,7 +108,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 	      	<td id="field30"></td>
 	      	<td id="field31"></td>
 	      	<td id="field32"></td>
-	      	<td id="field33"></td>
+	      	<td id="field33" style="text-align: right;"></td>
 	    </tr>
 	    <tr style="border-left-color: #FFFFFF !important;"><td colspan="2" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF; border-bottom-color: #FFFFFF;">&nbsp;</td><td colspan="7" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF;"></td></tr>
 	</div>
@@ -141,7 +144,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			<td id="field38" style="background-color:lightgreen; text-align: right;">0</td>
 		</tr>
 		<tr><td colspan="9" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF; border-bottom-color: #FFFFFF;">&nbsp;</td></tr>
-		<tr style="border-color: #FFFFFF;">
+		<tr class="control-buttons" style="border-color: #FFFFFF;">
 			<td colspan="6" style="border-color: #FFFFFF;"></td>
 			<td colspan="3" style="text-align: right; border-color: #FFFFFF;">
 				<button class="btn btn-secondary" tabindex="17" id="reset">Reset</button>&nbsp;&nbsp;
@@ -170,14 +173,15 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 		"use strict";
 
+		// quote expiration date
 		var expDate = new Date();
 		var dd = String(expDate.getDate()).padStart(2, '0');
 		var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-		var yyyy = expDate.getFullYear() + 2;
-
+		var yyyy = expDate.getFullYear() + 1;
 		expDate = mm + '/' + dd + '/' + yyyy;
 		$('#field37').text(expDate);
 		
+
 		$('input').on('change', function() {
 			
 			//V-Flex Prices
@@ -257,6 +261,17 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 		$("#reset").click(function() {
 			refresh();
 		});
+
+		function printDiv(divName) {
+		     var printContents = document.getElementById(divName).innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		}
 
 		$("#print").click(function() {
 			print();
