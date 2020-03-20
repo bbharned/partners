@@ -419,6 +419,9 @@ Very Light Blue: #e9f7fb;
 #flex-forward-table .form-control-sm {
     padding:0px 5px;
 }
+#flex-forward-table tr td {
+    vertical-align: middle;
+}
 .ff-top-logo {
     max-width:400px;
 }

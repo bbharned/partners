@@ -72,40 +72,40 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			<th scope="col">Trade for R Pack</th>
 			<th scope="col">New Simplex</th>
 			<th scope="col">New Redundant</th>
-			<th scope="col">TOTAL</th>
+			<th scope="col">TOTALS</th>
 		</tr>
 
 		<tr>
 	      	<td scope="row" colspan="2" style="font-weight:bold;">Total Redundant V-FLEX Terminals Required:</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="13" id="field13" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="14" id="field14" placeholder="0"></td>
+	      	<td id="field15"></td>
+	      	<td id="field16"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="15" id="field17" placeholder="0"></td>
+	      	<td><input class="form-control form-control-sm" type="text" size="2" tabindex="16" id="field18" placeholder="0"></td>
+	      	<td id="field19"></td>
 	    </tr>
 
 	    <tr>
 	      	<td colspan="2">Special Band Trade-Up Pricing:</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
+	      	<td id="field20"></td>
+	      	<td id="field21"></td>
+	      	<td id="field22"></td>
+	      	<td id="field23"></td>
+	      	<td id="field24"></td>
+	      	<td id="field25"></td>
+	      	<td id="field26"></td>
 	    </tr>
 
 	    <tr>
 	      	<td colspan="2">Total Credit for All Licenses:</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
-	      	<td>&nbsp;</td>
+	      	<td id="field27"></td>
+	      	<td id="field28"></td>
+	      	<td id="field29"></td>
+	      	<td id="field30"></td>
+	      	<td id="field31"></td>
+	      	<td id="field32"></td>
+	      	<td id="field33"></td>
 	    </tr>
 	    <tr style="border-left-color: #FFFFFF !important;"><td colspan="2" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF; border-bottom-color: #FFFFFF;">&nbsp;</td><td colspan="7" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF;"></td></tr>
 	</div>
@@ -114,38 +114,38 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 		<tr>
 			<td colspan="2" style="border-left-color: #FFFFFF; border-bottom-color: #FFFFFF; border-top-color: #FFFFFF;">&nbsp;</td>
 			<td colspan="6">Cost to Trade-Up:</td>
-			<td style="text-align: right;">$1,000,000</td>
+			<td id="field34" style="text-align: right;">0</td>
 		</tr>
 
 		<tr>
 			<td colspan="2" style="border-left-color: #FFFFFF; border-bottom-color: #FFFFFF; border-top-color: #FFFFFF;">&nbsp;</td>
 			<td colspan="6">Maintenance  Due:</td>
-			<td style="text-align: right;">$200,000</td>
+			<td id="field35" style="text-align: right;">0</td>
 		</tr>
 
 		<tr style="font-weight: bold;">
 			<td colspan="2" style="border-left-color: #FFFFFF; border-bottom-color: #FFFFFF; border-top-color: #FFFFFF;">&nbsp;</td>
 			<td colspan="6" style="text-align: right; background-color:lightgreen;">Terminal Connection Count:&nbsp;</td>
-			<td style="background-color:lightgreen; text-align: right;">2,080</td>
+			<td id="field36" style="background-color:lightgreen; text-align: right;">0</td>
 		</tr>
 
 		<tr style="font-weight: bold;">
 			<td colspan="2" style="border-left-color: #FFFFFF; border-bottom-color: #FFFFFF; border-top-color: #FFFFFF;">&nbsp;</td>
 			<td colspan="6" style="text-align: right; background-color:lightgreen;">Software Maintenance Expiration Date on Renewal:&nbsp;</td>
-			<td style="background-color:lightgreen; text-align: right;">03/17/2021</td>
+			<td id="field37" style="background-color:lightgreen; text-align: right;"></td>
 		</tr>
 
 		<tr style="font-weight: bold;">
 			<td colspan="2" style="border-left-color: #FFFFFF; border-bottom-color: #FFFFFF; border-top-color: #FFFFFF;">&nbsp;</td>
 			<td colspan="6" style="text-align: right; background-color:lightgreen;">Total Quote:&nbsp;</td>
-			<td style="background-color:lightgreen; text-align: right;">$420,000</td>
+			<td id="field38" style="background-color:lightgreen; text-align: right;">0</td>
 		</tr>
 		<tr><td colspan="9" style="border-right-color:#FFFFFF; border-left-color:#FFFFFF; border-bottom-color: #FFFFFF;">&nbsp;</td></tr>
 		<tr style="border-color: #FFFFFF;">
 			<td colspan="6" style="border-color: #FFFFFF;"></td>
 			<td colspan="3" style="text-align: right; border-color: #FFFFFF;">
-				<button class="btn btn-secondary" id="reset">Reset</button>&nbsp;&nbsp;
-				<button class="btn btn-primary" id="print">Print</button>
+				<button class="btn btn-secondary" tabindex="17" id="reset">Reset</button>&nbsp;&nbsp;
+				<button class="btn btn-primary" tabindex="18" id="print">Print</button>
 			</td>
 		</tr>
 	</div>	
@@ -170,59 +170,97 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 		"use strict";
 
+		var expDate = new Date();
+		var dd = String(expDate.getDate()).padStart(2, '0');
+		var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = expDate.getFullYear() + 2;
+
+		expDate = mm + '/' + dd + '/' + yyyy;
+		$('#field37').text(expDate);
 		
 		$('input').on('change', function() {
-			// calculations function call here
-
-			function range(start, end) {
-			    var ans = [];
-			    for (let i = start; i <= end; i++) {
-			        ans.push(i);
-			    }
-			    return ans;
-			}
-
-			var terminalCountRange1 = range(1,4);
-			var terminalCountRange2 = range(5,49);
-			var terminalCountRange3 = range(50,99);
-			var terminalCountRange4 = range(100,249);
-			var terminalCountRange5 = range(250,499);
-			var terminalCountRange6 = range(500,100000);
+			
+			//V-Flex Prices
+			var vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020];
+			var smrPrices = [400, 220, 200, 160, 140, 120];
+			var vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720];
 
 			var field1 = $("#field1").val();
 			var field2 = $("#field2").val();
-			// var field3;
-			// var field4;
-			// var field5;
-			// var field6;
-			// var field7;
-			// var field8;
-			// var field9;
-			// var field10;
-			// var field11;
-			// var field12;
+			var field3 = $("#field3").val();
+			var field4 = $("#field4").val();
+			var field5 = $("#field5").val();
+			var field6 = $("#field6").val();
+			var field7 = $("#field7").val();
+			var field8 = $("#field8").val();
+			var field9 = $("#field9").val();
+			var field10 = $("#field10").val();
+			var field11 = $("#field11").val();
+			var field12 = $("#field12").val();
+			var field13 = $("#field13").val();
+			var field14 = $("#field14").val();
+			var field17 = $("#field17").val();
+			var field18 = $("#field18").val();
 
+			field1 = Number(field1);
+			field2 = Number(field2);
+			field3 = Number(field3);
+			field4 = Number(field4);
+			field5 = Number(field5);
+			field6 = Number(field6);
+			field7 = Number(field7);
+			field8 = Number(field8);
+			field9 = Number(field9);
+			field10 = Number(field10);
+			field11 = Number(field11);
+			field12 = Number(field12);
+			field13 = Number(field13);
+			field14 = Number(field14);
+			field17 = Number(field17);
+			field18 = Number(field18);
 
-			var h;
-			for (h=0; h < terminalCountRange1.length; h++) {
-				$(".range-display1").append(terminalCountRange1[h] + " ");
-			}
+			var field15 = field3 + field7;
+			var field16 = field4 + field8; 
 
-			var i;
-			for (i=0; i < terminalCountRange2.length; i++) {
-				$(".range-display2").append(terminalCountRange2[i] + " ");
-			}
-
-			var j;
-			for (j=0; j < terminalCountRange3.length; j++) {
-				$(".range-display3").append(terminalCountRange3[j] + " ");
-			}
+			var totalTerms = Number(field13) + Number(field14) + Number(field15) + Number(field16) + Number(field17) + Number(field18);
 			
+			$("#field15").text(field15);
+			$("#field16").text(field16);
+			$("#field19").text(totalTerms);
+
+			function findRange(terminalCount) {
+				var terminalRange;
+				if (terminalCount > 0 && terminalCount < 5) {
+					var terminalRange = 0;	
+				} else if (terminalCount >=5 && terminalCount < 50) {
+					var terminalRange = 1;
+				} else if (terminalCount >=50 && terminalCount < 100) {
+					var terminalRange = 2;
+				} else if (terminalCount >=100 && terminalCount < 250) {
+					var terminalRange = 3;
+				} else if (terminalCount >=250 && terminalCount < 500) {
+					var terminalRange = 4;
+				} else if (terminalCount >=500) {
+					var terminalRange = 5;
+				}
+				return terminalRange;
+			}
 			
 
 				
 
-		})
+		});
+
+
+
+
+		$("#reset").click(function() {
+			refresh();
+		});
+
+		$("#print").click(function() {
+			print();
+		});
 
 	})();
 </script>
