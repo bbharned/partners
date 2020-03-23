@@ -326,8 +326,27 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var field32;
 			var field33;
 
-			$("#field31").text("$"+simplexPricePer);
-			$("#field32").text("$"+redundPricePer);	
+
+			var creditForServerLicensesWithSupport = 61150 * field1;
+			var creditForServerLicensesNoSupport = (1-(0.2*field9))*(field5*61150);
+			var totalCreditsServer = creditForServerLicensesWithSupport + creditForServerLicensesNoSupport
+
+			if (totalCreditsServer > field20) {
+				$("#field27").text("$"+field20);
+				field27 = field20;
+			} else {
+				$("#field27").text("$"+totalCreditsServer);
+				field27 = totalCreditsServer;
+			}
+			
+
+
+			
+			//$("#field28").text("$"+creditForServerLicensesNoSupport);
+			//$("#field31").text("$"+simplexPricePer);
+			//$("#field32").text("$"+field27);	
+
+		
 
 		});
 
@@ -338,19 +357,20 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			refresh();
 		});
 
-		function printDiv(divName) {
-		     var printContents = document.getElementById(divName).innerHTML;
-		     var originalContents = document.body.innerHTML;
+		// function printDiv(divName) {
+		//      var printContents = document.getElementById(divName).innerHTML;
+		//      var originalContents = document.body.innerHTML;
 
-		     document.body.innerHTML = printContents;
+		//      document.body.innerHTML = printContents;
 
-		     window.print();
+		//      window.print();
 
-		     document.body.innerHTML = originalContents;
-		}
+		//      document.body.innerHTML = originalContents;
+		// }
 
 		$("#print").click(function() {
 			print();
+			return false;
 		});
 
 	})();
