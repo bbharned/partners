@@ -226,15 +226,27 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var field15 = field3 + field7;
 			var field16 = field4 + field8; 
 
+			var field20 = 600 * field13;
+			$("#field20").text('$'+field20);
+			
+
+			var field21 = 600 * field14;
+			$("#field21").text('$'+field21);
+			
+			
+
 			var totalTerms = Number(field13) + Number(field14) + Number(field15) + Number(field16) + Number(field17) + Number(field18);
 			
 			$("#field15").text(field15);
 			$("#field16").text(field16);
 			$("#field19").text(totalTerms);
+			if (totalTerms > 0) {
+				$("#field36").text(totalTerms);
+			}
 
 			function findRange(terminalCount) {
 				var terminalRange;
-				if (terminalCount > 0 && terminalCount < 5) {
+				if (terminalCount >= 0 && terminalCount < 5) {
 					var terminalRange = 0;	
 				} else if (terminalCount >=5 && terminalCount < 50) {
 					var terminalRange = 1;
@@ -250,8 +262,72 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 				return terminalRange;
 			}
 			
+			var currentRange = findRange(totalTerms);
+			var tradePackRange = findRange(field15);
+			var tradeRPackRange = findRange(field16);
 
-				
+			var simplexPricePer = vfNonRedPrices[currentRange];
+			var redundPricePer = vfRedPrices[currentRange];
+			var tradeSimplexPricePer = vfNonRedPrices[tradePackRange];
+			var tradeRedPricePer = vfRedPrices[tradeRPackRange];
+
+			var totalNewSimplexCost = simplexPricePer * field17;
+			var field24 = totalNewSimplexCost;
+			if (field24 > 0) {
+				$("#field24").text("$"+field24);
+			} else {
+				$("#field24").text("$"+0);
+			}
+			
+			var totalNewRedCost = redundPricePer * field18;
+			var field25 = totalNewRedCost;
+			if (field25 > 0) {
+				$("#field25").text("$"+field25);
+			} else {
+				$("#field25").text("$"+0);
+			}
+
+			var totalTradeSimplex = tradeSimplexPricePer * field15;
+			var totalTradeRed = tradeRedPricePer * field16;
+
+			if (totalTradeSimplex > 0) {
+				var field22 = totalTradeSimplex;
+			} else {
+				var field22 = 0;
+			};
+			$("#field22").text("$"+field22);
+			
+
+			if (totalTradeRed > 0) {
+				var field23 = totalTradeRed;
+			} else {
+				var field23 = 0;
+			};
+			
+			$("#field23").text("$"+field23);
+
+			var totalTradeUpPricing = field20 + field21 + field22 + field23 + field24 + field25;
+
+			var field26 = totalTradeUpPricing;
+			if (field26 > 0) {
+				$("#field26").text("$"+field26);
+			} else {
+				$("#field26").text("$"+0);
+			};
+			
+			
+			// Credit Calculations *****************************************
+
+			var field27;
+			var field28;
+			var field29;
+			var field30;
+			var field31;
+			var field32;
+			var field33;
+
+			$("#field31").text("$"+simplexPricePer);
+			$("#field32").text("$"+redundPricePer);	
 
 		});
 
