@@ -22,6 +22,7 @@
 	<li>Support status of each license (current, or what date expired)</li>
 </ul>
 
+<p>All prices are in <span style="font-weight:bold;">US Dollars</span>.</p>
 <p>Once this information is collected, your ThinManager Strategic Account Manager can assist with generating a quote. 
 To identify your representative, please visit <%= link_to "https://thinmanager.com/corp/contactus.php", "https://thinmanager.com/corp/contactus.php", target: "_blank" %>.</p>
 </div>
@@ -171,6 +172,20 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 <script>
 	(function(){
 
+		$('body').on('keydown', 'input, select', function(e) {
+		    if (e.key === "Enter") {
+		        var self = $(this), form = self.parents('form:eq(0)'), focusable, next;
+		        focusable = form.find('input,a,select,button,textarea').filter(':visible');
+		        next = focusable.eq(focusable.index(this)+1);
+		        if (next.length) {
+		            next.focus();
+		        } else {
+		            form.submit();
+		        }
+		        return false;
+		    }
+		});
+
 		"use strict";
 
 		// quote expiration date
@@ -223,14 +238,21 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			field17 = Number(field17);
 			field18 = Number(field18);
 
+
+			function currencyFormat(num) {
+			  return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+			}
+
 			var field15 = field3 + field7;
 			var field16 = field4 + field8; 
 
 			var field20 = 600 * field13;
+			//currency here?
 			$("#field20").text('$'+field20);
 			
 
 			var field21 = 600 * field14;
+			//currency here?
 			$("#field21").text('$'+field21);
 			
 			
@@ -240,7 +262,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			$("#field15").text(field15);
 			$("#field16").text(field16);
 			$("#field19").text(totalTerms);
-			if (totalTerms > 0) {
+			if (totalTerms >= 0) {
 				$("#field36").text(totalTerms);
 			}
 
@@ -274,6 +296,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var totalNewSimplexCost = simplexPricePer * field17;
 			var field24 = totalNewSimplexCost;
 			if (field24 > 0) {
+				//currency here?
 				$("#field24").text("$"+field24);
 			} else {
 				$("#field24").text("$"+0);
@@ -282,6 +305,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var totalNewRedCost = redundPricePer * field18;
 			var field25 = totalNewRedCost;
 			if (field25 > 0) {
+				//currency here?
 				$("#field25").text("$"+field25);
 			} else {
 				$("#field25").text("$"+0);
@@ -295,6 +319,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			} else {
 				var field22 = 0;
 			};
+			//currency here?
 			$("#field22").text("$"+field22);
 			
 
@@ -303,13 +328,14 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			} else {
 				var field23 = 0;
 			};
-			
+			//currency here?
 			$("#field23").text("$"+field23);
 
 			var totalTradeUpPricing = field20 + field21 + field22 + field23 + field24 + field25;
 
 			var field26 = totalTradeUpPricing;
 			if (field26 > 0) {
+				//currency here?
 				$("#field26").text("$"+field26);
 			} else {
 				$("#field26").text("$"+0);
@@ -325,31 +351,100 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var field31;
 			var field32;
 			var field33;
+			var field34;
+			var field35;
+			var field38;
 
 
 			var creditForServerLicensesWithSupport = 61150 * field1;
 			var creditForServerLicensesNoSupport = (1-(0.2*field9))*(field5*61150);
-			var totalCreditsServer = creditForServerLicensesWithSupport + creditForServerLicensesNoSupport
+			var totalCreditsServer = creditForServerLicensesWithSupport + creditForServerLicensesNoSupport // No negative
+			if (totalCreditsServer < 0) {
+				totalCreditsServer = 0;
+			};
 
 			if (totalCreditsServer > field20) {
 				$("#field27").text("$"+field20);
 				field27 = field20;
 			} else {
+				//currency here?
 				$("#field27").text("$"+totalCreditsServer);
 				field27 = totalCreditsServer;
+			};
+			
+
+			var creditForSiteLicensesWithSupport = 134000 * field2;
+			var creditForSiteLicensesNoSupport = (1-(0.2*field10))*(field6*134000);
+			var totalCreditsSite = creditForSiteLicensesWithSupport + creditForSiteLicensesNoSupport // No negative
+			if (totalCreditsSite < 0) {
+				totalCreditsSite = 0;
+			};
+
+			if (totalCreditsSite > field21) {
+				$("#field28").text("$"+field21);
+				field28 = field21;
+			} else {
+				//var totalCreditsSiteCurrency = currencyFormat(totalCreditsSite);
+				$("#field28").text("$"+totalCreditsSite);
+				field28 = totalCreditsSite;
+			};
+
+
+			var creditForPackLicensesWithSupport = field3 * tradeSimplexPricePer;
+			var creditForPackLicensesNoSupport = (1-(0.2*field11))*(field7*tradeSimplexPricePer);
+			var totalCreditsPack = creditForPackLicensesWithSupport + creditForPackLicensesNoSupport; // No negative
+			if (totalCreditsPack < 0) {
+				totalCreditsPack = 0;
+			};
+
+			if (totalCreditsPack > field22) {
+				$("#field29").text("$"+field22);
+				field29 = field22;
+			} else {
+				$("#field29").text("$"+totalCreditsPack);
+				field29 = totalCreditsPack;
+			};
+			
+
+			var creditForRPackLicensesWithSupport = field4 * tradeRedPricePer;
+			var creditForRPackLicensesNoSupport = (1-(0.2*field12))*(field8*tradeRedPricePer);
+			var totalCreditsRPack = creditForRPackLicensesWithSupport + creditForRPackLicensesNoSupport; // No negative
+			if (totalCreditsRPack < 0) {
+				totalCreditsRPack = 0;
 			}
+
+			if (totalCreditsRPack > field23) {
+				$("#field30").text("$"+field23);
+				field30 = field23;
+			} else {
+				//currency here?
+				$("#field30").text("$"+totalCreditsRPack);
+				field30 = totalCreditsRPack;
+			};
 			
+			field33 = field27 + field28 + field29 + field30;
+			if (field33 > 0) {
+				$("#field33").text("$"+field33);
+			} else {
+				$("#field33").text("$"+0);
+			};
+
+			field34 = field26 - field33;
+			var field34b = currencyFormat(field34);
+			$("#field34").text(field34b);
+
+			var termsForSM = field13 + field14 + field15 + field16;
+			var SMRange = findRange(termsForSM);
+			var smPricePer = smrPrices[SMRange];
+			field35 = smPricePer * termsForSM;
+			var field35b = currencyFormat(field35);
+			$("#field35").text(field35b);
 
 
-			
-			//$("#field28").text("$"+creditForServerLicensesNoSupport);
-			//$("#field31").text("$"+simplexPricePer);
-			//$("#field32").text("$"+field27);	
-
-		
-
+			field38 = field34 + field35;
+			var field38b = currencyFormat(field38);
+			$("#field38").text(field38b);
 		});
-
 
 
 
@@ -357,16 +452,6 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			refresh();
 		});
 
-		// function printDiv(divName) {
-		//      var printContents = document.getElementById(divName).innerHTML;
-		//      var originalContents = document.body.innerHTML;
-
-		//      document.body.innerHTML = printContents;
-
-		//      window.print();
-
-		//      document.body.innerHTML = originalContents;
-		// }
 
 		$("#print").click(function() {
 			print();
