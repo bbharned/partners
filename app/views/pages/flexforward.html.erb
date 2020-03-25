@@ -248,12 +248,12 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 			var field20 = 600 * field13;
 			//currency here?
-			$("#field20").text('$'+field20);
+			$("#field20").text('$'+field20.toFixed(2));
 			
 
 			var field21 = 600 * field14;
 			//currency here?
-			$("#field21").text('$'+field21);
+			$("#field21").text('$'+field21.toFixed(2));
 			
 			
 
@@ -297,7 +297,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var field24 = totalNewSimplexCost;
 			if (field24 > 0) {
 				//currency here?
-				$("#field24").text("$"+field24);
+				$("#field24").text("$"+field24.toFixed(2));
 			} else {
 				$("#field24").text("$"+0);
 			}
@@ -306,7 +306,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 			var field25 = totalNewRedCost;
 			if (field25 > 0) {
 				//currency here?
-				$("#field25").text("$"+field25);
+				$("#field25").text("$"+field25.toFixed(2));
 			} else {
 				$("#field25").text("$"+0);
 			}
@@ -320,7 +320,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 				var field22 = 0;
 			};
 			//currency here?
-			$("#field22").text("$"+field22);
+			$("#field22").text("$"+field22.toFixed(2));
 			
 
 			if (totalTradeRed > 0) {
@@ -329,14 +329,14 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 				var field23 = 0;
 			};
 			//currency here?
-			$("#field23").text("$"+field23);
+			$("#field23").text("$"+field23.toFixed(2));
 
 			var totalTradeUpPricing = field20 + field21 + field22 + field23 + field24 + field25;
 
 			var field26 = totalTradeUpPricing;
 			if (field26 > 0) {
 				//currency here?
-				$("#field26").text("$"+field26);
+				$("#field26").text("$"+field26.toFixed(2));
 			} else {
 				$("#field26").text("$"+0);
 			};
@@ -358,73 +358,85 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 			var creditForServerLicensesWithSupport = 61150 * field1;
 			var creditForServerLicensesNoSupport = (1-(0.2*field9))*(field5*61150);
+			if (creditForServerLicensesNoSupport < 0) {
+				creditForServerLicensesNoSupport = 0;
+			}
 			var totalCreditsServer = creditForServerLicensesWithSupport + creditForServerLicensesNoSupport // No negative
 			if (totalCreditsServer < 0) {
 				totalCreditsServer = 0;
 			};
 
 			if (totalCreditsServer > field20) {
-				$("#field27").text("$"+field20);
+				$("#field27").text("$"+field20.toFixed(2));
 				field27 = field20;
 			} else {
 				//currency here?
-				$("#field27").text("$"+totalCreditsServer);
+				$("#field27").text("$"+totalCreditsServer.toFixed(2));
 				field27 = totalCreditsServer;
 			};
 			
 
 			var creditForSiteLicensesWithSupport = 134000 * field2;
 			var creditForSiteLicensesNoSupport = (1-(0.2*field10))*(field6*134000);
+			if (creditForSiteLicensesNoSupport < 0) {
+				creditForSiteLicensesNoSupport = 0;
+			}
 			var totalCreditsSite = creditForSiteLicensesWithSupport + creditForSiteLicensesNoSupport // No negative
 			if (totalCreditsSite < 0) {
 				totalCreditsSite = 0;
 			};
 
 			if (totalCreditsSite > field21) {
-				$("#field28").text("$"+field21);
+				$("#field28").text("$"+field21.toFixed(2));
 				field28 = field21;
 			} else {
 				//var totalCreditsSiteCurrency = currencyFormat(totalCreditsSite);
-				$("#field28").text("$"+totalCreditsSite);
+				$("#field28").text("$"+totalCreditsSite.toFixed(2));
 				field28 = totalCreditsSite;
 			};
 
 
 			var creditForPackLicensesWithSupport = field3 * tradeSimplexPricePer;
 			var creditForPackLicensesNoSupport = (1-(0.2*field11))*(field7*tradeSimplexPricePer);
+			if (creditForPackLicensesNoSupport < 0) {
+				creditForPackLicensesNoSupport = 0;
+			}
 			var totalCreditsPack = creditForPackLicensesWithSupport + creditForPackLicensesNoSupport; // No negative
 			if (totalCreditsPack < 0) {
 				totalCreditsPack = 0;
 			};
 
 			if (totalCreditsPack > field22) {
-				$("#field29").text("$"+field22);
+				$("#field29").text("$"+field22.toFixed(2));
 				field29 = field22;
 			} else {
-				$("#field29").text("$"+totalCreditsPack);
+				$("#field29").text("$"+totalCreditsPack.toFixed(2));
 				field29 = totalCreditsPack;
 			};
 			
 
 			var creditForRPackLicensesWithSupport = field4 * tradeRedPricePer;
 			var creditForRPackLicensesNoSupport = (1-(0.2*field12))*(field8*tradeRedPricePer);
+			if (creditForRPackLicensesNoSupport < 0) {
+				creditForRPackLicensesNoSupport = 0;
+			}
 			var totalCreditsRPack = creditForRPackLicensesWithSupport + creditForRPackLicensesNoSupport; // No negative
 			if (totalCreditsRPack < 0) {
 				totalCreditsRPack = 0;
 			}
 
 			if (totalCreditsRPack > field23) {
-				$("#field30").text("$"+field23);
+				$("#field30").text("$"+field23.toFixed(2));
 				field30 = field23;
 			} else {
 				//currency here?
-				$("#field30").text("$"+totalCreditsRPack);
+				$("#field30").text("$"+totalCreditsRPack.toFixed(2));
 				field30 = totalCreditsRPack;
 			};
 			
 			field33 = field27 + field28 + field29 + field30;
 			if (field33 > 0) {
-				$("#field33").text("$"+field33);
+				$("#field33").text("$"+field33.toFixed(2));
 			} else {
 				$("#field33").text("$"+0);
 			};
