@@ -447,7 +447,7 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 			var termsForSM = field13 + field14 + field15 + field16;
 			var SMRange = findRange(termsForSM);
-			var smPricePer = smrPrices[SMRange];
+			var smPricePer = smrPrices[currentRange]; // This is the total term range ********************
 			field35 = smPricePer * termsForSM;
 			var field35b = currencyFormat(field35);
 			$("#field35").text(field35b);
