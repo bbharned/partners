@@ -426,7 +426,13 @@ Very Light Blue: #e9f7fb;
     max-width:400px;
 }
 .ff-top-logo img {max-width:100%; margin:auto;}
-
+.ff-datasheet {
+    position:relative; width:90%; padding:2.5% 5%; background-color: #d1d1d1;
+    border-radius: 10px; text-align: center;
+}
+.ff-datasheet img {
+    width:60px; margin-bottom: 15px; 
+}
 
 
 
@@ -603,6 +609,7 @@ Very Light Blue: #e9f7fb;
         max-width:100%;
     }
     .ff-top-logo img {width:90%; max-width:400px; margin:auto;}
+    .ff-datasheet {margin-bottom: 35px;}
 }
 
 
