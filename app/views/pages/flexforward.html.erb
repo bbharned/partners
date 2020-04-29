@@ -29,7 +29,7 @@
 		<h5>Flex Forward Datasheet</h5>
 		
 		<% if @current_user.channel == "Rockwell Automation" %>
-			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward_Datasheet.pdf", target: "_blank" %>
+			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-RA_Datasheet.pdf", target: "_blank" %>
 		<% elsif @current_user.channel != "Rockwell Automation" %>
 			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-TM_Datasheet.pdf", target: "_blank" %>
 		<% end %>
