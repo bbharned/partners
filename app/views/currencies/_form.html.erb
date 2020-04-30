@@ -1,0 +1,52 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @currency %>
+
+
+
+<%= form_for(@currency, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group">
+                
+
+
+                <div class="row">
+                	
+                    <div class="col-sm-4">
+                        <div class="control-label"><%= f.label :name %></div>
+                        <%= f.text_field :name, class: "form-control", placeholder: "example: US Dollars" %>
+                    </div>    
+                    
+                    <div class="col-sm-4">
+                        <div class="control-label"><%= f.label :symbol %></div>
+                        <%= f.text_field :symbol, class: "form-control",  placeholder: "example: $" %>
+                    </div>  
+                       
+                    <div class="col-sm-4">
+                        <div class="control-label"><%= f.label :rate %></div>
+                        <%= f.text_field :rate, class: "form-control",  placeholder: "example: 1.25" %>
+                    </div>    
+                    
+
+
+                </div>
+
+
+            
+            </div>
+       
+        <br />
+        
+
+        <div class="form-group">
+            
+                <%= f.submit(@currency.new_record? ? "Create Currency" : "Update Currency", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", currencies_path %>
+           
+            
+            
+        </div>
+<% end %>
+
+
+
+</div>

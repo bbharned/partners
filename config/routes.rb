@@ -21,6 +21,8 @@ get 'calculators', to: 'calculators#index'
 post 'calculators', to: 'pages#new_calc'
 get 'flexforward', to: 'pages#flexforward'
 
+resources :currencies
+
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
 delete 'logout', to: 'sessions#destroy'

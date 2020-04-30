@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191023170830) do
+ActiveRecord::Schema.define(version: 20200430174648) do
 
   create_table "calculators", force: :cascade do |t|
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "symbol"
+    t.float    "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

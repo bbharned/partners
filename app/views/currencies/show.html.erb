@@ -1,0 +1,22 @@
+<div class="container">
+<h1><%= @currency.name %></h1>
+<hr />
+<br />
+<div class="row">
+	<p><span style="margin-left: 35px; margin-right: 15px; font-weight: bold;">Name of Currency:</span> <%= @currency.name %></p>
+</div>
+
+<div class="row">
+	<p><span style="margin-left: 35px; margin-right: 15px; font-weight: bold;">Symbol of Currency:</span> <%= @currency.symbol %></p>
+</div>
+
+<div class="row">
+	<p><span style="margin-left: 35px; margin-right: 15px; font-weight: bold;">Conversion Rate of Currency to US:</span> <%= @currency.rate %></p>
+</div>
+<br /><br />
+<div class="row">
+	<p style="margin-left: 35px;"><%= link_to "View All Currencies", currencies_path %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Edit", edit_currency_path(@currency) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete Currency", currency_path(@currency), method: :delete, data: {confirm: "Are you sure you want to delete this currency?"}, style: "color:red;" %></p>
+</div>
+
+
+</div>
