@@ -1,0 +1,44 @@
+<style>
+@media print and (min-width:100px) {.ra-top-bar, .ff-instructions, #footer, #disclaimer, #control-buttons {display:none !important;}}
+</style>
+<div class="container" style="padding-bottom: 150px; margin:auto;">
+<div class="row">
+	<div class="col-md-8">
+		<h1>Flex Forward Calculator</h1>
+	</div>
+	<div class="col-md-4 ff-top-logo">
+		<%= image_tag "ff-logo.png" %>
+	</div>
+</div>
+<hr />
+<div class="ff-instructions">
+<p>Flex Forward is an elective commercial initiative that provides customers a path forward to the V-FLEX licensing model from legacy 5/10/25-pack, Enterprise Server, and Enterprise Site licensing models.</p> 
+
+<div class="row">
+<div class="col-md-8">
+<p>In order to execute the program, the following information will be important to understand:</p>
+<ul style="margin-top: -15px; margin-bottom: 20px;">
+	<li>Which locations/sites are interested in participating in the program</li>
+	<li>Existing licensing at each site including Product License numbers</li>
+	<li>Number of desired terminals at each site (for Enterprise Site/Server customers)</li>
+	<li>Support status of each license (current, or what date expired)</li>
+</ul>
+</div>
+<div class="col-md-4" align="center">
+	<div class="ff-datasheet">
+		<h5>Flex Forward Datasheet</h5>
+		
+		<% if @current_user.channel == "Rockwell Automation" %>
+			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-RA_Datasheet.pdf", target: "_blank" %>
+		<% elsif @current_user.channel != "Rockwell Automation" %>
+			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-TM_Datasheet.pdf", target: "_blank" %>
+		<% end %>
+		
+	</div>
+</div>
+</div>
+<p class="appear">&nbsp;</p>
+
+<p>Once this information is collected, your ThinManager Strategic Account Manager can assist with generating a quote. 
+To identify your representative, please visit <%= link_to "https://thinmanager.com/corp/contactus.php", "https://thinmanager.com/corp/contactus.php", target: "_blank" %>.</p>
+</div>

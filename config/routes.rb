@@ -19,9 +19,10 @@ get 'downloads', to: 'downloads#index'
 post 'download', to: 'pages#new_dl'
 get 'calculators', to: 'calculators#index'
 post 'calculators', to: 'pages#new_calc'
-get 'flexforward', to: 'pages#flexforward'
+get 'flex', to: 'pages#flexforward'
 
 resources :currencies
+resources :flexforwards
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
