@@ -434,8 +434,42 @@ Very Light Blue: #e9f7fb;
 .ff-datasheet img {
     width:60px; margin-bottom: 10px; 
 }
-
-
+.action-buttons-right {
+    text-align: right;
+}
+.top-ff-header-row {
+    font-weight:bold; background-color:#f1f1f1;
+    margin-top: 13px; padding: 5px 0px; line-height: 1em; 
+}
+.top-ff-header-row .far-left-header {
+    padding-top:5px;
+}
+.far-left {
+    padding-top: 7px; font-weight: bold;
+}
+#ff-form-group {
+    font-size:.8em; 
+}
+#ff-form-group .row .col {
+    border:1px solid #f1f1f1;
+}
+.currency-select select {
+    margin-top: 2px; width:100%;
+    height: 30px;
+    padding-top: 5px; padding-bottom: 5px;
+}
+.form-filler-space {
+    background-color: #f1f1f1;
+}
+#second-ff-form-group {
+    font-size:.8em; margin-top: 35px;
+}
+#second-ff-form-group .row .col {
+    border:1px solid #f1f1f1;
+}
+.form-not-input {
+    font-size: 1.25em; line-height:38px; 
+}
 
 
 

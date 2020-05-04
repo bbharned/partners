@@ -9,10 +9,29 @@ def index
 	@currencies = Currency.all
 
 
+
 end
 
 
 def new 
+	@flex = Flexforward.new
+	@currencies = Currency.all
+	@user = current_user
+
+
+
+end
+
+
+def create
+	@flex = Flexforward.new(flex_params)
+
+    if @flex.save
+        flash[:success] = "Your Flex Forward Calculator has been saved"
+        redirect_to root_path
+    else
+        render 'new'
+    end
 
 end
 
@@ -43,7 +62,7 @@ def must_login
 end
 
 def flex_params
-    #params.require(:currency).permit(:name, :symbol, :rate)
+    params.require(:flexforward).permit(:name)
 end
 
 def require_admin

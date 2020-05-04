@@ -1,0 +1,130 @@
+
+
+<%= render 'shared/errors', obj: @flex %>
+
+
+
+<%= form_for(@flex, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group" id="ff-form-group">
+                
+                <div class="row">
+                	<div class="col-sm-4">
+                        <div class="control-label"><%= f.label :name %></div>
+                        <%= f.text_field :name, class: "form-control", placeholder: "Enter Business Name", tabindex: "1" %>
+                    </div>
+                    <div class="col-sm-3 offset-sm-5 currency-select">
+                        <div class="control-label"><%= f.label "Select Currency" %></div>
+                        <% currency_array = @currencies.all.map { |currency| [currency.name, currency.id] } %>
+                        <%= f.select :currency_id, options_for_select(currency_array, @flex.currency_id), tabindex: "2", class: "form-control" %>
+                    </div>   
+                </div>
+
+                <div class="row top-ff-header-row" id="">
+                    <div class="col col-5 far-left-header">License Count</div>
+                    <div class="col col-1">Existing Server</div>
+                    <div class="col col-1">Existing Site</div>
+                    <div class="col col-1">Simplex Pack</div>
+                    <div class="col col-1">Redundant Pack</div>
+                    <div class="col col-3 form-filler-space"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-5 far-left"># of Licenses in Support</div>
+                    <div class="col col-1"><%= f.text_field :ex_serv_sup, class: "form-control", tabindex: "3" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_site_sup, class: "form-control", tabindex: "4" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_sup, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_sup, class: "form-control" %></div>
+                    <div class="col col-3 form-filler-space"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-5 far-left"># of Licenses Out of Support</div>
+                    <div class="col col-1"><%= f.text_field :ex_serv_nosup, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_site_nosup, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_nosup, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_nosup, class: "form-control" %></div>
+                    <div class="col col-3 form-filler-space"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-5 far-left"># of years Expired</div>
+                    <div class="col col-1"><%= f.text_field :ex_serv_nosup_years, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_site_nosup_years, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_nosup_years, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_nosup_years, class: "form-control" %></div>
+                    <div class="col col-3 form-filler-space"></div>
+                </div>
+            
+            </div>
+       
+
+
+
+            <div class="form-group" id="second-ff-form-group">
+
+                 <div class="row top-ff-header-row" id="">
+                    <div class="col col-5 far-left-header"></div>
+                    <div class="col col-1">Trade for Server</div>
+                    <div class="col col-1">Trade for Site</div>
+                    <div class="col col-1">Trade for Pack</div>
+                    <div class="col col-1">Trade for R Pack</div>
+                    <div class="col col-1">New Simplex</div>
+                    <div class="col col-1">New Redundant</div>
+                    <div class="col col-1">TOTAL</div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-5 far-left">Total Redundant V-FLEX Terminals Required:</div>
+                    <div class="col col-1"><%= f.text_field :tr_serv, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :tr_site, class: "form-control" %></div>
+                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_simp %></span></div>
+                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_red %></span></div>
+                    <div class="col col-1"><%= f.text_field :new_simp, class: "form-control" %></div>
+                    <div class="col col-1"><%= f.text_field :new_red, class: "form-control" %></div>
+                    <div class="col col-1"></div>
+                </div>
+
+                <div class="row" style="line-height: 35px;">
+                    <div class="col col-5">Special Band Trade-Up Pricing:</div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                </div>
+
+                <div class="row" style="line-height: 35px;">
+                    <div class="col col-5">Total Credit for All Licenses:</div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                    <div class="col col-1"></div>
+                </div>
+
+
+            </div>
+
+
+        <br /><br />
+       
+        <div class="form-group">
+            <div class="row">
+            <div class="col-sm-6">
+                <%= f.submit(@flex.new_record? ? "Save Form" : "Update Form", class: "btn btn-primary btn-md") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path %>
+            </div>
+            <div class="col-sm-6 action-buttons-right">
+                <%= link_to "Print Form", "#", class: "btn btn-info btn-md" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md" %>
+            </div>
+            </div>
+            
+        </div>
+<% end %>
+
+
+
