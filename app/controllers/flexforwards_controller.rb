@@ -62,7 +62,7 @@ def must_login
 end
 
 def flex_params
-    params.require(:flexforward).permit(:name)
+    params.require(:flexforward).permit(:name, :user_id, :currency_id)
 end
 
 def require_admin
