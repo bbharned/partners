@@ -16,16 +16,16 @@ end
 def new 
 	@flex = Flexforward.new
 	@currencies = Currency.all
-	@user = current_user
-
+	#@user = current_user
 
 
 end
 
 
 def create
+	
 	@flex = Flexforward.new(flex_params)
-
+	@flex.user = current_user
     if @flex.save
         flash[:success] = "Your Flex Forward Calculator has been saved"
         redirect_to root_path
@@ -62,7 +62,7 @@ def must_login
 end
 
 def flex_params
-    params.require(:flexforward).permit(:name, :user_id, :currency_id)
+    params.require(:flexforward).permit(:name, :user_id, :currency_id, :mirrored, :red_exchange, :ex_serv_sup, :ex_serv_nosup, :ex_serv_nosup_years, :ex_site_sup, :ex_site_nosup, :ex_site_nosup_years, :ex_simp_sup, :ex_simp_nosup, :ex_simp_nosup_years, :ex_red_sup, :ex_red_nosup, :ex_red_nosup_years, :tr_serv, :tr_pr_serv, :tr_cred_serv, :tr_site, :tr_pr_site, :tr_cred_site, :tr_simp, :tr_pr_simp, :tr_cred_simp, :tr_red, :tr_pr_red, :tr_cred_red, :new_simp, :new_pr_simp, :new_red, :new_pr_red, :total_terms, :tr_pr_total, :tr_cred_total, :total_tr_cost, :total_maint, :sm_exp, :total_quote, :note)
 end
 
 def require_admin

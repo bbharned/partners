@@ -442,16 +442,22 @@ Very Light Blue: #e9f7fb;
     margin-top: 13px; padding: 5px 0px; line-height: 1em; 
 }
 .top-ff-header-row .far-left-header {
-    padding-top:5px;
+    padding-top:1px !important; padding-left: 10px !important;
 }
 .far-left {
-    padding-top: 7px; font-weight: bold;
+    padding-top: 9px !important; font-weight: bold;
+    padding-left: 10px !important; font-size: .9em;
+}
+.far-left-unbold {
+    padding-top: 8px !important; 
+    padding-left: 10px !important; font-size: .85em;
 }
 #ff-form-group {
-    font-size:.8em; 
+    font-size:.7em; 
 }
 #ff-form-group .row .col {
     border:1px solid #f1f1f1;
+    padding:1px;
 }
 .currency-select select {
     margin-top: 2px; width:100%;
@@ -466,10 +472,28 @@ Very Light Blue: #e9f7fb;
 }
 #second-ff-form-group .row .col {
     border:1px solid #f1f1f1;
+    padding:1px;
+}
+#second-ff-form-group .row .col input {
+    font-size: .85em; margin-top: 2px;
+}
+#ff-form-group .row .col input {
+    font-size: 1em; margin-top: 1px;
 }
 .form-not-input {
-    font-size: 1.25em; line-height:38px; 
+    font-size: .85em; line-height:30px;
+    padding-left: 10%; 
 }
+.bold-align-right {
+    text-align: right; font-weight: bold;
+}
+/*.totals-area {
+    background-color: lightgreen;
+}*/
+
+
+
+
 
 
 

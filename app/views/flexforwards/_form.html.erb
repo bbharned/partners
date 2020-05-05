@@ -15,8 +15,7 @@
                     </div>
                     <div class="col-sm-3 offset-sm-5 currency-select">
                         <div class="control-label"><%= f.label "Select Currency" %></div>
-                        <% currency_array = @currencies.all.map { |currency| [currency.name, currency.id] } %>
-                        <%= f.select :currency_id, options_for_select(currency_array, @flex.currency_id), tabindex: "2", class: "form-control" %>
+                        <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, class: "form-control", id: "field39", tabindex: "2" %>
                     </div>   
                 </div>
 
@@ -33,26 +32,26 @@
                     <div class="col col-5 far-left"># of Licenses in Support</div>
                     <div class="col col-1"><%= f.text_field :ex_serv_sup, class: "form-control", id: "field1", tabindex: "3" %></div>
                     <div class="col col-1"><%= f.text_field :ex_site_sup, class: "form-control", id: "field2", tabindex: "4" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_sup, class: "form-control", id: "field3" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_sup, class: "form-control",  id: "field4" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_sup, class: "form-control", id: "field3", tabindex: "5" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_sup, class: "form-control",  id: "field4", tabindex: "6" %></div>
                     <div class="col col-3 form-filler-space"></div>
                 </div>
 
                 <div class="row">
                     <div class="col col-5 far-left"># of Licenses Out of Support</div>
-                    <div class="col col-1"><%= f.text_field :ex_serv_nosup, class: "form-control", id: "field5" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_site_nosup, class: "form-control", id: "field6" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_nosup, class: "form-control", id: "field7" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_nosup, class: "form-control", id: "field8" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_serv_nosup, class: "form-control", id: "field5", tabindex: "7" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_site_nosup, class: "form-control", id: "field6", tabindex: "8" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_nosup, class: "form-control", id: "field7", tabindex: "9" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_nosup, class: "form-control", id: "field8", tabindex: "10" %></div>
                     <div class="col col-3 form-filler-space"></div>
                 </div>
 
                 <div class="row">
                     <div class="col col-5 far-left"># of years Expired</div>
-                    <div class="col col-1"><%= f.text_field :ex_serv_nosup_years, class: "form-control", id: "field9" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_site_nosup_years, class: "form-control", id: "field10" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_nosup_years, class: "form-control", id: "field11" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_nosup_years, class: "form-control", id: "field12" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_serv_nosup_years, class: "form-control", id: "field9", tabindex: "11" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_site_nosup_years, class: "form-control", id: "field10", tabindex: "12" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_simp_nosup_years, class: "form-control", id: "field11", tabindex: "13" %></div>
+                    <div class="col col-1"><%= f.text_field :ex_red_nosup_years, class: "form-control", id: "field12", tabindex: "14" %></div>
                     <div class="col col-3 form-filler-space"></div>
                 </div>
             
@@ -76,38 +75,76 @@
 
                 <div class="row">
                     <div class="col col-5 far-left">Total Redundant V-FLEX Terminals Required:</div>
-                    <div class="col col-1"><%= f.text_field :tr_serv, class: "form-control", id: "field13" %></div>
-                    <div class="col col-1"><%= f.text_field :tr_site, class: "form-control" %></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_simp %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_red %></span></div>
-                    <div class="col col-1"><%= f.text_field :new_simp, class: "form-control" %></div>
-                    <div class="col col-1"><%= f.text_field :new_red, class: "form-control" %></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.total_terms %></span></div>
+                    <div class="col col-1"><%= f.text_field :tr_serv, class: "form-control", id: "field13", tabindex: "15" %></div>
+                    <div class="col col-1"><%= f.text_field :tr_site, class: "form-control", id: "field14", tabindex: "16" %></div>
+                    <div class="col col-1"><span class="form-not-input" id="field15"><%= @flex.tr_simp %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field16"><%= @flex.tr_red %></span></div>
+                    <div class="col col-1"><%= f.text_field :new_simp, class: "form-control", id: "field17", tabindex: "17" %></div>
+                    <div class="col col-1"><%= f.text_field :new_red, class: "form-control", id: "field18", tabindex: "18" %></div>
+                    <div class="col col-1"><span class="form-not-input" id="field19"><%= @flex.total_terms %></span></div>
                 </div>
 
-                <div class="row" style="line-height: 35px;">
-                    <div class="col col-5">Special Band Trade-Up Pricing:</div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_pr_serv %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_pr_site %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_pr_simp %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_pr_red %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.new_pr_simp %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.new_pr_red %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_pr_total %></span></div>
+                <div class="row">
+                    <div class="col col-5 far-left-unbold">Special Band Trade-Up Pricing:</div>
+                    <div class="col col-1"><span class="form-not-input" id="field20"><%= @flex.tr_pr_serv %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field21"><%= @flex.tr_pr_site %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field22"><%= @flex.tr_pr_simp %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field23"><%= @flex.tr_pr_red %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field24"><%= @flex.new_pr_simp %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field25"><%= @flex.new_pr_red %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field26"><%= @flex.tr_pr_total %></span></div>
                 </div>
 
-                <div class="row" style="line-height: 35px;">
-                    <div class="col col-5">Total Credit for All Licenses:</div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_cred_serv %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_cred_site %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_cred_simp %></span></div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_cred_red %></span></div>
-                    <div class="col col-1">&nbsp;</div>
-                    <div class="col col-1">&nbsp;</div>
-                    <div class="col col-1"><span class="form-not-input"><%= @flex.tr_cred_total %></span></div>
+                <div class="row">
+                    <div class="col col-5 far-left-unbold">Total Credit for All Licenses:</div>
+                    <div class="col col-1"><span class="form-not-input" id="field27"><%= @flex.tr_cred_serv %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field28"><%= @flex.tr_cred_site %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field29"><%= @flex.tr_cred_simp %></span></div>
+                    <div class="col col-1"><span class="form-not-input" id="field30"><%= @flex.tr_cred_red %></span></div>
+                    <div class="col col-1" id="field31">&nbsp;</div>
+                    <div class="col col-1" id="field32">&nbsp;</div>
+                    <div class="col col-1"><span class="form-not-input" id="field33"><%= @flex.tr_cred_total %></span></div>
+                </div>
+                <br /><br />
+                
+                <div class="row">
+                    <div class="col col-6 offset-sm-5 far-left-unbold">Cost to Trade-Up:</div>
+                    <div class="col col-1"><span class="form-not-input" id="field34"><%= @flex.total_tr_cost %></span></div>    
                 </div>
 
+                <div class="row">
+                    <div class="col col-6 offset-sm-5 far-left-unbold">Maintenance Due:</div>
+                    <div class="col col-1"><span class="form-not-input" id="field35"><%= @flex.total_maint %></span></div>    
+                </div>
+                
+                <div class="totals-area">
+                    <div class="row">
+                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Terminal Connection Count:</div>
+                        <div class="col col-1" style="background-color:lightgreen;"><span class="form-not-input" id="field36"><%= @flex.total_terms %></span></div>    
+                    </div>
 
+                    <div class="row">
+                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Software Maintenance Expiration Date on Renewal:</div>
+                        <div class="col col-1" style="background-color:lightgreen;"><span class="form-not-input" id="field37"><%= @flex.sm_exp %></span></div>    
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Total Quote:</div>
+                        <div class="col col-1" style="background-color:lightgreen;"><span class="form-not-input" id="field38"><%= @flex.total_quote %></span></div>    
+                    </div>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <tr>
+                    <td>
+                        <div class="control-label"><%= f.label "Notes" %></div>
+                        <%= f.text_area :note, class: "form-control", rows: "10", placeholder: "Enter Quote Notes Here", tabindex: "19" %>
+                    </td>
+                </tr>
             </div>
 
 
@@ -119,7 +156,7 @@
                 <%= f.submit(@flex.new_record? ? "Save Form" : "Update Form", class: "btn btn-primary btn-md") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path %>
             </div>
             <div class="col-sm-6 action-buttons-right">
-                <%= link_to "Print Form", "#", class: "btn btn-info btn-md" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md" %>
+                <%= link_to "Print Form", "#", class: "btn btn-info btn-md", id: "print" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md" %>
             </div>
             </div>
             
@@ -165,7 +202,9 @@
         var yyyy = expDate.getFullYear() + 1;
         expDate = mm + '/' + dd + '/' + yyyy;
         // add if statement in case of edit
+        //if $('#field37').text == " " {
         $('#field37').text(expDate);
+        //}
         
 
         $('input').on('change', function() {

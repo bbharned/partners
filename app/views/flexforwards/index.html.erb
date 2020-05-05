@@ -2,5 +2,13 @@
 <h1>Flex Forward Calculators</h1>
 <hr />
 
+<% @flexforwards.each do |f| %>
+
+<p><%= f.name %><br />
+<%= f.user.firstname %><br />
+<%= f.note %>
+</p>
+
+<% end %>
 
 </div>
