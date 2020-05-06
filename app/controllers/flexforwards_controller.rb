@@ -1,30 +1,35 @@
 class FlexforwardsController < ApplicationController
 	before_action :must_login
 	before_action :require_admin, only: [:index]
-	before_action :set_flex, only: [:edit, :update, :show]
+	before_action :set_flex, only: [:edit, :update, :show, :destroy]
+	before_action :require_same_user, only: [:edit, :update, :show, :destroy]
 
 
 
 def index
 	@flexforwards = Flexforward.all
 	@currencies = Currency.all
-
-
-
 end
 
 
 def new 
 	@flex = Flexforward.new
 	@currencies = Currency.all
-	#@user = current_user
+end
 
 
+def update
+	if @flex.update(flex_params)
+        flash[:success] = "Calculator was successfully updated"
+        #redirect_to currency_path(@currency)
+        redirect_to flexforward_path(@flex)
+    else
+        render 'edit'
+    end
 end
 
 
 def create
-	
 	@flex = Flexforward.new(flex_params)
 	@flex.user = current_user
     if @flex.save
@@ -33,7 +38,6 @@ def create
     else
         render 'new'
     end
-
 end
 
 
@@ -47,8 +51,15 @@ def edit
 end
 
 
-def delete
+def destroy
+	@flex.destroy
+    flash[:danger] = "The Flex Forward calculator has been deleted"
+    redirect_to root_path
+end
 
+def saved
+	@flexes = Flexforward.where(:user_id => current_user.id)
+	@user = current_user
 end
 
 
@@ -70,12 +81,22 @@ def set_flex
     @flex = Flexforward.find(params[:id])
 end
 
+
+
 def require_admin
     if (logged_in? and !current_user.admin?) || !logged_in? 
         flash[:danger] = "Only admin users can perform that action"
         redirect_to root_path
     end
 end
+
+def require_same_user
+    if current_user != @flex.user && !current_user.admin
+        flash[:danger] = "You are not permitted for that action"
+        redirect_to root_path
+    end
+end
+
 
 def set_flex
     @flex = Flexforward.find(params[:id])

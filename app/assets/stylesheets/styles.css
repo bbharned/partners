@@ -506,6 +506,9 @@ Very Light Blue: #e9f7fb;
     background-color: transparent !important;
     font-weight: bold;
 }
+.edit_ff_btn {
+    float:right; margin-top: 25px;
+}
 
 
 

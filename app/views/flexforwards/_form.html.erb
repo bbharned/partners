@@ -15,13 +15,11 @@
                     </div>
                     <div class="col-sm-3 offset-sm-5 currency-select">
                         <div class="control-label"><%= f.label "Select Currency" %></div>
-                        <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name]}, class: "form-control", id: "field39", tabindex: "2" %>
+                        <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, class: "form-control", id: "field39", tabindex: "2" %>
                     </div>   
                 </div>
 
                 
-                <%= javascript_tag "currency_ids = #{@currencies.to_json.html_safe};" %>
-
                 <div class="row top-ff-header-row" id="">
                     <div class="col col-5 far-left-header">License Count</div>
                     <div class="col col-1">Existing Server</div>

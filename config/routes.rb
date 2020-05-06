@@ -24,6 +24,8 @@ get 'flex', to: 'pages#flexforward'
 resources :currencies
 resources :flexforwards
 
+get 'flexforward', to: 'flexforwards#saved'
+
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
 delete 'logout', to: 'sessions#destroy'
