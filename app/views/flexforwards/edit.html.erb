@@ -50,10 +50,10 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 </div>
 
 
-
-
 <script>
     (function(){
+
+    	$('#field37').removeClass("read-only-green").removeAttr("readonly");
 
         $('body').on('keydown', 'input, select', function(e) {
             if (e.key === "Enter") {
@@ -71,31 +71,20 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
         "use strict";
 
-        // quote expiration date
-        var expDate = new Date();
-        var dd = String(expDate.getDate()).padStart(2, '0');
-        var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = expDate.getFullYear() + 1;
-        expDate = mm + '/' + dd + '/' + yyyy;
-        // add if statement in case of edit
-        //if $('#field37').text == " " {
-        $('#field37').val(expDate);
-        //}
-
-        // function setCurrencies(id) {
-        // 	var currencies;
-        // 	currencies.push(id);
-        // 	return currencies;
-        // };
+        // // quote expiration date
+        // var expDate = new Date();
+        // var dd = String(expDate.getDate()).padStart(2, '0');
+        // var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = expDate.getFullYear() + 1;
+        // expDate = mm + '/' + dd + '/' + yyyy;
+        // // add if statement in case of edit
+        // //if $('#field37').text == " " {
+        // $('#field37').val(expDate);
+        // //}
         
 
         $('input').on('change', function() {
-
-        	
-            var thisCurrency = $('input[id=field39]').val();
-			alert("Your currency is - " + thisCurrency);
-
-
+            
             //V-Flex Prices
             var vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020];
             var smrPrices = [400, 220, 200, 160, 140, 120];

@@ -2,12 +2,21 @@
 <h1>Flex Forward Calculators</h1>
 <hr />
 
+<%= render "header_index" %>
+
 <% @flexforwards.each do |f| %>
 
-<p><%= f.name %><br />
-<%= f.user.firstname %><br />
-<%= f.note %>
-</p>
+<div class="well ff-well-style">
+	<div class="row">
+		<div class="col-sm-4"><%= link_to "#{f.name}", flexforward_path(f) %></div>
+		<div class="col-sm-3"><%= f.currency.symbol %><%= f.total_quote %></div>
+		<div class="col-sm-3"><%= f.user.firstname %> <%= f.user.lastname %></div>
+		<div class="col-sm-1"><%= link_to "Edit", edit_flexforward_path(f) %></div>
+		<div class="col-sm-1"><%= link_to "Delete", edit_flexforward_path(f) %></div>
+	</div>
+</div>
+
+
 
 <% end %>
 

@@ -487,9 +487,25 @@ Very Light Blue: #e9f7fb;
 .bold-align-right {
     text-align: right; font-weight: bold;
 }
-/*.totals-area {
-    background-color: lightgreen;
-}*/
+.read-only {
+    background-color: transparent !important;
+    border:none !important;
+    pointer-events: none;
+}
+.read-only-green {
+    background-color: lightgreen !important;
+    border:none !important;
+    pointer-events: none;
+    border-radius:0 !important;
+    margin-top: -1px !important;
+}
+.ff-well-style {
+    margin-bottom: 3px;
+}
+.ff-well-style-transparent {
+    background-color: transparent !important;
+    font-weight: bold;
+}
 
 
 
