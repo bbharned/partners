@@ -34,10 +34,20 @@
               <%= link_to "Profile", user_path(@current_user), class: 'nav-link' %>
             </li>
             <% if @current_user.admin || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
-            <li class="nav-item">
-              <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
-            </li>
+              <li class="nav-item">
+                <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
+              </li>
             <% end %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Flex Forward
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "View Saved Quotes", flexsaved_path, class: 'dropdown-item' %>
+                <%= link_to "Create New Quote", new_flexforward_path, class: 'dropdown-item' %>
+              </div>
+            </li>
+
             <li class="nav-item horizontal-divider">
               <div class="nav-divider-horizatonal"></div>
             </li>

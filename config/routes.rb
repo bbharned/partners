@@ -25,6 +25,7 @@ resources :currencies
 resources :flexforwards
 
 get 'flexforward', to: 'flexforwards#saved'
+get 'flexsaved', to: 'flexforwards#saved'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'

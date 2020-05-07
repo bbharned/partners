@@ -1,4 +1,20 @@
-<div class="container">
+<style>
+@media print {
+	.ra-top-bar, 
+	.ff-instructions, 
+	#footer, 
+	#disclaimer, 
+	#control-buttons,
+	.edit_ff_btn,
+	.buttons {
+		display:none !important;
+	}
+	.well {
+		background-color: transparent !important;
+	}
+}
+</style>
+<div class="container" style="padding-bottom: 120px;">
 
 <div class="row">
 	<div class="col-sm-9">
@@ -12,4 +28,128 @@
 
 <hr />
 
+
+<h3 style="margin-top: 20px; margin-bottom: 20px;" align="center">Quote Details</h3>
+
+<h5>Existing Configuration</h5>
+
+<div class="well existing-numbers">
+<div class="row">
+	<div class="col-md-3 first-col">
+		<h5>Existing Server</h5>
+		<p><span class="left-title">In Support:</span> <%= @flex.ex_serv_sup %></p> 
+		<p><span class="left-title">Out of Support:</span> <%= @flex.ex_serv_nosup %></p>
+		<p><span class="left-title">Years Expired:</span> <%= @flex.ex_serv_nosup_years %></p>
+	</div>
+	<div class="col-md-3">
+		<h5>Existing Site</h5>
+		<p><span class="left-title">In Support:</span> <%= @flex.ex_site_sup %></p> 
+		<p><span class="left-title">Out of Support:</span> <%= @flex.ex_site_nosup %></p>
+		<p><span class="left-title">Years Expired:</span> <%= @flex.ex_site_nosup_years %></p>
+	</div>
+	<div class="col-md-3">
+		<h5>Existing Simplex</h5>
+		<p><span class="left-title">In Support:</span> <%= @flex.ex_simp_sup %></p> 
+		<p><span class="left-title">Out of Support:</span> <%= @flex.ex_simp_nosup %></p>
+		<p><span class="left-title">Years Expired:</span> <%= @flex.ex_simp_nosup_years %></p>
+	</div>
+	<div class="col-md-3">
+		<h5>Existing Redundant</h5>
+		<p><span class="left-title">In Support:</span> <%= @flex.ex_red_sup %></p> 
+		<p><span class="left-title">Out of Support:</span> <%= @flex.ex_red_nosup %></p>
+		<p><span class="left-title">Years Expired:</span> <%= @flex.ex_red_nosup_years %></p>
+	</div>
 </div>
+</div>
+
+
+<h5>Trade/New Configuration</h5>
+
+<div class="well trade-numbers">
+	<div class="row">
+		<div class="col-md-6 first-col">
+		<h5>Trade Needs</h5>
+		<p><span class="left-title">Number of V-Flex terminals for Server:</span><%= @flex.tr_serv %></p>
+		<p><span class="left-title">Number of V-Flex terminals for Site:</span><%= @flex.tr_site %></p>
+		<p><span class="left-title">Number of V-Flex terminals trading for Simplex:</span><%= @flex.tr_simp %></p>
+		<p><span class="left-title">Number of V-Flex terminals trading for Redundant:</span><%= @flex.tr_red %></p>
+		<p>&nbsp;</p>
+		<p><span class="left-title">Number of new Simplex V-Flex terminals:</span><%= @flex.new_simp %></p>
+		<p><span class="left-title">Number of new Redundant V-Flex terminals:</span><%= @flex.new_red %></p>
+		</div>
+		<div class="col-md-3">
+			<h5>Trade Up Prices</h5>
+			<p>Server: <%= @flex.currency.symbol %><%= @flex.tr_pr_serv %></p>
+			<p>Site: <%= @flex.currency.symbol %><%= @flex.tr_pr_site %></p>
+			<p>Simplex: <%= @flex.currency.symbol %><%= @flex.tr_pr_simp %></p>
+			<p>Redundant: <%= @flex.currency.symbol %><%= @flex.tr_pr_red %></p>
+			<p>&nbsp;</p>
+			<p>New SImplex: <%= @flex.currency.symbol %><%= @flex.new_pr_simp %></p>
+			<p>New Redundant: <%= @flex.currency.symbol %><%= @flex.new_pr_red %></p>
+		</div>
+		<div class="col-md-3">
+			<h5>Credits</h5>
+			<p>Server: <%= @flex.currency.symbol %><%= @flex.tr_cred_serv %></p>
+			<p>Site: <%= @flex.currency.symbol %><%= @flex.tr_cred_site %></p>
+			<p>Simplex: <%= @flex.currency.symbol %><%= @flex.tr_cred_simp %></p>
+			<p>Redundant: <%= @flex.currency.symbol %><%= @flex.tr_cred_red %></p>
+		</div>
+	</div>
+</div>
+
+
+
+<h5>Totals</h5>
+
+<div class="well total-numbers">
+	<div class="row">
+		<div class="col-md-9 first-col">
+			<div class="row">
+				<div class="col-9 totals-categories">
+					<p>Cost to Trade Up</p>
+					<p>Maintenance Due</p>
+					<p>Terminal Connection Count</p>
+					<p>Software Maintenance Expiration Date on Renewal</p>
+				</div>
+				<div class="col-3">
+					<p><%= @flex.currency.symbol %><%= @flex.total_tr_cost %></p>
+					<p><%= @flex.currency.symbol %><%= @flex.total_maint %></p>
+					<p><%= @flex.total_terms %></p>
+					<p><%= @flex.sm_exp %></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 total-total">
+			<h5>Total Quote</h5>
+			<span class="quote-total"><%= @flex.currency.symbol %><%= @flex.total_quote %></span>
+		</div>
+	</div>
+</div>
+
+<h5>Notes</h5>
+
+<p><%= @flex.note %></p>
+
+
+	<div class="buttons">
+		<div class="row">
+			<div class="col-sm-12 show-action-btns">
+				<%= link_to "Edit Quote", edit_flexforward_path(@flex), class: "btn btn-primary" %>
+				&nbsp;
+				<%= link_to "Print Quote", "#", class: "btn btn-info btn-md", id: "print" %>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+
+<script>
+	$("#print").click(function() {
+        print();
+        return false;
+    });
+</script>

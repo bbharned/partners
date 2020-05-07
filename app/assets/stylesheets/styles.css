@@ -129,7 +129,7 @@ ul.pagination {
 }
 .main-nav ul a {color: #FFFFFF !important;}
 .main-nav ul a.dropdown-item {color: #272727 !important;}
-.navbar-toggler .navbar-roggler-icon {border-color:#FFFFFF !important;}
+.navbar-toggler .navbar-toggler-icon {border-color:#FFFFFF !important;}
 .main-nav .nav-right-options {
     position:absolute; left:-160px; margin-top:0px;
 }
@@ -412,7 +412,7 @@ Very Light Blue: #e9f7fb;
 
 
 
-/********************** Flex Forward Page **********************/
+/********************** Flex Forward Pages **********************/
 
 #flex-forward-table {
     margin-top: 55px; font-size: .75em;
@@ -499,17 +499,31 @@ Very Light Blue: #e9f7fb;
     border-radius:0 !important;
     margin-top: -1px !important;
 }
-.ff-well-style {
-    margin-bottom: 3px;
-}
+
+
+
+/** FF Show Page **/
+.ff-well-style {margin-bottom: 3px;}
 .ff-well-style-transparent {
     background-color: transparent !important;
     font-weight: bold;
 }
-.edit_ff_btn {
-    float:right; margin-top: 25px;
-}
 
+.edit_ff_btn {float:right; margin-top: 25px;}
+.left-title {margin-right: 5px;}
+
+.existing-numbers,
+.trade-numbers,
+.total-numbers {padding-bottom: 20px; margin-bottom: 30px;}
+
+.existing-numbers p,
+.trade-numbers p,
+.total-numbers p {line-height: 1em; margin-bottom: 3px;}
+
+.totals-categories {text-align: right; padding-right: 10px;}
+.quote-total {font-size: 1.5em;}
+.total-total h5 {margin-bottom: 5px;}
+.show-action-btns {margin-top: 25px; text-align: right;}
 
 
 
@@ -707,6 +721,19 @@ Very Light Blue: #e9f7fb;
     .ff-datasheet {margin-bottom: 35px;}
     .add_currency_btn {
         margin-top: 5px;
+    }
+    .existing-numbers h5,
+    .trade-numbers h5 {
+        margin-top: 25px;
+    }
+    .first-col h5:first-child {
+        margin-top: 0px;
+    }
+    .total-total {
+        text-align: center;
+    }
+    .total-total h5 {
+        margin-bottom: 5px; margin-top: 35px;
     }
 }
 
