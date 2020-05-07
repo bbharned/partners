@@ -414,15 +414,6 @@ Very Light Blue: #e9f7fb;
 
 /********************** Flex Forward Pages **********************/
 
-#flex-forward-table {
-    margin-top: 55px; font-size: .75em;
-}
-#flex-forward-table .form-control-sm {
-    padding:0px 5px;
-}
-#flex-forward-table tr td {
-    vertical-align: middle;
-}
 .ff-top-logo {
     max-width:400px;
 }
@@ -436,6 +427,18 @@ Very Light Blue: #e9f7fb;
 }
 .action-buttons-right {
     text-align: right;
+}
+
+
+/* old css */
+#flex-forward-table {
+    margin-top: 55px; font-size: .75em;
+}
+#flex-forward-table .form-control-sm {
+    padding:0px 5px;
+}
+#flex-forward-table tr td {
+    vertical-align: middle;
 }
 .top-ff-header-row {
     font-weight:bold; background-color:#f1f1f1;
@@ -452,9 +455,9 @@ Very Light Blue: #e9f7fb;
     padding-top: 8px !important; 
     padding-left: 10px !important; font-size: .85em;
 }
-#ff-form-group {
+/*#ff-form-group {
     font-size:.7em; 
-}
+}*/
 #ff-form-group .row .col {
     border:1px solid #f1f1f1;
     padding:1px;
@@ -467,9 +470,9 @@ Very Light Blue: #e9f7fb;
 .form-filler-space {
     background-color: #f1f1f1;
 }
-#second-ff-form-group {
+/*#second-ff-form-group {
     font-size:.8em; margin-top: 35px;
-}
+}*/
 #second-ff-form-group .row .col {
     border:1px solid #f1f1f1;
     padding:1px;
@@ -499,7 +502,15 @@ Very Light Blue: #e9f7fb;
     border-radius:0 !important;
     margin-top: -1px !important;
 }
+/* end old css */
 
+
+.existing-info-table .col-md-3 .control-label {
+    margin-top: 10px;
+}
+.existing-info-table .col-md-3 .control-label:first-child {
+    margin-top: 0px;
+}
 
 
 /** FF Show Page **/

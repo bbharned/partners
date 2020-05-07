@@ -9,18 +9,95 @@
             <div class="form-group" id="ff-form-group">
                 
                 <div class="row">
-                	<div class="col-sm-4">
+                	<div class="col-sm-8">
                         <div class="control-label"><%= f.label :name %></div>
                         <%= f.text_field :name, class: "form-control", placeholder: "Enter Business Name", tabindex: "1" %>
                     </div>
-                    <div class="col-sm-3 offset-sm-5 currency-select">
+                
+                    <div class="col-sm-4 currency-select">
                         <div class="control-label"><%= f.label "Select Currency" %></div>
                         <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, class: "form-control", id: "field39", tabindex: "2" %>
                     </div>   
                 </div>
+                <br /><hr /><br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h5>Existing Configuration</h5>
+                    </div>
+                </div>
 
+
+                <div class="existing-info-table">
                 
-                <div class="row top-ff-header-row" id="">
+
+                    <div class="row">
+                        
+                        <div class="col-md-3">
+                            <h4>Server</h4>
+                            <div class="control-label"><%= f.label "Licenses in Support" %></div>
+                            <%= f.text_field :ex_serv_sup, class: "form-control", tabindex: "3" %>
+                            <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
+                            <%= f.text_field :ex_serv_nosup, class: "form-control", tabindex: "4" %>
+                            <div class="control-label"><%= f.label "Years Out of Support" %></div>
+                            <%= f.text_field :ex_serv_nosup_years, class: "form-control", tabindex: "5" %>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Site</h4>
+                            <div class="control-label"><%= f.label "Licenses in Support" %></div>
+                            <%= f.text_field :ex_site_sup, class: "form-control", tabindex: "6" %>
+                            <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
+                            <%= f.text_field :ex_site_nosup, class: "form-control", tabindex: "7" %>
+                            <div class="control-label"><%= f.label "Years Out of Support" %></div>
+                            <%= f.text_field :ex_site_nosup_years, class: "form-control", tabindex: "8" %>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Simplex</h4>
+                            <div class="control-label"><%= f.label "Licenses in Support" %></div>
+                            <%= f.text_field :ex_simp_sup, class: "form-control", tabindex: "9" %>
+                            <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
+                            <%= f.text_field :ex_simp_nosup, class: "form-control", tabindex: "10" %>
+                            <div class="control-label"><%= f.label "Years Out of Support" %></div>
+                            <%= f.text_field :ex_simp_nosup_years, class: "form-control", tabindex: "11" %>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Redundant</h4>
+                            <div class="control-label"><%= f.label "Licenses in Support" %></div>
+                            <%= f.text_field :ex_red_sup, class: "form-control", tabindex: "12" %>
+                            <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
+                            <%= f.text_field :ex_red_nosup, class: "form-control", tabindex: "13" %>
+                            <div class="control-label"><%= f.label "Years Out of Support" %></div>
+                            <%= f.text_field :ex_red_nosup_years, class: "form-control", tabindex: "14" %>
+                        </div>
+                    </div>
+                           
+                       
+                    
+
+                </div>
+
+
+
+                <br /><hr /><br />
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h5>Trade/New Configuration</h5>
+                    </div>
+                </div>
+
+
+                <div class="trade-info-table">
+                
+
+                    <div class="row">
+
+                    </div>
+
+
+                </div>
+
+                <!-- <div class="row top-ff-header-row" id="">
                     <div class="col col-5 far-left-header">License Count</div>
                     <div class="col col-1">Existing Server</div>
                     <div class="col col-1">Existing Site</div>
@@ -54,7 +131,7 @@
                     <div class="col col-1"><%= f.text_field :ex_simp_nosup_years, class: "form-control", id: "field11", tabindex: "13" %></div>
                     <div class="col col-1"><%= f.text_field :ex_red_nosup_years, class: "form-control", id: "field12", tabindex: "14" %></div>
                     <div class="col col-3 form-filler-space"></div>
-                </div>
+                </div> -->
             
             </div>
        
@@ -63,7 +140,7 @@
 
             <div class="form-group" id="second-ff-form-group">
 
-                 <div class="row top-ff-header-row" id="">
+                 <!-- <div class="row top-ff-header-row" id="">
                     <div class="col col-5 far-left-header"></div>
                     <div class="col col-1">Trade for Server</div>
                     <div class="col col-1">Trade for Site</div>
@@ -131,22 +208,21 @@
 
                     <div class="row">
                         <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Total Quote:</div>
-                        <!-- <div class="col col-1" style="background-color:lightgreen;"><span class="form-not-input" id="field38"><%= @flex.total_quote %></span></div>  -->
                         <div class="col col-1"><%= f.text_field :total_quote, class: "form-control read-only-green", id: "field38", readonly: true %></div>   
                     </div>
                 </div>
-
+ -->
             </div>
 
             <br />
 
             <div class="form-group">
-                <tr>
-                    <td>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="control-label"><%= f.label "Notes" %></div>
                         <%= f.text_area :note, class: "form-control", rows: "10", placeholder: "Enter Quote Notes Here", tabindex: "19" %>
-                    </td>
-                </tr>
+                    </div>
+                </div>    
             </div>
 
 
@@ -155,10 +231,9 @@
         <div class="form-group">
             <div class="row">
             <div class="col-sm-6">
-                <%= f.submit(@flex.new_record? ? "Save Form" : "Update Form", class: "btn btn-primary btn-md") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path %>
+                <%= f.submit(@flex.new_record? ? "Save Quote" : "Update Quote", class: "btn btn-primary btn-md") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path %>
             </div>
             <div class="col-sm-6 action-buttons-right">
-                <%= link_to "Print Form", "#", class: "btn btn-info btn-md", id: "print" %>
                 <% if @flex.new_record? %>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md" %>
                 <% end %>
