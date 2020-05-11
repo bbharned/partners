@@ -49,9 +49,6 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
 
 </div>
 
-
-
-
 <script>
     (function(){
 
@@ -68,18 +65,38 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
                 return false;
             }
         });
+ })();
+</script>
 
-        "use strict";
+
+<script>
+    (function(){
+
+        // $('body').on('keydown', 'input, select', function(e) {
+        //     if (e.key === "Enter") {
+        //         var self = $(this), form = self.parents('form:eq(0)'), focusable, next;
+        //         focusable = form.find('input,a,select,button,textarea').filter(':visible');
+        //         next = focusable.eq(focusable.index(this)+1);
+        //         if (next.length) {
+        //             next.focus();
+        //         } else {
+        //             form.submit();
+        //         }
+        //         return false;
+        //     }
+        // });
+
+        // "use strict";
 
         // quote expiration date
-        var expDate = new Date();
-        var dd = String(expDate.getDate()).padStart(2, '0');
-        var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = expDate.getFullYear() + 1;
-        expDate = mm + '/' + dd + '/' + yyyy;
+        // var expDate = new Date();
+        // var dd = String(expDate.getDate()).padStart(2, '0');
+        // var mm = String(expDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = expDate.getFullYear() + 1;
+        // expDate = mm + '/' + dd + '/' + yyyy;
         // add if statement in case of edit
         //if $('#field37').text == " " {
-        $('#field37').val(expDate);
+        //$('#field37').val(expDate);
         //}
 
         // function setCurrencies(id) {
@@ -92,94 +109,89 @@ To identify your representative, please visit <%= link_to "https://thinmanager.c
         $('input').on('change', function() {
 
         	
-            var thisCurrency = $('input[id=field39]').val();
-			alert("Your currency is - " + thisCurrency);
-
-
             //V-Flex Prices
-            var vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020];
-            var smrPrices = [400, 220, 200, 160, 140, 120];
-            var vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720];
+            // var vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020];
+            // var smrPrices = [400, 220, 200, 160, 140, 120];
+            // var vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720];
 
-            var field1 = $("#field1").val();
-            var field2 = $("#field2").val();
-            var field3 = $("#field3").val();
-            var field4 = $("#field4").val();
-            var field5 = $("#field5").val();
-            var field6 = $("#field6").val();
-            var field7 = $("#field7").val();
-            var field8 = $("#field8").val();
-            var field9 = $("#field9").val();
-            var field10 = $("#field10").val();
-            var field11 = $("#field11").val();
-            var field12 = $("#field12").val();
-            var field13 = $("#field13").val();
-            var field14 = $("#field14").val();
-            var field17 = $("#field17").val();
-            var field18 = $("#field18").val();
+            // var field1 = $("#field1").val();
+            // var field2 = $("#field2").val();
+            // var field3 = $("#field3").val();
+            // var field4 = $("#field4").val();
+            // var field5 = $("#field5").val();
+            // var field6 = $("#field6").val();
+            // var field7 = $("#field7").val();
+            // var field8 = $("#field8").val();
+            // var field9 = $("#field9").val();
+            // var field10 = $("#field10").val();
+            // var field11 = $("#field11").val();
+            // var field12 = $("#field12").val();
+            // var field13 = $("#field13").val();
+            // var field14 = $("#field14").val();
+            // var field17 = $("#field17").val();
+            // var field18 = $("#field18").val();
 
-            field1 = Number(field1);
-            field2 = Number(field2);
-            field3 = Number(field3);
-            field4 = Number(field4);
-            field5 = Number(field5);
-            field6 = Number(field6);
-            field7 = Number(field7);
-            field8 = Number(field8);
-            field9 = Number(field9);
-            field10 = Number(field10);
-            field11 = Number(field11);
-            field12 = Number(field12);
-            field13 = Number(field13);
-            field14 = Number(field14);
-            field17 = Number(field17);
-            field18 = Number(field18);
+            // field1 = Number(field1);
+            // field2 = Number(field2);
+            // field3 = Number(field3);
+            // field4 = Number(field4);
+            // field5 = Number(field5);
+            // field6 = Number(field6);
+            // field7 = Number(field7);
+            // field8 = Number(field8);
+            // field9 = Number(field9);
+            // field10 = Number(field10);
+            // field11 = Number(field11);
+            // field12 = Number(field12);
+            // field13 = Number(field13);
+            // field14 = Number(field14);
+            // field17 = Number(field17);
+            // field18 = Number(field18);
 
 
-            function currencyFormat(num) {
-              return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-            }
+            // function currencyFormat(num) {
+            //   return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+            // }
 
-            var field15 = field3 + field7;
-            var field16 = field4 + field8; 
+            // var field15 = field3 + field7;
+            // var field16 = field4 + field8; 
 
-            var field20 = 600 * field13;
-            //currency here?
-            $("#field20").val(field20.toFixed(2));
+            // var field20 = 600 * field13;
+            // //currency here?
+            // $("#field20").val(field20.toFixed(2));
             
 
-            var field21 = 600 * field14;
-            //currency here?
-            $("#field21").val(field21.toFixed(2));
+            // var field21 = 600 * field14;
+            // //currency here?
+            // $("#field21").val(field21.toFixed(2));
             
             
+            //var totalTerms = Number(field13) + Number(field14) + Number(field15) + Number(field16) + Number(field17) + Number(field18);
+            
+            // $("#field15").val(field15);
+            // $("#field16").val(field16);
+            // $("#field19").val(totalTerms);
+            // if (totalTerms >= 0) {
+            //     $("#field36").val(totalTerms);
+            // }
 
-            var totalTerms = Number(field13) + Number(field14) + Number(field15) + Number(field16) + Number(field17) + Number(field18);
-            
-            $("#field15").val(field15);
-            $("#field16").val(field16);
-            $("#field19").val(totalTerms);
-            if (totalTerms >= 0) {
-                $("#field36").val(totalTerms);
-            }
-
-            function findRange(terminalCount) {
-                var terminalRange;
-                if (terminalCount >= 0 && terminalCount < 5) {
-                    var terminalRange = 0;  
-                } else if (terminalCount >=5 && terminalCount < 50) {
-                    var terminalRange = 1;
-                } else if (terminalCount >=50 && terminalCount < 100) {
-                    var terminalRange = 2;
-                } else if (terminalCount >=100 && terminalCount < 250) {
-                    var terminalRange = 3;
-                } else if (terminalCount >=250 && terminalCount < 500) {
-                    var terminalRange = 4;
-                } else if (terminalCount >=500) {
-                    var terminalRange = 5;
-                }
-                return terminalRange;
-            }
+            // function findRange(terminalCount) {
+            //     var terminalRange;
+            //     if (terminalCount >= 0 && terminalCount < 5) {
+            //         var terminalRange = 0;  
+            //     } else if (terminalCount >=5 && terminalCount < 50) {
+            //         var terminalRange = 1;
+            //     } else if (terminalCount >=50 && terminalCount < 100) {
+            //         var terminalRange = 2;
+            //     } else if (terminalCount >=100 && terminalCount < 250) {
+            //         var terminalRange = 3;
+            //     } else if (terminalCount >=250 && terminalCount < 500) {
+            //         var terminalRange = 4;
+            //     } else if (terminalCount >=500) {
+            //         var terminalRange = 5;
+            //     }
+            //     return terminalRange;
+            // }
             
             var currentRange = findRange(totalTerms);
             var tradePackRange = findRange(field15);

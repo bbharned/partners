@@ -9,210 +9,104 @@
             <div class="form-group" id="ff-form-group">
                 
                 <div class="row">
-                	<div class="col-sm-8">
+                	<div class="col-md-6">
                         <div class="control-label"><%= f.label :name %></div>
-                        <%= f.text_field :name, class: "form-control", placeholder: "Enter Business Name", tabindex: "1" %>
+                        <%= f.text_field :name, class: "form-control", placeholder: "Enter Business Name", autofocus: true, tabindex: "1" %>
                     </div>
                 
-                    <div class="col-sm-4 currency-select">
+                    <div class="col-md-3 currency-select">
                         <div class="control-label"><%= f.label "Select Currency" %></div>
                         <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, class: "form-control", id: "field39", tabindex: "2" %>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="control-label"><%= f.label "Maintenance Exp" %></div>
+                        <%= f.text_field :sm_exp, class: "form-control", tabindex: "3" %>
                     </div>   
                 </div>
-                <br /><hr /><br />
+                
+                <hr style="margin-top: 30px; margin-bottom: 25px;" />
+                
                 <div class="row">
                     <div class="col-sm-12">
                         <h5>Existing Configuration</h5>
                     </div>
                 </div>
 
-
                 <div class="existing-info-table">
-                
-
                     <div class="row">
-                        
                         <div class="col-md-3">
                             <h4>Server</h4>
                             <div class="control-label"><%= f.label "Licenses in Support" %></div>
-                            <%= f.text_field :ex_serv_sup, class: "form-control", tabindex: "3" %>
+                            <%= f.text_field :ex_serv_sup, class: "form-control", tabindex: "4" %>
                             <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
-                            <%= f.text_field :ex_serv_nosup, class: "form-control", tabindex: "4" %>
+                            <%= f.text_field :ex_serv_nosup, class: "form-control", tabindex: "5" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
-                            <%= f.text_field :ex_serv_nosup_years, class: "form-control", tabindex: "5" %>
+                            <%= f.text_field :ex_serv_nosup_years, class: "form-control", tabindex: "6" %>
                         </div>
                         <div class="col-md-3">
                             <h4>Site</h4>
                             <div class="control-label"><%= f.label "Licenses in Support" %></div>
-                            <%= f.text_field :ex_site_sup, class: "form-control", tabindex: "6" %>
+                            <%= f.text_field :ex_site_sup, class: "form-control", tabindex: "7" %>
                             <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
-                            <%= f.text_field :ex_site_nosup, class: "form-control", tabindex: "7" %>
+                            <%= f.text_field :ex_site_nosup, class: "form-control", tabindex: "8" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
-                            <%= f.text_field :ex_site_nosup_years, class: "form-control", tabindex: "8" %>
+                            <%= f.text_field :ex_site_nosup_years, class: "form-control", tabindex: "9" %>
                         </div>
                         <div class="col-md-3">
                             <h4>Simplex</h4>
                             <div class="control-label"><%= f.label "Licenses in Support" %></div>
-                            <%= f.text_field :ex_simp_sup, class: "form-control", tabindex: "9" %>
+                            <%= f.text_field :ex_simp_sup, class: "form-control", tabindex: "10" %>
                             <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
-                            <%= f.text_field :ex_simp_nosup, class: "form-control", tabindex: "10" %>
+                            <%= f.text_field :ex_simp_nosup, class: "form-control", tabindex: "11" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
-                            <%= f.text_field :ex_simp_nosup_years, class: "form-control", tabindex: "11" %>
+                            <%= f.text_field :ex_simp_nosup_years, class: "form-control", tabindex: "12" %>
                         </div>
                         <div class="col-md-3">
                             <h4>Redundant</h4>
                             <div class="control-label"><%= f.label "Licenses in Support" %></div>
-                            <%= f.text_field :ex_red_sup, class: "form-control", tabindex: "12" %>
+                            <%= f.text_field :ex_red_sup, class: "form-control", tabindex: "13" %>
                             <div class="control-label"><%= f.label "Licenses Out of Support" %></div>
-                            <%= f.text_field :ex_red_nosup, class: "form-control", tabindex: "13" %>
+                            <%= f.text_field :ex_red_nosup, class: "form-control", tabindex: "14" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
-                            <%= f.text_field :ex_red_nosup_years, class: "form-control", tabindex: "14" %>
+                            <%= f.text_field :ex_red_nosup_years, class: "form-control", tabindex: "15" %>
                         </div>
                     </div>
-                           
-                       
-                    
-
-                </div>
+                 </div>
 
 
 
-                <br /><hr /><br />
+                <hr style="margin-top: 30px; margin-bottom: 25px;" />
 
 
                 <div class="row">
                     <div class="col-sm-12">
                         <h5>Trade/New Configuration</h5>
+                        <p style="margin-top: -10px; margin-left: 1px; color:#717171;">Total Redundant V-FLEX Terminals</p>
                     </div>
                 </div>
-
-
                 <div class="trade-info-table">
-                
-
                     <div class="row">
-
+                        <div class="col-md-3">
+                            <div class="control-label"><%= f.label "Trade for Server" %></div>
+                            <%= f.text_field :tr_serv, class: "form-control", tabindex: "16" %>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="control-label"><%= f.label "Trade for Site" %></div>
+                            <%= f.text_field :tr_site, class: "form-control", tabindex: "17" %>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="control-label"><%= f.label "New Simplex" %></div>
+                            <%= f.text_field :new_simp, class: "form-control", tabindex: "18" %>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="control-label"><%= f.label "New Redundant" %></div>
+                            <%= f.text_field :new_red, class: "form-control", tabindex: "19" %>
+                        </div>
                     </div>
-
-
                 </div>
 
-                <!-- <div class="row top-ff-header-row" id="">
-                    <div class="col col-5 far-left-header">License Count</div>
-                    <div class="col col-1">Existing Server</div>
-                    <div class="col col-1">Existing Site</div>
-                    <div class="col col-1">Simplex Pack</div>
-                    <div class="col col-1">Redundant Pack</div>
-                    <div class="col col-3 form-filler-space"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left"># of Licenses in Support</div>
-                    <div class="col col-1"><%= f.text_field :ex_serv_sup, class: "form-control", id: "field1", tabindex: "3" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_site_sup, class: "form-control", id: "field2", tabindex: "4" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_sup, class: "form-control", id: "field3", tabindex: "5" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_sup, class: "form-control",  id: "field4", tabindex: "6" %></div>
-                    <div class="col col-3 form-filler-space"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left"># of Licenses Out of Support</div>
-                    <div class="col col-1"><%= f.text_field :ex_serv_nosup, class: "form-control", id: "field5", tabindex: "7" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_site_nosup, class: "form-control", id: "field6", tabindex: "8" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_nosup, class: "form-control", id: "field7", tabindex: "9" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_nosup, class: "form-control", id: "field8", tabindex: "10" %></div>
-                    <div class="col col-3 form-filler-space"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left"># of years Expired</div>
-                    <div class="col col-1"><%= f.text_field :ex_serv_nosup_years, class: "form-control", id: "field9", tabindex: "11" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_site_nosup_years, class: "form-control", id: "field10", tabindex: "12" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_simp_nosup_years, class: "form-control", id: "field11", tabindex: "13" %></div>
-                    <div class="col col-1"><%= f.text_field :ex_red_nosup_years, class: "form-control", id: "field12", tabindex: "14" %></div>
-                    <div class="col col-3 form-filler-space"></div>
-                </div> -->
-            
             </div>
        
-
-
-
-            <div class="form-group" id="second-ff-form-group">
-
-                 <!-- <div class="row top-ff-header-row" id="">
-                    <div class="col col-5 far-left-header"></div>
-                    <div class="col col-1">Trade for Server</div>
-                    <div class="col col-1">Trade for Site</div>
-                    <div class="col col-1">Trade for Pack</div>
-                    <div class="col col-1">Trade for R Pack</div>
-                    <div class="col col-1">New Simplex</div>
-                    <div class="col col-1">New Redundant</div>
-                    <div class="col col-1">TOTAL</div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left">Total Redundant V-FLEX Terminals Required:</div>
-                    <div class="col col-1"><%= f.text_field :tr_serv, class: "form-control", id: "field13", tabindex: "15" %></div>
-                    <div class="col col-1"><%= f.text_field :tr_site, class: "form-control", id: "field14", tabindex: "16" %></div>
-                    <div class="col col-1"><%= f.text_field :tr_simp, class: "form-control read-only", id: "field15", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_red, class: "form-control read-only", id: "field16", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :new_simp, class: "form-control", id: "field17", tabindex: "17" %></div>
-                    <div class="col col-1"><%= f.text_field :new_red, class: "form-control", id: "field18", tabindex: "18" %></div>
-                    <div class="col col-1"><%= f.text_field :total_terms, class: "form-control read-only", id: "field19", readonly: true %></div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left-unbold">Special Band Trade-Up Pricing:</div>
-                    <div class="col col-1"><%= f.text_field :tr_pr_serv, class: "form-control read-only", id: "field20", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_pr_site, class: "form-control read-only", id: "field21", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_pr_simp, class: "form-control read-only", id: "field22", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_pr_red, class: "form-control read-only", id: "field23", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :new_pr_simp, class: "form-control read-only", id: "field24", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :new_pr_red, class: "form-control read-only", id: "field25", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_pr_total, class: "form-control read-only", id: "field26", readonly: true %></div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-5 far-left-unbold">Total Credit for All Licenses:</div>
-                    <div class="col col-1"><%= f.text_field :tr_cred_serv, class: "form-control read-only", id: "field27", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_cred_site, class: "form-control read-only", id: "field28", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_cred_simp, class: "form-control read-only", id: "field29", readonly: true %></div>
-                    <div class="col col-1"><%= f.text_field :tr_cred_red, class: "form-control read-only", id: "field30", readonly: true %></div>
-                    <div class="col col-1" id="field31">&nbsp;</div>
-                    <div class="col col-1" id="field32">&nbsp;</div>
-                    <div class="col col-1"><%= f.text_field :tr_cred_total, class: "form-control read-only", id: "field33", readonly: true %></div>
-                </div>
-                <br /><br />
-                
-                <div class="row">
-                    <div class="col col-6 offset-sm-5 far-left-unbold">Cost to Trade-Up:</div>
-                    <div class="col col-1"><%= f.text_field :total_tr_cost, class: "form-control read-only", id: "field34", readonly: true %></div>   
-                </div>
-
-                <div class="row">
-                    <div class="col col-6 offset-sm-5 far-left-unbold">Maintenance Due:</div>
-                    <div class="col col-1"><%= f.text_field :total_maint, class: "form-control read-only", id: "field35", readonly: true %></div>    
-                </div>
-                
-                <div class="totals-area">
-                    <div class="row">
-                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Terminal Connection Count:</div>
-                        <div class="col col-1"><%= f.text_field :total_terms, class: "form-control read-only-green", id: "field36", readonly: true %></div>   
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Software Maintenance Expiration Date on Renewal:</div>
-                        <div class="col col-1"><%= f.text_field :sm_exp, class: "form-control read-only-green", id: "field37", readonly: true %></div>  
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-6 offset-sm-5 far-left-unbold bold-align-right" style="background-color: lightgreen; padding-right: 10px;">Total Quote:</div>
-                        <div class="col col-1"><%= f.text_field :total_quote, class: "form-control read-only-green", id: "field38", readonly: true %></div>   
-                    </div>
-                </div>
- -->
-            </div>
 
             <br />
 
@@ -220,7 +114,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="control-label"><%= f.label "Notes" %></div>
-                        <%= f.text_area :note, class: "form-control", rows: "10", placeholder: "Enter Quote Notes Here", tabindex: "19" %>
+                        <%= f.text_area :note, class: "form-control", rows: "8", placeholder: "Enter Quote Notes Here", tabindex: "20" %>
                     </div>
                 </div>    
             </div>
@@ -231,11 +125,11 @@
         <div class="form-group">
             <div class="row">
             <div class="col-sm-6">
-                <%= f.submit(@flex.new_record? ? "Save Quote" : "Update Quote", class: "btn btn-primary btn-md") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path %>
+                <%= f.submit(@flex.new_record? ? "Save Quote" : "Update Quote", class: "btn btn-primary btn-md", tabindex: "21") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path, tabindex: "22" %>
             </div>
             <div class="col-sm-6 action-buttons-right">
                 <% if @flex.new_record? %>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md" %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Clear Form", "#", class: "btn btn-danger btn-md", tabindex: "23" %>
                 <% end %>
             </div>
             </div>

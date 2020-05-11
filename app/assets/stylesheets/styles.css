@@ -36,6 +36,9 @@ ul.pagination {
 .well-sm {
     background-color:#f1f1f1; padding:5px; margin-bottom: 4px;
 }
+.right-to-not {
+    float:right;
+}
 
 
 
@@ -462,11 +465,6 @@ Very Light Blue: #e9f7fb;
     border:1px solid #f1f1f1;
     padding:1px;
 }
-.currency-select select {
-    margin-top: 2px; width:100%;
-    height: 30px;
-    padding-top: 5px; padding-bottom: 5px;
-}
 .form-filler-space {
     background-color: #f1f1f1;
 }
@@ -505,8 +503,14 @@ Very Light Blue: #e9f7fb;
 /* end old css */
 
 
+
+.currency-select select {
+    margin-top: 4px; width:100%;
+    height: 30px;
+    padding-top: 5px; padding-bottom: 5px;
+}
 .existing-info-table .col-md-3 .control-label {
-    margin-top: 10px;
+    margin-top: 7px;
 }
 .existing-info-table .col-md-3 .control-label:first-child {
     margin-top: 0px;
@@ -708,6 +712,9 @@ Very Light Blue: #e9f7fb;
     }
     .goAway {
         display:none !important;
+    }
+    .right-to-not {
+        float:none;
     }
     .card-columns {
         -webkit-column-count: 1;
