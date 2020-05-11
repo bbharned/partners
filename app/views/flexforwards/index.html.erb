@@ -9,7 +9,7 @@
 <div class="well ff-well-style">
 	<div class="row">
 		<div class="col-sm-4"><%= link_to "#{f.name}", flexforward_path(f) %></div>
-		<div class="col-sm-3"><%= f.currency.symbol %><%= f.total_quote %></div>
+		<div class="col-sm-3"><%= number_to_currency(f.total_quote, unit: f.currency.symbol, seperator: ",") %></div>
 		<div class="col-sm-3"><%= f.user.firstname %> <%= f.user.lastname %></div>
 		<div class="col-sm-1"><%= link_to "Edit", edit_flexforward_path(f) %></div>
 		<div class="col-sm-1"><%= link_to "Delete", flexforward_path(f), method: :delete, data: {confirm: "Are you sure you want to delete this Flex Foward Calculator?"}, style: "color:red; float:right;" %></div>

@@ -79,20 +79,20 @@
 		</div>
 		<div class="col-md-3">
 			<h5>Trade Up Prices</h5>
-			<p>Server: <%= @flex.currency.symbol %><%= @flex.tr_pr_serv %></p>
-			<p>Site: <%= @flex.currency.symbol %><%= @flex.tr_pr_site %></p>
-			<p>Simplex: <%= @flex.currency.symbol %><%= @flex.tr_pr_simp %></p>
-			<p>Redundant: <%= @flex.currency.symbol %><%= @flex.tr_pr_red %></p>
+			<p>Server: <%= number_to_currency(@flex.tr_pr_serv, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Site: <%= number_to_currency(@flex.tr_pr_site, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Simplex: <%= number_to_currency(@flex.tr_pr_simp, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Redundant: <%= number_to_currency(@flex.tr_pr_red, unit: @flex.currency.symbol, seperator: ",") %></p>
 			<p>&nbsp;</p>
-			<p>New SImplex: <%= @flex.currency.symbol %><%= @flex.new_pr_simp %></p>
-			<p>New Redundant: <%= @flex.currency.symbol %><%= @flex.new_pr_red %></p>
+			<p>New SImplex: <%= number_to_currency(@flex.new_pr_simp, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>New Redundant: <%= number_to_currency(@flex.new_pr_red, unit: @flex.currency.symbol, seperator: ",") %></p>
 		</div>
 		<div class="col-md-3">
 			<h5>Credits</h5>
-			<p>Server: <%= @flex.currency.symbol %><%= @flex.tr_cred_serv %></p>
-			<p>Site: <%= @flex.currency.symbol %><%= @flex.tr_cred_site %></p>
-			<p>Simplex: <%= @flex.currency.symbol %><%= @flex.tr_cred_simp %></p>
-			<p>Redundant: <%= @flex.currency.symbol %><%= @flex.tr_cred_red %></p>
+			<p>Server: <%= number_to_currency(@flex.tr_cred_serv, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Site: <%= number_to_currency(@flex.tr_cred_site, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Simplex: <%= number_to_currency(@flex.tr_cred_simp, unit: @flex.currency.symbol, seperator: ",") %></p>
+			<p>Redundant: <%= number_to_currency(@flex.tr_cred_red, unit: @flex.currency.symbol, seperator: ",") %></p>
 		</div>
 	</div>
 </div>
@@ -112,8 +112,8 @@
 					<p>Software Maintenance Expiration Date on Renewal</p>
 				</div>
 				<div class="col-3">
-					<p><%= @flex.currency.symbol %><%= @flex.total_tr_cost %></p>
-					<p><%= @flex.currency.symbol %><%= @flex.total_maint %></p>
+					<p><%= number_to_currency(@flex.total_tr_cost, unit: @flex.currency.symbol, seperator: ",") %></p>
+					<p><%= number_to_currency(@flex.total_maint, unit: @flex.currency.symbol, seperator: ",") %></p>
 					<p><%= @flex.total_terms %></p>
 					<p><%= @flex.sm_exp %></p>
 				</div>
@@ -121,7 +121,7 @@
 		</div>
 		<div class="col-md-3 total-total">
 			<h5>Total Quote</h5>
-			<span class="quote-total"><%= @flex.currency.symbol %><%= @flex.total_quote %></span>
+			<span class="quote-total"><%= number_to_currency(@flex.total_quote, unit: @flex.currency.symbol, seperator: ",") %></span>
 		</div>
 	</div>
 </div>
