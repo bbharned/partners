@@ -1,5 +1,14 @@
-<div class="container" style="padding-bottom: 70px;">
-<h1>Flex Forward Calculators</h1>
+<div class="container" style="padding-bottom:70px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Saved Flex Forward Quotes</h1>
+		<h5 style="color:grey; margin-top: -7px;"><%= @user.firstname %> <%=@user.lastname %></h5>
+	</div>
+	<div class="col-md-3">
+		<div class="edit_ff_btn"><%= link_to "New Quote", new_flexforward_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
 <hr />
 
 <div class="paginate">

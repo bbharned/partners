@@ -48,6 +48,7 @@ def create
 
     @flex = Flexforward.new(flex_params)
     @flex.user = current_user
+    
 
     if @flex.save
         flash[:success] = "Your Flex Forward Calculator has been saved"
@@ -88,7 +89,7 @@ def destroy
 end
 
 def saved
-	@flexes = Flexforward.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).order(:id)
+	@flexes = Flexforward.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).order("id desc")
 	@user = current_user
 end
 

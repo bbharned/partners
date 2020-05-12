@@ -44,6 +44,8 @@ def calcs
     @smrPrices = [400, 220, 200, 160, 140, 120]
     @vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720]
 
+    self.sm_exp = self.sm_exp.strftime("%m/%d/%Y")
+
     self.tr_simp = self.ex_simp_sup + self.ex_simp_nosup #15
     self.tr_red = self.ex_red_sup + self.ex_red_nosup #16
 
@@ -137,7 +139,7 @@ def calcs
 
     @termsForSM = self.tr_serv + self.tr_site + self.tr_simp + self.tr_red
     @smrange = findRange(@termsForSM)
-    @smPricePer = @smrPrices[@currentRange] #This is the total term range
+    @smPricePer = @smrPrices[@currentRange] * self.currency.rate #This is the total term range
     self.total_maint = @smPricePer * @termsForSM
 
     self.total_quote = self.total_tr_cost + self.total_maint
