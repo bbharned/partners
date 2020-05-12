@@ -26,6 +26,11 @@ resources :flexforwards
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
+get 'flexforward/totals', to: 'flexforwards#totals'
+get 'flexforward/usertotals', to: 'flexforwards#usertotals'
+get 'flexforward/byname', to: 'flexforwards#byname'
+get 'flexforward/userbyname', to: 'flexforwards#userbyname'
+get 'flexforward/byuser', to: 'flexforwards#byuser'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'

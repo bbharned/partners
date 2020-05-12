@@ -3,12 +3,12 @@
 <hr />
 
 <div class="paginate">
-	<%= will_paginate(@flexforwards, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+	<%= will_paginate(@flexes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 </div>
 
-<%= render "header_index" %>
+<%= render "user_header_index" %>
 
-<% @flexforwards.each do |f| %>
+<% @flexes.each do |f| %>
 
 <div class="well ff-well-style">
 	<div class="row">
@@ -25,7 +25,7 @@
 <% end %>
 <br /><br />
 <div class="paginate">
-	<%= will_paginate(@flexforwards, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+	<%= will_paginate(@flexes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 </div>
 
 </div>

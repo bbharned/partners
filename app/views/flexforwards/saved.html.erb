@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom:70px;">
 
 <div class="row">
 	<div class="col-md-9">
@@ -11,16 +11,20 @@
 </div>
 <hr />
 
+<div class="paginate">
+	<%= will_paginate(@flexes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
+
 
 
 <% if @flexes.count < 1 %>
 
 
-		<p>You do not have any saved flex forward quotes created.  Start one <%= link_to "here", new_flexforward_path %>.</p>
+		<p>You do not have any saved flex forward quotes.  Start one <%= link_to "here", new_flexforward_path %>.</p>
 
 <% else %>
 
-<%= render "header_index" %>
+<%= render "user_header_index" %>
 
 <% end  %>
 
@@ -42,8 +46,10 @@
 
 <% end %>
 
-
-
+<br /><br />
+<div class="paginate">
+	<%= will_paginate(@flexes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
 
 
 

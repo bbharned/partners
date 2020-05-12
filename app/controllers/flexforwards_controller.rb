@@ -1,14 +1,37 @@
 class FlexforwardsController < ApplicationController
 	before_action :must_login
-	before_action :require_admin, only: [:index]
+	before_action :require_admin, only: [:index, :totals, :byname, :byuser]
 	before_action :set_flex, only: [:edit, :update, :show, :destroy]
 	before_action :require_same_user, only: [:edit, :update, :show, :destroy]
 
 
 
 def index
-	@flexforwards = Flexforward.all
+	@flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order(:id)
 	@currencies = Currency.all
+end
+
+def totals
+    @flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("total_quote desc")
+end
+
+def byname
+    @flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("name asc")
+end
+
+def byuser
+    @flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("user_id")
+end
+
+def usertotals
+    @user = current_user
+    @flexes = Flexforward.where(:user_id => @user.id).paginate(page: params[:page], per_page: 10).order("total_quote desc")
+    
+end
+
+def userbyname
+    @flexes = Flexforward.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).order("name asc")
+    @user = current_user
 end
 
 
@@ -65,7 +88,7 @@ def destroy
 end
 
 def saved
-	@flexes = Flexforward.where(:user_id => current_user.id)
+	@flexes = Flexforward.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).order(:id)
 	@user = current_user
 end
 

@@ -125,7 +125,7 @@
         <div class="form-group">
             <div class="row">
             <div class="col-sm-6">
-                <%= f.submit(@flex.new_record? ? "Save Quote" : "Update Quote", class: "btn btn-primary btn-md", tabindex: "21") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel to Dashboard", root_path, tabindex: "22" %>
+                <%= f.submit(@flex.new_record? ? "Save Quote" : "Update Quote", class: "btn btn-primary btn-md", tabindex: "21") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", flexsaved_path, tabindex: "22" %>
             </div>
             <div class="col-sm-6 action-buttons-right">
                 <% if @flex.new_record? %>
