@@ -4,9 +4,9 @@ require_relative 'application'
 # Initialize the Rails application.
 Rails.application.initialize!
 
-Time::DATE_FORMATS[:time_display] = "%B %d, %Y at %I:%M %p"
+# Time::DATE_FORMATS[:time_display] = "%B %d, %Y at %I:%M %p"
 
-Date::DATE_FORMATS[:default] = "%m/%d/%Y"
+# Date::DATE_FORMATS[:default] = "%m/%d/%Y"
 
 
 

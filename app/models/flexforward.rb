@@ -2,6 +2,7 @@ class Flexforward < ApplicationRecord
 	belongs_to :user
 	belongs_to :currency
 	before_save :calcs
+    before_create :dating
     validates :name, presence: true, length: { minimum: 1, maximum: 50 }
 
 
@@ -37,6 +38,13 @@ end
 
 private
 
+
+def dating
+    if self.sm_exp == nil
+        self.sm_exp = Date.today() + 1.year
+    end
+end
+
 # Flex Forward Calculations
 def calcs
 
@@ -44,7 +52,11 @@ def calcs
     @smrPrices = [400, 220, 200, 160, 140, 120]
     @vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720]
 
-    self.sm_exp = self.sm_exp.strftime("%m/%d/%Y")
+    if self.sm_exp == nil
+        self.sm_exp = Date.today() + 1.year
+    # else
+    #     self.sm_exp = self.sm_exp.strftime("%m/%d/%Y")
+    end
 
     self.tr_simp = self.ex_simp_sup + self.ex_simp_nosup #15
     self.tr_red = self.ex_red_sup + self.ex_red_nosup #16

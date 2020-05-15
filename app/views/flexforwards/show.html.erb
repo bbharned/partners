@@ -115,7 +115,9 @@
 					<p><%= number_to_currency(@flex.total_tr_cost, unit: @flex.currency.symbol, seperator: ",") %></p>
 					<p><%= number_to_currency(@flex.total_maint, unit: @flex.currency.symbol, seperator: ",") %></p>
 					<p><%= @flex.total_terms %></p>
+					<% if @flex.sm_exp != nil %>
 					<p><%= @flex.sm_exp.strftime("%m/%d/%Y") %></p>
+					<% end %>
 				</div>
 			</div>
 		</div>
