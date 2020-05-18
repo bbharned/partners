@@ -61,39 +61,39 @@ def calcs
     end
 
     if self.ex_site_sup.nil?
-        self.ex_serv_sup = 0
+        self.ex_site_sup = 0
     end
 
     if self.ex_site_nosup.nil?
-        self.ex_serv_nosup = 0
+        self.ex_site_nosup = 0
     end
 
     if self.ex_site_nosup_years.nil?
-        self.ex_serv_nosup_years = 0
+        self.ex_site_nosup_years = 0
     end
 
     if self.ex_simp_sup.nil?
-        self.ex_serv_sup = 0
+        self.ex_simp_sup = 0
     end
 
     if self.ex_simp_nosup.nil?
-        self.ex_serv_nosup = 0
+        self.ex_simp_nosup = 0
     end
 
     if self.ex_simp_nosup_years.nil?
-        self.ex_serv_nosup_years = 0
+        self.ex_simp_nosup_years = 0
     end
 
     if self.ex_red_sup.nil?
-        self.ex_serv_sup = 0
+        self.ex_red_sup = 0
     end
 
     if self.ex_red_nosup.nil?
-        self.ex_serv_nosup = 0
+        self.ex_red_nosup = 0
     end
 
     if self.ex_red_nosup_years.nil?
-        self.ex_serv_nosup_years = 0
+        self.ex_red_nosup_years = 0
     end
 
     if self.tr_serv.nil?
