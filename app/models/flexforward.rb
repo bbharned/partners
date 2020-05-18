@@ -48,6 +48,71 @@ end
 # Flex Forward Calculations
 def calcs
 
+    if self.ex_serv_sup.nil?
+        self.ex_serv_sup = 0
+    end
+
+    if self.ex_serv_nosup.nil?
+        self.ex_serv_nosup = 0
+    end
+
+    if self.ex_serv_nosup_years.nil?
+        self.ex_serv_nosup_years = 0
+    end
+
+    if self.ex_site_sup.nil?
+        self.ex_serv_sup = 0
+    end
+
+    if self.ex_site_nosup.nil?
+        self.ex_serv_nosup = 0
+    end
+
+    if self.ex_site_nosup_years.nil?
+        self.ex_serv_nosup_years = 0
+    end
+
+    if self.ex_simp_sup.nil?
+        self.ex_serv_sup = 0
+    end
+
+    if self.ex_simp_nosup.nil?
+        self.ex_serv_nosup = 0
+    end
+
+    if self.ex_simp_nosup_years.nil?
+        self.ex_serv_nosup_years = 0
+    end
+
+    if self.ex_red_sup.nil?
+        self.ex_serv_sup = 0
+    end
+
+    if self.ex_red_nosup.nil?
+        self.ex_serv_nosup = 0
+    end
+
+    if self.ex_red_nosup_years.nil?
+        self.ex_serv_nosup_years = 0
+    end
+
+    if self.tr_serv.nil?
+        self.tr_serv = 0
+    end
+
+    if self.tr_site.nil?
+        self.tr_site = 0
+    end
+
+    if self.new_simp.nil?
+        self.new_simp = 0
+    end
+
+    if self.new_red.nil?
+        self.new_red = 0
+    end
+    
+
     @vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020]
     @smrPrices = [400, 220, 200, 160, 140, 120]
     @vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720]
