@@ -518,7 +518,7 @@ Very Light Blue: #e9f7fb;
 
 
 /** FF Show Page **/
-.ff-well-style {margin-bottom: 3px;}
+.ff-well-style {margin-bottom: 3px; padding: 7px 10px;}
 .ff-well-style-transparent {
     background-color: transparent !important;
     font-weight: bold;

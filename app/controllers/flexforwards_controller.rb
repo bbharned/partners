@@ -7,7 +7,7 @@ class FlexforwardsController < ApplicationController
 
 
 def index
-	@flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order(:id)
+	@flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("id desc")
 	@currencies = Currency.all
 end
 
