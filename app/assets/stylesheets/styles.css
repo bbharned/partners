@@ -380,6 +380,21 @@ Very Light Blue: #e9f7fb;
     width:30%;
 }
 .red {color:red;}
+.notice-box {
+    width:90%; max-width: 700px; 
+    padding: 10px 20px; background-color: #F6F9C8;
+    border: 5px solid #FEEE00; border-radius:12px;
+    margin: auto; margin-top: 55px; text-align: center;
+    font-size:.9em !important;
+}
+.notice-box-second {
+    width:90%; max-width: 700px; 
+    padding: 10px 20px; background-color: #B1F77B;
+    border: 5px solid green; border-radius:12px;
+    margin: auto; margin-top: 12px; text-align: center;
+    font-size:.9em !important;
+}
+
 
 
 

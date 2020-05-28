@@ -147,7 +147,7 @@
 			<div class="usd">USD</div>
 		</div>
 		<div class="part-row">
-			<div class="cat-number">9541-TMFRP</div>
+			<div class="cat-number">9541M-TMUT11</div>
 			<div class="prt-description">ThinManager FTA 1 VFLX Red ESD S/W</div>
 			<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 			<div class="usd">USD</div>
@@ -158,7 +158,7 @@
 			<div class="usd">USD</div>
 		</div>
 		<div class="part-row">
-			<div class="cat-number">9541-TMFRPM</div>
+			<div class="cat-number">9541M-TMUT11M</div>
 			<div class="prt-description">ThinManager FTA 1 VFLX Red MED S/W</div>
 			<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 			<div class="usd">USD</div>
@@ -171,10 +171,10 @@
 	</div>
 
 <% end %>
-
+<% if ((@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin) || @current_user.admin %>
 <h3 class="sect-sub-heading">ThinManager Activation (TMA)</h3>
 <div class="parts">
-	<% if (@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin %>
+	<% if !@current_user.admin %>
 	<div class="part-heading">
 		<div class="cat-number">Catalog #</div>
 		<div class="prt-description">Description</div>
@@ -232,7 +232,7 @@
 		<div class="usd">USD</div>
 	</div>
 </div>
-
+<% end %>
 <h3 class="sect-sub-heading">Software Maintenance Renewal</h3>
 <div class="parts">
 	<div class="part-row">
@@ -271,10 +271,18 @@
 </div>
 </div>
 
+<div class="notice-box">
+	<p style="font-weight: bold;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
+	<p>9542-TMSVR-SMR list price will increase to&nbsp;$12,000&nbsp;on&nbsp;Aug&nbsp;25th,&nbsp;2020<br />
+	9542-TMSTE-SMR list price willincrease to&nbsp;$21,900&nbsp;on&nbsp;Aug&nbsp;25th,&nbsp;2020</p>
+</div>
 
 
-
-<!-------------- Pricing Table for V-Flex with 8x5 support -------------->
+<% if ((@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin) || @current_user.admin %>
+<% if @current_user.admin %>
+<p align="center" style="margin-top: 100px; margin-bottom: -75px;">3rd Party Pricing Grid</p>
+<% end %>
+<!-------------- Pricing Table for V-Flex with 8x5 support 3rd Party -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
 <h2 class="sect-heading"><div class="more-info"><%= image_tag "questionMark.png" %></div>
@@ -367,8 +375,127 @@
 </div>
 
 
+<% end %>
+
+<% if (@channel == "Rockwell Automation") || @current_user.admin %>
+
+<% if @current_user.admin %>
+<p align="center" style="margin-bottom: -75px;">Rockwell Channel Pricing Grid</p>
+<% end %>
+
+<!-------------- Pricing Table for V-Flex with 8x5 support RA Channel -------------->
+<div class="section pricing-grid">
+<span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
+<h2 class="sect-heading"><div class="more-info"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Perpetual Licensing<br />- <span>8x5 Software Maintenance</span> - 
+<div class="more-box more-box-1">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
+
+<h3 class="sect-sub-heading">Pricing Table</h3>		
+<div class="parts perpetual-p-chart">
+	<div class="part-heading">
+		<div class="term-count">Terminal Count</div>
+		<div class="list-price-per">List Price per Terminal</div>
+		<div class="usd"></div>
+		<div class="red-adder">Redundancy Adder</div>
+		<div class="usd"></div>
+		<div class="break-point">Breakpoint</div>
+		<div class="sm-renewal">8x5 SM Renewal</div>
+		<div class="usd"></div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">1-4</div>
+		<div class="list-price-per">$2,400.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$1,001.00</div>
+		<div class="usd">USD</div>
+		<div class="break-point">3</div>
+		<div class="sm-renewal">$400.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">5-49</div>
+		<div class="list-price-per">$1,320.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$550.55</div>
+		<div class="usd">USD</div>
+		<div class="break-point">46</div>
+		<div class="sm-renewal">$220.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">50-99</div>
+		<div class="list-price-per">$1,200.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$500.50</div>
+		<div class="usd">USD</div>
+		<div class="break-point">81</div>
+		<div class="sm-renewal">$200.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">100-249</div>
+		<div class="list-price-per">$960.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$400.40</div>
+		<div class="usd">USD</div>
+		<div class="break-point">219</div>
+		<div class="sm-renewal">$160.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">250-499</div>
+		<div class="list-price-per">$840.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$350.35</div>
+		<div class="usd">USD</div>
+		<div class="break-point">429</div>
+		<div class="sm-renewal">$140.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">500+</div>
+		<div class="list-price-per">$720.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$300.30</div>
+		<div class="usd">USD</div>
+		<div class="break-point">&nbsp;</div>
+		<div class="sm-renewal">$120.00</div>
+		<div class="usd">USD</div>
+	</div>
+</div>
+</div>
+
+
+<% end %>
+
 
 <hr class="sub-section-divider" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -415,7 +542,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRP</div>
+		<div class="cat-number">9541M-TMUT11</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red ESD S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -426,7 +553,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRPM</div>
+		<div class="cat-number">9541M-TMUT11M</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red MED S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -440,10 +567,10 @@
 
 <% end %>
 
-
+<% if ((@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin) || @current_user.admin %>
 <h3 class="sect-sub-heading">ThinManager Activation (TMA)</h3>
 <div class="parts">
-<% if (@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin %>	
+	<% if !@current_user.admin %>
 	<div class="part-heading">
 		<div class="cat-number">Catalog #</div>
 		<div class="prt-description">Description</div>
@@ -455,7 +582,7 @@
 		<div class="prt-cost">Cost</div>
 		<div class="usd"></div>
 	</div>
-<% end %>
+	<% end %>
 	<div class="part-row">
 		<div class="cat-number">9541-TMF1-247-TMA</div>
 		<div class="prt-description">ThinManager TMA 1 VFLX 24x7 ESD S/W</div>
@@ -501,7 +628,7 @@
 		<div class="usd">USD</div>
 	</div>
 </div>
-
+<% end %>
 <h3 class="sect-sub-heading">Software Maintenance Renewal</h3>
 <div class="parts">
 	<div class="part-row">
@@ -541,10 +668,20 @@
 </div>
 
 
+<div class="notice-box">
+	<p style="font-weight: bold;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
+	<p>9542-TMSVR-SMR list price will increase to&nbsp;$12,000&nbsp;on&nbsp;Aug&nbsp;25th,&nbsp;2020<br />
+	9542-TMSTE-SMR list price willincrease to&nbsp;$21,900&nbsp;on&nbsp;Aug&nbsp;25th,&nbsp;2020</p>
+</div>
 
 
 
-<!-------------- Pricing Table for V-Flex with 24x7 support -------------->
+<% if ((@channel != nil && @channel != "" && @channel != "Rockwell Automation") && !@current_user.admin) || @current_user.admin %>
+<% if @current_user.admin %>
+<p align="center" style="margin-top: 100px; margin-bottom: -75px;">3rd Party Pricing Grid</p>
+<% end %>
+
+<!-------------- Pricing Table for V-Flex with 24x7 support - 3rd Party Channels -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
 <h2 class="sect-heading"><div class="more-info-2"><%= image_tag "questionMark.png" %></div>
@@ -636,6 +773,116 @@
 </div>
 </div>
 
+<% end %>
+
+
+
+<% if (@channel == "Rockwell Automation") || @current_user.admin %>
+
+<% if @current_user.admin %>
+<p align="center" style="margin-bottom: -75px;">Rockwell Channel Pricing Grid</p>
+<% end %>
+
+
+
+
+<!-------------- Pricing Table for V-Flex with 24x7 support - RA Channel -------------->
+<div class="section pricing-grid">
+<span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
+<h2 class="sect-heading"><div class="more-info-2"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Perpetual Licensing<br />- <span>24x7 Software Maintenance</span> -
+<div class="more-box more-box-2">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
+
+<h3 class="sect-sub-heading">Pricing Table</h3>		
+<div class="parts perpetual-p-chart">
+	<div class="part-heading">
+		<div class="term-count">Terminal Count</div>
+		<div class="list-price-per">List Price per Terminal</div>
+		<div class="usd"></div>
+		<div class="red-adder">Redundancy Adder</div>
+		<div class="usd"></div>
+		<div class="break-point">Breakpoint</div>
+		<div class="sm-renewal">24x7 SM Renewal</div>
+		<div class="usd"></div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">1-4</div>
+		<div class="list-price-per">$2,600.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$1,001.00</div>
+		<div class="usd">USD</div>
+		<div class="break-point">3</div>
+		<div class="sm-renewal">$600.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">5-49</div>
+		<div class="list-price-per">$1,430.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$550.55</div>
+		<div class="usd">USD</div>
+		<div class="break-point">46</div>
+		<div class="sm-renewal">$330.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">50-99</div>
+		<div class="list-price-per">$1,300.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$500.50</div>
+		<div class="usd">USD</div>
+		<div class="break-point">81</div>
+		<div class="sm-renewal">$300.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">100-249</div>
+		<div class="list-price-per">$1,040.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$400.40</div>
+		<div class="usd">USD</div>
+		<div class="break-point">219</div>
+		<div class="sm-renewal">$240.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">250-499</div>
+		<div class="list-price-per">$910.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$350.35</div>
+		<div class="usd">USD</div>
+		<div class="break-point">429</div>
+		<div class="sm-renewal">$210.00</div>
+		<div class="usd">USD</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">500+</div>
+		<div class="list-price-per">$780.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$300.30</div>
+		<div class="usd">USD</div>
+		<div class="break-point">&nbsp;</div>
+		<div class="sm-renewal">$180.00</div>
+		<div class="usd">USD</div>
+	</div>
+</div>
+</div>
+
+
+
+
+<% end %>
+
 
 
 <hr style="border: 2px solid #787878; margin-top: 250px; margin-bottom: 200px;" />
@@ -660,9 +907,7 @@
 
 
 
-
-
-
+<!-- SUBSCRIPTION -->
 <!----------------------------- ThinManager V-FLEX Subscription - 8x5 Support ---------------------------->
 <a name="subscription" id="subscription"></a>
 <div class="section">
@@ -704,7 +949,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRT</div>
+		<div class="cat-number">9541C-TMUT11</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red 1ySub ESD S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -715,7 +960,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRTM</div>
+		<div class="cat-number">9541C-TMUT11M</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red 1ySub MED S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -790,10 +1035,17 @@
 </div>
 
 
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
+</div>
 
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel != "Rockwell Automation") %> <!-- 3rd Party -->
 
+<% if @current_user.admin %>
+<p align="center" style="margin-top: 100px; margin-bottom: -75px;">3rd Party Pricing Grid</p>
+<% end %>
 
-<!-------------- Pricing Table for V-Flex Subscription with 8x5 support -------------->
+<!-------------- Pricing Table for V-Flex Subscription with 8x5 support - 3rd Party-------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
 <h2 class="sect-heading"><div class="more-info-3"><%= image_tag "questionMark.png" %></div>
@@ -871,6 +1123,99 @@
 </div>
 </div>
 
+<% end %>
+
+
+
+<% if (@channel == "Rockwell Automation") || @current_user.admin %>
+
+<% if @current_user.admin %>
+<p align="center" style="margin-bottom: -75px;">Rockwell Channel Pricing Grid</p>
+<% end %>
+
+
+<!-------------- Pricing Table for V-Flex Subscription with 8x5 support - Rockwell Channel -------------->
+<div class="section pricing-grid">
+<span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
+<h2 class="sect-heading"><div class="more-info-3"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Subscription Licensing<br />- <span>8x5 Software Maintenance</span> -
+<div class="more-box more-box-3">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
+
+<h3 class="sect-sub-heading">Pricing Table <span>( per year )</span></h3>		
+<div class="parts">
+	<div class="part-heading">
+		<div class="term-count">Terminal Count</div>
+		<div class="list-price-per">List Price per Terminal</div>
+		<div class="usd"></div>
+		<div class="red-adder">Redundancy Adder</div>
+		<div class="usd"></div>
+		<div class="break-point">Breakpoint</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">1-4</div>
+		<div class="list-price-per">$800.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$401.00</div>
+		<div class="usd">USD</div>
+		<div class="break-point">3</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">5-49</div>
+		<div class="list-price-per">$440.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$220.55</div>
+		<div class="usd">USD</div>
+		<div class="break-point">46</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">50-99</div>
+		<div class="list-price-per">$400.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$200.50</div>
+		<div class="usd">USD</div>
+		<div class="break-point">81</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">100-249</div>
+		<div class="list-price-per">$320.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$160.40</div>
+		<div class="usd">USD</div>
+		<div class="break-point">219</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">250-499</div>
+		<div class="list-price-per">$280.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$140.35</div>
+		<div class="usd">USD</div>
+		<div class="break-point">429</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">500+</div>
+		<div class="list-price-per">$240.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$120.30</div>
+		<div class="usd">USD</div>
+		<div class="break-point">&nbsp;</div>
+	</div>
+</div>
+</div>
+
+
+
+<% end %>
+
 
 <hr class="sub-section-divider" />
 
@@ -923,7 +1268,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRT</div>
+		<div class="cat-number">9541C-TMUT11</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red 1ySub ESD S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -934,7 +1279,7 @@
 		<div class="usd">USD</div>
 	</div>
 	<div class="part-row">
-		<div class="cat-number">9541-TMFRTM</div>
+		<div class="cat-number">9541C-TMUT11M</div>
 		<div class="prt-description">ThinManager FTA 1 VFLX Red 1ySub MED S/W</div>
 		<div class="prt-list-price">See Table&nbsp;&#9662;</div>
 		<div class="usd">USD</div>
@@ -1012,10 +1357,19 @@
 </div>
 
 
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
+</div>
 
 
 
-<!-------------- Pricing Table for V-Flex Subscription with 24x7 support -------------->
+<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "" && @current_user.channel != "Rockwell Automation") %> <!-- 3rd Party -->
+
+<% if @current_user.admin %>
+<p align="center" style="margin-top: 100px; margin-bottom: -75px;">3rd Party Pricing Grid</p>
+<% end %>
+
+<!-------------- Pricing Table for V-Flex Subscription with 24x7 support - 3rd Party -------------->
 <div class="section pricing-grid">
 <span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
 <h2 class="sect-heading"><div class="more-info-4"><%= image_tag "questionMark.png" %></div>
@@ -1092,6 +1446,100 @@
 	</div>
 </div>
 </div>
+
+<% end %>
+
+
+
+<% if (@channel == "Rockwell Automation") || @current_user.admin %>
+
+<% if @current_user.admin %>
+<p align="center" style="margin-bottom: -75px;">Rockwell Channel Pricing Grid</p>
+<% end %>
+
+
+<!-------------- Pricing Table for V-Flex Subscription with 24x7 support - Rockwell Channel -------------->
+<div class="section pricing-grid">
+<span class="for-above" style="text-align: right;">&#9651; Pricing for parts above &#9661;</span>
+<h2 class="sect-heading"><div class="more-info-4"><%= image_tag "questionMark.png" %></div>
+	ThinManager V-FLEX Subscription Licensing<br />- <span>24x7 Software Maintenance</span> -
+<div class="more-box more-box-4">
+	<div class="up-triangle"><%= image_tag "UpTriangle.png" %></div>
+	<ul>
+		<li>Select the terminal count to determine the List Price per Terminal.</li>
+		<li>If redundancy is required, add this to the cost.</li>
+		<li>If Media is required, add $100.00 to the Price per Terminal.</li>
+		<li>The Breakpoint column indicates the Terminal Count where it is more cost effective to move to the next price band.</li>
+	</ul>
+	<div class="close-this"><p>Close X</p></div>
+</div>
+</h2>
+
+<h3 class="sect-sub-heading">Pricing Table <span>( per year )</span></h3>		
+<div class="parts">
+	<div class="part-heading">
+		<div class="term-count">Terminal Count</div>
+		<div class="list-price-per">List Price per Terminal</div>
+		<div class="usd"></div>
+		<div class="red-adder">Redundancy Adder</div>
+		<div class="usd"></div>
+		<div class="break-point">Breakpoint</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">1-4</div>
+		<div class="list-price-per">$1,000.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$401.00</div>
+		<div class="usd">USD</div>
+		<div class="break-point">3</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">5-49</div>
+		<div class="list-price-per">$550.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$220.55</div>
+		<div class="usd">USD</div>
+		<div class="break-point">46</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">50-99</div>
+		<div class="list-price-per">$500.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$200.50</div>
+		<div class="usd">USD</div>
+		<div class="break-point">81</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">100-249</div>
+		<div class="list-price-per">$400.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$160.40</div>
+		<div class="usd">USD</div>
+		<div class="break-point">219</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">250-499</div>
+		<div class="list-price-per">$350.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$140.35</div>
+		<div class="usd">USD</div>
+		<div class="break-point">429</div>
+	</div>
+	<div class="part-row">
+		<div class="term-count">500+</div>
+		<div class="list-price-per">$300.00</div>
+		<div class="usd">USD</div>
+		<div class="red-adder">$120.30</div>
+		<div class="usd">USD</div>
+		<div class="break-point">&nbsp;</div>
+	</div>
+</div>
+</div>
+
+
+
+
+<% end %>
 
 
 
@@ -1207,6 +1655,7 @@
 		<div class="prt-cost">$18,425.00</div>
 		<div class="usd">USD</div>
 	</div>
+	<!--
 	<div class="part-row">
 		<div class="cat-number">9541-MRU-005-XLI</div>
 		<div class="prt-description">UG-Mirror XLi to Redun XLi 5 Pack ESD S/W</div>
@@ -1273,11 +1722,21 @@
 		<div class="prt-cost">$9,212.50</div>
 		<div class="usd">USD</div>
 	</div>
+-->
 </div>
 </div>
 
 
-<hr style="border: 2px solid #787878; margin-top: 250px; margin-bottom: 200px;" />
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">Mirrored Redundancy customers can upgrade to Full Redundancy at no charge. Please contact <%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %> for details.</p>
+</div>
+
+<div class="notice-box-second">
+	<p style="font-weight: bold; margin-bottom: 0px;">For Standard licensing customers looking to add redundancy with the V-FLEX Redundancy Companion license, visit the <%= link_to "Flex Forward", new_flexforward_path %> page.</p>
+</div>
+
+
+<hr style="border: 2px solid #787878; margin-top: 200px; margin-bottom: 200px;" />
 
 
 
@@ -1322,6 +1781,7 @@
 		<div class="prt-cost">Cost</div>
 		<div class="usd"></div>
 	</div>
+<!--
 	<div class="part-row">
 		<div class="cat-number">9541-UG-XLI-005</div>
 		<div class="prt-description">ThinManager Upgrade to XLi for five (5) clients</div>
@@ -1421,6 +1881,7 @@
 		<div class="prt-cost">$8,710.00</div>
 		<div class="usd">USD</div>
 	</div>
+-->
 	<div class="part-row">
 		<div class="cat-number">9541-UG-SVR-XLI</div>
 		<div class="prt-description">ThinManager upgrade to XLi for Enterprise Server</div>
@@ -1447,7 +1908,12 @@
 </div>
 
 
-<hr style="border: 2px solid #787878; margin-top: 250px; margin-bottom: 200px;" />
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">Legacy licensing can be upgraded to XLr through the <%= link_to "Flex Forward", new_flexforward_path %> program.</p>
+</div>
+
+
+<hr style="border: 2px solid #787878; margin-top: 200px; margin-bottom: 200px;" />
 
 
 
@@ -1486,6 +1952,7 @@
 		<div class="prt-cost">Cost</div>
 		<div class="usd"></div>
 	</div>
+	<!--
 	<div class="part-row">
 		<div class="cat-number">9541-UG-XLR-005</div>
 		<div class="prt-description">ThinManager Upgrade to XLr for five (5) clients</div>
@@ -1585,6 +2052,7 @@
 		<div class="prt-cost">$7,035.00</div>
 		<div class="usd">USD</div>
 	</div>
+-->
 	<div class="part-row">
 		<div class="cat-number">9541-UG-SVR-XLR</div>
 		<div class="prt-description">ThinManager upgrade to XLr for Enterprise Server</div>
@@ -1611,7 +2079,12 @@
 </div>
 
 
-<hr style="border: 2px solid #787878; margin-top: 250px; margin-bottom: 200px;" />
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">Legacy licensing can be upgraded to XLr through the <%= link_to "Flex Forward", new_flexforward_path %> program.</p>
+</div>
+
+
+<hr style="border: 2px solid #787878; margin-top: 200px; margin-bottom: 200px;" />
 
 
 
@@ -1638,9 +2111,18 @@
 
 
 <!----------------------------- ThinManager Training ---------------------------->
+
 <a name="training" id="training"></a>
 <div class="section">
-<h2 class="sect-heading">ThinManager Training</h2>					
+<h2 class="sect-heading">ThinManager Training</h2>	
+</div>
+
+<div class="notice-box">
+	<p style="font-weight: bold; margin-bottom: 0px;">Customer training is offered through GP Strategies. Please contact <%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %> for details.</p>
+</div>
+
+
+<!--				
 <h3 class="sect-sub-heading">Customer</h3>		
 <div class="parts">
 	<div class="part-heading">
@@ -1766,8 +2248,8 @@
 	</div>
 </div>
 </div>
-
-
+-->
+<!--
 <div class="training-more-info">
 	<h6>Onsite Training</h6>
 	<div class="flex-boxes">
@@ -1779,7 +2261,7 @@
 	</div>
 
 </div>
-
+-->
 <br /><br /><br /><br /><br />
 
 
