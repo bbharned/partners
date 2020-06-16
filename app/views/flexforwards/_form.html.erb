@@ -60,6 +60,10 @@
                             <%= f.text_field :ex_simp_nosup, class: "form-control", tabindex: "11" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
                             <%= f.text_field :ex_simp_nosup_years, class: "form-control", tabindex: "12" %>
+                            <div class="form-group form-check" style="height: 30px; padding-top: 10px; padding-left: 25px; margin-top: 7px;">
+                            <%= f.check_box :red_exchange, type: "checkbox", class: "form-check-input" %>
+                            <label class="form-check-label" for="exampleCheck1">Exchange for Redundant</label>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <h4>Redundant</h4>

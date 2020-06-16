@@ -119,8 +119,6 @@ def calcs
 
     if self.sm_exp == nil
         self.sm_exp = Date.today() + 1.year
-    # else
-    #     self.sm_exp = self.sm_exp.strftime("%m/%d/%Y")
     end
 
     self.tr_simp = self.ex_simp_sup + self.ex_simp_nosup #15
