@@ -121,14 +121,23 @@ def calcs
         self.sm_exp = Date.today() + 1.year
     end
 
-    self.tr_simp = self.ex_simp_sup + self.ex_simp_nosup #15
-    self.tr_red = self.ex_red_sup + self.ex_red_nosup #16
+    self.tr_simp = self.ex_simp_sup + self.ex_simp_nosup #15 Add Redundant trade from Simple?
+    self.tr_red = self.ex_red_sup + self.ex_red_nosup #16 Add Redundant trade from Simple?
+    @existingSimp = self.tr_simp
+    @existingRed = self.tr_red
+    @simpToRed = self.tr_red + self.tr_simp
+
+
+    if self.red_exchange
+        self.tr_red = @simpToRed
+        self.tr_simp = 0
+    end
 
     self.total_terms = self.tr_serv + self.tr_site + self.tr_simp + self.tr_red + self.new_simp + self.new_red #19
 
     #Ranges
     @currentRange = self.findRange(self.total_terms)
-    @tradePackRange = self.findRange(self.tr_simp)
+    @tradePackRange = self.findRange(@existingSimp)
     @tradeRPackRange = self.findRange(self.tr_red)
 
     #Prices
@@ -182,12 +191,18 @@ def calcs
         @creditForPackLicensesNoSupport = 0
     end
     self.tr_cred_simp = @creditForPackLicensesWithSupport + @creditForPackLicensesNoSupport #No negative
+    @trCreditSimp = self.tr_cred_simp
+    
     if self.tr_cred_simp < 0
         self.tr_cred_simp = 0
     end
 
     if self.tr_cred_simp > self.tr_pr_simp
         self.tr_cred_simp = self.tr_pr_simp
+    end
+
+    if self.red_exchange
+        self.tr_cred_simp = @trCreditSimp
     end
 
     ## Redundant

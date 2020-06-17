@@ -52,6 +52,9 @@
 		<p><span class="left-title">In Support:</span> <%= @flex.ex_simp_sup %></p> 
 		<p><span class="left-title">Out of Support:</span> <%= @flex.ex_simp_nosup %></p>
 		<p><span class="left-title">Years Expired:</span> <%= @flex.ex_simp_nosup_years %></p>
+		<% if @flex.red_exchange %>
+			<p><span class="left-title" style="color:blue; font-size: .75em;">Exchanging for Redundant</span></p>
+		<% end %>
 	</div>
 	<div class="col-md-3">
 		<h5>Existing Redundant</h5>
