@@ -127,6 +127,7 @@ def calcs
     @existingRed = self.tr_red
     @simpToRed = self.tr_red + self.tr_simp
 
+    
 
     if self.red_exchange
         self.tr_red = @simpToRed
@@ -138,13 +139,21 @@ def calcs
     #Ranges
     @currentRange = self.findRange(self.total_terms)
     @tradePackRange = self.findRange(@existingSimp)
-    @tradeRPackRange = self.findRange(self.tr_red)
+    @tradeRPackRange = self.findRange(@existingRed)
+    @originalRPackRange = self.findRange(@existingRed)
+
+    if self.red_exchange
+        @tradeRPackRange = self.findRange(@existingSimp + @existingRed)
+    end
 
     #Prices
     @simplexPricePer = @vfNonRedPrices[@currentRange] * self.currency.rate
     @redundPricePer = @vfRedPrices[@currentRange] * self.currency.rate
     @tradeSimplexPricePer = @vfNonRedPrices[@tradePackRange] * self.currency.rate
     @tradeRedPricePer = @vfRedPrices[@tradeRPackRange] * self.currency.rate
+    @tradeCredRedPricePer = @vfRedPrices[@originalRPackRange] * self.currency.rate 
+
+    
 
     #Trade up pricing
     self.tr_pr_serv = (600 * self.currency.rate) * self.tr_serv #20
@@ -152,7 +161,11 @@ def calcs
     self.new_pr_simp = @simplexPricePer * self.new_simp #24
     self.new_pr_red = @redundPricePer * self.new_red #25
     self.tr_pr_simp = @tradeSimplexPricePer * self.tr_simp #22
-    self.tr_pr_red = @tradeRedPricePer * self.tr_red #23
+    if self.red_exchange
+        self.tr_pr_red = (@tradeCredRedPricePer * @existingRed) + (@tradeSimplexPricePer * @existingSimp)
+    else 
+        self.tr_pr_red = @tradeRedPricePer * self.tr_red
+    end
     self.tr_pr_total = self.tr_pr_serv + self.tr_pr_site + self.tr_pr_simp + self.tr_pr_red + self.new_pr_simp + self.new_pr_red #26
 
     #Credits
@@ -206,12 +219,14 @@ def calcs
     end
 
     ## Redundant
-    @creditForRPackLicensesWithSupport = self.ex_red_sup * @tradeRedPricePer
-    @creditForRPackLicensesNoSupport = (1-(0.2*self.ex_red_nosup_years))*(self.ex_red_nosup*@tradeRedPricePer)
+    @creditForRPackLicensesWithSupport = self.ex_red_sup * @tradeCredRedPricePer
+    @creditForRPackLicensesNoSupport = (1-(0.2*self.ex_red_nosup_years))*(self.ex_red_nosup*@tradeCredRedPricePer)
     if @creditForRPackLicensesNoSupport < 0
         @creditForRPackLicensesNoSupport = 0
     end
     self.tr_cred_red = @creditForRPackLicensesWithSupport + @creditForRPackLicensesNoSupport  #No negative
+    
+
     if self.tr_cred_red < 0
         self.tr_cred_red = 0
     end
@@ -220,12 +235,22 @@ def calcs
         self.tr_cred_red = self.tr_pr_red
     end
 
+
+
     self.tr_cred_total = self.tr_cred_serv + self.tr_cred_site + self.tr_cred_simp + self.tr_cred_red;
     if self.tr_cred_total < 0
        self.tr_cred_total = 0
     end
 
     self.total_tr_cost = self.tr_pr_total - self.tr_cred_total
+
+    if self.red_exchange 
+        if self.total_tr_cost < 0
+            self.total_tr_cost = (@redundPricePer - @simplexPricePer) * @existingSimp
+        else
+           self.total_tr_cost = self.total_tr_cost + ((@redundPricePer - @simplexPricePer) * @existingSimp) 
+        end
+    end
 
     @termsForSM = self.tr_serv + self.tr_site + self.tr_simp + self.tr_red
     @smrange = findRange(@termsForSM)
