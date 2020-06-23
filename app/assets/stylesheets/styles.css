@@ -446,6 +446,12 @@ Very Light Blue: #e9f7fb;
 .action-buttons-right {
     text-align: right;
 }
+.indicator {
+    position:relative; float:left; width:12px; height:12px; 
+    margin-left:-20px; margin-top: 4px;
+}
+.indicator img {width:100%;}
+.legend img {width:12px; height:12px;}
 
 
 /* old css */
@@ -767,6 +773,9 @@ Very Light Blue: #e9f7fb;
     }
     .total-total h5 {
         margin-bottom: 5px; margin-top: 35px;
+    }
+    .indicator {
+        margin-left:-12px; margin-top: 4px;
     }
 }
 
