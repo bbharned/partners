@@ -17,10 +17,9 @@ gem 'will_paginate', '~> 3.1', '>=3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'bootstrap-datepicker-rails'
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+
 # Use Puma as the app server
-gem 'puma', '>= 3.12.4'
+gem "puma", ">= 4.3.5"
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 5.0'
 #gem 'sassc-rails'
