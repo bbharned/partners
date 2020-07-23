@@ -31,6 +31,7 @@ get 'flexforward/usertotals', to: 'flexforwards#usertotals'
 get 'flexforward/byname', to: 'flexforwards#byname'
 get 'flexforward/userbyname', to: 'flexforwards#userbyname'
 get 'flexforward/byuser', to: 'flexforwards#byuser'
+get 'flexforward/bydate', to: 'flexforwards#bydate'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'

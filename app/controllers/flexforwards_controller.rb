@@ -23,6 +23,10 @@ def byuser
     @flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("user_id")
 end
 
+def bydate
+    @flexforwards = Flexforward.paginate(page: params[:page], per_page: 25).order("created_at desc")
+end
+
 def usertotals
     @user = current_user
     @flexes = Flexforward.where(:user_id => @user.id).paginate(page: params[:page], per_page: 10).order("total_quote desc")
