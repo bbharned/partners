@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   #config.action_controller.raise_on_unfiltered_parameters = true
-
+  config.read_encrypted_secrets = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
