@@ -38,6 +38,7 @@
                 <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
               </li>
             <% end %>
+            <% if @current_user.prttype != "Integrator" %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Flex Forward
@@ -47,7 +48,7 @@
                 <%= link_to "Create New Quote", new_flexforward_path, class: 'dropdown-item' %>
               </div>
             </li>
-
+            <% end %>
             <li class="nav-item horizontal-divider">
               <div class="nav-divider-horizatonal"></div>
             </li>

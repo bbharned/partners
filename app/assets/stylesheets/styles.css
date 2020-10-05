@@ -172,6 +172,13 @@ button.navbar-toggler span {
 
 
 
+/****************** recert alert *********************/
+.recert-alert {
+    margin-bottom: 45px; border-radius:10px;
+    background-color: lightgreen;
+    border: 5px solid green;
+}
+
 
 
 

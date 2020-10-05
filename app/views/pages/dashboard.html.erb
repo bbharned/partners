@@ -59,6 +59,24 @@
 	</div>
 <br />
 
+<% if @current_user.prttype == "Integrator" %>
+	<% if (@current_user.certexpire != nil || @current_user.certexpire == "") && @current_user.certexpire < Date.today() + 365 %>	
+		
+			<div class="well recert-alert">
+				<div class="row">
+				<div class="col-md-9">
+					<p>Your ThinManager certification expires on <span class="bold"><%= @current_user.certexpire.strftime('%a, %b %d, %Y') %></span>.</p>
+					<p>Thank you for remaining ThinManager certified. We have developed a simpler and quicker way for you to renew your certification. Just review new release material we provide and take a quiz about ThinManager, primarily focused on the newest features, to get your certification renewed.</p>
+					<p><span class="bold">Ready to go? Click the button!</span></p>
+				</div>
+				<div class="col-md-3">
+					<div align="right"><%= link_to "Get Recertified", root_path, class: "btn btn-success" %></div>
+				</div>
+				</div>	
+			</div>
+	<% end %>
+<% end %>
+
 <% if @current_user.admin || @current_user.prttype == "Distributor" %>
 
 	<div class="row">
@@ -95,7 +113,7 @@
 		<div class="col-md-6 inside-sales-pic" style="text-align: center;"><%= image_tag "SI_Support.jpg" %></div>
 		<div class="col-md-6"><p>Integration of ThinManager software is the life blood of getting our customers up and keeping them running. Your knowledge and understanding of ThinManager is vital to our success.</p>
 		<p>If you can't find what you are looking for here and need help with questions, contact us. We are here to help.</p>
-		<p><%= link_to "Support Link Coming Soon", "#" %></p>
+		<p><%= link_to "SI Portal Contact", "mailto:certification@thinmanager.com" %></p>
 		</div>
 	</div>
 
@@ -114,7 +132,7 @@
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager Pricing</h5>
 		      <p class="card-text">Need to make a quote? Find ThinManager Part Numbers and prices, with peace of mind knowing that they are kept current and up to date.<br />Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
-		      <p class="card-text"><small class="text-muted">Last updated: August 31st, 2020</small></p>
+		      <p class="card-text"><small class="text-muted">Last updated: August 30th, 2020</small></p>
 		      <div align="right"><%= link_to "View Pricing", pricing_path, class: "btn btn-primary" %></div>
 		    </div>
 		  </div>
@@ -140,11 +158,11 @@
 	    
 	    <div class="card-body">
 	      <h5 class="card-title">ThinManager Download</h5>
-	      <p class="card-text">Download the lastest version of ThinManager, Version 11.1</p>
+	      <p class="card-text">Download the lastest version of ThinManager, Version 11.2.1</p>
 	      <p class="card-text"><small class="text-muted">Need activation instructions? <%= link_to "Learn More", "https://thinmanager.com/activate", target: "_blank" %></small><br />
 	      <small class="text-muted">Need a different download? <%= link_to "Click Here", "https://downloads.thinmanager.com", target: "_blank" %></small></p>
 	      	<div align="right">
-	      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/11.1.2-ThinManager-Web.exe' + location.search)" %>
+	      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/11.2.1-ThinManager-Web.exe' + location.search)" %>
 	  		</div>
 	    </div>
 	  </div>
