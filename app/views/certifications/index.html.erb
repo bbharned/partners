@@ -1,0 +1,63 @@
+<div class="container">
+
+<h1>SI Certifications <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@certifications.count, "total earned re-certifications") %> )</span></h1>
+
+<hr />
+<div class="paginate">
+	<%= will_paginate(@certifications, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
+
+<% if @certifications.count == 0 %>
+
+<p style="color:orange; text-align: center;">No certifications have been earned yet. Please check back.</p>
+
+<% else %>
+
+
+<div class="col bold" style="margin-bottom:10px; margin-top: 30px;">
+	<div class="row">
+		<div class="col-md-3">Integrator</div>
+		<div class="col-md-2">Cert</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-2">Earned On</div>
+		<div class="col-md-2">Expires On</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-1"></div>
+	</div>
+</div>
+<% @certifications.each do |cert| %>
+<div class="well" style="margin-bottom: 3px; padding-top: 4px; padding-bottom: 4px;">
+	<div class="row">
+		<div class="col-md-3">
+			<%= cert.user.firstname %> <%= cert.user.lastname %>
+		</div>
+		<div class="col-md-2">
+			<%= cert.name %>
+		</div>
+		<div class="col-md-1">
+			<%= cert.version %>
+		</div>
+		<div class="col-md-2">
+			<%= cert.date_earned %>
+		</div>
+		<div class="col-md-2">
+			<%= cert.exp_date %>
+		</div>
+		<div class="col-md-1">
+			<%= link_to "Edit", edit_certification_path(cert), style: "/93float:right;" %>
+		</div>
+		<div class="col-md-1">
+			<%= link_to "Delete", certification_path(cert), method: :delete, data: {confirm: "Are you sure you want to delete this SI Certification?"}, style: "color:red; float:right;" %>
+		</div>
+	</div>
+</div>
+<% end %>
+
+
+<% end %>
+
+<div class="paginate">
+	<%= will_paginate(@certifications, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
+
+</div>

@@ -23,6 +23,7 @@ get 'flex', to: 'pages#flexforward'
 
 resources :currencies
 resources :flexforwards
+resources :certifications
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
