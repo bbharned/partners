@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div align="center">
+    <br />
+    <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="166.5" height="132" /><br />
+    <h2>ThinManager Partner Portal</h2>
+    <p>Notice of SI Re-Certification through the portal</p>
+    <br />
+    <p style="font-weight:bold;">User Information</p>
+    <p>
+      <%= @user.firstname %> <%= @user.lastname %><br />
+      <%= @user.company %><br />
+      <%= @user.silevel %></p>
+
+      <% if @user.certifications.count != 0 %>
+        <p>
+        Date Cert Earned: <%= @user.certifications.last.date_earned %><br />
+        Date Cert Expires: <%= @user.certifications.last.exp_date %>
+        </p>
+      <% end %>
+    
+    </div>
+  </body>
+</html>

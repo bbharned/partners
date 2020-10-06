@@ -6,7 +6,7 @@ class CertificationsController < ApplicationController
 
 def index
 	@certifications = Certification.paginate(page: params[:page], per_page: 25).order("id desc")
-
+	#@current_user.send_notice_certification
 end
 
 

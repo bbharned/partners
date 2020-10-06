@@ -45,6 +45,12 @@ end
         UserMailer.password_reset(self).deliver_now
     end
 
+# Sends cert notification email.
+    def send_notice_certification
+        UserMailer.cert_notice(self).deliver_now
+    end
+
+
 # Returns the hash digest of the given string.
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
