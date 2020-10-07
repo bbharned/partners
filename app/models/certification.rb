@@ -11,10 +11,6 @@ class Certification < ApplicationRecord
 
 
 
-
-
-
-
 private
 
 

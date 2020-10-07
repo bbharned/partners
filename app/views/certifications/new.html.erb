@@ -1,0 +1,84 @@
+<div class="container">
+
+<h1>Certification Quiz</h1>
+<hr />
+<p>In order to renew your certification with ThinManager you must score an 80% on this quiz. You can retake the quiz if need be but please take your time and answer all the questions.</p>
+<br /><br />
+
+<div class="col-lg-8 offset-lg-2">
+
+
+	<%= form_for(@certification, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+	  
+	 <div class="card quiz-card question-one">
+	  		<div class="form-group">
+	                
+	                 <div class="row">
+	                 	<div class="form-group">
+							<div class="col-md-12" style="margin-bottom: 40px;">
+		                 		<h4>Question 1</h4>
+		                 	</div>
+	                 		<div class="col-md-12">
+		                 		<%= f.label @q1 %>
+						 	</div>
+						 
+		                 	<div class="col-md-12">
+			                	<div class="form-check">
+				                    <%= radio_button_tag(:answer1, "Red", class: "form-control form-check-input") %>
+									<%= f.label @a1, class: "form-check-label" %>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+							 	<div class="form-check">
+									<%= radio_button_tag(:answer1, "Orange", class: "form-control form-check-input") %>
+									<%= f.label "Orange", class: "form-check-label"  %>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+							 	<div class="form-check">
+									<%= radio_button_tag(:answer1, "Purple", class: "form-control form-check-input") %>
+									<%= f.label "Purple", class: "form-check-label"  %>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+							 	<div class="form-check">
+									<%= radio_button_tag(:answer1, "Grey", class: "form-control form-check-input") %>
+									<%= f.label "Grey", class: "form-check-label"  %>
+								</div>
+							</div>
+
+							<div class="col-md-12" style="display:none;">
+							 	<div class="form-check">
+									<%= radio_button_tag(:answer1, "unanswered", class: "form-control form-check-input") %>
+								</div>
+							</div>
+						</div>
+	                </div>
+
+			</div>
+	</div>       
+	  		
+
+
+
+
+
+
+
+
+
+
+
+	<div class="quiz-submit-btn" style="display:none;">
+	  	<%= submit_tag("Submit Quiz", class: "btn btn-primary") %>
+	</div>
+
+
+	<% end %>
+
+
+</div>
+</div>

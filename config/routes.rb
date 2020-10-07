@@ -25,7 +25,7 @@ resources :currencies
 resources :flexforwards
 resources :certifications
 get 'certification/instruction', to: 'certifications#instruction'
-post 'certifications/new', to: 'certifications#new_cert'
+#post 'certifications/new', to: 'certifications#new_cert'
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'

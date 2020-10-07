@@ -1,8 +1,9 @@
 class CertificationsController < ApplicationController
 	before_action :must_login
-	before_action :require_admin, except: [:instruction, :new]
-	#skip_before_action :require_admin, only: [:new, :instruction]
+	before_action :require_admin, except: [:instruction, :create, :new]
+	#skip_before_action :require_admin, only: [:new_cert]
 	before_action :set_cert, only: [:edit, :update, :show, :destroy]
+	before_action :make_quiz, only: [:new, :create]
 
 
 def index
@@ -18,15 +19,32 @@ end
 
 
 
+
+
 def new
 
+@certification = Certification.new
+
+
 end
 
 
 
-def new_cert
+
+def create 
+
+	@answer1 = params[:answer1]
+
+	if @answer1 == "Red"
+		flash[:success] = "You got it right! The answer was #{@answer1}"
+    else
+		flash[:danger] = "Did you really thing an apple is #{@answer1}?... Really?"
+	end
+
+	redirect_to root_path
 
 end
+
 
 
 
@@ -78,6 +96,18 @@ end
 
 def set_cert
     @cert = Certification.find(params[:id])
+end
+
+def make_quiz
+@q1 = "What is a standard color for an apple?"
+@q2 = "What color are bananas?"
+@a1 = "Red"
+@a2 = "Yellow"
+
+@questions = [
+     Question.new(@p1, @a1),
+     Question.new(@p2, @a2)
+]
 end
 
 

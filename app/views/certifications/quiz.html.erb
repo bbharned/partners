@@ -1,0 +1,27 @@
+<div class="container">
+
+<h1>Certification Quiz</h1>
+<hr />
+<br /><br />
+
+
+<%= form_with(url: "/certification/quiz", method: "get", role: "form") do %>
+  
+  
+  <%= label_tag(:prompt, @p1) %><br />
+  
+  	<%= radio_button_tag(:answer1, "Red/Green") %>
+	<%= label_tag("Red/Green") %><br />
+	<%= radio_button_tag(:answer1, "Orange") %>
+	<%= label_tag("Orange") %>
+  
+
+
+	<br /><br />
+  <%= submit_tag("Submit Quiz", class: "btn btn-primary") %>
+<% end %>
+
+
+
+
+</div>
