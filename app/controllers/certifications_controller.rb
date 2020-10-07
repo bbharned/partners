@@ -1,6 +1,7 @@
 class CertificationsController < ApplicationController
 	before_action :must_login
-	before_action :require_admin
+	before_action :require_admin, except: [:instruction, :new]
+	#skip_before_action :require_admin, only: [:new, :instruction]
 	before_action :set_cert, only: [:edit, :update, :show, :destroy]
 
 
@@ -10,6 +11,22 @@ def index
 end
 
 
+
+def instruction
+
+end
+
+
+
+def new
+
+end
+
+
+
+def new_cert
+
+end
 
 
 

@@ -8,18 +8,20 @@
     <br />
     <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="166.5" height="132" /><br />
     <h2>ThinManager Partner Portal</h2>
-    <p>Notice of SI Re-Certification through the portal</p>
+    <p>Notice of SI Re-Certification<br />through the Partner Portal</p>
     <br />
     <p style="font-weight:bold;">User Information</p>
     <p>
       <%= @user.firstname %> <%= @user.lastname %><br />
       <%= @user.company %><br />
-      <%= @user.silevel %></p>
+      <%= @user.silevel %><br />
+      <%= @user.email %>
+    </p>
 
       <% if @user.certifications.count != 0 %>
         <p>
-        Date Cert Earned: <%= @user.certifications.last.date_earned %><br />
-        Date Cert Expires: <%= @user.certifications.last.exp_date %>
+        Date Earned: <%= @user.certifications.last.date_earned %><br />
+        Date Expires: <%= @user.certifications.last.exp_date %>
         </p>
       <% end %>
     
