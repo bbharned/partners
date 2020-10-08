@@ -99,15 +99,23 @@ def set_cert
 end
 
 def make_quiz
-@q1 = "What is a standard color for an apple?"
-@q2 = "What color are bananas?"
-@a1 = "Red"
-@a2 = "Yellow"
+	@q1 = "What is a standard color for an apple?"
+	@q2 = "What color are bananas?"
+	@q3 = "What color are oranges?"
+	@q4 = "What color is an eggplant?"
+	@a1 = "Red"
+	@a2 = "Yellow"
+	@a3 = "Orange"
+	@a4 = "Purple"
 
-@questions = [
-     Question.new(@p1, @a1),
-     Question.new(@p2, @a2)
-]
+	@questions = [
+	     Question.new(@q1, @a1),
+	     Question.new(@q2, @a2),
+	     Question.new(@q3, @a3),
+	     Question.new(@q4, @a4)
+	]
+
+	@count = @questions.count
 end
 
 

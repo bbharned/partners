@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container" style="padding-bottom: 120px;">
 
 <h1>Certification Quiz</h1>
 <hr />
-<p>In order to renew your certification with ThinManager you must score an 80% on this quiz. You can retake the quiz if need be but please take your time and answer all the questions.</p>
+<p style="font-size: .85em;">In order to renew your certification with ThinManager you must score 80% or higher on this quiz. You can retake the quiz if need to, but please take your time and be sure to answer all the questions.</p>
+<p style="font-size: .85em;">If you have questions for problems, please <%= link_to "contact us", "mailto:certification@thinmanager.com" %>.</p>
 <br /><br />
 
 <div class="col-lg-8 offset-lg-2">
@@ -10,75 +11,307 @@
 
 	<%= form_for(@certification, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 	  
-	 <div class="card quiz-card question-one">
-	  		<div class="form-group">
-	                
-	                 <div class="row">
-	                 	<div class="form-group">
-							<div class="col-md-12" style="margin-bottom: 40px;">
-		                 		<h4>Question 1</h4>
-		                 	</div>
-	                 		<div class="col-md-12">
-		                 		<%= f.label @q1 %>
-						 	</div>
-						 
-		                 	<div class="col-md-12">
-			                	<div class="form-check">
-				                    <%= radio_button_tag(:answer1, "Red", class: "form-control form-check-input") %>
-									<%= f.label @a1, class: "form-check-label" %>
+	 <div class="card quiz-card">
+	  
+
+
+	  		<div class="question-one">
+		  		<div class="form-group">
+		                
+		                 <div class="row">
+		                 	<div class="form-group">
+								<div class="col-md-12" style="margin-bottom: 40px;">
+			                 		<h4>Question 1</h4>
+			                 	</div>
+		                 		<div class="col-md-12">
+			                 		<%= f.label @q1 %>
+							 	</div>
+							 
+			                 	<div class="col-md-12">
+				                	<div class="form-check">
+					                    <%= radio_button_tag(:answer1, "Red", class: "form-control form-check-input") %>
+										<%= f.label "Red", class: "form-check-label" %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer1, "Yellow", class: "form-control form-check-input") %>
+										<%= f.label "Yellow", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer1, "Orange", class: "form-control form-check-input") %>
+										<%= f.label "Orange", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer1, "Purple", class: "form-control form-check-input") %>
+										<%= f.label "Purple", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12" style="display:none;">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer1, "unanswered", class: "form-control form-check-input") %>
+									</div>
 								</div>
 							</div>
+		                </div>
 
-							<div class="col-md-12">
-							 	<div class="form-check">
-									<%= radio_button_tag(:answer1, "Orange", class: "form-control form-check-input") %>
-									<%= f.label "Orange", class: "form-check-label"  %>
-								</div>
-							</div>
-
-							<div class="col-md-12">
-							 	<div class="form-check">
-									<%= radio_button_tag(:answer1, "Purple", class: "form-control form-check-input") %>
-									<%= f.label "Purple", class: "form-check-label"  %>
-								</div>
-							</div>
-
-							<div class="col-md-12">
-							 	<div class="form-check">
-									<%= radio_button_tag(:answer1, "Grey", class: "form-control form-check-input") %>
-									<%= f.label "Grey", class: "form-check-label"  %>
-								</div>
-							</div>
-
-							<div class="col-md-12" style="display:none;">
-							 	<div class="form-check">
-									<%= radio_button_tag(:answer1, "unanswered", class: "form-control form-check-input") %>
-								</div>
-							</div>
-						</div>
-	                </div>
-
+				</div>
 			</div>
-	</div>       
+	  
+
+
+
+
+
+	
+	  		<div class="question-two" style="display:none;">
+		  		<div class="form-group">
+		                
+		                 <div class="row">
+		                 	<div class="form-group">
+								<div class="col-md-12" style="margin-bottom: 40px;">
+			                 		<h4>Question 2</h4>
+			                 	</div>
+		                 		<div class="col-md-12">
+			                 		<%= f.label @q2 %>
+							 	</div>
+							 
+			                 	<div class="col-md-12">
+				                	<div class="form-check">
+					                    <%= radio_button_tag(:answer2, "Red", class: "form-control form-check-input") %>
+										<%= f.label "Red", class: "form-check-label" %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer2, "Yellow", class: "form-control form-check-input") %>
+										<%= f.label "Yellow", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer2, "Orange", class: "form-control form-check-input") %>
+										<%= f.label "Orange", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer2, "Purple", class: "form-control form-check-input") %>
+										<%= f.label "Purple", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12" style="display:none;">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer2, "unanswered", class: "form-control form-check-input") %>
+									</div>
+								</div>
+							</div>
+		                </div>
+		        </div>
+			</div>
+	     
 	  		
 
 
 
+	
+	  		<div class="question-three" style="display:none;">
+		  		<div class="form-group">
+		                
+		                 <div class="row">
+		                 	<div class="form-group">
+								<div class="col-md-12" style="margin-bottom: 40px;">
+			                 		<h4>Question 3</h4>
+			                 	</div>
+		                 		<div class="col-md-12">
+			                 		<%= f.label @q3 %>
+							 	</div>
+							 
+			                 	<div class="col-md-12">
+				                	<div class="form-check">
+					                    <%= radio_button_tag(:answer3, "Red", class: "form-control form-check-input") %>
+										<%= f.label "Red", class: "form-check-label" %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer3, "Yellow", class: "form-control form-check-input") %>
+										<%= f.label "Yellow", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer3, "Orange", class: "form-control form-check-input") %>
+										<%= f.label "Orange", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer3, "Purple", class: "form-control form-check-input") %>
+										<%= f.label "Purple", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12" style="display:none;">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer3, "unanswered", class: "form-control form-check-input") %>
+									</div>
+								</div>
+							</div>
+		                </div>
+		        </div>
+			</div>
+	
 
 
 
 
+	
+	  		<div class="question-four" style="display:none;">
+		  		<div class="form-group">
+		                
+		                 <div class="row">
+		                 	<div class="form-group">
+								<div class="col-md-12" style="margin-bottom: 40px;">
+			                 		<h4>Question 4</h4>
+			                 	</div>
+		                 		<div class="col-md-12">
+			                 		<%= f.label @q4 %>
+							 	</div>
+							 
+			                 	<div class="col-md-12">
+				                	<div class="form-check">
+					                    <%= radio_button_tag(:answer4, "Red", class: "form-control form-check-input") %>
+										<%= f.label "Red", class: "form-check-label" %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer4, "Yellow", class: "form-control form-check-input") %>
+										<%= f.label "Yellow", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer4, "Orange", class: "form-control form-check-input") %>
+										<%= f.label "Orange", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer4, "Purple", class: "form-control form-check-input") %>
+										<%= f.label "Purple", class: "form-check-label"  %>
+									</div>
+								</div>
+
+								<div class="col-md-12" style="display:none;">
+								 	<div class="form-check">
+										<%= radio_button_tag(:answer4, "unanswered", class: "form-control form-check-input") %>
+									</div>
+								</div>
+							</div>
+		                </div>
+		        </div>
+			</div>
+	
 
 
 
-
-	<div class="quiz-submit-btn" style="display:none;">
-	  	<%= submit_tag("Submit Quiz", class: "btn btn-primary") %>
 	</div>
 
 
-	<% end %>
+	
 
+
+	
+
+
+	<div class="row quiz-nav">
+		
+		<div class="col-3">
+			<div id="previous-q" class="btn btn-secondary">&larr; Previous</div>
+		</div>
+		<div class="col-6">
+
+		</div>
+		<div class="col-3" style="text-align: right;">
+			<div id="next-q" class="btn btn-secondary">Next &rarr;</div>
+			<%= submit_tag("Submit Quiz", method: :create, data: {confirm: "You are about to submit the quiz for grading. Are you sure you have answered all the questions and wish to proceed?"}, class: "btn btn-primary quiz-submit-btn") %>
+		</div>
+		
+	</div>
+
+<% end %>	
+
+
+
+
+
+
+<script>
+(function(){
+  
+  "use strict";
+
+  $('#previous-q, .quiz-submit-btn').css('display', 'none');
+  
+  var qPage = 1
+
+  function checkPage(qPage) {  		
+		
+		if (qPage == 1) {
+			$('.question-one').fadeIn(1000);
+			$('.question-two, .question-three, .question-four, .quiz-submit-btn, #previous-q').css('display', 'none');
+		}
+		if (qPage == 2) {
+			$('#previous-q, #next-q').css('display', 'inline');
+			$('.question-two').fadeIn(1000);
+			$('.question-one, .question-three, .question-four, .quiz-submit-btn').css('display', 'none');
+		}
+		if (qPage == 3) {
+			$('#previous-q, #next-q').css('display', 'inline');
+			$('.question-three').fadeIn(1000);
+			$('.question-one, .question-two, .question-four, .quiz-submit-btn').css('display', 'none');
+		}
+		if (qPage == 4) {
+			$('#previous-q, .quiz-submit-btn').css('display', 'inline');
+			$('.question-four').fadeIn(1000);
+			$('.question-one, .question-two, .question-three, #next-q').css('display', 'none');
+		}
+	
+	};
+
+	$('#previous-q').on('click', function() {
+		qPage -= 1;
+		checkPage(qPage);
+	});
+
+	$('#next-q').on('click', function() {
+		qPage += 1;
+		checkPage(qPage);
+	});
+
+
+})();
+</script>
 
 </div>
 </div>
