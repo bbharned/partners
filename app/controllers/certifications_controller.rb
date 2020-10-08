@@ -53,13 +53,6 @@ def create
 	end
 
 
-	# @questions.each do |question|
- #          answer = gets.chomp()
- #          if answer == question.answer
- #               score += 1
- #          end
- #    end
-
 
 
 	if @score >= 3
@@ -143,15 +136,19 @@ def set_cert
 end
 
 def make_quiz
+	#Quiz Questions
 	@q1 = "What is a standard color for an apple?"
 	@q2 = "What color are bananas?"
 	@q3 = "What color are oranges?"
 	@q4 = "What color is an eggplant?"
+	
+	#Quiz Answers
 	@a1 = "Red"
 	@a2 = "Yellow"
 	@a3 = "Orange"
 	@a4 = "Purple"
 
+	#Quiz Array of questions
 	@questions = [
 	     Question.new(@q1, @a1),
 	     Question.new(@q2, @a2),
