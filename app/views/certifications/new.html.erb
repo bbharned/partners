@@ -247,14 +247,14 @@
 	<div class="row quiz-nav">
 		
 		<div class="col-3">
-			<div id="previous-q" class="btn btn-secondary">&larr; Previous</div>
+			<div id="previous-q" class="btn btn-secondary disappear">&larr; Previous</div>
 		</div>
 		<div class="col-6">
 
 		</div>
 		<div class="col-3" style="text-align: right;">
 			<div id="next-q" class="btn btn-secondary">Next &rarr;</div>
-			<%= submit_tag("Submit Quiz", method: :create, data: {confirm: "You are about to submit the quiz for grading. Are you sure you have answered all the questions and wish to proceed?"}, class: "btn btn-primary quiz-submit-btn") %>
+			<%= submit_tag("Submit Quiz", method: :create, data: {confirm: "You are about to submit the quiz for grading. Are you sure you have answered all the questions and wish to proceed?"}, class: "btn btn-primary quiz-submit-btn disappear") %>
 		</div>
 		
 	</div>
@@ -263,7 +263,7 @@
 
 
 
-
+</div>
 
 
 <script>
@@ -271,7 +271,8 @@
   
   "use strict";
 
-  $('#previous-q, .quiz-submit-btn').css('display', 'none');
+  //$('#previous-q, .quiz-submit-btn').css('display', 'none');
+  //$('#previous-q, .quiz-submit-btn').addClass('disappear');
   
   var qPage = 1
 
@@ -279,22 +280,29 @@
 		
 		if (qPage == 1) {
 			$('.question-one').fadeIn(1000);
-			$('.question-two, .question-three, .question-four, .quiz-submit-btn, #previous-q').css('display', 'none');
+			$('.question-two, .question-three, .question-four').css('display', 'none');
+			$('#previous-q, .quiz-submit-btn').addClass('disappear');
+			$('#next-q').removeClass('disappear');
 		}
 		if (qPage == 2) {
-			$('#previous-q, #next-q').css('display', 'inline');
+			//$('#previous-q, #next-q').css('display', 'inline');
+			$('#previous-q, #next-q').removeClass('disappear');
+			$('.quiz-submit-btn').addClass('disappear');
 			$('.question-two').fadeIn(1000);
-			$('.question-one, .question-three, .question-four, .quiz-submit-btn').css('display', 'none');
+			$('.question-one, .question-three, .question-four').css('display', 'none');
 		}
 		if (qPage == 3) {
-			$('#previous-q, #next-q').css('display', 'inline');
+			//$('#previous-q, #next-q').css('display', 'inline');
+			$('#previous-q, #next-q').removeClass('disappear');
+			$('.quiz-submit-btn').addClass('disappear');
 			$('.question-three').fadeIn(1000);
-			$('.question-one, .question-two, .question-four, .quiz-submit-btn').css('display', 'none');
+			$('.question-one, .question-two, .question-four').css('display', 'none');
 		}
 		if (qPage == 4) {
-			$('#previous-q, .quiz-submit-btn').css('display', 'inline');
+			$('#previous-q, .quiz-submit-btn').removeClass('disappear');
 			$('.question-four').fadeIn(1000);
-			$('.question-one, .question-two, .question-three, #next-q').css('display', 'none');
+			$('.question-one, .question-two, .question-three').css('display', 'none');
+			$('#next-q').addClass('disappear');
 		}
 	
 	};
@@ -312,6 +320,4 @@
 
 })();
 </script>
-
-</div>
 </div>

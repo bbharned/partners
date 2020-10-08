@@ -8,7 +8,6 @@ class CertificationsController < ApplicationController
 
 def index
 	@certifications = Certification.paginate(page: params[:page], per_page: 25).order("id desc")
-	#@current_user.send_notice_certification
 end
 
 
@@ -24,7 +23,7 @@ end
 def new
 
 @certification = Certification.new
-
+@user = current_user
 
 end
 
@@ -34,11 +33,56 @@ end
 def create 
 
 	@answer1 = params[:answer1]
+	@answer2 = params[:answer2]
+	@answer3 = params[:answer3]
+	@answer4 = params[:answer4]
 
-	if @answer1 == "Red"
-		flash[:success] = "You got it right! The answer was #{@answer1}"
-    else
-		flash[:danger] = "Did you really thing an apple is #{@answer1}?... Really?"
+	@score = 0
+
+	if @questions[0].answer == @answer1
+		@score += 1
+	end
+	if @questions[1].answer == @answer2
+		@score += 1
+	end
+	if @questions[2].answer == @answer3
+		@score += 1
+	end
+	if @questions[3].answer == @answer4
+		@score += 1
+	end
+
+
+	# @questions.each do |question|
+ #          answer = gets.chomp()
+ #          if answer == question.answer
+ #               score += 1
+ #          end
+ #    end
+
+
+
+	if @score >= 3
+		@user = current_user
+		@cert = Certification.new(user_id: @user.id, name: "FY21", version: 11.2, date_earned: Date.today, exp_date: Date.today+730)
+		#@user.certdate = Date.today
+		#@user.certexpire = Date.today + 730
+
+		if @cert.save
+			#@current_user.send_notice_certification
+	        flash[:success] = "CONTRATULATIONS!! You passed the test with a score of #{@score} out of #{@count}"
+	        if @user.save
+
+	        else
+	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please #{link_to 'contact us', 'mailt:certification@thinmanager.com'}"
+	        end
+	    end
+
+		
+	else #didn't pass.
+
+		flash[:danger] = "That didn't go so well did it? You only got #{@score} right out of #{@count}"
+	
 	end
 
 	redirect_to root_path

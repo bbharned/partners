@@ -637,7 +637,9 @@ Very Light Blue: #e9f7fb;
 }
 .quiz-nav #previous-q,
 .quiz-nav #next-q {cursor: pointer;}
-
+.disappear {
+    display:none;
+}
 
 
 
