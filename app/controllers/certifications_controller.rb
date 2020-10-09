@@ -24,6 +24,12 @@ def new
 
 @certification = Certification.new
 @user = current_user
+@user_certs = Certification.where(user_id: @user.id)
+
+if (@user_certs.any? && (@user_certs.last.date_earned  > Date.today - 364)) || (@user.certexpire > Date.today + 364)
+	flash[:warning] = "looks like you don't need to be certified again at this time. Please check back within a year of your expiration date."
+	redirect_to root_path
+end
 
 end
 
@@ -58,16 +64,19 @@ def create
 	if @score >= 3
 		@user = current_user
 		@cert = Certification.new(user_id: @user.id, name: "FY21", version: 11.2, date_earned: Date.today, exp_date: Date.today+730)
-		#@user.certdate = Date.today
-		#@user.certexpire = Date.today + 730
+		@user.certdate = @cert.date_earned
+		@user.certexpire = @cert.exp_date
 
 		if @cert.save
-			#@current_user.send_notice_certification
-	        flash[:success] = "CONTRATULATIONS!! You passed the test with a score of #{@score} out of #{@count}"
+			@current_user.send_notice_certification #sends email to Bryan, Paul and Tom
+	        
+	        flash[:success] = "CONTRATULATIONS!! You passed the quiz and are now recertified as a ThinManager Systems Integrator for the next two years. 
+	        You should notice that your certification expiration date has been updated below and on your profile page. If you need to update your lab license as well, 
+	        please contact us at certification@thinmanager.com."
 	        if @user.save
 
 	        else
-	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please #{link_to 'contact us', 'mailt:certification@thinmanager.com'}"
+	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
 	    end
 
