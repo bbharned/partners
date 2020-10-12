@@ -1,7 +1,6 @@
 class CertificationsController < ApplicationController
 	before_action :must_login
 	before_action :require_admin, except: [:instruction, :create, :new]
-	#skip_before_action :require_admin, only: [:new_cert]
 	before_action :set_cert, only: [:edit, :update, :show, :destroy]
 	before_action :make_quiz, only: [:new, :create]
 
@@ -26,10 +25,18 @@ def new
 @user = current_user
 @user_certs = Certification.where(user_id: @user.id)
 
-if (@user_certs.any? && (@user_certs.last.date_earned  > Date.today - 364)) || (@user.certexpire > Date.today + 364)
-	flash[:warning] = "looks like you don't need to be certified again at this time. Please check back within a year of your expiration date."
-	redirect_to root_path
-end
+	if @user.prttype != "Integrator" && !@user.admin?
+		flash[:warning] = "It looks like you don't need to be certified. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
+		redirect_to root_path
+
+	elsif !@user_certs.any?
+
+	elsif (@user_certs.any? && (@user_certs.last.date_earned  > Date.today - 364)) || (@user.certexpire > Date.today + 364)
+		flash[:warning] = "It looks like you don't need to be certified at this time. Please check back within a year of your expiration date. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
+		redirect_to root_path
+
+
+	end
 
 end
 
@@ -68,7 +75,7 @@ def create
 		@user.certexpire = @cert.exp_date
 
 		if @cert.save
-			@current_user.send_notice_certification #sends email to Bryan, Paul and Tom
+			#@current_user.send_notice_certification #sends email to Bryan, Paul and Tom
 	        
 	        flash[:success] = "CONTRATULATIONS!! You passed the quiz and are now recertified as a ThinManager Systems Integrator for the next two years. 
 	        You should notice that your certification expiration date has been updated below and on your profile page. If you need to update your lab license as well, 

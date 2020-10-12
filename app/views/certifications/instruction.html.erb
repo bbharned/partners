@@ -1,11 +1,78 @@
-<div class="container">
+<div class="container" style="padding-bottom:100px;">
 
 <h1>SI Re-Certification</h1>
 <hr />
 
-<p>This will be the page to show instructions on getting your recertification.  This is where we will have the powerPoint, PDF and video for review and new features before taking the quiz.</p>
+<div class="row">
+	<div class="col">
+		<p>Thank you so much for being a Certified ThinManager Systems Integrator.  We have made this re-certification process easier and quicker.  Simply review the information on this page and when ready, click "Start Quiz" to take a re-certification quiz to get recertified.</p>
+		<br />
+	</div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-lg-8">
+		
+		<div class="cert-vid-ppt"><p>Main Re-Cert resource here.<br />Video, PowerPoint... whatever!</p></div>
+		<p class="resource-subtitle">&laquo;&nbsp;&nbsp; <%= link_to "click to download", "#", target: "_blank" %> &nbsp;&nbsp;&raquo;</p>
+
+	</div>
+	
+	<div class="col-lg-4">
+
+		<div class="well well-rnd">
+			<div class="row">
+				<div class="col-md-7">
+					<p>If you feel you have reviewed the material and are ready to get started on your re-certification, simply click "Start Quiz".</p>
+				</div>
+				<div class="col-md-5" style="text-align: right;">
+					<%= link_to "Start Quiz", new_certification_path, class: "btn btn-primary" %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="row" style="margin-top: 35px;">
+
+	<div class="col-lg-8" style="margin-bottom: 20px;">
+		<p>As a certified ThinManager SI we are assuming that you know the basics of setting up a ThinManager architecture, you have used the software and went through the full initial certification process of submitting labs for grading and/or attended training through a means that resulted in certification.</p>
+		<p>If you find that you can not pass our re-certification quiz, or prefer to redo the certification labs, please visit our <%= link_to "SI Certification", "https://thinmanager.com/si", target: "_blank" %> page.</p>
+	</div>
+
+	<div class="col-lg-4">
+		
+		<div class="well well-rnd">
+			<h4 align="center" style="margin-bottom: 20px;">More Resources</h4>
+			<ul class="list-group list-group-flush cert-resource-list">
+	  			<li class="list-group-item"><%= link_to "ThinManager User Guide", "#", target: "_blank" %></li>
+	  			<li class="list-group-item"><%= link_to "ThinManual", "#", target: "_blank" %></li>
+	  			<li class="list-group-item"><%= link_to "Product Profile", "#", target: "_blank" %></li>
+	  		</ul>
+		</div>
+
+	</div>
+
+</div>
+
+
 <br /><br />
-<%= link_to "Start Quiz", new_certification_path, class: "btn btn-primary", style: "float: right;" %>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

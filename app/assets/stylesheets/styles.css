@@ -632,8 +632,17 @@ Very Light Blue: #e9f7fb;
 
 
 
-/************************* Certification Quiz Page ***************************/
-
+/************************* Certification Instruction and Quiz Page ***************************/
+.well-rnd {
+    border-radius:7px;
+}
+.cert-vid-ppt {
+    width:100%; min-height: 350px; background-color: #d1d1d1;
+    
+}
+.cert-vid-ppt p {
+    text-align: center; padding-top:15%; text-shadow: 1px 1px 1px #999999;
+}
 .quiz-card {
     padding: 30px; margin-bottom: 40px;
 }
@@ -641,6 +650,13 @@ Very Light Blue: #e9f7fb;
 .quiz-nav #next-q {cursor: pointer;}
 .disappear {
     display:none;
+}
+.cert-resource-list .list-group-item {
+    background-color: transparent;
+}
+.resource-subtitle {
+    font-size: .75em; text-align: center; padding: 3px 0px;
+    margin-bottom: 10px; background-color: #f1f1f1;
 }
 
 
