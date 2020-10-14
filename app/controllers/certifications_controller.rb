@@ -35,7 +35,6 @@ def new
 		flash[:warning] = "It looks like you don't need to be certified at this time. Please check back within a year of your expiration date. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
 		redirect_to root_path
 
-
 	end
 
 end
