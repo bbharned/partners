@@ -29,7 +29,7 @@
 <div class="well" style="margin-bottom: 3px; padding-top: 4px; padding-bottom: 4px;">
 	<div class="row">
 		<div class="col-md-3">
-			<%= cert.user.firstname %> <%= cert.user.lastname %>
+			<%= link_to "#{cert.user.firstname} #{cert.user.lastname}", user_path(cert.user) %>
 		</div>
 		<div class="col-md-2">
 			<%= cert.name %>

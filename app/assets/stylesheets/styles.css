@@ -271,7 +271,7 @@ Very Light Blue: #e9f7fb;
  */
 .pricing-instruction {
     width:100%; padding:20px 2.5%; background-color:red; color:white;
-    margin-top:65px; border:5px solid #b90c0c;
+    margin-top:65px; border:5px solid #b90c0c; display:none;
 }
 .pricing-instruction p {
     font-size:.75em;

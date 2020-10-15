@@ -1,0 +1,81 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @cert %>
+
+
+
+<%= form_for(@cert, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group">
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>Integrator:</p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 35px;">
+                    <div class="col-sm-12">
+                        <h4><%= @cert.user.firstname %> <%= @cert.user.lastname %></h4>
+                    </div>
+                    <div class="col-sm-12">
+                        <h6><%= @cert.user.company %></h6>
+                    </div>
+                </div>
+
+                <div class="row">
+                	
+                    <div class="col-sm-6">
+                        <div class="control-label"><%= f.label :name %></div>
+                        <%= f.text_field :name, class: "form-control" %>
+                    </div>    
+                    
+                    <div class="col-sm-6">
+                        <div class="control-label"><%= f.label "TM Version" %></div>
+                        <%= f.text_field :version, class: "form-control" %>
+                    </div>  
+                    
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="control-label"><%= f.label :date_earned %></div>
+                        <%= f.date_field :date_earned, class: "form-control" %>
+                    </div> 
+
+                    <div class="col-sm-6">
+                        <div class="control-label"><%= f.label :exp_date %></div>
+                        <%= f.date_field :exp_date, class: "form-control" %>
+                    </div>    
+                    
+                </div>
+                
+                <br />
+                
+                <div class="row" style="margin-top: 25px;">
+
+                    <div class="col-sm-11 offset-sm-1">
+                        <%= f.check_box :active, class: "form-check-input" %> <%= f.label "Active and Current Certification?", class: "form-check-label" %> 
+                    </div> 
+
+                </div>
+
+            
+            </div>
+       
+        <br /><br />
+        
+
+        <div class="form-group">
+            
+                <%= f.submit(@cert.new_record? ? "Create Ceertification" : "Update Certification", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", certifications_path %>
+           
+            
+            
+        </div>
+<% end %>
+
+
+
+</div>

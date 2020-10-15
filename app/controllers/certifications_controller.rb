@@ -72,7 +72,9 @@ def create
 		@cert = Certification.new(user_id: @user.id, name: "FY21", version: 11.2, date_earned: Date.today, exp_date: Date.today+730)
 		@user.certdate = @cert.date_earned
 		@user.certexpire = @cert.exp_date
+		@old_user_certs = Certification.where(user_id: @user.id)
 
+		
 		if @cert.save
 			#@current_user.send_notice_certification #sends email to Bryan, Paul and Tom
 	        
@@ -84,6 +86,19 @@ def create
 	        else
 	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
+
+	        if @old_user_certs.any?
+				@old_user_certs.each do |uc|
+					if uc.date_earned != Date.today
+						uc.active = false
+						if uc.save 
+						
+						else
+							flash[:danger] = "There was a problem updating the old certifications to no longer be active."
+						end
+					end
+				end
+			end
 	    end
 
 		
