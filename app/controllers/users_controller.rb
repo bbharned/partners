@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin]
 
 
 def index
@@ -65,6 +65,35 @@ def lastlogin
     end
 end
 
+def distributor
+    @users = User.where(prttype: "Distributor").paginate(page: params[:page], per_page: 25).order(:lastname)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "distributor" }
+      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+    end
+end
+
+def integrator
+    @users = User.where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(:lastname)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "integrator" }
+      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+    end
+end
+
+def admin
+    @users = User.where(admin: true).paginate(page: params[:page], per_page: 25).order(:lastname)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "admin" }
+      format.csv { send_data @users.to_csv, filename: "Portal_Integrator_Partners-#{Date.today}.csv" }
+    end
+end
 
 
 

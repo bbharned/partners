@@ -12,6 +12,9 @@ get 'user/type', to: 'users#type'
 get 'user/active', to: 'users#active'
 get 'user/inactive', to: 'users#inactive'
 get 'user/lastlogin', to: 'users#lastlogin'
+get 'user/integrator', to: 'users#integrator'
+get 'user/distributor', to: 'users#distributor'
+get 'user/admin', to: 'users#admin'
 get 'pricing', to: 'pages#pricing'
 get 'documents', to: 'pages#documents'
 get 'vflex', to: 'pages#vflex'
@@ -25,7 +28,6 @@ resources :currencies
 resources :flexforwards
 resources :certifications
 get 'certification/instruction', to: 'certifications#instruction'
-#post 'certifications/new', to: 'certifications#new_cert'
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
