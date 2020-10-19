@@ -110,7 +110,7 @@ end
 
 
 def show
-        
+     @user_certs = Certification.where(user_id: @user.id)   
 end
 
 
