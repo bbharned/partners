@@ -10,7 +10,7 @@ def index
 
     respond_to do |format|
       format.html { render "index" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
 end
 
@@ -20,7 +20,7 @@ def company
 
     respond_to do |format|
       format.html { render "company" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
 end
 
@@ -30,7 +30,7 @@ def type
 
     respond_to do |format|
       format.html { render "type" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
 end
 
@@ -40,7 +40,7 @@ def active
 
     respond_to do |format|
       format.html { render "active" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_ActiveUsers-#{Date.today}.csv" }
     end
 end
 
@@ -50,7 +50,7 @@ def inactive
 
     respond_to do |format|
       format.html { render "inactive" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_InactiveUsers-#{Date.today}.csv" }
     end
 end
 
@@ -61,7 +61,7 @@ def lastlogin
 
     respond_to do |format|
       format.html { render "lastlogin" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_loginHistory-#{Date.today}.csv" }
     end
 end
 
@@ -71,7 +71,7 @@ def distributor
 
     respond_to do |format|
       format.html { render "distributor" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Distributors-#{Date.today}.csv" }
     end
 end
 
@@ -81,7 +81,7 @@ def integrator
 
     respond_to do |format|
       format.html { render "integrator" }
-      format.csv { send_data @allusers.to_csv, filename: "All_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Integrators-#{Date.today}.csv" }
     end
 end
 
@@ -91,7 +91,7 @@ def admin
 
     respond_to do |format|
       format.html { render "admin" }
-      format.csv { send_data @users.to_csv, filename: "Portal_Integrator_Partners-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Admins-#{Date.today}.csv" }
     end
 end
 
