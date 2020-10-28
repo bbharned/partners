@@ -20,7 +20,7 @@ def company
 
     respond_to do |format|
       format.html { render "company" }
-      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
 end
 
@@ -30,7 +30,7 @@ def type
 
     respond_to do |format|
       format.html { render "type" }
-      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
 end
 

@@ -212,7 +212,7 @@
 
         <div class="form-group">
             <div class="col-sm-12">
-                <%= f.submit(@user.new_record? ? "Create User" : "Update User", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", root_path %>
+                <%= f.submit(@user.new_record? ? "Create User" : "Update User", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
             </div>
             
             
