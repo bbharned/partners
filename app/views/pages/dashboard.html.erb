@@ -137,7 +137,7 @@
 
 	<div class="card-columns hp-cards">
 	  
-	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
+	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") || (@current_user.continent == "NA" && @current_user.prttype == "Distributor") %>
 		  <div class="card pricing-card">
 		    <!--<img class="card-img-top" src="#" alt="Card image cap">-->
 		    <div class="card-body">

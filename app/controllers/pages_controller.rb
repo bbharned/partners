@@ -90,7 +90,7 @@ def must_login
 end
 
 def can_see_pricing
-	if @current_user.admin? || @current_user.continent == "North America"
+	if @current_user.admin? || @current_user.continent == "North America" || @current_user.continent == "NA"
 
 	else
 		flash[:danger] = "You do not have permission to view this page."
