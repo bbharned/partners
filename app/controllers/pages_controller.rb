@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward]
 	before_action :can_see_pricing, only: [:pricing]
+    
 
 def new_dl
 	@download = Download.new(user_id: current_user.id)
@@ -97,6 +98,8 @@ def can_see_pricing
 		redirect_to root_path
 	end
 end
+
+
 
 
 

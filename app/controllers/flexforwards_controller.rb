@@ -1,5 +1,6 @@
 class FlexforwardsController < ApplicationController
 	before_action :must_login
+    before_action :not_integrator
 	before_action :require_admin, only: [:index, :totals, :byname, :byuser]
 	before_action :set_flex, only: [:edit, :update, :show, :destroy]
 	before_action :require_same_user, only: [:edit, :update, :show, :destroy]
@@ -146,6 +147,16 @@ private
     def set_flex
         @flex = Flexforward.find(params[:id])
     end
+
+
+    def not_integrator
+        if @current_user.admin? || @current_user.prttype != "Integrator"
+
+        else
+            flash[:danger] = "You do not have permission to view this page."
+            redirect_to root_path
+    end
+end
 
 
 end
