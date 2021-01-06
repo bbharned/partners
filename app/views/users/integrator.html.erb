@@ -23,7 +23,11 @@
 			<div class="row">
 				
 				<div class="col-md-3">
-					<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
+					<% if user.certexpire < Date.today %>
+						<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user), style: "color:red;" %>
+					<% else %>
+						<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
+					<% end %>
 				</div>
 				<div class="col-md-3">
 					<%= user.company %>

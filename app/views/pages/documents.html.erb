@@ -24,59 +24,86 @@
 			</div>
 		<% end %>
 
+		<% if current_user.channel == "Rockwell Automation" || current_user.admin %>
+			<!-- Rockwell Sales Presentation -->
+			<div class="row">
+				<div class="col-md-6"><span class="bold">Sales Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
+				<div class="col-md-5">PPTX Document</div>
+				<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "#", target: "_blank" %></div>
+			</div>
+		<% end %>
+		<% if current_user.channel != "Rockwell Automation" || current_user.admin %>
+			<!-- 3rd Party Sales Presentation -->
+			<div class="row">
+				<div class="col-md-6"><span class="bold">Sales Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
+				<div class="col-md-5">PPTX Document</div>
+				<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "#", target: "_blank" %></div>
+			</div>
+		<% end %>
+
 		<!-- ThinManual -->
-		<div class="row">
+		<div class="row even">
 			<div class="col-md-6"><span class="bold">ThinManual</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/support/manuals/files/ThinManual_11.pdf", target: "_blank" %></div>
 		</div>
 
 		<!-- User Guide - Latest ThinManager -->
-		<div class="row even">
-			<div class="col-md-6"><span class="bold">User Guide</span></div>
+		<div class="row">
+			<div class="col-md-6"><span class="bold">Version 12 User Guide</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/support/manuals/files/ThinManager-v12-UserGuide_TM-UM001D-EN-P.pdf", target: "_blank" %></div>
 		</div>
 
 
-		<!-- Product Profile -->
-		<div class="row">
-			<div class="col-md-6"><span class="bold">ThinManager Product Profile</span></div>
+		<% if current_user.channel == "Rockwell Automation" || current_user.admin %>
+		<!-- Rockwell Product Profile -->
+		<div class="row even">
+			<div class="col-md-6"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Rockwell)<% end %></span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/datasheets/RA-v12-2021/ThinManager-Full-Profile-v12-21.pdf", target: "_blank" %></div>
 		</div>
+		<% end %>
+		<% if current_user.channel != "Rockwell Automation" || current_user.admin %>
+		<!-- 3rd Party Product Profile -->
+		<div class="row even">
+			<div class="col-md-6"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
+			<div class="col-md-5">PDF Document</div>
+			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "#", target: "_blank" %></div>
+		</div>
+		<% end %>
 
 
 		<!-- White Paper - ThinManager Security with Relevance -->
-		<div class="row even">
+		<div class="row">
 			<div class="col-md-6"><span class="bold">Security & ThinManager with Relevance</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-Security-ThinManager-Relevance.pdf", target: "_blank" %></div>
 		</div>
 
 		<!-- White Paper - What sets ThinManager Apart -->
-		<div class="row">
+		<div class="row even">
 			<div class="col-md-6"><span class="bold">What Sets ThinManager Apart</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-What-Sets-ThinManager-Apart.pdf", target: "_blank" %></div>
 		</div>
 
 		<!-- White Paper - ThinManager vs Horizon View -->
-		<div class="row even">
+		<div class="row">
 			<div class="col-md-6"><span class="bold">ThinManager vs. Horizon View</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-ThinManager-v-HorizonView.pdf", target: "_blank" %></div>
 		</div>
 
 		<!-- White Paper - 101 Problems solved by ThinManager -->
-		<div class="row">
+		<div class="row even">
 			<div class="col-md-6"><span class="bold">101 Problems solved by ThinManager</span></div>
 			<div class="col-md-5">PDF Document</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-101-Problems-Solutions.pdf", target: "_blank" %></div>
 		</div>
 
 		<!-- link to Video 	Learning series -->
-		<div class="row even">
+		<div class="row">
 			<div class="col-md-6"><span class="bold">Video Learning</span></div>
 			<div class="col-md-5">Video Series (seperate account creation required)</div>
 			<div class="col-md-1"><%= link_to image_tag("icon-play.png"), "https://learn.thinmanager.com", target: "_blank" %></div>
