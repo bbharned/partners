@@ -1,20 +1,20 @@
 <ul class="nav nav-fill user-sorting">
   <li class="nav-item">
-    <%= link_to "All", users_path, class: "nav-link" %>
+    <%= link_to "All", users_path({ :sort => "lastname" }), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Active", user_active_path, class: "nav-link" %>
+    <%= link_to "Active", user_active_path({ :sort => "lastname" }), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Inactive", user_inactive_path, class: "nav-link" %>
+    <%= link_to "Inactive", user_inactive_path({ :sort => "lastname" }), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Login History", user_lastlogin_path, class: "nav-link" %>
+    <%= link_to "Login History", user_lastlogin_path({ :sort => "lastlogin desc" }), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Distributors", user_distributor_path, class: "nav-link" %>
+    <%= link_to "Distributors", user_distributor_path({ :sort => "lastname" }), class: "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "Integrators", user_integrator_path, class: "nav-link" %>
+    <%= link_to "Integrators", user_integrator_path({ :sort => "lastname" }), class: "nav-link" %>
   </li>
 </ul>

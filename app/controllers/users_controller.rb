@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
 
 def index
-    @users = User.paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -35,7 +36,8 @@ def type
 end
 
 def active
-    @users = User.where.not(active: false).paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.where.not(active: false).paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -45,7 +47,8 @@ def active
 end
 
 def inactive
-    @users = User.where(active: false).paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.where(active: false).paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -55,8 +58,9 @@ def inactive
 end
 
 def lastlogin
+    @sort = [params[:sort]]
     @loggedin_before = User.where.not(lastlogin: nil)
-    @users = @loggedin_before.paginate(page: params[:page], per_page: 25).order("lastlogin desc")
+    @users = @loggedin_before.paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -66,7 +70,8 @@ def lastlogin
 end
 
 def distributor
-    @users = User.where(prttype: "Distributor").paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.where(prttype: "Distributor").paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -76,7 +81,8 @@ def distributor
 end
 
 def integrator
-    @users = User.where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
@@ -86,7 +92,8 @@ def integrator
 end
 
 def admin
-    @users = User.where(admin: true).paginate(page: params[:page], per_page: 25).order(:lastname)
+    @sort = [params[:sort]]
+    @users = User.where(admin: true).paginate(page: params[:page], per_page: 25).order(@sort)
     @allusers = User.all
 
     respond_to do |format|
