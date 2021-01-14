@@ -90,7 +90,8 @@ end
 def destroy
 	@flex.destroy
     flash[:danger] = "The Flex Forward calculator has been deleted"
-    redirect_to root_path
+    #redirect_to root_path
+    redirect_back(fallback_location:"/")
 end
 
 def saved

@@ -149,7 +149,8 @@ def destroy
     @user = User.find(params[:id])
     @user.destroy
     flash[:danger] = "User and user info has been deleted"
-    redirect_to users_path
+    #redirect_to users_path
+    redirect_back(fallback_location:"/")
 end
 
 
