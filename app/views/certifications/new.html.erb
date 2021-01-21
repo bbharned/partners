@@ -6,7 +6,8 @@
 <p style="font-size: .85em;">If you have questions for problems, please <%= link_to "contact us", "mailto:certification@thinmanager.com" %>.</p>
 <br /><br />
 
-<div class="col-lg-8 offset-lg-2">
+<div class="row">
+<div class="col-lg-8">
 
 
 	<%= form_for(@certification, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -20,11 +21,16 @@
 		                
 		                 <div class="row">
 		                 	<div class="form-group">
+								
 								<div class="col-md-12" style="margin-bottom: 40px;">
 			                 		<h4>Question 1</h4>
 			                 	</div>
+			                 	
+			                 
+
 		                 		<div class="col-md-12">
 			                 		<%= f.label @q1 %>
+			                 		<p>This is going to be a long sentence or question to see how it works with the spacing and column length.</p>
 							 	</div>
 							 
 			                 	<div class="col-md-12">
@@ -62,7 +68,8 @@
 								</div>
 							</div>
 		                </div>
-
+		                <br /><br />
+		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
 				</div>
 			</div>
 	  
@@ -265,6 +272,28 @@
 
 </div>
 
+
+
+
+<div class="col-lg-4 quiz-resources" style="border-radius:20px; background-color: #f1f1f1; padding: 25px;">
+	
+	<h4 align="center">Quick Help</h4>
+	<ul class="resource-list">
+		<h6>Licensing</h6>
+		<li><%= link_to "Licensing and ThinManager", "#" %></li>
+		<li><%= link_to "License Types and Activation", "#" %></li>
+		<h6>Relevance</h6>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div> 
+
+
+
+
+
+</div>
 
 <script>
 (function(){

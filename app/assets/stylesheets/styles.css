@@ -656,9 +656,20 @@ Very Light Blue: #e9f7fb;
 }
 .resource-subtitle {
     font-size: .75em; text-align: center; padding: 3px 0px;
-    margin-bottom: 10px; background-color: #f1f1f1;
+    margin-bottom: 10px; background-color: #f1f1f1; margin-top: -15px;
 }
-
+.resource-list {
+    list-style: none; text-align: center; 
+    padding-left:0px;
+}
+.resource-list li {
+    padding-left: 0px !important; margin-left: 0px !important;
+    padding-top: 7px; padding-bottom: 7px;   
+}
+.resource-list h6 {
+    padding: 7px 0px; background-color: #d1d1d1; color:#666666;
+    margin-bottom: 0px; margin-top: 10px;
+}
 
 
 
@@ -764,6 +775,7 @@ Very Light Blue: #e9f7fb;
     .sub-section-divider {
         margin: auto; margin-top:100px; 
     }
+    .quiz-resources {margin-top: 45px;}
 }
 
 @media screen and (max-width:767px) {
