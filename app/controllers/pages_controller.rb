@@ -46,6 +46,7 @@ def dashboard
 end 
 
 
+
 def pricing
 	@channel = @current_user.channel
 	respond_to do |format| 

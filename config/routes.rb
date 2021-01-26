@@ -29,6 +29,7 @@ resources :flexforwards
 resources :certifications
 get 'certification/instruction', to: 'certifications#instruction'
 
+
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
 get 'flexforward/totals', to: 'flexforwards#totals'
