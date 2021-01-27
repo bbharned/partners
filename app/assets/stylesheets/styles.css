@@ -670,6 +670,9 @@ Very Light Blue: #e9f7fb;
     padding: 7px 0px; background-color: #d1d1d1; color:#666666;
     margin-bottom: 0px; margin-top: 10px;
 }
+.further-info-card {
+    padding:25px; margin-top: 20px; border:none;
+}
 
 
 
