@@ -48,6 +48,12 @@ def create
 	@answer2 = params[:answer2]
 	@answer3 = params[:answer3]
 	@answer4 = params[:answer4]
+	@answer5 = params[:answer5]
+	@answer6 = params[:answer6]
+	@answer7 = params[:answer7]
+	@answer8 = params[:answer8]
+	@answer9 = params[:answer9]
+	@answer10 = params[:answer10]
 
 	@score = 0
 
@@ -63,11 +69,29 @@ def create
 	if @questions[3].answer == @answer4
 		@score += 1
 	end
+	if @questions[4].answer == @answer5
+		@score += 1
+	end
+	if @questions[5].answer == @answer6
+		@score += 1
+	end
+	if @questions[6].answer == @answer7
+		@score += 1
+	end
+	if @questions[7].answer == @answer8
+		@score += 1
+	end
+	if @questions[8].answer == @answer9
+		@score += 1
+	end
+	if @questions[9].answer == @answer10
+		@score += 1
+	end
 
 
 
 
-	if @score >= 3
+	if @score >= 7
 		@user = current_user
 		@cert = Certification.new(user_id: @user.id, name: "FY21", version: 11.2, date_earned: Date.today, exp_date: Date.today+730)
 		@user.certdate = @cert.date_earned
@@ -171,19 +195,37 @@ def make_quiz
 	@q2 = "What color are bananas?"
 	@q3 = "What color are oranges?"
 	@q4 = "What color is an eggplant?"
+	@q5 = "What color is an eggplant?"
+	@q6 = "What color is an eggplant?"
+	@q7 = "What color is an eggplant?"
+	@q8 = "What color is an eggplant?"
+	@q9 = "What color is an eggplant?"
+	@q10 = "What color is an eggplant?"
 	
 	#Quiz Answers
 	@a1 = "Red"
 	@a2 = "Yellow"
 	@a3 = "Orange"
 	@a4 = "Purple"
+	@a5 = "Purple"
+	@a6 = "Purple"
+	@a7 = "Purple"
+	@a8 = "Purple"
+	@a9 = "Purple"
+	@a10 = "Purple"
 
 	#Quiz Array of questions
 	@questions = [
 	     Question.new(@q1, @a1),
 	     Question.new(@q2, @a2),
 	     Question.new(@q3, @a3),
-	     Question.new(@q4, @a4)
+	     Question.new(@q4, @a4),
+	     Question.new(@q5, @a5),
+	     Question.new(@q6, @a6),
+	     Question.new(@q7, @a7),
+	     Question.new(@q8, @a8),
+	     Question.new(@q9, @a9),
+	     Question.new(@q10, @a10)
 	]
 
 	@count = @questions.count
