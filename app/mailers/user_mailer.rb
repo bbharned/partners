@@ -15,7 +15,8 @@ class UserMailer < ApplicationMailer
 
 
 
-  def cert_notice(user)
+  def cert_notice(user) #remove (user) for preview
+    #@user = User.find(15) #for preview at http://localhost:3000/rails/mailers/user_mailer/cert_notice
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,

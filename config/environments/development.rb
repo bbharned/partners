@@ -30,8 +30,6 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
-
-
   #config.action_controller.raise_on_unfiltered_parameters = true
   config.read_encrypted_secrets = true
 
