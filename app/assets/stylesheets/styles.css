@@ -680,6 +680,72 @@ Very Light Blue: #e9f7fb;
 
 
 
+
+/*************************** My Cert Page ****************************/
+.cert-print-button {
+    text-align: right;
+}
+#printable-certification {
+    width:100%; min-width: 530px;
+    background-image: url("https://thinmanager.com/partner-resources/certificateBG.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-bottom: 100px;
+    position: relative;
+}
+#printable-certification img {width:100%;}
+.certs-wording {
+    position: relative; text-align: center; top:-450px; 
+}
+.certs-name {
+    font-size: 3em;
+}
+.certs-p {margin-bottom: 0px;}
+.finer-print {font-size:.8em;}
+
+@media screen and (max-width:1200px) {
+    .certs-wording {
+        top:-380px; 
+    }
+    .certs-name {
+        font-size: 2.5em;
+    }
+}
+@media screen and (max-width:992px) {
+    .certs-wording {
+        top:-280px; 
+    }
+    .certs-name {
+        font-size: 2.2em; margin-bottom: 5px;
+    }
+    .certs-p {font-size:.8em;}
+    .finer-print {font-size:.65em;}
+}
+@media screen and (max-width:767px) {
+    .certs-wording {
+        top:-220px; 
+    }
+    .certs-name {
+        font-size: 1.5em; margin-bottom: 5px;
+    }
+    .certs-p {font-size:.6em;}
+    .finer-print {font-size:.35em;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /************************ Footer Specific CSS *************************/
 #footer {
     width:100%; background-color:#323232;    border-top:thin solid #5C5C5C;
@@ -881,6 +947,9 @@ Very Light Blue: #e9f7fb;
         margin: auto; margin-top:100px; 
     }
     .quiz-resources {margin-top: 45px;}
+    .cert-print-button, .cert-page-headline {
+        text-align: center;;
+    }
 }
 
 @media screen and (max-width:767px) {

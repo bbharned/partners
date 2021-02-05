@@ -44,9 +44,14 @@
 			<% end %>
 		</div>
 	</div>
-
-
 	
+	<% if @current_user.admin || (@current_user.certexpire != nil && @current_user.certexpire > Date.today) %>
+		<div class="row cert-get-button">
+			<div class="col-md-12">
+				<%= link_to "View Certificate", mycert_path, class: "btn btn-info" %>
+			</div>
+		</div>
+	<% end %>
 	
 	<hr />
 	

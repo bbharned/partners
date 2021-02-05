@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert]
 	before_action :can_see_pricing, only: [:pricing]
+    before_action :can_print_cert, only: [:mycert]
     
 
 def new_dl
@@ -76,7 +77,12 @@ def flexforward
     end 
 end
 
-
+def mycert
+    @user = @current_user
+    respond_to do |format| 
+      format.html { render "mycert" } 
+    end 
+end
 
 
 
@@ -98,6 +104,16 @@ def can_see_pricing
 		flash[:danger] = "You do not have permission to view this page."
 		redirect_to root_path
 	end
+end
+
+
+def can_print_cert
+    if @current_user.admin? || (@current_user.certifications.any? && @current_user.certifications.last.exp_date > Date.today) || (@current_user.certexpire != nil && @current_user.certexpire > Date.today)
+
+    else
+        flash[:danger] = "You do not have permission to view this page."
+        redirect_to root_path
+    end
 end
 
 

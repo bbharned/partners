@@ -1,0 +1,53 @@
+<style>
+@media print {
+	.cert-print-button, .cert-page-headline, #footer,
+	.ra-top-bar, .main-nav, .hr, #disclaimer {
+		display:none;
+	}
+	#printable-certification {
+		margin-bottom: 0px;
+	}
+	@page {size:landscape;}
+	.certs-wording {
+	    top:-400px; 
+	}
+	.certs-name {
+	    font-size: 3em;
+	}
+	.certs-p {margin-bottom: 0px;}
+	.finer-print {font-size:.8em;}
+}
+</style>
+
+<div class="container">
+<div class="row">
+	<div class="col-md-10">
+		<h1 class="cert-page-headline">ThinManager Certificate</h1>
+	</div>
+	<div class="col-md-2 cert-print-button">
+		<%= link_to "Print", "#", class: "btn btn-info btn-md", id: "print", style: "margin-top:4px;" %>
+	</div>
+</div>
+<hr class="hr" />
+
+<div id="printable-certification">
+	<img src="https://thinmanager.com/partner-resources/certificateBG.jpg" style="visibility: hidden;" />
+
+
+	<div class="certs-wording">
+		<h4 class="certs-name"><%= @user.firstname %> <%= @user.lastname %></h4>
+		<p class="certs-p">HAS COMPLETED THE THINMANAGER TRAINING ON</p>
+		<p class="certs-p" style="font-weight:bold;"><%= @user.certdate %></p>
+		<p class="certs-p finer-print">System Integrator &nbsp;|&nbsp; <%=  @user.email %></p>
+	</div>
+</div>
+
+</div>
+
+
+<script>
+	$("#print").click(function() {
+        print();
+        return false;
+    });
+</script>

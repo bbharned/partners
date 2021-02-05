@@ -23,6 +23,7 @@ post 'download', to: 'pages#new_dl'
 get 'calculators', to: 'calculators#index'
 post 'calculators', to: 'pages#new_calc'
 get 'flex', to: 'pages#flexforward'
+get 'mycert', to: 'pages#mycert'
 
 resources :currencies
 resources :flexforwards
