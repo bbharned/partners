@@ -16,556 +16,310 @@
 	  
 
 
-	  		<div class="question-one">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 1</h4>
-			                 	</div>
-			                 	
-			                 	<div class="col-md-12">
-			                 		<%= f.label @q1 %>
-			                 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer1, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer1, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer1, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer1, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer1, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+	  		<div class="question question-one">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 1</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q1 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers1.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer1, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer1, "unanswered", class: "form-control form-check-input") %>
+					</div>
 				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
+			</div>
+
+
+
+
+
+			<div class="question question-two" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 2</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q2 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers2.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer2, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
+							</div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer2, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
 			</div>
 	  
 
 
-
-
-
-	
-	  		<div class="question-two" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 2</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q2 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer2, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer2, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer2, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer2, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer2, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+			<div class="question question-three" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 3</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q3 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers3.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer3, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Relevance</div>
-		        </div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer3, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: New Features</div>
 			</div>
-	     
+
+
+
+	     	<div class="question question-four" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 4</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q4 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers4.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer4, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
+							</div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer4, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: New Features</div>
+			</div>
 	  		
 
-
+			<div class="question question-five" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 5</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q5 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers5.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer5, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
+							</div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer5, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: New Features</div>
+			</div>
 
 	
-	  		<div class="question-three" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 3</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q3 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer3, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer3, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer3, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer3, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer3, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+	  		<div class="question question-six" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 6</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q6 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers6.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer6, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: New Features</div>
-		        </div>
-			</div>
-	
-
-
-
-
-	
-	  		<div class="question-four" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 4</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q4 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer4, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer4, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer4, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer4, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer4, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
-							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
-			</div>
-	
-
-			<div class="question-five" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 5</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q5 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer5, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer5, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer5, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer5, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer5, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
-							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer6, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: ThinManager</div>
 			</div>
 
 
-			<div class="question-six" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 6</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q6 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer6, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer6, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer6, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer6, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer6, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+			<div class="question question-seven" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 7</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q7 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers7.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer7, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer7, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: ThinManager</div>
+			</div>
+
+
+			<div class="question question-eight" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 8</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q8 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers8.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer8, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
+							</div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer8, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: ThinManager</div>
 			</div>
 
 
 
-			<div class="question-seven" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 7</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q7 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer7, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer7, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer7, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer7, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer7, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+			<div class="question question-nine" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 9</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q9 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers9.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer9, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer9, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: ThinManager</div>
 			</div>
 
 
-
-			<div class="question-eight" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 8</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q8 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer8, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer8, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer8, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer8, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer8, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
+			<div class="question question-ten" style="display:none;">
+		  		<div class="row">
+		  			<div class="col-md-12">
+	             		<h4>Question 10</h4>
+	             	</div>
+	            </div>
+				<div class="col-md-12" style="margin-bottom: 20px; font-size: 1.2em;">
+             		<span class="text-capitalize"><%= f.label @q10 %></span>
+             	</div>
+             	<div class="form-group answers-grid">
+		  			<% @answers10.each do | answer | %>
+	  					<div class="row">
+	  						<div class="form-inline">
+		  						<div class="form-check">
+					                <%= radio_button_tag(:answer10, answer, class: "form-control") %>
+				                	<%= f.label answer, class: "form-check-label" %>
+						        </div>
 							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
+			  			</div>
+			  		<% end %>
+	  			</div>
+		  		<div class="col-md-12" style="display:none;">
+				 	<div class="form-check">
+				 		<%= radio_button_tag(:answer10, "unanswered", class: "form-control form-check-input") %>
+					</div>
+				</div>
+				<div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: ThinManager</div>
 			</div>
-
-
-
-
-			<div class="question-nine" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 9</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q9 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer9, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer9, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer9, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer9, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer9, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
-							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
-			</div>
-
-
-
-
-			<div class="question-ten" style="display:none;">
-		  		<div class="form-group">
-		                
-		                 <div class="row">
-		                 	<div class="form-group">
-								<div class="col-md-12" style="margin-bottom: 40px;">
-			                 		<h4>Question 10</h4>
-			                 	</div>
-		                 		<div class="col-md-12">
-			                 		<%= f.label @q10 %>
-							 	</div>
-							 
-			                 	<div class="col-md-12">
-				                	<div class="form-check">
-					                    <%= radio_button_tag(:answer10, "Red", class: "form-control form-check-input") %>
-										<%= f.label "Red", class: "form-check-label" %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer10, "Yellow", class: "form-control form-check-input") %>
-										<%= f.label "Yellow", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer10, "Orange", class: "form-control form-check-input") %>
-										<%= f.label "Orange", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer10, "Purple", class: "form-control form-check-input") %>
-										<%= f.label "Purple", class: "form-check-label"  %>
-									</div>
-								</div>
-
-								<div class="col-md-12" style="display:none;">
-								 	<div class="form-check">
-										<%= radio_button_tag(:answer10, "unanswered", class: "form-control form-check-input") %>
-									</div>
-								</div>
-							</div>
-		                </div>
-		                 <br /><br />
-		                <div class="card-footer" align="right" style="background-color: inherit; color:#999999;">Topic: Licensing</div>
-		        </div>
-			</div>
-
 
 
 	</div>
@@ -610,6 +364,7 @@
 <div class="col-lg-4 quiz-resources" style="border-radius:20px; background-color: #f1f1f1; padding: 25px;">
 	
 	<h4 align="center">Quick Help</h4>
+
 	<ul class="resource-list">
 		<h6>Licensing</h6>
 		<li><%= link_to "Licensing and ThinManager", "#" %></li>

@@ -644,8 +644,27 @@ Very Light Blue: #e9f7fb;
     text-align: center; padding-top:15%; text-shadow: 1px 1px 1px #999999;
 }
 .quiz-card {
-    padding: 30px; margin-bottom: 40px;
+    padding: 20px; margin-bottom: 40px; display:block;
 }
+.form-inline {
+    margin-bottom: 20px;
+}
+.form-inline input[type=radio]{
+   min-width:1em !important; min-height: 1em !important; 
+   margin-right: 12px !important;
+}
+.form-inline input[type=radio]:nth-child(odd) {
+    /*width:1em !important; height: 1em !important;*/
+}
+.question h4 {margin-bottom:40px;}
+.quiz-card .form-check-label {
+    line-height: 1em; display:relative; z-index: 75;
+}
+.question .form-inline:nth-child(even) .form-check-label {
+    margin-left:0px;
+}
+.answers-grid {margin-left: 5%;}
+.question .card-footer {margin-top: 25px;}
 .quiz-nav #previous-q,
 .quiz-nav #next-q {cursor: pointer;}
 .disappear {

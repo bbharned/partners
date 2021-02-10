@@ -191,11 +191,11 @@ end
 
 def make_quiz
 	#Quiz Questions
-	@q1 = "What is a standard color for an apple?"
-	@q2 = "What color are bananas?"
-	@q3 = "What color are oranges?"
-	@q4 = "What color is an eggplant?"
-	@q5 = "What color is an eggplant?"
+	@q1 = "How does ThinManager define Redundancy?"
+	@q2 = "How does ThinManager define Failover?"
+	@q3 = "What does the database password do?"
+	@q4 = "How do you set portrait mode?"
+	@q5 = "Where do you get Container Host?"
 	@q6 = "What color is an eggplant?"
 	@q7 = "What color is an eggplant?"
 	@q8 = "What color is an eggplant?"
@@ -203,16 +203,46 @@ def make_quiz
 	@q10 = "What color is an eggplant?"
 	
 	#Quiz Answers
-	@a1 = "Red"
-	@a2 = "Yellow"
-	@a3 = "Orange"
-	@a4 = "Purple"
-	@a5 = "Purple"
+	@a1 = "Redundancy is a synchronized pair of ThinManager Servers that allows a thin client to boot and receive a configuration from either ThinManager Server."
+	@a1_2 = "Redundancy is using multiple Remote Desktop Servers so that a thin client can run on a backup if the primary remote desktop server fails."
+	@a1_3 = "Redundancy is using one server as both the ThinManager Server and Remote Desktop Server."
+	@a1_4 = "Redundancy is running on multiple networks at the same time."
+	@a2 = "Failover is using multiple Remote Desktop Servers so that a thin client can run on a backup if the primary remote desktop server fails."
+	@a2_2 = "Failover is a synchronized pair of ThinManager Servers that allows a thin client to boot and receive a configuration from either ThinManager Server."
+	@a2_3 = "Failover is using one server as both the ThinManager Server and Remote Desktop Server."
+	@a2_4 = "Failover is running on multiple networks at the same time."
+	@a3 = "The database password acts as a variable key in the encryption."
+	@a3_2 = "Not The Answer"
+	@a3_3 = "Not The Answer"
+	@a3_4 = "Not The Answer"
+	@a4 = "On the Video page of the Terminal Configuration Wizard"
+	@a4_2 = "With the Portrait Mode Module"
+	@a4_3 = "ThinManager does not support Portrait Mode"
+	@a4_4 = "In the Group Policy as Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Video>Portrait Mode = Enabled"
+	@a5 = "The Container Host is a component of Microsoft Server 2016 and later and can be installed using the PowerShell"
+	@a5_2 = "The Container Host is purchased from Staples"
+	@a5_3 = "The Container Host is downloaded from ThinManager"
+	@a5_4 = "The Container Host is purchased from Rockwell Automation"
 	@a6 = "Purple"
+	@a6_2 = "Not The Answer"
+	@a6_3 = "Not The Answer"
+	@a6_4 = "Not The Answer"
 	@a7 = "Purple"
+	@a7_2 = "Not The Answer"
+	@a7_3 = "Not The Answer"
+	@a7_4 = "Not The Answer"
 	@a8 = "Purple"
+	@a8_2 = "Not The Answer"
+	@a8_3 = "Not The Answer"
+	@a8_4 = "Not The Answer"
 	@a9 = "Purple"
+	@a9_2 = "Not The Answer"
+	@a9_3 = "Not The Answer"
+	@a9_4 = "Not The Answer"
 	@a10 = "Purple"
+	@a10_2 = "ANot The Answer"
+	@a10_3 = "ANot The Answer"
+	@a10_4 = "Not The Answer"
 
 	#Quiz Array of questions
 	@questions = [
@@ -227,6 +257,17 @@ def make_quiz
 	     Question.new(@q9, @a9),
 	     Question.new(@q10, @a10)
 	]
+
+	@answers1 = [@a1, @a1_2, @a1_3, @a1_4].shuffle
+	@answers2 = [@a2, @a2_2, @a2_3, @a2_4].shuffle
+	@answers3 = [@a3, @a3_2, @a3_3, @a3_4].shuffle
+	@answers4 = [@a4, @a4_2, @a4_3, @a4_4].shuffle
+	@answers5 = [@a5, @a5_2, @a5_3, @a5_4].shuffle
+	@answers6 = [@a6, @a6_2, @a6_3, @a6_4].shuffle
+	@answers7 = [@a7, @a7_2, @a7_3, @a7_4].shuffle
+	@answers8 = [@a8, @a8_2, @a8_3, @a8_4].shuffle
+	@answers9 = [@a9, @a9_2, @a9_3, @a9_4].shuffle
+	@answers10 = [@a10, @a10_2, @a10_3, @a10_4].shuffle
 
 	@count = @questions.count
 end
