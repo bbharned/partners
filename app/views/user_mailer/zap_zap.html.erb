@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    
+    <p>Firstname: <%= @user.firstname %></p> 
+
+    <p>Lastname: <%= @user.lastname %></p>
+
+    <p>Email: <%= @user.email %></p>
+
+    <p>Company: <%= @user.company %></p>
+
+    <p>Date Earned: <%= @user.certifications.last.date_earned %></p>
+    
+    <p>Date Expires: <%= @user.certifications.last.exp_date %></p>
+      
+  </body>
+</html>

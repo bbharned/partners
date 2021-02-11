@@ -46,8 +46,13 @@ end
     end
 
 # Sends cert notification email.
-    def send_notice_certification
-        UserMailer.cert_notice(self).deliver_now
+    def send_notice_certification(score, wrongs)
+        UserMailer.cert_notice(self, score, wrongs).deliver_now
+    end
+
+# Sends cert notification email.
+    def send_zap
+        UserMailer.zap_zap(self).deliver_now
     end
 
 

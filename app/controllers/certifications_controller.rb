@@ -55,37 +55,67 @@ def create
 	@answer9 = params[:answer9]
 	@answer10 = params[:answer10]
 
+	@wrongs = []
 	@score = 0
 
 	if @questions[0].answer == @answer1
 		@score += 1
+	else 
+		@wrongs.append(1)
 	end
+	
 	if @questions[1].answer == @answer2
 		@score += 1
+	else
+		@wrongs.append(2)
 	end
+	
 	if @questions[2].answer == @answer3
 		@score += 1
+	else
+		@wrongs.append(3)
 	end
+	
 	if @questions[3].answer == @answer4
 		@score += 1
+	else
+		@wrongs.append(4)
 	end
+
 	if @questions[4].answer == @answer5
 		@score += 1
+	else
+		@wrongs.append(5)
 	end
+
 	if @questions[5].answer == @answer6
 		@score += 1
+	else
+		@wrongs.append(6)
 	end
+
 	if @questions[6].answer == @answer7
 		@score += 1
+	else
+		@wrongs.append(7)
 	end
+
 	if @questions[7].answer == @answer8
 		@score += 1
+	else
+		@wrongs.append(8)
 	end
+
 	if @questions[8].answer == @answer9
 		@score += 1
+	else
+		@wrongs.append(9)
 	end
+
 	if @questions[9].answer == @answer10
 		@score += 1
+	else
+		@wrongs.append(10)
 	end
 
 
@@ -106,7 +136,8 @@ def create
 	        please contact us at certification@thinmanager.com."
 	        
 	        if @user.save
-	        	@current_user.send_notice_certification #sends email to Bryan, Paul and Tom
+	        	@current_user.send_notice_certification(@score, @wrongs) #sends email to Bryan, Paul and Tom
+	        	#@current_user.send_zap
 	        else
 	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
@@ -128,8 +159,8 @@ def create
 		
 	else #didn't pass.
 
-		flash[:danger] = "That didn't go so well did it? You only got #{@score} right out of #{@count}"
-	
+		flash[:danger] = "That didn't go so well did it? You only got #{@score} right out of #{@count}. You Missed Questions #{@wrongs}"
+		
 	end
 
 	redirect_to root_path

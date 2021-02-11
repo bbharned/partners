@@ -17,7 +17,8 @@
       <%= @user.silevel %><br />
       <%= @user.email %>
     </p>
-
+    <p>Score: <%= @score %> / 10</p>
+    <p>Questions Missed: <%= @wrongs %></p>
 <br />  
 
       <% if @user.certifications.count != 0 %>
