@@ -41,7 +41,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'y2odhwtw@robot.zapier.com', from: 'ThinManager Partner Portal', subject: 'Recertification', delivery_method_options: delivery_options)
+    mail(to: 'lcu069c2@robot.zapier.com', from: 'ThinManager Partner Portal', subject: 'Recertification', delivery_method_options: delivery_options)
   end
 
 
