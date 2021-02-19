@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px;">
+      <img src="https://thinmanager.com/images/email_headers/cert_complete_header.png" width="100%" alt="Recertification Complete" />
+
+      <div style="padding:25px;">
+        <h1 align="center" style="margin-bottom:50px;">Thank You and Congratulations</h1>
+        <p>Dear <%= @user.firstname %></p>
+
+        <p>We are so pleased that you have taken the time to renew your ThinManager certification. Read on to take advantage of your new partnership benefits!</p>
+        
+        
+
+        <h3 style="margin-bottom: 0px;">Get Listed on ThinManager</h3>
+        
+        <p style="margin-top:5px;">One benefit of your System Integrator/OEM Partner certification is a listing on our web site at thinmanager.com. To be listed, please visit the following link https://thinmanager.com/weblisting and enter the requested information into the noted fields. Please include your company logo as well.</p>
+
+
+
+        <h3 style="margin-bottom: 0px;">Choose a ThinManager Lab License</h3>
+        
+        <p style="margin-top:5px;">
+          Another benefit of your System Integrator/OEM certification is the use of an annual ThinManager software 10-pack lab license. We have two methods of delivering your ThinManager license. You may choose the traditional ThinManager Activation license or you can opt for the new FactoryTalk Activation of the ThinManager license. 
+        </p>
+
+        <p>When you visit <%= link_to "https://thinmanager.com/weblisting", "https://thinmanager.com/weblisting", target: "_blank" %> you will also be asked which type of ThinManager license method, ThinManager Activation (TMA) or FactoryTalk Activation (FTA), you would prefer. Remember, you won’t receive your lab license until you visit the link and select the license type you prefer. You can also receive temporary project licenses, as needed, for the development of customer projects. Please contact  <%= link_to "certification@thinmanager.com", "mailto:certification@thinmanager.com", target: "_blank" %> to request a project license.</p>
+
+
+
+        <h3 style="margin-bottom: 0px;">Certificate and Resources</h3>
+        
+        <p style="margin-top:5px;">In the <%= link_to "Partner Portal", "https://partners.thinmanager.com", target: "_blank" %>, where you recertified, you can find additional resources for promoting your certification and partnership with ThinManager. From the main dashboard you can view and print your ThinManager certificate. You can also download the Authorized ThinManager Partner logo for use in your email signature, marketing or webpage. The Partner Portal is a great place to find documentation, presentations, or even download the latest version of ThinManager.</p>
+        
+        
+        <p>Congratulations again!</p>
+        <br />
+        <h3>Tom Jordan</h3>
+        <p style="margin-top: -20px;">Marketing Lead<br />
+        <a href="mailto:tjordan@thinmanager.com">tjordan@thinmanager.com</a></p>
+        <br /><br />
+      </div>
+    </div>
+      
+  </body>
+</html>

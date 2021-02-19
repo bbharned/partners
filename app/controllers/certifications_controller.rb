@@ -138,6 +138,7 @@ def create
 	        if @user.save
 	        	@current_user.send_notice_certification(@score, @wrongs) #sends email to Bryan, Paul and Tom
 	        	@current_user.send_zap
+	        	@current_user.send_cert_conf
 	        else
 	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
@@ -226,9 +227,9 @@ def make_quiz
 	@q2 = "How does ThinManager define Failover?" #Licensing
 	@q3 = "What does the database password do?" #New Features
 	@q4 = "How do you set portrait mode?" #New Features
-	@q5 = "What happens when the ThinServer stops?"
-	@q6 = "How do you set a static IP on a PXE boot thin client?"
-	@q7 = "Where do you get a Container Host?"
+	@q5 = "What happens when the ThinServer stops?" #General
+	@q6 = "How do you set a static IP on a PXE boot thin client?" #General
+	@q7 = "Where do you get a Container Host?" #New Features
 	@q8 = "Answer Security"
 	@q9 = "Answer Security"
 	@q10 = "Answer Support"

@@ -118,8 +118,16 @@ end
 
 def show
      @user_certs = Certification.where(user_id: @user.id)   
+
+     # def send_cert_conf(user)  # --->  <a href="#" onClick="<%= @user.send_cert_conf() %>">send recert email</a>
+     #    user = User.find(1)
+     #    user.send_cert_conf
+     # end
 end
 
+def send_cert_conf(user)
+    user.send_cert_conf
+end
 
 def create
     @user = User.new(user_params)

@@ -55,6 +55,10 @@ end
         UserMailer.zap_zap(self).deliver_now
     end
 
+    def send_cert_conf
+        UserMailer.cert_complete(self).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)

@@ -15,8 +15,10 @@ class UserMailer < ApplicationMailer
 
 
 
-  def cert_notice(user, score, wrongs) #remove (user) for preview
-    #@user = User.find(15) #for preview at http://localhost:3000/rails/mailers/user_mailer/cert_notice
+  def cert_notice(user, score, wrongs) #remove (user, score, wrongs) for preview
+    # @user = User.find(15) #for preview at http://localhost:3000/rails/mailers/user_mailer/cert_notice
+    # @score = 8
+    # @wromgs = [2,4]
     @score = score
     @user = user
     @wrongs = wrongs
@@ -27,7 +29,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'bbharned@gmail.com', from: 'ThinManager Partner Portal', subject: 'SI Certification Notice', delivery_method_options: delivery_options)
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'SI Certification Notice', delivery_method_options: delivery_options)
   end
 
 
@@ -45,6 +47,18 @@ class UserMailer < ApplicationMailer
   end
 
 
+  def cert_complete(user) #remove (user) for preview
+    # @user = User.find(15) #make user for production
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: 'bharned@thinmanager.com',
+                         password: password,
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Partner Portal', subject: 'Congratulations on Recertification', delivery_method_options: delivery_options)
+  end
   
 private
     def password
