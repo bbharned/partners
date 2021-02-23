@@ -64,6 +64,8 @@
 		</div>
 	</div>
 
+	
+
 	<% if @user_certs.any? %>
 		<h4 align="center" style="margin-top: 55px;">SI Recertifications</h4>
 		<div class="col bold" style="margin-bottom:10px; margin-top: 30px;">
@@ -95,7 +97,7 @@
 					<%= cert.exp_date %>
 				</div>
 				<div class="col-md-1">
-					<%= link_to "Edit", edit_certification_path(cert), style: "/93float:right;" %>
+					<%= link_to "Edit", edit_certification_path(cert), style: "float:right;" %>
 				</div>
 				<div class="col-md-1">
 					<%= link_to "Delete", certification_path(cert), method: :delete, data: {confirm: "Are you sure you want to delete this SI Certification?"}, style: "color:red; float:right;" %>

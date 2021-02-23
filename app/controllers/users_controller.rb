@@ -117,10 +117,9 @@ end
 
 
 def show
-     @user_certs = Certification.where(user_id: @user.id)   
+     @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
 
-     # def send_cert_conf(user)  # --->  <a href="#" onClick="<%= @user.send_cert_conf() %>">send recert email</a>
-     #    user = User.find(1)
+     # def send_cert_conf(user)  # --->  <a onClick="<%= @user.send_cert_conf() %>"></a>
      #    user.send_cert_conf
      # end
 end

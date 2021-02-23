@@ -136,9 +136,9 @@ def create
 	        please contact us at certification@thinmanager.com."
 	        
 	        if @user.save
-	        	@current_user.send_notice_certification(@score, @wrongs) #sends email to Bryan, Paul and Tom
-	        	@current_user.send_zap
-	        	@current_user.send_cert_conf
+	        	@current_user.send_notice_certification(@score, @wrongs) 	#sends email to Bryan, Paul and Tom
+	        	@current_user.send_zap 		#sends to hubspot through Zapier
+	        	@current_user.send_cert_conf 	#sends to partner
 	        else
 	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
