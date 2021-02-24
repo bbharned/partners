@@ -28,13 +28,17 @@ def new
 	if @user.prttype != "Integrator" && !@user.admin?
 		flash[:warning] = "It looks like you don't need to be certified. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
 		redirect_to root_path
-
+	elsif !@user_certs.any? && @user.certexpire == nil && !@user.admin?
+		flash[:warning] = "This is very odd. You have no expiration of certification but are in the application anyway. Please contact us at certification@thinmanager.com."
+		redirect_to root_path
 	elsif !@user_certs.any?
-
+		if @user.certexpire != nil && @user.certexpire > Date.today + 180 #six months 
+			flash[:warning] = "It looks like you don't need to be certified. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
+			redirect_to root_path
+		end
 	elsif (@user_certs.any? && (@user_certs.last.date_earned  > Date.today - 364)) || (@user.certexpire > Date.today + 364)
 		flash[:warning] = "It looks like you don't need to be certified at this time. Please check back within a year of your expiration date. If you have questions or think this is incorrect, please contact us at certification@thinmanager.com."
 		redirect_to root_path
-
 	end
 
 end
