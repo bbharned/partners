@@ -10,6 +10,8 @@
 <hr />
 <%= render 'user_filters' %>
 
+<%= render'search' %>
+
 <br />
 	<div class="paginate">
 		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>

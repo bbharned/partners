@@ -1,0 +1,14 @@
+
+
+<div class="row user-search-box">
+	<div class="col-md-4 offset-md-4">
+		<%= form_tag(user_search_path, :mehtod => "get") do %>
+			<div class="input-group">
+				<%= search_field_tag :search, params[:search], placeholder: "search partners", class: "form-control" %>
+				<div class="input-group-btn">
+					<%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search', :sort => :lastname %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

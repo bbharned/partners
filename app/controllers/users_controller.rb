@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search]
 
 
 def index
@@ -13,6 +13,16 @@ def index
       format.html { render "index" }
       format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
     end
+end
+
+def search
+  if params[:search].blank?
+    redirect_to users_path and return
+  else
+    @parameter = params[:search].downcase
+    @sort = [params[:sort]]
+    @users = User.where("lower(firstname || lastname || company || email || prttype || channel || silevel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(@sort)
+  end
 end
 
 def company
