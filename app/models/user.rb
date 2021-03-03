@@ -20,9 +20,9 @@ class User < ApplicationRecord
     has_secure_password
 
 
-def self.search(search)
-    where("lower(lastname) LIKE :search", search: "%#{search.downcase}%").uniq
-end
+# def self.search(search)
+#     where("lower(lastname) LIKE :search", search: "%#{search.downcase}%").uniq
+# end
 
 def self.to_csv
       attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}

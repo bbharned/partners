@@ -23,6 +23,11 @@ def search
     @sort = [params[:sort]]
     @users = User.where("lower(firstname || lastname || company || email || prttype || channel || silevel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(@sort)
   end
+
+  respond_to do |format|
+      format.html { render "search" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_SearchedUsers-#{Date.today}.csv" }
+  end
 end
 
 def company
