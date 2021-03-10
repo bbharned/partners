@@ -125,7 +125,7 @@ def create
 
 
 
-	if @score >= 7
+	if @score >= 8
 		@user = current_user
 		@cert = Certification.new(user_id: @user.id, name: "FY21", version: 12.0, date_earned: Date.today, exp_date: Date.today+730)
 		@user.certdate = @cert.date_earned
@@ -141,8 +141,8 @@ def create
 	        
 	        if @user.save
 	        	@current_user.send_notice_certification(@score, @wrongs) 	#sends email to Bryan, Paul and Tom
-	        	@current_user.send_zap 		#sends to hubspot through Zapier
-	        	@current_user.send_cert_conf 	#sends to partner
+	        	#@current_user.send_zap 		#sends to hubspot through Zapier
+	        	#@current_user.send_cert_conf 	#sends to partner
 	        else
 	        	flash[:danger] = "There was a problem updating the expiration date of the new certification on the user profile.  Please contact us."
 	        end
@@ -234,9 +234,9 @@ def make_quiz
 	@q5 = "What happens when the ThinServer stops?" #General
 	@q6 = "How do you set a static IP on a PXE boot thin client?" #General
 	@q7 = "Where do you get a Container Host?" #New Features
-	@q8 = "Answer Security"
-	@q9 = "Answer Security"
-	@q10 = "Answer Support"
+	@q8 = "Relevance User Services Allows You To" #Security
+	@q9 = "You can configure a terminal to require either a password or pin for the following login methods" #Security
+	@q10 = "Where in the ThinManager interface can you access Help?" #Support
 	
 	#Quiz Answers
 	@a1 = "Redundancy is a synchronized pair of ThinManager Servers that allows a thin client to boot and receive a configuration from either ThinManager Server."
@@ -247,7 +247,7 @@ def make_quiz
 	@a2_2 = "Failover is a synchronized pair of ThinManager Servers that allows a thin client to boot and receive a configuration from either ThinManager Server."
 	@a2_3 = "Failover is using one server as both the ThinManager Server and Remote Desktop Server."
 	@a2_4 = "Failover is running on multiple networks at the same time."
-	@a3 = "The database password acts as a variable key in the encryption."
+	@a3 = "The database password acts as a variable key in the database encryption."
 	@a3_2 = "It forces authentication to save any new configuration"
 	@a3_3 = "It helps the relationship between two admin users"
 	@a3_4 = "It secures active directory synchronization"
@@ -255,7 +255,7 @@ def make_quiz
 	@a4_2 = "With the Portrait Mode Module"
 	@a4_3 = "ThinManager does not support Portrait Mode"
 	@a4_4 = "In the Group Policy as Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Video>Portrait Mode = Enabled"
-	@a5 = "The thin clients continue running with their existing configuration"
+	@a5 = "The thin clients continue running with their existing configuration until restarted"
 	@a5_2 = "The thin clients stop and need to be restarted"
 	@a5_3 = "ThinManager needs to be closed and restarted"
 	@a5_4 = "The thin clients will run with a seven day grace period"
@@ -267,18 +267,18 @@ def make_quiz
 	@a7_2 = "The container host can be downloaded for free at the ThinManager website"
 	@a7_3 = "Your personal computer is the container host"
 	@a7_4 = "The Container Store"
-	@a8 = "Security"
-	@a8_2 = "Not The Answer"
-	@a8_3 = "Not The Answer"
-	@a8_4 = "Not The Answer"
-	@a9 = "Security"
-	@a9_2 = "Not The Answer"
-	@a9_3 = "Not The Answer"
-	@a9_4 = "Not The Answer"
-	@a10 = "Support"
-	@a10_2 = "Not The Answer"
-	@a10_3 = "Not The Answer"
-	@a10_4 = "Not The Answer"
+	@a8 = "Grant or deny access to an application through permissions"
+	@a8_2 = "Have multiple users logged in at the same terminal simultaneously"
+	@a8_3 = "Have a user logged in at multiple terminals at the same time"
+	@a8_4 = "Add a mobile device"
+	@a9 = "Card/Badge Login"
+	@a9_2 = "Biometric Login"
+	@a9_3 = "Resolver Login"
+	@a9_4 = "All of the above"
+	@a10 = "In the help menu tab click help"
+	@a10_2 = "Right click on a terminal"
+	@a10_3 = "Double click the ThinServer"
+	@a10_4 = "Double click Display Clients"
 
 	#Quiz Array of questions
 	@questions = [
@@ -290,7 +290,7 @@ def make_quiz
 	     Question.new(@q6, @a6),
 	     Question.new(@q7, @a7),
 	     Question.new(@q8, @a8),
-	     Question.new(@q9, @a9),
+	     Question.new(@q9, @a9_4),
 	     Question.new(@q10, @a10)
 	]
 
@@ -302,7 +302,7 @@ def make_quiz
 	@answers6 = [@a6, @a6_2, @a6_3, @a6_4].shuffle
 	@answers7 = [@a7, @a7_2, @a7_3, @a7_4].shuffle
 	@answers8 = [@a8, @a8_2, @a8_3, @a8_4].shuffle
-	@answers9 = [@a9, @a9_2, @a9_3, @a9_4].shuffle
+	@answers9 = [@a9, @a9_2, @a9_3, @a9_4]
 	@answers10 = [@a10, @a10_2, @a10_3, @a10_4].shuffle
 
 	@count = @questions.count
