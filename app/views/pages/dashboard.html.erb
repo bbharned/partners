@@ -4,16 +4,28 @@
 <% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire < Date.today) %>
 <!-- && (@current_user.certexpire < Date.today) -->
 <br />
-<div class="row" style="text-align: center;">
+
 	<div class="col-md-8 offset-md-2">
-		<p><span class="bold">Your ThinManager Integration Certification has expired</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this is pretty simple and easy.</p>
+		<div class="well recert-alert" style="margin-bottom:15px; border: 5px solid red; background-color:#F46767;">
+			<div class="row">
+				<div class="col-md-9">
+					<p><span class="bold">Your ThinManager Integration Certification has expired</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
+				</div>
+				<div class="col-md-3">
+					<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-danger" %></div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="col-md-8 offset-md-2">
-		<%= link_to "Get Recertified", certification_instruction_path %>
-		&nbsp;&nbsp;|&nbsp;&nbsp;
-		<%= link_to "Contact Us with Questions", "mailto:info@thinmanager.com" %>
+
+
+	<div class="row">
+		<div class="col-md-8 offset-md-4">
+			<%= link_to "Get Recertified", certification_instruction_path %>
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<%= link_to "Contact Us with Questions", "mailto:info@thinmanager.com" %>
+		</div>
 	</div>
-</div>
 
 
 
@@ -70,20 +82,20 @@
 		
 			<div class="well recert-alert" style="
 				<% if @current_user.certexpire < Date.today() + 32 %>
-					background-color: #EAEA0F !important;  border: 5px solid #f0ad4e;
+					background-color: #EA604E !important;  border: 5px solid #C91C05; 
 				<% end %>
 			">
 				<div class="row">
 				<div class="col-md-9">
-					<p>Your ThinManager certification expires on <span class="bold"><%= @current_user.certexpire.strftime('%b %d, %Y') %></span>.</p>
+					<p>Your ThinManager certification expires on <span class="bold" style="font-size:1.25em;"><%= @current_user.certexpire.strftime('%B %d, %Y') %></span>.</p>
 					<p>Thank you for remaining ThinManager certified. We have developed a simpler and quicker way for you to renew your certification. Just review new release material we provide and take a quiz about ThinManager, primarily focused on the newest features, to get your certification renewed.</p>
 					<p><span class="bold">Ready to go? Click the button!</span></p>
 				</div>
 				<div class="col-md-3">
 					<% if @current_user.certexpire < Date.today() + 32 %>
-						<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-warning" %></div>
+						<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-danger" %></div>
 					<%else %>
-						<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-success" %></div>
+						<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-warning" %></div>
 					<% end %>
 				</div>
 				</div>	

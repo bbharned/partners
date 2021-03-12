@@ -179,9 +179,12 @@ button.navbar-toggler span {
 
 .recert-alert {
     margin-bottom: 45px; border-radius:10px;
-    background-color: lightgreen;
-    border: 5px solid green;
+    /*background-color: lightgreen;*/
+    /*border: 5px solid green;*/
     padding-top: 25px; padding-bottom: 25px;
+    /*background-color: #EA604E;
+    border:5px solid #C91C05;*/
+    background-color: #EAEA0F;  border: 5px solid #f0ad4e;
 }
 
 
@@ -637,7 +640,7 @@ Very Light Blue: #e9f7fb;
 
 /************************* Certification Instruction and Quiz Page ***************************/
 .well-rnd {
-    border-radius:7px;
+    border-radius:7px; margin-bottom: 15px;
 }
 .cert-vid-ppt {
     width:100%; min-height: 350px; background-color: #d1d1d1;
@@ -695,8 +698,13 @@ Very Light Blue: #e9f7fb;
 .further-info-card {
     padding:25px; margin-top: 20px; border:none;
 }
-
-
+.cert-resources {
+    display:flex; flex-direction: row; justify-content: space-around;
+    padding-right: 5%; padding-left: 5%; 
+}
+.resource {max-width:65px;}
+.resource img {width:100%;}
+.resource p {text-align: center; margin-bottom: 0; font-size:.7em; line-height: .9em; margin-top: 5px;}
 
 
 
