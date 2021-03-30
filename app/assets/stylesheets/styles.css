@@ -717,7 +717,7 @@ Very Light Blue: #e9f7fb;
 }
 #printable-certification {
     width:100%; min-width: 530px;
-    background-image: url("https://thinmanager.com/partner-resources/certificateBG.jpg");
+    background-image: url("https://thinmanager.com/partner-resources/certificateBG_21.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
     margin-bottom: 100px;
@@ -725,7 +725,7 @@ Very Light Blue: #e9f7fb;
 }
 #printable-certification img {width:100%;}
 .certs-wording {
-    position: relative; text-align: center; top:-450px; 
+    position: relative; text-align: center; top:-480px; 
 }
 .certs-name {
     font-size: 3em;
@@ -735,7 +735,7 @@ Very Light Blue: #e9f7fb;
 
 @media screen and (max-width:1200px) {
     .certs-wording {
-        top:-380px; 
+        top:-400px; 
     }
     .certs-name {
         font-size: 2.5em;
@@ -743,7 +743,7 @@ Very Light Blue: #e9f7fb;
 }
 @media screen and (max-width:992px) {
     .certs-wording {
-        top:-280px; 
+        top:-300px; 
     }
     .certs-name {
         font-size: 2.2em; margin-bottom: 5px;
@@ -753,7 +753,7 @@ Very Light Blue: #e9f7fb;
 }
 @media screen and (max-width:767px) {
     .certs-wording {
-        top:-220px; 
+        top:-235px; 
     }
     .certs-name {
         font-size: 1.5em; margin-bottom: 5px;
