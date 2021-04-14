@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery3
+//= require jquery.lightbox_me
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker

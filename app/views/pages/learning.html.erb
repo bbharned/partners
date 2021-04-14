@@ -1,0 +1,54 @@
+<div class="container">
+
+<h1 class="page-header">Welcome <%= @user.firstname %></h1>
+<hr />
+
+<p class="learn-instructions">This series of videos is designed to teach the fundamentals of ThinManager&reg;. It covers features and basic use of the software. The videos are divided in to sections as it applies to the ThinManager platform (Productivity, Visualization, Security and Mobility). Each video has a quiz that will need to be passed to receive credit for that section. Upon completion of all the videos and quizzes you will gain a ThinManager certification. Certifications are valid for a period of two years.</p>
+
+
+<div class="row">
+<div class="col-lg-7" style="margin-bottom: 20px;">
+<div class="well" style="position: relative;">
+	<div class="row">
+		<div class="col-lg-12">
+			<%= link_to "edit profile", edit_user_path(@user), class: "edit-link" %>
+			<h4><%= "#{@user.firstname} #{@user.lastname}" %></h4>
+			<h5 class="learning-dash-h5"><%= "#{@user.company}" %></h5>
+			<h5 class="learning-dash-h5"><%= "#{@user.email}" %></h5>
+			<hr/>
+			<h5 style="color:#777777;">Badges Earned <span style="font-size:.75em; font-style: italic; display:none;">(not all badges currently available)</span></h5>
+			<div class="dash-badges">	
+				
+					<div class="d-badge">
+						<%= image_tag("badge-productivity.png") %>
+					</div>
+				
+				
+					<div class="d-badge">
+						<%= image_tag("badge-visualization.png") %>
+					</div>
+				
+				
+					<div class="d-badge">
+						<%= image_tag("badge-security.png") %>
+					</div>
+				
+				
+					<div class="d-badge">
+						<%= image_tag("badge-mobility.png") %>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+</div>	
+</div>
+<div class="col-lg-5">
+	<div class="intro-video">
+	<iframe src="https://www.youtube.com/embed/wRmDlf3qs5A?rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+</div>
+<br /><br />
+
+</div>

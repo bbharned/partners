@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning]
 	before_action :can_see_pricing, only: [:pricing]
     before_action :can_print_cert, only: [:mycert]
     
@@ -46,6 +46,9 @@ def dashboard
     # end
 end 
 
+def learning
+    @user = current_user
+end
 
 
 def pricing

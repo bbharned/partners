@@ -5,7 +5,10 @@ get 'password_resets/new'
 
 get 'password_resets/edit'
 
+
 root 'pages#dashboard'
+get 'learning', to: 'pages#learning'
+
 resources :users
 get 'user/company-sorted', to: 'users#company'
 get 'user/type', to: 'users#type'
