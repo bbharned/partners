@@ -5,6 +5,17 @@
     <div class="col-sm-10 offset-sm-1">
     <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
+        <% if @current_user.admin? %>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right; font-weight:bold;">
+                        <%= f.label "Needs Review?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :needs_review %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+
+
             <div class="form-group">
                 <div class="row">
                     <div class="col">
@@ -54,13 +65,38 @@
             </div>
             <% if current_user.admin %>
                 <div class="form-group">
+                    <div class="col-sm-11 offset-sm-1">
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <h5 style="margin-top: 20px;">Account Status</h5>
+                                    <%= f.label "Active?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :active %>
+                                </div>
+                        </div>
+                    
+                    
+
                     <div class="row">
                         <div class="col">
-                            <div class="control-label col-md-12">
-                                <%= f.label "Account Active?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :active %>
-                            </div>
+                            <h5 style="margin-top: 20px;">User Type</h5>
                         </div>
                     </div>
+                    <div class="row">
+                            
+                            <div class="col-md-3">
+                                <%= f.label "Distributor?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :distributor %>
+                            </div>
+                            <div class="col-md-3">
+                                <%= f.label "Integrator?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :integrator %>
+                            </div>
+                            <div class="col-md-3">
+                                <%= f.label "End User?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :end_user %>
+                            </div>
+                            <div class="col-md-3">
+                                <%= f.label "OEM?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :oem %>
+                            </div>
+                    </div>
+                </div>
+
                 </div>
             <% end %>
             <br />

@@ -180,7 +180,7 @@ end
 private
 
 	def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel, :certdate, :certexpire, :search)
+        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel, :certdate, :certexpire, :search, :distributor, :integrator, :end_user, :oem, :needs_review)
     end
 
     def set_user
