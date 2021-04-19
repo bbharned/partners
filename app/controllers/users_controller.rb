@@ -15,13 +15,40 @@ def index
     end
 end
 
+def si
+  if (!logged_in?) 
+    @user = User.new
+  elsif (logged_in? and current_user.admin?) 
+    @user = User.new
+  elsif (logged_in? and !current_user.admin?)
+    flash[:warning] = "You have already signed up and have an account"
+    redirect_to root_path
+  end
+  @tm = 'Check the option that best describes your relationship to ThinManager'
+end
+
+def signup
+  @user = User.new(user_params)
+  @user.needs_review = true
+    if @user.save
+        session[:user_id] = @user.id
+        @user.update_attribute(:lastlogin, Time.now)
+        flash[:success] = "Your account has been created, Welcome!"
+        redirect_to root_path
+    else
+        render 'si'
+    end
+end
+
+
+
 def search
   if params[:search].blank?
     redirect_to users_path and return
   else
     @parameter = params[:search].downcase
-    @sort = [params[:sort]]
-    @users = User.where("lower(firstname || lastname || company || email || prttype || channel || silevel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(@sort)
+    #@sort = [params[:sort]]
+    @users = User.where("lower(firstname || lastname || company || email) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25)#.order(@sort)
   end
 
   respond_to do |format|

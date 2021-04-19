@@ -29,6 +29,8 @@ get 'calculators', to: 'calculators#index'
 post 'calculators', to: 'pages#new_calc'
 get 'flex', to: 'pages#flexforward'
 get 'mycert', to: 'pages#mycert'
+get 'si', to: 'users#si'
+post 'si', to: 'users#signup'
 
 resources :currencies
 resources :flexforwards
