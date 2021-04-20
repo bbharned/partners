@@ -1,0 +1,43 @@
+<div class="container" style="margin-bottom: 150px;">
+	<h1>Certification Instructions</h1>
+	<hr />
+
+	<p><span style="font-weight:bold;">Welcome to the ThinManager Certification Lab!</span> This series of labs is designed to show you the basics of a ThinManager install and the ThinManager software environment.</p>
+<br />
+	<div class="row">
+
+		<div class="col-md-6">
+			<div class="card get-start-card">
+
+				<h3>Getting Started</h3>
+				<p>1. First, you need to download ThinManager and activate a 30-day demo code. This will allow you a month to work through the labs at your pace and in your spare time.  When you are ready, click the button below to start downloading ThinManager. </p>
+
+				<%= link_to 'ThinManager Download', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/12.0.0-ThinManager-Web.exe' + location.search)" %>
+
+				<p style="margin-top: 30px;">2. Once installed you will need to get your Primary Install ID from your copy of ThinManager [Install > Licenses], and create a demo code. Click button below to create your demo code.</p>
+
+				<%= link_to "Create Demo Code", "https://licensing.thinmanager.com/DemoCode/Create", target: "_blank", class: "btn btn-success" %>
+
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="card get-start-card">
+				<h3>Get Lab File</h3>
+				<p>3. Download the multi-part lab file by clicking below.</p>
+				<%= link_to "Lab File", "#", target: "_blank", class: "btn btn-dark", style: "width:100px;" %>
+			</div>
+			<div class="card get-start-card">
+				<h3>Upload Results</h3>
+				<p>4. Once you have completed the lab file, backup your configuration as instructed and upload it here.</p>
+				<%= link_to "Upload File", "#", target: "_blank", class: "btn btn-dark", style: "width:150px;" %>
+			</div>
+		</div>
+
+	</div>
+
+
+	<h4>What's Next?</h4>
+	<p>There are more ays to keep learning ThinManager. If you haven't already, visit our <%= link_to "Learning area", learning_path %> and watch ThinManager feature videos, followed by quizzes, that help enforce your knowledge on each feature. You can also keep in the conversation with The Plant Podcast, as well as all our social media channels.</p>
+	<br />
+</div>

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning, :labs]
 	before_action :can_see_pricing, only: [:pricing]
     before_action :can_print_cert, only: [:mycert]
     
@@ -10,10 +10,10 @@ def new_dl
     if @download.save
         
         flash[:success] = "Your Download should have iniated. If you have issues, please contact us."
-        redirect_to root_path
+        redirect_back(fallback_location:"/")
     else
         flash[:danger] = "There seems to have been a problem with the download. Feel free to contact us."
-        redirect_to root_path
+        redirect_back(fallback_location:"/")
     end
 end
 
@@ -35,18 +35,16 @@ def dashboard
 	respond_to do |format| 
       format.html { render "dashboard" } 
     end
-     
-    # @download = Download.new(user_id: current_user.id)
-    # if @download.save
-    #     flash[:success] = "success"
-    #     redirect_to root_path
-    # else
-    #     flash[:danger] = "Didn't work"
-    #     redirect_to root_path
-    # end
+    
 end 
 
+
 def learning
+    @user = current_user
+end
+
+
+def labs
     @user = current_user
 end
 
@@ -101,7 +99,7 @@ def must_login
 end
 
 def can_see_pricing
-	if @current_user.admin? || (@current_user.distributor && (@current_user.continent == "North America" || @current_user.continent == "NA"))
+	if @current_user.admin? || (@current_user.prttype == "Distributor" && (@current_user.continent == "North America" || @current_user.continent == "NA"))
 
 	else
 		flash[:danger] = "You do not have permission to view this page."

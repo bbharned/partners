@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search, :review]
 
 
 def index
@@ -38,6 +38,12 @@ def signup
     else
         render 'si'
     end
+end
+
+def review
+  @sort = [params[:sort]]
+  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order(@sort)
+
 end
 
 

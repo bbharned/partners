@@ -21,6 +21,7 @@ get 'user/admin', to: 'users#admin'
 get 'user/search', to: 'users#search'
 post 'user/search', to: 'users#search'
 get 'pricing', to: 'pages#pricing'
+get 'labs', to: 'pages#labs'
 get 'documents', to: 'pages#documents'
 get 'vflex', to: 'pages#vflex'
 get 'downloads', to: 'downloads#index'
@@ -31,6 +32,7 @@ get 'flex', to: 'pages#flexforward'
 get 'mycert', to: 'pages#mycert'
 get 'si', to: 'users#si'
 post 'si', to: 'users#signup'
+get 'user/review', to: 'users#review'
 
 resources :currencies
 resources :flexforwards

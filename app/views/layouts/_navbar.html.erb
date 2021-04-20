@@ -35,7 +35,7 @@
               <%= link_to "Profile", user_path(@current_user), class: 'nav-link' %>
               <% end %>
             </li>
-            <% if @current_user && (@current_user.admin || ((@current_user.continent == "North America" || @current_user.continent == "NA") && @current_user.distributor == true)) %>
+            <% if @current_user && (@current_user.admin || ((@current_user.continent == "North America" || @current_user.continent == "NA") && @current_user.prttype == "Distributor")) %>
               <li class="nav-item">
                 <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
               </li>
@@ -72,6 +72,7 @@
                     <%= link_to "Downloads", downloads_path, class: 'dropdown-item' %>
                     <%= link_to "ROI Downloads", calculators_path, class: 'dropdown-item' %>
                     <div class="dropdown-divider"></div>
+                    <%= link_to "Needs Review", user_review_path, class: 'dropdown-item' %>
                     <%= link_to "SI Certifications", certifications_path, class: 'dropdown-item' %>
                     <div class="dropdown-divider"></div>
                 

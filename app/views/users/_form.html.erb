@@ -122,7 +122,9 @@
                             <%= f.select :prttype, options_for_select([
                                   [""],
                                   ["Integrator"], 
-                                  ["Distributor"]
+                                  ["Distributor"],
+                                  ["OEM"],
+                                  ["End User"]
                             ], @user.prttype), class: "form-control" %>
                         </div>
                     </div>

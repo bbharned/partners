@@ -251,6 +251,14 @@ button.navbar-toggler span {
 
 
 
+/************************** Labs Page *******************************/
+.get-start-card {
+    padding:35px; margin-bottom: 30px;
+}
+.get-start-card .btn {max-width: 220px;} 
+
+
+
 
 
 
