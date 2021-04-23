@@ -35,7 +35,7 @@
               <%= link_to "Profile", user_path(@current_user), class: 'nav-link' %>
               <% end %>
             </li>
-            <% if @current_user && (@current_user.admin || ((@current_user.continent == "North America" || @current_user.continent == "NA") && @current_user.prttype == "Distributor")) %>
+            <% if @current_user && (@current_user.admin? || ((@current_user.continent == "North America" || @current_user.continent == "NA") && @current_user.prttype == "Distributor")) %>
               <li class="nav-item">
                 <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
               </li>
@@ -54,7 +54,7 @@
             <li class="nav-item horizontal-divider">
               <div class="nav-divider-horizatonal"></div>
             </li>
-            <% if @current_user && @current_user.admin %>
+            <% if @current_user && @current_user.admin? %>
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Admin

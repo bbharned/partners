@@ -33,6 +33,10 @@ get 'mycert', to: 'pages#mycert'
 get 'si', to: 'users#si'
 post 'si', to: 'users#signup'
 get 'user/review', to: 'users#review'
+get 'upload', to: 'pages#upload'
+patch 'upload', to: 'pages#upload_file'
+get 'uploads', to: 'pages#uploads'
+get 'pages/download_lab', to: 'pages#download_lab'
 
 resources :currencies
 resources :flexforwards

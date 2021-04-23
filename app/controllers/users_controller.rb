@@ -47,6 +47,15 @@ def review
 end
 
 
+def upload_file
+    @user = current_user
+    @file = params[:cert_lab]
+
+    flash[:success] = "Your file is #{:cert_lab}"
+    redirect_to root_path
+end
+
+
 
 def search
   if params[:search].blank?

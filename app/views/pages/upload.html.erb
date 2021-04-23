@@ -1,0 +1,28 @@
+<div class="container">
+	<h1>Upload your lab file</h1>
+	<hr />
+
+	<div class="card">
+		<div class="well" style="padding: 35px;">
+			<div class="row">
+				<div class="col">
+					<h5 style="margin-bottom: 25px;">How to upload your certification configuration file</h5>
+					<p>In ThinManager, go to the <span style="font-weight:bold;">MANAGE</span> menu on the top ribbon bar. Then select <span style="font-weight:bold;">BACKUP</span>.</p> 
+					<p>Name the configuration “YourNameLab.db” so we can tell the submissions apart. &nbsp;&nbsp;[<span style="font-style: italic;">example: JohnSmithLab.db</span>]</p>
+					<hr style="margin-bottom: 35px; margin-top: 30px;" />
+					<h5>Select Your File</h5>
+					<p>Click the button "Choose File" below.  Navigate to your saved file and click Open. Last, simply click the button "Upload File".</p>
+					<div class="row" style="margin-top: 35px;">
+						<div class="col">
+							<%= form_for(@user,:url => {action: :upload_file}, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+								<%= f.file_field :cert_lab, class: "btn" %>
+								<%= f.submit "Upload File", class: "btn btn-primary float-right" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
