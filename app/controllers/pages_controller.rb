@@ -108,6 +108,7 @@ def download_lab #download file from AWS
         bucket: bucket,
         key: key
       )
+      
       @message_log = response.message
     end
 
@@ -132,6 +133,7 @@ def upload_file #upload action
 
     @user = current_user
     @file = params[:user][:cert_lab]
+   
 
     @s3 = Aws::S3::Resource.new
 
@@ -140,29 +142,30 @@ def upload_file #upload action
     
     @message_log = ""
     
-    begin
-        if @file.content_type != "application/octet-stream"
-            flash[:danger] = "Sorry, you can only upload .db files"
-            redirect_to upload_path
-        elsif @file.original_filename.include? ".db"
-            @s3.bucket(@bucket_name).object(@object_key).upload_file(@file.tempfile)
-            
+    
+        begin
+            if @file.content_type != "application/octet-stream"
+                flash[:danger] = "Sorry, you can only upload .db files"
+                redirect_to upload_path
+            elsif @file.original_filename.include? ".db"
+                @s3.bucket(@bucket_name).object(@object_key).upload_file(@file.tempfile)
+                
 
 
-            ## send email confirming file upload here
-            
-            flash[:success] = "Your file name \"#{@object_key}\" has been uploaded."
-            redirect_to root_path
-        else
-            flash[:danger] = "Sorry, you can only upload .db files"
+                ## send email confirming file upload here
+                
+                flash[:success] = "Your file name \"#{@object_key}\" has been uploaded."
+                redirect_to root_path
+            else
+                flash[:danger] = "Sorry, you can only upload .db files"
+                redirect_to upload_path
+            end
+        rescue StandardError => e
+            @message_log = e.message
+            flash[:danger] = "#{@message_log}"
             redirect_to upload_path
         end
-    rescue StandardError => e
-        @message_log = e.message
-        flash[:danger] = "#{@message_log}"
-        redirect_to upload_path
-    end
-
+    
  end
 
 
