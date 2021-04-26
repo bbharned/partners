@@ -2,6 +2,7 @@ class PagesController < ApplicationController
 	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning, :labs, :upload, :upload_file]
 	before_action :can_see_pricing, only: [:pricing]
     before_action :can_print_cert, only: [:mycert]
+    before_action :require_admin, only: [:uploads]
     
 
 def new_dl
@@ -95,40 +96,30 @@ end
 def download_lab #download file from AWS
     require 'aws-sdk-s3'
 
-    @s3 = params[:s3]
-    @bucket_name = params[:bucket_name]
+    @s3 = Aws::S3::Client.new
+    @bucket_name = 'rails-partners-bucket'
     @object_key = params[:object_key]
-    @local_path = "~/documents/#{@object_key}"
+    @local_path = "./#{@object_key}"
     @message_log = ""
 
-
-    # @param s3_client [Aws::S3::Client] An initialized S3 client.
-    # @param bucket_name [String] The name of the bucket containing the object.
-    # @param object_key [String] The name of the object to download.
-    # @param local_path [String] The path on your local computer to download the object.
-    # @return [Boolean] true if the object was downloaded; otherwise, false.
-
-    def object_downloaded?(s3_client, bucket_name, object_key)
-      s3_client.get_object(
-        response_target: @local_path,
-        bucket: bucket_name,
-        key: object_key
-        )
-    rescue StandardError => e
-      @message_log = e.message
+    def download_db(key:, to:, bucket:)
+      @s3.get_object(
+        response_target: to,
+        bucket: bucket,
+        key: key
+      )
+      @message_log = response.message
     end
 
-
-    if object_downloaded?(@s3, @bucket_name, @object_key)
-        
-        flash[:success] = "Object '#{@object_key}' in bucket '#{@bucket_name}' downloaded to '#{@local_path}'."
-        redirect_to uploads_path
-    
-    else
-        
+    begin
+        download_db(key: @object_key, to: @local_path, bucket: @bucket_name)
+    rescue StandardError => e
+        @message_log = e.message
         flash[:danger] = "#{@message_log} - Object '#{@object_key}' in bucket '#{@bucket_name}' was not downloaded."
         redirect_to uploads_path
-    
+    else
+        flash[:success] = "AWS Message about Download - \"#{@message_log}\""
+        redirect_to uploads_path
     end
 
     
@@ -141,44 +132,38 @@ def upload_file #upload action
 
     @user = current_user
     @file = params[:user][:cert_lab]
-    
+
     @s3 = Aws::S3::Resource.new
 
-    flash[:success] = "Your file name \"#{@file.original_filename}\" has been uploaded."
-    redirect_to root_path
-
-    # @response = @s3.list_buckets
-
-    # @response.buckets.each do |bucket|
-    #     if bucket.name == 'rails-partners-bucket'
-    #         @bucket = bucket
-    #     end
-    # end
-
-    # @path = @file.tempfile
-    # @s3.bucket('rails-partners-bucket').object(@path).upload_file(@file)
-
-    #@bucket = @s3.bucket('rails-partners-bucket')
-    # @name = File.basename @file.original_filename
-    # @obj = @bucket.put_object(@name)
-    #  if @obj.upload_file(@file)
-    #     flash[:success] = "Your file name \"#{@file.original_filename}\" has been uploaded."
-    #     redirect_to root_path
-    #  else 
-    #     flash[:danger] = "Your file didn't upload properly."
-    #     redirect_to upload_path
-    #  end    
-
-    # File.open(@file.tempfile) do |file|
-    #   @s3.put_object({
-    #     bucket: @bucket,
-    #     key: @user.firstname + " " + @user.lastname,
-    #     body: file
-    #   })
-    # end
+    @bucket_name = 'rails-partners-bucket'
+    @object_key = @file.original_filename
     
+    @message_log = ""
     
-end
+    begin
+        if @file.content_type != "application/octet-stream"
+            flash[:danger] = "Sorry, you can only upload .db files"
+            redirect_to upload_path
+        elsif @file.original_filename.include? ".db"
+            @s3.bucket(@bucket_name).object(@object_key).upload_file(@file.tempfile)
+            
+
+
+            ## send email confirming file upload here
+            
+            flash[:success] = "Your file name \"#{@object_key}\" has been uploaded."
+            redirect_to root_path
+        else
+            flash[:danger] = "Sorry, you can only upload .db files"
+            redirect_to upload_path
+        end
+    rescue StandardError => e
+        @message_log = e.message
+        flash[:danger] = "#{@message_log}"
+        redirect_to upload_path
+    end
+
+ end
 
 
 def pricing
@@ -249,7 +234,12 @@ def can_print_cert
     end
 end
 
-
+def require_admin
+    if (logged_in? and !current_user.admin?) || !logged_in? 
+        flash[:danger] = "Only admin users can perform that action"
+        redirect_to root_path
+    end
+end
 
 
 

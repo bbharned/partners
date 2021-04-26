@@ -17,7 +17,7 @@
 		
 
 		<div class="row" style="margin-bottom: 7px;">
-			<div class="col-5"><%= link_to "#{obj.key}", pages_download_lab_path(s3: @s3, bucket_name: @bucket_name, object_key: obj.key) %></div>
+			<div class="col-5"><%= link_to "#{obj.key}", pages_download_lab_path(object_key: obj.key) %></div>
 			<div class="col-4">Bryan Harned</div>
 			<div class="col-3"><%= obj.last_modified.strftime("%m/%d/%Y") %></div>
 		</div>
