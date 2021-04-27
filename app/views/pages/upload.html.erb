@@ -15,7 +15,7 @@
 					<div class="row" style="margin-top: 35px;">
 						<div class="col">
 							<%= form_for(@user,:url => {action: :upload_file}, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-								<%= f.file_field :cert_lab, class: "btn" %>
+								<%= f.file_field :cert_lab, class: "btn", id: "file-grab" %>
 								<%= f.submit "Upload File", class: "btn btn-primary float-right" %>
 							<% end %>
 						</div>

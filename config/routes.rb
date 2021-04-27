@@ -37,6 +37,7 @@ get 'upload', to: 'pages#upload'
 patch 'upload', to: 'pages#upload_file'
 get 'uploads', to: 'pages#uploads'
 get 'pages/download_lab', to: 'pages#download_lab'
+post 'uploads', to: 'pages#destroy_labfile'
 
 resources :currencies
 resources :flexforwards

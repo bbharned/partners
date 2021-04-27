@@ -88,6 +88,8 @@ def uploads #index of uploads
         max_keys: 1000
       ).contents
 
+
+
 end 
 
 
@@ -97,23 +99,36 @@ def download_lab #download file from AWS
     require 'aws-sdk-s3'
 
     @s3 = Aws::S3::Client.new
+    #@s3 = Aws::S3::Presigner.new
+
     @bucket_name = 'rails-partners-bucket'
     @object_key = params[:object_key]
-    @local_path = "./#{@object_key}"
+    #@local_path = "./#{@object_key}"
     @message_log = ""
+    #@url = @s3.presigned_url(:get_object, bucket: "bucket", key: "key")
 
-    def download_db(key:, to:, bucket:)
-      @s3.get_object(
-        response_target: to,
-        bucket: bucket,
-        key: key
-      )
-      
+    def download_db(key:, bucket:)
+      # @s3.get_object(
+      #   #response_target: to,
+      #   bucket: bucket,
+      #   key: key
+      # )
+
+      # File.open(key, 'wb') do |file| 
+      #     @s3.get_object( bucket: bucket, key: key) do |chunk|
+      #       file.write(chunk)
+      #     end
+      # end
+
+      File.open(key, 'wb') do |file|
+          resp = @s3.get_object({ bucket: bucket, key: key }, target: file)
+      end
+
       @message_log = response.message
     end
 
     begin
-        download_db(key: @object_key, to: @local_path, bucket: @bucket_name)
+        download_db(key: @object_key, bucket: @bucket_name)
     rescue StandardError => e
         @message_log = e.message
         flash[:danger] = "#{@message_log} - Object '#{@object_key}' in bucket '#{@bucket_name}' was not downloaded."
@@ -132,41 +147,50 @@ def upload_file #upload action
     require 'aws-sdk-s3'
 
     @user = current_user
-    @file = params[:user][:cert_lab]
-   
-
     @s3 = Aws::S3::Resource.new
-
     @bucket_name = 'rails-partners-bucket'
-    @object_key = @file.original_filename
     
     @message_log = ""
     
+    @file = params[:user][:cert_lab]
+    @object_key = @file.original_filename
     
-        begin
-            if @file.content_type != "application/octet-stream"
-                flash[:danger] = "Sorry, you can only upload .db files"
-                redirect_to upload_path
-            elsif @file.original_filename.include? ".db"
-                @s3.bucket(@bucket_name).object(@object_key).upload_file(@file.tempfile)
-                
 
+    begin
+        if @file.content_type != "application/octet-stream"
+            flash[:danger] = "Sorry, you can only upload .db files"
+            redirect_to upload_path
+        elsif @file.original_filename.include? ".db"
+            @s3.bucket(@bucket_name).object(@object_key).upload_file(@file.tempfile)
+            @user.lab_file = @object_key
+            @user.save
 
-                ## send email confirming file upload here
-                
-                flash[:success] = "Your file name \"#{@object_key}\" has been uploaded."
-                redirect_to root_path
-            else
-                flash[:danger] = "Sorry, you can only upload .db files"
-                redirect_to upload_path
-            end
+            ## send email confirming file upload here
+            
+            flash[:success] = "Your file named \"#{@object_key}\" has been uploaded. We will review it for grading and contact you after."
+            redirect_to root_path
+        else
+            flash[:danger] = "Sorry, you can only upload .db files"
+            redirect_to upload_path
+        end
         rescue StandardError => e
             @message_log = e.message
             flash[:danger] = "#{@message_log}"
             redirect_to upload_path
         end
+        
+        
+
+
+end
+
+
+def destroy_labfile
     
- end
+    redirect_back(fallback_location:"/")
+end
+    
+ 
 
 
 def pricing

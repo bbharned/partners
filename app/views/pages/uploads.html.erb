@@ -1,6 +1,10 @@
 <div class="container" style="padding-bottom: 150px;">
-	<h1>Uploaded Databases</h1>
-	<%= link_to "AWS Console", "https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2", target: "_blank", class: "btn btn-success" %>
+	<div class="row">
+		<div class="col-8"><h1>Uploaded Databases</h1></div>
+		<div class="col-4">
+			<%= link_to "AWS Console", "https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2", target: "_blank", class: "btn btn-success float-right", style: "margin-top:5px;" %>
+		</div>
+	</div>
 	<hr />
 
 	
@@ -8,18 +12,26 @@
 		
 		<div class="row" style="background-color: #f1f1f1; font-weight: bold; margin-bottom: 7px; padding-top: 5px; padding-bottom: 5px;">
 			<div class="col-5">Filename</div>
-			<div class="col-4">User</div>
-			<div class="col-3">Date Modified</div>
+			<div class="col-3">User</div>
+			<div class="col-3">Date</div>
 		</div>
 
 		<% @objects.each do | obj | %>
 			
 		
+		<% @uploader = User.where(lab_file: "#{obj.key}").last %>
 
 		<div class="row" style="margin-bottom: 7px;">
-			<div class="col-5"><%= link_to "#{obj.key}", pages_download_lab_path(object_key: obj.key) %></div>
-			<div class="col-4">Bryan Harned</div>
-			<div class="col-3"><%= obj.last_modified.strftime("%m/%d/%Y") %></div>
+			<div class="col-5"><%= link_to "#{obj.key}", "https://#{@bucket_name}.s3.amazonaws.com/#{obj.key}" %></div>
+			<div class="col-3" style="font-size:.8em;">
+				<% if @uploader %>
+					<%= @uploader.firstname %> <%= @uploader.lastname %>
+				<% else %>
+					no user known
+				<% end %>
+			</div>
+			<div class="col-3" style="font-size:.8em;"><%= obj.last_modified.strftime("%m/%d/%Y") %></div>
+			<div class="col-1" style="text-align:right;"><%= link_to "Delete", uploads_path, method: :destroy_labfile, data: {confirm: "Are you sure you want to delete this db?"}, style: "color:red; font-size:.8em;" %></div>
 		</div>
 
 
