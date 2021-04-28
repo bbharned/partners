@@ -49,15 +49,18 @@
 			<% end %>
 		</div>
 		<div class="col-md-3 dist-logo">
-			<% if @current_user.channel == "Rockwell Automation" %>
+			<% if @current_user.prttype == "Distributor" && @current_user.channel == "Rockwell Automation" %>
 				<%= image_tag "RA-Logo.png" %>
-			<% elsif @current_user.channel == "Wonderware" %>
+			<% elsif @current_user.prttype == "Distributor" && @current_user.channel == "Wonderware" %>
 				<%= image_tag "ww-logo.png" %>
 			<% end %>
 		</div>
 	</div>
 	
-	<% if @current_user.admin || (@current_user.certexpire != nil && @current_user.certexpire > Date.today) %>
+
+
+	<% if @current_user.admin || 
+		(@current_user.certexpire != nil && @current_user.certexpire > Date.today && !@current_user.needs_review) %>
 		<div class="row cert-get-button">
 			<div class="col-md-12">
 				<%= link_to "View Certificate", mycert_path, class: "btn btn-info" %>
@@ -65,18 +68,28 @@
 		</div>
 	<% end %>
 	
+
+
+
 	<hr />
 	
+
+
+
 	<div class="row">
-		
 		<div class="col">
 			<p style="font-size: .65em;">By using this partner portal, you agree that any information viewed, copied and/or downloaded will remain as non-disclosable information. This includes, but is not limited to, the ThinManager product price list, partner-specific videos, strategic information such as product path planning, etc. This portal is for the sole benefit of your specific channel and access to confidential information in the portal is only meant to be shared within the ThinManager/Channel Partner relationship.</p>
 		</div>
-
 	</div>
+
 <br />
 
-<% if @current_user.prttype == "Integrator" %>
+
+
+
+
+
+<% if @current_user.prttype == "Integrator" && !@current_user.needs_review %>
 	
 	<% if (@current_user.certexpire != nil && @current_user.certexpire != "") && @current_user.certexpire < Date.today() + 180 %>	
 		
@@ -105,7 +118,13 @@
 
 <% end %>
 
-<% if @current_user.admin || @current_user.prttype == "Distributor" %>
+
+
+
+
+
+
+<% if (@current_user.admin || @current_user.prttype == "Distributor") && !@current_user.needs_review %>
 
 	<div class="row">
 		<h4 style="padding-left: 1.5%;">Here and Happy to Help <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Distributors)</span><% end %></h4>
@@ -131,7 +150,12 @@
 <br /><br />
 <% end %>
 
-<% if @current_user.admin || @current_user.prttype == "Integrator" %>
+
+
+
+
+
+<% if (@current_user.admin || @current_user.prttype == "Integrator") && !current_user.needs_review %>
 
 	<div class="row">
 		<h4 style="padding-left: 1.5%;">We Are Here If You Need <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Integrators)</span><% end %></h4>
@@ -153,9 +177,12 @@
 
 
 
+
 	<div class="card-columns hp-cards">
 	  
-	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") || (@current_user.continent == "NA" && @current_user.prttype == "Distributor") %>
+
+	  <!-- Pricing Card -->
+	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") || (@current_user.continent == "NA" && @current_user.prttype == "Distributor") && !current_user.needs_review %>
 		  <div class="card pricing-card">
 		    <!--<img class="card-img-top" src="#" alt="Card image cap">-->
 		    <div class="card-body">
@@ -171,91 +198,102 @@
 
 
 	  <!-- Flex Forward here -->
-	  <% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") %>
-	  	<div class="card" style="padding-top: 20px;">
-		    <%= image_tag "ff-logo.png", class: "card-img-top" %>
+	  <% if @current_user.admin? || (@current_user.prttype == "Distributor" && @current_user.channel != nil && @current_user.channel != "" && !current_user.needs_review) %>
+		  	<div class="card" style="padding-top: 20px;">
+			    <%= image_tag "ff-logo.png", class: "card-img-top" %>
+			    <div class="card-body">
+			      <h5 class="card-title">Flex Forward Calculator</h5> 
+			  		<p class="card-text">Now that ThinManager has moved to our new V-FLEX pricing model, many customers need to calculate expansion and future growth under this new model. You're in luck!  We have developed a solution to help calculate moving to V-FLEX and taking advantage of built-in bulk rate discounts!</p>
+			      <div align="right"><%= link_to "Learn More", new_flexforward_path, class: "btn btn-primary" %></div>
+			    </div>
+			</div>
+	  <% end %>
+
+	  <% if !@current_user.needs_review %>
+		  <div class="card">
 		    <div class="card-body">
-		      <h5 class="card-title">Flex Forward Calculator</h5> 
-		  		<p class="card-text">Now that ThinManager has moved to our new V-FLEX pricing model, many customers need to calculate expansion and future growth under this new model. You're in luck!  We have developed a solution to help calculate moving to V-FLEX and taking advantage of built-in bulk rate discounts!</p>
-		      <div align="right"><%= link_to "Learn More", new_flexforward_path, class: "btn btn-primary" %></div>
+		      <h5 class="card-title">ThinManager Download</h5>
+		      <p class="card-text">Download the lastest version of ThinManager, Version 12.0</p>
+		      <p class="card-text"><small class="text-muted">Need activation instructions? <%= link_to "Learn More", "https://thinmanager.com/activate", target: "_blank" %></small><br />
+		      <small class="text-muted">Need a different download? <%= link_to "Click Here", "https://downloads.thinmanager.com", target: "_blank" %></small></p>
+		      	<div align="right">
+		      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/12.0.0-ThinManager-Web.exe' + location.search)" %>
+		  		</div>
 		    </div>
-		</div>
+		  </div>
 	  <% end %>
 
 
-	  <div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager Download</h5>
-	      <p class="card-text">Download the lastest version of ThinManager, Version 12.0</p>
-	      <p class="card-text"><small class="text-muted">Need activation instructions? <%= link_to "Learn More", "https://thinmanager.com/activate", target: "_blank" %></small><br />
-	      <small class="text-muted">Need a different download? <%= link_to "Click Here", "https://downloads.thinmanager.com", target: "_blank" %></small></p>
-	      	<div align="right">
-	      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/12.0.0-ThinManager-Web.exe' + location.search)" %>
-	  		</div>
-	    </div>
-	  </div>
+	  <!-------- Put card for Certification Here ---------->
+	  <!-------- Put card for Customer Success Stories Here ---------->
+	  <!-------- Put card for Blog Here ---------->
 
-	  <% if @current_user.admin || @current_user.prttype == "Distributor" %>
-	  <div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager ROI Calculator</h5>
-	      <p class="card-text">Download our ROI Calculator</p>
-	      <p class="card-text" style="line-height: 12px;"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
-	      	<div align="right" style="margin-top: 22px;">
-	      		<%= link_to 'Download Now', calculators_path(current_user), method: :new_calc, class: "btn btn-primary", onclick: "window.open('https://thinmanager.com/roi/program/version2020/Signed/ThinManagerROI.exe' + location.search)" %>
-	  		</div>
-	    </div>
-	  </div>
+
+
+	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
+		  <div class="card">
+		    
+		    <div class="card-body">
+		      <h5 class="card-title">ThinManager ROI Calculator</h5>
+		      <p class="card-text">Download our ROI Calculator</p>
+		      <p class="card-text" style="line-height: 12px;"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
+		      	<div align="right" style="margin-top: 22px;">
+		      		<%= link_to 'Download Now', calculators_path(current_user), method: :new_calc, class: "btn btn-primary", onclick: "window.open('https://thinmanager.com/roi/program/version2020/Signed/ThinManagerROI.exe' + location.search)" %>
+		  		</div>
+		    </div>
+		  </div>
 	  <% end %>
 
-	  <% if @current_user.admin || @current_user.prttype == "Integrator" %>
-
-	  <div class="card">
-	  	<div class="card-body">
-	  		<h5 class="card-title" style="margin-bottom: 4px;">Feature Snapshot</h5>
-	  		<h6 class="card-subtitle text-muted">5 New Features of ThinManager</h6>
-	  		<br />
-	  		<ul class="list-group list-group-flush">
-	  			<li class="list-group-item">Web Browser Display Client</li>
-	  			<li class="list-group-item">Freeform MultiMonitor</li>
-	  			<li class="list-group-item">Portrait Mode</li>
-	  			<li class="list-group-item">Dependent PIN Authentication</li>
-	  			<li class="list-group-item">Display Client Grouping</li>
-	  		</ul>
-	  	</div>
-	  </div>
 
 
-	  <div class="card" style="text-align: center;">
-	  	<%= image_tag "hardware-card-image.jpg", class: "card-img-top" %>
-	  	<div class="card-body">
-	  		<h5 class="card-title" style="">Featured Hardware</h5> <!-- Margin-bottom on title was 4px with subtitle visible, left aligned -->
-	  		<!--<h6 class="card-subtitle text-muted">ThinManager supports many hardware options and choices.  Learn more about a few featured brands.</h6>
-	  		<br />-->
-	  		<ul class="list-group list-group-flush">
-	  			<li class="list-group-item">Allen-Bradley VersaView
-	  				<ul style="list-style: none; margin-left: -15%;">
-	  					<small><li><%= link_to "Learn More »", "https://ab.rockwellautomation.com/Computers/Thin-Clients", target: "_blank" %></li></small>
-	  				</ul>
-	  			</li>
-	  				
-	  			<li class="list-group-item">OnLogic Supply Industrial clients
-	  				<ul style="list-style: none; margin-left: -15%;">
-	  					<small><li><%= link_to "Learn More »", "https://www.logicsupply.com/markets/manufacturing/industrial-thin-clients/", target: "_blank" %></li></small>
-	  				</ul>
-	  			</li>
-	  			<li class="list-group-item">Stratus ztC Edge servers
-	  				<ul style="list-style: none; margin-left: -15%;">
-	  					<small><li><%= link_to "Learn More »", "https://www.stratus.com/solutions/platforms/ztc-edge/", target: "_blank" %></li></small>
-	  				</ul>
-	  			</li>
-	  		</ul>
-	  	</div>
-	  </div>
 
+
+	  <% if @current_user.admin %>
+	  
+		  <div class="card">
+		  	<div class="card-body">
+		  		<h5 class="card-title" style="margin-bottom: 4px;">Feature Snapshot</h5>
+		  		<h6 class="card-subtitle text-muted">5 New Features of ThinManager</h6>
+		  		<br />
+		  		<ul class="list-group list-group-flush">
+		  			<li class="list-group-item">Web Browser Display Client</li>
+		  			<li class="list-group-item">Freeform MultiMonitor</li>
+		  			<li class="list-group-item">Portrait Mode</li>
+		  			<li class="list-group-item">Dependent PIN Authentication</li>
+		  			<li class="list-group-item">Display Client Grouping</li>
+		  		</ul>
+		  	</div>
+		  </div>
+
+
+		  <div class="card" style="text-align: center;">
+		  	<%= image_tag "hardware-card-image.jpg", class: "card-img-top" %>
+		  	<div class="card-body">
+		  		<h5 class="card-title" style="">Featured Hardware</h5> 
+		  		<ul class="list-group list-group-flush">
+		  			<li class="list-group-item">Allen-Bradley VersaView
+		  				<ul style="list-style: none; margin-left: -15%;">
+		  					<small><li><%= link_to "Learn More »", "https://ab.rockwellautomation.com/Computers/Thin-Clients", target: "_blank" %></li></small>
+		  				</ul>
+		  			</li>
+		  				
+		  			<li class="list-group-item">OnLogic Supply Industrial clients
+		  				<ul style="list-style: none; margin-left: -15%;">
+		  					<small><li><%= link_to "Learn More »", "https://www.logicsupply.com/markets/manufacturing/industrial-thin-clients/", target: "_blank" %></li></small>
+		  				</ul>
+		  			</li>
+		  			<li class="list-group-item">Stratus ztC Edge servers
+		  				<ul style="list-style: none; margin-left: -15%;">
+		  					<small><li><%= link_to "Learn More »", "https://www.stratus.com/solutions/platforms/ztc-edge/", target: "_blank" %></li></small>
+		  				</ul>
+		  			</li>
+		  		</ul>
+		  	</div>
+		  </div>
+	  
 	  <% end %>
+
+	  
 
 	  <div class="card">
 	    <%= image_tag "thePlant.jpg", class: "card-img-top" %>
@@ -266,130 +304,86 @@
 	    </div>
 	  </div>
 
-<!--
-	  <% if @current_user.admin? || (@current_user.prttype != "Integrator" && @current_user.prttype != "" && @current_user.prttype != nil) %>
+
+	  
+
+
+
+	  <% if !@current_user.needs_review %>
 	  <div class="card">
-	    <%= image_tag "Authorized-Logo.png", class: "card-img-top" %>
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager Branding</h5>
-	      <p class="card-text">Looking to get ThinManager Partner status represented on your website?  Take a look at this guide to getting it done.</p>
-	      <div align="right"><%= link_to "Learn More", "https://thinmanager.com/partners/branding", class: "btn btn-primary", target: "_blank" %></div>
-	    </div>
-	  </div>
-	  <% end %>
--->
-	  <div class="card">
-	    
 	    <div class="card-body">
 	      <h5 class="card-title">Resource Documents</h5>
 	      <p class="card-text">This group of documents and resources may not be essential to install and get started with ThinManager, but you might think they are.</p>
 	      <div align="right"><%= link_to "Learn More", documents_path, class: "btn btn-primary" %></div>
 	    </div>
 	  </div>
+	  <% end %>
 
 
-	  <div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">License Activation</h5>
-	      <p class="card-text">From transfering licenses and ownership to getting up and running with ThinManager.</p>
-	      <div align="right"><%= link_to "Go Now", "https://thinmanager.com/licensing/", class: "btn btn-primary", target: "_blank" %></div>
-	    </div>
-	  </div>
-	
+
+	  <% if !@current_user.needs_review %>
+		  <div class="card">
+		    <div class="card-body">
+		      <h5 class="card-title">License Activation</h5>
+		      <p class="card-text">From transfering licenses and ownership to getting up and running with ThinManager.</p>
+		      <div align="right"><%= link_to "Go Now", "https://thinmanager.com/licensing/", class: "btn btn-primary", target: "_blank" %></div>
+		    </div>
+		  </div>
+	  <% end %>
+
+
+
  
-	<div class="card">
-	    <%= image_tag "learning-pic.jpg", class: "card-img-top" %>
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager Video Learning</h5>
-	      <p class="card-text">We have put together a great series of feature videos and quizzes to teach ThinManager in a self-paced, watch and learn, simply way &boxh; perfect for both end users and ThinManager Partners.</p>
-	      <p>Create an account and get started right now.</p>
-	      <div align="right"><%= link_to "Get Started", "https://learn.thinmanager.com", class: "btn btn-primary", target: "_blank" %></div>
-	    </div>
-	</div>
-	<!--
-	<% if @current_user.admin? || @current_user.channel == "Rockwell Automation" %>
-	<div class="card">
-	    <%= image_tag "Stratus_ztC_tile-image.png", class: "card-img-top" %>
-	    <div class="card-body">
-	      <h5 class="card-title">Stratus ztC Edge</h5>
-	      <p class="card-text">Purpose-built for operational technology (OT), ztC Edge is easy to set up, configure and manage...</p>
-	      <div align="right"><%= link_to "Learn More", "https://thinmanager.com/hardware/stratus", class: "btn btn-primary", target: "_blank" %></div>
-	    </div>
-	</div>
-	<% end %>
-	-->
-<!--
-	<div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">Legal Documents</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	    </div>
-	</div>
-	
-	<% if @current_user.admin? || @current_user.channel == "Rockwell Automation" %>
-	<div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">Rockwell Channel Support</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	    </div>
-	</div>
-	<% end %>
-	<% if @current_user.admin? || @current_user.channel == "Wonderware" %>
-	<div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">Wonderware Channel Support</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	    </div>
-	</div>
-	<% end %>
-	<% if @current_user.admin? || (@current_user.channel != "Rockwell Automation" && @current_user.channel != "Wonderware") %>
-	<div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">Channel Partner Support</h5>
-	      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	    </div>
-	</div>
-	<% end %>-->
+		<div class="card">
+		    <%= image_tag "learning-pic.jpg", class: "card-img-top" %>
+		    <div class="card-body">
+		      <h5 class="card-title">ThinManager Video Learning</h5>
+		      <p class="card-text">We have put together a great series of feature videos and quizzes to teach ThinManager in a self-paced, watch and learn, simply way &boxh; perfect for both end users and ThinManager Partners.</p>
+		      <p>Create an account and get started right now.</p>
+		      <div align="right"><%= link_to "Get Started", "https://learn.thinmanager.com", class: "btn btn-primary", target: "_blank" %></div>
+		    </div>
+		</div>
 
-	<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") %>
+
+
+	
+
+
+	<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") && !@current_user.needs_review %>
 		<div class="card">
 		    <%= image_tag "v-flex.jpg", class: "card-img-top" %>
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager V-FLEX Licensing</h5>
 		      <p class="card-text">We are please to announce V-FLEX licensing for ThinManager.</p>
 		      <p class="card-text">ThinManager Licensing has never been so flexibile. We can't wait to tell you more about it.</p>
-		      <p class="card-text"><small class="text-muted">Now Officially Available!</small></p>
+		      
 		      <div align="right"><%= link_to "Learn More", vflex_path, class: "btn btn-primary" %></div>
 		    </div>
 		</div>
 	<% end %>
 
-	<div class="card">
-	    
-	    <div class="card-body">
-	      <h5 class="card-title">ThinManager Contact</h5>
-	      <p class="card-text">Looking for something specific? Confused with what you found? Have Questions? We can help.</p>
-	      <p class="card-text">Ph: 678-990-0945<br />Email: 
-	      	<% if @current_user.admin? || @current_user.channel == "" || @current_user.channel == "Rockwell Automation" %>
-				<%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %></p>
-			<% elsif @current_user.channel == "Wonderware" %>
-				<%= link_to "ww_insidesales@thinmanager.com", "mailto:ww_insidesales@thinmanager.com" %></p>
-			<% elsif @current_user.channel == "GE" %>
-				<%= link_to "ge_insidesales@thinmanager.com", "mailto:ge_insidesales@thinmanager.com" %></p>
-		    <% end %>
-	      
-	    </div>
-	</div>
 
+
+
+	<% if !@current_user.needs_review %>
+		<div class="card">
+		    <div class="card-body">
+		      <h5 class="card-title">ThinManager Contact</h5>
+		      <p class="card-text">Looking for something specific? Confused with what you found? Have Questions? We can help.</p>
+		      <p class="card-text">Ph: 678-990-0945<br />Email: 
+		      	<% if @current_user.admin? || @current_user.channel == "" || @current_user.channel == "Rockwell Automation" %>
+					<%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %></p>
+				<% elsif @current_user.channel == "Wonderware" %>
+					<%= link_to "ww_insidesales@thinmanager.com", "mailto:ww_insidesales@thinmanager.com" %></p>
+				<% elsif @current_user.channel == "GE" %>
+					<%= link_to "ge_insidesales@thinmanager.com", "mailto:ge_insidesales@thinmanager.com" %></p>
+			    <% end %>
+		    </div>
+		</div>
+	<% end %>
+
+
+	<% if (@current_user.admin || @current_user.prttype == "Distributor") && !@current_user.needs_review %>
 	<div class="card">
 	    <div class="card-body">
 	      <h5 class="card-title">ThinManager EULA</h5>
@@ -398,12 +392,17 @@
 	      <div align="right"><%= link_to "Download Now", "https://thinmanager.com/partner-resources/ThinManager-RA-EULA.pdf", class: "btn btn-primary", target: "_blank" %></div>
 	    </div>
 	</div>
+	<% end %>
 
-</div>
+
+
+</div> <!-- End of main cards section -->
 
 	
 
-<% end %>
+<% end %> <!-- end of certification expiration check -->
+	
+
 	<br /><br /><br /><br /><br />
 
-</div>
+</div> <!-- End of main container -->

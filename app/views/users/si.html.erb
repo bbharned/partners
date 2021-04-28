@@ -1,6 +1,23 @@
 <div class="container" style="padding-bottom: 100px;">
-	<h1>Create Your Account</h1>
+	<div class="row">
+		<div class="col-md-8">
+			<h1>Sign Up &amp; Get Started</h1>
+		</div>
+		<div class="col-md-4">
+			<span class="right-to-not" style="font-size:.85em;">Already Have an Account? <%= link_to "Log in", root_path, style: "font-style: italic;" %></span>
+		</div>
+	</div>
+
 	<hr />
 
-	<%= render "register" %>
+	<p>Welcome to ThinManager's self paced certification training! Once you create an account you will be able to get started with lab exercises and configuring ThinManager towards becoming certified.  Have questions? <%= link_to "Contact Us", "mailto:certification@thinmanager.com" %></p>
+
+	<div class="row">
+		<div class="col-md-8">
+			<%= render "register" %>
+		</div>
+		<div class="col-md-4 signup-right-box">
+			<h5>Certified End Users, Channel Partners, etc. receive the following:</h5>
+		</div>
+	</div>
 </div>

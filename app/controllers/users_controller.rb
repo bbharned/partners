@@ -15,6 +15,7 @@ def index
     end
 end
 
+
 def si
   if (!logged_in?) 
     @user = User.new
@@ -26,6 +27,8 @@ def si
   end
   @tm = 'Check the option that best describes your relationship to ThinManager'
 end
+
+
 
 def signup
   @user = User.new(user_params)
@@ -39,6 +42,8 @@ def signup
         render 'si'
     end
 end
+
+
 
 def review
   @sort = [params[:sort]]
