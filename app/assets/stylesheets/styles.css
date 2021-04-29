@@ -824,7 +824,12 @@ Very Light Blue: #e9f7fb;
     background-color: #003366; color:#FFFFFF; border-radius: 10px;
     padding: 25px;
 }
-
+.signup-right-box ul li {
+    font-size: .8em;
+}
+.signup-right-box .disclaimer {
+    font-style: italic; font-size: .65em;
+}
 
 
 

@@ -8,17 +8,24 @@
 				<div class="col">
 					<h5 style="margin-bottom: 25px;">How to upload your certification configuration file</h5>
 					<p>In ThinManager, go to the <span style="font-weight:bold;">MANAGE</span> menu on the top ribbon bar. Then select <span style="font-weight:bold;">BACKUP</span>.</p> 
-					<p>Name the configuration “YourNameLab.db” so we can tell the submissions apart. &nbsp;&nbsp;[<span style="font-style: italic;">example: JohnSmithLab.db</span>]</p>
+					<p>Name the configuration “YourNameLab05.db” so we can tell the submissions apart. &nbsp;&nbsp;[<span style="font-style: italic;">example: JohnSmithLab05.db</span>]</p>
 					<hr style="margin-bottom: 35px; margin-top: 30px;" />
 					<h5>Select Your File</h5>
-					<p>Click the button "Choose File" below.  Navigate to your saved file and click Open. Last, simply click the button "Upload File".</p>
+					<p>Click the button "Choose File" below.  Navigate to your saved file and click Open. Last, simply click the button "Upload My Lab".</p>
 					<div class="row" style="margin-top: 35px;">
 						<div class="col">
 							<%= form_for(@user,:url => {action: :upload_file}, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-								<%= f.file_field :cert_lab, class: "btn", id: "file-grab" %>
-								<%= f.submit "Upload File", class: "btn btn-primary float-right" %>
+								<%= f.file_field :cert_lab, class: "btn", id: "file-grab", hide_label: true %>
+								<%= f.submit "Upload My Lab", id: "upload-btn", class: "btn btn-primary float-right", disabled: true %>
 							<% end %>
 						</div>
+						<script>
+							$(document).on('ready turbolinks:load', function() {
+								$("#file-grab").change(function(){
+									$("#upload-btn").removeAttr("disabled");
+								});
+							})();
+						</script>
 					</div>
 				</div>
 			</div>

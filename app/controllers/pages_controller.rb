@@ -155,7 +155,6 @@ def upload_file #upload action
     @file = params[:user][:cert_lab]
     @object_key = @file.original_filename
     
-
     begin
         if @file.content_type != "application/octet-stream"
             flash[:danger] = "Sorry, you can only upload .db files"
@@ -178,7 +177,7 @@ def upload_file #upload action
             flash[:danger] = "#{@message_log}"
             redirect_to upload_path
         end
-        
+       
         
 
 

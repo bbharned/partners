@@ -9,7 +9,7 @@
 		<div class="well recert-alert" style="margin-bottom:15px; border: 5px solid red; background-color:#F46767;">
 			<div class="row">
 				<div class="col-md-9">
-					<p><span class="bold">Your ThinManager Integration Certification has expired</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
+					<p><span class="bold">Your ThinManager Certification has expired</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
 				</div>
 				<div class="col-md-3">
 					<div align="right"><%= link_to "Get Recertified", certification_instruction_path, class: "btn btn-danger" %></div>
@@ -224,7 +224,27 @@
 	  <% end %>
 
 
-	  <!-------- Put card for Certification Here ---------->
+	  <!-------- Certification Card ---------->
+	  <% if @current_user.admin? || @current_user.certdate == nil || @current_user.certdate == ""  %>
+	  <div class="card">
+	  	<%= image_tag "getCertImage.jpg", class: "card-img-top" %>
+	  	<div class="card-body">
+	  		<h5 class="card-title">ThinManager Certification</h5>
+	  		<p class="card-text">Complete a self-paced set of ThinManager lab exercises to earn ThinManager Certification.</p>
+	  		<div align="right"><%= link_to "Upload My Lab", upload_path, class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "Get Certified", labs_path, class: "btn btn-primary" %></div>
+	  	</div>
+	  </div>
+
+	  <!-- <div class="card">
+	  	<div class="card-body">
+	  		<h5 class="card-title">Ready To Upload?</h5>
+	  		<p class="card-text">If you have completed all 5 of the lab exercises. Upload your final configuration for grading.</p>
+	  		<div align="right"><%= link_to "Upload My Lab", upload_path, class: "btn btn-primary" %></div>
+	  	</div>
+	  </div>
+	  <% end %> -->
+
+
 	  <!-------- Put card for Customer Success Stories Here ---------->
 	  <!-------- Put card for Blog Here ---------->
 
