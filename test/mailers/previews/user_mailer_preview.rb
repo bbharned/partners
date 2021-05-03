@@ -8,4 +8,16 @@ class UserMailerPreview < ActionMailer::Preview
   	UserMailer.cert_notice
   end
 
+  def rau_notice
+  	UserMailer.rau_notice
+  end
+
+  def register_notice
+  	UserMailer.register_notice
+  end
+
+  def partner_register_notice
+  	UserMailer.partner_register_notice
+  end
+
 end

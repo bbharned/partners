@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div align="center">
+    <br />
+    <img src="https://thinmanager.com/partner-resources/rau-logo.png" />
+    <h2>ThinManager Partner Portal</h2>
+    <p>Notice of an <span style="font-weight:bold;">RAU</span> User enrolling<br />through the Partner Portal</p>
+    <br />
+    <p style="font-weight:bold;">User Information</p>
+    <p>
+      <%= @user.firstname %> <%= @user.lastname %><br />
+      <%= @user.company %><br />
+      <%= @user.email %><br />
+    </p>
+
+    <p>Self Identified as:<br />
+      <% if @user.distributor %>
+          Distributor
+        <% elsif @user.integrator %>
+          Integrator
+        <% elsif @user.end_user %>
+          End User
+        <% elsif @user.oem %>
+          OEM
+        <% else %> 
+          &nbsp;
+      <% end %>
+    </p>
+    <p>Account created on: <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+<br />  
+
+      
+    
+    </div>
+  </body>
+</html>

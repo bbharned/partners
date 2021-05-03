@@ -63,6 +63,19 @@ end
         UserMailer.cert_complete(self).deliver_now
     end
 
+#SI sign up notices
+    def send_rau_notice
+        UserMailer.rau_notice(self).deliver_now
+    end
+
+    def send_signup_notice
+        UserMailer.register_notice(self).deliver_now
+    end
+
+    def send_user_signup_notice
+        UserMailer.partner_register_notice(self).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)

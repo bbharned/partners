@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; ">
+    <br />
+    <div style="width:600px; margin: auto; margin-bottom: 55px;">
+      <div style="width:127px; height:100px; float:left;">
+        <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+      </div>
+      <div style="height:100px; text-align: left;">
+        <h2 style="padding-left:140px; line-height: 100px;">ThinManager Portal Notification</h2>
+      </div>
+    </div>
+    <p>Notice of Registration for Review through the Partner Portal</p>
+    <br />
+    <p style="font-weight:bold;">User Information</p>
+    <p>
+      <%= @user.firstname %> <%= @user.lastname %><br />
+      <%= @user.company %><br />
+      <%= @user.email %>
+    </p>
+    
+    <p>Self Identified as:&nbsp;
+      <% if @user.distributor %>
+          Distributor
+        <% elsif @user.integrator %>
+          Integrator
+        <% elsif @user.end_user %>
+          End User
+        <% elsif @user.oem %>
+          OEM
+        <% else %> 
+          &nbsp;
+      <% end %>
+    </p>
+
+    <p>Account created on: <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+    
+    </div>
+  </body>
+</html>

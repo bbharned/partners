@@ -49,6 +49,8 @@ def signup
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
+        @user.send_signup_notice
+        #@user.send_user_signup_notice
         flash[:success] = "Your account has been created, Welcome!"
         redirect_to root_path
     else
@@ -64,6 +66,8 @@ def signup_rau
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
+        @user.send_rau_notice
+        #@user.send_user_signup_notice
         flash[:success] = "Your account has been created, Welcome!"
         redirect_to root_path
     else
@@ -75,7 +79,7 @@ end
 
 def review
   #@sort = [params[:sort]]
-  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order("created_at desc")
+  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order("created_at asc")
 
 end
 

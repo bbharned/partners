@@ -13,6 +13,7 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, from: 'ThinManager Partner Portal', subject: 'Password Reset', delivery_method_options: delivery_options)
   end
 
+  # for preview at http://localhost:3000/rails/mailers/user_mailer/
 
 
   def cert_notice(user, score, wrongs) #remove (user, score, wrongs) for preview
@@ -34,7 +35,7 @@ class UserMailer < ApplicationMailer
 
 
   def zap_zap(user) #remove (user) for preview
-    #@user = User.find(15) #for preview at http://localhost:3000/rails/mailers/user_mailer/cert_notice
+    #@user = User.find(15) 
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
@@ -60,6 +61,49 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, from: 'ThinManager Partner Portal', subject: 'Congratulations on Recertification', delivery_method_options: delivery_options)
   end
   
+
+  def rau_notice()
+    # @user = user
+    @user = User.find(15)
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: 'bharned@thinmanager.com',
+                         password: password,
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'RAU Portal & Training Sign Up', delivery_method_options: delivery_options)
+  end
+
+
+  def register_notice()
+    # @user = user
+    @user = User.find(15)
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: 'bharned@thinmanager.com',
+                         password: password,
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'Portal & Training Registration', delivery_method_options: delivery_options)
+  end
+
+
+  def partner_register_notice()
+    # @user = user
+    @user = User.find(15)
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: 'bharned@thinmanager.com',
+                         password: password,
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
+  end
+
+
 private
     def password
       password = "Corv3tt3"
