@@ -79,6 +79,9 @@ ul.pagination {
 .right-to-not {
     float:right;
 }
+.float-right-to-center {
+    float:right; text-align: right; margin: inherit;
+}
 .user-search-box {
     margin-top: 25px;
 }
@@ -831,6 +834,10 @@ Very Light Blue: #e9f7fb;
     font-style: italic; font-size: .65em;
 }
 
+/*********** RAU Sign Up Page *****************/
+.rau-logo {
+    width:200px; margin: auto; margin-bottom: 15px;
+}
 
 
 
@@ -1055,6 +1062,9 @@ Very Light Blue: #e9f7fb;
     }
     .right-to-not {
         float:none;
+    }
+    .float-right-to-center {
+        float:none; margin: auto; text-align: center;
     }
     .card-columns {
         -webkit-column-count: 1;

@@ -1,6 +1,13 @@
 <div class="container" style="padding-bottom: 150px;">
 	<div class="row">
-		<h1><%= "#{@user.firstname}" " " "#{@user.lastname}" %></h1>
+		<div class="col-sm-8">
+			<h1><%= "#{@user.firstname}" " " "#{@user.lastname}" %></h1>
+		</div>
+		<div class="col-sm-4">
+			<% if @user.referred_by == "RAU" %>
+				<%= image_tag "rau-logo.png", class: "float-right-to-center" %>
+			<% end %>	
+		</div>
 	</div>
 	<hr />
 
@@ -33,7 +40,14 @@
 				<% if @user.channel != nil && @user.channel != "" %>
 				<span class="bold">Channel:</span> &nbsp;<%= @user.channel %><br />
 				<% end %>
-				<span class="bold">Type:</span> &nbsp;<%= @user.prttype %><br />
+				
+				<% if @user.needs_review? && @current_user.admin? %>
+					<span class="bold">Type:</span> &nbsp;In Review<br />
+				<% elsif @user.prttype != nil && @user.prttype != "" %>
+					<span class="bold">Type:</span> &nbsp;<%= @user.prttype %><br />
+				<% else %>
+				<% end %>
+
 				<% if @user.continent != nil && @user.continent != "" %>
 					<span class="bold">Region:</span> &nbsp;<%= @user.continent %><br />
 				<% end %>

@@ -38,6 +38,10 @@ patch 'upload', to: 'pages#upload_file'
 get 'uploads', to: 'pages#uploads'
 get 'pages/download_lab', to: 'pages#download_lab'
 post 'uploads', to: 'pages#destroy_labfile'
+get 'rau', to: 'users#rau'
+post 'rau', to: 'users#signup_rau'
+get 'user/rauusers', to: 'users#rauusers'
+
 
 resources :currencies
 resources :flexforwards

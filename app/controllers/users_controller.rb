@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search, :review]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search, :review, :rauusers]
 
 
 def index
@@ -29,6 +29,19 @@ def si
 end
 
 
+def rau
+  if (!logged_in?) 
+    @user = User.new
+  elsif (logged_in? and current_user.admin?) 
+    @user = User.new
+  elsif (logged_in? and !current_user.admin?)
+    flash[:warning] = "You have already signed up and have an account"
+    redirect_to root_path
+  end
+  @tm = 'Check the option that best describes your relationship to ThinManager'
+end
+
+
 
 def signup
   @user = User.new(user_params)
@@ -44,10 +57,25 @@ def signup
 end
 
 
+def signup_rau
+  @user = User.new(user_params)
+  @user.needs_review = true
+  @user.referred_by = "RAU"
+    if @user.save
+        session[:user_id] = @user.id
+        @user.update_attribute(:lastlogin, Time.now)
+        flash[:success] = "Your account has been created, Welcome!"
+        redirect_to root_path
+    else
+        render 'si'
+    end
+end
+
+
 
 def review
-  @sort = [params[:sort]]
-  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order(@sort)
+  #@sort = [params[:sort]]
+  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order("created_at desc")
 
 end
 
@@ -161,6 +189,17 @@ def admin
     respond_to do |format|
       format.html { render "admin" }
       format.csv { send_data @users.to_csv, filename: "PartnerPortal_Admins-#{Date.today}.csv" }
+    end
+end
+
+def rauusers
+    @sort = [params[:sort]]
+    @users = User.where(referred_by: "RAU").paginate(page: params[:page], per_page: 25).order(@sort)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "rauusers" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_RAU-#{Date.today}.csv" }
     end
 end
 
