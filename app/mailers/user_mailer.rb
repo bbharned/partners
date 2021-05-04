@@ -90,9 +90,9 @@ class UserMailer < ApplicationMailer
   end
 
 
-  def partner_register_notice(user)
-    @user = user
-    # @user = User.find(2)
+  def partner_register_notice()
+    # @user = user
+    @user = User.find(2)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
