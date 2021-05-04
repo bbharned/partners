@@ -17,7 +17,7 @@ class UserMailer < ApplicationMailer
 
 
   def cert_notice(user, score, wrongs) #remove (user, score, wrongs) for preview
-    # @user = User.find(15) #for preview at http://localhost:3000/rails/mailers/user_mailer/cert_notice
+    # @user = User.find(15) 
     # @score = 8
     # @wromgs = [2,4]
     @score = score
@@ -62,9 +62,9 @@ class UserMailer < ApplicationMailer
   end
   
 
-  def rau_notice()
-    # @user = user
-    @user = User.find(15)
+  def rau_notice(user)
+    @user = user
+    # @user = User.find(15)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -76,9 +76,9 @@ class UserMailer < ApplicationMailer
   end
 
 
-  def register_notice()
-    # @user = user
-    @user = User.find(15)
+  def register_notice(user)
+    @user = user
+    # @user = User.find(15)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -90,9 +90,9 @@ class UserMailer < ApplicationMailer
   end
 
 
-  def partner_register_notice()
-    # @user = user
-    @user = User.find(15)
+  def partner_register_notice(user)
+    @user = user
+    # @user = User.find(2)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -100,7 +100,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
+    mail(to: @user.email, from: 'ThinManager', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
   end
 
 

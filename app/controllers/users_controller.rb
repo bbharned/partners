@@ -45,12 +45,13 @@ end
 
 def signup
   @user = User.new(user_params)
+  @receiver = User.find(2)
   @user.needs_review = true
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
         @user.send_signup_notice
-        #@user.send_user_signup_notice
+        @receiver.send_user_signup_notice
         flash[:success] = "Your account has been created, Welcome!"
         redirect_to root_path
     else

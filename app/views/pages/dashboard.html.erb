@@ -184,7 +184,6 @@
 	  <!-- Pricing Card -->
 	  <% if @current_user.admin? || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") || (@current_user.continent == "NA" && @current_user.prttype == "Distributor") && !current_user.needs_review %>
 		  <div class="card pricing-card">
-		    <!--<img class="card-img-top" src="#" alt="Card image cap">-->
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager Pricing</h5>
 		      <p class="card-text">Need to make a quote? Find ThinManager Part Numbers and prices, with peace of mind knowing that they are kept current and up to date.<br />Questions? Email our <%= link_to "Inside Sales", "mailto:insidesales@thinmanager.com" %>.</p>
@@ -226,28 +225,29 @@
 
 	  <!-------- Certification Card ---------->
 	  <% if @current_user.admin? || @current_user.certdate == nil || @current_user.certdate == ""  %>
-	  <div class="card">
-	  	<%= image_tag "getCertImage.jpg", class: "card-img-top" %>
-	  	<div class="card-body">
-	  		<h5 class="card-title">ThinManager Certification</h5>
-	  		<p class="card-text">Complete a self-paced set of ThinManager lab exercises to earn ThinManager Certification.</p>
-	  		<div align="right"><%= link_to "Upload My Lab", upload_path, class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "Get Certified", labs_path, class: "btn btn-primary" %></div>
-	  	</div>
-	  </div>
-
-	  <!-- <div class="card">
-	  	<div class="card-body">
-	  		<h5 class="card-title">Ready To Upload?</h5>
-	  		<p class="card-text">If you have completed all 5 of the lab exercises. Upload your final configuration for grading.</p>
-	  		<div align="right"><%= link_to "Upload My Lab", upload_path, class: "btn btn-primary" %></div>
-	  	</div>
-	  </div>
-	  <% end %> -->
+		  <div class="card">
+		  	<%= image_tag "getCertImage.jpg", class: "card-img-top" %>
+		  	<div class="card-body">
+		  		<h5 class="card-title">ThinManager Certification</h5>
+		  		<p class="card-text">Complete a self-paced set of ThinManager lab exercises to earn ThinManager Certification.</p>
+		  		<div align="right"><%= link_to "Upload My Lab", upload_path, class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "Get Certified", labs_path, class: "btn btn-primary" %></div>
+		  	</div>
+		  </div>
+	  <% end %> 
 
 
 	  <!-------- Put card for Customer Success Stories Here ---------->
-	  <!-------- Put card for Blog Here ---------->
+	  <div class="card">
+	  	<%= image_tag "customerSuccess.jpg", class: "card-img-top" %>
+	  	<div class="card-body">
+	  		<h5 class="card-title">ThinManager Success</h5>
+	  		<p class="card-text">Read captivating success stories from Integrators solving challenges and putting ThinManager in to production.</p>
+	  		<div align="right"><%= link_to "Read Now", "https://thinmanager.com/media#integrators", class: "btn btn-primary", target: "_blank" %></div>
+	  	</div>
+	  </div>
 
+
+	  
 
 
 	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
@@ -325,7 +325,15 @@
 	  </div>
 
 
-	  
+	  <!-------- Put card for Blog Here ---------->
+	  <div class="card">
+	  	<%= image_tag "Blog-card-image.jpg", class: "card-img-top" %>
+	  	<div class="card-body">
+	  		<h5 class="card-title">The ThinManager Blog</h5>
+	  		<p class="card-text">Read great content about ThinManager that has been crafted over many years for our subscribers to enjoy. Have a story to feature on the blog? Contact us.</p>
+	  		<div align="right"><%= link_to "Read Now", "https://blogs.thinmanager.com/thinclients/", class: "btn btn-primary", target: "_blank" %></div>
+	  	</div>
+	  </div>
 
 
 
