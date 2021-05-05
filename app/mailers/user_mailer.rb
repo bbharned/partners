@@ -64,7 +64,6 @@ class UserMailer < ApplicationMailer
 
   def rau_notice(user)
     @user = user
-    # @user = User.find(15)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -78,7 +77,6 @@ class UserMailer < ApplicationMailer
 
   def register_notice(user)
     @user = user
-    # @user = User.find(15)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -92,7 +90,6 @@ class UserMailer < ApplicationMailer
 
   def partner_register_notice(user)
     @user = user
-    # @user = User.find(2)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -105,7 +102,6 @@ class UserMailer < ApplicationMailer
 
   def lab_upload_notice(user)
     @user = user
-    # @user = User.find(20)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',

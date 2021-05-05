@@ -164,7 +164,7 @@ def upload_file #upload action
             @user.lab_file = @object_key
             @user.save
 
-            ## send email confirming file upload here
+            ## send email confirming file upload to certification@thinmanager.com
             @user.send_lab_upload_notice
 
             flash[:success] = "Your file named \"#{@object_key}\" has been uploaded. We will review it for grading and contact you after."
