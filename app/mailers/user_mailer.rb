@@ -71,7 +71,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'RAU Portal & Training Sign Up', delivery_method_options: delivery_options)
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Portal Registration - RAU', delivery_method_options: delivery_options)
   end
 
 
@@ -84,7 +84,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'Portal & Training Registration', delivery_method_options: delivery_options)
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Portal Registration', delivery_method_options: delivery_options)
   end
 
 
@@ -97,7 +97,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: @user.email, from: 'ThinManager', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering for the ThinManager Portal', delivery_method_options: delivery_options)
   end
 
   def lab_upload_notice(user)
@@ -109,7 +109,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'Lab Uploaded for certification', delivery_method_options: delivery_options)
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Lab Uploaded for certification', delivery_method_options: delivery_options)
   end
 
 

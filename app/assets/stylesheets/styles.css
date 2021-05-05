@@ -85,7 +85,18 @@ ul.pagination {
 .user-search-box {
     margin-top: 25px;
 }
-
+.cert-plug-box {
+    width:100%; background-color: #f1f1f1;
+    padding: 10px 20px; border-radius: 10px;
+}
+.cert-plug-box h6 {
+    margin-bottom: 3px;
+}
+.cert-plug-box hr {
+    margin-bottom: 3px; margin-top: 4px;
+}
+.cert-plug-box p {font-size: .75em; margin-bottom: 7px;}
+.cert-plug-box p:last-child {margin-bottom: 0px;}
 
 
 /** Rockwell Top Bar **/
