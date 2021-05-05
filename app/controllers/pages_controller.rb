@@ -165,7 +165,8 @@ def upload_file #upload action
             @user.save
 
             ## send email confirming file upload here
-            
+            @user.send_lab_upload_notice
+
             flash[:success] = "Your file named \"#{@object_key}\" has been uploaded. We will review it for grading and contact you after."
             redirect_to root_path
         else

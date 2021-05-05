@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; ">
+    <br />
+    <div style="width:600px; margin: auto; margin-bottom: 35px;">
+      <div style="width:127px; height:100px; float:left;">
+        <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+      </div>
+      <div style="height:100px; text-align: left;">
+        <h2 style="padding-left:140px; line-height: 100px;">ThinManager Portal Notification</h2>
+      </div>
+    </div>
+    <p>Notice of <b>Lab Upload</b> for Review through the Partner Portal</p>
+    <br />
+    <p>User Information:</p>
+    <p>
+      <b>Name:</b> <%= @user.firstname %> <%= @user.lastname %><br />
+      <b>Company:</b> <%= @user.company %><br />
+      <b>Email:</b> <%= @user.email %>
+    </p>
+
+    <p><b>Lab File</b>: <%= @user.lab_file %></p>
+    <hr />
+    <p>Self Identified as:&nbsp;
+      <% if @user.distributor %>
+          Distributor
+        <% elsif @user.integrator %>
+          Integrator
+        <% elsif @user.end_user %>
+          End User
+        <% elsif @user.oem %>
+          OEM
+        <% else %> 
+          &nbsp;
+      <% end %>
+    </p>
+    <br />
+    <p><a href="https://partners.thinmanager.com" target="_blank" style="text-decoration:none; padding:10px 20px; background-color: blue; color:#FFFFFF; border-radius:5px; text-align: center;">Go To Portal</a></p>
+    
+    
+    </div>
+  </body>
+</html>

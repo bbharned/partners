@@ -45,12 +45,12 @@ end
 
 def signup
   @user = User.new(user_params)
-  @receiver = User.find(2)
+  @receiver = User.find(1)
   @user.needs_review = true
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
-        @user.send_signup_notice
+        #@user.send_signup_notice
         @receiver.send_user_signup_notice
         flash[:success] = "Your account has been created, Welcome!"
         redirect_to root_path
@@ -85,13 +85,13 @@ def review
 end
 
 
-def upload_file
-    @user = current_user
-    @file = params[:cert_lab]
+# def upload_file
+#     @user = current_user
+#     @file = params[:cert_lab]
 
-    flash[:success] = "Your file is #{:cert_lab}"
-    redirect_to root_path
-end
+#     flash[:success] = "Your file is #{:cert_lab}"
+#     redirect_to root_path
+# end
 
 
 

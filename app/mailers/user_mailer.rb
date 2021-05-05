@@ -90,9 +90,9 @@ class UserMailer < ApplicationMailer
   end
 
 
-  def partner_register_notice()
-    # @user = user
-    @user = User.find(2)
+  def partner_register_notice(user)
+    @user = user
+    # @user = User.find(2)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: 'bharned@thinmanager.com',
@@ -102,6 +102,23 @@ class UserMailer < ApplicationMailer
                           }
     mail(to: @user.email, from: 'ThinManager', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
   end
+
+  def lab_upload_notice(user)
+    @user = user
+    # @user = User.find(20)
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: 'bharned@thinmanager.com',
+                         password: password,
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'Lab Uploaded for certification', delivery_method_options: delivery_options)
+  end
+
+
+
+
 
 
 private

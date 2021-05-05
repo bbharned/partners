@@ -76,6 +76,10 @@ end
         UserMailer.partner_register_notice(self).deliver_now
     end
 
+    def send_lab_upload_notice
+        UserMailer.lab_upload_notice(self).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)
