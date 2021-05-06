@@ -39,7 +39,7 @@
 		<h4 class="certs-name"><%= @user.firstname %> <%= @user.lastname %></h4>
 		<p class="certs-p">HAS COMPLETED THE THINMANAGER TRAINING ON</p>
 		<p class="certs-p" style="font-weight:bold;"><%= @user.certdate %></p>
-		<p class="certs-p finer-print">System Integrator &nbsp;|&nbsp; <%=  @user.email %></p>
+		<p class="certs-p finer-print"><%= @user.prttype %> &nbsp;|&nbsp; <%=  @user.email %></p>
 	</div>
 </div>
 
