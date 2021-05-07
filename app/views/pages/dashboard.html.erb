@@ -222,7 +222,7 @@
 
 
 	  <!-------- Certification Card ---------->
-	  <% if @current_user.admin? || @current_user.certdate == nil || @current_user.certdate == ""  %>
+	  <% if @current_user.admin? || (@current_user.certdate == nil || @current_user.certdate == "")  %>
 		  <div class="card">
 		  	<%= image_tag "certimage.jpg", class: "card-img-top" %>
 		  	<div class="card-body">
