@@ -41,10 +41,9 @@
 				<p>User Type: <span style="font-weight:bold;">Admin</span></p>
 			<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
 				<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span>
-				<% if @current_user.prttype == "Integrator" && (@current_user.certexpire != nil || @current_user.certexpire != "") %>
-					&nbsp;&nbsp;|&nbsp;&nbsp;SI Level: <span style="font-weight:bold;"><%= @current_user.silevel %></span>
+			<% if (@current_user.certexpire != nil && @current_user.certexpire != "") %>
 					&nbsp;&nbsp;|&nbsp;&nbsp;Certification Expiration: <span style="font-weight:bold;"><%= @current_user.certexpire %></span>
-				<% end %>
+			<% end %>
 				</p>
 			<% end %>
 		</div>
