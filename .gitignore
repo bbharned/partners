@@ -34,6 +34,6 @@
 /config/master.key
 
 # Ignore master key for decrypting credentials and more.
-/config/storage.yml
+#/config/storage.yml
 
 
