@@ -84,6 +84,10 @@ def review
   @sort = [params[:sort]]
   @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order(@sort)
 
+  respond_to do |format|
+      format.html { render "review" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_NeedsReview-#{Date.today}.csv" }
+    end
 end
 
 
