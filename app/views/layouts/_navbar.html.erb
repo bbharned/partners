@@ -72,7 +72,7 @@
                     <%= link_to "Downloads", downloads_path, class: 'dropdown-item' %>
                     <%= link_to "ROI Downloads", calculators_path, class: 'dropdown-item' %>
                     <div class="dropdown-divider"></div>
-                    <%= link_to "Needs Review", user_review_path, class: 'dropdown-item' %>
+                    <%= link_to "Needs Review", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
                     <%= link_to "Lab Uploads", uploads_path, class: 'dropdown-item' %>
                     <%= link_to "SI Certifications", certifications_path, class: 'dropdown-item' %>
                     <div class="dropdown-divider"></div>

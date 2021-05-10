@@ -81,8 +81,8 @@ end
 
 
 def review
-  #@sort = [params[:sort]]
-  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order("created_at asc")
+  @sort = [params[:sort]]
+  @users = User.where(needs_review: true).paginate(page: params[:page], per_page: 25).order(@sort)
 
 end
 
