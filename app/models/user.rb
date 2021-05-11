@@ -76,6 +76,10 @@ end
         UserMailer.partner_register_notice(self).deliver_now
     end
 
+    def send_newuser_zap
+        UserMailer.zap_user_signup(self).deliver_now
+    end
+
     def send_lab_upload_notice
         UserMailer.lab_upload_notice(self).deliver_now
     end

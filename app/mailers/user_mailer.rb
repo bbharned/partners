@@ -30,7 +30,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'certification@thinmanager.com', from: 'ThinManager Partner Portal', subject: 'SI Certification Notice', delivery_method_options: delivery_options)
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'SI Certification Notice', delivery_method_options: delivery_options)
   end
 
 
@@ -44,7 +44,19 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'lcu069c2@robot.zapier.com', from: 'ThinManager Partner Portal', subject: 'Recertification', delivery_method_options: delivery_options)
+    mail(to: 'lcu069c2@robot.zapier.com', from: 'ThinManager Portal', subject: 'Recertification', delivery_method_options: delivery_options)
+  end
+
+  def zap_user_signup(user) 
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'gsf45wh0@robot.zapier.com', from: 'ThinManager Portal', subject: 'new portal user', delivery_method_options: delivery_options)
   end
 
 

@@ -51,6 +51,7 @@ def signup
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
         @user.send_signup_notice  #change for production
+        @user.send_newuser_zap
         @user.send_user_signup_notice #change for production
         flash[:success] = "Your account has been created, Welcome!"
         redirect_to root_path
@@ -68,7 +69,8 @@ def signup_rau
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
-        @user.send_rau_notice 
+        @user.send_rau_notice
+        @user.send_newuser_zap 
         @user.send_user_signup_notice #change for production
         #@receiver.send_user_signup_notice #change for production
         flash[:success] = "Your account has been created, Welcome!"

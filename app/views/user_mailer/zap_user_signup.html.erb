@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    firstname: <%= @user.firstname %><br />
+    lastname: <%= @user.lastname %><br />
+    email: <%= @user.email %><br />
+    company: <%= @user.company %><br />
+    persona: <% if @user.integrator %>integrator<% elsif @user.distributor %>distributor<% elsif @user.oem %>oem<% elsif @user.end_user %>end user<% else %><% end %>
+      
+  </body>
+</html>
