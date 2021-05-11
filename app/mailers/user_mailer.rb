@@ -5,8 +5,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -25,8 +25,8 @@ class UserMailer < ApplicationMailer
     @wrongs = wrongs
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -39,8 +39,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -53,8 +53,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -66,8 +66,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -79,8 +79,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -92,8 +92,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -104,8 +104,8 @@ class UserMailer < ApplicationMailer
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
-                         user_name: 'bharned@thinmanager.com',
-                         password: password,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
@@ -117,10 +117,6 @@ class UserMailer < ApplicationMailer
 
 
 
-private
-    def password
-      password = "Corv3tt3"
-    end
 
 
 end

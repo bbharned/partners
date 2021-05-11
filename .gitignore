@@ -33,7 +33,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore master key for decrypting credentials and more.
-#/config/storage.yml
+# Ignore local custom env variables
+/config/local_env.yml
 
 
