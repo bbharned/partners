@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.6'
+ruby '2.6.7'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -50,7 +50,7 @@ gem "loofah", ">= 2.3.1"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+gem 'mimemagic', '~> 0.3.10'
 
 
 
