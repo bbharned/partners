@@ -63,6 +63,10 @@ end
         UserMailer.cert_complete(self).deliver_now
     end
 
+    def send_zap_lab_upload
+        UserMailer.zap_lab_upload(self).deliver_now
+    end
+
 #SI sign up notices
     def send_rau_notice
         UserMailer.rau_notice(self).deliver_now

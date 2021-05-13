@@ -59,6 +59,18 @@ class UserMailer < ApplicationMailer
     mail(to: 'gsf45wh0@robot.zapier.com', from: 'ThinManager Portal', subject: 'new portal user', delivery_method_options: delivery_options)
   end
 
+  def zap_lab_upload(user) 
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: '3y8zssc4@robot.zapier.com', from: 'ThinManager Portal', subject: 'new lab upload', delivery_method_options: delivery_options)
+  end
+
 
   def cert_complete(user) #remove (user) for preview
     # @user = User.find(15) #make user for production

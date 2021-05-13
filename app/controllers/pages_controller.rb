@@ -166,6 +166,8 @@ def upload_file #upload action
 
             ## send email confirming file upload to certification@thinmanager.com
             @user.send_lab_upload_notice
+            ## send email integrating Hubspot via Zapier to lab submission
+            @user.send_zap_lab_upload
 
             flash[:success] = "Your file named \"#{@object_key}\" has been uploaded. We will review it for grading and contact you after."
             redirect_to root_path
