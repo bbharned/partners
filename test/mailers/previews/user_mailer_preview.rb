@@ -42,4 +42,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.zap_user_signup(@user)
   end
 
+  def zap_lab_upload
+    @user = User.find(15)
+    UserMailer.zap_lab_upload(@user)
+  end
+
 end
