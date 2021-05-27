@@ -78,6 +78,32 @@
 		</div>
 	</div>
 
+
+	<% if @current_user.admin? && @user_flexs.any? %>
+
+		<h4 align="center" style="margin-top: 55px;">Latest Flex Forward Quotes</h4>
+
+		<% @user_flexs.each do |f| %>
+			<% if f.red_exchange %>
+			<div class="indicator">
+				<%= image_tag("green_dot.png") %>
+			</div>
+			<% end %>
+			<div class="well ff-well-style">
+				<div class="row">
+					<div class="col-lg-4"><%= link_to "#{f.name}", flexforward_path(f) %></div>
+					<div class="col-lg-2"><%= number_to_currency(f.total_quote, unit: f.currency.symbol, seperator: ",") %></div>
+					<div class="col-lg-2"><%= f.created_at.strftime("%m/%d/%Y") %></div>
+					<div class="col-lg-2"><%= f.user.firstname %> <%= f.user.lastname %></div>
+					<div class="col-lg-1"><%= link_to "Edit", edit_flexforward_path(f) %></div>
+					<div class="col-lg-1"><%= link_to "Delete", flexforward_path(f), method: :delete, data: {confirm: "Are you sure you want to delete this Flex Foward Calculator?"}, style: "color:red; float:right;" %></div>
+				</div>
+
+			</div>
+		<% end %>
+	<% end %>
+
+	<br />
 	
 	<% if @current_user.admin? && @user_certs.any? %>
 		<h4 align="center" style="margin-top: 55px;">SI Recertifications</h4>

@@ -100,7 +100,20 @@ def saved
 end
 
 
+def search
+  if params[:search].blank?
+    redirect_to flexforwards_path and return
+  else
+    @parameter = params[:search].downcase
+    #@sort = [params[:sort]]
+    @flexforwards = Flexforward.where("lower(name || note) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25)
+  end
 
+  respond_to do |format|
+      format.html { render "search" }
+      #format.csv { send_data @users.to_csv, filename: "PartnerPortal_SearchedUsers-#{Date.today}.csv" }
+  end
+end
 
 
 

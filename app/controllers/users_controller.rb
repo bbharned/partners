@@ -232,7 +232,7 @@ end
 
 def show
      @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
-
+     @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")
      # def send_cert_conf(user)  # --->  <a onClick="<%= @user.send_cert_conf() %>"></a>
      #    user.send_cert_conf
      # end

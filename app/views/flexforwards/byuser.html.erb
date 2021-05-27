@@ -4,6 +4,9 @@
 <div class="legend">
 	<p><%= image_tag("green_dot.png") %> = Exchange for Redundant</p>
 </div>
+
+<%= render "search" %>
+
 <div class="paginate">
 	<%= will_paginate(@flexforwards, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 </div>
