@@ -7,7 +7,7 @@
 
 <br />
 	<div class="document-table">
-		<% if current_user.channel == "Rockwell Automation" || current_user.admin %>
+		<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 			<!-- Rockwell Technical Presentation -->
 			<div class="row even">
 				<div class="col-md-6"><span class="bold">Technical Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
@@ -15,7 +15,7 @@
 				<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Version12_TechnicalPresentation20201204.PPTX", target: "_blank" %></div>
 			</div>
 		<% end %>
-		<% if current_user.channel != "Rockwell Automation" || current_user.admin %>
+		<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 			<!-- 3rd Party Technical Presentation -->
 			<div class="row even">
 				<div class="col-md-6"><span class="bold">Technical Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
@@ -24,7 +24,7 @@
 			</div>
 		<% end %>
 
-		<% if current_user.channel == "Rockwell Automation" || current_user.admin %>
+		<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 			<!-- Rockwell Sales Presentation -->
 			<div class="row">
 				<div class="col-md-6"><span class="bold">Sales Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
@@ -32,7 +32,8 @@
 				<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Version12_SalesPresentation_RA_20210111.pptx", target: "_blank" %></div>
 			</div>
 		<% end %>
-		<% if current_user.channel != "Rockwell Automation" || current_user.admin %>
+		
+		<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 			<!-- 3rd Party Sales Presentation -->
 			<div class="row">
 				<div class="col-md-6"><span class="bold">Sales Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
