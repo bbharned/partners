@@ -49,6 +49,8 @@ resources :currencies
 resources :flexforwards
 resources :certifications
 get 'certification/instruction', to: 'certifications#instruction'
+resources :qrcodes
+get 'user/myqrs', to: 'qrcodes#myqrs'
 
 
 get 'flexforward', to: 'flexforwards#saved'

@@ -20,6 +20,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem "aws-sdk-s3", require: false
 
+gem "rqrcode", "~> 2.0"
+
 # Use Puma as the app server
 gem "puma", ">= 4.3.5"
 # Use SCSS for stylesheets

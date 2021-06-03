@@ -1,0 +1,40 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @qrcode %>
+
+
+
+<%= form_for(@qrcode, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+
+<div class="form-group">
+                
+
+
+    <div class="row">
+    	
+        <div class="col-sm-6">
+            <div class="control-label"><%= f.label "QR Code Content" %></div>
+            <%= f.text_field :content, class: "form-control", placeholder: "example: Packing_HMI or https://thinmanager.com" %>
+        </div>    
+        
+     </div>
+
+
+
+</div>
+       
+        <br />
+        
+
+        <div class="form-group">
+            
+                <%= f.submit(@qrcode.new_record? ? "Create QR Code" : "Update QR Code", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+           
+        </div>
+
+
+
+<% end %>
+
+</div>

@@ -1,0 +1,48 @@
+<style>
+@media print {
+	.ra-top-bar, 
+	.ff-instructions, 
+	#footer, 
+	#disclaimer,
+	.no-print {
+		display:none !important;
+	}
+}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="no-print"><%= @qrcode.content %></h1>
+		</div>
+		<div class="col-sm-4" style="padding-top:7px;">
+			<%= link_to "Print QR Code", "#", class: "btn btn-info btn-md no-print float-right", id: "print" %>
+		</div>
+	</div>
+	<hr class="no-print" />
+
+	<div align="center" style="margin-top:55px;">
+		
+		
+		<p style="margin-top:25px;">
+			
+				<%= @svg.html_safe %>
+			
+		</p>
+
+		
+
+		<p class="no-print" style="margin-top:25px;">
+			<%= @qrcode.content %>
+		</p>
+		<br />
+		<p class="no-print"><%= link_to "Edit", edit_qrcode_path(@qrcode) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Back", :back %></p>
+	</div>	
+
+</div>
+
+<script>
+	$("#print").click(function() {
+        print();
+        return false;
+    });
+</script>

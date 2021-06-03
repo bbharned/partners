@@ -19,7 +19,7 @@ end
 
 private
 
-def download_params
+    def download_params
         params.require(:calculator).permit(:user_id)
     end
 
