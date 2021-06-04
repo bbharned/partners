@@ -40,7 +40,20 @@
                 <%= link_to "Pricing", pricing_path, class: 'nav-link' %>
               </li>
             <% end %>
-            <% if (@current_user && @current_user.distributor == true) || @current_user.admin %>
+
+            <% if (@current_user && !@current_user.needs_review) || @current_user.admin %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                QR Codes
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "View Saved QR Codes", user_myqrs_path, class: 'dropdown-item' %>
+                <%= link_to "Create QR Code", new_qrcode_path, class: 'dropdown-item' %>
+              </div>
+            </li>
+            <% end %>
+
+            <% if (@current_user && @current_user.prttype == "Distributor") || @current_user.admin %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Flex Forward
@@ -71,6 +84,7 @@
                     <!--<a href="#" class="dropdown-item">Reports</a>-->
                     <%= link_to "Downloads", downloads_path, class: 'dropdown-item' %>
                     <%= link_to "ROI Downloads", calculators_path, class: 'dropdown-item' %>
+                    <%= link_to "QR Codes", qrcodes_path, class: 'dropdown-item' %>
                     <div class="dropdown-divider"></div>
                     <%= link_to "Needs Review", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
                     <%= link_to "Lab Uploads", uploads_path, class: 'dropdown-item' %>
@@ -92,13 +106,13 @@
 
   <div class="goAwaySooner">
     <ul class="nav navbar-nav navbar-right">
-      <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Partners Web App Issue Report" class="nav-link">Having technical issues?</a></li>
+      <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Portal Web App Issue Report" class="nav-link">Having technical issues?</a></li>
       <li class="dropdown" style="padding-top: 5px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
-              <li><a class="dropdown-item" href="http://www.thinmanager.com">ThinManager.com</a></li>
-              <li><a class="dropdown-item" href="http://www.thinmanager.com/support/">ThinManager Support</a></li>
-              <li><a class="dropdown-item" href="http://www.thinmanager.com/corp/contactus.php">Contact Us</a></li>
+              <li><a class="dropdown-item" href="https://thinmanager.com">ThinManager.com</a></li>
+              <li><a class="dropdown-item" href="https://thinmanager.com/support/">ThinManager Support</a></li>
+              <li><a class="dropdown-item" href="https://thinmanager.com/corp/contactus.php">Contact Us</a></li>
             </ul>
           </li>
     </ul>

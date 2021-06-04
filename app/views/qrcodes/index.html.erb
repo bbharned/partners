@@ -1,7 +1,12 @@
-<div class="container">
+<div class="container" style="padding-bottom:75px;">
 
 <h1>QR Codes <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@qrcodes.count, "total created codes") %> )</span></h1>
 <hr />
+
+
+<div class="paginate">
+	<%= will_paginate(@qrcodes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
 
 <% if @qrcodes.any? %>
 	
@@ -46,5 +51,9 @@
 	<p>There are no QR Codes yet created.</p>
 
 <% end %>
+<br /><br />
+<div class="paginate">
+	<%= will_paginate(@qrcodes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
 
 </div>

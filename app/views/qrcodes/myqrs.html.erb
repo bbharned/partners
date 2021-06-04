@@ -12,6 +12,9 @@
 
 
 
+<div class="paginate">
+	<%= will_paginate(@qrcodes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
 
 
 <% if @qrcodes.any? %>
@@ -52,5 +55,8 @@
 	<p>There are no QR Codes yet created.</p>
 
 <% end %>
-
+<br /><br />
+<div class="paginate">
+	<%= will_paginate(@qrcodes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
 </div>

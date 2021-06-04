@@ -6,9 +6,7 @@ class QrcodesController < ApplicationController
 def index 
 	@user = current_user
 	if @user.admin?
-		@qrcodes = Qrcode.all
-	else
-		@qrcodes = Qrcode.where(user_id: @user.id)
+		@qrcodes = Qrcode.paginate(page: params[:page], per_page: 25).order("created_at desc")
 	end
 end
 
@@ -57,6 +55,15 @@ def edit
 
 end
 
+def update
+	if @qrcode.update(qr_params)
+        flash[:success] = "QR Code was successfully updated"
+        redirect_to qrcode_path(@qrcode)
+    else
+        render 'edit'
+    end
+end
+
 
 def destroy
 	@qrcode.destroy
@@ -66,7 +73,7 @@ end
 
 def myqrs
 	@user = current_user
-	@qrcodes = Qrcode.where(user_id: @user)
+	@qrcodes = Qrcode.where(user_id: @user).paginate(page: params[:page], per_page: 25).order("created_at desc")
 end
 
 

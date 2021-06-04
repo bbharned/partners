@@ -194,7 +194,7 @@
 
 
 
-	  <!-- Flex Forward here -->
+	  <!-- Flex Forward Card -->
 	  <% if @current_user.admin? || (@current_user.prttype == "Distributor" && @current_user.channel != nil && @current_user.channel != "" && !current_user.needs_review) %>
 		  	<div class="card" style="padding-top: 20px;">
 			    <%= image_tag "ff-logo.png", class: "card-img-top" %>
@@ -206,15 +206,18 @@
 			</div>
 	  <% end %>
 
+
+
+	  <!-- ThinManager Download Card -->
 	  <% if !@current_user.needs_review %>
 		  <div class="card">
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager Download</h5>
-		      <p class="card-text">Download the lastest version of ThinManager, Version 12.0</p>
+		      <p class="card-text">Download the lastest version of ThinManager, Version 12.0.1</p>
 		      <p class="card-text"><small class="text-muted">Need activation instructions? <%= link_to "Learn More", "https://thinmanager.com/activate", target: "_blank" %></small><br />
 		      <small class="text-muted">Need a different download? <%= link_to "Click Here", "https://downloads.thinmanager.com", target: "_blank" %></small></p>
 		      	<div align="right">
-		      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/12.0.0-ThinManager-Web.exe' + location.search)" %>
+		      		<%= link_to 'Download Now', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloads.thinmanager.com/Files/12.0.1-ThinManager-Web.exe' + location.search)" %>
 		  		</div>
 		    </div>
 		  </div>
@@ -338,6 +341,22 @@
 
 	  
 
+	  <!-- QR Code Generator Card -->
+	  <% if !@current_user.needs_review %>
+	  <div class="card">
+	  	<%= image_tag "qr-card-image.jpg", class: "card-img-top" %>
+	    <div class="card-body">
+	    	<h5 class="card-title">QR Code Generator</h5>
+	    	<p class="card-text">Location resolvers in ThinManager are the essential key to Relevance and implementing location based mobility in your projects. Create and manage text based QR Codes right here.</p>
+	    	<div align="right"><%= link_to "Create a QR", new_qrcode_path, class: "btn btn-primary" %></div>
+	    </div>	
+	  </div>
+	  <% end %>
+
+
+
+
+	  <!-------- Podcast Card ---------->
 	  <div class="card">
 	    <%= image_tag "thePlant.jpg", class: "card-img-top" %>
 	    <div class="card-body">
@@ -348,7 +367,9 @@
 	  </div>
 
 
-	  <!-------- Put card for Blog Here ---------->
+
+
+	  <!-------- Blog Card ---------->
 	  <div class="card">
 	  	<%= image_tag "Blog-card-image.jpg", class: "card-img-top" %>
 	  	<div class="card-body">
