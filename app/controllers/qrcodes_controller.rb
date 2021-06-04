@@ -42,9 +42,10 @@ def show
 	@svg = @q.as_svg(
 		  color: "000",
 		  shape_rendering: "crispEdges",
-		  module_size: 12,
+		  module_size: 11,
 		  standalone: true,
-		  use_path: true
+		  use_path: true,
+		  viewbox: true
 	)
 
 
