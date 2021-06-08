@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav">
+<nav class="navbar navbar-expand-xl navbar-light bg-light main-nav">
   <div class="logo">
       <%= link_to image_tag("thinMan.png"), "https://thinmanager.com" %>
   </div>
@@ -73,10 +73,20 @@
                 Admin
               </a>
               <div class="dropdown-menu admin-menu" aria-labelledby="navbarDropdown">
-                
-                
-                    <%= link_to "View Users", users_path, class: 'dropdown-item' %>
-                    <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
+                    
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Users <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "View Users", users_path, class: 'dropdown-item' %>
+                          <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
+                      </div>
+                    </div>
+
+                    
+                    
+                    
                     <div class="dropdown-divider"></div>
                     <%= link_to "Flex Forwards", flexforwards_path, class: 'dropdown-item' %>
                     <%= link_to "Currencies", currencies_path, class: 'dropdown-item' %>
@@ -85,15 +95,37 @@
                     <%= link_to "Downloads", downloads_path, class: 'dropdown-item' %>
                     <%= link_to "ROI Downloads", calculators_path, class: 'dropdown-item' %>
                     <%= link_to "QR Codes", qrcodes_path, class: 'dropdown-item' %>
+                    
+
                     <div class="dropdown-divider"></div>
-                    <%= link_to "Needs Review", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
-                    <%= link_to "Lab Uploads", uploads_path, class: 'dropdown-item' %>
-                    <%= link_to "SI Certifications", certifications_path, class: 'dropdown-item' %>
+
+
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Certification <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "Sign Ups/Need Review", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
+                          <%= link_to "Lab Uploads", uploads_path, class: 'dropdown-item' %>
+                          <%= link_to "Re-Certifications", certifications_path, class: 'dropdown-item' %>
+                          <%= link_to "RAU Sign Ups", user_rauusers_path, class: "dropdown-item" %>
+                      </div>
+                    </div>
+                    
+
                     <div class="dropdown-divider"></div>
-                    <%= link_to "RAU Sign Ups", user_rauusers_path, class: "dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                
-                <%= link_to "Logout", logout_path, method: :delete, class: 'dropdown-item' %>
+
+
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Learning <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "Categories", categories_path, class: 'dropdown-item' %>
+                      </div>
+                    </div>
+                    
+                    
               </div>
             </li>
             <% end %>
@@ -104,7 +136,7 @@
     </ul>
   </div>
 
-  <div class="goAwaySooner">
+  <div class="goAwaySoonest">
     <ul class="nav navbar-nav navbar-right">
       <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Portal Web App Issue Report" class="nav-link">Having technical issues?</a></li>
       <li class="dropdown" style="padding-top: 5px;">
