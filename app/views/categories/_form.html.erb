@@ -1,0 +1,28 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @category %>
+<%= form_for(@category, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+<div class="col-md-8 offset-md-2">
+
+            <div class="form-group">
+                <div class="row">
+                    <%= f.label :category %>
+                </div>
+                <div class="row">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter Category Name", autofocus: true %>
+                </div>
+            </div>
+       
+
+        <br />
+        	<div class="row">
+	            <%= f.submit(@category.new_record? ? "Create Category" : "Update Category", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+	        </div>
+    <% end %>
+    
+
+
+
+
+</div>

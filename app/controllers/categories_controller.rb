@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 	before_action :require_admin
+	before_action :set_cat, only: [:edit, :update, :show, :destroy]
 
 	def index
 		@categories = Category.all
@@ -22,24 +23,35 @@ class CategoriesController < ApplicationController
 	end
 
 	def edit
-		@category = Category.find(params[:id])
+		
 	end	
 
 	def update
-		@category = Category.find(params[:id])
 		if @category.update(category_params)
 			flash[:success] = "Category name was successfully updated"
-			redirect_to category_path(@category)
+			redirect_to categories_path
 		else
 			render 'edit'
 		end
 	end
 
 
-	def show
-		@category = Category.find(params[:id])
-		@category_videos = @category.videos.all
+	# def show
+	# 	@category = Category.find(params[:id])
+		
+	# end
+
+	def destroy
+		@category.destroy
+	    flash[:danger] = "The selectd Category has been deleted"
+	    redirect_back(fallback_location:"/")
 	end
+
+
+
+
+
+
 
 
 
@@ -54,6 +66,10 @@ class CategoriesController < ApplicationController
 			flash[:danger] = "Only Admins can perform that action"
 			redirect_to root_path
 		end
+	end
+
+	def set_cat
+	    @category = Category.find(params[:id])
 	end
 
 
