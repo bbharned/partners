@@ -284,6 +284,8 @@
 	  
 
 
+
+	  <!-------------- ROI Download Card ------------->
 	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
 		  <div class="card">
 		    
@@ -303,7 +305,7 @@
 
 
 	  <% if @current_user.admin %>
-	  
+	  	<!----------------- Feature Spotlight Card ------------------>
 		  <div class="card">
 		  	<div class="card-body">
 		  		<h5 class="card-title" style="margin-bottom: 4px;">Feature Snapshot</h5>
@@ -319,7 +321,7 @@
 		  	</div>
 		  </div>
 
-
+		  <!----------------- Featured Hardware Card ------------------>
 		  <div class="card" style="text-align: center;">
 		  	<%= image_tag "hardware-card-image.jpg", class: "card-img-top" %>
 		  	<div class="card-body">
@@ -349,6 +351,8 @@
 
 	  
 
+
+
 	  <!-- QR Code Generator Card -->
 	  <% if !@current_user.needs_review %>
 	  <div class="card">
@@ -360,6 +364,8 @@
 	    </div>	
 	  </div>
 	  <% end %>
+
+
 
 
 
@@ -377,6 +383,9 @@
 
 
 
+
+
+
 	  <!-------- Blog Card ---------->
 	  <div class="card">
 	  	<%= image_tag "Blog-card-image.jpg", class: "card-img-top" %>
@@ -389,6 +398,11 @@
 
 
 
+
+
+
+
+	  <!----------------- Resources Card ------------------>
 	  <% if !@current_user.needs_review %>
 	  <div class="card">
 	    <div class="card-body">
@@ -401,6 +415,11 @@
 
 
 
+
+
+
+
+	  <!----------------- License Activation Card ------------------>
 	  <% if !@current_user.needs_review %>
 		  <div class="card">
 		    <div class="card-body">
@@ -414,11 +433,12 @@
 
 
  
+ 		<!----------------- Video Learning Card ------------------>
 		<div class="card">
 		    <%= image_tag "learning-pic.jpg", class: "card-img-top" %>
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager Video Learning</h5>
-		      <p class="card-text">We have put together a great series of feature videos and quizzes to teach ThinManager in a self-paced, watch and learn, simply way &boxh; perfect for both end users and ThinManager Partners.</p>
+		      <p class="card-text">We have put together a great series of feature videos and quizzes to teach ThinManager in a self-paced, watch and learn, simple way &boxh; perfect for both end users and ThinManager Partners.</p>
 		      <p>Create an account and get started right now.</p>
 		      <div align="right"><%= link_to "Get Started", "https://learn.thinmanager.com", class: "btn btn-primary", target: "_blank" %></div>
 		    </div>
@@ -428,7 +448,7 @@
 
 	
 
-
+		<!----------------- VFlex Card ------------------>
 	<% if @current_user.admin? || (@current_user.channel != nil && @current_user.channel != "") && !@current_user.needs_review %>
 		<div class="card">
 		    <%= image_tag "v-flex.jpg", class: "card-img-top" %>
@@ -444,6 +464,7 @@
 
 
 
+	<!----------------- ThinManager Contact Card ------------------>
 	<% if !@current_user.needs_review %>
 		<div class="card">
 		    <div class="card-body">
@@ -462,6 +483,10 @@
 	<% end %>
 
 
+
+
+
+	<!----------------- RA EULA Card ------------------>
 	<% if (@current_user.admin || @current_user.prttype == "Distributor") && !@current_user.needs_review %>
 	<div class="card">
 	    <div class="card-body">
