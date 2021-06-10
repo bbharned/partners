@@ -52,6 +52,7 @@ get 'certification/instruction', to: 'certifications#instruction'
 resources :qrcodes
 get 'user/myqrs', to: 'qrcodes#myqrs'
 resources :categories
+resources :videos
 
 
 get 'flexforward', to: 'flexforwards#saved'

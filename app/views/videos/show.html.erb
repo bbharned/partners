@@ -1,0 +1,17 @@
+<div class="container">
+<h1><%= @video.name %></h1>
+<hr />
+<br />
+<% if @video.path != nil && @video.path != "" %>
+	<div class="col-md-10 offset-md-1 video-frame">
+		<iframe id="player" width="900" height="500" src=<%= "#{@video.path}" + "?rel=0&amp;modestbranding=1&amp;autoplay=0&amp;showinfo=0" %> frameborder="0" allowfullscreen></iframe>
+	</div>
+<% else %>
+<p style="text-align:center;">This Video has no embed path saved.</p>
+<% end %>
+
+<% if @current_user.admin %>
+<p style="text-align:center; margin-top:25px;"><%= link_to "[ Edit Video Details ]", edit_video_path(@video) %></p>
+<% end %>
+
+</div>

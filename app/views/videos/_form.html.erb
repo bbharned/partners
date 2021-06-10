@@ -1,0 +1,33 @@
+<%= render 'shared/errors', obj: @video %>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+    <%= form_for(@video, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Video Name" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter Video Name", autofocus: true %>
+                </div>
+            </div>
+       
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Video embed path or URL" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.text_field :path, class: "form-control", placeholder: "Enter Embed URL" %>
+                </div>
+            </div>
+            
+        <br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.submit(@video.new_record? ? "Create Video" : "Update Video", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+                </div>
+            </div>
+    <% end %>
+    </div>
+</div>

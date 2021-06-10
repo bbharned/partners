@@ -795,6 +795,19 @@ Very Light Blue: #e9f7fb;
 
 
 
+
+
+
+
+
+/****************************** Videos Pages *********************************/
+.video-frame #player {width: 100%;}
+.video-index-well {font-size: .9em;}
+
+
+
+
+
 /************************* Certification Instruction and Quiz Page ***************************/
 .well-rnd {
     border-radius:7px; margin-bottom: 15px;
