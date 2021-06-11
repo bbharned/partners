@@ -16,7 +16,9 @@
 			<div class="col-3">Date</div>
 		</div>
 
-		<% @objects.each do | obj | %>
+		<% @sorted_objects = @objects.sort_by &:last_modified %>
+
+		<% @sorted_objects.each do | obj | %>
 			
 		
 		<% @uploader = User.where(lab_file: "#{obj.key}").last %>
@@ -31,7 +33,7 @@
 				<% end %>
 			</div>
 			<div class="col-3" style="font-size:.8em; padding-top: 4px;"><%= obj.last_modified.strftime("%m/%d/%Y") %></div>
-			<div class="col-2" style="text-align:right;"><%= link_to "Delete", uploads_path, method: :destroy_labfile, data: {confirm: "Are you sure you want to delete this db? I am afraid this button isn't functional yet"}, style: "color:red; font-size:.8em;" %></div>
+			<div class="col-2" style="text-align:right;"><%= link_to "Delete", uploads_path, method: :destroy_labfile, data: {key: obj.key, confirm: "Are you sure you want to delete this db?"}, style: "color:red; font-size:.8em;" %></div>
 		</div>
 
 

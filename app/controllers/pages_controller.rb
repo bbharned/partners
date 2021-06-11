@@ -88,6 +88,8 @@ def uploads #index of uploads
         max_keys: 1000
       ).contents
 
+    #@objects = @objects.order("last_modified desc")
+
 
 
 end 
@@ -188,7 +190,17 @@ end
 
 
 def destroy_labfile
-    
+    require 'aws-sdk-s3'
+    @s3 = Aws::S3::Resource.new
+    @bucket_name = 'rails-partners-bucket'
+
+    # @s3.delete_object({
+    #     bucket: @bucket_name,
+    #     key: @key, 
+    # })
+
+    flash[:warning] = "this action is not functional.  You have to do it through the AWS Console for now."
+
     redirect_back(fallback_location:"/")
 end
     
