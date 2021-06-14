@@ -22,9 +22,20 @@
                     <% end %>
                 </div>
             </div>
+            <hr />
+            
+
+
+            <%= link_to "Add Question", show_modal_path_url(quiz_id: @quiz.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-sm'} %>
+            <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content"><%= render "question" %></div>
+              </div>
+            </div>
+
             
             
-        <br />
+        <br /><br /><br />
             <div class="form-group">
                 <div class="col-sm-12">
                     <%= f.submit(@quiz.new_record? ? "Create Quiz" : "Update Quiz", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>

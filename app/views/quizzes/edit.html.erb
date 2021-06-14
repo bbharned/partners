@@ -3,7 +3,54 @@
 <hr />
 
 
-<%= render 'form' %>
+<%= render 'shared/errors', obj: @quiz %>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+    <%= form_for(@quiz, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Quiz Name" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter Quiz Name", autofocus: true %>
+                </div>
+            </div>
+        <br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Quiz Categories" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+                        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>
+                    <% end %>
+                </div>
+            </div>
+            <hr />
+            
+            <% if @questions.any? %>
+
+            <% else %>
+
+            <%= link_to "Add Question", show_modal_path_url(quiz_id: @quiz.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-sm'} %>
+            <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content"><%= render "question" %></div>
+              </div>
+            </div>
+
+            <% end %>
+            
+        <br /><br /><br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.submit(@quiz.new_record? ? "Create Quiz" : "Update Quiz", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+                </div>
+            </div>
+    <% end %>
+    </div>
+</div>
 
 
 </div>

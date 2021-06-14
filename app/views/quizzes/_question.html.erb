@@ -1,0 +1,35 @@
+
+  <div class="row" style="margin-top: 10px;">
+    
+      <div class="col-sm-9">
+        <h4 class="modal-title">Add A Question</h4>
+      </div>
+      <div class="col-sm-3">
+        <div class="btn close" data-dismiss="modal" style="cursor: pointer;">x</div>
+      </div>
+    
+  </div>
+
+
+  <%= form_for(@question, :html => {class: "form-horizontal", role: "form"}) do |q| %>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= q.text_field :question, class: "form-control", placeholder: "Enter Quiz Question", autofocus: true %>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= q.submit "Create Question", class: "btn btn-primary btn-sm float-right" %>
+                </div>
+            </div>
+  <% end %>
+
+
+<!-- <div class="modal-body">
+  *Modal content comes here*
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary">Save</button>
+</div> -->
