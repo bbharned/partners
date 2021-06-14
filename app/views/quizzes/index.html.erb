@@ -1,0 +1,42 @@
+<div class="container">
+<div class="row">	
+	<div class="col-md-9">
+		<h1>Quizzes</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="add_currency_btn"><%= link_to "Add Quiz", new_quiz_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
+<hr />
+
+<% if @quizzes.any? %>
+
+
+
+	<div class="row disapperAtBreak" style="font-weight:bold; font-size: .9em; margin-bottom:7px;">
+		<div class="col-md-6" style="padding-left:20px;">Name</div>
+		<div class="col-md-6">Date Created</div>
+	</div>
+	<% @quizzes.each do |q| %>
+
+		<div class="well well-sm quiz-well">
+			<div class="row">
+				<div class="col-md-6"><%= link_to "#{q.name}", quiz_path(q) %></div>
+				<div class="col-md-3"><%= q.created_at.strftime("%m/%d/%Y") %></div>
+				<div class="col-md-2"><%= link_to "Edit", edit_quiz_path(q), class: "float-right" %></div>
+				<div class="col-md-1"><%= link_to "Delete", quiz_path(q), method: :delete, data: {confirm: "Are you sure you want to delete this quiz?"}, style: "color:red;", class: "float-right" %></div>
+			</div>
+		</div>
+
+
+	<% end %>
+
+
+
+<% else %>
+
+	<p>There are no quizzes yet</p>
+
+<% end %>
+
+</div>

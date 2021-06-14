@@ -76,6 +76,9 @@ Extra extra large   xxl ≥1400px
 .goAwaySoonest {
     display:inline;
 }
+.disapperAtBreak {
+    display: ruby-text;
+}
 .centered {
     text-align:center;
 }
@@ -808,6 +811,32 @@ Very Light Blue: #e9f7fb;
 
 
 
+
+
+
+
+
+/**************************** Quizzes Pages **********************************/
+.input_checkbox input,
+.radio_button input {
+    width: auto !important; margin-top: 4px !important; 
+}
+.input_checkbox,
+.radio_button {
+    margin-right: 30px;
+}
+span.badge {
+    background-color: #787878; color: #FFFFFF; padding: 5px 10px;
+}
+.quiz-well {
+    padding: 10px 20px;
+}
+
+
+
+
+
+
 /************************* Certification Instruction and Quiz Page ***************************/
 .well-rnd {
     border-radius:7px; margin-bottom: 15px;
@@ -1180,7 +1209,7 @@ Very Light Blue: #e9f7fb;
     .appear {
         display:inline;
     }
-    .goAway {
+    .goAway, .disapperAtBreak {
         display:none !important;
     }
     .right-to-not {

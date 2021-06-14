@@ -54,6 +54,7 @@ resources :qrcodes
 get 'user/myqrs', to: 'qrcodes#myqrs'
 resources :categories
 resources :videos
+resources :quizzes
 
 
 get 'flexforward', to: 'flexforwards#saved'

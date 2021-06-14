@@ -1,0 +1,19 @@
+<div class="container">
+<div class="row">	
+	<div class="col-md-9">
+		<h1><%= @quiz.name %></h1>
+	</div>
+	<div class="col-md-3">
+		<% if @current_user.admin? %>
+			<div class="add_currency_btn"><%= link_to "Edit Quiz", edit_quiz_path(@quiz), class: "btn btn-primary" %></div>
+		<% end %>
+	</div>
+</div>
+<% if @quiz.categories.any? %>
+	<p><%= render @quiz.categories %></p>
+<% end %>
+<hr />
+
+
+
+</div>
