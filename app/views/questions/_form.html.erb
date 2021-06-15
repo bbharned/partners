@@ -1,0 +1,28 @@
+<%= render 'shared/errors', obj: @question %>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+
+
+    <h3><%= @quiz.name %></h3> 
+    <br />
+    <%= form_for(@question, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Question" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.text_field :question, class: "form-control", placeholder: "Enter Quiz Question", autofocus: true %>
+                </div>
+            </div>
+        
+         <br />
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.button "Submit", name: :quiz_id, value: @quiz.id, class: "btn btn-primary btn-sm" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+                </div>
+            </div>
+    <% end %>
+    </div>
+</div>

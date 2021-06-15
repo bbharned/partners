@@ -11,16 +11,9 @@ class QuizzesController < ApplicationController
 
 	def new
 		@quiz = Quiz.new
-        # respond_to do |format|
-        #     format.html
-        #     format.js
-        # end
+        
 	end
 
-    
-    def show_modal
-      @question = Question.new(quiz_id: @quiz.id)
-    end
 
 
 	def create
@@ -36,28 +29,21 @@ class QuizzesController < ApplicationController
 
 	end
 
+    
 
 
 	def edit
-       @question = Question.new
        @questions = @quiz.questions.all
-        # respond_to do |format|
-        #     format.html
-        #     format.js
-        # end
+       
     end
 
 
-
-    def show_modal
-      
-    end
 
 
 
     def show
         @user = User.find(current_user.id)
-        @quiz_questions = @quiz.questions.all
+        @questions = @quiz.questions.all
     end
 
 

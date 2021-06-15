@@ -56,7 +56,7 @@ resources :categories
 resources :videos
 resources :quizzes
 resources :questions
-get 'show_modal/:id', to: 'quizzes#show_modal', as: :show_modal_path
+
 
 
 get 'flexforward', to: 'flexforwards#saved'

@@ -3,13 +3,14 @@ class QuestionsController < ApplicationController
 	before_action :require_admin
 
 
-def index
+	def index
 		@questions = Question.all
 	end
 
 
 	def new
 		@question = Question.new
+		@quiz = Quiz.find(params['quiz_id'])
 		#@answer = Answer.new
 	end
 
@@ -17,40 +18,56 @@ def index
 	def create
 
 	    @question = Question.new(question_params)
-
+	    @quiz = Quiz.find(params[:quiz_id])
+	  
 	    if @question.save
+	    	@join = QuizQuestion.new(quiz_id: @quiz.id, question_id: @question.id)
+	    	@join.save
 	        flash[:success] = "Question was sucessfully created"
-	        redirect_to questions_path
+	        redirect_to edit_quiz_path(@quiz)
 	    else
-	        render 'new'
+	        flash[:danger] = "That didnt work"
+	        redirect_to quiz_path(@quiz)
 	    end
 
 	end
 
 	def edit
 		@question = Question.find(params[:id])
-		@hasanswers = QuestionAnswer.all
+		@quiz = Quiz.find(params[:quiz_id])
+		# @hasanswers = QuestionAnswer.all
 		# @allanswers = Answer.all
-		@answers = @question.answers.all
-		@availablea = Answer.where.not(id: @answers) 
+		# @answers = @question.answers.all
+		# @availablea = Answer.where.not(id: @answers) 
 	end 
+
 
 	def update
 		@question = Question.find(params[:id])
+		@quiz = Quiz.find(params[:quiz_id])
+
 		if @question.update(question_params)
 			flash[:success] = "Question was successfully updated"
-			redirect_to questions_path
+			redirect_to edit_quiz_path(@quiz)
 		else
 			render 'edit'
 		end
 	end
 
 
+	def destroy
+        @question = Question.find(params[:id])
+        @question.destroy
+        flash[:danger] = "The Quiz Question has been deleted"
+        redirect_back(fallback_location:"/")
+    end
+
+
 
 private
 
 	def question_params
-        params.require(:question).permit(:name, quiz_ids:[])
+        params.require(:question).permit(:question, quiz_ids: [])
     end
 
     def require_admin
