@@ -1,0 +1,33 @@
+<div class="row" style="margin-top: 50px;">
+    <div class="col-sm-10 offset-sm-1">
+    	<%= form_tag do  %>
+    		
+    		<% if @quiz.questions.any? %>
+	    		
+	    		<% @quiz.questions.each do |question| %>
+	    			<% if question.answers.any? %>
+		    			<%= fields_for question do %>
+							<h4><%= label_tag "#{question.question}" %></h4>
+								<ul class="quiz-questions">
+								<% question.answers.each do |answer| %>
+									<li><%= radio_button_tag("Question[#{question.id}]", answer.id) %> &nbsp; <%= label_tag(:selection, "#{answer.answer}") %></li>
+								<% end %>
+								</ul>
+						<% end %>
+					<% end %>
+	    		<% end %>
+				
+				
+				<br />
+				<%= submit_tag "Submit Quiz", action: :submit_quiz, data: {confirm: "Are you sure you are ready to submit your quiz?"}, class: "btn btn-primary btn-sm" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+    		
+    		<% else %>
+
+    			<p>There are no questions in this quiz</p>
+    		
+    		<% end %>
+
+    	<% end %>
+
+	</div>
+</div>

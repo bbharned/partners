@@ -55,7 +55,9 @@ get 'user/myqrs', to: 'qrcodes#myqrs'
 resources :categories
 resources :videos
 resources :quizzes
+post 'quizzes/:id', to: 'quizzes#submit_quiz'
 resources :questions
+resources :answers
 
 
 

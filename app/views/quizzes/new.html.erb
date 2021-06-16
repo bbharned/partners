@@ -27,6 +27,17 @@
                     <% end %>
                 </div>
             </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.label "Quiz Videos" %>
+                </div>
+                <div class="col-sm-12">
+                    <%= f.collection_check_boxes :video_ids, Video.all, :id, :name do |cb| %>
+                        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>
+                    <% end %>
+                </div>
+            </div>
             <hr />
             
 

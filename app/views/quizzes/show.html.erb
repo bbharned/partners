@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom:100px;">
 <div class="row">	
 	<div class="col-md-9">
 		<h1><%= @quiz.name %></h1>
@@ -13,7 +13,33 @@
 	<p><%= render @quiz.categories %></p>
 <% end %>
 <hr />
+<% if @quiz.videos.any? %>
+	<% if @quiz.videos.count == 1 %>
+		<% if @quiz.videos.last.path != nil && @quiz.videos.last.path != "" %>
+			<div class="col-md-10 offset-md-1 video-frame">
+				<iframe id="player" width="900" height="500" src=<%= "#{@quiz.videos.last.path}" + "?rel=0&amp;modestbranding=1&amp;autoplay=0&amp;showinfo=0" %> frameborder="0" allowfullscreen></iframe>
+			</div>
+		<% else %>
+			<p style="text-align:center;">This Video has no embed path saved.</p>
+		<% end %>
+	<% else %>
+		<div class="row">
+			<% @quiz.videos.each do |video| %>
+				<% if video.path != nil && video.path != "" %>
+					<div class="col-md-6 video-frame">
+						<iframe id="player" width="900" height="500" src=<%= "#{video.path}" + "?rel=0&amp;modestbranding=1&amp;autoplay=0&amp;showinfo=0" %> frameborder="0" allowfullscreen></iframe>
+					</div>
+				<% else %>
+					<div class="col-md-6 video-frame">
+						<p style="text-align:center;">This Video has no embed path saved.</p>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
 
 
+<% end %>
+<%= render 'takequiz' %>
 
 </div>
