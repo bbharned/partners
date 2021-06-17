@@ -44,6 +44,8 @@ post 'uploads', to: 'pages#destroy_labfile'
 get 'rau', to: 'users#rau'
 post 'rau', to: 'users#signup_rau'
 get 'user/rauusers', to: 'users#rauusers'
+get 'learn', to: 'users#learn'
+post 'learn', to: 'users#learn_signup'
 
 
 resources :currencies
@@ -56,8 +58,8 @@ resources :categories
 resources :videos
 resources :quizzes
 post 'quizzes/:id', to: 'quizzes#submit_quiz'
-resources :questions
-resources :answers
+resources :questions, except: [:show, :index]
+resources :answers, except: [:show, :index]
 
 
 

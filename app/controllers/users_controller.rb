@@ -47,6 +47,7 @@ def signup
   @user = User.new(user_params)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
+  @user.cert_signup = true
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
@@ -80,6 +81,36 @@ def signup_rau
     end
 end
 
+
+def learn
+  if (!logged_in?) 
+    @user = User.new
+  elsif (logged_in? and current_user.admin?) 
+    @user = User.new
+  elsif (logged_in? and !current_user.admin?)
+    flash[:warning] = "You have already signed up and have an account"
+    redirect_to root_path
+  end
+  @tm = 'Check the option that best describes your relationship to ThinManager'
+end
+
+
+def learn_signup
+  @user = User.new(user_params)
+  @user.needs_review = true
+  @user.learn_signup = true
+    if @user.save
+        session[:user_id] = @user.id
+        @user.update_attribute(:lastlogin, Time.now)
+        #@user.send_signup_notice  #change for production
+        #user.send_newuser_zap
+        #@user.send_user_signup_notice #change for production
+        flash[:success] = "Your account has been created, Welcome!"
+        redirect_to root_path
+    else
+        render 'si'
+    end
+end
 
 
 def review

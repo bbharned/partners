@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_164419) do
+ActiveRecord::Schema.define(version: 2021_06_17_152153) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(version: 2021_06_16_164419) do
     t.boolean "needs_review", default: false
     t.string "lab_file"
     t.string "referred_by"
+    t.boolean "cert_signup", default: false
+    t.boolean "learn_signup", default: false
   end
 
   create_table "videos", force: :cascade do |t|

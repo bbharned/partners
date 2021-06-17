@@ -3,9 +3,7 @@ class AnswersController < ApplicationController
 	before_action :require_admin
 
 
-	def index
-		@answers = Answer.all
-	end
+	
 
 
 	def new

@@ -27,7 +27,7 @@
 			<% @quiz.videos.each do |video| %>
 				<% if video.path != nil && video.path != "" %>
 					<div class="col-md-6 video-frame">
-						<iframe id="player" width="900" height="500" src=<%= "#{video.path}" + "?rel=0&amp;modestbranding=1&amp;autoplay=0&amp;showinfo=0" %> frameborder="0" allowfullscreen></iframe>
+						<iframe id="player" width="900" height="350" src=<%= "#{video.path}" + "?rel=0&amp;modestbranding=1&amp;autoplay=0&amp;showinfo=0" %> frameborder="0" allowfullscreen></iframe>
 					</div>
 				<% else %>
 					<div class="col-md-6 video-frame">

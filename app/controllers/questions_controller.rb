@@ -3,10 +3,6 @@ class QuestionsController < ApplicationController
 	before_action :require_admin
 
 
-	def index
-		@questions = Question.all
-	end
-
 
 	def new
 		@question = Question.new
