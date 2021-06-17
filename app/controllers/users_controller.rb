@@ -66,6 +66,7 @@ def signup_rau
   @user = User.new(user_params)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
+  @user.cert_signup = true
   @user.referred_by = "RAU"
     if @user.save
         session[:user_id] = @user.id
