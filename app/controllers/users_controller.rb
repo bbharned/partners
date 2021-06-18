@@ -54,7 +54,7 @@ def signup
         @user.send_signup_notice  #change for production
         @user.send_newuser_zap
         @user.send_user_signup_notice #change for production
-        flash[:success] = "Your account has been created, Welcome!"
+        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You can start certification by clicking below."
         redirect_to root_path
     else
         render 'si'
@@ -75,10 +75,10 @@ def signup_rau
         @user.send_newuser_zap 
         @user.send_user_signup_notice #change for production
         #@receiver.send_user_signup_notice #change for production
-        flash[:success] = "Your account has been created, Welcome!"
+        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You can start certification by clicking below."
         redirect_to root_path
     else
-        render 'si'
+        render 'rau'
     end
 end
 
@@ -106,10 +106,10 @@ def learn_signup
         #@user.send_signup_notice  #change for production
         #user.send_newuser_zap
         #@user.send_user_signup_notice #change for production
-        flash[:success] = "Your account has been created, Welcome!"
+        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You will find and cab start Video Learning below."
         redirect_to root_path
     else
-        render 'si'
+        render 'learn'
     end
 end
 

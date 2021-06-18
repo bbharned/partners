@@ -79,8 +79,10 @@
 	<!----------- Disclaimer information Here ----------->
 	<div class="row">
 		<div class="col">
-			<% if @current_user.needs_review %>
-				<p style="font-size: .65em;"></p>
+			<% if @current_user.needs_review || @current_user.prttype == "End User" %>
+				<p style="font-size: .65em;">Portal access is provided for ThinManager users as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
+			<% elsif !@current_user.needs_review && (@current_user.prttype == "OEM" || @current_user.prttype == "Integrator") %>
+				<p style="font-size: .65em;">Portal access is provided for our ThinManager certified partners as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
 			<% else %>
 				<p style="font-size: .65em;">By using this partner portal, you agree that any information viewed, copied and/or downloaded will remain as non-disclosable information. This includes, but is not limited to, the ThinManager product price list, partner-specific videos, strategic information such as product path planning, etc. This portal is for the sole benefit of your specific channel and access to confidential information in the portal is only meant to be shared within the ThinManager/Channel Partner relationship.</p>
 			<% end %>
