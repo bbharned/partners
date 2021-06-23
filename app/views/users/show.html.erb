@@ -42,7 +42,7 @@
 				<% end %>
 				
 				<% if @user.needs_review? && @current_user.admin? %>
-					<span class="bold">Type:</span> &nbsp;In Review<br />
+					<span class="bold">Type:</span> &nbsp;Base User<br />
 				<% elsif @user.prttype != nil && @user.prttype != "" %>
 					<span class="bold">Type:</span> &nbsp;<%= @user.prttype %><br />
 				<% else %>

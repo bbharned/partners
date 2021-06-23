@@ -1,5 +1,5 @@
 <div class="container" style="padding-bottom: 100px;">
-	<h1>Base Users <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
+	<h1>Certification Sign Ups <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
 
 	<div class="right-to-center-button">
 		<a href="/user/review.csv" class="btn">Export (CSV)</a>&nbsp;&nbsp;&nbsp;<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
@@ -13,6 +13,8 @@
 	<div class="paginate">
 		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 	</div>
+	
+
 	<%= render 'userTableTop' %>
 
 	<% if @users.any? %>

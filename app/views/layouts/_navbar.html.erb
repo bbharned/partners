@@ -80,6 +80,7 @@
                       </a>
                       <div class="dropdown-menu">
                           <%= link_to "View Users", users_path, class: 'dropdown-item' %>
+                          <%= link_to "Base Users", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
                           <%= link_to "Create User", new_user_path, class: 'dropdown-item' %>
                       </div>
                     </div>
@@ -105,7 +106,7 @@
                         Certification <span class="caret"></span>
                       </a>
                       <div class="dropdown-menu">
-                          <%= link_to "Sign Ups/Need Review", "/user/review?sort=created_at desc", class: 'dropdown-item' %>
+                          <%= link_to "Sign Ups", "/user/allsignups?sort=created_at desc", class: 'dropdown-item' %>
                           <%= link_to "Lab Uploads", uploads_path, class: 'dropdown-item' %>
                           <%= link_to "Re-Certifications", certifications_path, class: 'dropdown-item' %>
                           <%= link_to "RAU Sign Ups", user_rauusers_path, class: "dropdown-item" %>
@@ -121,6 +122,7 @@
                         Learning <span class="caret"></span>
                       </a>
                       <div class="dropdown-menu">
+                          <%= link_to "Sign Ups", "/user/learnsignups?sort=created_at desc", class: 'dropdown-item' %>
                           <%= link_to "Quizzes", quizzes_path, class: 'dropdown-item' %>
                           <%= link_to "Categories", categories_path, class: 'dropdown-item' %>
                           <%= link_to "Videos", videos_path, class: 'dropdown-item' %>

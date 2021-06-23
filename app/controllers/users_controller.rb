@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show]
     before_action :require_same_user, only: [:edit, :update, :show]
-    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search, :review, :rauusers]
+    before_action :require_admin, only: [:index, :new, :create, :destroy, :company, :type, :active, :inactive, :lastlogin, :distributor, :integrator, :admin, :search, :review, :rauusers, :allsignups, :learnsignups]
 
 
 def index
@@ -121,6 +121,30 @@ def review
   respond_to do |format|
       format.html { render "review" }
       format.csv { send_data @users.to_csv, filename: "PartnerPortal_NeedsReview-#{Date.today}.csv" }
+    end
+end
+
+
+def allsignups
+  @sort = [params[:sort]]
+  @users = User.where(cert_signup: true).paginate(page: params[:page], per_page: 25).order(@sort)
+  
+
+  respond_to do |format|
+      format.html { render "allsignups" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_CertSignedUp-#{Date.today}.csv" }
+    end
+end
+
+
+def learnsignups
+  @sort = [params[:sort]]
+  @users = User.where(learn_signup: true).paginate(page: params[:page], per_page: 25).order(@sort)
+  
+
+  respond_to do |format|
+      format.html { render "learnsignups" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_LearnSignedUp-#{Date.today}.csv" }
     end
 end
 
