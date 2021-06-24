@@ -12,6 +12,8 @@ class User < ApplicationRecord
     has_many :flexforwards, dependent: :destroy
     has_many :certifications, dependent: :destroy
     has_many :qrcodes, dependent: :destroy
+    #has_many :scores, dependent: :destroy
+    
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i 
     validates :email,  presence: true,  length: { maximum: 75 },

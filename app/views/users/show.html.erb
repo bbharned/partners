@@ -53,7 +53,7 @@
 				<% end %>
 				<% if @user.certexpire != nil && @user.certexpire != "" %>
 					<% if @user.silevel != nil && @user.silevel != "" %>
-						<span class="bold">Integrator Level:</span> 
+						<span class="bold">Level:</span> 
 							<% if @user.certexpire < Date.today %>
 								&nbsp;<span style="color:red;"><%= @user.silevel %></span><br />
 							<% else %>
