@@ -43,6 +43,8 @@ class QuizzesController < ApplicationController
     def submit_quiz
         @possiblequestions = 0
         @correctanswers = 0
+        @wrongquestions = []
+        @wronganswers = []
         @questions = @quiz.questions
         @user = current_user
         @questions.each do |q|
@@ -54,11 +56,28 @@ class QuizzesController < ApplicationController
         @qanswers.each do |answer|
             if Answer.find(answer).correct == true 
                 @correctanswers += 1
+            else
+                @wronganswers.append(answer)
             end
         end
 
-        flash[:success] = "Quiz Submitted. There were #{@possiblequestions} questions and you got #{@correctanswers} correct"
-        redirect_to learning_path
+        if @wronganswers.any?
+            #flash[:danger] = "You missed questions"
+            @wronganswers.each do |answer|
+                @question = Answer.find(answer).question
+                @wrongquestions.append(@question.question)
+                Wrong.create(user_id: @user.id, quiz_id: @quiz.id, question_id: @question.id, answer_id: answer)
+            end
+        end
+
+        #flash[:success] = "Quiz Submitted. There were #{@possiblequestions} questions and you got #{@correctanswers} correct."
+        if @wronganswers.count > 0
+            flash[:warning] = "You missed #{@possiblequestions - @correctanswers} questions. They were #{@wrongquestions}."
+            redirect_to learning_path
+        else
+            flash[:success] = "Well done, you got all the questions right!"
+            redirect_to learning_path
+        end
 
 
     end
