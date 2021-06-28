@@ -1,12 +1,14 @@
 <div class="container" style="padding-bottom:100px;">
 <div class="row">	
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<h1><%= @quiz.name %></h1>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-4">
+		
 		<% if @current_user.admin? %>
 			<div class="add_currency_btn"><%= link_to "Edit Quiz", edit_quiz_path(@quiz), class: "btn btn-primary" %></div>
 		<% end %>
+		<div class="add_currency_btn" style="margin-right:5px;"><%= link_to "Learning Dashboard", learning_path, class: "btn btn-secondary" %></div>
 	</div>
 </div>
 <% if @quiz.categories.any? %>

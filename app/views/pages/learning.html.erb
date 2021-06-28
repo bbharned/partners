@@ -72,20 +72,43 @@
 	<table width="100%" style="margin-top:7px;" class="learning-table">
 			
 		<tr class="learn-table-heading">
+			<th>&nbsp;</th>
 			<th width="70%">Name</th>
 			<th width="30%">Passed</th>
 		</tr>
 		<% @prodquizzes.each do |quiz| %>
 			<tr class="table-rows">
+				<td><%= image_tag("icon-productivity.png") %></td>
 				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
 				<td><%= image_tag "checked.png" %></td>
 			</tr>
 		<% end %>
-
-				
+		<% @visquizzes.each do |quiz| %>
+			<tr class="table-rows">
+				<td><%= image_tag("icon-visualization.png") %></td>
+				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+				<td><%= image_tag "checked.png" %></td>
+			</tr>
+		<% end %>
+		<% @secquizzes.each do |quiz| %>
+			<tr class="table-rows">
+				<td><%= image_tag("icon-security.png") %></td>
+				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+				<td><%= image_tag "checked.png" %></td>
+			</tr>
+		<% end %>
+		<% @mobquizzes.each do |quiz| %>
+			<tr class="table-rows">
+				<td><%= image_tag("icon-mobility.png") %></td>
+				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+				<td><%= image_tag "checked.png" %></td>
+			</tr>
+		<% end %>		
 			
 
 	</table>
+<% else %>
+<p>There no quizzes yet assigned for learning</p>
 <% end %>
 	
 
