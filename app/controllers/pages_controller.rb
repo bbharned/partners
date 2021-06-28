@@ -42,6 +42,9 @@ end
 
 def learning
     @user = current_user
+    @quizzes = Quiz.joins(:categories).where.not(categories: { name: "Certification" })
+    @prodquizzes = Quiz.joins(:categories).where(categories: { name: "Productivity" })
+    @visquizzes = Quiz.joins(:categories).where(categories: { name: "Visualization" })
 end
 
 

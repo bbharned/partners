@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom:150px;">
 
 <h1 class="page-header">Welcome <%= @user.firstname %></h1>
 <hr />
@@ -50,5 +50,43 @@
 </div>
 </div>
 <br /><br />
+
+
+<% if @quizzes.any? %>
+	<div class="row icons">
+		
+			<div class="col-3">
+				<%= image_tag("icon-productivity.png") %> <span class="goAway">-</span> <span class="appear"><br /></span>Productivity
+			</div>
+			<div class="col-3">
+				<%= image_tag("icon-visualization.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Visualization
+			</div>
+			<div class="col-3">
+				<%= image_tag("icon-security.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Security
+			</div>
+			<div class="col-3">
+				<%= image_tag("icon-mobility.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Mobility
+			</div>
+		
+	</div>
+	<table width="100%" style="margin-top:7px;" class="learning-table">
+			
+		<tr class="learn-table-heading">
+			<th width="70%">Name</th>
+			<th width="30%">Passed</th>
+		</tr>
+		<% @prodquizzes.each do |quiz| %>
+			<tr class="table-rows">
+				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+				<td><%= image_tag "checked.png" %></td>
+			</tr>
+		<% end %>
+
+				
+			
+
+	</table>
+<% end %>
+	
 
 </div>

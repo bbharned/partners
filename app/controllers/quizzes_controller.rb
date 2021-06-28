@@ -53,31 +53,52 @@ class QuizzesController < ApplicationController
             end
         end
 
-        @qanswers.each do |answer|
-            if Answer.find(answer).correct == true 
-                @correctanswers += 1
-            else
-                @wronganswers.append(answer)
-            end
-        end
-
-        if @wronganswers.any?
-            #flash[:danger] = "You missed questions"
-            @wronganswers.each do |answer|
-                @question = Answer.find(answer).question
-                @wrongquestions.append(@question.question)
-                Wrong.create(user_id: @user.id, quiz_id: @quiz.id, question_id: @question.id, answer_id: answer)
-            end
-        end
-
-        #flash[:success] = "Quiz Submitted. There were #{@possiblequestions} questions and you got #{@correctanswers} correct."
-        if @wronganswers.count > 0
-            flash[:warning] = "You missed #{@possiblequestions - @correctanswers} questions. They were #{@wrongquestions}."
-            redirect_to learning_path
+        if @qanswers.count != @possiblequestions
+            
+            flash[:warning] = "You did not answer all the questions" 
+            render 'show'
+        
         else
-            flash[:success] = "Well done, you got all the questions right!"
-            redirect_to learning_path
+            
+            @qanswers.each do |answer|
+                if Answer.find(answer).correct == true 
+                    @correctanswers += 1
+                else
+                    @wronganswers.append(answer)
+                end
+            end
+
+            @score = ((@correctanswers).to_f / (@possiblequestions).to_f).to_f
+
+            if @wronganswers.any?
+                #flash[:danger] = "You missed questions"
+                @wronganswers.each do |answer|
+                    @question = Answer.find(answer).question
+                    @wrongquestions.append(@question.question)
+                    Wrong.create(user_id: @user.id, quiz_id: @quiz.id, question_id: @question.id, answer_id: answer)
+                end
+            end
+
+            #flash[:success] = "Quiz Submitted. There were #{@possiblequestions} questions and you got #{@correctanswers} correct."
+            if @score >= 0.5
+                #pass
+                # save quiz to user
+                flash[:success] = "You passed! Your score was #{@score * 100}%. " +
+                    if @score < 1 
+                        "You missed #{@possiblequestions - @correctanswers}. #{@wrongquestions}."
+                    else
+                        ""
+                    end
+                redirect_to learning_path
+            else
+                #fail
+                flash[:danger] = "You failed the quiz, Your score is #{@score * 100}%."
+                redirect_to learning_path
+            end
+
         end
+
+        
 
 
     end

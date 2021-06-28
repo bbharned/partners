@@ -552,6 +552,43 @@ Very Light Blue: #e9f7fb;
 
 
 
+/************************ Learning Page *********************************/
+.icons {
+    font-size:.85em; text-align: center;
+}
+.learn-table-heading th:last-child,
+.learning-table tr td:last-child {
+    text-align: right;
+}
+.learning-table tr {
+    background-color: #f1f1f1; 
+}
+.learning-table tr td {
+    padding:  5px 20px;
+}
+.learning-table .learn-table-heading {
+    background-color: #333333; color:#FFFFFF;  
+}
+.learning-table .learn-table-heading th {
+    padding-top: 8px; padding: 8px 20px; 
+    font-size: .75em; line-height: .99em;
+}
+.learning-table .table-rows {
+    border: 1px solid #999999;
+}
+.learning-table tr.table-rows:nth-child(odd) {background: #E9E9E9;}
+.learning-table .table-rows td {
+    padding-top: 5px; padding-bottom: 5px; font-weight:normal;
+}
+.cat-icon {
+    text-align: center;
+}
+
+
+
+
+
+
 
 
 
