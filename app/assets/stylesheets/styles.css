@@ -88,6 +88,9 @@ Extra extra large   xxl ≥1400px
 .well-sm {
     margin-bottom: 7px !important;
 }
+.huge {
+    font-size: 5em;
+}
 .edit-link {
     float: right;
 }
@@ -115,11 +118,11 @@ Extra extra large   xxl ≥1400px
 }
 .dash-badges .d-badge {
     float:left; width:23%; margin-left: 1%; margin-right: 1%;
-    min-height: 150px; position: relative; opacity: .2;
+    min-height: 150px; position: relative;
 }
 .dash-badges .d-badge-opacity {
     float:left; width:23%; margin-left: 1%; margin-right: 1%;
-    min-height: 150px; position: relative; opacity:.2;
+    min-height: 150px; position: relative; opacity: .2;
 }
 .dash-badges .d-badge img,
 .dash-badges .d-badge-opacity img {

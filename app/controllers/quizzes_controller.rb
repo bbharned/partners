@@ -47,17 +47,25 @@ class QuizzesController < ApplicationController
         @wronganswers = []
         @questions = @quiz.questions
         @user = current_user
+        @quiz_query = UserQuiz.where(user_id: @user.id, quiz_id: @quiz.id)
         @questions.each do |q|
             if q.answers.any? && q.answers.count > 0
                 @possiblequestions += 1
             end
         end
 
+
+
         if @qanswers.count != @possiblequestions
             
             flash[:warning] = "You did not answer all the questions" 
             render 'show'
         
+        elsif @quiz_query.count > 0
+
+            flash[:warning] = "You had already passed this quiz"
+            redirect_to learning_path
+
         else
             
             @qanswers.each do |answer|
@@ -80,9 +88,10 @@ class QuizzesController < ApplicationController
             end
 
             #flash[:success] = "Quiz Submitted. There were #{@possiblequestions} questions and you got #{@correctanswers} correct."
-            if @score >= 0.5
+            if @score >= 0.75
                 #pass
                 # save quiz to user
+                UserQuiz.create(user_id: @user.id, quiz_id: @quiz.id)
                 flash[:success] = "You passed! Your score was #{@score * 100}%. " +
                     if @score < 1 
                         "You missed #{@possiblequestions - @correctanswers}. #{@wrongquestions}."

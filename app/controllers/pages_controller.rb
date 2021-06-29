@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning, :labs, :upload, :upload_file]
 	before_action :can_see_pricing, only: [:pricing]
     before_action :can_print_cert, only: [:mycert]
-    before_action :require_admin, only: [:uploads]
+    before_action :require_admin, only: [:uploads, :reports]
     
 
 def new_dl
@@ -47,6 +47,62 @@ def learning
     @visquizzes = @quizzes.where(categories: { name: "Visualization" })
     @secquizzes = @quizzes.where(categories: { name: "Security" })
     @mobquizzes = @quizzes.where(categories: { name: "Mobility" })
+    @badge = UserBadge.where(user_id: @user.id).take
+    
+    #### Productivity Badge ####
+    @prod_q_passed = 0
+    @prodquizzes.each do |quiz|
+        @uqquery = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id)
+        if @uqquery != [] 
+            @prod_q_passed += 1
+        end
+    end
+
+    if @prod_q_passed == @prodquizzes.count
+        if  @badge == nil
+            @newprodbadge = UserBadge.new(user_id: @user.id, productivity: true)
+            if @newprodbadge.save
+                #when productivity badge is awarded #Pop Modal for award of badge
+                flash[:success] = "You earned your PRODUCTIVITY badge!"
+                redirect_to learning_path 
+            end
+        elsif @badge != nil && !@badge.productivity
+            if @badge.update(productivity: true)
+                #Pop Modal for award of badge
+                flash[:success] = "You earned your PRODUCTIVITY badge!"
+                redirect_to learning_path
+            else
+                flash[:danger] = "There was a problem awarding your badge."
+                redirect_to learning_path
+            end
+        end 
+    end
+    #### END Productivity Badge ####
+    
+
+end
+
+
+
+def reports
+    @users = User.all
+    @allquizzed = UserQuiz.all
+    @prodbadges = UserBadge.where(productivity: true)
+    @visbadges = UserBadge.where(visualization: true)
+    @secbadges = UserBadge.where(security: true)
+    @mobbadges = UserBadge.where(mobility: true)
+    
+    
+
+
+    @usersthisweek = User.where(created_at: 1.week.ago..Date.tomorrow)
+    @quizthisweek = UserQuiz.where(created_at: 1.week.ago..Date.tomorrow)
+    
+    @usersthismonth = User.where(created_at: 1.month.ago..Date.tomorrow)
+    @quizthismonth = UserQuiz.where(created_at: 1.month.ago..Date.tomorrow)
+    
+    @usersthisquarter = User.where(created_at: 3.months.ago..Date.tomorrow)
+    @quizthisquarter = UserQuiz.where(created_at: 3.months.ago..Date.tomorrow)
 end
 
 

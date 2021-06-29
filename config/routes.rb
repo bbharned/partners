@@ -8,6 +8,7 @@ get 'password_resets/edit'
 
 root 'pages#dashboard'
 get 'learning', to: 'pages#learning'
+get 'reports', to: 'pages#reports'
 
 resources :users
 get 'user/company-sorted', to: 'users#company'

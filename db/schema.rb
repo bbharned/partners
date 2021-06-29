@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_130107) do
+ActiveRecord::Schema.define(version: 2021_06_29_193526) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -158,6 +158,23 @@ ActiveRecord::Schema.define(version: 2021_06_25_130107) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_badges", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "productivity", default: false
+    t.boolean "visualization", default: false
+    t.boolean "security", default: false
+    t.boolean "mobility", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_quizzes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

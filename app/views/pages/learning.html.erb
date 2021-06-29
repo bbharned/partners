@@ -18,26 +18,42 @@
 			<hr/>
 			<h5 style="color:#777777;">Badges Earned <span style="font-size:.75em; font-style: italic; display:none;">(not all badges currently available)</span></h5>
 			<div class="dash-badges">	
-				
+				<% if @badge != nil && @badge.productivity %>
 					<div class="d-badge">
 						<%= image_tag("badge-productivity.png") %>
 					</div>
-				
-				
+				<% else %>
+					<div class="d-badge-opacity">
+						<%= image_tag("badge-productivity.png") %>
+					</div>
+				<% end %>
+				<% if @badge != nil && @badge.visualization %>
 					<div class="d-badge">
 						<%= image_tag("badge-visualization.png") %>
 					</div>
-				
-				
+				<% else %>
+					<div class="d-badge-opacity">
+						<%= image_tag("badge-visualization.png") %>
+					</div>	
+				<% end %>
+				<% if @badge != nil && @badge.security %>
 					<div class="d-badge">
 						<%= image_tag("badge-security.png") %>
 					</div>
-				
-				
+				<% else %>
+					<div class="d-badge-opacity">
+						<%= image_tag("badge-security.png") %>
+					</div>
+				<% end %>
+				<% if @badge != nil && @badge.mobility %>
 					<div class="d-badge">
 						<%= image_tag("badge-mobility.png") %>
 					</div>
-				
+				<% else %>
+					<div class="d-badge-opacity">
+						<%= image_tag("badge-mobility.png") %>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -77,31 +93,51 @@
 			<th width="30%">Passed</th>
 		</tr>
 		<% @prodquizzes.each do |quiz| %>
+			<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
 			<tr class="table-rows">
 				<td><%= image_tag("icon-productivity.png") %></td>
 				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
-				<td><%= image_tag "checked.png" %></td>
+				<% if @query.count > 0 %>
+					<td><%= image_tag "checked.png" %></td>
+				<% else %>
+					<td>&nbsp;</td>
+				<% end %>
 			</tr>
 		<% end %>
 		<% @visquizzes.each do |quiz| %>
+		<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
 			<tr class="table-rows">
 				<td><%= image_tag("icon-visualization.png") %></td>
 				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
-				<td><%= image_tag "checked.png" %></td>
+				<% if @query.count > 0 %>
+					<td><%= image_tag "checked.png" %></td>
+				<% else %>
+					<td>&nbsp;</td>
+				<% end %>
 			</tr>
 		<% end %>
 		<% @secquizzes.each do |quiz| %>
+		<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
 			<tr class="table-rows">
 				<td><%= image_tag("icon-security.png") %></td>
 				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
-				<td><%= image_tag "checked.png" %></td>
+				<% if @query.count > 0 %>
+					<td><%= image_tag "checked.png" %></td>
+				<% else %>
+					<td>&nbsp;</td>
+				<% end %>
 			</tr>
 		<% end %>
 		<% @mobquizzes.each do |quiz| %>
+		<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
 			<tr class="table-rows">
 				<td><%= image_tag("icon-mobility.png") %></td>
 				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
-				<td><%= image_tag "checked.png" %></td>
+				<% if @query.count > 0 %>
+					<td><%= image_tag "checked.png" %></td>
+				<% else %>
+					<td>&nbsp;</td>
+				<% end %>
 			</tr>
 		<% end %>		
 			

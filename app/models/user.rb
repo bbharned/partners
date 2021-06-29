@@ -13,6 +13,9 @@ class User < ApplicationRecord
     has_many :certifications, dependent: :destroy
     has_many :qrcodes, dependent: :destroy
     has_many :wrongs, dependent: :destroy
+    has_many :user_quizzes
+    has_many :quizzes, through: :user_quizzes
+    has_one :user_badge
     
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i 
