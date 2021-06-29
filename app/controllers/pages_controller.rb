@@ -92,7 +92,7 @@ def reports
     @secbadges = UserBadge.where(security: true)
     @mobbadges = UserBadge.where(mobility: true)
     
-    
+    #@userslastmonth = User.where(created_at: 1.month.ago..Date.tomorrow)
 
 
     @usersthisweek = User.where(created_at: 1.week.ago..Date.tomorrow)
