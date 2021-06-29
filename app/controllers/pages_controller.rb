@@ -58,7 +58,7 @@ def learning
         end
     end
 
-    if @prod_q_passed == @prodquizzes.count
+    if (@prod_q_passed == @prodquizzes.count) && @prodquizzes.count > 0
         if  @badge == nil
             @newprodbadge = UserBadge.new(user_id: @user.id, productivity: true)
             if @newprodbadge.save
