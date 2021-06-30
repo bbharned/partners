@@ -91,9 +91,14 @@ def reports
     @visbadges = UserBadge.where(visualization: true)
     @secbadges = UserBadge.where(security: true)
     @mobbadges = UserBadge.where(mobility: true)
+    @badgesearned = @prodbadges.count + @visbadges.count + @secbadges.count + @mobbadges.count
     
     #@userslastmonth = User.where(created_at: 1.month.ago..Date.tomorrow)
-
+    @distributors = User.where(prttype: "Distributor")
+    @integrators = User.where(prttype: "Integrator")
+    @oems = User.where(prttype: "OEM")
+    @endusers = User.where(prttype: "End User")
+    @baseusers = User.where(needs_review: true)
 
     @usersthisweek = User.where(created_at: 1.week.ago..Date.tomorrow)
     @quizthisweek = UserQuiz.where(created_at: 1.week.ago..Date.tomorrow)
@@ -103,6 +108,13 @@ def reports
     
     @usersthisquarter = User.where(created_at: 3.months.ago..Date.tomorrow)
     @quizthisquarter = UserQuiz.where(created_at: 3.months.ago..Date.tomorrow)
+
+    @usersthisyear = User.where(created_at: 12.months.ago..Date.tomorrow)
+    @quizthisyear = UserQuiz.where(created_at: 12.months.ago..Date.tomorrow)
+
+    @certified = User.where.not(certexpire: nil)
+    @certsignedup = User.where(cert_signup: true)
+    @inprogress = User.where(cert_signup: true, needs_review: true)
 end
 
 

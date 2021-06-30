@@ -25,9 +25,9 @@
 				<!-- Rockwell Downloads -->
 				<div class="col col-downloads">
 					<div class="row">
-						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Aug20.xlsx", target: "_blank" %>
+						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Jun21.xlsx", target: "_blank" %>
 						&nbsp;
-						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Aug20.pdf", target: "_blank" %>
+						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Jun21.pdf", target: "_blank" %>
 					</div>
 					<% if @current_user.admin %>
 						<div class="row"><span style="font-size: .65em;">Rockwell</span></div>
@@ -40,9 +40,9 @@
 				<!-- Other downloads, not Rockwell -->
 				<div class="col col-downloads">
 					<div class="row">
-						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_3P_vflex_Aug20.xlsx", target: "_blank" %>
+						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/TM_Pricelist_3P_vflex_Jun21.xlsx", target: "_blank" %>
 						&nbsp;
-						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_3P_vflex_Aug20.pdf", target: "_blank" %>
+						<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_3P_vflex_Jun21.pdf", target: "_blank" %>
 					</div>
 					<% if @current_user.admin %>
 						<div class="row"><span style="font-size: .65em;">WW, GE, Other</span></div>
@@ -95,9 +95,21 @@
 
 
 
-
-
-
+<div class="row">
+	<div class="col">
+		<div class="well price-increase-well">
+			<h4>Notice</h4>
+			<p>ThinManager pricing will be increasing effective August 29th, 2021. Please download the pricing sheet below for a full view of what the upcoming prices will be.</p>
+			<div class="new-price-sheet">
+				<% if current_user.channel == "Rockwell Automation" || current_user.admin? %>
+					<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_RA_vflex_Aug21.pdf", target: "_blank" %>
+				<% else %>
+					<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/partner-resources/TM_Pricelist_3P_vflex_Aug21.pdf", target: "_blank" %>
+				<% end %>			
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
@@ -273,8 +285,8 @@
 
 <div class="notice-box">
 	<p style="font-weight: bold;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
-	<p>9542-TMSVR-SMR list price will increase to&nbsp;$16,000&nbsp;on&nbsp;Aug&nbsp;30th,&nbsp;2021<br />
-	9542-TMSTE-SMR list price willincrease to&nbsp;$29,250&nbsp;on&nbsp;Aug&nbsp;30th,&nbsp;2021</p>
+	<p>9542-TMSVR-SMR list price will increase to&nbsp;$12,300&nbsp;on&nbsp;Aug&nbsp;29th,&nbsp;2021<br />
+	9542-TMSTE-SMR list price willincrease to&nbsp;$22,445&nbsp;on&nbsp;Aug&nbsp;29th,&nbsp;2021</p>
 </div>
 
 
@@ -670,8 +682,8 @@
 
 <div class="notice-box">
 	<p style="font-weight: bold;">The V-FLEX Redundancy Companion license only works with a base V-FLEX license</p>
-	<p>9542-TMSVR-247-SMR list price will increase to&nbsp;$24,000&nbsp;on&nbsp;Aug&nbsp;30th,&nbsp;2021<br />
-	9542-TMSTE-247-SMR list price willincrease to&nbsp;$43,900&nbsp;on&nbsp;Aug&nbsp;30th,&nbsp;2021</p>
+	<p>9542-TMSVR-247-SMR list price will increase to&nbsp;$18,450&nbsp;on&nbsp;Aug&nbsp;29th,&nbsp;2021<br />
+	9542-TMSTE-247-SMR list price willincrease to&nbsp;$33,720&nbsp;on&nbsp;Aug&nbsp;29th,&nbsp;2021</p>
 </div>
 
 

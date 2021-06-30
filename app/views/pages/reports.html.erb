@@ -1,4 +1,4 @@
-<div class="container" style="padding-bottom: 100px;">
+<div class="container reports-container" style="padding-bottom: 100px;">
 
 <h1>Portal Reports</h1>
 <hr />
@@ -13,8 +13,56 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="well centered">
-					<h3>Total Users</h3>
+					<h5>Total Users</h5>
 					<h1 class="huge"><%= @users.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Distributors</h5>
+					<h1 class="huge"><%= @distributors.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Integrators</h5>
+					<h1 class="huge"><%= @integrators.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>OEMs</h5>
+					<h1 class="huge"><%= @oems.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>End Users</h5>
+					<h1 class="huge"><%= @endusers.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Base Users</h5>
+					<h1 class="huge"><%= @baseusers.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>New last 30 days</h5>
+					<h1 class="huge"><%= @usersthismonth.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>New last 90 days</h5>
+					<h1 class="huge"><%= @usersthisquarter.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>New in last year</h5>
+					<h1 class="huge"><%= @usersthisyear.count %></h1>
 				</div>
 			</div>
 		</div>
@@ -22,6 +70,26 @@
 
 		<div class="row" style="margin-top: 50px;">
 			<h4>Certification</h4>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Signed Up</h5>
+					<h1 class="huge"><%= @certsignedup.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Certified</h5>
+					<h1 class="huge"><%= @certified.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>In Progress</h5>
+					<h1 class="huge"><%= @inprogress.count %></h1>
+				</div>
+			</div>
 		</div>
 
 
@@ -31,8 +99,14 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="well centered">
-					<h3>Total Quizzes Taken</h3>
+					<h5>Total Quizzes Taken</h5>
 					<h1 class="huge"><%= @allquizzed.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Earned Badges</h5>
+					<h1 class="huge"><%= @badgesearned %></h1>
 				</div>
 			</div>
 		</div>
