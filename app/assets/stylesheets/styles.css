@@ -599,6 +599,71 @@ Very Light Blue: #e9f7fb;
 .cat-icon {
     text-align: center;
 }
+/***********      Badge Awarding       ************/
+.award {
+    width:90%; max-width: 500px; min-height: 380px; background-color: #F6F6F6;
+    border-radius: 15px; text-align: center; padding-bottom: 30px; display:none;   
+}
+.award h1 {
+    font-size:2.5em; padding-top: 20px; margin-bottom: 7px; 
+}
+.award p {
+    margin-bottom: 20px !important;
+} 
+.award .badge-image {
+    width:200px; height: 200px; margin: auto; margin-bottom: 25px;
+    -webkit-animation-name: spin; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
+    animation-name: spin;
+    animation-duration: 1.5s;
+}
+.award .badge-image img {
+    width:100%;
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        width:25px;
+        height:25px;
+    }
+    to {
+        -webkit-transform: rotate(1080deg);
+        -moz-transform: rotate(1080deg);
+        -ms-transform: rotate(1080deg);
+        -o-transform: rotate(1080deg);
+        transform: rotate(1080deg);
+        width:200px;
+        height:200px;
+    }
+}
+/* Standard syntax */
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        width:25px;
+        height:25px;
+    }
+    to {
+        -webkit-transform: rotate(1080deg);
+        -moz-transform: rotate(1080deg);
+        -ms-transform: rotate(1080deg);
+        -o-transform: rotate(1080deg);
+        transform: rotate(1080deg);
+        width:200px;
+        height:200px;
+    }
+}
+/***********      End Badge Awarding       ************/
+
+
 
 
 

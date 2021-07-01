@@ -146,6 +146,93 @@
 <% else %>
 <p>There no quizzes yet assigned for learning</p>
 <% end %>
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="award" id="prodAward">
+	<h1>Congratulations!</h1>
+	<p>You earned a badge</p>
+	<div class="badge-image"><%= image_tag("badge-productivity.png") %></div>
+</div>
+
+<div class="award" id="visAward">
+	<h1>Congratulations!</h1>
+	<p>You earned a badge</p>
+	<div class="badge-image"><%= image_tag("badge-visualization.png") %></div>
+</div>
+
+<div class="award" id="secAward">
+	<h1>Congratulations!</h1>
+	<p>You earned a badge</p>
+	<div class="badge-image"><%= image_tag("badge-security.png") %></div>
+</div>
+
+<div class="award" id="mobAward">
+	<h1>Congratulations!</h1>
+	<p>You earned a badge</p>
+	<div class="badge-image"><%= image_tag("badge-mobility.png") %></div>
+</div>
+
+
 
 </div>
+
+
+
+
+<!-- js scripts -->
+<% if (flash[:success] == "You earned your PRODUCTIVITY badge!") %>
+	<script>
+		(function() {
+			$('#prodAward').lightbox_me({
+			centered: true, 
+			zIndex: 9999,
+			overlayCSS: {background: '#000000', opacity:.85},
+			});
+		})();
+	</script>
+<% elsif (flash[:success] == "You earned your VISUALIZATION badge!") %>
+	<script>
+		(function() {
+			$('#visAward').lightbox_me({
+			centered: true, 
+			zIndex: 9999,
+			overlayCSS: {background: '#000000', opacity:.85},
+			});
+		})();
+	</script>
+<% elsif (flash[:success] == "You earned your SECURITY badge!") %>
+	<script>
+		(function() {
+			$('#secAward').lightbox_me({
+			centered: true, 
+			zIndex: 9999,
+			overlayCSS: {background: '#000000', opacity:.85},
+			});
+		})();
+	</script>
+<% elsif (flash[:success] == "You earned your SECURITY badge!") %>
+	<script>
+		(function() {
+			$('#mobAward').lightbox_me({
+			centered: true, 
+			zIndex: 9999,
+			overlayCSS: {background: '#000000', opacity:.85},
+			});
+		})();
+	</script>
+<% end %>
+
+
+
+

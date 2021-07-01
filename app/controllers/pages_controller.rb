@@ -41,6 +41,7 @@ end
 
 
 def learning
+
     @user = current_user
     @quizzes = Quiz.joins(:categories).where.not(categories: { name: "Certification" })
     @prodquizzes = @quizzes.where(categories: { name: "Productivity" })
@@ -48,6 +49,8 @@ def learning
     @secquizzes = @quizzes.where(categories: { name: "Security" })
     @mobquizzes = @quizzes.where(categories: { name: "Mobility" })
     @badge = UserBadge.where(user_id: @user.id).take
+
+
     
     #### Productivity Badge ####
     @prod_q_passed = 0
@@ -62,13 +65,15 @@ def learning
         if  @badge == nil
             @newprodbadge = UserBadge.new(user_id: @user.id, productivity: true)
             if @newprodbadge.save
-                #when productivity badge is awarded #Pop Modal for award of badge
+                #Pop Modal for award of badge
+                
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.productivity
             if @badge.update(productivity: true)
                 #Pop Modal for award of badge
+                
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 redirect_to learning_path
             else
@@ -81,6 +86,9 @@ def learning
     
 
 end
+
+
+
 
 
 
