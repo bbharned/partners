@@ -65,15 +65,11 @@ def learning
         if  @badge == nil
             @newprodbadge = UserBadge.new(user_id: @user.id, productivity: true)
             if @newprodbadge.save
-                #Pop Modal for award of badge
-                
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.productivity
             if @badge.update(productivity: true)
-                #Pop Modal for award of badge
-                
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 redirect_to learning_path
             else
