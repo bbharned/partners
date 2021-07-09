@@ -676,7 +676,7 @@ Very Light Blue: #e9f7fb;
 /**************************** Reports Page ****************************/
 
 .reports-container .well {
-    margin-bottom: 20px;
+    margin-bottom: 20px; min-height: 165px;
 }
 
 

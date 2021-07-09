@@ -119,6 +119,25 @@ def reports
     @certified = User.where.not(certexpire: nil)
     @certsignedup = User.where(cert_signup: true)
     @inprogress = User.where(cert_signup: true, needs_review: true)
+    @wrongs = Wrong.all
+    @wrongs_month = Wrong.where(created_at: 1.month.ago..Date.tomorrow)
+    @mostmissed = Wrong.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
+    @mostmissed_month = @wrongs_month.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
+    @most_missed_quiz = Question.find(@mostmissed).quizzes.last
+    @most_missed_quiz_month = Question.find(@mostmissed_month).quizzes.last
+    @question_missed_most = Question.find(@mostmissed).question
+    @question_missed_most_month = Question.find(@mostmissed_month).question
+
+    @flexes = Flexforward.all
+    @flexmonth = Flexforward.where(created_at: 1.month.ago..Date.tomorrow)
+    @flexred = Flexforward.where(red_exchange: true)
+
+    @qrs = Qrcode.all
+    @qrmonth = Qrcode.where(created_at: 1.month.ago..Date.tomorrow)
+    @qr_most_user_month = @qrmonth.group(:user_id).select(:user_id).order("count(*) desc").first.user_id
+    @qr_most_user = Qrcode.group(:user_id).select(:user_id).order("count(*) desc").first.user_id
+    @qr_best_user = User.find(@qr_most_user)
+    @qr_best_user_month = User.find(@qr_most_user_month)
 end
 
 

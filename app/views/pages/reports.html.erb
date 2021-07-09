@@ -105,8 +105,61 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="well centered">
-					<h5>Earned Badges</h5>
+					<h5>Total Earned Badges</h5>
 					<h1 class="huge"><%= @badgesearned %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Questions Missed</h5>
+					<h1 class="huge"><%= @wrongs.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Missed Most All Time</h5>
+					<% if @question_missed_most != nil %>
+						<p><%= @question_missed_most %></p>
+						<p>[ Question ID: <%= link_to "#{@mostmissed}", edit_question_path(id: @mostmissed, quiz_id: @most_missed_quiz) %> ]</p>
+					<% else %>
+						<p>&nbsp;</p>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Most Last 30 days</h5>
+					<% if @question_missed_most_month != nil %>
+						<p><%= @question_missed_most_month %></p>
+						<p>[ Question ID: <%= link_to "#{@mostmissed_month}", edit_question_path(id: @mostmissed_month, quiz_id: @most_missed_quiz_month) %> ]</p>
+					<% else %>
+						<p>&nbsp;</p>
+					<% end %>
+					
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Productivity Badges</h5>
+					<h1 class="huge"><%= @prodbadges.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Visualization Badges</h5>
+					<h1 class="huge"><%= @visbadges.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Security Badges</h5>
+					<h1 class="huge"><%= @secbadges.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Mobility Badges</h5>
+					<h1 class="huge"><%= @mobbadges.count %></h1>
 				</div>
 			</div>
 		</div>
@@ -115,10 +168,63 @@
 		<div class="row" style="margin-top: 50px;">
 			<h4>Flex Forwards</h4>
 		</div>
-
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Created</h5>
+					<h1 class="huge"><%= @flexes.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>New last 30 days</h5>
+					<h1 class="huge"><%= @flexmonth.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Redundant Exchange</h5>
+					<h1 class="huge"><%= @flexred.count %></h1>
+				</div>
+			</div>
+		</div>
 
 		<div class="row" style="margin-top: 50px;">
 			<h4>QR Codes</h4>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Created</h5>
+					<h1 class="huge"><%= @qrs.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>New last 30 days</h5>
+					<h1 class="huge"><%= @qrmonth.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Most Created</h5>
+					<% if @qr_best_user != nil %>
+						<p><%= link_to "#{@qr_best_user.firstname} #{@qr_best_user.lastname}", user_path(@qr_best_user) %></p>
+					<% else %>
+						<p>&nbsp;</p>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Biggest User<br />This Month</h5>
+					<% if @qr_best_user_month != nil %>
+						<p><%= link_to "#{@qr_best_user_month.firstname} #{@qr_best_user_month.lastname}", user_path(@qr_best_user_month) %></p>
+					<% else %>
+						<p>&nbsp;</p>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	
 
