@@ -119,14 +119,26 @@ def reports
     @certified = User.where.not(certexpire: nil)
     @certsignedup = User.where(cert_signup: true)
     @inprogress = User.where(cert_signup: true, needs_review: true)
+    
     @wrongs = Wrong.all
-    @wrongs_month = Wrong.where(created_at: 1.month.ago..Date.tomorrow)
-    @mostmissed = Wrong.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
-    @mostmissed_month = @wrongs_month.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
-    @most_missed_quiz = Question.find(@mostmissed).quizzes.last
-    @most_missed_quiz_month = Question.find(@mostmissed_month).quizzes.last
-    @question_missed_most = Question.find(@mostmissed).question
-    @question_missed_most_month = Question.find(@mostmissed_month).question
+    if @wrongs.count >= 1
+        @wrongs_month = Wrong.where(created_at: 1.month.ago..Date.tomorrow)
+        @mostmissed = Wrong.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
+        @mostmissed_month = @wrongs_month.group(:question_id).select(:question_id).order("count(*) desc").first.question_id
+        @most_missed_quiz = Question.find(@mostmissed).quizzes.last
+        @most_missed_quiz_month = Question.find(@mostmissed_month).quizzes.last
+        @question_missed_most = Question.find(@mostmissed).question
+        @question_missed_most_month = Question.find(@mostmissed_month).question
+    else 
+        @wrongs_month = nil
+        @mostmissed = nil
+        @mostmissed_month = nil
+        @most_missed_quiz = nil
+        @most_missed_quiz_month = nil
+        @question_missed_most = nil
+        @question_missed_most_month = nil
+    end 
+   
 
     @flexes = Flexforward.all
     @flexmonth = Flexforward.where(created_at: 1.month.ago..Date.tomorrow)
