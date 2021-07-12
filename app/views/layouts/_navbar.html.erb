@@ -18,6 +18,7 @@
 </div>
 
 <nav class="navbar navbar-expand-xl navbar-light bg-light main-nav">
+  <div class="container-fluid">
   <div class="logo">
       <%= link_to image_tag("thinMan.png"), "https://thinmanager.com" %>
   </div>
@@ -25,7 +26,7 @@
     <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="nav nav-fill">
+    <ul class="nabar-nav nav nav-fill">
       <% if logged_in? %>
             <li class="nav-item">
               <%= link_to "Dashboard", root_path, class: 'nav-link' %>
@@ -152,5 +153,6 @@
             </ul>
           </li>
     </ul>
+  </div>
   </div>
 </nav>
