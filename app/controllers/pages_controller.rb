@@ -299,13 +299,23 @@ end
 
 def destroy_labfile
     require 'aws-sdk-s3'
+    
     @s3 = Aws::S3::Resource.new
+    @key = params[:key]
     @bucket_name = 'rails-partners-bucket'
+
+    # @bucket = @s3.buckets[@bucket_name]
+    # @object = @bucket.objects[@key]
+    # @object.delete
 
     # @s3.delete_object({
     #     bucket: @bucket_name,
     #     key: @key, 
     # })
+
+    # @obj.delete
+
+    # @s3.delete_object(bucket: @bucket_name, key: @key)
 
     flash[:warning] = "this action is not functional.  You have to do it through the AWS Console for now."
 

@@ -149,23 +149,16 @@ def learnsignups
 end
 
 
-# def upload_file
-#     @user = current_user
-#     @file = params[:cert_lab]
-
-#     flash[:success] = "Your file is #{:cert_lab}"
-#     redirect_to root_path
-# end
-
 
 
 def search
+  @parameter
   if params[:search].blank?
+    @parameter = nil
     redirect_to users_path and return
   else
     @parameter = params[:search].downcase
-    #@sort = [params[:sort]]
-    @users = User.where("lower(firstname || lastname || company || email) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25)#.order(@sort)
+    @users = User.where("lower(firstname || lastname || company || email || channel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:lastname)
   end
 
   respond_to do |format|
