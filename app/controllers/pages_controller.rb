@@ -313,11 +313,14 @@ def destroy_labfile
     #     key: @key, 
     # })
 
+    @s3.bucket(@bucket_name).object(@key).delete
+
     # @obj.delete
 
     # @s3.delete_object(bucket: @bucket_name, key: @key)
 
-    flash[:warning] = "this action is not functional.  You have to do it through the AWS Console for now."
+    #flash[:warning] = "this action is not functional.  You have to do it through the AWS Console for now."
+    flash[:success] = "#{@key} was successfully deleted."
 
     redirect_back(fallback_location:"/")
 end

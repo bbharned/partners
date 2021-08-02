@@ -18,7 +18,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'bootstrap-datepicker-rails'
 
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', '~> 1.96', '>= 1.96.1', require: false
 
 gem "rqrcode", "~> 2.0"
 
