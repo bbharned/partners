@@ -298,7 +298,19 @@ button.navbar-toggler span {
 }
 .dist-logo {text-align: right;}
 .dist-logo img {width:100%;}
-
+.ad-banner {
+    width: 100%; min-height: 150px; border: 5px solid #f5b218;
+    padding: 25px 40px; border-radius: 20px;
+}
+.ad-space {margin-bottom: 55px;}
+.dist-banner {
+    color: #FFFFFF; background-color: #C7C5d3; background-size: cover;
+    background-position: right center;
+}
+.dist-banner p {text-shadow: 1px 1px 0px #000000;}
+.si-banner {
+    background-color: #edede1;
+}
 
 
 

@@ -1,5 +1,25 @@
 <div class="container">
-	
+
+<div class="ad-space">
+	<% if current_user.admin? || current_user.prttype == "Distributor" %>
+		<div class="ad-banner dist-banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<h3>ThinManager Roadshow Request</h3>
+						<p>As a Distributor of ThinManager, your company can request to do a ThinManager roadshow. This is a great opportunity to involve your System Integration partners, OEMs, as well as your employees. Fill out a simple form and we can even help with the details and event registration.</p>
+						<a href="#"><div class="btn btn-primary float-right">Learn More</div></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<% if current_user.admin? || current_user.prttype == "Integrator" %>
+		<div class="ad-banner si-banner">
+
+		</div>
+	<% end %>
+</div>	
 
 <% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire < Date.today) %>
 <!-- && (@current_user.certexpire < Date.today) -->
