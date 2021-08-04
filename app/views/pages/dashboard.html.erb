@@ -1,7 +1,7 @@
 <div class="container">
 
 <div class="ad-space">
-	<% if current_user.admin? || current_user.prttype == "Distributor" %>
+	<% if current_user.admin? || (current_user.prttype == "Distributor" && current_user.continent == "NA") || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
 		<div class="ad-banner dist-banner">
 			<div class="container">
 				<div class="row">
@@ -16,7 +16,15 @@
 	<% end %>
 	<% if current_user.admin? || current_user.prttype == "Integrator" %>
 		<div class="ad-banner si-banner">
-
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<h3>ThinManager Platinum Integrators</h3>
+						<p>Become a Platinum Level Integrator by sharing a success story with us and allowing to use the story. Platinum SIs rank higher in searches, publish an integration story of ThinManager and even get highlighted in our blog and possibly our podcast.</p>
+						<a href="#"><div class="btn btn-warning float-right">Learn More</div></a>
+					</div>
+				</div>
+			</div>
 		</div>
 	<% end %>
 </div>	
