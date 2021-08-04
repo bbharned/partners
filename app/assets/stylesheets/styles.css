@@ -299,18 +299,24 @@ button.navbar-toggler span {
 .dist-logo {text-align: right;}
 .dist-logo img {width:100%;}
 .ad-banner {
-    width: 100%; min-height: 150px; border: 5px solid #f5b218;
+    width: 100%; min-height: 150px; 
     padding: 25px 40px; border-radius: 20px;
+    margin-bottom: 2px; 
 }
-.ad-space {margin-bottom: 55px;}
+.ad-space {margin-bottom: 20px;}
 .dist-banner {
     color: #FFFFFF; background-color: #C7C5d3; background-size: cover;
-    background-position: right center;
+    background-position: right center; border: 5px solid #f5b218;
 }
 .dist-banner p {text-shadow: 1px 1px 0px #000000;}
 .si-banner {
-    background-color: #edede1;
+    background-color: #edede1; border: 5px solid green; display: none;
 }
+
+
+
+
+
 
 
 
@@ -325,6 +331,9 @@ button.navbar-toggler span {
     border:5px solid #C91C05;*/
     background-color: #EAEA0F;  border: 5px solid #f0ad4e;
 }
+
+
+
 
 
 
