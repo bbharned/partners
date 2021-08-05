@@ -302,16 +302,16 @@ button.navbar-toggler span {
     width: 100%; min-height: 150px; 
     padding: 25px 40px; border-radius: 20px; 
 }
-.ad-space {margin-bottom: 20px;}
+.ad-space {margin-bottom: 20px; display: none;}
 .dist-banner {
     color: #FFFFFF; background-color: #C7C5d3; background-size: cover;
     background-position: right center; border: 5px solid #f5b218;
-    margin-bottom: 5px;
+    margin-bottom: 5px; display: none; 
 }
 .dist-banner p, .si-banner p, .si-banner h3 {text-shadow: 1px 1px 0px #000000;}
 .si-banner {
     color: #FFFFFF; background-color: #edede1; background-size: cover;
-    background-position: right center; border: 5px solid #f5b218;
+    background-position: right center; border: 5px solid #f5b218; display: none;
 }
 
 

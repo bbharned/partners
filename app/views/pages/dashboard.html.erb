@@ -1,5 +1,5 @@
 <div class="container">
-
+<% if current_user.admin? || current_user.prttype == "Distributor" || current_user.prttype == "Integrator" %>
 <div class="ad-space">
 	<% if current_user.admin? || (current_user.prttype == "Distributor" && current_user.continent == "NA") || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
 		<div class="ad-banner dist-banner">
@@ -7,20 +7,20 @@
 				<div class="row">
 					<div class="col-lg-9">
 						<h3>ThinManager Roadshow Request</h3>
-						<p>As a Distributor of ThinManager, your company can request to do a ThinManager roadshow. This is a great opportunity to involve your System Integration partners, OEMs, as well as your employees. Fill out a simple form and we can even help with the details and event registration.</p>
-						<a href="https://thinmanager.com/roadshow/request" target="_blank"><div class="btn btn-primary float-right">Learn More</div></a>
+						<p>As a Distributor of ThinManager, your company can request to host a ThinManager roadshow. This is a great opportunity to involve your System Integration partners, OEMs, as well as your employees. Fill out a simple form and select your date.The ThinManager team will provide you with event details for promotions and manage event registration.</p>
+						<a href="https://thinmanager.com/roadshow/request" target="_blank"><div class="btn btn-warning float-right">Learn More</div></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	<% end %>
-	<% if current_user.admin? || current_user.prttype == "Integrator" %>
+	<% if current_user.admin? || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) %>
 		<div class="ad-banner si-banner">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9">
 						<h3>ThinManager Platinum Integrators</h3>
-						<p>Become a Platinum Level Integrator by sharing a success story with us and allowing to use the story. Platinum SIs rank higher in searches, publish an integration story of ThinManager and even get highlighted in our blog and possibly our podcast.</p>
+						<p>Become a Platinum Level Integrator by sharing a publishable success story. Platinum SIs receive a published story, rank higher in searches, get highlighted in our blog and may have the opportunity to appear in a ThinManager podcast.</p>
 						<a href="#"><div class="btn btn-warning float-right">Learn More</div></a>
 					</div>
 				</div>
@@ -28,6 +28,7 @@
 		</div>
 	<% end %>
 </div>	
+<% end %>
 
 <% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire < Date.today) %>
 <!-- && (@current_user.certexpire < Date.today) -->
