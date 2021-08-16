@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_193526) do
+ActiveRecord::Schema.define(version: 2021_08_16_145143) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -124,6 +124,48 @@ ActiveRecord::Schema.define(version: 2021_06_29_193526) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "hardwares", force: :cascade do |t|
+    t.integer "maker_id"
+    t.integer "hwstatus_id"
+    t.integer "hwtype_id"
+    t.string "model"
+    t.string "terminal_type"
+    t.string "min_firmware"
+    t.string "max_firmware"
+    t.string "hardware_gpu_id"
+    t.string "cpu"
+    t.string "touch_interface"
+    t.string "network_card"
+    t.string "pci_network_id"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hwstatus_id"], name: "index_hardwares_on_hwstatus_id"
+    t.index ["hwtype_id"], name: "index_hardwares_on_hwtype_id"
+    t.index ["maker_id"], name: "index_hardwares_on_maker_id"
+  end
+
+  create_table "hwstatuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hwtypes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "makers", force: :cascade do |t|
+    t.string "name"
+    t.string "logo_path"
+    t.string "url"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "qrcodes", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
@@ -207,6 +249,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_193526) do
     t.string "referred_by"
     t.boolean "cert_signup", default: false
     t.boolean "learn_signup", default: false
+    t.boolean "hw_admin", default: false
+    t.boolean "evt_admin", default: false
   end
 
   create_table "videos", force: :cascade do |t|

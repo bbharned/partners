@@ -1,0 +1,7 @@
+class HwstatusesController < ApplicationController
+
+
+
+
+
+end

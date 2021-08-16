@@ -1,0 +1,35 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="well" style="padding:25px 2.5%; border-radius:15px; margin-bottom:25px;">
+	
+		<div class="col-12">
+			<h2><%= @maker.name %></h2>
+		</div>
+
+
+	
+	<hr />
+		<div class="row center-at-small" style="padding:20px 35px;">
+			<div class="col-sm-6" class="maker-show-logo">
+				<img src="<%= @maker.logo_path %>" />
+			</div>
+			<div class="col-sm-6" class="maker-show-url">
+				<p><%= @maker.url %></p>
+			</div>
+		</div>
+		<br />
+
+		<div class="col-12">
+			<h4>Description</h4>
+			<p><%= @maker.description %></p>
+		</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6 offset-sm-3" style="text-align: center;">
+		edit | delete | cancel
+	</div>
+</div>
+
+</div>

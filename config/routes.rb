@@ -65,6 +65,11 @@ resources :questions, except: [:show, :index]
 resources :answers, except: [:show, :index]
 
 
+resources :hardwares
+resources :makers
+resources :hwstatuses
+resources :hwtypes
+
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'

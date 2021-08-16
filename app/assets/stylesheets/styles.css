@@ -734,6 +734,32 @@ Very Light Blue: #e9f7fb;
 
 
 
+
+
+
+
+
+
+
+
+/****************** Maker Pages *******************/
+
+@media screen and (max-width:767px) {
+    .center-at-small {
+        text-align: center;
+    }
+    .maker-show-logo {
+        margin-bottom: 20px !important;
+    }
+} 
+
+
+
+
+
+
+
+
 /********************** Flex Forward Pages **********************/
 
 .ff-top-logo {

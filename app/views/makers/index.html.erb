@@ -1,0 +1,55 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Hardware Companies</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="add_currency_btn"><%= link_to "Add Company", new_maker_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
+<hr />
+
+<div class="paginate">
+	<%= will_paginate(@makers, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
+
+<% if @makers.any? %>
+
+	<%= render "table_sort" %>
+
+	<% @makers.each do |maker| %>
+		<div class="well" style="margin-bottom: 5px;">
+			<div class="row">
+				<div class="col-sm-5">
+					<%= link_to "#{maker.name}", maker_path(maker) %>
+				</div>
+				<div class="col-sm-3">
+					<%= maker.url %>
+				</div>
+				
+				<div class="col-sm-2">
+					<%= link_to "Edit", edit_maker_path(maker), class: "float-right" %>
+				</div>
+
+				<div class="col-sm-2">
+					<%= link_to "Delete", maker_path(maker), method: :delete, data: {confirm: "Are you sure you want to delete this Hardware Company? This will delete all hardware associated with this company."}, class: "float-right", style: "color:red;" %>
+				</div>
+
+			</div>
+		</div>
+	<% end %>
+
+
+<% else %>
+
+	<p>There are currently no Hardware companies listed.</p>
+
+<% end %>
+<br /><br />
+<div class="paginate">
+	<%= will_paginate(@makers, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+</div>
+<br />
+
+</div>
