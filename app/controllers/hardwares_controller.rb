@@ -15,6 +15,7 @@ end
 
 def new
 	@hardware = Hardware.new
+	@makers = Maker.all
 end
 
 

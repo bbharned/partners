@@ -1,0 +1,34 @@
+<%= render 'shared/errors', obj: @hardware %>
+
+
+<div class="row">
+    <div class="col-sm-10 offset-sm-1">
+    <%= form_for(@hardware, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+        <div class="form-group">
+            <div class="row">
+                    <div class="col-sm-8">
+                        <%= f.label :model %>
+                        <%= f.text_field :model, class: "form-control", placeholder: "Enter Hardware Model Name", autofocus: true %>
+                    </div>
+                
+                    <div class="col-sm-4 maker-dropdown">
+                        <%= f.label "Manufacturer" %>
+                        <br />
+                        
+                        <%= f.select :maker, options_from_collection_for_select(@makers, 'id', 'name', @makers),  { :include_blank=>true }, { :class => 'form-control' } %>
+                    </div>
+            </div>
+        </div>
+
+        <br /><br />
+        
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= f.submit(@hardware.new_record? ? "Create Hardware" : "Update Hardware", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+            </div>
+        </div>
+
+    <% end %>
+    </div>
+</div>
