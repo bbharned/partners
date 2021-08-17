@@ -10,11 +10,13 @@
 	
 	<hr />
 		<div class="row center-at-small" style="padding:20px 35px;">
-			<div class="col-sm-6" class="maker-show-logo">
-				<img src="<%= @maker.logo_path %>" />
-			</div>
+			<% if @maker.logo_path != "" && @maker.logo_path != nil %>
+				<div class="col-sm-6" class="maker-show-logo">
+					<img src="<%= @maker.logo_path %>" style="width: 100%; max-width: 300px;" />
+				</div>
+			<% end %>
 			<div class="col-sm-6" class="maker-show-url">
-				<p><%= @maker.url %></p>
+				<p><%= link_to "#{@maker.url}", "#{@maker.url}", target: "_blank" %></p>
 			</div>
 		</div>
 		<br />
@@ -28,7 +30,7 @@
 
 <div class="row">
 	<div class="col-sm-6 offset-sm-3" style="text-align: center;">
-		edit | delete | cancel
+		<%= link_to "Edit", edit_maker_path(@maker) %>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<%= link_to "Delete", maker_path(@maker), method: :delete, data: {confirm: "Are you sure you want to delete this Hardware Company? This will delete all hardware associated with this company."}, style: "color:red;" %>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<%= link_to "Cancel", makers_path %>
 	</div>
 </div>
 

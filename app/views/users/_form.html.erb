@@ -69,7 +69,15 @@
                         <div class="row">
                                 <div class="col-md-12">
                                     <h5 style="margin-top: 20px;">Account Status</h5>
+                                </div>
+                                <div class="col-md-4">
                                     <%= f.label "Active?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :active %>
+                                </div>
+                                <div class="col-md-4">
+                                    <%= f.label "Hardware Admin?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :hw_admin %>
+                                </div>
+                                <div class="col-md-4">
+                                    <%= f.label "Event Admin?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :evt_admin %>
                                 </div>
                         </div>
                     

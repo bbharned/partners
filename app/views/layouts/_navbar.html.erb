@@ -129,11 +129,45 @@
                           <%= link_to "Videos", videos_path, class: 'dropdown-item' %>
                       </div>
                     </div>
+
+
+                    <div class="dropdown-divider"></div>
+
+
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hardware <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "Hardware", hardwares_path, class: 'dropdown-item' %>
+                          <%= link_to "Hardware Companies", makers_path, class: 'dropdown-item' %>
+                          <%= link_to "Hardware Types", hwtypes_path, class: 'dropdown-item' %>
+                          <%= link_to "Testing States", makers_path, class: 'dropdown-item' %>
+                      </div>
+                    </div>
                     
                     
               </div>
             </li>
+
             <% end %>
+
+
+            <% if @current_user && !@current_user.admin? && @current_user.hw_admin? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Hardware
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Hardware", hardwares_path, class: 'dropdown-item' %>
+                  <%= link_to "Hardware Companies", makers_path, class: 'dropdown-item' %>
+                  <%= link_to "Hardware Types", hwtypes_path, class: 'dropdown-item' %>
+                  <%= link_to "Testing States", makers_path, class: 'dropdown-item' %>
+                </div>
+              </li>
+            <% end %>
+
+
             <li class="nav-item">
               <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
             </li>
