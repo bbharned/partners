@@ -8,23 +8,36 @@ def index
 	if !logged_in?
 		@current_user = nil
 	end
+	@hardwares = Hardware.all
 end
 
 
 
 def new
-
+	@hardware = Hardware.new
 end
 
 
 
 def create
+	@hardware = Maker.new(hardware_params)
 
+    if @hardware.save
+        flash[:success] = "Hardware company has been created and saved"
+        redirect_to hardwares_path
+    else
+        render 'new'
+    end
 end
 
 
 def update
-
+	if @hardware.update(hardware_params)
+        flash[:success] = "Hardware Company was successfully updated"
+        redirect_to hardwares_path
+    else
+        render 'edit'
+    end
 end
 
 
@@ -39,7 +52,10 @@ end
 
 
 def destroy
-
+	@hardware = Hardware.find(params[:id])
+    @hardware.destroy
+    flash[:danger] = "That piece of hardware has been deleted"
+    redirect_to hardwares_path
 end
 
 

@@ -22,9 +22,11 @@
   <div class="logo">
       <%= link_to image_tag("thinMan.png"), "https://thinmanager.com" %>
   </div>
+  <% if current_user != nil %>
   <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
+  <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
   </button>
+  <% end %>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="nabar-nav nav nav-fill">
       <% if logged_in? %>
@@ -142,7 +144,7 @@
                           <%= link_to "Hardware", hardwares_path, class: 'dropdown-item' %>
                           <%= link_to "Hardware Companies", makers_path, class: 'dropdown-item' %>
                           <%= link_to "Hardware Types", hwtypes_path, class: 'dropdown-item' %>
-                          <%= link_to "Testing States", makers_path, class: 'dropdown-item' %>
+                          <%= link_to "Testing Statuses", hwstatuses_path, class: 'dropdown-item' %>
                       </div>
                     </div>
                     
@@ -162,7 +164,7 @@
                   <%= link_to "Hardware", hardwares_path, class: 'dropdown-item' %>
                   <%= link_to "Hardware Companies", makers_path, class: 'dropdown-item' %>
                   <%= link_to "Hardware Types", hwtypes_path, class: 'dropdown-item' %>
-                  <%= link_to "Testing States", makers_path, class: 'dropdown-item' %>
+                  <%= link_to "Testing Statuses", hwstatuses_path, class: 'dropdown-item' %>
                 </div>
               </li>
             <% end %>

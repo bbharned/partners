@@ -18,7 +18,8 @@
 	
 	<div class="col-lg-6 offset-lg-3">
 		<div class="well category-well">
-			<h3><%= type.name %></h3>
+			<h3 style="margin-bottom:0px;"><%= type.name %></h3>
+			<p style="margin-bottom:10px;"><small><%= pluralize(type.hardwares.count, "hardware piece") %></small></p>
 			<p><%= link_to "Edit", edit_hwtype_path(type) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", hwtype_path(type), method: :delete, data: {confirm: "Are you sure you want to delete this Hardware type?"}, style: "color:red;" %></p>
 		</div>
 	</div>

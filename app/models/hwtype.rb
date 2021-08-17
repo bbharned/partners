@@ -1,6 +1,6 @@
 class Hwtype < ActiveRecord::Base
-	has_many :hardwares, dependent: :destroy
-	
+	has_many :hardwares
+	validates :name, presence: true, length: { minimum: 3, maximum: 60 }
 
 
 

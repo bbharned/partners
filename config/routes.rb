@@ -66,6 +66,7 @@ resources :answers, except: [:show, :index]
 
 
 resources :hardwares
+get 'hardware', to: 'hardwares#index'
 resources :makers
 resources :hwstatuses
 resources :hwtypes

@@ -5,7 +5,7 @@ class HwtypesController < ApplicationController
 
 def index
 	@sort = [params[:sort]]
-    @types = Hwtype.paginate(page: params[:page], per_page: 25).order(@sort)
+    @types = Hwtype.all.order(@sort)
 end
 
 
