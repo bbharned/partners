@@ -48,6 +48,9 @@ end
 
 
 def show
+	if !logged_in?
+		@current_user = nil
+	end
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all

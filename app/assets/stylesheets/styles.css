@@ -762,7 +762,11 @@ Very Light Blue: #e9f7fb;
 /********************** Hardware Page ******************************/
 
 .side-filters {
-    width: 90%; padding: 0px 5%; 
+    width: 97%; padding: 0px 1%; border-right: 1px solid #d1d1d1; 
+    min-height: 500px;
+}
+.hardware-container {
+    width: 98%; margin: auto; 
 }
 .maker-dropdown {
     width: 100% !important;
@@ -770,10 +774,13 @@ Very Light Blue: #e9f7fb;
 }
 .maker-dropdown select {
     width: 100%; padding-top: 7px; padding-bottom: 7px;
-    border-color: #999999;
+    border-color: #d1d1d1; margin-left: 0 !important;
 }
 .form-label {
     margin-top: 20px;
+}
+.admin-edit {
+    position: absolute; z-index: 999; right: 30px;
 }
 
 

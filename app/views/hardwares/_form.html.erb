@@ -1,6 +1,5 @@
 <%= render 'shared/errors', obj: @hardware %>
 
-
 <div class="row">
     <div class="col-sm-10 offset-sm-1">
     <%= form_for(@hardware, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -13,33 +12,90 @@
                     </div>
                 
                     <div class="col-md-5 maker-dropdown">
-                        <div class="form-label"><%= f.label "Manufacturer " %> <span style="font-size:.65em;">(<%= link_to "add new", new_maker_path %>)</span></div>
+                        <div class="form-label"><%= f.label "Manufacturer " %> <span style="font-size:.65em;">(<%= link_to "add new", new_maker_path, tabindex: "-1" %>)</span></div>
                         <%= f.collection_select :maker_id, @makers, :id, :name, { :include_blank=>true} , class: "form-control" %>
                     </div>
             </div>
         
             <div class="row">
                 <div class="col-md-6 maker-dropdown">
-                    <div class="form-label"><%= f.label "Hardware Type " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwtype_path %>)</span></div>
+                    <div class="form-label"><%= f.label "Hardware Type " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwtype_path, tabindex: "-1" %>)</span></div>
                     <%= f.collection_select :hwtype_id, @types, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
 
                 <div class="col-md-6 maker-dropdown">
-                    <div class="form-label"><%= f.label "Testing Status " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwstatus_path %>)</span></div>
+                    <div class="form-label"><%= f.label "Testing Status " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwstatus_path, tabindex: "-1" %>)</span></div>
                     <%= f.collection_select :hwstatus_id, @statuses, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
             </div>
         </div>
 
 
-        <hr style="margin-top: 50px; margin-bottom: 45px;" />
+        <hr style="margin-top: 50px; margin-bottom: 35px;" />
 
         <div class="form-group">
             <div class="row">
-                Next group
+                <div class="col-md-4 maker-dropdown">
+                    <div class="form-label"><%= f.label "Boot Type" %></div>
+                    <%= f.select :terminal_type, options_for_select([
+                          [""],
+                          ["ThinManager Ready"], 
+                          ["PXE Boot"]
+                    ], @hardware.terminal_type), class: "form-control" %>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Minimum Firmware" %></div>
+                    <%= f.text_field :min_firmware, class: "form-control", placeholder: "Min Firmware" %>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Maximum Firmware" %></div>
+                    <%= f.text_field :max_firmware, class: "form-control", placeholder: "Max Firmware" %>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "OEM Model" %></div>
+                    <%= f.text_field :hardware_gpu_id, class: "form-control", placeholder: "OEM Model" %>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "CPU" %></div>
+                    <%= f.text_field :cpu, class: "form-control", placeholder: "e.g. Intel Atom E3815 1.5GHz" %>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Touch Interface" %></div>
+                    <%= f.text_field :touch_interface, class: "form-control", placeholder: "e.g. ELO, USB, etc" %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Network Card" %></div>
+                    <%= f.text_field :network_card, class: "form-control", placeholder: "Network Card Details" %>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Network Identifier" %></div>
+                    <%= f.text_field :pci_network_id, class: "form-control", placeholder: "PCI Network Details" %>
+                </div>
             </div>
         </div>
 
+
+        <hr style="margin-top: 50px; margin-bottom: 35px;" />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="control-label"><%= f.label "Notes" %></div>
+                    <%= f.text_area :note, class: "form-control", rows: "8", placeholder: "Enter Hardware Notes Here", tabindex: "20" %>
+                </div>
+            </div>    
+        </div>
 
         <br /><br />
         
