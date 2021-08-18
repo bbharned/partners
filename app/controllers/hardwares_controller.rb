@@ -9,6 +9,10 @@ def index
 		@current_user = nil
 	end
 	@hardwares = Hardware.all
+	@makers = Maker.all
+	@types = Hwtype.all
+	@statuses = Hwstatus.all
+	@filter_types = params[:type]
 end
 
 

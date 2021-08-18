@@ -2,7 +2,7 @@
 
 	<div class="row">
 		<div class="col-sm-9">
-			<h3 style="margin-bottom:0px;">ThinManager Hardware</h3>
+			<h3 style="margin-bottom:0px; padding-left: 25px;">ThinManager Hardware</h3>
 		</div>
 		<div class="col-sm-3">
 			<% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
@@ -17,7 +17,20 @@
 
 	<div class="row hardware-container">
 		<div class="col-3 side-filters">
-			Side Filters
+			<h6>Hardware Types</h6>
+			<% @types.each do |t| %>
+				<%= check_box_tag(t.id) %>&nbsp;&nbsp;<%= t.name %><br />
+			<% end %>
+			<br />
+
+			<h6>Brands</h6>
+			<% @makers.each do |t| %>
+				<%= check_box_tag(t.id) %>&nbsp;&nbsp;<%= t.name %><br />
+			<% end %>
+			<br />
+			<h6>Boot Types</h6>
+			<%= check_box_tag("ThinManager Ready") %>&nbsp;&nbsp;ThinManager Ready<br />
+			<%= check_box_tag("PXE Boot") %>&nbsp;&nbsp;PXE Boot
 		</div>
 		<div class="col-9">
 			<% if @hardwares.any? %>
