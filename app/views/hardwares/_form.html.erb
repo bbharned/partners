@@ -7,19 +7,39 @@
 
         <div class="form-group">
             <div class="row">
-                    <div class="col-sm-8">
-                        <%= f.label :model %>
+                    <div class="col-md-7">
+                        <div class="form-label"><%= f.label :model %></div>
                         <%= f.text_field :model, class: "form-control", placeholder: "Enter Hardware Model Name", autofocus: true %>
                     </div>
                 
-                    <div class="col-sm-4 maker-dropdown">
-                        <%= f.label "Manufacturer" %>
-                        <br />
-                        
-                        <%= f.select :maker, options_from_collection_for_select(@makers, 'id', 'name', @makers),  { :include_blank=>true }, { :class => 'form-control' } %>
+                    <div class="col-md-5 maker-dropdown">
+                        <div class="form-label"><%= f.label "Manufacturer " %> <span style="font-size:.65em;">(<%= link_to "add new", new_maker_path %>)</span></div>
+                        <%= f.collection_select :maker_id, @makers, :id, :name, { :include_blank=>true} , class: "form-control" %>
                     </div>
             </div>
+        
+            <div class="row">
+                <div class="col-md-6 maker-dropdown">
+                    <div class="form-label"><%= f.label "Hardware Type " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwtype_path %>)</span></div>
+                    <%= f.collection_select :hwtype_id, @types, :id, :name, { :include_blank=>true} , class: "form-control" %>
+                </div>
+
+                <div class="col-md-6 maker-dropdown">
+                    <div class="form-label"><%= f.label "Testing Status " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwstatus_path %>)</span></div>
+                    <%= f.collection_select :hwstatus_id, @statuses, :id, :name, { :include_blank=>true} , class: "form-control" %>
+                </div>
+            </div>
         </div>
+
+
+        <hr style="margin-top: 50px; margin-bottom: 45px;" />
+
+        <div class="form-group">
+            <div class="row">
+                Next group
+            </div>
+        </div>
+
 
         <br /><br />
         

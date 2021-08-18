@@ -16,13 +16,18 @@ end
 def new
 	@hardware = Hardware.new
 	@makers = Maker.all
+	@types = Hwtype.all
+	@statuses = Hwstatus.all
 end
 
 
 
 def create
-	@hardware = Maker.new(hardware_params)
-
+	@hardware = Hardware.new(hardware_params)
+	@makers = Maker.all
+	@types = Hwtype.all
+	@statuses = Hwstatus.all
+	@current_user = current_user
     if @hardware.save
         flash[:success] = "Hardware company has been created and saved"
         redirect_to hardwares_path
@@ -43,12 +48,16 @@ end
 
 
 def show
-
+	@makers = Maker.all
+	@types = Hwtype.all
+	@statuses = Hwstatus.all
 end
 
 
 def edit
-
+	@makers = Maker.all
+	@types = Hwtype.all
+	@statuses = Hwstatus.all
 end
 
 

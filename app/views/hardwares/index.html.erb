@@ -1,4 +1,4 @@
-<div style="width: 98%; margin: auto; margin-top: -25px;">
+<div style="width: 98%; margin: auto;">
 
 	<div class="row">
 		<div class="col-sm-9">
@@ -20,7 +20,21 @@
 			Side Filters
 		</div>
 		<div class="col-9">
-			Hardware Results
+			<% if @hardwares.any? %>
+			<% @hardwares.each do |h| %>
+				<div class="well" style="margin-bottom:5px;">
+					<div class="row">
+						<div class="col">
+							<h5 style="margin-bottom:0px;"><%= h.model %></h5>
+							<p style="line-height: 10px; margin-top:0px;"><small><%= h.maker.name %></small></p>
+							<hr />
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<% else %>
+				No Hardware yet identified
+			<% end %>
 		</div>
 	</div>
 
