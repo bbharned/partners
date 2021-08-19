@@ -8,7 +8,11 @@ def index
 	if !logged_in?
 		@current_user = nil
 	end
-	@hardwares = Hardware.all
+	@hardwares = Hardware.joins(:maker, :hwtype, :hwstatus)
+	@hardwares = @hardwares.where("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
+	#@hardwares = @hardwares.select("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
+	@hardwares = @hardwares.where("hwtype_id = ?", params[:hwtype_id]) if params[:hwtype_id].present?
+	@maker_id = params[:maker_id]
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all

@@ -19,13 +19,16 @@
 		<div class="col-3 side-filters">
 			<h6>Hardware Types</h6>
 			<% @types.each do |t| %>
-				<%= check_box_tag(t.id) %>&nbsp;&nbsp;<%= t.name %><br />
+				<%= link_to check_box_tag(:hwtype_id, t.id), hardwares_path({ :hwtype_id => t }) %>&nbsp;&nbsp;<%= t.name %><br />
 			<% end %>
 			<br />
 
 			<h6>Brands</h6>
+			<%= link_to check_box_tag(:maker_id), hardwares_path({ :maker_id => nil }) %>&nbsp;&nbsp;All<br />
 			<% @makers.each do |t| %>
-				<%= check_box_tag(t.id) %>&nbsp;&nbsp;<%= t.name %><br />
+				
+					<%= link_to check_box_tag(:maker_id, t.id), hardwares_path({ :maker_id => t }) %>&nbsp;&nbsp;<%= t.name %><br />
+				
 			<% end %>
 			<br />
 			<h6>Boot Types</h6>
