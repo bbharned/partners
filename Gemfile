@@ -54,6 +54,7 @@ gem "loofah", ">= 2.3.1"
 
 gem 'mimemagic', '~> 0.3.10'
 
+gem 'filterrific', '~> 5.2', '>= 5.2.2'
 
 
 group :development, :test do

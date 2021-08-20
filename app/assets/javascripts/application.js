@@ -18,4 +18,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require filterrific/filterrific-jquery
 //= require_tree .

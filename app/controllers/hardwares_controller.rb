@@ -5,18 +5,49 @@ class HardwaresController < ApplicationController
 
 
 def index
-	if !logged_in?
-		@current_user = nil
-	end
-	@hardwares = Hardware.joins(:maker, :hwtype, :hwstatus)
-	@hardwares = @hardwares.where("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
+	# if !logged_in?
+	# 	@current_user = nil
+	# end
+	# @hardwares = Hardware.joins(:maker, :hwtype, :hwstatus)
+	# if @company != nil && @company != ""
+	# 	#@hardwares = @hardwares.where("maker_id = ?", @company) if @company.present?
+	# 	@hardwares = @hardwares.includes(:maker).where(maker: {id: @company.id}) 
+	# else
+	# 	@hardwares = Hardware.all
+	# end
+	#@hardwares = @hardwares.where("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
 	#@hardwares = @hardwares.select("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
-	@hardwares = @hardwares.where("hwtype_id = ?", params[:hwtype_id]) if params[:hwtype_id].present?
-	@maker_id = params[:maker_id]
-	@makers = Maker.all
-	@types = Hwtype.all
-	@statuses = Hwstatus.all
-	@filter_types = params[:type]
+	#@hardwares = @hardwares.where("hwtype_id = ?", params[:hwtype_id]) if params[:hwtype_id].present?
+	#@maker_id = params[:maker_id]
+	# @makers = Maker.all
+	# @types = Hwtype.all
+	# @statuses = Hwstatus.all
+	#@filter_types = params[:type]
+
+  @filterrific = initialize_filterrific(
+     Hardware,
+     params[:filterrific],
+      select_options: {
+        sorted_by: Hardware.options_for_sorted_by,
+        with_maker_id: Maker.options_for_select,
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:sorted_by, :with_maker_id],
+      sanitize_params: true,
+   ) or return
+   @hardwares = @filterrific.find.page(params[:page])
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+	 # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
+
 end
 
 

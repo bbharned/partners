@@ -16,52 +16,58 @@
 
 
 	<div class="row hardware-container">
-		<div class="col-3 side-filters">
-			<h6>Hardware Types</h6>
-			<% @types.each do |t| %>
-				<%= link_to check_box_tag(:hwtype_id, t.id), hardwares_path({ :hwtype_id => t }) %>&nbsp;&nbsp;<%= t.name %><br />
-			<% end %>
-			<br />
+		
 
-			<h6>Brands</h6>
-			<%= link_to check_box_tag(:maker_id), hardwares_path({ :maker_id => nil }) %>&nbsp;&nbsp;All<br />
-			<% @makers.each do |t| %>
-				
-					<%= link_to check_box_tag(:maker_id, t.id), hardwares_path({ :maker_id => t }) %>&nbsp;&nbsp;<%= t.name %><br />
-				
-			<% end %>
-			<br />
-			<h6>Boot Types</h6>
-			<%= check_box_tag("ThinManager Ready") %>&nbsp;&nbsp;ThinManager Ready<br />
-			<%= check_box_tag("PXE Boot") %>&nbsp;&nbsp;PXE Boot
-		</div>
-		<div class="col-9">
-			<% if @hardwares.any? %>
-				<% @hardwares.each do |h| %>
-					<div class="well" style="margin-bottom:5px;">
-						<% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
-							<div class="admin-edit"><%= link_to "edit", edit_hardware_path(h) %></div>
-						<% end %>
-						<div class="row">
-							<div class="col">
-								<h5 style="margin-bottom:0px;"><%= link_to "#{h.model}", hardware_path(h) %></h5>
-								<p style="line-height: 10px; margin-top:0px; margin-bottom:2px;"><small><%= h.maker.name %></small></p>
-								<h6 style="margin-bottom:0px;"><%= h.hwtype.name %></h6>
-								<hr />
-								<div class="row">
-									<div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Type</span><br /><%= h.terminal_type %></div>
-									<div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Firmware</span><br /><%= h.min_firmware %> - <%= h.max_firmware %></div>
-									<div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">CPU</span><br /><%= h.cpu %></div>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				<% end %>
-			<% else %>
-				No Hardware yet identified
-			<% end %>
-		</div>
+		<%#
+		  Filterrific adds the `form_for_filterrific` view helper:
+		  * adds dom id 'filterrific_filter'
+		  * applies javascript behaviors:
+		      * AJAX form submission on change
+		      * AJAX spinner while AJAX request is being processed
+		  * sets form_for options like :url, :method and input name prefix
+		%>
+		<%= form_for_filterrific @filterrific do |f| %>
+		  <div>
+		    Search
+		    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+		    <%= f.text_field(
+		      :search_query,
+		      class: 'filterrific-periodically-observed'
+		    ) %>
+		  </div>
+		  <div>
+		    Maker
+		    <%= f.select(
+		      :with_maker_id,
+		      @filterrific.select_options[:with_maker_id],
+		      { include_blank: '- Any -' }
+		    ) %>
+		  </div>
+		  <div>
+		    Created after
+		    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+		  </div>
+		  <div>
+		    Sorted by
+		    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+		  </div>
+		  <div>
+		    <%= link_to(
+		      'Reset filters',
+		      reset_filterrific_url,
+		    ) %>
+		  </div>
+		  <%# add an automated spinner to your form when the list is refreshed %>
+		  <%= render_filterrific_spinner %>
+		<% end %>
+
+		<%= render(
+		  partial: 'hardwares/list',
+		  locals: { hardwares: @hardwares }
+		) %>
+
+
+
 	</div>
 
 
