@@ -26,32 +26,38 @@
 		      * AJAX spinner while AJAX request is being processed
 		  * sets form_for options like :url, :method and input name prefix
 		%>
-		<div class="container">
-			<div class="row">
-				<div class="col">
+		
+			
 					<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-					  <div class="form-group">
-						  <div class="col-sm-4">
-						    Search
-						    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-						    <%= f.text_field(
-						      :search_query,
-						      class: 'filterrific-periodically-observed form-control'
-						    ) %>
-						  </div>
-						  <div class="col-sm-4">
-						    Maker
-						    <%= f.select(
-						      :with_maker_id,
-						      @filterrific.select_options[:with_maker_id],
-						      { include_blank: '- Any -' }, class: "form-control"
-						    ) %>
-						  </div>
-						  <div class="col-sm-4">
-						    Created after
-						    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker form-control') %>
-						  </div>
-					
+					  
+					<div class="form-group">
+						<div class="row">
+					  	
+							  <div class="col-sm-4">
+							    <div class="form-label">Search</div>
+							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+							    <%= f.text_field(
+							      :search_query,
+							      class: 'filterrific-periodically-observed form-control'
+							    ) %>
+							  </div>
+							  <div class="col-sm-4">
+							    <div class="form-label">Maker</div>
+							    <%= f.select(
+							      :with_maker_id,
+							      @filterrific.select_options[:with_maker_id],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %>
+							  </div>
+							  <div class="col-sm-4">
+							    <div class="form-label">Created after</div>
+							    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker form-control') %>
+							  </div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
 						  <div class="col-sm-4">
 						    Sorted by
 						    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "form-control") %>
@@ -62,14 +68,17 @@
 						      reset_filterrific_url,
 						    ) %>
 						  </div>
+						</div>
 					</div>
 					  <%# add an automated spinner to your form when the list is refreshed %>
-					  <%= render_filterrific_spinner %>
-					<% end %>
-				</div>
-			</div>
-		</div>
+					  
+					
 
+
+					<% end %>
+				
+			<br /><br />
+			<%= render_filterrific_spinner %>
 
 		<%= render(
 		  partial: 'hardwares/list',
