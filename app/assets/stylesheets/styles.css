@@ -777,11 +777,17 @@ Very Light Blue: #e9f7fb;
     width: 100%; padding-top: 7px; padding-bottom: 7px;
     border-color: #d1d1d1; margin-left: 0 !important;
 }
-.form-label {
-    margin-top: 20px;
+.hardware-container .form-label {
+    margin-top: 5px;
 }
 .admin-edit {
     position: absolute; z-index: 999; right: 50px;
+}
+.hw-loader {
+    width: 150px; margin: auto;
+}
+.hw-loader img {
+    width: 100%;
 }
 
 

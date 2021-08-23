@@ -9,19 +9,29 @@
               <div class="admin-edit"><%= link_to "edit", edit_hardware_path(h) %></div>
             <% end %>
             <div class="row">
-              <div class="col">
+              <div class="col-md-4">
                 <h5 style="margin-bottom:0px;"><%= link_to "#{h.model}", hardware_path(h) %></h5>
-                <p style="line-height: 10px; margin-top:0px; margin-bottom:2px;"><small><%= h.maker.name %></small></p>
-                <h6 style="margin-bottom:0px;"><%= h.hwtype.name %></h6>
-                <hr />
+              </div>
+              <div class="col-md-4">
+                <h5 style="margin-bottom: 0px;"><%= h.maker.name %></h5>
+              </div>
+              <div class="col-md-4">
+                <h5 style="margin-bottom:0px;"><%= h.hwtype.name %></h5>
+              </div>
+            </div>
+                <hr style="margin:7px 0px;" />
                 <div class="row">
                   <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Boot Type</span><br /><%= h.terminal_type %></div>
-                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Firmware</span><br /><%= h.min_firmware %> - <%= h.max_firmware %></div>
+                  <div class="col-md-4" style="line-height:1.2em;">
+                    <% if (h.min_firmware != nil && h.min_firmware != "" && h.max_firmware != nil && h.max_firmware != "") %>
+                      <span style="font-weight:bold;">Firmware</span><br /><%= h.min_firmware + " - " + h.max_firmware %>
+                    <% end %>
+                  </div>
                   <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">CPU</span><br /><%= h.cpu %></div>
                   
                 </div>
-              </div>
-            </div>
+            
+           
           </div>
         <% end %>
       <% elsif @filterrific == nil %>
