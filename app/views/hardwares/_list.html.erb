@@ -2,21 +2,37 @@
 
   
 
-  <table>
-    <tr>
-      <th>Model</th>
-      <th>Maker</th>
-      <th>Type</th>
-      <th>Created at</th>
-    </tr>
-    <% hardwares.each do |hardware| %>
-      <tr>
-        <td><%= link_to(hardware.model, hardware_path(hardware)) %></td>
-        <td><%= hardware.maker.name %></td>
-        <td><%= hardware.hwtype.name %></td>
-        <td><%= hardware.created_at %></td>
-      </tr>
-    <% end %>
-  </table>
+  <% if @hardwares %>
+        <% @hardwares.each do |h| %>
+          <div class="well" style="margin-bottom:5px;">
+            <% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
+              <div class="admin-edit"><%= link_to "edit", edit_hardware_path(h) %></div>
+            <% end %>
+            <div class="row">
+              <div class="col">
+                <h5 style="margin-bottom:0px;"><%= link_to "#{h.model}", hardware_path(h) %></h5>
+                <p style="line-height: 10px; margin-top:0px; margin-bottom:2px;"><small><%= h.maker.name %></small></p>
+                <h6 style="margin-bottom:0px;"><%= h.hwtype.name %></h6>
+                <hr />
+                <div class="row">
+                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Type</span><br /><%= h.terminal_type %></div>
+                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Firmware</span><br /><%= h.min_firmware %> - <%= h.max_firmware %></div>
+                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">CPU</span><br /><%= h.cpu %></div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        No Hardware yet identified
+      <% end %>
+
+
+
+
+
+
+
 </div>
 
