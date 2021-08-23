@@ -15,7 +15,7 @@
                 <h6 style="margin-bottom:0px;"><%= h.hwtype.name %></h6>
                 <hr />
                 <div class="row">
-                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Type</span><br /><%= h.terminal_type %></div>
+                  <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Boot Type</span><br /><%= h.terminal_type %></div>
                   <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">Firmware</span><br /><%= h.min_firmware %> - <%= h.max_firmware %></div>
                   <div class="col-md-4" style="line-height:1.2em;"><span style="font-weight:bold;">CPU</span><br /><%= h.cpu %></div>
                   
@@ -24,11 +24,11 @@
             </div>
           </div>
         <% end %>
+      <% elsif @filterrific == nil %>
+        You Got nothing
       <% else %>
         No Hardware yet identified
       <% end %>
-
-
 
 
 

@@ -5,9 +5,9 @@ class HardwaresController < ApplicationController
 
 
 def index
-	# if !logged_in?
-	# 	@current_user = nil
-	# end
+	if !logged_in?
+		@current_user = nil
+	end
 	# @hardwares = Hardware.joins(:maker, :hwtype, :hwstatus)
 	# if @company != nil && @company != ""
 	# 	#@hardwares = @hardwares.where("maker_id = ?", @company) if @company.present?
@@ -30,10 +30,12 @@ def index
       select_options: {
         sorted_by: Hardware.options_for_sorted_by,
         with_maker_id: Maker.options_for_select,
+        with_hwtype_id: Hwtype.options_for_select,
+        with_hwstatus_id: Hwstatus.options_for_select,
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_maker_id],
+      available_filters: [:sorted_by, :with_maker_id, :with_hwtype_id, :with_hwstatus_id],
       sanitize_params: true,
    ) or return
    @hardwares = @filterrific.find.page(params[:page])

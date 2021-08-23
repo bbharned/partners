@@ -8,7 +8,7 @@ class Maker < ActiveRecord::Base
 
 
 	def self.options_for_select
-	  order("LOWER(name)").map { |e| [e.name, e.id] }
+	  order(Arel.sql("LOWER(name)")).map { |e| [e.name, e.id] }
 	end
 
 
