@@ -112,10 +112,10 @@ def calcs
         self.new_red = 0
     end
     
-
-    @vfRedPrices = [3400, 1870, 1700, 1360, 1190, 1020]
-    @smrPrices = [403, 221.65, 201.50, 161.20, 141.05, 120.90]
-    @vfNonRedPrices = [2400, 1320, 1200, 960, 840, 720]
+    # updated 8/23/2021
+    @vfRedPrices = [3486, 1917.30, 1743, 1394.30, 1220.10, 1045.80]
+    @smrPrices = [412, 226.60, 206.00, 164.80, 144.20, 123.60]
+    @vfNonRedPrices = [2460, 1353, 1230, 984, 861, 738] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
 
     if self.sm_exp == nil
         self.sm_exp = Date.today() + 1.year
