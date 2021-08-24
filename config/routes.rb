@@ -70,6 +70,7 @@ get 'hardware', to: 'hardwares#index'
 resources :makers
 resources :hwstatuses
 resources :hwtypes
+resources :firmwares
 
 
 get 'flexforward', to: 'flexforwards#saved'

@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @hardware %>
 
-<div class="row">
+<div class="row hardware-form">
     <div class="col-sm-10 offset-sm-1">
     <%= form_for(@hardware, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
@@ -28,7 +28,26 @@
                     <%= f.collection_select :hwstatus_id, @statuses, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-3 maker-dropdown">
+                    <div class="form-label"><%= f.label "Priority" %></div>
+                        <%= f.select :priority, options_for_select([
+                          [1,"a"],
+                          [2,"b"], 
+                          [3,"c"],
+                          [4,"d"],
+                          [5,"e"]
+                        ], @hardware.priority), class: "form-control" %>
+                    
+                </div>
+                <div class="col-sm-9">
+                    <div class="form-label priority-disclaimer"><small>Results of hardware are shown often by "Relevance" or priority. A '1' will show higher in results than a '5'. The default is '5' for third party partner hardware and currently all Allen Bradley/Rockwell Hardware is a '3'. This allows fo future options as our hardware needs grow.</small></div>
+                </div>
+            </div>
         </div>
+        
+        
 
 
         <hr style="margin-top: 50px; margin-bottom: 35px;" />
@@ -40,7 +59,8 @@
                     <%= f.select :terminal_type, options_for_select([
                           [""],
                           ["ThinManager Ready"], 
-                          ["PXE Boot"]
+                          ["PXE Boot"],
+                          ["Dual Boot"]
                     ], @hardware.terminal_type), class: "form-control" %>
                 </div>
 

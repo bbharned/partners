@@ -7,7 +7,7 @@ class Hardware < ActiveRecord::Base
 
 
 filterrific(
-   default_filter_params: { sorted_by: 'created_at_asc' },
+   default_filter_params: { sorted_by: 'priority_asc' },
    available_filters: [
      :sorted_by,
      :search_query,
@@ -54,6 +54,8 @@ scope :sorted_by, ->(sort_option) {
   # extract the sort direction from the param value.
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
+  when /^priority_/
+    order("hardwares.priority #{direction}")
   when /^created_at_/
     # Simple sort on the created_at column.
     # Make sure to include the table name to avoid ambiguous column names.
@@ -66,11 +68,7 @@ scope :sorted_by, ->(sort_option) {
   when /^maker_name_/
     # This sorts by a hardware's maker name, so we need to include
     # the maker.
-    order("LOWER(hardwares.model) #{direction}").includes(:maker).references(:maker)
-  when /^hwtype_name_/
-    # This sorts by a hardware's maker type, so we need to include
-    # the type.
-    order("LOWER(hardwares.hwtype) #{direction}").includes(:hwtype).references(:hwtype)
+    order("LOWER(makers.name) #{direction}").includes(:maker).references(:maker)
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
@@ -103,10 +101,11 @@ scope :with_hwstatus_id, ->(hwstatus_ids) {
   # It is called in the controller as part of `initialize_filterrific`.
   def self.options_for_sorted_by
     [
-      ["Hardware Model (a-z)", "model_asc"],
-      ["Newest - Oldest", "created_at_desc"],
-      ["Oldest - Newest", "created_at_asc"],
+      ["Relevance", "priority_asc"],
       ["Brand (a-z)", "maker_name_asc"],
+      ["Hardware Model (a-z)", "model_asc"],
+      # ["Newest - Oldest", "created_at_desc"],
+      # ["Oldest - Newest", "created_at_asc"],
     ]
   end
 

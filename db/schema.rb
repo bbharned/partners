@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_145143) do
+ActiveRecord::Schema.define(version: 2021_08_24_134728) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 2021_08_16_145143) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "firmwares", force: :cascade do |t|
+    t.string "version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "flexforwards", force: :cascade do |t|
     t.integer "user_id"
     t.integer "currency_id"
@@ -140,6 +146,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_145143) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "priority", default: "e"
     t.index ["hwstatus_id"], name: "index_hardwares_on_hwstatus_id"
     t.index ["hwtype_id"], name: "index_hardwares_on_hwtype_id"
     t.index ["maker_id"], name: "index_hardwares_on_maker_id"
