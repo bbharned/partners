@@ -1,0 +1,34 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Firmware Version Numbers</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="add_currency_btn"><%= link_to "Add Version", new_firmware_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
+<hr />
+
+
+<% if @firmwares.any? %>
+
+<div class="row">
+<% @firmwares.each do |f| %>
+	
+	<div class="col-md-4">
+		<div class="well category-well">
+			<h3 style="margin-bottom:12px;"><%= f.version %></h3>
+			<p><%= link_to "Edit", edit_firmware_path(f) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", firmware_path(f), method: :delete, data: {confirm: "Are you sure you want to delete this Firmware vrsion?"}, style: "color:red;" %></p>
+		</div>
+	</div>
+
+<% end %>
+</div>
+<% else %>
+
+<p>There are currently no Firmware Versions created</p>
+
+<% end %>
+
+</div>

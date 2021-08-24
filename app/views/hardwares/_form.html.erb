@@ -66,12 +66,12 @@
 
                 <div class="col-md-4">
                     <div class="form-label"><%= f.label "Minimum Firmware" %></div>
-                    <%= f.text_field :min_firmware, class: "form-control", placeholder: "Min Firmware" %>
+                    <%= f.collection_select :min_firmware, @firmwares, :version, :version, { :include_blank=>true} , class: "form-control" %>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-label"><%= f.label "Maximum Firmware" %></div>
-                    <%= f.text_field :max_firmware, class: "form-control", placeholder: "Max Firmware" %>
+                    <%= f.collection_select :max_firmware, @firmwares, :version, :version, { :include_blank=>true} , class: "form-control" %>
                 </div>
             </div>
             

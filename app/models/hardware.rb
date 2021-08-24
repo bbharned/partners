@@ -13,7 +13,9 @@ filterrific(
      :search_query,
      :with_maker_id,
      :with_hwtype_id,
-     :with_hwstatus_id
+     :with_hwstatus_id,
+     :with_min_firmware,
+     :with_max_firmware
      #:with_created_at_gte
    ]
  )
@@ -89,6 +91,16 @@ scope :with_maker_id, ->(maker_ids) {
 scope :with_hwstatus_id, ->(hwstatus_ids) {
     # Filters hardware with any of the given status_ids
     where(hwstatus_id: [*hwstatus_ids])
+}
+
+scope :with_min_firmware, ->(firmware_vs) {
+    # Filters hardware with any of the given firmwares_ids
+    where("hardwares.min_firmware >= ?", firmware_vs).where("hardwares.min_firmware != ?", "")
+}
+
+scope :with_max_firmware, ->(firmware_versions) {
+    # Filters hardware with any of the given firmwares_ids
+    where("hardwares.max_firmware <= ?", firmware_versions).where("hardwares.max_firmware != ?", "")
 }
 
 

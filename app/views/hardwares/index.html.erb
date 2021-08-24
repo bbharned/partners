@@ -68,7 +68,23 @@
 							      @filterrific.select_options[:with_hwstatus_id],
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %> 		
-							   </div>
+						    </div>
+						    <div class="col-sm-4">
+							   <div class="form-label">Minimum Firmware</div>
+							   	<%= f.select(
+							      :with_min_firmware,
+							      @filterrific.select_options[:with_min_firmware],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %> 		
+						    </div>
+						    <div class="col-sm-4">
+							   <div class="form-label">Maximum Firmware</div>
+							   	<%= f.select(
+							      :with_max_firmware,
+							      @filterrific.select_options[:with_max_firmware],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %> 		
+						    </div>
 						</div>
 
 						<div class="row" style="margin-top:10px;">

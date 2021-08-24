@@ -32,10 +32,12 @@ def index
         with_maker_id: Maker.options_for_select,
         with_hwtype_id: Hwtype.options_for_select,
         with_hwstatus_id: Hwstatus.options_for_select,
+        with_min_firmware: Firmware.options_for_select,
+        with_max_firmware: Firmware.options_for_select,
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_maker_id, :with_hwtype_id, :with_hwstatus_id],
+      available_filters: [:sorted_by, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware],
       sanitize_params: true,
    ) or return
    @hardwares = @filterrific.find.page(params[:page])
@@ -59,6 +61,7 @@ def new
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
+	@firmwares = Firmware.all.order(:version)
 end
 
 
@@ -102,6 +105,7 @@ def edit
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
+	@firmwares = Firmware.all.order(:version)
 end
 
 
