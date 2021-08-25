@@ -41,10 +41,10 @@ scope :search_query, ->(query) {
   # configure number of OR conditions for provision
   # of interpolation arguments. Adjust this if you
   # change the number of OR conditions.
-  num_or_conds = 3
+  num_or_conds = 2
   where(
     terms.map { |_term|
-      "(LOWER(hardwares.model) LIKE ? OR LOWER(makers.name) LIKE ? OR LOWER(hardwares.terminal_type) LIKE ?)"
+      "(LOWER(model) LIKE ? OR LOWER(terminal_type) LIKE ?)"
     }.join(" AND "),
     *terms.map { |e| [e] * num_or_conds }.flatten,
   )
