@@ -44,10 +44,21 @@ scope :search_query, ->(query) {
   num_or_conds = 3
   where(
     terms.map { |_term|
-      "(LOWER(hardwares.model) LIKE ? OR LOWER(hardwares.min_firmware) LIKE ? OR LOWER(hardwares.max_firmware) LIKE ?)"
+      "(LOWER(hardwares.model) LIKE ? OR LOWER(makers.name) LIKE ? OR LOWER(hardwares.terminal_type) LIKE ?)"
     }.join(" AND "),
     *terms.map { |e| [e] * num_or_conds }.flatten,
   )
+  # where(
+  #   terms.map {
+  #     or_clauses = [
+  #         "LOWER(hardwares.model) LIKE ?",
+  #         "LOWER(makers.name) LIKE ?",
+  #         "LOWER(hardwares.terminal_type) LIKE ?"
+  #     ].join(' OR ')
+  #     "(#{ or_clauses })"
+  #   }.join(' AND '),
+  #   *terms.map { |e| [e] * num_or_conditions }.flatten
+  # )
 }
 
 
