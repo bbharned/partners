@@ -146,10 +146,18 @@ def reports
 
     @qrs = Qrcode.all
     @qrmonth = Qrcode.where(created_at: 1.month.ago..Date.tomorrow)
+    if @qrmonth.count > 0
     @qr_most_user_month = @qrmonth.group(:user_id).select(:user_id).order("count(*) desc").first.user_id
+    else 
+       @qr_most_user_month = nil 
+    end
     @qr_most_user = Qrcode.group(:user_id).select(:user_id).order("count(*) desc").first.user_id
     @qr_best_user = User.find(@qr_most_user)
-    @qr_best_user_month = User.find(@qr_most_user_month)
+    if @qr_most_user_month != nil 
+        @qr_best_user_month = User.find(@qr_most_user_month)
+    else
+        @qr_best_user_month = nil
+    end
 end
 
 
