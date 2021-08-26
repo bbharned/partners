@@ -787,7 +787,8 @@ Very Light Blue: #e9f7fb;
 .hw-loader {
     width: 150px; margin: auto;
 }
-.hw-loader img {
+.hw-loader img,
+.indicator img {
     width: 100%;
 }
 .hardware-form .form-label {
@@ -808,6 +809,9 @@ Very Light Blue: #e9f7fb;
 }
 #filterrific_results .card .card-body {
     line-height: 15px; padding: 10px 15px;
+}
+.indicator {
+    width: 15px; height: 15px; position: relative;
 }
 
 

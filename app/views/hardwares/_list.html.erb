@@ -27,7 +27,16 @@
                     <div class="card-text"><%= h.terminal_type %></div>
                   <% else %>
                     <span class="card-sm-title">STATUS</span><br />
-                    <span class="card-title"><%= h.hwstatus.name %></span>
+                    <span class="card-title">
+                      <% if h.hwstatus.name == "Compatible" %>
+                        <%= image_tag "green_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                      <% elsif h.hwstatus.name == "Not Compatible" %>
+                        <%= image_tag "red_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                      <% else %>
+                        <%= image_tag "yellow_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                      <% end %>
+                      <%= h.hwstatus.name %>
+                    </span>
                   <% end %>
                 </div>
               </div>
@@ -38,12 +47,24 @@
               <div class="row">
                 <div class="col-4">
                   <span class="card-sm-title">STATUS</span><br />
-                  <span class="card-title"><%= h.hwstatus.name %></span>
+                  <span class="card-title">
+                    <% if h.hwstatus.name == "Compatible" %>
+                      <%= image_tag "green_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                    <% elsif h.hwstatus.name == "Not Compatible" %>
+                      <%= image_tag "red_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                    <% else %>
+                      <%= image_tag "yellow_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                    <% end %>
+                    <%= h.hwstatus.name %></span>
                 </div>
                 <div class="col-4">
                   <span class="card-sm-title">FIRMWARE</span><br />
                   <% if h.min_firmware != nil && h.max_firmware != nil%>
                     <div class="card-text"><%= "#{h.min_firmware} - #{h.max_firmware}" %></div>
+                  <% elsif h.min_firmware != nil && h.max_firmware == nil %>
+                    <div class="card-text"><%= ">= #{h.min_firmware}" %></div>
+                  <% elsif h.min_firmware == nil && h.max_firmware != nil %>
+                    <div class="card-text"><%= "<= #{h.max_firmware}" %></div>
                   <% else %>
                     <div class="card-text">Unspecified</div>
                   <% end %>
