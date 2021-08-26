@@ -6,11 +6,12 @@ class Hardware < ActiveRecord::Base
 	validates :model, presence: true, length: { minimum: 3, maximum: 60 }
 
 
+
 filterrific(
    default_filter_params: { sorted_by: 'priority_asc' },
    available_filters: [
      :sorted_by,
-     :search_query,
+     :with_search,
      :with_maker_id,
      :with_hwtype_id,
      :with_hwstatus_id,
@@ -21,45 +22,23 @@ filterrific(
  )
 
 
-scope :search_query, ->(query) {
-  # Filters hardware by search query
-  # Matches using LIKE, automatically appends '%' to each term.
-  # LIKE is case INsensitive with MySQL, however it is case
-  # sensitive with PostGreSQL. To make it work in both worlds,
-  # we downcase everything.
-  return nil  if query.blank?
+scope :with_search, lambda { |query|
+    return nil  if query.blank?
 
-  # condition query, parse into individual keywords
-  terms = query.downcase.split(/\s+/)
+    terms = query.downcase.split(/\s+/)
 
-  # replace "*" with "%" for wildcard searches,
-  # append '%', remove duplicate '%'s
-  terms = terms.map { |e|
-    #(e.tr("*", "%") + "%").gsub(/%+/, "%")
-    ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
-  }
-  # configure number of OR conditions for provision
-  # of interpolation arguments. Adjust this if you
-  # change the number of OR conditions.
-  num_or_conds = 2
-  where(
-    terms.map { |_term|
-      "(LOWER(model) LIKE ? OR LOWER(terminal_type) LIKE ?)"
-    }.join(" AND "),
-    *terms.map { |e| [e] * num_or_conds }.flatten,
-  )
-  # where(
-  #   terms.map {
-  #     or_clauses = [
-  #         "LOWER(hardwares.model) LIKE ?",
-  #         "LOWER(makers.name) LIKE ?",
-  #         "LOWER(hardwares.terminal_type) LIKE ?"
-  #     ].join(' OR ')
-  #     "(#{ or_clauses })"
-  #   }.join(' AND '),
-  #   *terms.map { |e| [e] * num_or_conditions }.flatten
-  # )
-}
+    terms = terms.map { |e|
+      ('%' + e + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conds = 2
+    where(
+      terms.map { |term|
+        "(LOWER(hardwares.terminal_type) LIKE ? OR LOWER(hardwares.model) LIKE ?)"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+} 
 
 
 scope :sorted_by, ->(sort_option) {

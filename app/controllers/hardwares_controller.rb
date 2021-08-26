@@ -8,21 +8,7 @@ def index
 	if !logged_in?
 		@current_user = nil
 	end
-	# @hardwares = Hardware.joins(:maker, :hwtype, :hwstatus)
-	# if @company != nil && @company != ""
-	# 	#@hardwares = @hardwares.where("maker_id = ?", @company) if @company.present?
-	# 	@hardwares = @hardwares.includes(:maker).where(maker: {id: @company.id}) 
-	# else
-	# 	@hardwares = Hardware.all
-	# end
-	#@hardwares = @hardwares.where("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
-	#@hardwares = @hardwares.select("maker_id = ?", params[:maker_id]) if params[:maker_id].present?
-	#@hardwares = @hardwares.where("hwtype_id = ?", params[:hwtype_id]) if params[:hwtype_id].present?
-	#@maker_id = params[:maker_id]
-	# @makers = Maker.all
-	# @types = Hwtype.all
-	# @statuses = Hwstatus.all
-	#@filter_types = params[:type]
+	
 
   @filterrific = initialize_filterrific(
      Hardware,
@@ -37,10 +23,10 @@ def index
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware],
+      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware],
       sanitize_params: true,
    ) or return
-   @hardwares = @filterrific.find.page(params[:page])
+   @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 20)
 
    respond_to do |format|
      format.html

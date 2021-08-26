@@ -17,17 +17,7 @@
 
 	<div class="hardware-container" style="padding-bottom:100px;">
 		
-
-		<%#
-		  Filterrific adds the `form_for_filterrific` view helper:
-		  * adds dom id 'filterrific_filter'
-		  * applies javascript behaviors:
-		      * AJAX form submission on change
-		      * AJAX spinner while AJAX request is being processed
-		  * sets form_for options like :url, :method and input name prefix
-		%>
-		
-			
+	
 			<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 					  
 					<div class="form-group">
@@ -38,7 +28,7 @@
 							    <div class="form-label">Search</div>
 							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 							    <%= f.text_field(
-							      :search_query,
+							      :with_search,
 							      class: 'filterrific-periodically-observed form-control'
 							    ) %>
 							  </div>
@@ -115,7 +105,9 @@
 		  locals: { hardwares: @hardwares }
 		) %>
 
-
+		<div class="paginate" style="margin-top:20px;">
+			<%= will_paginate(@hardwares, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+		</div>
 
 	</div>
 
