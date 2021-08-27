@@ -29,11 +29,11 @@
                     <span class="card-sm-title">STATUS</span><br />
                     <span class="card-title">
                       <% if h.hwstatus.name == "Compatible" %>
-                        <%= image_tag "green_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                        <%= image_tag "green_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
                       <% elsif h.hwstatus.name == "Not Compatible" %>
-                        <%= image_tag "red_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                        <%= image_tag "red_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
                       <% else %>
-                        <%= image_tag "yellow_dot", style: "width:10px; height:10px; margin-top:-2px;" %>
+                        <%= image_tag "yellow_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
                       <% end %>
                       <%= h.hwstatus.name %>
                     </span>
