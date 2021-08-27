@@ -3,7 +3,7 @@ class Firmware < ActiveRecord::Base
 
 
 	def self.options_for_select
-	  order(Arel.sql("LOWER(version)")).map { |e| [e.version, e.version] }
+	  order(:version).map { |e| [e.version, e.version] }
 	end
 
 end
