@@ -30,7 +30,7 @@
                     <span class="card-title">
                       <% if h.hwstatus.name == "Compatible" %>
                         <%= image_tag "green_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
-                      <% elsif h.hwstatus.name == "Not Compatible" %>
+                      <% elsif h.hwstatus.name == "Not Compatible" || h.hwstatus.name == "Incompatible" %>
                         <%= image_tag "red_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
                       <% else %>
                         <%= image_tag "yellow_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
@@ -50,7 +50,7 @@
                   <span class="card-title">
                     <% if h.hwstatus.name == "Compatible" %>
                       <%= image_tag "green_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
-                    <% elsif h.hwstatus.name == "Not Compatible" %>
+                    <% elsif h.hwstatus.name == "Not Compatible" || h.hwstatus.name == "Incompatible" %>
                       <%= image_tag "red_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
                     <% else %>
                       <%= image_tag "yellow_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>

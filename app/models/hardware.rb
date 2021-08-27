@@ -31,13 +31,28 @@ scope :with_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 2
+    num_or_conds = 12
     where(
       terms.map { |term|
-        "(LOWER(hardwares.terminal_type) LIKE ? OR LOWER(hardwares.model) LIKE ?)"
+        "(
+        LOWER(hardwares.terminal_type) LIKE ? 
+        OR LOWER(hardwares.model) LIKE ? 
+        OR LOWER(hardwares.note) LIKE ? 
+        OR LOWER(hardwares.hardware_gpu_id) LIKE ? 
+        OR LOWER(hardwares.cpu) LIKE ? 
+        OR LOWER(hardwares.touch_interface) LIKE ? 
+        OR LOWER(hardwares.network_card) LIKE ? 
+        OR LOWER(hardwares.pci_network_id) LIKE ? 
+        OR LOWER(hardwares.video_chipset) LIKE ?
+        OR LOWER(makers.name) LIKE ?
+        OR LOWER(hwstatuses.name) LIKE ?
+        OR LOWER(hwtypes.name) LIKE ?
+        )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    )
+    ).includes(:maker).references(:makers)
+    .includes(:hwstatus).references(:hwstatuses)
+    .includes(:hwtype).references(:hwtypes)
 } 
 
 
@@ -85,12 +100,12 @@ scope :with_hwstatus_id, ->(hwstatus_ids) {
 
 scope :with_min_firmware, ->(firmware_vs) {
     # Filters hardware with any of the given firmwares_ids
-    where("hardwares.min_firmware >= ?", firmware_vs).where("hardwares.min_firmware != ?", "")
+    where("hardwares.min_firmware >= ?", (firmware_vs).to_s).where("hardwares.min_firmware != ?", "")
 }
 
 scope :with_max_firmware, ->(firmware_versions) {
     # Filters hardware with any of the given firmwares_ids
-    where("hardwares.max_firmware <= ?", firmware_versions).where("hardwares.max_firmware != ?", "")
+    where("hardwares.max_firmware <= ?", (firmware_versions).to_s).where("hardwares.max_firmware != ?", "")
 }
 
 
