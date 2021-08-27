@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_195139) do
+ActiveRecord::Schema.define(version: 2021_08_27_122829) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_195139) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "priority", default: "e"
+    t.string "video_chipset"
     t.index ["hwstatus_id"], name: "index_hardwares_on_hwstatus_id"
     t.index ["hwtype_id"], name: "index_hardwares_on_hwtype_id"
     t.index ["maker_id"], name: "index_hardwares_on_maker_id"

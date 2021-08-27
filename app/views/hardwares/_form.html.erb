@@ -87,12 +87,17 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-label"><%= f.label "Touch Interface" %></div>
-                    <%= f.text_field :touch_interface, class: "form-control", placeholder: "e.g. ELO, USB, etc" %>
+                    <div class="form-label"><%= f.label "Video Chipset" %></div>
+                    <%= f.text_field :video_chipset, class: "form-control", placeholder: "Enter Chipset Info" %>
                 </div>
             </div>
 
             <div class="row">
+                <div class="col-md-4">
+                    <div class="form-label"><%= f.label "Touch Interface" %></div>
+                    <%= f.text_field :touch_interface, class: "form-control", placeholder: "e.g. ELO, USB, etc" %>
+                </div>
+
                 <div class="col-md-4">
                     <div class="form-label"><%= f.label "Network Card" %></div>
                     <%= f.text_field :network_card, class: "form-control", placeholder: "Network Card Details" %>
