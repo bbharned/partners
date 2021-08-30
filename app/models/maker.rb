@@ -3,7 +3,7 @@ class Maker < ActiveRecord::Base
 	has_many :hwstatuses, through: :hardwares
 	has_many :hwtypes, through: :hardwares
 
-	validates :name, presence: true, length: { minimum: 5, maximum: 100 }
+	validates :name, presence: true, length: { minimum: 2, maximum: 100 }
 	
 
 
