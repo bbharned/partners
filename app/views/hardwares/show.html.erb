@@ -1,12 +1,77 @@
 <div class="container" style="padding-bottom: 100px;">
-
-	<h1><%= @hardware.model %></h1>
-
+	<div class="row">
+		<div class="col-sm-8">
+			<h1><%= @hardware.model %></h1>
+		</div>
+		<div class="col-sm-4">
+			<%= link_to "Back to all hardware", hardwares_path, class: "btn btn-primary btn-sm float-right" %>
+		</div>
+	</div>
 	<hr />
-	<div class="col">
-		<h5>Manufactured by</h5>
+	<div class="col hardware-show-info">
+		<h5 style="margin-bottom:0px;">Manufactured by</h5>
 		<h4><%= @hardware.maker.name %></h4>
-		<br /><br /><br /><br /><br />
+
+		<div class="row" style="margin-top:35px;">
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Hardware Type</h6>
+				<%= @hardware.hwtype.name %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Boot Type</h6>
+				<%= @hardware.terminal_type %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Status</h6>
+				  <% if @hardware.hwstatus.name == "Compatible" %>
+	                <%= image_tag "green_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
+	              <% elsif @hardware.hwstatus.name == "Not Compatible" || @hardware.hwstatus.name == "Incompatible" %>
+	                <%= image_tag "red_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
+	              <% else %>
+	                <%= image_tag "yellow_dot.png", style: "width:10px; height:10px; margin-top:-2px;" %>
+	              <% end %>
+	              <%= @hardware.hwstatus.name %>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:15px;">
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Minimum Firmware</h6>
+				<%= @hardware.min_firmware %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Maximum Firware</h6>
+				<%= @hardware.max_firmware %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Touch Interface</h6>
+				  <%= @hardware.touch_interface %>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:15px;">
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Manufacturers ID</h6>
+				<%= @hardware.hardware_gpu_id %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">CPU Info</h6>
+				<%= @hardware.cpu %>
+			</div>
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">Network Card</h6>
+				  <%= @hardware.network_card %>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:15px;">
+			<div class="col-sm-4">
+				<h6 style="margin-bottom:0px;">PCI Network ID</h6>
+				  <%= @hardware.pci_network_id %>
+			</div>
+		</div>
+
+		<br />
 		<hr />
 		<h5>Notes</h5>
 		<p><%= @hardware.note %></p>

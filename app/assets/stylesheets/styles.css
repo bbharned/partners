@@ -813,6 +813,9 @@ Very Light Blue: #e9f7fb;
 .indicator {
     width: 15px; height: 15px; position: relative;
 }
+.hardware-show-info .col-sm-4 {
+    margin-bottom: 20px;
+}
 
 
 
