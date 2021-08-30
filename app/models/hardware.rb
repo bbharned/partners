@@ -99,15 +99,15 @@ scope :with_hwstatus_id, ->(hwstatus_ids) {
 }
 
 scope :with_min_firmware, ->(firmware_vs) {
-    @firmware = firmware_vs.to_f  
+    # @firmware = firmware_vs.to_f  
     # Filters hardware with any of the given firmwares_ids
-    where("hardwares.min_firmware >= ?", (@firmware)).where("hardwares.min_firmware != ?", "")
+    where("hardwares.min_firmware >= ?", (firmware_vs)).where("hardwares.min_firmware != ?", "#{nil}")
 }
 
 scope :with_max_firmware, ->(firmware_versions) {
-    @firmware = firmware_versions.to_f
+    # @firmware = firmware_versions.to_f
     # Filters hardware with any of the given firmwares_ids
-    where("hardwares.max_firmware <= ?", (@firmware)).where("hardwares.max_firmware != ?", "")
+    where("hardwares.max_firmware <= ?", (firmware_versions)).where("hardwares.max_firmware !=?", "#{nil}")
 }
 
 
