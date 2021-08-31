@@ -2,7 +2,6 @@ class Hardware < ActiveRecord::Base
 	belongs_to :maker
 	belongs_to :hwstatus
 	belongs_to :hwtype
-  has_one :term_type
 	
 	validates :model, presence: true, length: { minimum: 3, maximum: 60 }
 
@@ -55,7 +54,6 @@ scope :with_search, lambda { |query|
     ).includes(:maker).references(:makers)
     .includes(:hwstatus).references(:hwstatuses)
     .includes(:hwtype).references(:hwtypes)
-    .includes(:term_types).references(:term_types)
 } 
 
 

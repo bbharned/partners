@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_200712) do
+ActiveRecord::Schema.define(version: 2021_08_27_124346) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 2021_08_31_200712) do
     t.datetime "updated_at", null: false
     t.string "priority", default: "e"
     t.string "video_chipset"
-    t.integer "term_type_id"
     t.index ["hwstatus_id"], name: "index_hardwares_on_hwstatus_id"
     t.index ["hwtype_id"], name: "index_hardwares_on_hwtype_id"
     t.index ["maker_id"], name: "index_hardwares_on_maker_id"
@@ -208,12 +207,6 @@ ActiveRecord::Schema.define(version: 2021_08_31_200712) do
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "term_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
