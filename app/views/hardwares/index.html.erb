@@ -1,25 +1,27 @@
 <div style="width: 98%; margin: auto;">
 
-	<div class="row">
-		<div class="col-sm-9">
-			<h3 style="margin-bottom:0px; padding-left: 25px;">ThinManager Hardware</h3>
-		</div>
-		<div class="col-sm-3">
-			<% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
-				<%= link_to "Add Hardware", new_hardware_path, class: "btn btn-sm btn-primary float-right" %>
-			<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<h3 style="margin-bottom:0px;">ThinManager Hardware</h3>
+			</div>
+			<div class="col-md-3">
+				<% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
+					<%= link_to "Add Hardware", new_hardware_path, class: "btn btn-sm btn-primary float-right" %>
+				<% end %>
+			</div>
 		</div>
 	</div>
+	<hr style="margin-bottom:7px;" />
+	<div class="container">
+		<p><small>Welcome to the ThinManager Hardware Finder. Use the search and filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system.</small></p>
+	</div>
 
-	<hr />
-
-
-
-	<div class="hardware-container" style="padding-bottom:70px;">
+	<div class="hardware-container" style="padding-bottom:70px; margin-top: 25px;">
 		
 		
 			<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-		<div class="container">			  
+				<div class="container">			  
 					<div class="form-group">
 						
 						<div class="row">
@@ -87,18 +89,21 @@
 					
 					<hr style="margin-top:15px; margin-bottom: 45px; border-color: #515151;" />
 					
+				</div>
 
 
-		</div>		
-					<div class="form-group">
-						<div class="row">
-						  <div class="col-sm-4 offset-sm-8 sort-options">
-						    <div class="form-label">Sorted by</div>
-						    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "form-control") %>
-						  </div>
-						  
-						</div>
+
+				<div class="form-group">
+					<div class="row">
+
+					  <div class="col-sm-4 offset-sm-8 sort-options">
+					    <div class="form-label">Sorted by</div>
+					    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "form-control") %>
+					  </div>
+					  
 					</div>
+				</div>
+
 					  
 			<% end %>
 				

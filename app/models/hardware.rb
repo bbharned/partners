@@ -2,6 +2,7 @@ class Hardware < ActiveRecord::Base
 	belongs_to :maker
 	belongs_to :hwstatus
 	belongs_to :hwtype
+  has_one :term_type
 	
 	validates :model, presence: true, length: { minimum: 3, maximum: 60 }
 
@@ -16,7 +17,8 @@ filterrific(
      :with_hwtype_id,
      :with_hwstatus_id,
      :with_min_firmware,
-     :with_max_firmware
+     :with_max_firmware,
+     :with_boot
      #:with_created_at_gte
    ]
  )
@@ -53,6 +55,7 @@ scope :with_search, lambda { |query|
     ).includes(:maker).references(:makers)
     .includes(:hwstatus).references(:hwstatuses)
     .includes(:hwtype).references(:hwtypes)
+    .includes(:term_types).references(:term_types)
 } 
 
 
@@ -108,6 +111,10 @@ scope :with_max_firmware, ->(firmware_versions) {
     # Filters hardware with any of the given firmwares_ids
     where("hardwares.max_firmware <= ?", (firmware_versions))
     #.where.not("hardwares.max_firmware == ?", "#{nil}")
+}
+
+scope :with_boot, -> (term_type_ids) {
+  where(term_type_id: [*term_type_ids])
 }
 
 

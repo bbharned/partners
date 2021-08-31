@@ -20,13 +20,14 @@ def index
         with_hwstatus_id: Hwstatus.options_for_select,
         with_min_firmware: Firmware.options_for_select,
         with_max_firmware: Firmware.options_for_select,
+        with_boot: TermType.options_for_select,
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware],
+      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware, :with_boot],
       sanitize_params: true,
    ) or return
-   @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 20)
+   @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 15)
 
    respond_to do |format|
      format.html
@@ -48,6 +49,7 @@ def new
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
 	@firmwares = Firmware.all.order(:version)
+	@termtypes = TermType.all
 end
 
 
@@ -57,6 +59,7 @@ def create
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
+	@termtypes = TermType.all
 	@current_user = current_user
     if @hardware.save
         flash[:success] = "Hardware company has been created and saved"
@@ -84,6 +87,7 @@ def show
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
+	@termtypes = TermType.all
 end
 
 
@@ -92,6 +96,7 @@ def edit
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
 	@firmwares = Firmware.all.order(:version)
+	@termtypes = TermType.all
 end
 
 
@@ -110,7 +115,7 @@ end
 private
 
 	def hardware_params
-	    params.require(:hardware).permit(:maker_id, :hwstatus_id, :hwtype_id, :model, :terminal_type, :min_firmware, :max_firmware, :hardware_gpu_id, :cpu, :touch_interface, :network_card, :pci_network_id, :note, :priority)
+	    params.require(:hardware).permit(:maker_id, :hwstatus_id, :hwtype_id, :model, :terminal_type, :min_firmware, :max_firmware, :hardware_gpu_id, :cpu, :touch_interface, :network_card, :pci_network_id, :note, :priority, :term_type_id)
 	end
 
 	def set_hardware

@@ -55,13 +55,8 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-4 maker-dropdown">
-                    <div class="form-label"><%= f.label "Boot Type" %></div>
-                    <%= f.select :terminal_type, options_for_select([
-                          [""],
-                          ["ThinManager Ready"], 
-                          ["PXE Boot"],
-                          ["Dual Boot"]
-                    ], @hardware.terminal_type), class: "form-control" %>
+                    <div class="form-label"><%= f.label "Boot Type " %> <span style="font-size:.65em;">(<%= link_to "add new", new_term_type_path, tabindex: "-1" %>)</span></div>
+                    <%= f.collection_select :term_type_id, @termtypes, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
 
                 <div class="col-md-4">
