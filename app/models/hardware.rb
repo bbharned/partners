@@ -111,10 +111,11 @@ scope :with_max_firmware, ->(firmware_versions) {
     #.where.not("hardwares.max_firmware == ?", "#{nil}")
 }
 
-scope :with_boot, -> (term_type_ids) {
-  where(term_type_id: [*term_type_ids])
-}
 
+# filters on 'boot type' attribute
+scope :with_boot, ->(terminal_types) {
+  where(terminal_type: [*terminal_types])
+}
 
 #scope :with_created_at_gte, ->(ref_date) {
     #where("hardwares.created_at >= ?", ref_date)
@@ -132,6 +133,8 @@ scope :with_boot, -> (term_type_ids) {
       # ["Oldest - Newest", "created_at_asc"],
     ]
   end
+
+
 
 
 end

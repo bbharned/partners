@@ -20,10 +20,11 @@ def index
         with_hwstatus_id: Hwstatus.options_for_select,
         with_min_firmware: Firmware.options_for_select,
         with_max_firmware: Firmware.options_for_select,
+        with_boot: ['ThinManager Ready', 'PXE Boot', 'Dual Boot'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware],
+      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware, :with_boot],
       sanitize_params: true,
    ) or return
    @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 15)
@@ -37,6 +38,8 @@ def index
 	 # There is an issue with the persisted param_set. Reset it.
      puts "Had to reset filterrific params: #{e.message}"
      redirect_to(reset_filterrific_url(format: :html)) && return
+
+     
 
 end
 
