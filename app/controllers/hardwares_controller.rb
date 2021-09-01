@@ -27,7 +27,7 @@ def index
       available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware, :with_boot],
       sanitize_params: true,
    ) or return
-   @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 15)
+   @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 20)
 
    respond_to do |format|
      format.html

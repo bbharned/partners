@@ -71,7 +71,6 @@ resources :makers
 resources :hwstatuses
 resources :hwtypes
 resources :firmwares
-resources :term_types
 
 
 get 'flexforward', to: 'flexforwards#saved'

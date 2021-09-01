@@ -87,6 +87,11 @@
             
 
   <% end %>
+    <% if @hardwares.count > 20 %>
+    <div class="paginate" style="margin-top:20px;">
+      <%= will_paginate(@hardwares, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+    </div>
+    <% end %>
   <% else %>
     <p style="text-align:center; margin-top:100px;">Your search has resulted in 0 results<br />reset filters and try again.</p>
   <% end %>
