@@ -7,31 +7,31 @@
         <div class="form-group">
             <div class="row">
                     <div class="col-md-7">
-                        <div class="form-label"><%= f.label :model %></div>
+                        <div class="form-label"><%= f.label :model %><sup style="margin-left:3px; color:red;">*</sup></div>
                         <%= f.text_field :model, class: "form-control", placeholder: "Enter Hardware Model Name", autofocus: true %>
                     </div>
                 
                     <div class="col-md-5 maker-dropdown">
-                        <div class="form-label"><%= f.label "Manufacturer " %> <span style="font-size:.65em;">(<%= link_to "add new", new_maker_path, tabindex: "-1" %>)</span></div>
+                        <div class="form-label"><%= f.label "Manufacturer " %><sup style="margin-left:3px; color:red;">*</sup> <span style="font-size:.65em;">(<%= link_to "add new", new_maker_path, tabindex: "-1" %>)</span></div>
                         <%= f.collection_select :maker_id, @makers, :id, :name, { :include_blank=>true} , class: "form-control" %>
                     </div>
             </div>
         
             <div class="row">
                 <div class="col-md-6 maker-dropdown">
-                    <div class="form-label"><%= f.label "Hardware Type " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwtype_path, tabindex: "-1" %>)</span></div>
+                    <div class="form-label"><%= f.label "Hardware Type " %><sup style="margin-left:3px; color:red;">*</sup> <span style="font-size:.65em;">(<%= link_to "add new", new_hwtype_path, tabindex: "-1" %>)</span></div>
                     <%= f.collection_select :hwtype_id, @types, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
 
                 <div class="col-md-6 maker-dropdown">
-                    <div class="form-label"><%= f.label "Testing Status " %> <span style="font-size:.65em;">(<%= link_to "add new", new_hwstatus_path, tabindex: "-1" %>)</span></div>
+                    <div class="form-label"><%= f.label "Testing Status " %><sup style="margin-left:3px; color:red;">*</sup> <span style="font-size:.65em;">(<%= link_to "add new", new_hwstatus_path, tabindex: "-1" %>)</span></div>
                     <%= f.collection_select :hwstatus_id, @statuses, :id, :name, { :include_blank=>true} , class: "form-control" %>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3 maker-dropdown">
-                    <div class="form-label"><%= f.label "Priority" %></div>
+                    <div class="form-label"><%= f.label "Priority" %><sup style="margin-left:3px; color:red;">*</sup></div>
                         <%= f.select :priority, options_for_select([
                           [1,"a"],
                           [2,"b"], 

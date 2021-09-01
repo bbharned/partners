@@ -66,7 +66,8 @@ resources :answers, except: [:show, :index]
 
 
 resources :hardwares
-get 'hardware', to: 'hardwares#index'
+#get 'hardware', to: 'hardwares#index'
+resources :hardwares, :path => "hardware"
 resources :makers
 resources :hwstatuses
 resources :hwtypes
