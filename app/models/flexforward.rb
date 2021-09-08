@@ -117,6 +117,15 @@ def calcs
     @smrPrices = [412, 226.60, 206.00, 164.80, 144.20, 123.60]
     @vfNonRedPrices = [2460, 1353, 1230, 984, 861, 738] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
 
+
+    # subscription pricing arrays
+    if self.sub_exchange
+        @vfRedPrices = [402, 221.10, 201, 160.80, 140.70, 120.60]
+        @vfNonRedPrices = [400, 220, 200, 160, 140, 120]
+    end
+
+
+
     if self.sm_exp == nil
         self.sm_exp = Date.today() + 1.year
     end
@@ -153,11 +162,25 @@ def calcs
     @tradeRedPricePer = @vfRedPrices[@tradeRPackRange] * self.currency.rate
     @tradeCredRedPricePer = @vfRedPrices[@originalRPackRange] * self.currency.rate 
 
+
+    #subscription exchange prices with new pricing table
+    if self.sub_exchange
+
+        # @tradeSimplexPricePer = 0 * self.currency.rate
+        # @tradeRedPricePer = 0 * self.currency.rate
+        # @tradeCredRedPricePer = 0 * self.currency.rate 
+    end
     
 
     #Trade up pricing
     self.tr_pr_serv = (600 * self.currency.rate) * self.tr_serv #20
     self.tr_pr_site = (600 * self.currency.rate) * self.tr_site #21
+    
+    if self.sub_exchange
+        self.tr_pr_serv = 
+        self.tr_pr_site = 
+    end
+    
     self.new_pr_simp = @simplexPricePer * self.new_simp #24
     self.new_pr_red = @redundPricePer * self.new_red #25
     self.tr_pr_simp = @tradeSimplexPricePer * self.tr_simp #22
@@ -252,13 +275,32 @@ def calcs
         end
     end
 
+
+
     @termsForSM = self.tr_serv + self.tr_site + self.tr_simp + self.tr_red
     @smrange = findRange(@termsForSM)
     @smPricePer = @smrPrices[@currentRange] * self.currency.rate #This is the total term range
     self.total_maint = @smPricePer * @termsForSM
 
-    self.total_quote = self.total_tr_cost + self.total_maint
+    
 
+
+    if self.sub_exchange
+        #zero credits
+        self.tr_cred_serv = 0
+        self.tr_cred_site = 0
+        self.tr_cred_simp = 0
+        self.tr_cred_red = 0
+        # self.new_pr_simp = 0
+        # self.new_pr_red = 0
+
+        @smPricePer = @smrPrices[@currentRange] * self.currency.rate #This is the total term range
+        #self.total_maint = @smPricePer * @termsForSM
+        self.total_tr_cost = 0
+        self.total_maint = self.new_pr_simp + self.new_pr_red + self.tr_pr_serv + self.tr_pr_site + self.tr_pr_simp + self.tr_pr_red
+    end
+
+    self.total_quote = self.total_tr_cost + self.total_maint
 
 end
 

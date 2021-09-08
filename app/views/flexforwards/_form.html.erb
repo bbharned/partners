@@ -42,6 +42,7 @@
                             <%= f.text_field :ex_serv_nosup, class: "form-control", tabindex: "5" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
                             <%= f.text_field :ex_serv_nosup_years, class: "form-control", tabindex: "6" %>
+                            
                         </div>
                         <div class="col-md-3">
                             <h4>Site</h4>
@@ -60,10 +61,7 @@
                             <%= f.text_field :ex_simp_nosup, class: "form-control", tabindex: "11" %>
                             <div class="control-label"><%= f.label "Years Out of Support" %></div>
                             <%= f.text_field :ex_simp_nosup_years, class: "form-control", tabindex: "12" %>
-                            <div class="form-group form-check" style="height: 30px; padding-top: 10px; padding-left: 25px; margin-top: 7px;">
-                            <%= f.check_box :red_exchange, type: "checkbox", class: "form-check-input" %>
-                            <label class="form-check-label" for="exampleCheck1">Exchange for Redundant</label>
-                            </div>
+                            
                         </div>
                         <div class="col-md-3">
                             <h4>Redundant</h4>
@@ -79,8 +77,30 @@
 
 
 
-                <hr style="margin-top: 30px; margin-bottom: 25px;" />
+                <hr style="margin-top: 25px; margin-bottom: 5px;" />
+                
+                <div class="row" style="background-color:#f1f1f1; padding: 20px; border-radius:10px;">
+                    <div class="col-sm-12">
+                        <h5 style="margin-bottom:0px;">Configuration Exchanges</h5>
+                    </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group form-check" style="height: 30px; padding-top: 10px; padding-left: 25px; margin-top: 7px;">
+                            <%= f.check_box :sub_exchange, type: "checkbox", class: "form-check-input" %>
+                            <label class="form-check-label" for="exampleCheck1">Exchange for Subscription</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group form-check" style="height: 30px; padding-top: 10px; padding-left: 25px; margin-top: 7px;>
+                            <%= f.check_box :red_exchange, type: "checkbox", class: "form-check-input" %>
+                            <label class="form-check-label" for="exampleCheck2">Exchange for Redundant</label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <hr style="margin-top: 5px; margin-bottom: 45px;" />
 
                 <div class="row">
                     <div class="col-sm-12">
