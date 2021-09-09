@@ -164,7 +164,7 @@ private
 
 
     def not_integrator
-        if @current_user.admin? || @current_user.prttype != "Integrator"
+        if @current_user.admin? || (@current_user.prttype != "Integrator" && @current_user.prttype != "Oem" && @current_user.prttype != "End User")
 
         else
             flash[:danger] = "You do not have permission to view this page."

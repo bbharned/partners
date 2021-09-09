@@ -177,8 +177,13 @@ def calcs
     self.tr_pr_site = (600 * self.currency.rate) * self.tr_site #21
     
     if self.sub_exchange
-        self.tr_pr_serv = 
-        self.tr_pr_site = 
+        if !self.red_exchange
+            self.tr_pr_serv = @simplexPricePer * self.tr_serv
+            self.tr_pr_site = @simplexPricePer * self.tr_site
+        else
+            self.tr_pr_serv = @redundPricePer * self.tr_serv
+            self.tr_pr_site = @redundPricePer * self.tr_site
+        end
     end
     
     self.new_pr_simp = @simplexPricePer * self.new_simp #24
@@ -189,6 +194,18 @@ def calcs
     else 
         self.tr_pr_red = @tradeRedPricePer * self.tr_red
     end
+
+    if self.sub_exchange
+        if !self.red_exchange
+            self.tr_pr_simp = @simplexPricePer * self.tr_simp
+            self.tr_pr_red = @simplexPricePer * self.tr_red
+        else
+            #prices for redundant exchange with Subscription Exchange
+            self.tr_pr_simp = @redundPricePer * self.tr_simp
+            self.tr_pr_red = @redundPricePer * self.tr_red
+        end
+    end
+
     self.tr_pr_total = self.tr_pr_serv + self.tr_pr_site + self.tr_pr_simp + self.tr_pr_red + self.new_pr_simp + self.new_pr_red #26
 
     #Credits
