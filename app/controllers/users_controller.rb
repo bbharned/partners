@@ -45,7 +45,6 @@ end
 
 def signup
   @user = User.new(user_params)
-  #@receiver = User.find(1) #remove for production
   @user.needs_review = true
   @user.cert_signup = true
     if @user.save

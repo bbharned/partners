@@ -122,6 +122,9 @@ def calcs
     if self.sub_exchange
         @vfRedPrices = [402, 221.10, 201, 160.80, 140.70, 120.60]
         @vfNonRedPrices = [400, 220, 200, 160, 140, 120]
+        # for new on sub exchange
+        @vfNewSimpSubPrices = [820, 451, 410, 328, 287, 246]
+        @vfNewRedSubPrices = [1231, 677.05, 615.50, 492.40, 430.85, 369.30]
     end
 
 
@@ -160,7 +163,11 @@ def calcs
     @redundPricePer = @vfRedPrices[@currentRange] * self.currency.rate
     @tradeSimplexPricePer = @vfNonRedPrices[@tradePackRange] * self.currency.rate
     @tradeRedPricePer = @vfRedPrices[@tradeRPackRange] * self.currency.rate
-    @tradeCredRedPricePer = @vfRedPrices[@originalRPackRange] * self.currency.rate 
+    @tradeCredRedPricePer = @vfRedPrices[@originalRPackRange] * self.currency.rate
+    if self.sub_exchange
+        @newSubSimpPricePer = @vfNewSimpSubPrices[@currentRange] * self.currency.rate
+        @newRedSubPricePer =  @vfNewRedSubPrices[@currentRange] * self.currency.rate
+    end
 
 
     #subscription exchange prices with new pricing table
@@ -176,16 +183,13 @@ def calcs
     self.tr_pr_serv = (600 * self.currency.rate) * self.tr_serv #20
     self.tr_pr_site = (600 * self.currency.rate) * self.tr_site #21
     
+
     if self.sub_exchange
-        if !self.red_exchange
-            self.tr_pr_serv = @simplexPricePer * self.tr_serv
-            self.tr_pr_site = @simplexPricePer * self.tr_site
-        else
-            self.tr_pr_serv = @redundPricePer * self.tr_serv
-            self.tr_pr_site = @redundPricePer * self.tr_site
-        end
+        self.tr_pr_serv = @redundPricePer * self.tr_serv
+        self.tr_pr_site = @redundPricePer * self.tr_site
     end
     
+
     self.new_pr_simp = @simplexPricePer * self.new_simp #24
     self.new_pr_red = @redundPricePer * self.new_red #25
     self.tr_pr_simp = @tradeSimplexPricePer * self.tr_simp #22
@@ -195,16 +199,33 @@ def calcs
         self.tr_pr_red = @tradeRedPricePer * self.tr_red
     end
 
+    
+
+    #############################################
     if self.sub_exchange
         if !self.red_exchange
             self.tr_pr_simp = @simplexPricePer * self.tr_simp
-            self.tr_pr_red = @simplexPricePer * self.tr_red
+            self.tr_pr_red = @redundPricePer * self.tr_red
+            self.new_pr_simp = @newSubSimpPricePer * self.new_simp #24
+            self.new_pr_red = @newRedSubPricePer * self.new_red #25
         else
             #prices for redundant exchange with Subscription Exchange
             self.tr_pr_simp = @redundPricePer * self.tr_simp
             self.tr_pr_red = @redundPricePer * self.tr_red
+            self.new_pr_simp = @newRedSubPricePer * self.new_simp #24
+            self.new_pr_red = @newRedSubPricePer * self.new_red #25
         end
     end
+    ##############################################
+
+
+    if self.sub_exchange
+        if self.red_exchange
+            self.new_pr_red = self.new_pr_simp + self.new_pr_red
+            self.new_pr_simp = 0
+        end
+    end
+
 
     self.tr_pr_total = self.tr_pr_serv + self.tr_pr_site + self.tr_pr_simp + self.tr_pr_red + self.new_pr_simp + self.new_pr_red #26
 
@@ -283,6 +304,7 @@ def calcs
     end
 
     self.total_tr_cost = self.tr_pr_total - self.tr_cred_total
+
 
     if self.red_exchange 
         if self.total_tr_cost < 0
