@@ -61,6 +61,7 @@ def create
 	@makers = Maker.all
 	@types = Hwtype.all
 	@statuses = Hwstatus.all
+	@firmwares = Firmware.all
 	
 	@current_user = current_user
     if @hardware.save

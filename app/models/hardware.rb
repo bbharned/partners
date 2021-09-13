@@ -3,7 +3,7 @@ class Hardware < ActiveRecord::Base
 	belongs_to :hwstatus
 	belongs_to :hwtype
 	
-	validates :model, presence: true, length: { minimum: 3, maximum: 60 }
+	validates :model, presence: true, length: { minimum: 3, maximum: 60 }, uniqueness: { case_sensitive: false }
 
 
 
