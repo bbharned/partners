@@ -26,7 +26,7 @@ filterrific(
 scope :with_search, lambda { |query|
     return nil  if query.blank?
 
-    terms = query.downcase.split(/\s+/)
+    terms = query.to_s.downcase.split(/\s+/)
 
     terms = terms.map { |e|
       ('%' + e + '%').gsub(/%+/, '%')
