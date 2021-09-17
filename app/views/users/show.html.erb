@@ -15,6 +15,11 @@
 		<div class="row">
 			<div class="col-md-11">
 				<h3 style="padding-top: 10px;"><%= "#{@user.firstname}" " " "#{@user.lastname}" %></h3>
+				<% if @user.lastlogin != nil || @user.lastlogin == "" %>
+					<span class="bold">&nbsp;Last Login:</span> &nbsp;<%= @user.lastlogin.strftime("%m/%d/%Y") %>
+				<% else %>
+					<span class="bold">&nbsp;Last Login:</span> &nbsp;<span style="font-style:italic; font-size: .8em;">User has never logged in</span>
+				<% end %>
 			</div>
 			<div class="col-md-1">
 				<%= link_to "edit", edit_user_path(@user) %>
@@ -62,9 +67,9 @@
 					<% end %>
 					<span class="bold">Certification Expiration:</span> 
 						<% if @user.certexpire < Date.today %>
-							&nbsp;<spa style="color:red;"><%= @user.certexpire %></span><br />
+							&nbsp;<spa style="color:red;"><%= @user.certexpire.strftime("%m/%d/%Y") %></span><br />
 						<% else %>
-							&nbsp;<%= @user.certexpire %><br />
+							&nbsp;<%= @user.certexpire.strftime("%m/%d/%Y") %><br />
 						<% end %>
 				<% end %>
 			</div>
