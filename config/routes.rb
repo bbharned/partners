@@ -72,6 +72,7 @@ resources :makers
 resources :hwstatuses
 resources :hwtypes
 resources :firmwares
+get 'terminals', to: 'terminals#index'
 
 
 get 'flexforward', to: 'flexforwards#saved'

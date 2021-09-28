@@ -1,0 +1,16 @@
+<div class="container">
+<h1>ThinManager Terminals</h1>
+<hr />
+
+<% if @terminals.any? %>
+	<% @terminals.each do |t| %>
+	<div class="row">
+		<div class="col-sm-3"><%= t.ManufacturerId %></div>
+		<div class="col-sm-9"><%= t.Model %></div>
+	</div>
+	<% end %>
+<% else %>
+no
+<% end %>
+
+</div>
