@@ -28,7 +28,7 @@ test:
 
 production:
   #<<: *default
-  adapter: sqlite3
+  adapter: postgresql
   pool: 5
   timeout: 5000
-  database: db/prod/termcap2.sqlite3
+  database: db/prod/termcap2.sql
