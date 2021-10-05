@@ -109,12 +109,16 @@ def reports
     
     @usersthismonth = User.where(created_at: 1.month.ago..Date.tomorrow)
     @quizthismonth = UserQuiz.where(created_at: 1.month.ago..Date.tomorrow)
+    #@loggedlastmonth = User.where(lastlogin: Date.today.beginning_last_month..Date.today.end_of_last_month)
+    @loggedthismonth = User.where(lastlogin: Date.today.beginning_of_month..Date.today.end_of_month)
     
     @usersthisquarter = User.where(created_at: 3.months.ago..Date.tomorrow)
     @quizthisquarter = UserQuiz.where(created_at: 3.months.ago..Date.tomorrow)
+    @loggedthisquarter = User.where(lastlogin: Date.today.beginning_of_quarter..Date.today.end_of_quarter)
 
     @usersthisyear = User.where(created_at: 12.months.ago..Date.tomorrow)
     @quizthisyear = UserQuiz.where(created_at: 12.months.ago..Date.tomorrow)
+    @loggedthisyear = User.where(lastlogin: Date.today.beginning_of_year..Date.today.end_of_year)
 
     @certified = User.where.not(certexpire: nil)
     @certsignedup = User.where(cert_signup: true)
