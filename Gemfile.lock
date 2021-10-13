@@ -121,7 +121,7 @@ GEM
       racc (~> 1.4)
     pg (1.2.3)
     popper_js (1.16.0)
-    puma (5.3.1)
+    puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -219,7 +219,7 @@ DEPENDENCIES
   mimemagic (~> 0.3.10)
   nokogiri (>= 1.12.5)
   pg
-  puma (>= 4.3.5)
+  puma (>= 5.5.1)
   rack (>= 2.0.8)
   rails (~> 5.2.4.4)
   rqrcode (~> 2.0)
