@@ -75,6 +75,10 @@ resources :firmwares
 get 'terminals', to: 'terminals#index'
 
 
+resources :evtcategories
+resources :venues
+
+
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
 get 'flexforward/totals', to: 'flexforwards#totals'

@@ -1,0 +1,25 @@
+<div class="container">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Event Venues</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="add_currency_btn"><%= link_to "Add Venue", new_venue_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
+<hr />
+
+
+<% if @venues.any? %>
+
+
+
+<% else %>
+
+	<p style="color:orangered;">There are no venues created for events yet.</p>
+
+<% end %>
+
+
+</div>

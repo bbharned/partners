@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_124240) do
+ActiveRecord::Schema.define(version: 2021_11_18_155307) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 2021_09_08_124240) do
 
   create_table "downloads", force: :cascade do |t|
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "evtcategories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -260,6 +266,17 @@ ActiveRecord::Schema.define(version: 2021_09_08_124240) do
     t.boolean "learn_signup", default: false
     t.boolean "hw_admin", default: false
     t.boolean "evt_admin", default: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "zipcode"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "videos", force: :cascade do |t|
