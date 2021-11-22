@@ -587,6 +587,15 @@ Very Light Blue: #e9f7fb;
 
 
 
+/******************** Venues **************************/
+.state-dropdown select {
+    width: 100% !important;
+    height: 38px;
+    border-radius: 5px; border-color: #C9C9C9;
+}
+
+
+
 
 
 

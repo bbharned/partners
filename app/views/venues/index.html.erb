@@ -5,7 +5,11 @@
 		<h1>Event Venues</h1>
 	</div>
 	<div class="col-md-3">
-		<div class="add_currency_btn"><%= link_to "Add Venue", new_venue_path, class: "btn btn-primary" %></div>
+		<div class="add_currency_btn">
+			<% if @current_user && @current_user.admin? %>
+				<%= link_to "Add Venue", new_venue_path, class: "btn btn-primary" %>
+			<% end %>	
+		</div>
 	</div>
 </div>
 <hr />
@@ -13,6 +17,25 @@
 
 <% if @venues.any? %>
 
+
+	<div class="card-columns hp-cards">
+		
+			<% @venues.each do |venue| %>
+
+				<div class="card">
+					<% if venue.image_link != "" %>
+						<img src="<%= venue.image_link %>" alt="<%= venue.name %>" class="card-img-top" style="object-fit: contain;" />
+					<% end %>
+				    <div class="card-body">
+				      <h5 class="card-title"><%= venue.name %></h5>
+				      <p class="card-text"><%= venue.description %></p>
+				      <div align="right"><%= link_to "Details / Events", venue_path(venue), class: "btn btn-primary" %></div>
+				    </div>
+				</div>
+
+			<% end %>
+		
+	</div>
 
 
 <% else %>

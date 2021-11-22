@@ -1,29 +1,75 @@
 class VenuesController < ApplicationController
-	before_action :require_admin
-	before_action :set_type, only: [:edit, :update, :show]
+	before_action :require_admin, except: [:show, :index]
+	before_action :set_venue, only: [:edit, :update, :show]
 
 
 
 
 def index
+	@current_user = current_user
 	@venues = Venue.all
 end
 
 
 
+def new
+	@venue = Venue.new
+end
 
 
+
+def edit
+
+end
+
+
+
+def create
+	@venue = Venue.new(venue_params)
+
+    if @venue.save
+        flash[:success] = "New Venue has been created"
+        redirect_to venues_path
+    else
+        render 'new'
+    end
+end
+
+
+
+def update
+	if @venue.update(venue_params)
+        flash[:success] = "Venue information was successfully updated"
+        redirect_to venues_path
+    else
+        render 'edit'
+    end
+end
+
+
+
+def destroy
+    @venue = Venue.find(params[:id])
+    @venue.destroy
+    flash[:danger] = "Venue has been deleted"
+    redirect_to venues_path
+end
+
+
+def show
+	@current_user = current_user
+end
 
 
 
 private
 
 	def venue_params
-        params.require(:venue).permit(:name, :street, :city, :state, :zipcode, :url)
+        params.require(:venue).permit(:name, :street, :city, :state, :zipcode, :url, :image_link, :description)
     end
 
 
-    def set_type
+    def set_venue
         @venue = Venue.find(params[:id])
     end
 

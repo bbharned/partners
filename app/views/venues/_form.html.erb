@@ -1,0 +1,149 @@
+<%= render 'shared/errors', obj: @venue %>
+
+
+<div class="row hardware-form">
+    <div class="col-md-8 offset-md-2">
+    <%= form_for(@venue, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+    	<h4 style="margin-left:-2%;">Venue Details</h4>
+
+    	<div class="form-group">
+    		<div class="row">
+    			<div class="col-12">
+		    		<div class="form-label"><%= f.label :name %><sup style="margin-left:3px; color:red;">*</sup></div>
+		    		<%= f.text_field :name, class: "form-control", placeholder: "Enter Name of Venue", autofocus: true %>
+		    	</div>
+	    	</div>
+	    	<div class="row">
+    			<div class="col-12">
+		    		<div class="form-label"><%= f.label :description %></div>
+		    		<%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Venue Description Here", tabindex: "20" %>
+		    	</div>
+	    	</div>
+	    </div>
+
+	    <hr style="margin-top: 35px; margin-bottom:35px;" />
+
+	    <div class="form-group" style="margin-top:35px;">
+	    	<div class="row">
+		    	<div class="col-12">
+		    		<h6>Address</h6>
+		    	</div>
+		    </div>
+	    	<div class="row" style="margin-top:-15px;">
+		    	<div class="col-12">
+		    		<div class="form-label"><%= f.label :street %></div>
+		    		<%= f.text_field :street, class: "form-control", placeholder: "Enter Street" %>
+		    	</div>
+		    </div>
+
+		    <div class="row">
+
+		    	<div class="col-sm-6">
+		    		<div class="form-label"><%= f.label :city %></div>
+		    		<%= f.text_field :city, class: "form-control", placeholder: "Enter City" %>
+		    	</div>
+
+		    	<div class="col-sm-3 state-dropdown">
+		    		<div class="form-label"><%= f.label :state %></div>
+		    		<%= f.select :state, options_for_select([
+                      [""],
+                      ["AL"], 
+                      ["AK"], 
+                      ["AZ"], 
+                      ["AR"], 
+                      ["CA"],
+                      ["CO"],
+                      ["CT"],
+                      ["DE"],
+                      ["FL"],
+                      ["GA"],
+                      ["HI"],
+                      ["ID"],
+                      ["IL"],
+                      ["IN"],
+                      ["IA"],
+                      ["KS"],
+                      ["KY"],
+                      ["LA"],
+                      ["ME"],
+                      ["MD"],
+                      ["MA"],
+                      ["MI"],
+                      ["MN"],
+                      ["MS"],
+                      ["MO"],
+                      ["MT"],
+                      ["NE"],
+                      ["NV"],
+                      ["NH"],
+                      ["NJ"],
+                      ["NM"],
+                      ["NY"],
+                      ["NC"],
+                      ["ND"],
+                      ["OH"],
+                      ["OK"],
+                      ["OR"],
+                      ["PA"],
+                      ["RI"],
+                      ["SC"],
+                      ["SD"],
+                      ["TN"],
+                      ["TX"],
+                      ["UT"],
+                      ["VT"],
+                      ["VA"],
+                      ["WA"],
+                      ["WV"],
+                      ["WI"],
+                      ["WY"],
+                      ["Not in US"]
+                      ], @venue.state), class: "form-control" %>
+		    	</div>
+
+		    	<div class="col-sm-3">
+		    		<div class="form-label"><%= f.label "Zip" %></div>
+		    		<%= f.text_field :zipcode, class: "form-control", placeholder: "Zip Code" %>
+		    	</div>
+
+		    </div>
+
+		    <hr style="margin-top: 35px; margin-bottom:35px;" />
+
+		    <div class="form-group" style="margin-top:15px;">
+		    	<div class="row">
+			    	<div class="col-12">
+			    		<h6>Online</h6>
+			    	</div>
+			    </div>
+
+		    	<div class="row" style="margin-top:-15px;">
+		    		<div class="col-sm-12">
+			    		<div class="form-label"><%= f.label "Event URL" %></div>
+			    		<%= f.text_field :url, class: "form-control", placeholder: "Event URL" %>
+			    	</div>
+
+			    	<div class="col-sm-12">
+			    		<div class="form-label"><%= f.label "Event Image" %></div>
+			    		<%= f.text_field :image_link, class: "form-control", placeholder: "Event Image Path" %>
+			    	</div>
+		    	</div>
+		    </div>
+
+	    </div>
+
+
+	    <br /><br />
+        
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= f.submit(@venue.new_record? ? "Create Venue" : "Update Venue", class: "btn btn-primary btn-lg", style: "margin-left:-15px;") %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to "Cancel", :back %>
+            </div>
+        </div>
+
+    <% end %>
+    </div>
+</div>
