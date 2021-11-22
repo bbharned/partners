@@ -35,6 +35,3 @@
 
 # Ignore local custom env variables
 /config/local_env.yml
-
-# Ignore Termcap DB Connection
-/config/termcap2.yml
