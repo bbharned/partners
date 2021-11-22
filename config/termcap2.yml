@@ -31,4 +31,4 @@ production:
   encoding: unicode
   pool: 5
   timeout: 5000
-  #url: <%= ENV['HEROKU_POSTGRESQL_BRONZE_URL'] %>
+  database: <%= ENV['HEROKU_POSTGRESQL_BRONZE_URL'] %>
