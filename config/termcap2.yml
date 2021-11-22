@@ -31,4 +31,5 @@ production:
   encoding: unicode
   pool: 5
   timeout: 5000
-  uri: postgres://skuivtmrqwpvlj:600de60ebadc700e7eddfd3f93bef30f7eaf99d2c57f1e7df3099dc4adda4593@ec2-54-225-196-122.compute-1.amazonaws.com:5432/d9si2cicp5pnhc
+  #url: postgres://skuivtmrqwpvlj:600de60ebadc700e7eddfd3f93bef30f7eaf99d2c57f1e7df3099dc4adda4593@ec2-54-225-196-122.compute-1.amazonaws.com:5432/d9si2cicp5pnhc
+  url: <%= ENV[HEROKU_POSTGRESQL_BRONZE_URL] %>
