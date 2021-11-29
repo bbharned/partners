@@ -3,14 +3,21 @@
 <hr />
 
 <% if @terminals.any? %>
+
+	
 	<% @terminals.each do |t| %>
-	<div class="row">
-		<div class="col-sm-3"><%= t.ManufacturerId %></div>
-		<div class="col-sm-9"><%= t.TermcapModel %></div>
-	</div>
+		<% @Manufacturer = Manufacturer.find(t.ManufacturerId) %>
+		<div class="row">
+			<div class="col-sm-3"><%= @Manufacturer.Name %></div>
+			<div class="col-sm-9"><%= t.TermcapModel %></div>
+		</div>
 	<% end %>
+
+
 <% else %>
+
 no
+
 <% end %>
 
 </div>
