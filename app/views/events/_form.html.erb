@@ -1,0 +1,25 @@
+<%= render 'shared/errors', obj: @event %>
+
+
+<div class="row hardware-form">
+    <div class="col-md-10 offset-md-1">
+    <%= form_for(@event, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+    	
+
+	    
+
+
+	    <br /><br />
+        
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= f.submit(@event.new_record? ? "Create Event" : "Update Event", class: "btn btn-primary btn-lg", style: "margin-left:-15px;") %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to "Cancel", :back %>
+            </div>
+        </div>
+
+    <% end %>
+    </div>
+</div>

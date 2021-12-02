@@ -1,0 +1,88 @@
+class EventsController < ApplicationController
+	before_action :require_admin, except: [:index, :show]
+	before_action :set_event, only: [:edit, :update, :show]
+
+
+def index
+	@sort = [params[:sort]]
+    @events = Event.paginate(page: params[:page], per_page: 25).order(@sort)
+end
+
+
+
+def new
+    @event = Event.new 
+
+end
+
+def show
+
+end
+
+
+
+def edit
+
+end
+
+
+
+def update
+    if @event.update(event_params)
+        flash[:success] = "Event was successfully updated"
+        redirect_to events_path
+    else
+        render 'edit'
+    end
+end
+
+
+
+
+def create
+    @event = Event.new(event_params)
+
+    if @event.save
+        flash[:success] = "Event has been created and saved"
+        redirect_to makers_path
+    else
+        render 'new'
+    end
+end
+
+
+def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash[:danger] = "Event has been deleted"
+    redirect_to events_path
+end
+
+
+
+
+
+
+
+
+
+private
+
+	def event_params
+        params.require(:event).permit(:name, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual)
+    end
+
+
+    def set_event
+        @event = Event.find(params[:id])
+    end
+
+
+	def require_admin
+	    if (logged_in? and (!current_user.admin? && !current_user.evt_admin?)) || !logged_in? 
+	        flash[:danger] = "Only admin users can perform that action"
+	        redirect_to root_path
+	    end
+	end
+
+end

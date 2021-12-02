@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_163237) do
+ActiveRecord::Schema.define(version: 2021_12_02_205010) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,24 @@ ActiveRecord::Schema.define(version: 2021_11_22_163237) do
 
   create_table "downloads", force: :cascade do |t|
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.float "cost", default: 0.0
+    t.integer "capacity"
+    t.string "event_contact"
+    t.string "event_email"
+    t.string "event_host"
+    t.string "event_phone"
+    t.string "event_image"
+    t.boolean "private"
+    t.boolean "virtual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
