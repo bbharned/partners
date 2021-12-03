@@ -1,0 +1,28 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @tag %>
+<%= form_for(@tag, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+<div class="col-md-8 offset-md-2">
+
+            <div class="form-group">
+                <div class="row">
+                    <%= f.label :name %>
+                </div>
+                <div class="row">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter Tag or Keyword  Name", autofocus: true %>
+                </div>
+            </div>
+       
+
+        <br />
+        	<div class="row">
+	            <%= f.submit(@tag.new_record? ? "Create Tag" : "Update Tag", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+	        </div>
+    <% end %>
+    
+
+
+
+
+</div>
