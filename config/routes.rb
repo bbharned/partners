@@ -78,6 +78,7 @@ get 'terminals', to: 'terminals#index'
 resources :evtcategories
 resources :venues
 resources :events
+resources :tags
 
 
 get 'flexforward', to: 'flexforwards#saved'

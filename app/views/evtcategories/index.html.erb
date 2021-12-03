@@ -20,8 +20,7 @@
 	<div class="col-lg-6 offset-lg-3">
 		<div class="well category-well">
 			<h3 style="margin-bottom:0px;"><%= link_to "#{cat.name}", evtcategory_path(cat), style: "color:inherit;" %></h3>
-			<!-- Add pluralize of number of events per category -->
-			<p style="margin-bottom:10px;"><small>( # of events )</small></p>
+			<p style="margin-bottom:10px;"><small><%= pluralize(cat.events.count, "created event") %></small></p>
 			<p><%= link_to "Edit", edit_evtcategory_path(cat) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", evtcategory_path(cat), method: :delete, data: {confirm: "Are you sure you want to delete this Event type?"}, style: "color:red;" %></p>
 		</div>
 	</div>

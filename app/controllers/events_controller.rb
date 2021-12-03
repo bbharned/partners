@@ -11,7 +11,8 @@ end
 
 
 def new
-    @event = Event.new 
+    @event = Event.new
+    @venues = Venue.all
 
 end
 
@@ -22,6 +23,7 @@ end
 
 
 def edit
+    @venues = Venue.all
 
 end
 
@@ -44,7 +46,7 @@ def create
 
     if @event.save
         flash[:success] = "Event has been created and saved"
-        redirect_to makers_path
+        redirect_to events_path
     else
         render 'new'
     end
@@ -69,7 +71,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual)
+        params.require(:event).permit(:name, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

@@ -6,9 +6,119 @@
     <%= form_for(@event, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
     	
+    	<h4 style="margin-left:-2%;">Event Details</h4>
 
+    	<div class="form-group">
+    		<div class="row">
+    			<div class="col-12">
+		    		<div class="form-label"><%= f.label :name %><sup style="margin-left:3px; color:red;">*</sup></div>
+		    		<%= f.text_field :name, class: "form-control", placeholder: "Enter Event Name", autofocus: true %>
+		    	</div>
+	    	</div>
+	    	<div class="row">
+    			<div class="col-12">
+		    		<div class="form-label"><%= f.label :description %></div>
+		    		<%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Description of Event" %>
+		    	</div>
+	    	</div>
+	    </div>
+	    <div class="form-group">
+	    	<div class="row">
+	    		<div class="col-md-5">
+                    <div class="control-label">
+                        <%= f.label "Start Date/Time" %>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <%= f.datetime_local_field :starttime, class: "form-control" %>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="control-label">
+                        <%= f.label "End Date/Time" %>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <%= f.datetime_local_field :endtime, class: "form-control" %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                	<div class="control-label">
+                        <%= f.label :cost %>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <%= f.text_field :cost , class: "form-control" %>
+                    </div>
+                </div>
+	    	</div>
+	    </div>
+	    <div class="form-group">
+	    	<div class="row">
+	    		<div class="col-md-3" style="margin-bottom:20px;">
+	    			<div class="form-label" style="margin-top:-15px;"><%= f.label :capacity %></div>
+			    	<%= f.text_field :capacity, class: "form-control", placeholder: "Max Register" %>
+		    	</div>
+	    		<div class="col-md-3 offset-md-2" style="margin-top:20px;">
+	                <%= f.label "Virtual Event?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :virtual %>
+	            </div>
+	            <div class="col-md-3 offset-md-1" style="margin-top:20px;">
+	                <%= f.label "Private Event?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :private %>
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="form-group">
+			<div class="well" style="border-radius:10px; padding:20px 35px 30px 35px; margin-top: 35px; margin-bottom: 45px;">
+				<div class="col-12">
+					<div class="row">
+						<%= f.label "Venue selection" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_venue_path %>)</span>
+					</div>
+					<div class="row">
+						<%= f.collection_check_boxes :venue_ids, Venue.all, :id, :name do |cb| %>
+				        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " +cb.text} %>    
+		                <% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="form-group">
+		    <div class="col-10 offset-1">
+		    	<div class="row">
+		            <%= f.label "Event Type" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_evtcategory_path %>)</span>
+			    </div>
+			    <div class="row">   
+		            <%= f.collection_check_boxes :evtcategory_ids, Evtcategory.all, :id, :name do |cb| %>
+			        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " +cb.text} %>    
+	                <% end %>
+		        </div>
+	        </div>
+		</div>
+
+		<div class="form-group">
+		    <div class="col-10 offset-1">
+		    	<div class="row">
+		            <%= f.label "Specific Keyword Tags" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_tag_path %>)</span>
+			    </div>
+			    <div class="row">   
+		            <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
+			        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " +cb.text} %>    
+	                <% end %>
+		        </div>
+	        </div>
+		</div>
 	    
 
+	    <hr style="margin-top: 45px; margin-bottom:35px;" />
+	    
+	    <h4 style="margin-left:-2%;">Event Contact/Organizer</h4>
+
+	    <div class="form-group">
+    		<div class="row">
+    			<div class="col-12">
+		    		<div class="form-label"><%= f.label :event_contact %></div>
+		    		<%= f.text_field :event_contact, class: "form-control", placeholder: "Contact for Event", autofocus: true %>
+		    	</div>
+	    	</div>
+	    </div>
 
 	    <br /><br />
         
