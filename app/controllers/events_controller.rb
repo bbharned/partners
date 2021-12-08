@@ -71,7 +71,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 
