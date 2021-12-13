@@ -18,23 +18,25 @@
 <% if @venues.any? %>
 
 
-	<div class="card-columns hp-cards">
-		
-			<% @venues.each do |venue| %>
+	<div class="hp-cards">
+		<div class="row">
+			<div class="flex-container">
+				<% @venues.each do |venue| %>
 
-				<div class="card w-100">
-					<% if venue.image_link != "" %>
-						<img src="<%= venue.image_link %>" alt="<%= venue.name %>" class="card-img-top" style="object-fit: contain;" />
-					<% end %>
-				    <div class="card-body">
-				      <h5 class="card-title"><%= venue.name %></h5>
-				      <p class="card-text"><%= venue.description %></p>
-				      <div align="right"><%= link_to "Details / Events", venue_path(venue), class: "btn btn-primary" %></div>
-				    </div>
-				</div>
+					<div class="event-card">
+						<% if venue.image_link != "" %>
+							<img src="<%= venue.image_link %>" alt="<%= venue.name %>" class="card-img-top" style="object-fit: contain;" />
+						<% end %>
+					    <div class="card-body">
+					      <h5 class="card-title"><%= venue.name %></h5>
+					      <p class="card-text"><%= venue.description %></p>
+					      <div align="right"><%= link_to "Details / Events", venue_path(venue), class: "btn btn-primary" %></div>
+					    </div>
+					</div>
 
-			<% end %>
-		
+				<% end %>
+			</div>
+		</div>
 	</div>
 
 
