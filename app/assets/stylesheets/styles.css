@@ -593,7 +593,32 @@ Very Light Blue: #e9f7fb;
     height: 38px;
     border-radius: 5px; border-color: #C9C9C9;
 }
+.venue-info-well {
+    padding: 25px; margin-bottom: 35px; border-radius: 10px; 
+}
+.venue-info-well img {width: 100%;}
+.flex-container {
+    position:100%; display:flex; flex-direction: row; justify-content: flex-start;
+    align-items: stretch; flex-wrap: wrap;
+}
+.event-card {
+    width:31.3%; margin-left: 1%; margin-right: 1%; border: 1px solid lightgrey;
+    border-radius: 7px; margin-bottom: 25px; position: relative;
+}
+.event-card img {width: 100%;}
+.event-card .card-footer {position: absolute; width: 100%; bottom: 0px;}
 
+@media all and (max-width: 992px) {
+    .event-card {
+        width:48%; 
+    }
+}
+
+@media all and (max-width: 768px) {
+    .event-card {
+        width:98%; 
+    }
+}
 
 
 

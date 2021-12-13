@@ -58,6 +58,7 @@ end
 
 def show
 	@current_user = current_user
+    @events = EventVenue.where(venue_id: [@venue.id])
 end
 
 

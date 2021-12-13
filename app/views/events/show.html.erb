@@ -1,0 +1,15 @@
+<div class="container" style="padding-bottom: 150px;">
+
+	<div class="row">
+		<div class="col-sm-8">
+			<h1><%= @event.name %></h1>
+		</div>
+		<div class="col-sm-4">
+			<% if current_user && (current_user.admin? || current_user.evt_admin?) %>
+				<div class="add_currency_btn"><%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-primary" %></div>
+			<% end %>
+		</div>
+	</div>
+	<hr />
+
+</div>

@@ -22,7 +22,7 @@
 		
 			<% @venues.each do |venue| %>
 
-				<div class="card">
+				<div class="card w-100">
 					<% if venue.image_link != "" %>
 						<img src="<%= venue.image_link %>" alt="<%= venue.name %>" class="card-img-top" style="object-fit: contain;" />
 					<% end %>

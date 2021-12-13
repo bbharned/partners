@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             user.update_attribute(:lastlogin, Time.now)
             flash[:success] = "You have successfully logged In"
+            #redirect_back(fallback_location: root_path)
             redirect_to root_path
         else
             flash.now[:danger] = "There was something wrong with your log in information"

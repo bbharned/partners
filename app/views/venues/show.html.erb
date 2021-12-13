@@ -1,20 +1,81 @@
 <div class="container" style="padding-bottom: 150px;">
 
-<div class="row">
-	<div class="col-md-9">
-		<h1><%= @venue.name %></h1>
-	</div>
-	<div class="col-md-3">
+<% if @current_user && @current_user.admin? %>
+<div class="row" style="margin-bottom:45px;">
+	<div class="col-md-12">
 		<div class="add_currency_btn">
-			<% if @current_user && @current_user.admin? %>
-				<%= link_to "Edit Venue", edit_venue_path(@venue), class: "btn btn-primary" %>
-			<% end %>	
+			<%= link_to "Edit Venue", edit_venue_path(@venue), class: "btn btn-primary" %>
 		</div>
 	</div>
 </div>
-<hr />
+
+<% end %>
 
 
+<div class="well venue-info-well">
+	<div class="row">
+		<% if @venue.image_link != nil && @venue.image_link != "" %>
+			<div class="col-md-7">
+				<h2><%= @venue.name %></h2>
+				<p><%= @venue.description %></p>
+				<% if @venue.street != "" && @venue.city != "" %>
+					<h5>Address</h5>
+					<p><%= @venue.street %><br /><%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %></p>
+				<% end %>
+				<p><%= link_to "#{@venue.url}", "#{@venue.url}", target: "_blank" %></p>
+			</div>
+			<div class="col-md-5"><img src="<%= @venue.image_link %>" alt="<%= @venue.name %>" /></div>
+		<% else %>
+			<div class="col-md-12">
+				<h2><%= @venue.name %></h2>
+				<p><%= @venue.description %></p>
+				<% if @venue.street != "" && @venue.city != "" %>
+					<h5>Address</h5>
+					<p><%= @venue.street %><br /><%= @venue.city %>, <%= @venue.state %> <%= @venue.zipcode %></p>
+				<% end %>
+				<p><%= link_to "#{@venue.url}", "#{@venue.url}", target: "_blank" %></p>
+			</div>
+		<% end %>
+		
+	</div>
+</div>
+
+
+
+<% if @events.any? %>
+	<div class="row">
+		<div class="col-12">
+			<h4>Available Events</h4>
+		</div>
+	</div>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		<div class="flex-container">
+			<% @events.each do |event| %>
+
+				
+					<div class="event-card">
+						<%= image_tag "#{event.event.event_image}", class: "card-img-top", style: "max-width:100%; margin-bottom:5px;" %>
+						<div class="card-body">
+							<h5 class="card-title"><%= event.event.name %></h5>
+							<p class="card-text"><%= event.event.description.truncate(65) %></p>
+							<p class="card-text" style="font-weight:bold;"><%= event.event.starttime.strftime("%B %d, %Y") %><br /><%= event.event.starttime.strftime("%I:%M%p") %> - <%= event.event.endtime.strftime("%I:%M%p") %></p>
+
+							<div align="right"><%= link_to "Learn More", event_path(event.event), class: "btn btn-primary btn-sm"  %></div>
+						</div>
+						<!-- <div class="card-footer">
+					        <small class="text-muted">Capacity: </small>
+					    </div> -->
+					</div>
+				
+			
+			<% end %>
+		</div>
+	</div>
+<% else %>
+
+<p style="color:orangered;" align="center">There are currently no events at this venue</p>
+
+<% end %>
 
 
 
