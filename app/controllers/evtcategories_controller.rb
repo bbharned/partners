@@ -1,5 +1,5 @@
 class EvtcategoriesController < ApplicationController
-	before_action :require_admin
+	before_action :require_admin, except: [:show]
 	before_action :set_type, only: [:edit, :update, :show]
 
 

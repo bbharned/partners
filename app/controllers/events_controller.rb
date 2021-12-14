@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 def index
 	@sort = [params[:sort]]
     @events = Event.paginate(page: params[:page], per_page: 25).order(@sort)
+    @evtcategories = Evtcategory.all
 end
 
 

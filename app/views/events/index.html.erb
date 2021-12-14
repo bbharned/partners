@@ -1,8 +1,11 @@
+<div class="full-top-banner">
+	<%= image_tag "EventsPageBanner.jpg" %>
+</div>
 <div class="container" style="padding-bottom: 150px;">
 
 	<div class="row">
 		<div class="col-md-9">
-			<h1>Events</h1>
+			<h1>ThinManager Events</h1>
 		</div>
 		<div class="col-md-3">
 			<div class="add_currency_btn">
@@ -14,5 +17,26 @@
 	</div>
 	<hr />
 
+	<p>We offer a variety of ways to get your hands on ThinManager. Whether you want to learn new ThinManager skills or simply to see it for the first time, we want to make sure you have plenty of options to increase your knowledge of this powerful device management and content delivery system.</p>
+
+
+
+	<div class="flex-container" style="margin-top:55px;">
+		<% if @evtcategories.any? %>
+
+			<% @evtcategories.each do |cat| %>
+		
+				<div class="category-card">
+					<div class="card-body">
+						<h5 class="card-title"><%= cat.name %></h5>
+						<p class="card-text">This will be the description and information about each category of event. hopefully it will expand the row and not every card as it gets longer and more detailed.</p>
+						<%= link_to "Learn More »", evtcategory_path(cat), class: "btn btn-primary btn-sm"  %>
+					</div>
+				</div>
+
+			<% end %>
+
+		<% end %>
+	</div>
 
 </div>

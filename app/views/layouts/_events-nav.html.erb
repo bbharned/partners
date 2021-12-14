@@ -1,0 +1,18 @@
+<div class="flex-container-center-nav">
+	<div class="nav-buttons">
+		<span><%= link_to "All Events", events_path %></span>
+		<span><%= link_to "All Venues", venues_path %></span>
+	</div>
+</div>
+<hr style="margin-top: 0px; margin-bottom:7px;" />
+<% if @evtcategories.any? %>
+<div class="flex-container-pills">
+<div class="row badge-nav">
+	<div class="col-12">
+		<% @evtcategories.each do |cat| %>
+			<span class="badge"><%= link_to "#{cat.name}", evtcategory_path(cat) %></span> &nbsp;
+		<% end %>
+	</div>
+</div>
+</div>
+<% end %>
