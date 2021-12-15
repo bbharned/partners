@@ -605,15 +605,15 @@ Very Light Blue: #e9f7fb;
 .badge-nav .badge a {color: inherit;}
 .venue-info-well img {width: 100%;}
 .flex-container {
-    position:100%; display:flex; flex-direction: row; justify-content: flex-start;
+    width: 100%; position:100%; display:flex; flex-direction: row; justify-content: flex-start;
     align-items: stretch; flex-wrap: wrap;
 }
 .flex-container-pills {
-    position:100%; display:flex; flex-direction: row; justify-content: center;
+    width: 100%; position:100%; display:flex; flex-direction: row; justify-content: center;
     align-items: stretch; flex-wrap: wrap;
 }
 .flex-container-center-nav {
-    position:100%; display:flex; flex-direction: row; justify-content: center;
+    width: 100%; position:100%; display:flex; flex-direction: row; justify-content: center;
     align-items: stretch; flex-wrap: wrap;
 }
 .nav-buttons {

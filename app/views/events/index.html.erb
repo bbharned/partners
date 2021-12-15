@@ -28,15 +28,28 @@
 		
 				<div class="category-card">
 					<div class="card-body">
-						<h5 class="card-title"><%= cat.name %></h5>
-						<p class="card-text">This will be the description and information about each category of event. hopefully it will expand the row and not every card as it gets longer and more detailed.</p>
-						<%= link_to "Learn More »", evtcategory_path(cat), class: "btn btn-primary btn-sm"  %>
+						<h5 class="card-title" style="color:#003366;"><%= cat.name %>
+							<% if current_user && (current_user.admin? || current_user.evt_admin?) %>
+								&nbsp;&nbsp;<span style="font-size: .65em; float:right; margin-top: 5px;"><%= link_to "(edit)", edit_evtcategory_path(cat) %></span>
+							<% end %>
+						</h5>
+						<p class="card-text"><%= simple_format(cat.description) %></p>
+						<%= link_to "Learn More »", evtcategory_path(cat), class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
 					</div>
 				</div>
 
 			<% end %>
 
 		<% end %>
+
+		<div class="category-card">
+			<div class="card-body">
+				<h5 class="card-title" style="color:#003366;">Rockwell Events</h5>
+				<p class="card-text">Rockwell Automation hosts events throughout the year that give you the opportunity to see ThinManager demonstrated live. Looking for other Rockwell Automation solutions in addition to ThinManager? Rockwell Automation events highlight all the software, hardware and services offered to help you build a modern Connected Enterprise.</p>
+				<%= link_to "Learn More »", "https://www.rockwellautomation.com/en-us/company/events.html", class: "btn btn-primary btn-sm", style: "margin-top:15px;", target: "_blank"  %>
+			</div>
+		</div>
+
 	</div>
 
 </div>

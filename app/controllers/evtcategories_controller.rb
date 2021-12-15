@@ -64,7 +64,7 @@ end
 private
 
 	def etype_params
-        params.require(:evtcategory).permit(:name)
+        params.require(:evtcategory).permit(:name, :description)
     end
 
 
