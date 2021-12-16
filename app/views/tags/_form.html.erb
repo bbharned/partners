@@ -13,9 +13,28 @@
                     <%= f.text_field :name, class: "form-control", placeholder: "Enter Tag or Keyword  Name", autofocus: true %>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-label"><%= f.label :description %></div>
+                        <%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Description of Tag/Sub Group" %>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-label"><%= f.label "Event Type:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="radio-buttons">
+                        <% Evtcategory.all.each do |cat| %>
+                          <%= f.radio_button :evtcategory_id, cat.id %>
+                          <%= f.label :evtcategory_id, cat.name %>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <% end %>
+                    </div>
+                </div>
+            </div>
        
 
-        <br />
+        <br /><br />
         	<div class="row">
 	            <%= f.submit(@tag.new_record? ? "Create Tag" : "Update Tag", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
 	        </div>

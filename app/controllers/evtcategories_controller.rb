@@ -23,6 +23,9 @@ end
 
 
 def show
+    @groups = Tag.where(evtcategory_id: params[:id])
+    @allevents = EventCategory.where(evtcategory_id: params[:id])
+    #@events = @allevents.events
 
 end
 

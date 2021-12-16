@@ -92,7 +92,7 @@
 	        <div class="form-group" style="">
 			    <div class="col-12">
 			    	<div class="row">
-			            <%= f.label "Event Type" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_evtcategory_path %>)</span>
+			            <%= f.label "Event Category/Type" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_evtcategory_path %>)</span>
 				    </div>
 				    <div class="row">   
 			            <%= f.collection_check_boxes :evtcategory_ids, Evtcategory.all, :id, :name do |cb| %>

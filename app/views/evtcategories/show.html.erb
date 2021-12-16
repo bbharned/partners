@@ -3,4 +3,36 @@
 <h1><%= @etype.name %></h1>
 <hr />
 
+<% if @groups.any? %>
+
+	<% @groups.each do |group| %>
+		<p><%= link_to "#{group.name}", tag_path(group) %></p>
+	<% end %>
+
+<hr />
+
+<% end %>
+
+<% if @allevents.any? %>
+
+	<h5>All <%= @etype.name %> Events</h5>
+
+	<% @allevents.each do |event| %>
+
+		<% if event.event.live %>
+
+			<p><%= link_to "#{event.event.name}", event_path(event.event) %></p>
+
+		<% end %>
+
+	<% end %>
+
+<% end %>
+
+<% if !@groups.any? && !@allevents.any? %>
+
+	<p style="color:darkorange;">There are no events for this Event Type</p>
+
+<% end %>
+
 </div>
