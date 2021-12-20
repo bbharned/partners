@@ -25,7 +25,11 @@ end
 def show
     @groups = Tag.where(evtcategory_id: params[:id])
     @allevents = EventCategory.where(evtcategory_id: params[:id])
-    #@events = @allevents.events
+    @events = []
+    @allevents.each do |event|
+        @events.push(Event.find(event.event_id))
+    end
+    @events = @events.sort_by {|event| event.starttime}
 
 end
 

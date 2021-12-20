@@ -22,8 +22,8 @@ def si
   elsif (logged_in? and current_user.admin?) 
     @user = User.new
   elsif (logged_in? and !current_user.admin?)
-    flash[:warning] = "You have already signed up and have an account"
-    redirect_to root_path
+    #flash[:warning] = "You have already signed up and have an account"
+    redirect_to "/labs"
   end
   @tm = 'Check the option that best describes your relationship to ThinManager'
 end

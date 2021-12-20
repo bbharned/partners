@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-	before_action :require_admin
+	before_action :require_admin, except: [:show]
 	before_action :set_tag, only: [:edit, :update, :show]
 
 
@@ -24,6 +24,8 @@ end
 
 
 def show
+
+    @events = @tag.events
 
 end
 

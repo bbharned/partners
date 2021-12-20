@@ -667,10 +667,26 @@ Very Light Blue: #e9f7fb;
     background-image: url("https://thinmanager.com/images/ThinMan-grey.png"); background-repeat: no-repeat;
     background-position: bottom +15px right +15px; background-size: 12%;
 }
+.group-card {
+    width:31%; margin-left: 1%; margin-right: 1%; border: 1px solid lightgrey;
+    border-radius: 7px; margin-bottom: 25px; position: relative;
+    background-image: url("https://thinmanager.com/images/ThinMan-grey.png"); background-repeat: no-repeat;
+    background-position: bottom +15px right +15px; background-size: 12%;
+}
+.full-width-card {
+    width:98%; margin-left: 1%; margin-right: 1%; border: 1px solid lightgrey;
+    border-radius: 7px; margin-bottom: 10px; position: relative;
+}
+.full-width-card .card-body {
+    padding-top: 0px; padding-bottom: 0px; vertical-align: middle;
+}
+.full-width-card .card-body .card-text {
+    vertical-align: middle;
+}
 .category-card img {width: 100%;}
 
 @media all and (max-width: 768px) {
-    .category-card {
+    .category-card, .group-card {
         width:98%; 
     }
 }

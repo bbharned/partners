@@ -1,0 +1,33 @@
+<div class="container" style="padding-bottom: 150px;">
+
+<div class="row">
+		<div class="col-md-9">
+			<h1><%= @tag.name %> Events</h1>
+		</div>
+		<div class="col-md-3">
+			<div class="add_currency_btn">
+				<% if (current_user && current_user.admin?) || (current_user && current_user.evt_admin?) %>
+					<%= link_to "Add Event", edit_tag_path, class: "btn btn-primary" %>
+				<% end %>	
+			</div>
+		</div>
+	</div>
+<hr />
+
+<% if @events.any? %>
+
+	<% @events.each do |e| %>
+
+		<%= link_to "#{e.name}", event_path(e) %><br />
+
+	<% end %>
+
+
+<% else %>
+
+<p style="color:darkorange;">There are no events currently for for this group. Please check back</p>
+
+<% end %>
+
+
+</div>
