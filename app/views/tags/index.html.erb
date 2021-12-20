@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-md-9">
-		<h1>Event Category Sub-Groups/Tags</h1>
+		<h1>Event Category Sub-Groups</h1>
 	</div>
 	<div class="col-md-3">
 		<% if current_user.admin? %>
@@ -21,6 +21,8 @@
 				<h3 style="margin-bottom:0px;"><%= link_to "#{tag.name}", tag_path(tag), style: "color:inherit;" %></h3>
 				<p style="margin-bottom:10px;"><small><%= pluralize(tag.events.count, "linked event") %></small></p>
 				<p><%= link_to "Edit", edit_tag_path(tag) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", tag_path(tag), method: :delete, data: {confirm: "Are you sure you want to delete this tag/keyword?"}, style: "color:red;" %></p>
+			<hr />
+			<small><span style="font-weight:bold;">Event Type:</span> <%= tag.evtcategory.name %></small>
 			</div>
 		</div>
 

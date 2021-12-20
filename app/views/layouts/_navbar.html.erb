@@ -146,6 +146,21 @@
                           <%= link_to "Firmware", firmwares_path, class: 'dropdown-item' %>
                       </div>
                     </div>
+
+
+                    <div class="dropdown-divider"></div>
+
+
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Events <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "Events", events_path, class: 'dropdown-item' %>
+                          <%= link_to "Event Types", evtcategories_path, class: 'dropdown-item' %>
+                          <%= link_to "Type Groups", tags_path, class: 'dropdown-item' %>
+                      </div>
+                    </div>
                     
                     
               </div>

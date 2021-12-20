@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_action :require_admin, except: [:index, :show]
+	before_action :require_admin, except: [:index, :show, :admin]
 	before_action :set_event, only: [:edit, :update, :show]
 
 
@@ -19,6 +19,11 @@ end
 
 def show
 
+end
+
+
+def admin
+    @events = Event.all
 end
 
 

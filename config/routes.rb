@@ -78,6 +78,7 @@ get 'terminals', to: 'terminals#index'
 resources :evtcategories
 resources :venues
 resources :events
+get 'event/admin', to: 'events#admin'
 resources :tags
 
 
