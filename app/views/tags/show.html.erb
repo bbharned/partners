@@ -1,3 +1,8 @@
+<div class="full-top-banner">
+	<% if @tag.image_link != nil && @tag.image_link != '' %>
+		<img src="<%= @tag.image_link %>" alt="<%= @tag.name %>" />
+	<% end %>
+</div>
 <div class="container" style="padding-bottom: 150px;">
 
 <div class="row">

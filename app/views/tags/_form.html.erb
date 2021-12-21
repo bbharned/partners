@@ -19,6 +19,10 @@
                     <div class="form-label"><%= f.label :description %></div>
                         <%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Description of Tag/Sub Group" %>
                 </div>
+                <div class="row" style="margin-top:15px;">
+                    <div class="form-label"><%= f.label :image_link %></div>
+                    <%= f.text_field :image_link, class: "form-control", placeholder: "Path to Image for Type" %>
+                </div>
             </div>
             <br />
             <div class="form-group">

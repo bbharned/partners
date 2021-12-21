@@ -15,6 +15,8 @@ class User < ApplicationRecord
     has_many :wrongs, dependent: :destroy
     has_many :user_quizzes
     has_many :quizzes, through: :user_quizzes
+    has_many :event_attendees
+    has_many :events, through: :event_attendees
     has_one :user_badge
     
     
@@ -25,6 +27,7 @@ class User < ApplicationRecord
     before_save { self.email = email.downcase }
     has_secure_password
 
+    before_validation :strip_contact_phone
 
 # def self.search(search)
 #     where("lower(lastname) LIKE :search", search: "%#{search.downcase}%").uniq
@@ -126,6 +129,12 @@ private
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+     def strip_contact_phone
+        if self.cell != nil
+            self.cell.gsub!(/[^0-9]/, '').to_s
+        end
     end
 
 end

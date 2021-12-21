@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_163938) do
+ActiveRecord::Schema.define(version: 2021_12_21_161931) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(version: 2021_12_16_163938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "event_attendees", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "event_categories", force: :cascade do |t|
     t.integer "event_id"
     t.integer "evtcategory_id"
@@ -117,6 +124,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_163938) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.string "image_link"
   end
 
   create_table "firmwares", force: :cascade do |t|
@@ -260,6 +268,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_163938) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.integer "evtcategory_id"
+    t.string "image_link"
   end
 
   create_table "user_badges", force: :cascade do |t|
@@ -309,6 +318,13 @@ ActiveRecord::Schema.define(version: 2021_12_16_163938) do
     t.boolean "learn_signup", default: false
     t.boolean "hw_admin", default: false
     t.boolean "evt_admin", default: false
+    t.string "street"
+    t.string "street2"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.string "cell"
+    t.string "carrier"
   end
 
   create_table "venues", force: :cascade do |t|

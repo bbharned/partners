@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_action :require_admin, except: [:index, :show, :admin]
+	before_action :require_admin, except: [:index, :show]
 	before_action :set_event, only: [:edit, :update, :show]
 
 

@@ -1,3 +1,8 @@
+<div class="full-top-banner">
+	<% if @etype.image_link != nil && @etype.image_link != '' %>
+		<img src="<%= @etype.image_link %>" alt="<%= @etype.name %>" />
+	<% end %>
+</div>
 <div class="container" style="padding-bottom:150px;">
 
 <h1><%= @etype.name %></h1>

@@ -67,7 +67,7 @@ end
 private
 
 	def tag_params
-        params.require(:tag).permit(:name, :description, :evtcategory_id)
+        params.require(:tag).permit(:name, :description, :evtcategory_id, :image_link)
     end
 
 
