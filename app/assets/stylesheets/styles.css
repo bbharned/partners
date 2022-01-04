@@ -1099,9 +1099,20 @@ Very Light Blue: #e9f7fb;
 
 
 
-/******************************* User Show Page *************************/
+/******************************* Users Pages *************************/
 .user-show-well {
     padding-left: 40px; padding-right: 40px; border-radius:10px;
+}
+.carrier-dropdown select {
+    width: 100% !important;
+    height: 38px;
+    border-radius: 5px; border-color: #C9C9C9;
+}
+.address-fields .row {
+    margin-bottom: 10px;
+}
+.address-fields input, .address-fields select {
+    margin-bottom: 5px;
 }
 
 

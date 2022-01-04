@@ -112,12 +112,95 @@
             <br />
             
             <div class="form-group">
-                <div class="control-label col-sm-12">
-                    <%= f.label :company %>
-                </div>
-                <div class="col-sm-12">
-                    <%= f.text_field :company, class: "form-control",  placeholder: "Enter Company Name" %>
-                </div>
+                
+                    <div class="control-label col-sm-12">
+                        <%= f.label :company %>
+                    </div>
+                    <div class="col-sm-12">
+                        <%= f.text_field :company, class: "form-control",  placeholder: "Enter Company Name" %>
+                    </div>
+            </div>
+
+            <div class="form-group">
+
+                    <div class="control-label col-sm-12">
+                        <%= f.label "Address" %>
+                    </div>
+                    <div class="col-sm-12 address-fields">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <%= f.text_field :street, class: "form-control",  placeholder: "Street" %>
+                            </div>
+                            <div class="col-md-4">
+                                <%= f.text_field :street2, class: "form-control",  placeholder: "Apt/Suite/Bldg" %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <%= f.text_field :city, class: "form-control",  placeholder: "City" %>
+                            </div>
+                            <div class="col-md-3 state-dropdown">
+                                <%= f.select :state, options_for_select([
+                                  
+                                  ["Not in US"],
+                                  ["AL"], 
+                                  ["AK"], 
+                                  ["AZ"], 
+                                  ["AR"], 
+                                  ["CA"],
+                                  ["CO"],
+                                  ["CT"],
+                                  ["DE"],
+                                  ["FL"],
+                                  ["GA"],
+                                  ["HI"],
+                                  ["ID"],
+                                  ["IL"],
+                                  ["IN"],
+                                  ["IA"],
+                                  ["KS"],
+                                  ["KY"],
+                                  ["LA"],
+                                  ["ME"],
+                                  ["MD"],
+                                  ["MA"],
+                                  ["MI"],
+                                  ["MN"],
+                                  ["MS"],
+                                  ["MO"],
+                                  ["MT"],
+                                  ["NE"],
+                                  ["NV"],
+                                  ["NH"],
+                                  ["NJ"],
+                                  ["NM"],
+                                  ["NY"],
+                                  ["NC"],
+                                  ["ND"],
+                                  ["OH"],
+                                  ["OK"],
+                                  ["OR"],
+                                  ["PA"],
+                                  ["RI"],
+                                  ["SC"],
+                                  ["SD"],
+                                  ["TN"],
+                                  ["TX"],
+                                  ["UT"],
+                                  ["VT"],
+                                  ["VA"],
+                                  ["WA"],
+                                  ["WV"],
+                                  ["WI"],
+                                  ["WY"]
+                                  ], @user.state), {:prompt => '-- Select State --'}, class: "form-control" %>
+                            </div>
+                            <div class="col-md-4">
+                                <%= f.text_field :zip, class: "form-control",  placeholder: "Zip/Postal Code" %>
+                            </div>
+                        </div>
+                    </div>
+                
             </div>
             <% if current_user.admin %>
             <div class="form-group">
@@ -236,12 +319,27 @@
                             <div class="control-label col-sm-12">
                                 <%= f.label :cell %>
                             </div>
-                            <div class="col-sm-12 password-field">
+                            <div class="col-sm-12">
                                 <%= f.text_field :cell, class: "form-control",  placeholder: "Cell/Mobile Number" %>
                             </div>
                         </div>
-
-
+                        <div class="col-6">
+                            <div class="control-label col-sm-12">
+                                <%= f.label :carrier %>
+                            </div>
+                            <div class="col-sm-12 carrier-dropdown">
+                                <%= f.select :carrier, options_for_select([
+                                  [ ],
+                                  ["AT&T", "at&t"], 
+                                  ["Verizon", "verizon"], 
+                                  ["Sprint", "sprint"],
+                                  ["T-Mobile", "t-mobile"], 
+                                  ["Boost", "boost"],
+                                  ["Cricket Wireless", "cricket"],
+                                  ["Metro PCS", "metropcs"]
+                                  ], @user.carrier), class: "form-control" %>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

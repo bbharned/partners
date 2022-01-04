@@ -327,7 +327,7 @@ end
 private
 
 	def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel, :certdate, :certexpire, :search, :distributor, :integrator, :end_user, :oem, :needs_review, :hw_admin, :evt_admin)
+        params.require(:user).permit(:firstname, :lastname, :email, :email_confirmation, :company, :password, :password_confirmation, :continent, :active, :prttype, :silevel, :channel, :certdate, :certexpire, :search, :distributor, :integrator, :end_user, :oem, :needs_review, :hw_admin, :evt_admin, :cell, :carrier, :street, :street2, :city, :state, :zip)
     end
 
     def set_user
