@@ -81,6 +81,12 @@ resources :events
 get 'event/admin', to: 'events#admin'
 resources :tags
 
+get 'events/:id/checkin', to: 'event_attendees#checkin', as: 'checkin'
+post 'events/:id/checkin', to: 'event_attendees#attended'
+
+get 'events/:id/sms', to: 'event_attendees#sms', as: 'sms'
+post 'events/:id/sms', to: 'event_attendees#sendit'
+
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'

@@ -1,0 +1,39 @@
+<h1 class="page-header">Send a SMS Message</h1>
+
+<br />
+<h2 align="center"><%= @event.name %></h2>
+
+
+<br /><br />
+<div class="container">
+<%= form_for(:message, :html => {class: "form-horizontal", role: "form"}, url: {action: "sendit"}) do |m| %>
+	<div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <%= m.text_field :sms_subject, class: "form-control", placeholder: "Enter SMS Subject" %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <%= m.text_area :sms_message, size: "24x12", class: "form-control", placeholder: "Enter SMS Message" %>
+            </div>
+            
+        </div>
+    </div>
+<br />
+    <div class="row">
+	    <div class="col-md-2 col-md-offset-5" style="text-align: center;">
+		    <%= m.submit "Send Message", class: 'btn btn-primary btn-lg' %>
+		 </div>
+    </div>
+<% end %>
+
+<br /><br /><br />
+    <div class="cancel-link-form" align="center">
+    <p>[ <%= link_to "Cancel & Return To Event", event_path(@event) %> ]</p>
+    </div>
+</div>
+

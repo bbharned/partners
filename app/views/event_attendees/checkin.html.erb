@@ -1,0 +1,35 @@
+<h1 class="page-header">Event Attendence</h1>
+
+<% if @event.time != nil %>
+<div class="well" style="margin:auto; margin-bottom: 20px !important;">
+    <div class="row" style="font-weight: bold;">
+        <div class="col-md-4"><%= @event.name %></div>
+        <div class="col-md-4"><%= @event.time.to_s(:time_display) %></div>
+        <div class="col-md-4"><%= @event.venues.last.name if @event.venues.any? %></div>
+    </div>
+    <hr />
+    <h5>Registered Attendees <span style="font-weight: normal;">( capacity: <%= @event.capacity %>&nbsp;|&nbsp;registered: <%= @attendees.count %> )</span></h5>
+    <br />
+    <% @attendees.where(event_id: @event.id).each do | attendee | %>
+    <div class="row attendee-checkin-row">
+        <div class="col-md-3 col-md-offset-1"><span class="goAwaySooner glyphicon glyphicon-user" aria-hidden="true">&nbsp;&nbsp;</span><span style="font-weight:bold;"><%= attendee.attendee.lastname %>, <%= attendee.attendee.firstname %></span></div>
+        <div class="col-md-4"><%= attendee.attendee.company %></div>
+        <div class="col-md-2">
+            <% if !attendee.checkedin %>
+                <%= link_to "Check In", checkin_path(:attendee_id => attendee.attendee.id, :event_id => @event.id), method: :attended, class: "btn btn-primary btn-sm"  %>
+            <% else %>
+                <%= link_to "Checked In", checkin_path, class: "btn btn-success btn-sm disabled", style: "opacity:.4;"  %>
+            <% end %>
+        </div>
+        <div class="col-md-2">
+            <% if attendee.checkedin %>
+                <%= link_to "Cancel Check In", checkin_path(:attendee_id => attendee.attendee.id, :event_id => @event.id), method: :attended, class: "btn btn-danger btn-sm"  %>
+            <% end %>
+        </div>
+    </div>
+    <% end %>
+
+</div>
+<br /><br />
+<p align="center">[ <%= link_to "Back To Event Page", event_path(@event) %> ]</p>
+<% end %>
