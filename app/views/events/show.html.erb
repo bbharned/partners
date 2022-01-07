@@ -11,5 +11,21 @@
 		</div>
 	</div>
 	<hr />
+	Number Currently Registered: <%= @allregistered.count %> of <%= @event.capacity %> 
+	<br /><br />
+
+
+	<% if @registration %>
+		<%= link_to "Registered", event_path(@event), class: "disabled btn btn-secondary btn-sm" %> 
+	
+
+	<% else %>
+		<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %> 
+	
+
+	<% end %>
+
+	
+	
 
 </div>

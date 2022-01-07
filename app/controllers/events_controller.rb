@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-	before_action :require_admin, except: [:index, :show]
-	before_action :set_event, only: [:edit, :update, :show]
+	before_action :require_admin, except: [:index, :show, :register]
+	before_action :set_event, only: [:edit, :update, :show, :register]
 
 
 def index
@@ -18,7 +18,10 @@ def new
 end
 
 def show
-
+    if current_user
+        @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
+    end
+    @allregistered = EventAttendee.where(:event_id => @event.id)
 end
 
 
@@ -68,7 +71,24 @@ end
 
 
 
+def register
+    if current_user
+        @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
+        if @register.save
+            flash[:success] = "You have been registered for #{@event.name}"
+            redirect_to event_path(@event)
+        else
+            flash[:danger] = "You appear to already be registered for this event"
+            redirect_to event_path(@event)
+        end
+    else
+        flash[:warning] = "You must be logged in to register for events"
+        # add path to create account for events
+        redirect_to login_path
+    end
 
+    
+end
 
 
 

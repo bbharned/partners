@@ -79,6 +79,7 @@ resources :evtcategories
 resources :venues
 resources :events
 get 'event/admin', to: 'events#admin'
+post 'events/:id', to: 'events#register'
 resources :tags
 
 get 'events/:id/checkin', to: 'event_attendees#checkin', as: 'checkin'

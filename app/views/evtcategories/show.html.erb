@@ -47,37 +47,42 @@
 	<h5>All <%= @etype.name %> Events</h5>
 	<div class="flex-container" style="margin-top:25px;">
 		
-		<% @events.each do |event| %>
+		<% if @events.count > 0 %>
+		
+			<% @events.each do |event| %>
 
-			<% if event.live %>
-				<div class="full-width-card">
-					<div class="card-body">
-						<p class="card-text">
-							<div class="row">
-								<div class="col-md-4">
-									<%= link_to "#{event.name}", event_path(event) %>
+				<% if event.live %>
+					<div class="full-width-card">
+						<div class="card-body">
+							<p class="card-text">
+								<div class="row">
+									<div class="col-md-4">
+										<%= link_to "#{event.name}", event_path(event) %>
+									</div>
+									<div class="col-md-3">
+										<% if event.virtual %>
+											Virtual Event
+										<% else %>
+											In-Person Event
+										<% end %>
+									</div>
+									<div class="col-md-3">
+										<%= event.starttime.strftime("%B %d, %Y") %>
+									</div>
+									<div class="col-md-2">
+										<%= link_to "Learn More »", event_path(event), class: "btn btn-outline-primary btn-sm float-right"  %>
+									</div>
 								</div>
-								<div class="col-md-3">
-									<% if event.virtual %>
-										Virtual Event
-									<% else %>
-										In-Person Event
-									<% end %>
-								</div>
-								<div class="col-md-3">
-									<%= event.starttime.strftime("%B %d, %Y") %>
-								</div>
-								<div class="col-md-2">
-									<%= link_to "Learn More »", event_path(event), class: "btn btn-outline-primary btn-sm float-right"  %>
-								</div>
-							</div>
-						</p>
+							</p>
+						</div>
 					</div>
-				</div>
+				<% end %>
+
 			<% end %>
 
-		<% end %>
-
+		<% else %>
+			<p style="color:darkorange;">There are no events for this Event Type</p>
+		<%end %>
 	</div>
 <% end %>
 

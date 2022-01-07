@@ -29,6 +29,7 @@ def show
     @allevents.each do |event|
         @events.push(Event.find(event.event_id))
     end
+    @events.delete_if {|x| !x.live?}
     @events = @events.sort_by {|event| event.starttime}
 
 end
