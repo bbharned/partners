@@ -63,7 +63,7 @@ scope :sorted_by, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^priority_/
-    order("hardwares.priority #{direction}")
+    order("hardwares.created_at_ #{direction}")
   when /^created_at_/
     # Simple sort on the created_at column.
     # Make sure to include the table name to avoid ambiguous column names.

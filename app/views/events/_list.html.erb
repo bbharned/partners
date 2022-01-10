@@ -1,0 +1,29 @@
+<div id="filterrific_results">
+
+  
+
+    <% if @events.any? %>
+          
+          <% @events.each do |e| %>
+            
+            <%= e.name %><br />
+
+          <% end %>
+          
+
+    <% if @events.count > 10 %>
+      <div class="paginate" style="margin-top:20px;">
+        <%= will_paginate(@events, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+      </div>
+    <% end %>
+
+
+    <% end %>
+
+
+
+
+
+
+</div>
+

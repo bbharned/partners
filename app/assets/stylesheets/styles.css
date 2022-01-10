@@ -57,7 +57,9 @@ Extra extra large   xxl ≥1400px
     cursor: pointer;
 }
 
+.flex-button {
 
+}
 
 
 
@@ -684,6 +686,19 @@ Very Light Blue: #e9f7fb;
     vertical-align: middle;
 }
 .category-card img {width: 100%;}
+.admin-event-nav {
+    margin-bottom: 35px; justify-content: center;
+}
+.flex-button {
+    padding: 5px 20px; border-radius: 5px; background-color: #f1f1f1; 
+    color: inherit; margin-right: 10px;
+}
+.flex-button:hover {
+    text-decoration: none; background-color: #a1a1a1; color: #FFFFFF;
+}
+.on-page {
+    text-decoration: none; background-color: #a1a1a1; color: #FFFFFF;
+}
 
 @media all and (max-width: 768px) {
     .category-card, .group-card {

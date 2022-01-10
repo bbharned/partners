@@ -26,7 +26,58 @@ end
 
 
 def admin
-    @events = Event.all
+
+    # @object = params[:query]
+    # @type = params[:type]
+
+    # if @object == "active" && @type == nil
+    #     @events = Event.where("DATETIME(starttime) >= ?", Date.today).where(live: true).order(:starttime)
+    # elsif @object == "past" && @type == nil
+    #     @events = Event.where("DATETIME(starttime) < ?", Date.today).where(live: true).order(:starttime)
+    # elsif @object == "all" && @type == nil
+    #     @events = Event.all.order('starttime desc')
+    # elsif @object == "unlaunched" && @type == nil
+    #     @events = Event.where(live: false).order(:starttime)
+    # elsif @object == "active" && @type == "training"
+
+
+
+
+    # else
+    #     @events = Event.all.order(:starttime)
+    # end
+        
+
+    @filterrific = initialize_filterrific(
+     Event,
+     params[:filterrific],
+      select_options: {
+        sorted_by: Event.options_for_sorted_by,
+        with_evtcategory: Evtcategory.options_for_select,
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:sorted_by, :with_search, :with_evtcategory],
+      sanitize_params: true,
+   ) or return
+   @events = @filterrific.find.paginate(page: params[:page], per_page: 10)
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
+    
+    
+    
+    
+
+    #@object = object(params[:query])
+    #pass object of query through params?
 end
 
 

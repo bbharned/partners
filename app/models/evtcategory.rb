@@ -6,5 +6,8 @@ class Evtcategory < ActiveRecord::Base
     validates :name, presence: true, length: {minimum: 3, maximum: 25}
     validates_uniqueness_of :name
 	
-
+    def self.options_for_select
+      order(Arel.sql("LOWER(name)")).map { |e| [e.name, e.id] }
+    end
+    
 end

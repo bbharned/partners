@@ -5,5 +5,8 @@ class Venue < ActiveRecord::Base
 	validates_uniqueness_of :name
 
 
+	def self.options_for_select
+      order(Arel.sql("LOWER(name)")).map { |e| [e.name, e.id] }
+    end
 
 end
