@@ -60,11 +60,19 @@
 					</div>
 					<div class="col-md-4">
 					    <div class="form-label">Events Tags</div>
-
+					    <%= f.select(
+					      :with_tag,
+					      @filterrific.select_options[:with_tag],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
 					</div>
 					<div class="col-md-4">
 					    <div class="form-label">Events Venues</div>
-
+					    <%= f.select(
+					      :with_venue,
+					      @filterrific.select_options[:with_venue],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
 					</div>
 				</div>
 

@@ -20,6 +20,8 @@ filterrific(
      :with_live,
      :with_state,
      :with_live_status,
+     :with_tag,
+     :with_venue,
    ],
  )
 
@@ -70,6 +72,14 @@ scope :sorted_by, ->(sort_option) {
 
 scope :with_evtcategory, ->(evtcategory_ids) {
   joins(event_categories: :evtcategory).where(event_categories: {evtcategory_id: evtcategory_ids})
+}
+
+scope :with_tag, ->(tag_ids) {
+  joins(event_tags: :tag).where(event_tags: {tag_id: tag_ids})
+}
+
+scope :with_venue, ->(venue_ids) {
+  joins(event_venues: :venue).where(event_venues: {venue_id: venue_ids})
 }
 
 

@@ -33,12 +33,14 @@ def admin
       select_options: {
         sorted_by: Event.options_for_sorted_by,
         with_evtcategory: Evtcategory.options_for_select,
+        with_tag: Tag.options_for_select,
+        with_venue: Venue.options_for_select,
         with_state: ['Upcoming Events', 'Past Events'],
         with_live_status: ['Live Events', 'Draft Events'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_evtcategory, :with_live, :with_state, :with_live_status],
+      available_filters: [:sorted_by, :with_search, :with_evtcategory, :with_live, :with_state, :with_live_status, :with_tag, :with_venue],
       sanitize_params: true,
    ) or return
    @events = @filterrific.find.paginate(page: params[:page], per_page: 10)
