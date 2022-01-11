@@ -699,6 +699,9 @@ Very Light Blue: #e9f7fb;
 .on-page {
     text-decoration: none; background-color: #a1a1a1; color: #FFFFFF;
 }
+.event-filters .col-md-4 {
+    margin-bottom: 10px;
+}
 
 @media all and (max-width: 768px) {
     .category-card, .group-card {

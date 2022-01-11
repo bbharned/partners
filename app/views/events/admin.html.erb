@@ -17,12 +17,12 @@
 
 <%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 				
-		<div class="container">			  
+		<div class="container event-filters">			  
 			<div class="form-group">
 				
 				<div class="row">
 			  	
-					  <div class="col-sm-4">
+					  <div class="col-md-4">
 					    <div class="form-label">Search</div>
 					    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 					    <%= f.text_field(
@@ -30,7 +30,7 @@
 					      class: 'filterrific-periodically-observed form-control'
 					    ) %>
 					  </div>
-					  <div class="col-sm-4">
+					  <div class="col-md-4">
 					    <div class="form-label">Event Type</div>
 					    <%= f.select(
 					      :with_evtcategory,
@@ -38,7 +38,34 @@
 					      { include_blank: '- Any -' }, class: "form-control"
 					    ) %>
 					  </div>
-					  
+					  <div class="col-md-4">
+					    <div class="form-label">Live/Draft Events</div>
+					    <%= f.select(
+					      :with_live_status,
+					      @filterrific.select_options[:with_live_status],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					  </div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4">
+					    <div class="form-label">Past/Future Events</div>
+					    <%= f.select(
+					      :with_state,
+					      @filterrific.select_options[:with_state],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					</div>
+					<div class="col-md-4">
+					    <div class="form-label">Events Tags</div>
+
+					</div>
+					<div class="col-md-4">
+					    <div class="form-label">Events Venues</div>
+
+					</div>
 				</div>
 
 				
@@ -51,16 +78,16 @@
 
 			</div>
 			
-			<hr style="margin-top:15px; margin-bottom: 25px; border-color: #515151;" />
+			<hr style="margin-top:15px; margin-bottom: 25px; border-color: #818181;" />
 			
 		</div>
 
 
 
 		<div class="form-group" >
-			<div class="row">
-				<div class="col-sm-8"><h4 style="padding-top:30px; margin-bottom: 0px;">Results</h4></div>	
-				  <div class="col-sm-4 sort-options">
+			<div class="row" style="margin-bottom: 35px;">
+				<div class="col-md-8"><h4 style="padding-top:22px; margin-bottom: 0px;">Results</h4></div>	
+				  <div class="col-md-4 sort-options">
 				    <div class="form-label">Sorted by</div>
 				    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], class: "form-control") %>
 			   </div>
