@@ -11,19 +11,111 @@
 		</div>
 	</div>
 	<hr />
-	Number Currently Registered: <%= @allregistered.count %> of <%= @event.capacity %> 
-	<br /><br />
 
 
-	<% if @registration %>
-		<%= link_to "Registered", event_path(@event), class: "disabled btn btn-secondary btn-sm" %> 
-	
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title"><h4><%= @event.starttime.strftime("%B %d, %Y") %></h4></div>
+			<div class="card-subtitle"><%= @event.starttime.strftime("%I:%M %P") %> to <%= @event.endtime.strftime("%I:%M %P") %></div>
+		</div>
+		<div class="card-body">
+			<div class="card-text">
 
+				<div class="row" style="margin-bottom:25px;">
+					<% if @event.event_image != nil && @event.event_image != "" %>
+					<div class="col-md-8">
+						<p><%= @event.description %></p>
+						<hr />
+						<p><b>Event Venue:</b> <%= @event.venues[0].name %><br />
+						<b>Event Type:</b>
+							<% if @event.evtcategories.any? %> 
+								<% @event.evtcategories.each do |cat| %>
+									<%= cat.name %>
+									<% if @event.evtcategories.count > 1 %>
+										,&nbsp;
+									<% end %>
+									<% end %>
+							
+							<% end %>
+						</p>
+					</div>
+					<div class="col-md-4 event-image">
+						<%= image_tag "#{@event.event_image}" %>
+					</div>
+					<% else %>
+					<div class="col">
+						<p><%= @event.description %></p>
+						<hr />
+						<p><b>Event Venue:</b> <%= @event.venues[0].name %><br />
+						<b>Event Type:</b>
+							<% if @event.evtcategories.any? %> 
+								<% @event.evtcategories.each do |cat| %>
+									<%= cat.name %>
+									<% if @event.evtcategories.count > 1 %>
+										,&nbsp;
+									<% end %>
+									<% end %>
+							<% end %>
+						</p>
+					</div>
+					<% end %>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="float-right">
+							<% if @registration %>
+								<%= link_to "Registered", event_path(@event), class: "disabled btn btn-secondary btn-sm" %> 
+							<% else %>
+								<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %> 
+							<% end %>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<% if current_user != nil && (current_user.admin? || current_user.evt_admin?) %>
+			<div class="card-footer">
+				Registered: <%= @allregistered.count %> of <%= @event.capacity %>
+			</div>
+		<% end %>
+	</div>
+
+
+
+<% if current_user != nil && (current_user.admin? || current_user.evt_admin?) %>
+	<h2 align="center" style="margin-top: 45px;">Registrants</h2>
+
+	<% if @allregistered.any? %>
+		
+			<% @allregistered.each do |u| %>
+				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px;">
+					<div class="row">
+						<div class="col-md-4">
+							<%= u.user.firstname %> <%= u.user.lastname %>
+						</div>
+						<div class="col-md-4">
+							<%= u.user.company %>
+						</div>
+						<div class="col-md-4">
+							<div class="float-right">
+								<%= link_to "User Profile", user_path(u.user), style: "color: darkorange" %> | 
+								<%= link_to "Delete", events_path(u) , method: :regdelete, data: { confirm: "You sure? "} %></h4> 
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		
 	<% else %>
-		<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %> 
-	
-
+		<p style="color:darkorange; text-align:center;">There are users registrered for this event</p>
 	<% end %>
+
+<% end %>
+
+
+	 
+	
 
 	
 	

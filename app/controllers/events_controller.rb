@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	before_action :require_admin, except: [:index, :show, :register]
-	before_action :set_event, only: [:edit, :update, :show, :register]
+	before_action :set_event, only: [:edit, :update, :show, :register], except: [:destroy_reg]
 
 
 def index
@@ -18,7 +18,8 @@ def new
 end
 
 def show
-    if current_user
+
+    if logged_in?
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
     end
     @allregistered = EventAttendee.where(:event_id => @event.id)

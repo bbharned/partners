@@ -54,6 +54,15 @@ class EventAttendeesController < ApplicationController
     end
 
 
+    def regdestroy
+      @registration = EventAttendee.find(params[:id])
+      @event = Event.find(@registration.event_id)
+      @registration.destroy
+      flash[:danger] = "Registration has been deleted"
+      redirect_to event_path(@event)
+    end
+
+
 
     private 
 

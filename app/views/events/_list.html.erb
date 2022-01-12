@@ -5,8 +5,48 @@
     <% if @events.any? %>
           
           <% @events.each do |e| %>
+
+
+          <div class="card" style="margin-bottom:15px;">
+            <div class="card-header">
+              <div class="row">
+                <div class="col"><%= link_to "#{e.name}", event_path(e) %></div>
+                <div class="col">
+                  <div class="float-right">
+                    <% if e.evtcategories.any? %>
+                      <% if e.evtcategories.count >1 %>
+                        <% e.evtcategories.each do |cat| %>
+                          <%= cat.name %>,&nbsp;
+                        <% end %>
+                      <% else %>
+                        <% e.evtcategories.each do |cat| %>
+                          <%= cat.name %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4"><%= e.starttime.strftime("%m/%d/%Y") %> at <%= e.starttime.strftime("%I:%M %P")  %></div>
+                <div class="col-md-4"><%= e.users.count %> registered of <%= e.capacity %></div>
+                <div class="col-md-4">
+                  <div class="float-right">
+                    <%= link_to "edit", edit_event_path(e), style: "color: darkorange" %> | <%= link_to "view", event_path(e), style: "color: darkgreen;" %> | <%= link_to "delete", event_path(e), method: :delete, data: {confirm: "Are you sure you want to delete this Event?"}, style: "color:red;" %>
+                     
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
             
-            <%= e.name %><br />
+            
+
+
+
 
           <% end %>
           
@@ -20,7 +60,7 @@
 
     <% else %>
 
-      <p align="center" style="color:darkorange; margin-top:45px;">There are no results to your query</p>
+      <p align="center" style="color:darkorange; margin-top:45px;">There are no events or results to your query</p>
 
     <% end %>
 

@@ -702,7 +702,17 @@ Very Light Blue: #e9f7fb;
 .event-filters .col-md-4 {
     margin-bottom: 10px;
 }
+.event-image {
+    text-align: center;
+}
+.event-image img {
+    width: 100%; max-width: 400px;
+}
+/*** Event Admin Search Cards *****/
 
+
+
+/*** media queries *****/
 @media all and (max-width: 768px) {
     .category-card, .group-card {
         width:98%; 
@@ -716,6 +726,9 @@ Very Light Blue: #e9f7fb;
 
 
 /********************* Tags ****************************/
+
+
+
 
 
 

@@ -23,7 +23,7 @@
 
 	<% @events.each do |e| %>
 
-		<%= link_to "#{e.name}", event_path(e) %><br />
+		<%= render 'events/full-card', event: e %>
 
 	<% end %>
 
