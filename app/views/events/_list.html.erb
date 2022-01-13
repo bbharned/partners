@@ -30,7 +30,13 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-md-4"><%= e.starttime.strftime("%m/%d/%Y") %> at <%= e.starttime.strftime("%I:%M %P")  %></div>
+                <div class="col-md-4">
+                  <% if e.starttime != nil && e.starttime != "" %>
+                    <%= e.starttime.strftime("%m/%d/%Y") %> at <%= e.starttime.strftime("%I:%M %P")  %>
+                  <% else %>
+                    No event date and time set.
+                  <% end %>
+                  </div>
                 <div class="col-md-4"><%= e.users.count %> registered of <%= e.capacity %></div>
                 <div class="col-md-4">
                   <div class="float-right">

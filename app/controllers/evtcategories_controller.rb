@@ -28,7 +28,9 @@ def show
     @events = []
     if @allevents.any?
         @allevents.each do |event|
-            @events.push(Event.find(event.event_id))
+            if event.event.starttime >= Date.today
+                @events.push(Event.find(event.event_id))
+            end
         end
     end
     @events.delete_if {|x| !x.live?}

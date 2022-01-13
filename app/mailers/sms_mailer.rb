@@ -2,7 +2,7 @@ class SMSMailer < ApplicationMailer
 default from: 'ThinManager'
 
 def sms_mailer(number, subject, carrier, message)
-	  @carrier = carrier
+	@carrier = carrier
     @phone = number
     @subject = subject
     @message = message

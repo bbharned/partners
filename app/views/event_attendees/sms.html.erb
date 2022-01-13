@@ -1,14 +1,25 @@
-<h1 class="page-header">Send a SMS Message</h1>
+<div class="container" style="padding-bottom:125px;">
 
+<h1 class="page-header" align="center">Send a SMS Message</h1>
+<hr />
 <br />
-<h2 align="center"><%= @event.name %></h2>
-
-
+<p align="center">Send a text to the registered users of</p> 
+<h2 align="center" style="margin-top:-15px;"><%= @event.name %></h2>
+<p align="center">Event on <%= @event.starttime.strftime("%B %d, %Y") %></p> 
 <br /><br />
-<div class="container">
+<div class="row" style="text-align:center;">
+    <div class="col">
+        <b>Attendees:</b>
+        <% @evt_users.each do |u| %>
+            <%= u.firstname %> <%= u.lastname %>,&nbsp;
+        <% end %>
+    </div>
+</div>
+<br />
+
 <%= form_for(:message, :html => {class: "form-horizontal", role: "form"}, url: {action: "sendit"}) do |m| %>
 	<div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 offset-md-2">
             <div class="form-group">
                 <%= m.text_field :sms_subject, class: "form-control", placeholder: "Enter SMS Subject" %>
             </div>
@@ -16,7 +27,7 @@
     </div>
     
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 offset-md-2">
             <div class="form-group">
                 <%= m.text_area :sms_message, size: "24x12", class: "form-control", placeholder: "Enter SMS Message" %>
             </div>
@@ -25,7 +36,7 @@
     </div>
 <br />
     <div class="row">
-	    <div class="col-md-2 col-md-offset-5" style="text-align: center;">
+	    <div class="col-md-2 offset-md-5" style="text-align: center;">
 		    <%= m.submit "Send Message", class: 'btn btn-primary btn-lg' %>
 		 </div>
     </div>

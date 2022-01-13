@@ -18,11 +18,23 @@ def new
 end
 
 def show
-
+    if (current_user == nil && !@event.live) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && !@event.live)
+        flash[:warning] = "You can not view this event."
+        redirect_to events_path
+    elsif (current_user == nil && @event.starttime < Date.today) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && @event.starttime < Date.today)
+        flash[:warning] = "You can not view this event."
+        redirect_to events_path
+    end
+    
+    @full = false
     if logged_in?
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
     end
+    
     @allregistered = EventAttendee.where(:event_id => @event.id)
+    if @allregistered.any? && @allregistered.count >= @event.capacity
+        @full = true
+    end
 end
 
 
@@ -105,6 +117,7 @@ def register
     if current_user
         @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
         if @register.save
+            # send confirmation emails here 
             flash[:success] = "You have been registered for #{@event.name}"
             redirect_to event_path(@event)
         else

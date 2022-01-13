@@ -23,14 +23,19 @@ class EventAttendeesController < ApplicationController
     def sms 
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
-        @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
-        @evt_users = User.where(id: @attendees.ids)
-        @phones = []
-        @evt_users.each do |role|
-          if role.phone != nil && role.phone != ""
-            @phones.push role.phone
-          end
+        @attendees = EventAttendee.where(event_id: @event.id)
+        @evt_users = []
+        @attendees.each do |u|
+          @user = User.find(u.user_id)
+          @evt_users.push @user
         end
+        #@evt_users = User.where(id: @attendees.user_ids)
+        # @phones = []
+        # @evt_users.each do |role|
+        #   if role.cell != nil && role.cell != ""
+        #     @phones.push role.cell
+        #   end
+        # end
       else
         @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"
@@ -43,13 +48,19 @@ class EventAttendeesController < ApplicationController
       @message = params[:message][:sms_message]
       @subject = params[:message][:sms_subject]
       @event = Event.find(params[:id])
-      
-      @evt_users.where.not(carrier: "").each do |attendee|
-        if (attendee.phone != nil || attendee.phone != "") && attendee.carrier != nil
-          send_sms(attendee.phone, @subject, attendee.carrier, @message)
+      @attendees = EventAttendee.where(event_id: @event.id)
+      @evt_users = []
+      @attendees.each do |u|
+        @user = User.find(u.user_id)
+        @evt_users.push @user
+      end
+      if @evt_users.any? 
+        @evt_users.each do |attendee|
+          if (attendee.cell != nil && attendee.cell != "") && (attendee.carrier != nil && attendee.carrier != "")
+            send_sms(attendee.cell, @subject, attendee.carrier, @message)
+          end
         end
       end
-
       flash[:success] = "Your SMS messages were sent"
       redirect_to event_path(@event)
       
@@ -80,12 +91,12 @@ class EventAttendeesController < ApplicationController
     def set_phones
         @event = Event.find(params[:id])
         @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
-        @evt_users = Attendee.where(id: @attendees.ids)
-        @evt_users = Attendee.where(id: @attendees.ids)
+        @evt_users = User.where(id: @attendees.ids)
+        #@evt_users = Attendee.where(id: @attendees.ids)
         @phones = []
         @evt_users.each do |role|
-          if role.phone != nil && role.phone != ""
-            @phones.push role.phone
+          if (role.cell != nil && role.cell != "") && (role.carrier != nil && role.carrier != "")
+            @phones.push role.cell
           end
         end
     end
