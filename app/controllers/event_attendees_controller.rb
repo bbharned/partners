@@ -4,26 +4,27 @@ class EventAttendeesController < ApplicationController
   	def checkin
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evtadmin?)
         @event = Event.find(params[:id])
-        @users = Attendee.all.order(:lastname)
+        @users = User.all.order(:lastname)
         @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
       else
+        @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"
-        redirect_to events_path
+        redirect_to event_path(@event)
       end
     end
 
 
     def attended
-    	@attendee = EventAttendee.where(event_id: params[:event_id], attendee_id: params[:attendee_id])
+    	@attendee = EventAttendee.where(event_id: params[:event_id], user_id: params[:user_id])
       @attendee.first.toggle!(:checkedin)
       redirect_to checkin_path(params[:event_id])
     end
 
     def sms 
-      if (logged_in? && current_user.admin?) || (logged_in? && current_user.evtadmin?)
+      if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
         @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
-        @evt_users = Attendee.where(id: @attendees.ids)
+        @evt_users = User.where(id: @attendees.ids)
         @phones = []
         @evt_users.each do |role|
           if role.phone != nil && role.phone != ""
@@ -31,8 +32,9 @@ class EventAttendeesController < ApplicationController
           end
         end
       else
+        @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"
-        redirect_to events_path
+        redirect_to event_path(@event)
       end
     end
 
@@ -54,8 +56,8 @@ class EventAttendeesController < ApplicationController
     end
 
 
-    def regdestroy
-      @registration = EventAttendee.find(params[:id])
+    def destroy
+      @registration = EventAttendee.find(params[:reg])
       @event = Event.find(@registration.event_id)
       @registration.destroy
       flash[:danger] = "Registration has been deleted"

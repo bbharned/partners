@@ -87,7 +87,7 @@ post 'events/:id/checkin', to: 'event_attendees#attended'
 
 get 'events/:id/sms', to: 'event_attendees#sms', as: 'sms'
 post 'events/:id/sms', to: 'event_attendees#sendit'
-post 'events/:id/regdelete', to: 'event_attendees#regdestroy'
+post 'events/:id/deregister', to: 'event_attendees#destroy', as: 'deregister'
 
 
 get 'flexforward', to: 'flexforwards#saved'
