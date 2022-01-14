@@ -14,7 +14,7 @@ def index
      Hardware,
      params[:filterrific],
       select_options: {
-        sorted_by: Hardware.options_for_sorted_by,
+        sort_me: Hardware.options_for_sorted_by,
         with_maker_id: Maker.options_for_select,
         with_hwtype_id: Hwtype.options_for_select,
         with_hwstatus_id: Hwstatus.options_for_select,
@@ -24,7 +24,7 @@ def index
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware, :with_boot],
+      available_filters: [:sort_me, :with_search, :with_maker_id, :with_hwtype_id, :with_hwstatus_id, :with_min_firmware, :with_max_firmware, :with_boot],
       sanitize_params: true,
    ) or return
    @hardwares = @filterrific.find.paginate(page: params[:page], per_page: 20)

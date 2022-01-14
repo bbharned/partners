@@ -8,16 +8,16 @@ class Hardware < ActiveRecord::Base
 
 
 filterrific(
-   default_filter_params: { sorted_by: 'priority_asc' },
+   default_filter_params: { sort_me: 'priority_asc' },
    available_filters: [
-     :sorted_by,
+     :sort_me,
      :with_search,
      :with_maker_id,
      :with_hwtype_id,
      :with_hwstatus_id,
      :with_min_firmware,
      :with_max_firmware,
-     :with_boot
+     :with_boot,
      #:with_created_at_gte
    ]
  )
@@ -57,13 +57,13 @@ scope :with_search, lambda { |query|
 } 
 
 
-scope :sorted_by, ->(sort_option) {
+scope :sort_me, ->(sort_option) {
   # Sorts hardware by sort_key
   # extract the sort direction from the param value.
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^priority_/
-    order("hardwares.created_at_ #{direction}")
+    order("hardwares.created_at #{direction}")
   when /^created_at_/
     # Simple sort on the created_at column.
     # Make sure to include the table name to avoid ambiguous column names.
