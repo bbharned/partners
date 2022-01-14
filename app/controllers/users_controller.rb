@@ -281,6 +281,14 @@ end
 def show
      @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
      @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")
+     @user_registrations = EventAttendee.where(user_id: @user.id)
+     @user_events = []
+     if @user_registrations.any?
+        @user_registrations.each do |reg|
+            @event = Event.find(reg.event_id)
+            @user_events.push @event
+        end
+     end
      # def send_cert_conf(user)  # --->  <a onClick="<%= @user.send_cert_conf() %>"></a>
      #    user.send_cert_conf
      # end

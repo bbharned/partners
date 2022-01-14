@@ -42,6 +42,10 @@
               </li>
             <% end %>
 
+            <!-- <li class="nav-item">
+              <%= link_to "Events", events_path, class: 'nav-link' %>
+            </li> -->
+
             <% if (!current_user.needs_review) || (current_user.admin?) %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,6 +191,22 @@
             <% end %>
 
 
+            <% if !current_user.admin? && current_user.evt_admin? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Events
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Events", event_admin_path, class: 'dropdown-item' %>
+                  <%= link_to "Event Types", evtcategories_path, class: 'dropdown-item' %>
+                  <%= link_to "Type Groups/Tags", tags_path, class: 'dropdown-item' %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Create Event", new_event_path, class: 'dropdown-item' %>
+                </div>
+              </li>
+            <% end %>
+
+
             <li class="nav-item">
               <%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %>
             </li>
@@ -196,8 +216,10 @@
 
   <div class="goAwaySoonest">
     <ul class="nav navbar-nav navbar-right">
+      <% if !current_user || !current_user.admin? %>
       <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Portal Web App Issue Report" class="nav-link">Having technical issues?</a></li>
-      <li class="dropdown" style="padding-top: 5px;">
+      <% end %>
+      <li class="dropdown" style="<% if !current_user || !current_user.admin? %>padding-top: 5px;<% end %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
               <li><a class="dropdown-item" href="https://thinmanager.com">ThinManager.com</a></li>

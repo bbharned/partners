@@ -12,7 +12,7 @@
 		<div class="col-md-3">
 			<div class="add_currency_btn">
 				<% if (current_user && current_user.admin?) || (current_user && current_user.evt_admin?) %>
-					<%= link_to "Add Event", edit_tag_path, class: "btn btn-primary" %>
+					<%= link_to "Edit Sub-Type", edit_tag_path(@tag), class: "btn btn-primary" %>
 				<% end %>	
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 
 <% if @events.any? %>
 
-	<% @events.each do |e| %>
+	<% @events.where(:live => true).each do |e| %>
 
 		<%= render 'events/full-card', event: e %>
 

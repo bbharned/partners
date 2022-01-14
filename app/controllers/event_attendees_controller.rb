@@ -2,7 +2,7 @@ class EventAttendeesController < ApplicationController
   before_action :set_phones, only: [:sendit]
 
   	def checkin
-      if (logged_in? && current_user.admin?) || (logged_in? && current_user.evtadmin?)
+      if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
         @users = User.all.order(:lastname)
         @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
@@ -71,6 +71,7 @@ class EventAttendeesController < ApplicationController
       @registration = EventAttendee.find(params[:reg])
       @event = Event.find(@registration.event_id)
       @registration.destroy
+      # send confirmation email of registration deleted?
       flash[:danger] = "Registration has been deleted"
       redirect_to event_path(@event)
     end
