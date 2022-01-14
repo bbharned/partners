@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
-	has_many :event_tags
-    has_many :events, through: :event_tags
-    belongs_to :evtcategory
+	has_many :event_tags, :dependent => :destroy
+  has_many :events, through: :event_tags
+  belongs_to :evtcategory
 
 
     def self.options_for_select
