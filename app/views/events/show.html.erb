@@ -147,6 +147,7 @@
 	
 	<% if @allregistered.any? %>
 			<div class="small-sub-title"><%= @allregistered.count %> of <%= @event.capacity %> possible</div>
+			<div class="csv-link"><a href="/events/<%= @event.id %>.csv">Export (CSV)</a></div>
 			<div class="row" style="margin-bottom:5px;">
 				<div class="col-md-4">
 					<b style="padding-left:15px;">Name</b>

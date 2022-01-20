@@ -35,6 +35,20 @@ def show
     if @allregistered.any? && @allregistered.count >= @event.capacity
         @full = true
     end
+
+    @evtusers = []
+    if @allregistered.any?
+        @allregistered.each do |u|
+            @evtusers.push u.user_id
+        end
+    end
+    
+    @allusers = User.where(id: @evtusers)
+
+    respond_to do |format|
+      format.html { render "show" }
+      format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{Date.today}.csv" }
+    end
 end
 
 

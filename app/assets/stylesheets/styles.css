@@ -715,7 +715,10 @@ Very Light Blue: #e9f7fb;
     float:right; margin-top: 10px;
 }
 .small-sub-title {
-    text-align: center; margin-bottom: 25px; margin-top: -10px;
+    text-align: center; margin-top: -10px;
+}
+.csv-link {
+    text-align: center; margin-bottom: 25px;
 }
 .attendee-checkin-row {
     margin-bottom: 10px;

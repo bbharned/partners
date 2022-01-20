@@ -11,6 +11,18 @@ class Event < ActiveRecord::Base
     
 
 
+def self.to_csv
+  attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}
+
+  CSV.generate(headers: true) do |csv|
+    csv << attributes
+
+    all.each do |user|
+      csv << attributes.map{ |attr| user.send(attr) }
+    end
+  end
+end
+
 filterrific(
    default_filter_params: { sorted_by: 'created_at_desc' },
    available_filters: [

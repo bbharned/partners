@@ -15,7 +15,7 @@
 <p>Flex Forward is an elective commercial initiative that provides customers a path forward to the V-FLEX licensing model from legacy 5/10/25-pack, Enterprise Server, and Enterprise Site licensing models. &nbsp;&nbsp;&nbsp;<span style="font-style:italic; font-size:.85em; color:orange;">Note: All quotes are generated assuming a 8 by 5 support level.</span></p> 
 
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-7">
 <p>In order to execute the program, the following information will be important to understand:</p>
 <ul style="margin-top: -15px; margin-bottom: 20px;">
 	<li>Which locations/sites are interested in participating in the program</li>
@@ -24,16 +24,37 @@
 	<li>Support status of each license (current, or what date expired)</li>
 </ul>
 </div>
-<div class="col-md-4" align="center">
+<div class="col-md-5" align="center">
 	<div class="ff-datasheet">
-		<h5>Flex Forward Datasheet</h5>
-		
-		<% if @current_user.channel == "Rockwell Automation" %>
-			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-RA_Datasheet.pdf", target: "_blank" %>
-		<% elsif @current_user.channel != "Rockwell Automation" %>
-			<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-TM_Datasheet.pdf", target: "_blank" %>
-		<% end %>
-		
+		<div class="row">
+			<div class="col-6">
+				<h6>Pricing</h6>
+				<% if @current_user.admin? %>
+				<div class="row">
+					<div class="col-6">
+						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/V-FLEX_FlexForwardLicensingPriceSheet-13DEC2021-RA.xlsx", target: "_blank" %>
+						<small style="margin-top:-10px;">FTA</small>
+					</div>
+					<div class="col-6">
+						<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/V-FLEX_FlexForwardLicensingPriceSheet-13DEC2021_3rd.xlsx", target: "_blank" %>
+						<small style="margin-top:-10px;">TMA</small>
+					</div>
+				</div>
+				<% elsif (!@current_user.admin? && @current_user.channel == "Rockwell Automation") || (!@current_user.admin? && @current_user.channel == nil) ||  (!@current_user.admin? && @current_user.channel == "")%>
+					<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/V-FLEX_FlexForwardLicensingPriceSheet-13DEC2021-RA.xlsx", target: "_blank" %>
+				<% elsif !@current_user.admin? && @current_user.channel != "Rockwell Automation" %>
+					<%= link_to image_tag("icon-excel.jpg"), "https://thinmanager.com/partner-resources/V-FLEX_FlexForwardLicensingPriceSheet-13DEC2021_3rd.xlsx", target: "_blank" %>
+				<% end %>
+			</div>
+			<div class="col-6">
+				<h6>Datasheet</h6>
+				<% if @current_user.channel == "Rockwell Automation" %>
+					<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-RA_Datasheet.pdf", target: "_blank" %>
+				<% elsif @current_user.channel != "Rockwell Automation" %>
+					<%= link_to image_tag("icon_pdf_large.png"), "https://thinmanager.com/vflex/images/FlexForward-TM_Datasheet.pdf", target: "_blank" %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
 </div>

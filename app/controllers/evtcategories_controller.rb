@@ -23,12 +23,12 @@ end
 
 
 def show
-    @groups = Tag.where(evtcategory_id: params[:id])
+    @groups = Tag.where(evtcategory_id: params[:id]).where.not(name: "Internal")
     @allevents = EventCategory.where(evtcategory_id: params[:id])
     @events = []
     if @allevents.any?
         @allevents.each do |event|
-            if event.event.starttime >= Date.today
+            if event.event.starttime >= Date.today && !event.event.private
                 @events.push(Event.find(event.event_id))
             end
         end
