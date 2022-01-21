@@ -11,29 +11,32 @@
 <% if @groups.any? %>
 <div class="flex-container" style="margin-top:55px;">	
 	<% @groups.each do |group| %>
+		<% if group.name.include? "internal" %>
 
-		<div class="group-card">
-			<div class="card-body">
-				<h5 class="card-title" style="color:#003366;"><%= group.name %>
-					<% if current_user && (current_user.admin? || current_user.evt_admin?) %>
-						&nbsp;&nbsp;<span style="font-size: .65em; float:right; margin-top: 5px;"><%= link_to "(edit)", edit_tag_path(group) %></span>
+		<% else %>
+			<div class="group-card">
+				<div class="card-body">
+					<h5 class="card-title" style="color:#003366;"><%= group.name %>
+						<% if current_user && (current_user.admin? || current_user.evt_admin?) %>
+							&nbsp;&nbsp;<span style="font-size: .65em; float:right; margin-top: 5px;"><%= link_to "(edit)", edit_tag_path(group) %></span>
+						<% end %>
+					</h5>
+					<p class="card-text"><%= simple_format(group.description) %></p>
+					<p class="card-text">
+						<span style="font-weight:bold;">COST</span><br />
+						Complimentary
+					</p>
+					<% if group.name.downcase.include? "certification" %>
+						<%= link_to "Learn More »", si_path, class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
+					<% elsif group.name.downcase.include? "video learning" %>
+						<%= link_to "Learn More »", "https://learn.thinmanager.com", class: "btn btn-primary btn-sm", style: "margin-top:15px;", target: "_blank"  %> 
+						<!-- change to learning_path when learning live local -->
+					<% else %>
+						<%= link_to "Learn More »", tag_path(group), class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
 					<% end %>
-				</h5>
-				<p class="card-text"><%= simple_format(group.description) %></p>
-				<p class="card-text">
-					<span style="font-weight:bold;">COST</span><br />
-					Complimentary
-				</p>
-				<% if group.name.downcase.include? "certification" %>
-					<%= link_to "Learn More »", si_path, class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
-				<% elsif group.name.downcase.include? "video learning" %>
-					<%= link_to "Learn More »", "https://learn.thinmanager.com", class: "btn btn-primary btn-sm", style: "margin-top:15px;", target: "_blank"  %> 
-					<!-- change to learning_path when learning live local -->
-				<% else %>
-					<%= link_to "Learn More »", tag_path(group), class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
-				<% end %>
+				</div>
 			</div>
-		</div>
+		<% end %>
 
 	<% end %>
 
