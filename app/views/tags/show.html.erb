@@ -21,9 +21,13 @@
 
 <% if @events.any? %>
 
-	<% @events.where(:live => true).each do |e| %>
+	<% @events.each do |e| %>
 
-		<%= render 'events/full-card', event: e %>
+		<% if e.live %>
+
+			<%= render 'events/full-card', event: e %>
+
+		<% end %>
 
 	<% end %>
 

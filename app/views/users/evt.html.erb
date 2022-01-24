@@ -1,0 +1,25 @@
+<div class="container" style="padding-bottom:150px;">
+
+<div class="row">
+	<div class="col-md-8">
+		<h5>Create account to sign up for</h5>
+		<h1 style="margin-top:-10px;"><%= @event.name %></h1>
+	</div>
+	<div class="col-md-4">
+		<span class="right-to-not" style="font-size:.85em;">Already Have an Account? <%= link_to "Log in", root_path, style: "font-style: italic;" %></span>
+	</div>
+</div>
+
+<hr />
+
+<p>Please fill out the information below to create an account and be able to register for ThinManager Events. Once your account is created you will be routed back to the event you attempted to register for so that you can complete your registration. If you are notified that you already have an account, you can login and navigate back to the event desired and complete your registration.</p>
+
+
+<div class="row" style="margin-top:45px;">
+	<div class="col-lg-10 offset-lg-1">
+		<%= render 'evt' %>
+	</div>
+</div>
+
+
+</div>

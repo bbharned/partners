@@ -41,6 +41,19 @@ def rau
   @tm = 'Check the option that best describes your relationship to ThinManager'
 end
 
+def evt
+  @event = Event.find([params[:id]]).first
+  if (!logged_in?) 
+    @user = User.new
+  elsif (logged_in? and current_user.admin?) 
+    @user = User.new
+  elsif (logged_in? and !current_user.admin?)
+    flash[:warning] = "You have already signed up and have an account"
+    redirect_to root_path
+  end
+  @tm = 'Check the option that best describes your relationship to ThinManager'
+end
+
 
 
 def signup
@@ -78,6 +91,26 @@ def signup_rau
         redirect_to root_path
     else
         render 'rau'
+    end
+end
+
+
+def signup_evt
+  @user = User.new(user_params)
+  @event = Event.find([params[:id]]).first
+  #@receiver = User.find(1) #remove for production
+  @user.needs_review = true
+  @user.referred_by = "Events"
+    if @user.save
+        session[:user_id] = @user.id
+        @user.update_attribute(:lastlogin, Time.now)
+        #@user.send_rau_notice
+        #@user.send_newuser_zap 
+        #@user.send_user_signup_notice 
+        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You can start certification by clicking below."
+        redirect_to event_path(@event)
+    else
+        render :action => "evt", @event.id => params[:id]
     end
 end
 

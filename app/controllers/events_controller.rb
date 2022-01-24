@@ -18,37 +18,41 @@ def new
 end
 
 def show
+    
     if (current_user == nil && !@event.live) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && !@event.live)
         flash[:warning] = "You can not view this event."
         redirect_to events_path
     elsif (current_user == nil && @event.starttime < Date.today) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && @event.starttime < Date.today)
         flash[:warning] = "You can not view this event."
         redirect_to events_path
-    end
-    
-    @full = false
-    if logged_in?
-        @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
-    end
-    
-    @allregistered = EventAttendee.where(:event_id => @event.id)
-    if @allregistered.any? && @allregistered.count >= @event.capacity
-        @full = true
-    end
+    else
+        
+        @full = false
+        if logged_in?
+            @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
+        end
+        
+        @allregistered = EventAttendee.where(:event_id => @event.id)
+        if @allregistered.any? && @allregistered.count >= @event.capacity
+            @full = true
+        end
 
-    @evtusers = []
-    if @allregistered.any?
-        @allregistered.each do |u|
-            @evtusers.push u.user_id
+        @evtusers = []
+        if @allregistered.any?
+            @allregistered.each do |u|
+                @evtusers.push u.user_id
+            end
+        end
+        
+        @allusers = User.where(id: @evtusers)
+
+
+        respond_to do |format|
+            format.html { render "show" }
+            format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{Date.today}.csv" }
         end
     end
     
-    @allusers = User.where(id: @evtusers)
-
-    respond_to do |format|
-      format.html { render "show" }
-      format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{Date.today}.csv" }
-    end
 end
 
 
@@ -133,15 +137,14 @@ def register
         if @register.save
             # send confirmation emails here 
             flash[:success] = "You have been registered for #{@event.name}"
-            redirect_to event_path(@event)
+            redirect_to user_path(current_user)
         else
             flash[:danger] = "You appear to already be registered for this event"
-            redirect_to event_path(@event)
+            redirect_to user_path(current_user)
         end
     else
-        flash[:warning] = "You must be logged in to register for events"
-        # add path to create account for events
-        redirect_to login_path
+        flash[:warning] = "You must have an account and be logged in to register for events. Please create your account"
+        redirect_to evt_path(@event)
     end
 
     

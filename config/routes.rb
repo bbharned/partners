@@ -82,6 +82,9 @@ get 'event/admin', to: 'events#admin'
 post 'events/:id', to: 'events#register'
 resources :tags
 
+get 'evt/:id', to: 'users#evt', as: 'evt'
+post 'evt', to: 'users#signup_evt'
+
 get 'events/:id/checkin', to: 'event_attendees#checkin', as: 'checkin'
 post 'events/:id/checkin', to: 'event_attendees#attended'
 

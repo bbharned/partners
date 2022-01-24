@@ -10,8 +10,18 @@
           <div class="card" style="margin-bottom:15px;">
             <div class="card-header">
               <div class="row">
-                <div class="col"><%= link_to "#{e.name}", event_path(e) %></div>
-                <div class="col">
+                <div class="col-4"><%= link_to "#{e.name}", event_path(e) %></div>
+                <div class="col-4">
+                  <% e.tags.each do |tag| %>
+                    <% if tag.name.include? "Internal" || "internal" %>
+                      <span style="color:red; font-size:.8em;">INTERNAL RA EVENT</span>
+                    <% end %>
+                  <% end %>
+                  <% if !e.live %>
+                    <span style="font-size:.75em; font-style:italic;">&nbsp;[event not live]</span>
+                  <% end %>
+                  </div>
+                <div class="col-4">
                   <div class="float-right">
                     <% if e.evtcategories.any? %>
                       <% if e.evtcategories.count >1 %>

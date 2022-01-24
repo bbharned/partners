@@ -14,9 +14,9 @@ class User < ApplicationRecord
     has_many :qrcodes, dependent: :destroy
     has_many :wrongs, dependent: :destroy
     has_many :user_quizzes
-    has_many :quizzes, through: :user_quizzes
+    has_many :quizzes, through: :user_quizzes, dependent: :destroy
     has_many :event_attendees
-    has_many :events, through: :event_attendees
+    has_many :events, through: :event_attendees, dependent: :destroy
     has_one :user_badge
     
     

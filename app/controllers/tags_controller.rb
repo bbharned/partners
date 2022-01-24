@@ -25,7 +25,12 @@ end
 
 def show
 
-    @events = @tag.events
+    @events = []
+    @tag.events.each do |event|
+        if event.starttime >= Date.today && !event.private
+            @events.push(Event.find(event.id))
+        end
+    end
 
 end
 

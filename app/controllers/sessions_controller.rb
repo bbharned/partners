@@ -10,14 +10,19 @@ class SessionsController < ApplicationController
         if user && user.active && user.authenticate(params[:session][:password])
             session[:user_id] = user.id
             user.update_attribute(:lastlogin, Time.now)
-            flash[:success] = "You have successfully logged In"
-            #redirect_back(fallback_location: root_path)
+            if (user.street == nil || user.street == "") || (user.city == nil || user.city == "") || (user.state == nil || user.state == "") || (user.cell == nil || user.cell == "") || (user.carrier == nil || user.carrier == "") && user.events.any?
+                flash[:warning] = "You are registered for an upcoming event but it appears we are missing some needed contact information. Please complete your information #{view_context.link_to 'here', edit_user_path(user)}."
+            else 
+                flash[:success] = "You have successfully logged In"
+            end
             redirect_to root_path
         else
             flash.now[:danger] = "There was something wrong with your log in information"
             render 'new'
         end
     end
+
+    
 
 
     def destroy
