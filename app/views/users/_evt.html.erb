@@ -8,7 +8,7 @@
         
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-6" style="margin-bottom: 10px;">
+                    <div class="col-md-6">
                         <div class="control-label col-sm-12">
                             <%= f.label :firstname %>
                         </div>
@@ -25,12 +25,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-       
-
-            <div class="form-group">
+            
                 <div class="row">
-                    <div class="col-md-6" style="margin-bottom: 10px;">
+                    <div class="col-md-6">
                         <div class="control-label col-md-12">
                             <%= f.label :email %>
                         </div>
@@ -51,8 +48,158 @@
                         </div>
                         <% end %>
                 </div>
+            </div>
+
+            <br />
+            <hr />
+            <br />
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-7" style="margin-bottom: 10px;">
+                        
+                            <div class="control-label col-sm-12">
+                                <%= f.label :company %>
+                            </div>    
+                            <div class="control-label col-sm-12">
+                                <%= f.text_field :company, class: "form-control",  placeholder: "Enter Company Name" %>
+                            </div>
+                        
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "Channel Affiliation if any?" %>
+                        </div>
+                        <div class="col-md-12 state-dropdown" style="margin-bottom: 10px;">
+                            <%= f.select :channel, options_for_select([
+                                  [""],
+                                  ["Rockwell Automation"], 
+                                  ["Wonderware"],
+                                  ["GE"]
+                            ], @user.channel), class: "form-control", style: "" %>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-12" style="margin-bottom: 10px;">
+                    <div class="row">
+                        <div class="control-label col-md-12">
+                            <%= f.label "Address" %>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-8" style="margin-bottom: 5px;">
+                            <%= f.email_field :street, class: "form-control",  placeholder: "Enter Street Address" %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= f.email_field :street2, class: "form-control",  placeholder: "Suite/Apt/#" %>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-5" style="margin-bottom: 5px;">
+                            <%= f.text_field :city, class: "form-control",  placeholder: "City" %>
+                        </div>
+                        <div class="col-md-3 state-dropdown" style="margin-bottom: 5px;">
+                            <%= f.select :state, options_for_select([
+                              
+                              ["Not in US"],
+                              ["AL"], 
+                              ["AK"], 
+                              ["AZ"], 
+                              ["AR"], 
+                              ["CA"],
+                              ["CO"],
+                              ["CT"],
+                              ["DE"],
+                              ["FL"],
+                              ["GA"],
+                              ["HI"],
+                              ["ID"],
+                              ["IL"],
+                              ["IN"],
+                              ["IA"],
+                              ["KS"],
+                              ["KY"],
+                              ["LA"],
+                              ["ME"],
+                              ["MD"],
+                              ["MA"],
+                              ["MI"],
+                              ["MN"],
+                              ["MS"],
+                              ["MO"],
+                              ["MT"],
+                              ["NE"],
+                              ["NV"],
+                              ["NH"],
+                              ["NJ"],
+                              ["NM"],
+                              ["NY"],
+                              ["NC"],
+                              ["ND"],
+                              ["OH"],
+                              ["OK"],
+                              ["OR"],
+                              ["PA"],
+                              ["RI"],
+                              ["SC"],
+                              ["SD"],
+                              ["TN"],
+                              ["TX"],
+                              ["UT"],
+                              ["VT"],
+                              ["VA"],
+                              ["WA"],
+                              ["WV"],
+                              ["WI"],
+                              ["WY"]
+                              ], @user.state), {:prompt => '-- Select State --'}, class: "form-control" %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= f.text_field :zip, class: "form-control",  placeholder: "Zip/Postal Code" %>
+                        </div>
+                    </div>
+                </div>
+                     
                 
             </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "Mobile Number" %>
+                        </div>
+                        <div class="col-sm-12">
+                            <%= f.text_field :cell, class: "form-control",  placeholder: "Cell/Mobile Number" %>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="control-label col-sm-12">
+                            <%= f.label :carrier %>
+                        </div>
+                        <div class="col-sm-12 carrier-dropdown">
+                            <%= f.select :carrier, options_for_select([
+                              [ ],
+                              ["AT&T", "at&t"], 
+                              ["Verizon", "verizon"], 
+                              ["Sprint", "sprint"],
+                              ["T-Mobile", "t-mobile"], 
+                              ["Boost", "boost"],
+                              ["Cricket Wireless", "cricket"],
+                              ["Metro PCS", "metropcs"]
+                              ], @user.carrier), class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr style="margin-top:50px;" />
+            
+
                 <br />
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -78,49 +225,21 @@
                     </div>
                 </div>
            
-            <br />
-            <hr />
-            <br />
             
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6" style="margin-bottom: 25px;">
-                        
-                            <div class="control-label col-sm-12">
-                                <%= f.label :company %>
-                            </div>    
-                            <div class="control-label col-sm-12">
-                                <%= f.text_field :company, class: "form-control",  placeholder: "Enter Company Name" %>
-                            </div>
-                        
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="control-label col-sm-12">
-                            <%= f.label "Channel Affiliation if any?" %>
-                        </div>
-                        <div class="col-md-12" style="margin-bottom: 20px;">
-                            <%= f.select :channel, options_for_select([
-                                  [""],
-                                  ["Rockwell Automation"], 
-                                  ["Wonderware"],
-                                  ["GE"]
-                            ], @user.channel), class: "form-control", style: "" %>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            
             
             <%= hidden_field_tag "id", "#{@event.id}" %>
             
-            <br />
-            <hr />
-            <br />
+            <hr style="margin-top:35px; margin-bottom: 35px;" />
+
+
+
              <div class="form-group">
                 <div class="row">
                     <div class="col-md-6" style="margin-bottom: 20px;">
                         <div class="control-label col-sm-12">
-                            <%= f.label :password %>
+                            <%= f.label "account Password" %>
                         </div>
                         <div class="col-sm-12 password-field">
                             <%= f.password_field :password, class: "form-control",  placeholder: (@user.new_record? ? "Enter Password" : "New Password") %>

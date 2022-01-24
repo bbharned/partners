@@ -104,10 +104,10 @@ def signup_evt
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
-        #@user.send_rau_notice
-        #@user.send_newuser_zap 
-        #@user.send_user_signup_notice 
-        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You can start certification by clicking below."
+        #@user.send_event_notice
+        #@user.send_evtuser_zap 
+        #@user.send_user_event_signup_notice 
+        flash[:success] = "Now that your account has been created, you can complete the registration by clicking the registration button below."
         redirect_to event_path(@event)
     else
         render :action => "evt", @event.id => params[:id]
