@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_action :require_admin, except: [:index, :show, :register]
+	before_action :require_admin, except: [:index, :show, :register, :reg_cancel]
 	before_action :set_event, only: [:edit, :update, :show, :register], except: [:destroy_reg]
 
 
@@ -29,13 +29,15 @@ def show
         
         @full = false
         if logged_in?
-            @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).first
+            @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id, :canceled => false).first
         end
         
-        @allregistered = EventAttendee.where(:event_id => @event.id)
+        @allregistered = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true)
         if @allregistered.any? && @allregistered.count >= @event.capacity
             @full = true
         end
+
+        @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
 
         @evtusers = []
         if @allregistered.any?
@@ -54,6 +56,17 @@ def show
     end
     
 end
+
+
+def reg_cancel
+    @event = params[:id]
+    @attendee = EventAttendee.where(event_id: @event, user_id: params[:user_id])
+    @attendee.first.toggle!(:canceled)
+    flash[:success] = "Registration changed"
+    redirect_to event_path(@event)
+    #redirect_back
+end
+
 
 
 def admin
@@ -101,7 +114,7 @@ end
 def update
     if @event.update(event_params)
         flash[:success] = "Event was successfully updated"
-        redirect_to events_path
+        redirect_to event_path(@event)
     else
         render 'edit'
     end
@@ -133,15 +146,27 @@ end
 
 def register
     if current_user
-        @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
-        if @register.save
-            # send confirmation emails here 
+        @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id)
+        if @registration == nil
+
+            @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
+            if @register.save
+                # send confirmation emails here 
+                flash[:success] = "You have been registered for #{@event.name}"
+                redirect_to user_path(current_user)
+            else
+                flash[:danger] = "You appear to already be registered for this event"
+                redirect_to user_path(current_user)
+            end
+        
+        else
+
+            @registration.first.toggle!(:canceled)
             flash[:success] = "You have been registered for #{@event.name}"
             redirect_to user_path(current_user)
-        else
-            flash[:danger] = "You appear to already be registered for this event"
-            redirect_to user_path(current_user)
+
         end
+
     else
         flash[:warning] = "You must have an account and be logged in to register for events. Please create your account"
         redirect_to evt_path(@event)
@@ -157,7 +182,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

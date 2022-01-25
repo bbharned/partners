@@ -34,6 +34,15 @@ def show
         end
     end
     @events.delete_if {|x| !x.live?}
+    @events.each do |e|
+        if e.tags.any?
+            e.tags.each do |tag|
+                if tag.name.include? "Internal"
+                    @events.delete(e)
+                end
+            end
+        end
+    end
     @events = @events.sort_by {|event| event.starttime}
 
 end

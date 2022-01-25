@@ -7,20 +7,20 @@
 
         
             <div class="form-group">
-                <div class="row">
+                <div class="row" style="margin-bottom:5px;">
                     <div class="col-md-6">
-                        <div class="control-label col-sm-12">
-                            <%= f.label :firstname %>
+                        <div class="control-label col-md-12">
+                            <%= f.label :firstname %> <sup style="color:red;">*</sup>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <%= f.text_field :firstname, class: "form-control", placeholder: "Enter First Name" %>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="control-label col-sm-12">
-                            <%= f.label :lastname %>
+                        <div class="control-label col-md-12">
+                            <%= f.label :lastname %> <sup style="color:red;">*</sup>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <%= f.text_field :lastname, class: "form-control",  placeholder: "Enter Last Name" %>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="control-label col-md-12">
-                            <%= f.label :email %>
+                            <%= f.label :email %> <sup style="color:red;">*</sup>
                         </div>
                         <div class="col-md-12">
                             <%= f.email_field :email, class: "form-control",  placeholder: "Enter Email Address" %>
@@ -39,10 +39,10 @@
                      <% if @user.new_record? %>
                         <div class="col-md-6">
                             
-                            <div class="control-label col-sm-12">
-                                <%= f.label :email_confirmation %>
+                            <div class="control-label col-md-12">
+                                <%= f.label :email_confirmation %> <sup style="color:red;">*</sup>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-md-12">
                                 <%= f.email_field :email_confirmation, class: "form-control",  placeholder: "Re-enter Email Address" %>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                     <div class="col-md-7" style="margin-bottom: 10px;">
                         
                             <div class="control-label col-sm-12">
-                                <%= f.label :company %>
+                                <%= f.label :company %> <sup style="color:red;">*</sup>
                             </div>    
                             <div class="control-label col-sm-12">
                                 <%= f.text_field :company, class: "form-control",  placeholder: "Enter Company Name" %>
@@ -239,7 +239,7 @@
                 <div class="row">
                     <div class="col-md-6" style="margin-bottom: 20px;">
                         <div class="control-label col-sm-12">
-                            <%= f.label "account Password" %>
+                            <%= f.label "account Password" %> <sup style="color:red;">*</sup>
                         </div>
                         <div class="col-sm-12 password-field">
                             <%= f.password_field :password, class: "form-control",  placeholder: (@user.new_record? ? "Enter Password" : "New Password") %>
@@ -247,7 +247,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="control-label col-sm-12">
-                            <%= f.label :password_confirmation %>
+                            <%= f.label :password_confirmation %> <sup style="color:red;">*</sup>
                         </div>
                         <div class="col-sm-12 password-conf-field">
                             <%= f.password_field :password_confirmation, class: "form-control",  placeholder: (@user.new_record? ? "Re-Enter Password" : "Re-Enter new password") %>

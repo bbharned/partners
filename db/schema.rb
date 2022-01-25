@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_145426) do
+ActiveRecord::Schema.define(version: 2022_01_25_132953) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_145426) do
     t.datetime "updated_at", null: false
     t.boolean "checkedin", default: false
     t.string "lastname"
+    t.boolean "canceled", default: false
   end
 
   create_table "event_categories", force: :cascade do |t|
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_145426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "live", default: false
+    t.string "viewer"
   end
 
   create_table "evtcategories", force: :cascade do |t|

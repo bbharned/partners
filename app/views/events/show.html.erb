@@ -155,6 +155,7 @@
 				<div class="col-md-4"><b style="padding-left:5px;">Company</b></div>
 			</div>
 			<% @allregistered.each do |u| %>
+				
 				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
 					<div class="row">
 						<div class="col-md-4">
@@ -166,11 +167,13 @@
 						<div class="col-md-4">
 							<div class="float-right">
 								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %> &nbsp;|&nbsp; 
-								<%= link_to "Delete Registration", deregister_path(:reg => u) , method: :destroy, data: { confirm: "You sure? "}, style: "color:red;" %></h4> 
+								<%= link_to "Cancel Registration", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to cancel this registration?"}, style: "color:red;" %>
+								<!-- <%= link_to "Delete Registration", deregister_path(:reg => u) , method: :destroy, data: { confirm: "You sure? "}, style: "color:red;" %> -->
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			<% end %>
 		
 	<% else %>
@@ -178,21 +181,77 @@
 	<% end %>
 
 
-<h2 align="center" style="margin-top: 35px;">Attendence</h2>
+	<h2 align="center" style="margin-top: 35px;">Attendence</h2>
 
-<div class="well">
-	<div class="row">
-		<div class="col" style="text-align:center;">
-			<% @checkedin = @allregistered.where(:checkedin => true) %>
-			<%= @checkedin.count %> users attended of the <%= @allregistered.count %> registered.
+	<div class="well">
+		<div class="row">
+			<div class="col" style="text-align:center;">
+				<% @checkedin = @allregistered.where(:checkedin => true) %>
+				<%= @checkedin.count %> users attended of the <%= @allregistered.count %> registered.
+			</div>
 		</div>
 	</div>
-</div>
 
+
+	<h2 align="center" style="margin-top: 35px;">Canceled Registrations</h2>
+
+	<% if @canceled.any? %>
+		<% @canceled.each do |u| %>
+				
+				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
+					<div class="row">
+						<div class="col-md-4">
+							<%= u.user.firstname %> <%= u.user.lastname %>
+						</div>
+						<div class="col-md-4">
+							<%= u.user.company %>
+						</div>
+						<div class="col-md-4">
+							<div class="float-right">
+								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %> &nbsp;|&nbsp; 
+								<%= link_to "Re-Register", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to re-register this user?"} %>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			<% end %>
+	<% end %>
 <% end %>
 
 
-	 
+<% if current_user.email == @event.viewer %>
+	<h2 align="center" style="margin-top: 35px;">Registration Details</h2>
+	<% if @allregistered.any? %>
+		<div class="small-sub-title"><%= @allregistered.count %> of <%= @event.capacity %> possible</div>
+		<div class="csv-link"><a href="/events/<%= @event.id %>.csv">Export (CSV)</a></div>
+		<div class="row" style="margin-bottom:5px;">
+				<div class="col-md-4">
+					<b style="padding-left:15px;">Name</b>
+				</div>
+				<div class="col-md-4"><b style="padding-left:5px;">Company</b></div>
+			</div>
+			<% @allregistered.each do |u| %>
+				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
+					<div class="row">
+						<div class="col-md-4">
+							<%= u.user.firstname %> <%= u.user.lastname %>
+						</div>
+						<div class="col-md-4">
+							<%= u.user.company %>
+						</div>
+						<div class="col-md-4">
+							<div class="float-right">
+								<% if u.checkedin %>
+									Attended
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+	<% end %>
+<% end %>	 
 	
 
 	

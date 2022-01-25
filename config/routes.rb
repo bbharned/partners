@@ -80,6 +80,8 @@ resources :venues
 resources :events
 get 'event/admin', to: 'events#admin'
 post 'events/:id', to: 'events#register'
+post 'events/:id/reg_cancel', to: 'events#reg_cancel', as: 'reg_cancel'
+
 resources :tags
 
 get 'evt/:id', to: 'users#evt', as: 'evt'
