@@ -42,7 +42,9 @@ def show
         @evtusers = []
         if @allregistered.any?
             @allregistered.each do |u|
-                @evtusers.push u.user_id
+                if !u.canceled
+                    @evtusers.push u.user_id
+                end
             end
         end
         
@@ -61,10 +63,26 @@ end
 def reg_cancel
     @event = params[:id]
     @attendee = EventAttendee.where(event_id: @event, user_id: params[:user_id])
-    @attendee.first.toggle!(:canceled)
-    flash[:success] = "Registration changed"
-    redirect_to event_path(@event)
-    #redirect_back
+    @allregistered = EventAttendee.where(event_id: @event, canceled: false)
+    @e = Event.find(@event)
+    
+    if @attendee.first.canceled? && (@allregistered.count >= @e.capacity)
+
+        flash[:danger] = "This event has reached capacity"
+        redirect_to event_path(@event)
+
+    else
+
+        @attendee.first.toggle!(:canceled)
+        flash[:success] = "Registration changed"
+        redirect_to event_path(@event)
+
+    end
+
+    # @attendee.first.toggle!(:canceled)
+    # flash[:success] = "Registration changed"
+    # redirect_to event_path(@event)
+    
 end
 
 
@@ -147,23 +165,42 @@ end
 def register
     if current_user
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id)
-        if @registration == nil
+        @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false)
+        if @registration.count == 0
 
-            @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
-            if @register.save
-                # send confirmation emails here 
-                flash[:success] = "You have been registered for #{@event.name}"
-                redirect_to user_path(current_user)
+            if @totalregs.count < @event.capacity
+
+                @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
+                if @register.save
+                    # send confirmation emails here 
+                    flash[:success] = "You have been registered for #{@event.name}"
+                    redirect_to user_path(current_user)
+                else
+                    flash[:danger] = "You appear to already be registered for this event"
+                    redirect_to user_path(current_user)
+                end
+            
             else
-                flash[:danger] = "You appear to already be registered for this event"
-                redirect_to user_path(current_user)
+
+                flash[:danger] = "This event has reached capacity"
+                redirect_to event_path(@event)
+
             end
         
         else
 
-            @registration.first.toggle!(:canceled)
-            flash[:success] = "You have been registered for #{@event.name}"
-            redirect_to user_path(current_user)
+            if @totalregs.count < @event.capacity
+
+                @registration.first.toggle!(:canceled)
+                flash[:success] = "You have been registered for #{@event.name}"
+                redirect_to user_path(current_user)
+
+            else
+
+                flash[:danger] = "This event has reached capacity"
+                redirect_to event_path(@event)
+
+            end
 
         end
 

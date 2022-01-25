@@ -180,7 +180,7 @@ ul.pagination {
     position:relative;  
 }
 .ra-top-bar {
-    width:100%; position: relative; height:40px; /*background-color: #808285;*/ background-color: #43434c;
+    width:100%; position: relative; height:40px; /*background-color: #808285;*/ background-color: #43434c; display: none; 
 }
 .ra-top-left {
     width:35%; min-width: 350px; max-width: 450px; height: 40px; /*background-color: #555555;*/ margin-left: -20px;
@@ -257,7 +257,7 @@ ul.pagination {
 
 /*************** Main Nav ******************/
 .main-nav {
-    position:relative; width:100%; top: -6px; 
+    position:relative; width:100%; top: 0px; 
     background-color: #084673 !important; color:#FFFFFF !important;
     margin-bottom: 35px;
 }

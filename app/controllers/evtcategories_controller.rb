@@ -28,21 +28,26 @@ def show
     @events = []
     if @allevents.any?
         @allevents.each do |event|
-            if event.event.starttime >= Date.today && !event.event.private
-                @events.push(Event.find(event.event_id))
-            end
-        end
-    end
-    @events.delete_if {|x| !x.live?}
-    @events.each do |e|
-        if e.tags.any?
-            e.tags.each do |tag|
-                if tag.name.include? "Internal"
-                    @events.delete(e)
+            @e = Event.find(event.event_id)
+            if @e.tags.any?
+                @e.tags.each do |tag|
+                    if tag.name.include? "Internal"
+
+                    else
+                        if event.event.starttime >= Date.today && !event.event.private
+                            @events.push(Event.find(event.event_id))
+                        end
+                    end
+                end
+            else
+                if event.event.starttime >= Date.today && !event.event.private
+                    @events.push(Event.find(event.event_id))
                 end
             end
         end
     end
+    @events.delete_if {|x| !x.live?}
+    
     @events = @events.sort_by {|event| event.starttime}
 
 end

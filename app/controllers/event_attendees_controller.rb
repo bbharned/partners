@@ -5,7 +5,7 @@ class EventAttendeesController < ApplicationController
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
         @users = User.all.order(:lastname)
-        @attendees = EventAttendee.where(event_id: @event.id).order(:lastname)
+        @attendees = EventAttendee.where(event_id: @event.id, :canceled => false).order(:lastname)
       else
         @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"

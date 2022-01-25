@@ -10,6 +10,10 @@ class Event < ActiveRecord::Base
   validates :name, presence: true, length: { minimum:3, maximum: 100 }
     
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :viewer, format: { with: VALID_EMAIL_REGEX }
+  before_save { self.viewer = viewer.downcase }
+
 
 def self.to_csv
   attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}

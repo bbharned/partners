@@ -45,7 +45,7 @@
 			        <% if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?) %>
 			            <div class="attendance btn-group" role="group">
 			                <%= link_to "Take Attendance", checkin_path(@event), class: "btn btn-default btn-sm btn-outline-primary" %>
-			                <% @registered = EventAttendee.where(:event_id => @event.id) %>
+			                <% @registered = EventAttendee.where(:event_id => @event.id, :canceled => false) %>
 			                <a href="mailto:<% @registered.each do |student| %><%= student.user.email %>,<% end %>" class="btn btn-default btn-sm btn-outline-primary">Email Registrants</a>
 			                <%= link_to "SMS", sms_path(@event), class: "btn btn-default btn-sm btn-outline-primary" %>   
 			            </div>
@@ -220,7 +220,7 @@
 <% end %>
 
 
-<% if current_user.email == @event.viewer %>
+<% if current_user && current_user.email == @event.viewer %>
 	<h2 align="center" style="margin-top: 35px;">Registration Details</h2>
 	<% if @allregistered.any? %>
 		<div class="small-sub-title"><%= @allregistered.count %> of <%= @event.capacity %> possible</div>
