@@ -97,6 +97,31 @@ end
         UserMailer.lab_upload_notice(self).deliver_now
     end
 
+#Event Norifications
+    def send_account_created_evt
+        UserMailer.event_account_creation(self).deliver_now
+    end
+
+    def send_acct_create_evt_internal
+        UserMailer.event_acct_creation_notice(self).deliver_now
+    end
+
+    def send_user_evt_registration(event)
+        UserMailer.event_registration_user(self, event).deliver_now
+    end
+
+    def send_event_reg_internal_notice(event)
+        UserMailer.event_reg_notice(self, event).deliver_now
+    end
+
+    def send_event_reg_cancel(event)
+        UserMailer.event_cancelation_user(self, event).deliver_now
+    end
+
+    def send_event_canceled_internal_notice(event)
+        UserMailer.event_reg_cancel(self, event).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)

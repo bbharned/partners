@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; text-align: center;">
+        
+        <br />
+        
+        <div style="margin: auto;">
+          <div style="width:127px; height:100px; margin:auto;">
+            <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+          </div>
+          <div style="text-align: center;">
+            <h2 style="margin-bottom: 35px;">Account Created through Events</h2>
+          </div>
+        </div>
+
+        <p>An account has been created in the ThinManager Portal through Events</p>
+        
+        <p style="font-weight:bold; margin-top: 35px;">User Information</p>
+        <p>
+          <%= @user.firstname %> <%= @user.lastname %><br />
+          <%= @user.company %><br />
+          <%= @user.email %>
+        </p>
+        
+        <p>Self Identified as:&nbsp;
+          <% if @user.distributor %>
+              Distributor
+            <% elsif @user.integrator %>
+              Integrator
+            <% elsif @user.end_user %>
+              End User
+            <% elsif @user.oem %>
+              OEM
+            <% else %> 
+              &nbsp;
+          <% end %>
+        </p>
+
+        
+        <p align="center" style="margin-top:45px;">Created on: <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+    
+    </div>
+  </body>
+</html>

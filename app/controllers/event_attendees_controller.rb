@@ -23,7 +23,7 @@ class EventAttendeesController < ApplicationController
     def sms 
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
-        @attendees = EventAttendee.where(event_id: @event.id)
+        @attendees = EventAttendee.where(event_id: @event.id).where.not(:canceled => true)
         @evt_users = []
         @attendees.each do |u|
           @user = User.find(u.user_id)
@@ -48,7 +48,7 @@ class EventAttendeesController < ApplicationController
       @message = params[:message][:sms_message]
       @subject = params[:message][:sms_subject]
       @event = Event.find(params[:id])
-      @attendees = EventAttendee.where(event_id: @event.id)
+      @attendees = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
       @evt_users = []
       @attendees.each do |u|
         @user = User.find(u.user_id)

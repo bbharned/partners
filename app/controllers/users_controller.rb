@@ -104,9 +104,9 @@ def signup_evt
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
-        #@user.send_event_notice
-        #@user.send_evtuser_zap 
-        #@user.send_user_event_signup_notice 
+        @user.send_account_created_evt
+        @user.send_acct_create_evt_internal
+        #internal notice of account creation
         flash[:success] = "Now that your account has been created, you can complete the registration by clicking the registration button below."
         redirect_to event_path(@event)
     else
@@ -322,6 +322,8 @@ def show
             @user_events.push @event
         end
      end
+
+     
      # def send_cert_conf(user)  # --->  <a onClick="<%= @user.send_cert_conf() %>"></a>
      #    user.send_cert_conf
      # end

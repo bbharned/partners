@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; text-align: center;">
+        
+        <br />
+        
+        <div style="margin: auto;">
+          <div style="width:127px; height:100px; margin:auto;">
+            <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+          </div>
+          <div style="text-align: center;">
+            <h2 style="margin-bottom: 35px;">Event Registration <span style="color:red;">Cancellation</span></h2>
+          </div>
+        </div>
+
+        <p>Event Registration in the ThinManager Portal</p>
+        
+        <p style="font-weight:bold; margin-top: 35px;">User Information</p>
+        <p>
+          <%= @user.firstname %> <%= @user.lastname %><br />
+          <%= @user.company %><br />
+          <%= @user.email %>
+        </p>
+        
+
+        <p style="font-weight:bold; margin-top: 55px;">Event Details</p>
+
+        <p>
+          <%= @event.name %><br />
+          <%= @event.evtcategories.first.name %><br />
+          <%= @event.starttime.strftime("%m/%d/%Y") %>
+        </p>
+
+        <p align="center" style="margin-top:45px;">Cancellation on: <%= Date.today.strftime("%m/%d/%Y") %></p>
+    
+    </div>
+  </body>
+</html>

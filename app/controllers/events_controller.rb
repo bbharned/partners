@@ -37,6 +37,8 @@ def show
             @full = true
         end
 
+        @spotsleft = @event.capacity - @allregistered.count
+
         @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
 
         @evtusers = []
@@ -73,7 +75,13 @@ def reg_cancel
 
     else
 
+        @user = User.find(@attendee.first.user_id)
+
         @attendee.first.toggle!(:canceled)
+        #email notices
+        @user.send_event_reg_cancel(@e)
+        @user.send_event_canceled_internal_notice(@e)
+        
         flash[:success] = "Registration changed"
         redirect_to event_path(@event)
 
@@ -172,7 +180,10 @@ def register
 
                 @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname)
                 if @register.save
-                    # send confirmation emails here 
+                    # send confirmation emails here
+                    current_user.send_user_evt_registration(@event)
+                    current_user.send_event_reg_internal_notice(@event) 
+                    
                     flash[:success] = "You have been registered for #{@event.name}"
                     redirect_to user_path(current_user)
                 else
@@ -192,6 +203,8 @@ def register
             if @totalregs.count < @event.capacity
 
                 @registration.first.toggle!(:canceled)
+                current_user.send_user_evt_registration(@event)
+                current_user.send_event_reg_internal_notice(@event)
                 flash[:success] = "You have been registered for #{@event.name}"
                 redirect_to user_path(current_user)
 

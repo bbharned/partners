@@ -136,6 +136,88 @@ class UserMailer < ApplicationMailer
     mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Lab Uploaded for certification', delivery_method_options: delivery_options)
   end
 
+  def event_reg_notice(user, event) #done
+    @user = user
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Registration', delivery_method_options: delivery_options)
+  end
+
+  def event_reg_cancel(user, event) #done
+    @user = user
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Registration Cancellation', delivery_method_options: delivery_options)
+  end
+
+  def event_acct_creation_notice(user) #done
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Account Created', delivery_method_options: delivery_options)
+  end
+
+
+  def event_account_creation(user) 
+    #@user = user
+    @user = User.find(1)
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Creating Your Account', delivery_method_options: delivery_options)
+  end
+
+
+  def event_registration_user(user, event)
+    #@user = user
+    @user = User.find(1)
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
+  end
+
+
+  def event_cancelation_user(user, event) 
+    #@user = user
+    @user = User.find(1)
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Sorry You Had to Cancel', delivery_method_options: delivery_options)
+  end
+
 
 
 

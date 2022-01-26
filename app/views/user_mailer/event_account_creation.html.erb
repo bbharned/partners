@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+      <img src="https://thinmanager.com/images/email_headers/PartnerRegisterNoticeHeader.jpg" width="100%" alt="Thank you for creating your account" />
+
+      <div style="padding:25px;">
+        <h1 align="center" style="margin-bottom:50px;">Your ThinManager Portal&nbsp;Account Has&nbsp;Been&nbsp;Created</h1>
+        <p>Dear <%= @user.firstname %>,</p>
+
+        <p>We are so pleased that you have taken the time to create your ThinManager Portal account. You can now register for events as desired and also use the resources available to learn ThinManager and even get ThinManager certified!</p>
+        
+
+        <h3 style="margin-bottom: 0px;">ThinManager Portal Resources</h3>
+        
+        <p style="margin-top:5px;">The <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> is a great place to find documentation, presentations, and other partner resources. Content in the ThinManager Portal is presented based on your partnership role, so the items most important to you are readily available. </p>
+
+        
+        <p>Thank you again!</p>
+        <br />
+        <h3  style="margin-bottom: 0px;">Tom Jordan</h3>
+        <p  style="margin-top: 2px;">Marketing Lead<br />
+        <a href="mailto:tjordan@thinmanager.com">tjordan@thinmanager.com</a></p>
+        <br /><br />
+      </div>
+    </div>
+      
+  </body>
+</html>

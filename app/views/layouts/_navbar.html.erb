@@ -42,9 +42,9 @@
               </li>
             <% end %>
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <%= link_to "Events", events_path, class: 'nav-link' %>
-            </li> -->
+            </li>
 
             <% if (!current_user.needs_review) || (current_user.admin?) %>
             <li class="nav-item dropdown">

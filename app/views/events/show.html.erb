@@ -137,6 +137,10 @@
 			<div class="card-footer">
 				Registered: <%= @allregistered.count %> of <%= @event.capacity %>
 			</div>
+		<% elsif @spotsleft < 6 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
+			<div class="card-footer">
+				Only <%= pluralize(@spotsleft, "spot") %> left!
+			</div>
 		<% end %>
 	</div>
 

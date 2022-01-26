@@ -47,4 +47,41 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.zap_lab_upload(@user)
   end
 
+  def event_reg_notice
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_reg_notice(@user, @event)
+  end
+
+  def event_reg_cancel
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_reg_cancel(@user, @event)
+  end
+
+  def event_account_creation
+    @user = User.find(15)
+    UserMailer.event_account_creation(@user)
+  end
+
+  def event_acct_creation_notice
+    @user = User.find(15)
+    UserMailer.event_acct_creation_notice(@user)
+  end
+
+  def event_registration_user
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_registration_user(@user, @event)
+  end
+
+
+  def event_cancelation_user
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_cancelation_user(@user, @event)
+  end
+
+
+
 end
