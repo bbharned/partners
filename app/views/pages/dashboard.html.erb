@@ -269,6 +269,18 @@
 
 
 
+	  <!-- ThinManager Events Card -->
+	  <div class="card">
+	  	<%= image_tag "events_dashcard.jpg", class: "card-img-top" %>
+	    <div class="card-body">
+	      <h5 class="card-title">ThinManager Events</h5>
+	      <p class="card-text" style="margin-bottom:25px;">Our team hosts many events each year.  ThinManager Training, Webinars, and Roadshows. Learn more, sign up and get ready to learn more about ThinManager.</p>
+	      <div align="right"><%= link_to "Manage My Events", user_path(current_user), class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "See Events", events_path, class: "btn btn-primary" %></div>
+	    </div>
+	  </div>
+
+
+
 
 	  <!--------- Integrator Resource Card ------------->
 	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) %>

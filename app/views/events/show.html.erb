@@ -121,7 +121,11 @@
 							<% elsif @full == true %>
 								<%= link_to "Event Full", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 							<% else %>
-								<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %> 
+								<% if current_user %>
+									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register, class: "btn btn-primary btn-sm" %> 
+								<% else %>
+									<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %>
+								<% end %>
 							<% end %>
 						</div>
 					</div>

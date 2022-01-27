@@ -63,24 +63,33 @@ end
 
 
 def reg_cancel
-    @event = params[:id]
-    @attendee = EventAttendee.where(event_id: @event, user_id: params[:user_id])
+    @event = Event.find(params[:id])
+    @attendee = EventAttendee.where(event_id: @event.id, user_id: params[:user_id]).first
+    @user = User.find(@attendee.user_id)
     @allregistered = EventAttendee.where(event_id: @event, canceled: false)
-    @e = Event.find(@event)
+    #@e = Event.find(@event.to_i)
     
-    if @attendee.first.canceled? && (@allregistered.count >= @e.capacity)
+    if @attendee.canceled? && (@allregistered.count >= @event.capacity)
 
         flash[:danger] = "This event has reached capacity"
         redirect_to event_path(@event)
 
+    elsif @attendee.canceled? && (@allregistered.count < @event.capacity)
+
+        #@user = User.find(@attendee.first.user_id)
+        @attendee.toggle!(:canceled)
+        @user.send_user_evt_registration(@event)
+        @user.send_event_reg_internal_notice(@event)
+        flash[:success] = "You have been registered for #{@event.name}"
+        redirect_to user_path(@user)
+
     else
 
-        @user = User.find(@attendee.first.user_id)
-
-        @attendee.first.toggle!(:canceled)
+        
+        @attendee.toggle!(:canceled)
         #email notices
-        @user.send_event_reg_cancel(@e)
-        @user.send_event_canceled_internal_notice(@e)
+        @user.send_event_reg_cancel(@event)
+        @user.send_event_canceled_internal_notice(@event)
         
         flash[:success] = "Registration changed"
         redirect_to event_path(@event)
@@ -172,6 +181,7 @@ end
 
 def register
     if current_user
+        @user = User.find(params[:user_id])
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id)
         @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false)
         if @registration.count == 0
@@ -203,8 +213,8 @@ def register
             if @totalregs.count < @event.capacity
 
                 @registration.first.toggle!(:canceled)
-                current_user.send_user_evt_registration(@event)
-                current_user.send_event_reg_internal_notice(@event)
+                @user.send_user_evt_registration(@event)
+                @user.send_event_reg_internal_notice(@event)
                 flash[:success] = "You have been registered for #{@event.name}"
                 redirect_to user_path(current_user)
 
