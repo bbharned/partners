@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
     
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :viewer, format: { with: VALID_EMAIL_REGEX }
+  validates :viewer, format: { with: VALID_EMAIL_REGEX }, :allow_nil => true, :allow_blank => true
   before_save { self.viewer = viewer.downcase }
 
 
@@ -28,7 +28,7 @@ def self.to_csv
 end
 
 filterrific(
-   default_filter_params: { sorted_by: 'created_at_desc' },
+   default_filter_params: { sorted_by: 'starttime_asc' },
    available_filters: [
      :sorted_by,
      :with_search,
