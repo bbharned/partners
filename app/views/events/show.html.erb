@@ -62,7 +62,7 @@
 					<div class="col-md-7">
 						<p><%= @event.description %></p>
 						<hr />
-						<p><b>Event Venue:</b> <%= @event.venues[0].name if @event.venues.any? %><br />
+						<p><b>Event Venue:</b> <%= link_to "#{@event.venues[0].name}", venue_path(@event.venues[0]), style: "color:inherit;" if @event.venues.any? %><br />
 						<b>Event Type:</b>
 							<% if @event.evtcategories.any? %> 
 								<% @event.evtcategories.each do |cat| %>
@@ -141,9 +141,13 @@
 			<div class="card-footer">
 				Registered: <%= @allregistered.count %> of <%= @event.capacity %>
 			</div>
-		<% elsif @spotsleft < 6 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
+		<% elsif @spotsleft < 6 && @spotsleft > 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
 			<div class="card-footer">
 				Only <%= pluralize(@spotsleft, "spot") %> left!
+			</div>
+		<% elsif @spotsleft == 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
+			<div class="card-footer">
+				Registration is full
 			</div>
 		<% end %>
 	</div>

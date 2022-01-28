@@ -37,7 +37,15 @@ def show
             @full = true
         end
 
-        @spotsleft = @event.capacity - @allregistered.count
+        if @event.capacity != nil && @event.capacity != ""
+            if @event.capacity > 0
+                @spotsleft = @event.capacity - @allregistered.count
+            else
+                @spotsleft = 0
+            end
+        else
+            @spotsleft = 0
+        end
 
         @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
 

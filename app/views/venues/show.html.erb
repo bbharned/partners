@@ -38,47 +38,13 @@
 				<p><%= link_to "#{@venue.url}", "#{@venue.url}", target: "_blank" %></p>
 			</div>
 		<% end %>
-		
 	</div>
 </div>
 
+<%= link_to "« Back", :back %> 
 
 
 
-<% if @events.any? %>
-	<div class="row">
-		<div class="col-12">
-			<h4>Available Events</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="flex-container">
-			<% @events.each do |event| %>
-
-				<% if !event.event.private && event.event.live %>
-					<div class="event-card">
-						<%= image_tag "#{event.event.event_image}", class: "card-img-top", style: "max-width:100%; margin-bottom:5px;" %>
-						<div class="card-body">
-							<h5 class="card-title"><%= event.event.name %></h5>
-							<p class="card-text"><%= event.event.description.truncate(65) %></p>
-							<p class="card-text" style="font-weight:bold;"><%= event.event.starttime.strftime("%B %d, %Y") %><br /><%= event.event.starttime.strftime("%I:%M%p") %> - <%= event.event.endtime.strftime("%I:%M%p") %></p>
-
-							<div align="right"><%= link_to "Learn More", event_path(event.event), class: "btn btn-primary btn-sm"  %></div>
-						</div>
-						<!-- <div class="card-footer">
-					        <small class="text-muted">Capacity: </small>
-					    </div> -->
-					</div>
-				<% end %>
-			
-			<% end %>
-		</div>
-	</div>
-<% else %>
-
-<p style="color:orangered;" align="center">There are currently no events at this venue</p>
-
-<% end %>
 
 
 

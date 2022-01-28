@@ -20,18 +20,18 @@
 <hr />
 
 <% if @events.any? %>
-
+<div class="row">
 	<% @events.each do |e| %>
 
 		<% if e.live %>
 
-			<%= render 'events/full-card', event: e %>
+			<%= render 'events/third_card', event: e %>
 
 		<% end %>
 
 	<% end %>
 
-
+</div>
 <% else %>
 
 <p style="color:darkorange;">There are no events currently for for this group. Please check back</p>

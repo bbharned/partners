@@ -24,13 +24,11 @@
 				<% @venues.each do |venue| %>
 
 					<div class="event-card">
-						<% if venue.image_link != "" %>
-							<img src="<%= venue.image_link %>" alt="<%= venue.name %>" class="card-img-top" style="object-fit: contain;" />
-						<% end %>
+						
 					    <div class="card-body">
-					      <h5 class="card-title"><%= venue.name %></h5>
-					      <p class="card-text"><%= venue.description %></p>
-					      <div align="right"><%= link_to "Details / Events", venue_path(venue), class: "btn btn-primary" %></div>
+					      <h5 class="card-title" align="center"><%= venue.name %></h5>
+					      <hr />
+					      <div style="text-align:center;"><%= link_to "Details", venue_path(venue), class: "btn btn-primary" %></div>
 					    </div>
 					</div>
 
