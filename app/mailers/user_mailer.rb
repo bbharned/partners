@@ -146,7 +146,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'bbharned@ra.rockwell.com', from: 'ThinManager Portal', subject: 'Event Registration', delivery_method_options: delivery_options)
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Registration', delivery_method_options: delivery_options)
   end
 
   def event_reg_cancel(user, event) #done
@@ -159,7 +159,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'bbharned@ra.rockwell.com', from: 'ThinManager Portal', subject: 'Event Registration Cancellation', delivery_method_options: delivery_options)
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Registration Cancellation', delivery_method_options: delivery_options)
   end
 
   def event_acct_creation_notice(user) #done
@@ -171,7 +171,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: 'bbharned@ra.rockwell.com', from: 'ThinManager Portal', subject: 'Event Account Created', delivery_method_options: delivery_options)
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Account Created', delivery_method_options: delivery_options)
   end
 
 

@@ -112,6 +112,32 @@
 
 
 		<div class="row" style="margin-top: 50px;">
+			<h4>Events</h4>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Event Accounts Created</h5>
+					<h1 class="huge"><%= @evt_users.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Event Registrations</h5>
+					<h1 class="huge"><%= @evt_registrations.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Event Cancelations</h5>
+					<h1 class="huge"><%= @evt_reg_cancels.count %></h1>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-top: 50px;">
 			<h4>Learning</h4>
 		</div>
 		<div class="row">

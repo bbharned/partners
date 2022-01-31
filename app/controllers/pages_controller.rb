@@ -173,6 +173,11 @@ def reports
     else
         @qr_best_user_month = nil
     end
+
+    @evt_users = User.where(referred_by: "Events")
+    @evt_registrations = EventAttendee.where(:canceled => false)
+    @evt_reg_cancels = EventAttendee.where(:canceled => true)
+
 end
 
 
