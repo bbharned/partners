@@ -73,6 +73,7 @@ resources :hwstatuses
 resources :hwtypes
 resources :firmwares
 get 'terminals', to: 'terminals#index'
+get 'terminals/:id', to: 'terminals#show', as: 'terminal'
 
 
 resources :evtcategories

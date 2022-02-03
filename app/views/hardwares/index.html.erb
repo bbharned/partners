@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
-				<h3 style="margin-bottom:0px;">ThinManager Hardware</h3>
+				<h3 style="margin-bottom:0px;">Peripheral Finder</h3>
 			</div>
 			<div class="col-md-3">
 				<% if logged_in? && (current_user.admin? || current_user.hw_admin?) %>
@@ -30,7 +30,7 @@
 							    <div class="form-label">Search</div>
 							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 							    <%= f.text_field(
-							      :with_search,
+							      :with_search, autofocus: true,
 							      class: 'filterrific-periodically-observed form-control'
 							    ) %>
 							  </div>

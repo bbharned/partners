@@ -1,0 +1,52 @@
+<div id="filterrific_results">
+
+  
+
+  <% if @terminals.any? %>
+        <% @terminals.each do |t| %>
+          <% @Manufacturer = Manufacturer.find(t.ManufacturerId) %>
+          <% @type = TerminalType.find(t.TypeId) %>
+          <div class="card" style="margin-bottom:15px;">
+            
+            <div class="card-header">
+              <p style="font-weight:bold; font-size:.9em;"><%= t.Model %></p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <span class="card-sm-title">MODEL</span><br />
+                  <span class="card-title"><%= link_to "#{t.Model}", terminal_path(t) %></span>
+                </div>
+                <div class="col-4">
+                  <span class="card-sm-title">MANUFACTURER</span><br />
+                  <div class="card-text"><%= @Manufacturer.Name %></div>
+                </div>
+                <div class="col-4">
+                 
+                    <span class="card-sm-title">BOOT TYPE</span><br />
+                    <div class="card-text"><%= @type.Type %></div>
+                  
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+            
+
+  <% end %>
+    <% if @terminals.count > 20 %>
+    <div class="paginate" style="margin-top:40px;">
+      <%= will_paginate(@terminals, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+    </div>
+    <% end %>
+  <% else %>
+    <p style="text-align:center; margin-top:100px;">Your search has resulted in 0 results<br />reset filters and try again.</p>
+  <% end %>
+
+
+
+
+
+</div>
+
