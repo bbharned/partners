@@ -13,6 +13,8 @@ filterrific(
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
+     :with_monitor_count,
+     :with_ethernet_count,
    ],
  )
 
@@ -71,7 +73,13 @@ scope :with_firm, ->(firmId) {
   Terminal.where(Id: @terms)
 }
 
+scope :with_monitor_count, ->(monitorIds) {
+  Terminal.where(MaxMonitors: monitorIds)
+}
 
+scope :with_ethernet_count, ->(ethernetIds) {
+  Terminal.where(EthernetCount: ethernetIds)
+}
 
 
   # This method provides select options for the `sorted_by` filter select input.

@@ -33,11 +33,23 @@
 				<% end %>
 			<% end %>
 		<% end %>]<br /><br />
-		<b>Monitor Capacity:</b>&nbsp;<%= @terminal.MaxMonitors %><br />
-		<b>Ethernet Count:</b>&nbsp;<%= @terminal.EthernetCount %></br />
+		<b>Monitor Capacity:</b>&nbsp;
+			<% if @terminal.MaxMonitors == 0 %>
+				No Monitor Count Available
+			<% else %>
+				<%= @terminal.MaxMonitors %>
+			<% end %>
+		<br />
+		<b>Ethernet Count:</b>&nbsp;
+			<% if @terminal.EthernetCount == 0 %>
+				No Ethernet Port Count Available
+			<% else %>
+				<%= @terminal.EthernetCount %>
+			<% end %>
+		</br />
 	</div>
 </div>
-
+<div style="margin-top: 12px;"><%= link_to "« Back", :back %></div>
 
 
 </div>

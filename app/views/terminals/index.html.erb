@@ -50,10 +50,26 @@
 
 						<div class="row">
 							<div class="col-sm-4">
-							    <div class="form-label">Firmware Compatability</div>
+							    <div class="form-label">Firmware Compatibility</div>
 							    <%= f.select(
 							      :with_firm,
 							      @filterrific.select_options[:with_firm],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %>
+							  </div>
+							  <div class="col-sm-4">
+							    <div class="form-label">Monitor Capability</div>
+							    <%= f.select(
+							      :with_monitor_count,
+							      @filterrific.select_options[:with_monitor_count],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %>
+							  </div>
+							  <div class="col-sm-4">
+							    <div class="form-label">Ethernet Ports</div>
+							    <%= f.select(
+							      :with_ethernet_count,
+							      @filterrific.select_options[:with_ethernet_count],
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
