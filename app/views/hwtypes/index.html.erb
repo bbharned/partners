@@ -20,7 +20,7 @@
 		<div class="well category-well">
 			<h3 style="margin-bottom:0px;"><%= type.name %></h3>
 			<p style="margin-bottom:10px;"><small><%= pluralize(type.hardwares.count, "hardware piece") %></small></p>
-			<p><%= link_to "Edit", edit_hwtype_path(type) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", hwtype_path(type), method: :delete, data: {confirm: "Are you sure you want to delete this Hardware type?"}, style: "color:red;" %></p>
+			<p><%= link_to "Edit", edit_hwtype_path(type) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", hwtype_path(type), method: :delete, data: {confirm: "Are you sure you want to delete this Hardware type? It will delete all hardware assigned to this type as well"}, style: "color:red;" %></p>
 		</div>
 	</div>
 

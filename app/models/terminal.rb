@@ -44,7 +44,7 @@ scope :sorted_by, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^model_/
-    order("Model #{direction}")
+    order("terminals.Model #{direction}")
   when /^created_at_/
     order("terminals.created_at #{direction}")
   else

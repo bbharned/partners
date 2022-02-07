@@ -28,9 +28,9 @@ def self.to_csv
 end
 
 filterrific(
-   default_filter_params: { sorted_by: 'starttime_asc' },
+   default_filter_params: { sort_this: 'starttime_asc' },
    available_filters: [
-     :sorted_by,
+     :sort_this,
      :with_search,
      :with_evtcategory,
      :with_live,
@@ -73,7 +73,7 @@ scope :with_search, lambda { |query|
 } 
 
 
-scope :sorted_by, ->(sort_option) {
+scope :sort_this, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^starttime_/
@@ -128,7 +128,7 @@ scope :with_state, ->(date_ref) {
 
   # This method provides select options for the `sorted_by` filter select input.
   # It is called in the controller as part of `initialize_filterrific`.
-  def self.options_for_sorted_by
+  def self.options_for_sort_this
     [
       ["Start Time", "starttime_asc"],
       ["Newest - Oldest", "created_at_desc"],

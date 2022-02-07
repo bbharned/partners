@@ -54,7 +54,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-sm-3">
+							<div class="col-sm-4">
 							   <div class="form-label">Status</div>
 							   	<%= f.select(
 							      :with_hwstatus_id,
@@ -62,7 +62,7 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %> 		
 						    </div>
-						    <div class="col-sm-3">
+						    <!-- <div class="col-sm-3">
 						    	<div class="form-label">Boot Type</div>
 							   	<%= f.select(
 							      :with_boot,
@@ -70,7 +70,8 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %> 	
 						    </div>
-						    <div class="col-sm-3">
+						    
+						    <div class="col-sm-4">
 							   <div class="form-label">Min Firmware</div>
 							   	<%= f.select(
 							      :with_min_firmware,
@@ -78,6 +79,7 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %> 		
 						    </div>
+						    
 						    <div class="col-sm-3">
 							   <div class="form-label">Max Firmware</div>
 							   	<%= f.select(
@@ -85,7 +87,7 @@
 							      @filterrific.select_options[:with_max_firmware],
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %> 		
-						    </div>
+						    </div> -->
 						</div>
 
 						<div class="row" style="margin-top:10px;">

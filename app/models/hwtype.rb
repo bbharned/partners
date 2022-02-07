@@ -1,5 +1,5 @@
 class Hwtype < ActiveRecord::Base
-	has_many :hardwares
+	has_many :hardwares, dependent: :destroy
 	has_many :hwstatuses, through: :hardwares
 	has_many :makers, through: :hardwares
 
