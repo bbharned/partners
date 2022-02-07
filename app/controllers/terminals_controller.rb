@@ -1,6 +1,13 @@
 class TerminalsController < ApplicationController
 
 def index
+  @url = request.original_url
+  
+  if @url.include? "hardware"
+    @bg = 'hardware'
+  else
+    @bg = 'peripheral'
+  end
 	
 	@filterrific = initialize_filterrific(
      Terminal,
@@ -9,13 +16,11 @@ def index
         sorted_by: Terminal.options_for_sorted_by,
         with_manufacturer: Manufacturer.options_for_select,
         with_boot_type: TerminalType.options_for_select,
-        # with_venue: Venue.options_for_select,
-        # with_state: ['Upcoming Events', 'Past Events'],
-        # with_live_status: ['Live Events', 'Draft Events'],
+        with_firm: FirmwarePackage.options_for_select,
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_manufacturer, :with_boot_type],
+      available_filters: [:sorted_by, :with_search, :with_manufacturer, :with_boot_type, :with_firm],
       sanitize_params: true,
    ) or return
    @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10)
@@ -37,7 +42,18 @@ end
 
 
 def show
-	@terminal = Terminal.find(params[:id])
+	
+  @terminal = Terminal.find(params[:id])
+  @manufacturer = Manufacturer.find(@terminal.ManufacturerId)
+  @firmpktg = TerminalFirmwarePackage.where(TerminalId: @terminal.id)
+  @firmwares = []
+  if @firmpktg.any?
+    @firmpktg.each do |f|
+      @pktg = FirmwarePackage.find(f.PackageId)
+      @firmwares.push @pktg
+    end
+  end
+  @firmsort = @firmwares.sort_by {|k, v| -k.Version }
 
 end
 

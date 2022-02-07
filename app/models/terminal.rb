@@ -1,6 +1,8 @@
 class Terminal < Termcap2
 	self.table_name = "Terminals"
-	belongs_to :manufacturer, class_name: 'Manufacturer', foreign_key: 'ManufacturerId'
+	belongs_to :Manufacturer, class_name: 'Manufacturer', foreign_key: 'ManufacturerId'
+  has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: 'TerminalFirmwarePackage', foreign_key: 'PackageId'
+  has_many :TerminalFirmwarePackages
 
 
 filterrific(
@@ -10,6 +12,7 @@ filterrific(
      :with_search,
      :with_manufacturer,
      :with_boot_type,
+     :with_firm,
    ],
  )
 
@@ -56,36 +59,19 @@ scope :with_boot_type, ->(typeIds) {
   Terminal.where(TypeId: typeIds)
 }
 
-# scope :with_venue, ->(venue_ids) {
-#   joins(event_venues: :venue).where(event_venues: {venue_id: venue_ids})
-# }
+scope :with_firm, ->(firmId) {
+  @joins = TerminalFirmwarePackage.where(PackageId: firmId).joins(:FirmwarePackage)
+  @terms = []
+  if @joins.any?
+    @joins.each do |join|
+      @terms.push join.TerminalId
+    end
+  end
+  #Terminal.where(Id: @joins.TerminalIds).includes(:TerminalFirmwarePackage)#.joins(:FirmwarePackage)
+  Terminal.where(Id: @terms)
+}
 
 
-# # filters on 'live' attribute
-# scope :with_live, lambda { |flag|
-#   return nil  if 0 == flag # checkbox unchecked
-#   where(live: true)
-# }
-
-# scope :with_live_status, ->(status) {
-#     if status == 'Live Events'
-#         where("events.live == ?", true)
-#     elsif status == 'Draft Events'
-#         where("events.live != ?", true)
-#     else
-#         where.not("events.live == ?", nil)
-#     end
-# }       
-
-# scope :with_state, ->(date_ref) {
-#     if date_ref == 'Upcoming Events'
-#         where("events.starttime >= ?", Date.today)
-#     elsif date_ref == 'Past Events'
-#         where("events.starttime < ?", Date.today)
-#     else
-#         where.not("events.starttime == ?", nil)
-#     end
-# }       
 
 
   # This method provides select options for the `sorted_by` filter select input.

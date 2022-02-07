@@ -1,3 +1,4 @@
+<%= render 'layouts/hardware-nav' %>
 <div style="width: 98%; margin: auto;padding-bottom:100px;">
 
 <div class="container">
@@ -7,7 +8,7 @@
 			</div>
 		</div>
 	</div>
-	<hr style="margin-bottom:7px;" />
+	<hr style="margin-bottom:12px;" />
 	<div class="container">
 		<p><small>Welcome to the ThinManager Hardware Finder. Use the search and filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system.</small></p>
 	</div>
@@ -42,6 +43,17 @@
 							    <%= f.select(
 							      :with_boot_type,
 							      @filterrific.select_options[:with_boot_type],
+							      { include_blank: '- Any -' }, class: "form-control"
+							    ) %>
+							  </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-4">
+							    <div class="form-label">Firmware Compatability</div>
+							    <%= f.select(
+							      :with_firm,
+							      @filterrific.select_options[:with_firm],
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>

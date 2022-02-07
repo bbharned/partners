@@ -1,0 +1,16 @@
+<div class="flex-container-center-nav" style="margin-bottom: 25px;">
+	<div class="nav-buttons">
+		<span style="font-size:.8em; font-style:italic;">Search for:&nbsp;&nbsp;</span>
+		<% if @bg == 'hardware' %>
+			<span><%= link_to "Thin Clients", terminals_path %></span>
+			<span><%= link_to "Peripherals", hardwares_path, style: "background-color:#c1c1c1;" %></span>
+		<% elsif @bg == 'peripheral' %>
+			<span><%= link_to "Thin Clients", terminals_path, style: "background-color:#c1c1c1;" %></span>
+			<span><%= link_to "Peripherals", hardwares_path %></span>
+		<% else %>
+			<span><%= link_to "Thin Clients", terminals_path %></span>
+			<span><%= link_to "Peripherals", hardwares_path %></span>
+		<% end %>
+		
+	</div>
+</div>

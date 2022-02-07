@@ -9,7 +9,7 @@
           <div class="card" style="margin-bottom:15px;">
             
             <div class="card-header">
-              <p style="font-weight:bold; font-size:.9em;"><%= t.Model %></p>
+              <p style="font-weight:bold; font-size:.9em;"><%= @Manufacturer.Name %> <%= t.Model %></p>
             </div>
             <div class="card-body">
               <div class="row">
@@ -22,13 +22,22 @@
                   <div class="card-text"><%= @Manufacturer.Name %></div>
                 </div>
                 <div class="col-4">
-                 
-                    <span class="card-sm-title">BOOT TYPE</span><br />
-                    <div class="card-text"><%= @type.Type %></div>
-                  
+                  <span class="card-sm-title">BOOT TYPE</span><br />
+                  <div class="card-text"><%= @type.Type %></div>
                 </div>
               </div>
               
+              <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-4">
+                  
+                </div>
+                <div class="col-4">
+                  
+                </div>
+              </div>
             </div>
 
           </div>

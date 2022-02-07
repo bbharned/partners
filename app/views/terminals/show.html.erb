@@ -1,8 +1,42 @@
 <div class="container" style="padding-bottom: 125px;">
 
-<h1><%= @terminal.Model %></h1>
+<div class="row">
+		<div class="col-sm-8">
+			<h1><%= @terminal.Model %></h1>
+		</div>
+		<div class="col-sm-4">
+			<%= link_to "Back to search", terminals_path, class: "btn btn-primary btn-sm float-right", style: "margin-top:12px;" %>
+		</div>
+	</div>
 <hr />
 
+
+<div class="card">
+	<div class="card-header">
+		<h2 style="margin-bottom:0px;"><%= @manufacturer.Name %></h2>
+		<span style="margin-top:-10px; color:slateblue;"><b><%= @terminal.Model %></b></span>
+	</div>
+	<div class="card-body">
+		<b>Manufacturer:</b>&nbsp;<%= @manufacturer.Name %><br />
+		<b>Model:</b>&nbsp;<%= @terminal.Model %><br />
+		<b>TermCap Model:</b>&nbsp;<%= @terminal.TermcapModel %><br /><br />
+		<b>Firmware:</b>
+		Tested and works with ThinManager firmware&nbsp;&nbsp;[
+		<% if @firmsort.any? %>
+			<% if @firmsort.count == 1 %>
+				<% @firmsort.each do |f| %>
+					<%= f.Version %>
+				<% end %>
+			<% else %>
+				<% @firmsort.each do |f| %>
+					<%= f.Version %>, 
+				<% end %>
+			<% end %>
+		<% end %>]<br /><br />
+		<b>Monitor Capacity:</b>&nbsp;<%= @terminal.MaxMonitors %><br />
+		<b>Ethernet Count:</b>&nbsp;<%= @terminal.EthernetCount %></br />
+	</div>
+</div>
 
 
 

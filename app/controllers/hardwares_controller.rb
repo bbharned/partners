@@ -8,6 +8,14 @@ def index
 	if !logged_in?
 		@current_user = nil
 	end
+
+	@url = request.original_url
+
+	if @url.include? "hardware"
+		@bg = 'hardware'
+	else
+		@bg = 'peripheral'
+	end
 	
 
   @filterrific = initialize_filterrific(
