@@ -36,7 +36,7 @@ scope :with_search, lambda { |query|
     where(
       terms.map { |term|
         "(
-        LOWER(Terminals.Model) LIKE ? 
+        Terminals.Model LIKE ? 
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
@@ -48,7 +48,7 @@ scope :sorted_by, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^model_/
-    order("Model #{direction}")
+    order("Terminals.Model #{direction}")
   # when /^created_at_/
   #   order("created_at #{direction}")
   else
