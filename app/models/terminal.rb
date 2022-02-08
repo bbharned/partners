@@ -21,6 +21,8 @@ filterrific(
 @terminals = self.all
 @terminals = @terminals.order(:Model)
 
+@terminalswhen = @terminals.order(:created_at)
+
 scope :with_search, lambda { |query|
     return nil  if query.blank?
 
@@ -47,8 +49,8 @@ scope :sorted_by, ->(sort_option) {
   case sort_option.to_s
   when /^model_/
     order("Model #{direction}")
-  when /^created_at_/
-    order("created_at #{direction}")
+  # when /^created_at_/
+  #   order("created_at #{direction}")
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
