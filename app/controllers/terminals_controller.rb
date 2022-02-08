@@ -14,7 +14,7 @@ def index
      params[:filterrific],
       select_options: {
         sorted_by: Terminal.options_for_sorted_by,
-        with_manufacturer: Manufacturer.options_for_select,
+        with_manufacturer: Manufacturers.options_for_select,
         with_boot_type: TerminalType.options_for_select,
         with_firm: FirmwarePackage.options_for_select,
         with_monitor_count: [1, 2, 3, 4, 5, 6, 7],
@@ -46,7 +46,7 @@ end
 def show
 	
   @terminal = Terminal.find(params[:id])
-  @manufacturer = Manufacturer.find(@terminal.ManufacturerId)
+  @manufacturer = Manufacturers.find(@terminal.ManufacturerId)
   @firmpktg = TerminalFirmwarePackage.where(TerminalId: @terminal.id)
   @firmwares = []
   if @firmpktg.any?

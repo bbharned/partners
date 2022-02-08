@@ -4,7 +4,7 @@
 
   <% if @terminals.any? %>
         <% @terminals.each do |t| %>
-          <% @Manufacturer = Manufacturer.find(t.ManufacturerId) %>
+          <% @Manufacturer = Manufacturers.find(t.ManufacturerId) %>
           <% @type = TerminalType.find(t.TypeId) %>
           <div class="card" style="margin-bottom:15px;">
             

@@ -1,6 +1,6 @@
 class Terminal < Termcap2
 	self.table_name = "Terminals"
-	belongs_to :Manufacturer, class_name: 'Manufacturer', foreign_key: 'ManufacturerId'
+	belongs_to :Manufacturers, class_name: 'Manufacturers', foreign_key: 'ManufacturerId'
   has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: 'TerminalFirmwarePackage', foreign_key: 'PackageId'
   has_many :TerminalFirmwarePackages
 
