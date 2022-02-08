@@ -14,7 +14,7 @@ def index
      params[:filterrific],
       select_options: {
         sorted_by: Terminal.options_for_sorted_by,
-        with_manufacturer: Manufacturers.options_for_select,
+        #with_manufacturer: Manufacturers.options_for_select,
         with_boot_type: TerminalType.options_for_select,
         with_firm: FirmwarePackage.options_for_select,
         with_monitor_count: [1, 2, 3, 4, 5, 6, 7],
@@ -22,7 +22,7 @@ def index
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sorted_by, :with_search, :with_manufacturer, :with_boot_type, :with_firm, :with_monitor_count, :with_ethernet_count],
+      available_filters: [:sorted_by, :with_search, :with_boot_type, :with_firm, :with_monitor_count, :with_ethernet_count], #:with_manufacturer,
       sanitize_params: true,
    ) or return
    @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10)
