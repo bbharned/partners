@@ -18,6 +18,8 @@ filterrific(
    ],
  )
 
+@terminals = self.all
+@terminals = @terminals.order(:Model)
 
 scope :with_search, lambda { |query|
     return nil  if query.blank?
@@ -32,7 +34,7 @@ scope :with_search, lambda { |query|
     where(
       terms.map { |term|
         "(
-        LOWER(terminals.Model) LIKE ? 
+        LOWER(Terminals.Model) LIKE ? 
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
@@ -44,9 +46,9 @@ scope :sorted_by, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^model_/
-    order("terminals.Model #{direction}")
+    order("Model #{direction}")
   when /^created_at_/
-    order("terminals.created_at #{direction}")
+    order("created_at #{direction}")
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
