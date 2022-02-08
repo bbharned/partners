@@ -4,11 +4,16 @@ class Terminal < Termcap2
   has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
   has_many :TerminalFirmwarePackages
 
+@terminals = self.all
+@terminals = @terminals.order(:Model)
+@terminalsrev = @terminals.reverse
+@terminalswhen = @terminals.order(:created_at)
+
 
 filterrific(
-   default_filter_params: { sorted_by: 'model_asc' },
+   #default_filter_params: { sorted_by: 'model_asc' },
    available_filters: [
-     :sorted_by,
+     #:sorted_by,
      :with_search,
      :with_manufacturer,
      :with_boot_type,
@@ -18,10 +23,7 @@ filterrific(
    ],
  )
 
-@terminals = self.all
-@terminals = @terminals.order(:Model)
 
-@terminalswhen = @terminals.order(:created_at)
 
 scope :with_search, lambda { |query|
     return nil  if query.blank?
@@ -44,17 +46,17 @@ scope :with_search, lambda { |query|
 } 
 
 
-scope :sorted_by, ->(sort_option) {
-  direction = /desc$/.match?(sort_option) ? "desc" : "asc"
-  case sort_option.to_s
-  when /^model_/
-    order("Model #{direction}")
-  # when /^created_at_/
-  #   order("created_at #{direction}")
-  else
-    raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
-  end
-}
+# scope :sorted_by, ->(sort_option) {
+#   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
+#   case sort_option.to_s
+#   when /^model_/
+#     order("Model #{direction}")
+#   # when /^created_at_/
+#   #   order("created_at #{direction}")
+#   else
+#     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
+#   end
+# }
 
 
 scope :with_manufacturer, ->(manufacturerIds) {
@@ -88,12 +90,12 @@ scope :with_ethernet_count, ->(ethernetIds) {
 
   # This method provides select options for the `sorted_by` filter select input.
   # It is called in the controller as part of `initialize_filterrific`.
-  def self.options_for_sorted_by
-    [
-      ["Model a-z", "model_asc"],
-      ["Model z-a", "model_desc"],
-    ]
-  end
+  # def self.options_for_sorted_by
+  #   [
+  #     ["Model a-z", "model_asc"],
+  #     ["Model z-a", "model_desc"],
+  #   ]
+  # end
 
 
 end
