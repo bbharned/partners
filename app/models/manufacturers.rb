@@ -3,9 +3,10 @@ class Manufacturers < Termcap2
 	has_many :terminals, class_name: :Terminal
 
 	@manufacturers = self.all
+	@manufacturers = @manufacturers.order(:Name)
 	
 	def self.options_for_select
-	  @manufacturers.order('Name asc').map { |e| [e.Name, e.Id] }
+	  @manufacturers.map { |e| [e.Name, e.Id] }
 	end
 
 end
