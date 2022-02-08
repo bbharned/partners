@@ -3,7 +3,7 @@ class Manufacturers < Termcap2
 	has_many :terminals, class_name: :Terminal
 	
 	def self.options_for_select
-	  order(Arel.sql("LOWER(name)")).map { |e| [e.Name, e.Id] }
+	  self.order('Name asc').map { |e| [e.Name, e.Id] }
 	end
 
 end
