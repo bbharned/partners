@@ -1,9 +1,11 @@
 class TerminalType < Termcap2
 	self.table_name = "TerminalType"
 	
+	@types = self.all
+	@types = @types.order(:Type)
 
 	def self.options_for_select
-      order(Arel.sql("LOWER(type)")).map { |e| [e.Type, e.id] }
+      @types.map { |e| [e.Type, e.Id] }
     end
 
 end

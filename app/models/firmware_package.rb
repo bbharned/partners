@@ -3,9 +3,11 @@ class FirmwarePackage < Termcap2
 	has_many :TerminalFirmwarePackages
   	has_many :Terminals, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
 
-	
+	@packages = self.all
+	@packages = @packages.order(:Version)
+
 	def self.options_for_select
-	  order(Arel.sql("LOWER(version)")).map { |e| [e.Version, e.Id] }
+	  @packages.map { |e| [e.Version, e.Id] }
 	end
 
 
