@@ -23,7 +23,7 @@ end
 
 
 def show
-    @groups = Tag.where.not("name like ?", "%Internal%").where(evtcategory_id: params[:id])
+    @groups = Tag.where(:private => false).where(evtcategory_id: params[:id])
     @allevents = EventCategory.where(evtcategory_id: params[:id])
     @events = []
     if @allevents.any?

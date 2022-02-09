@@ -26,11 +26,21 @@ end
 def show
 
     @events = []
-    @tag.events.each do |event|
-        if event.starttime >= Date.today && !event.private
-            @events.push(Event.find(event.id))
+    
+    if @tag.private == false
+        @tag.events.each do |event|
+            if event.starttime != nil && event.starttime != "" && event.starttime >= Date.today && !event.private
+                @events.push(Event.find(event.id))
+            end
         end
+    else
+        @tag.events.each do |event|
+            if event.starttime != nil && event.starttime != "" && event.starttime >= Date.today
+                @events.push(Event.find(event.id))
+            end
+        end   
     end
+    
 
 end
 
@@ -72,7 +82,7 @@ end
 private
 
 	def tag_params
-        params.require(:tag).permit(:name, :description, :evtcategory_id, :image_link)
+        params.require(:tag).permit(:name, :description, :evtcategory_id, :image_link, :private)
     end
 
 
