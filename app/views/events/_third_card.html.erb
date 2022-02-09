@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<h5 class="card-title"><%= link_to "#{event.name}", event_path(event) %></h5>
 			<p class="card-text">
-				<%= event.starttime.strftime("%B %d, %Y") %>
+				<%= event.starttime.strftime("%A - %B %d, %Y") %>
 			</p>
 				<%= link_to "Learn More »", event_path(event), class: "btn btn-outline-primary btn-sm float-right"  %>
 			

@@ -26,7 +26,7 @@
 					<div class="card-title">
 						<h4>
 							<% if @event.starttime != nil && @event.starttime != "" %>
-								<%= @event.starttime.strftime("%B %d, %Y") %>
+								<%= @event.starttime.strftime("%A - %B %d, %Y") %>
 							<% else %>
 								No date has been set for this event
 							<% end %>	
