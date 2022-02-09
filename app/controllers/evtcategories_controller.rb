@@ -34,7 +34,7 @@ def show
                     if tag.name.include? "Internal"
 
                     else
-                        if event.event.starttime >= Date.today && !event.event.private
+                        if event.event.starttime != nil && event.event.starttime != "" && event.event.starttime >= Date.today && !event.event.private
                             @events.push(Event.find(event.event_id))
                         end
                     end
