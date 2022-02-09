@@ -59,9 +59,10 @@
 
 				<div class="row" style="margin-bottom:25px;">
 					<% if @event.event_image != nil && @event.event_image != "" %>
-					<div class="col-md-7">
+					<div class="col-md-8">
 						<p><%= @event.description %></p>
 						<hr />
+						<br />
 						<b>Event Type:</b>
 							<% if @event.evtcategories.any? %> 
 								<% @event.evtcategories.each do |cat| %>
@@ -73,17 +74,28 @@
 							
 							<% end %>
 						</p>
-						<br />
-						<p><b>Event Venue:</b> <%= @event.venues[0].name if @event.venues.any? %><br />
 						
+						<b>Event Organizer: </b>&nbsp;<%= @event.event_host %><br />
+						<p><b>Event Venue:</b> <%= @event.venues[0].name if @event.venues.any? %><br />
+						<% if @event.venues.any? %>
+							<% if @event.venues[0].street != "" && @event.venues[0].street != nil %>
+								<b>Address: </b><br />
+								<span style="padding-left:35px;">
+									<%= @event.venues[0].street %><br />
+								</span>
+								<span style="padding-left:35px;">
+									<%= @event.venues[0].city %>, <%= @event.venues[0].state %> <%= @event.venues[0].zipcode %>
+								</span>
+							<% end %>
+						<% end %>
 						<p>
-							<b>Event Organizer: </b>&nbsp;<%= @event.event_host %><br />
+							
 							<b>Event Contact: </b>&nbsp;<%= @event.event_contact %><br />
 							<b>Contact Phone: </b>&nbsp;<%= @event.event_phone %><br />
 							<b>Contact Email: </b>&nbsp;<%= @event.event_email %><br />
 						</p>
 					</div>
-					<div class="col-md-5 event-image">
+					<div class="col-md-4 event-image">
 						<%= image_tag "#{@event.event_image}" %>
 					</div>
 					<% else %>
