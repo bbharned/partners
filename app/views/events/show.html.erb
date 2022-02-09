@@ -62,7 +62,7 @@
 					<div class="col-md-7">
 						<p><%= @event.description %></p>
 						<hr />
-						<p><b>Event Venue:</b> <%= link_to "#{@event.venues[0].name}", venue_path(@event.venues[0]), style: "color:inherit;" if @event.venues.any? %><br />
+						<p><b>Event Venue:</b> <%= @event.venues[0].name if @event.venues.any? %><br />
 						<b>Event Type:</b>
 							<% if @event.evtcategories.any? %> 
 								<% @event.evtcategories.each do |cat| %>

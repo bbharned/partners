@@ -176,8 +176,8 @@ class UserMailer < ApplicationMailer
 
 
   def event_account_creation(user) 
-    #@user = user
-    @user = User.find(1)
+    @user = user
+    @@user = User.find(1)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: ENV["MAIL_USERNAME"],
@@ -190,8 +190,7 @@ class UserMailer < ApplicationMailer
 
 
   def event_registration_user(user, event)
-    #@user = user
-    @user = User.find(1)
+    @user = user
     @event = event
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
@@ -205,8 +204,8 @@ class UserMailer < ApplicationMailer
 
 
   def event_cancelation_user(user, event) 
-    #@user = user
-    @user = User.find(1)
+    @user = user
+    #@user = User.find(1)
     @event = event
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
