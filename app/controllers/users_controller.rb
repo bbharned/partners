@@ -106,7 +106,7 @@ def signup_evt
         @user.update_attribute(:lastlogin, Time.now)
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
-        #internal notice of account creation
+        @user.send_newuser_zap
         flash[:success] = "Now that your account has been created, you can complete the registration by clicking the registration button below."
         redirect_to event_path(@event)
     else
