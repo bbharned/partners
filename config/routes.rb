@@ -75,6 +75,7 @@ resources :firmwares
 get 'terminals', to: 'terminals#index'
 get 'terminals/:id', to: 'terminals#show', as: 'terminal'
 
+resources :notes, except: [:show, :index]
 
 resources :evtcategories
 resources :venues
