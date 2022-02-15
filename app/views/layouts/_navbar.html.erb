@@ -233,6 +233,12 @@
               <li><a class="dropdown-item" href="https://thinmanager.com">ThinManager.com</a></li>
               <li><a class="dropdown-item" href="https://thinmanager.com/support/">ThinManager Support</a></li>
               <li><a class="dropdown-item" href="https://thinmanager.com/corp/contactus.php">Contact Us</a></li>
+              <div class="dropdown-divider"></div>
+              <% if logged_in? %>
+                <li><%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %></li>
+              <% else %>
+                <li><%= link_to "Login", login_path, class: "dropdown-item" %></li>
+              <% end %>
             </ul>
           </li>
     </ul>
