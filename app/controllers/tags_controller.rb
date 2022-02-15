@@ -40,6 +40,8 @@ def show
             end
         end   
     end
+
+    @events = @events.sort_by {|event| event.starttime}
     
 
 end
