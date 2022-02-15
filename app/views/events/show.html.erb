@@ -60,7 +60,7 @@
 				<div class="row" style="margin-bottom:25px;">
 					<% if @event.event_image != nil && @event.event_image != "" %>
 					<div class="col-md-8">
-						<p><%= @event.description %></p>
+						<p><%= simple_format(@event.description) %></p>
 						<hr />
 						<br />
 						<b>Event Type:</b>
@@ -100,7 +100,7 @@
 					</div>
 					<% else %>
 					<div class="col">
-						<p><%= @event.description %></p>
+						<p><%= simple_format(@event.description) %></p>
 						<hr />
 						<b>Event Type:</b>
 							<% if @event.evtcategories.any? %> 
@@ -220,7 +220,7 @@
 	<% end %>
 
 
-	<h2 align="center" style="margin-top: 35px;">Attendence</h2>
+	<h2 align="center" style="margin-top: 35px;">Attendance</h2>
 
 	<div class="well">
 		<div class="row">
