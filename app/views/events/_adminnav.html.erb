@@ -1,28 +1,8 @@
 <div class="flex-container admin-event-nav">
-	<% if params[:query] == 'all' %>
-		<%= link_to "All Events", event_admin_path(query: 'all'), class: "flex-button on-page" %>
-	<% else %>
-		<%= link_to "All Events", event_admin_path(query: 'all'), class: "flex-button" %>
-	<% end %>
-
-	<% if params[:query] == 'active' %>
-		<%= link_to "Active Events", event_admin_path(query: 'active'), class: "flex-button on-page" %>
-	<% else %>
-		<%= link_to "Active Events", event_admin_path(query: 'active'), class: "flex-button" %>
-	<% end %>
-
-	<% if params[:query] == 'past' %>
-		<%= link_to "Past Events", event_admin_path(query: 'past'), class: "flex-button on-page" %>
-	<% else %>
-		<%= link_to "Past Events", event_admin_path(query: 'past'), class: "flex-button" %>
-	<% end %>
-	
-	<div style="vertical-align:middle; margin:4px 10px 0px 0px;">|</div>
-
-	<% if params[:query] == 'unlaunched' %>
-		<%= link_to "Not Live", event_admin_path(query: 'unlaunched'), class: "flex-button on-page" %>
-	<% else %>
-		<%= link_to "Not Live", event_admin_path(query: 'unlaunched'), class: "flex-button" %>
-	<% end %>
-	
+	<span style="font-size: .7em; font-style:italic;">Admin Navigation</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to "All Events", event_admin_path, class: "flex-button" %>
+		<%= link_to "Types", evtcategories_path, class: "flex-button" %>
+		<%= link_to "Subgroups", tags_path, class: "flex-button" %>
+		<%= link_to "Venues", venues_path, class: "flex-button" %>
 </div>
+<hr style="margin-bottom: 35px;" />

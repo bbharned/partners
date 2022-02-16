@@ -12,26 +12,26 @@
 <hr />
 
 <% if @evtcategories.any? %>
+<div class="row">
+	<% @evtcategories.each do |cat| %>
+		
 
-<% @evtcategories.each do |cat| %>
-	
 
+		<div class="col-lg-6">
+			<div class="well category-well">
+				<h3 style="margin-bottom:0px;"><%= link_to "#{cat.name}", evtcategory_path(cat), style: "color:inherit;" %></h3>
+				<p style="margin-bottom:10px;"><small><%= pluralize(cat.events.count, "created event") %></small></p>
+				<p><%= link_to "Edit", edit_evtcategory_path(cat) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", evtcategory_path(cat), method: :delete, data: {confirm: "Are you sure you want to delete this Event type?"}, style: "color:red;" %></p>
 
-	<div class="col-lg-6 offset-lg-3">
-		<div class="well category-well">
-			<h3 style="margin-bottom:0px;"><%= link_to "#{cat.name}", evtcategory_path(cat), style: "color:inherit;" %></h3>
-			<p style="margin-bottom:10px;"><small><%= pluralize(cat.events.count, "created event") %></small></p>
-			<p><%= link_to "Edit", edit_evtcategory_path(cat) %> &nbsp;&nbsp;|&nbsp;&nbsp; <%= link_to "Delete", evtcategory_path(cat), method: :delete, data: {confirm: "Are you sure you want to delete this Event type?"}, style: "color:red;" %></p>
+				<hr />
 
-			<hr />
-
-			<small><%= pluralize(cat.tags.count, "created sub groups") %></small>
+				<small><%= pluralize(cat.tags.count, "created sub groups") %></small>
+			</div>
 		</div>
-	</div>
 
 
-<% end %>
-
+	<% end %>
+</div>
 <% else %>
 	
 	<p style="color:orangered;">There are no Event Types or Categories Created yet.</p>

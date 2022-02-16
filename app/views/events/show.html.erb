@@ -1,3 +1,6 @@
+<% if current_user && (current_user.admin? || current_user.evt_admin?) %> 
+	<%= render 'adminnav' %>
+<% end %>
 <div class="container" style="padding-bottom: 150px;">
 
 	<div class="row">
@@ -178,6 +181,42 @@
 			</div>
 		<% end %>
 	</div>
+
+
+	<% if @event.evtcategories.count > 0 %>
+		
+			<% @event.evtcategories.each do |c| %>
+				
+			<% if c.name.downcase.include?("roadshow") %>
+				
+				<div class="row" style="margin-top:20px; margin-bottom: 20px;">
+					<div class="col-lg-6 offset-lg-3">
+						<div class="well" style="border-radius:10px;">
+							<h5 align="center" style="margin-bottom:15px;">ThinManager Mobile Apps</h5>
+							<div class="row">
+								<div class="col-4 download-rs-pdf">
+									<%= link_to (image_tag "icon-apple"), "https://itunes.apple.com/us/app/itmc-for-thinmanager-platform/id999068520?mt=8", target: "_blank" %><br />
+									<p style="font-size: .65em; line-height: 12px; margin-top:4px;">iTMC</p>
+								</div>
+								<div class="col-4 download-rs-pdf">
+									<%= link_to (image_tag "icon-android"), "https://downloads.thinmanager.com", target: "_blank" %><br />
+									<p style="font-size: .65em; line-height: 12px; margin-top:4px;">aTMC</p>
+								</div>
+								<div class="col-4 download-rs-pdf">
+									<%= link_to (image_tag "icon-windows"), "https://downloads.thinmanager.com", target: "_blank" %><br />
+									<p style="font-size: .65em; line-height: 12px; margin-top:4px;">winTMC</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			<% end %>
+
+			<% end %>
+		
+	<% end %>
 
 
 

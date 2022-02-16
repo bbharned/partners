@@ -687,10 +687,11 @@ Very Light Blue: #e9f7fb;
 }
 .category-card img {width: 100%;}
 .admin-event-nav {
-    margin-bottom: 35px; justify-content: center;
+    margin-bottom: 10px; justify-content: center; margin-top: -15px;
 }
+.admin-event-nav span {padding-top: 5px;}
 .flex-button {
-    padding: 5px 20px; border-radius: 5px; background-color: #f1f1f1; 
+    padding: 2px 10px; border-radius: 5px; background-color: #f1f1f1; 
     color: inherit; margin-right: 10px;
 }
 .flex-button:hover {
@@ -723,6 +724,13 @@ Very Light Blue: #e9f7fb;
 .attendee-checkin-row {
     margin-bottom: 10px;
 }
+.download-rs-pdf {
+    text-align: center;
+}
+.download-rs-pdf img {
+    width: 55px;
+}
+
 /*** Event Admin Search Cards *****/
 
 
@@ -1214,7 +1222,7 @@ Very Light Blue: #e9f7fb;
 
 /**************************************** Category Resource Pages ***************************/
 .category-well {
-    text-align: center; margin-bottom: 10px; border-radius: 7px;
+    text-align: center; margin-bottom: 20px; border-radius: 7px;
 }
 .category-well p {
     margin-bottom: 5px;

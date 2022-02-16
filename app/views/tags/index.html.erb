@@ -13,10 +13,10 @@
 <hr />
 
 <% if @tags.any? %>
-
+<div class="row">
 	<% @tags.each do |tag| %>
 
-		<div class="col-lg-6 offset-lg-3">
+		<div class="col-lg-6">
 			<div class="well category-well">
 				<h3 style="margin-bottom:0px;"><%= link_to "#{tag.name}", tag_path(tag), style: "color:inherit;" %></h3>
 				<p style="margin-bottom:10px;"><small><%= pluralize(tag.events.count, "linked event") %></small></p>
@@ -31,7 +31,7 @@
 		</div>
 
 	<% end %>
-
+</div>
 <% else %>
 
 	<p style="color:orangered;">There are no tags created yet.</p>
