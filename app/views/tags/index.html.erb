@@ -1,3 +1,6 @@
+<% if logged_in? && (current_user.admin? || current_user.evt_admin?) %>
+	<%= render 'events/adminnav' %>
+<% end %>
 <div class="container" style="padding-bottom: 150px;">
 
 <div class="row">
