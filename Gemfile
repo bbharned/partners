@@ -56,6 +56,7 @@ gem 'mimemagic', '~> 0.3.10'
 
 gem 'filterrific', '~> 5.2', '>= 5.2.2'
 
+gem 'icalendar', '~> 2.3'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.13'

@@ -18,6 +18,34 @@ def new
 end
 
 def show
+
+    require 'icalendar'
+
+# if statement for iCal
+if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil && @event.endtime != ""
+
+    @ical = Icalendar::Calendar.new
+
+    @ical.event do |e|
+      e.dtstart     = Icalendar::Values::DateTime.new(@event.starttime)
+      e.dtend       = Icalendar::Values::DateTime.new(@event.endtime)
+      e.summary     = @event.name
+      e.description = @event.description
+      if @event.venues.any?
+          e.location = @event.venues[0].name
+      end
+      if @event.event_host != ""
+          e.organizer = @event.event_host
+      end
+      
+      e.ip_class    = "PRIVATE"
+    end
+
+    @ical.publish
+    @cal_string = @ical.to_ical
+
+end
+# end if    
     
     if (current_user == nil && !@event.live) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && !@event.live)
         flash[:warning] = "You can not view this event."
@@ -64,6 +92,7 @@ def show
         respond_to do |format|
             format.html { render "show" }
             format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{Date.today}.csv" }
+            format.ics { send_data @cal_string, filename: "#{@event.name}.ics"}
         end
     end
     
