@@ -596,7 +596,7 @@ Very Light Blue: #e9f7fb;
     border-radius: 5px; border-color: #C9C9C9;
 }
 .venue-info-well {
-    padding: 25px; border-radius: 10px; margin-bottom: 40px;
+    padding: 25px; border-radius: 10px; margin-bottom: 40px; margin-top: 15px;
 }
 .badge-nav {
     margin-bottom: 35px; margin-left: 0px; margin-top: 0px;

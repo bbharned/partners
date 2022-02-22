@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-	before_action :require_admin, except: [:show, :index]
+	before_action :require_admin
 	before_action :set_venue, only: [:edit, :update, :show]
 
 
