@@ -21,16 +21,17 @@
 
 <% if @events.any? %>
 <div class="row">
-	<% @events.each do |e| %>
+	<div class="flex-container">
+		<% @events.each do |e| %>
 
-		<% if e.live %>
+			<% if e.live %>
 
-			<%= render 'events/third_card', event: e %>
+				<%= render 'events/third_card', event: e %>
+
+			<% end %>
 
 		<% end %>
-
-	<% end %>
-
+	</div>
 </div>
 <% else %>
 
