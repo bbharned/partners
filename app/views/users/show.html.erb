@@ -107,6 +107,15 @@
 				<p align="center">Need something changed that you can't edit yourself? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
 			</div>
 		</div>
+		<% if current_user && current_user.admin? %><!--
+			<div class="card-footer" style="margin: 0px -40px -15px -40px; border-radius:0px 0px 10px 10px; text-align:center;">
+				<%= link_to "Create FTA License", "#" %> 
+				&nbsp;|&nbsp; 
+				<%= link_to "Create TMA License", "#" %> 
+				&nbsp;|&nbsp;
+				<%= link_to "Enter Lab License", "#" %>
+			</div>-->
+		<% end %>
 	</div>
 
 

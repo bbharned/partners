@@ -1,7 +1,7 @@
 <div class="container">
 <% if current_user.admin? || current_user.prttype == "Distributor" || current_user.prttype == "Integrator" %>
 <div class="ad-space">
-	<% if current_user.admin? || (current_user.prttype == "Distributor" && current_user.continent == "NA") || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %>
+	<% if current_user.admin? || (current_user.prttype == "Distributor" && current_user.continent == "NA") || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %> <!-- or email is rockwell -->
 		<div class="ad-banner dist-banner">
 			<div class="container">
 				<div class="row">
