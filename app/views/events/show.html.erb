@@ -27,13 +27,18 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card-title">
-						<h4>
+						<h5>
 							<% if @event.starttime != nil && @event.starttime != "" %>
+								<% @daystart = @event.starttime.day %>
+								<% @dayend = @event.endtime.day %>
 								<%= @event.starttime.strftime("%A - %B %d, %Y") %>
+								<% if (@event.endtime != nil && @event.endtime != "") && @daystart != @dayend %>
+									<span style="font-weight:normal; font-size:.6em;">&nbsp;to&nbsp;</span> <%= @event.endtime.strftime("%A - %B %d, %Y") %>
+								<% end %>
 							<% else %>
 								No date has been set for this event
 							<% end %>	
-							</h4>
+						</h5>
 					</div>
 					<div class="card-subtitle">
 						<% if @event.starttime != nil && @event.starttime != "" %>
