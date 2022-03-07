@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_184604) do
+ActiveRecord::Schema.define(version: 2022_03_07_133127) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -215,6 +215,19 @@ ActiveRecord::Schema.define(version: 2022_02_10_184604) do
 
   create_table "hwtypes", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "licenses", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "license_type"
+    t.string "activation_type"
+    t.string "product_license"
+    t.string "serial_number"
+    t.date "enddate"
+    t.boolean "approved", default: false
+    t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

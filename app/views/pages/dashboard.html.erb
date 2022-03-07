@@ -291,9 +291,11 @@
 		      <h5 class="card-title">System Integrator Resources</h5>
 		      <p class="card-text" style="margin-bottom:0px;">Lab License</p>
 		      <p class="card-text" style="line-height: 12px;"><small class="text-muted">As a certified Integrator, you can request a complimentary 10-pack lab license for testing ThinManager.</small></p>
+		      <div align="right"><%= link_to "Request License", new_license_path({ :user_id => @current_user.id }), class: "btn btn-primary btn-sm" %>
+		      </div>
 		      <p class="card-text" style="margin-bottom:0px;">Web Listing</p>
 		      <p class="card-text" style="line-height: 12px; margin-bottom: 25px;"><small class="text-muted">Give us your details and get listed on the ThinManager.com website as a certified integrator.</small></p>
-		      <div align="right"><%= link_to "Go Now", "https://thinmanager.com/weblisting", class: "btn btn-primary", target: "_blank" %>
+		      <div align="right"><%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %>
 		      </div>
 		    </div>
 		  </div>

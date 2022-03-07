@@ -1,0 +1,69 @@
+<%= form_for(@license, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 license-dropdown">
+                    <div class="form-label">License Type</div>
+                    <%= f.select :license_type, options_for_select([
+                          [""],
+                          ["Lab License"], 
+                          ["Project License"]
+                    ], @license.license_type), class: "form-control" %>
+                </div>
+                <div class="col-md-6 license-dropdown">
+                    <div class="form-label">Activation Type</div>
+                    <%= f.select :activation_type, options_for_select([
+                          [""],
+                          ["TMA"], 
+                          ["FTA"]
+                    ], @license.activation_type), class: "form-control" %>
+                </div>
+            </div>    
+        </div>
+        <% if current_user.admin? %>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-label">Product License</div>
+                    <%= f.text_field :product_license, class: "form-control", placeholder: "Enter Product License" %>
+                </div>
+                <div class="col-md-6 license-dropdown">
+                    <div class="form-label">Serial Number</div>
+                    <%= f.text_field :serial_number, class: "form-control", placeholder: "Enter Serial Number" %>
+                </div>
+            </div>    
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                    <div class="col-md-6" style="padding-top:25px;">
+                        <%= f.label "Approved" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :approved %>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label">Product Expiration</div>
+                        <%= f.date_field :enddate, class: "form-control" %>
+                    </div>
+                </div>
+        </div>
+        <% end %>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-label">Notes</div>
+                    <%= f.text_area :note, class: "form-control", rows: "8", placeholder: "Enter License Notes Here", tabindex: "20" %>
+                </div>
+            </div>
+        </div>
+
+        
+        <br />
+        
+
+        <div class="form-group">
+            <div class="col-sm-12" style="padding-left: 0px;">
+                <%= f.submit(@license.new_record? ? "Request License" : "Update License", class: "btn btn-primary") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+            </div>
+            
+            
+        </div>
+    <% end %>

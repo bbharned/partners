@@ -63,6 +63,7 @@ resources :quizzes
 post 'quizzes/:id', to: 'quizzes#submit_quiz'
 resources :questions, except: [:show, :index]
 resources :answers, except: [:show, :index]
+resources :licenses
 
 
 resources :hardwares

@@ -107,14 +107,20 @@
 				<p align="center">Need something changed that you can't edit yourself? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
 			</div>
 		</div>
-		<% if current_user && current_user.admin? %><!--
+		<% if logged_in? && current_user.admin? %>
 			<div class="card-footer" style="margin: 0px -40px -15px -40px; border-radius:0px 0px 10px 10px; text-align:center;">
-				<%= link_to "Create FTA License", "#" %> 
+				<%= link_to "Create FTA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
+				  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+						<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+				</svg>
 				&nbsp;|&nbsp; 
-				<%= link_to "Create TMA License", "#" %> 
+				<%= link_to "Create TMA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
+				  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+						<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+				</svg>
 				&nbsp;|&nbsp;
-				<%= link_to "Enter Lab License", "#" %>
-			</div>-->
+				<%= link_to "Enter Lab License", new_license_path({ :user_id => @user.id }) %>
+			</div>
 		<% end %>
 	</div>
 

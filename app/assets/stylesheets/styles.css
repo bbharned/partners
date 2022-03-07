@@ -60,8 +60,23 @@ Extra extra large   xxl ≥1400px
 .flex-button {
 
 }
-
-
+.nav-tabs .nav-item:hover {
+    cursor: pointer;
+}
+.nav-tabs .active {
+    color: blue !important;
+}
+.approved-licenses {
+    display: none;
+}
+@media all and (max-width: 768px) {
+    .main-stage .license-list-header {
+        display: none;
+    }
+    .main-stage .float-right {
+        text-align: left !important; float: none !important;
+    }
+}
 
 
 
@@ -930,6 +945,29 @@ Very Light Blue: #e9f7fb;
         margin-bottom: 20px !important;
     }
 } 
+
+
+
+
+
+
+
+
+
+/******************** Licenses Pages *************************/
+.license-form .form-label {
+    margin-top: 20px;
+}
+.license-dropdown select,
+.sort-options select {
+    width: 100%; padding-top: 7px; padding-bottom: 7px; padding-left: 5px; 
+    border-radius: 7px;
+    border-color: #d1d1d1; margin-left: 0 !important;
+}
+
+
+
+
 
 
 
