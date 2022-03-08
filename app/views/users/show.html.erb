@@ -107,21 +107,107 @@
 				<p align="center">Need something changed that you can't edit yourself? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
 			</div>
 		</div>
+
+
+
 		<% if logged_in? && current_user.admin? %>
 			<div class="card-footer" style="margin: 0px -40px -15px -40px; border-radius:0px 0px 10px 10px; text-align:center;">
-				<%= link_to "Create FTA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
-				  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
-						<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
-				</svg>
-				&nbsp;|&nbsp; 
-				<%= link_to "Create TMA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
-				  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
-						<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
-				</svg>
-				&nbsp;|&nbsp;
-				<%= link_to "Enter Lab License", new_license_path({ :user_id => @user.id }) %>
+
+				<% if @user_license.count == 1 %>
+
+					<h5 align="center" style="text-transform: uppercase;">License Info</h5>
+					<div class="row away-at-md-break">
+						<div class="col-md-2"><b>Type</b></div>
+						<div class="col-md-2"><b>Activation</b></div>
+						<div class="col-md-2"><b>Status</b></div>
+						<div class="col-md-2"><b>Exp</b></div>
+						<div class="col-md-4"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<%= @user_license[0].license_type %>
+						</div>
+						<div class="col-md-2">
+							<%= @user_license[0].activation_type %>
+						</div>
+						<div class="col-md-2"><% if @user_license[0].approved == false %>Requested<%= %><% else %>Approved<% end %></div>
+						<div class="col-md-2">
+							<% if @user_license[0].enddate != nil && @user_license[0].enddate != ''  %>
+								<% if @user_license[0].enddate < Date.today %>
+									<span style="color:red;"><%= @user_license[0].enddate.strftime("%m/%d/%Y")%></span>
+								<% else %>
+									<%= @user_license[0].enddate.strftime("%m/%d/%Y")%>
+								<% end %>
+							<% end %>	
+						</div>
+						<div class="col-md-4">
+							<div class="float-right license-actions">
+								<%= link_to "View", license_path(@user_license[0]), style: "color: limegreen" %> | 
+								<%= link_to "Edit", edit_license_path(@user_license[0]) %> | 
+								<%= link_to "Delete", license_path(@user_license[0]), method: :delete, data: {confirm: "Are you sure you want to delete this license?"}, style: "color:red;" %>
+							</div>
+						</div>
+					</div>
+
+				<% else %>
+
+					<%= link_to "Create FTA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
+					  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+							<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+					</svg>
+					&nbsp;|&nbsp; 
+					<%= link_to "Create TMA License", "#" %> <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
+					  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+							<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+					</svg>
+					&nbsp;|&nbsp;
+					<%= link_to "Enter Lab License", new_license_path({ :user_id => @user.id }) %>
+			
+				<% end %>
+
 			</div>
+		
+
+		<% elsif logged_in? && !current_user.admin && current_user === @user %>
+			
+		
+			<% if @user_license.count == 1 %>
+				<div class="card-footer" style="margin: 0px -40px -15px -40px; border-radius:0px 0px 10px 10px; text-align:center;">
+				<h5 align="center" style="text-transform: uppercase;">License Info</h5>
+					<div class="row away-at-md-break">
+						<div class="col-md-3"><b>Type</b></div>
+						<div class="col-md-3"><b>Activation</b></div>
+						<div class="col-md-3"><b>Status</b></div>
+						<div class="col-md-3"><b>Exp</b></div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<%= @user_license[0].license_type %>
+						</div>
+						<div class="col-md-3">
+							<%= @user_license[0].activation_type %>
+						</div>
+						<div class="col-md-3"><% if @user_license[0].approved == false %>Requested<%= %><% else %>Approved<% end %></div>
+						<div class="col-md-3">
+							<% if @user_license[0].enddate != nil && @user_license[0].enddate != ''  %>
+								<% if @user_license[0].enddate < Date.today %>
+									<span style="color:red;"><%= @user_license[0].enddate.strftime("%m/%d/%Y")%></span>
+								<% else %>
+									<%= @user_license[0].enddate.strftime("%m/%d/%Y")%>
+								<% end %>
+							<% end %>	
+						</div>
+					</div>
+				</div>
+			<% else %>
+				
+			<% end %>
+		
+		
 		<% end %>
+
+
+
 	</div>
 
 

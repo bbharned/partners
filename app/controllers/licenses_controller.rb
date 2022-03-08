@@ -5,8 +5,8 @@ class LicensesController < ApplicationController
 
 def index
 	@licenses = License.all
-    @approved = License.where(approved: true)
-    @requested = License.where(approved: false)
+    @approved = License.where(approved: true).order("created_at desc")
+    @requested = License.where(approved: false).order("created_at desc")
     
 end
 
@@ -44,20 +44,25 @@ end
 
 
 def create
+    
     @license = License.new(license_params)
-
+    @user = User.find(@license.user_id)
 
     if @license.save
+        # Send internal email of license request nptification here.
         flash[:success] = "Your license request has been submitted, we will be in touch soon."
         redirect_to root_path
     else
-        render 'new'
+        render 'edit', params: {user_id: @user.id}
     end
 end
 
 
 def destroy
-    
+    @license = License.find(params[:id])
+    @license.destroy
+    flash[:danger] = "ThinManager license has been deleted. This is only from the Portal, not the licensing database."
+    redirect_to licenses_path
 end
 
 

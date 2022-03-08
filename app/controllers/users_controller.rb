@@ -314,6 +314,7 @@ end
 def show
      @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
      @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")
+     @user_license = License.where(user_id: @user.id).limit(1)
      @user_registrations = EventAttendee.where(user_id: @user.id).where.not(canceled: true)
      @user_events = []
      if @user_registrations.any?

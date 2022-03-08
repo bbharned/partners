@@ -1,3 +1,5 @@
+<%= render 'shared/errors', obj: @license %>
+
 <%= form_for(@license, :html => {class: "form-horizontal", role: "form"}) do |f| %>
         <%= f.hidden_field :user_id, value: @user.id %>
         <div class="form-group">

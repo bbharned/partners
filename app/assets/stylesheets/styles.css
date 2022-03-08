@@ -60,23 +60,7 @@ Extra extra large   xxl ≥1400px
 .flex-button {
 
 }
-.nav-tabs .nav-item:hover {
-    cursor: pointer;
-}
-.nav-tabs .active {
-    color: blue !important;
-}
-.approved-licenses {
-    display: none;
-}
-@media all and (max-width: 768px) {
-    .main-stage .license-list-header {
-        display: none;
-    }
-    .main-stage .float-right {
-        text-align: left !important; float: none !important;
-    }
-}
+
 
 
 
@@ -775,6 +759,31 @@ Very Light Blue: #e9f7fb;
 
 /********************* Tags ****************************/
 
+
+
+
+
+
+
+/************************ Licenses **************************/
+
+.nav-tabs .nav-item:hover {
+    cursor: pointer;
+}
+.nav-tabs .active {
+    color: blue !important;
+}
+.approved-licenses {
+    display: none;
+}
+@media all and (max-width: 768px) {
+    .main-stage .license-list-header, .away-at-md-break, .license-actions {
+        display: none;
+    }
+    .main-stage .float-right {
+        text-align: left !important; float: none !important;
+    }
+}
 
 
 
