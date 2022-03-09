@@ -14,7 +14,7 @@ filterrific(
    #default_filter_params: { sorted_by: 'model_asc' },
    available_filters: [
      #:sorted_by,
-     :with_search,
+     :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -25,7 +25,7 @@ filterrific(
 
 
 
-scope :with_search, lambda { |query|
+scope :with_search_please, lambda { |query|
     return nil  if query.blank?
 
     terms = query.to_s.downcase.split(/\s+/)

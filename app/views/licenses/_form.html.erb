@@ -15,9 +15,9 @@
                 <div class="col-md-6 license-dropdown">
                     <div class="form-label">Activation Type</div>
                     <%= f.select :activation_type, options_for_select([
-                          [""],
-                          ["TMA"], 
-                          ["FTA"]
+                          ["", ""],
+                          ["ThinManager Activation (TMA)", "TMA"], 
+                          ["Factory Talk Activation (FTA)", "FTA"]
                     ], @license.activation_type), class: "form-control" %>
                 </div>
             </div>    

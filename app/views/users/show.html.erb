@@ -125,7 +125,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-2">
-							<%= @user_license[0].license_type %>
+							<%= link_to "#{@user_license[0].license_type}", license_path(@user_license[0]) %>
 						</div>
 						<div class="col-md-2">
 							<%= @user_license[0].activation_type %>
@@ -182,7 +182,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-3">
-							<%= @user_license[0].license_type %>
+							<%= link_to "#{@user_license[0].license_type}", license_path(@user_license[0]) %>
 						</div>
 						<div class="col-md-3">
 							<%= @user_license[0].activation_type %>

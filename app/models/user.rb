@@ -122,6 +122,11 @@ end
         UserMailer.event_reg_cancel(self, event).deliver_now
     end
 
+#License Request Notification
+    def send_license_notification(license)
+        UserMailer.license_notification(self, license).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)

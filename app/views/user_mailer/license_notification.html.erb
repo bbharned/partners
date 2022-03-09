@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; text-align: center;">
+        
+        <br />
+        
+        <div style="margin: auto;">
+          <div style="width:127px; height:100px; margin:auto;">
+            <img src="https://www.thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+          </div>
+          <div style="text-align: center;">
+            <h2 style="margin-bottom: 35px;">License Request</h2>
+          </div>
+        </div>
+
+        <p>License requested from the Portal</p>
+        
+        <p style="font-weight:bold; margin-top: 35px;">User Information</p>
+        <p>
+          <%= @user.firstname %> <%= @user.lastname %><br />
+          <%= @user.company %><br />
+          <%= @user.email %><br />
+        
+          <% if @user.prttype == "Distributor" %>
+              Distributor
+            <% elsif @user.prttype == "Integrator" %>
+              Integrator
+            <% elsif @user.prttype == "End User" %>
+              End User
+            <% elsif @user.prttype == "OEM" %>
+              OEM
+            <% else %> 
+              &nbsp;
+          <% end %>
+        </p>
+
+        <h4>License Request</h4>
+
+        <p><%= @license.license_type %><br /><%= @license.activation_type %></p>
+        <h5>Notes</h5>
+        <% if @license.note != nil && @license.note != "" %>
+        <p style="margin-top:-15px;"><%= simple_format(@license.note) %></p>
+        <% else %>
+          <p style="margin-top:-15px;">No notes</p>
+        <% end %>
+        <br />
+        <p>Date Requested: <%= @license.created_at.strftime("%m/%d/%Y") %>
+        
+    </div>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 class LicensesController < ApplicationController
-	before_action :require_admin, except: [:new, :create]
+	before_action :require_admin, except: [:new, :create, :show]
     before_action :set_license, only: [:edit, :update, :show]
+    before_action :require_same_user, only: [:show]
 
 
 def index
@@ -20,7 +21,7 @@ end
 
 
 def show
-
+    @user = User.find(@license.user_id)
 end
 
 
@@ -49,7 +50,10 @@ def create
     @user = User.find(@license.user_id)
 
     if @license.save
-        # Send internal email of license request nptification here.
+        if !current_user.admin?
+            # Send internal email of license request nptification here unless admin created.
+            @user.send_license_notification(@license)
+        end
         flash[:success] = "Your license request has been submitted, we will be in touch soon."
         redirect_to root_path
     else
@@ -83,5 +87,14 @@ private
     def set_license
         @license = License.find(params[:id])
     end
+
+    def require_same_user
+        if current_user != @license.user && !current_user.admin
+            flash[:danger] = "You are not permitted for that action"
+            redirect_to root_path
+        end
+    end
+
+    
 
 end

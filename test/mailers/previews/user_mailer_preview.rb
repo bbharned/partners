@@ -84,6 +84,12 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.event_cancelation_user(@user, @event)
   end
 
+  def license_request_internal
+    @user = User.find(3)
+    @license = License.find(1)
+    UserMailer.license_notification(@user, @license)
+  end
+
 
 
 end

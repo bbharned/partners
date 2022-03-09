@@ -51,13 +51,12 @@ scope :with_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 9
+    num_or_conds = 8
     where(
       terms.map { |term|
         "(
         LOWER(events.name) LIKE ?
-        OR LOWER(events.description) LIKE ? 
-        OR LOWER(events.capacity) LIKE ? 
+        OR LOWER(events.description) LIKE ?  
         OR LOWER(events.event_contact) LIKE ? 
         OR LOWER(events.event_email) LIKE ? 
         OR LOWER(events.event_host) LIKE ? 

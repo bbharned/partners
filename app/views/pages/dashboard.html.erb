@@ -270,7 +270,6 @@
 
 
 	  <!-- ThinManager Events Card -->
-	  <!--
 	  <div class="card">
 	  	<%= image_tag "events_dashcard.jpg", class: "card-img-top" %>
 	    <div class="card-body">
@@ -279,24 +278,36 @@
 	      <div align="right"><%= link_to "Manage My Events", user_path(current_user), class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "See Events", events_path, class: "btn btn-primary" %></div>
 	    </div>
 	  </div>
-	  -->
+	  
 
 
 
-	  <!--------- Integrator Resource Card ------------->
-	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) %>
+	  <!--------- License Request Card ------------->
+	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %><!-- || (@current_user.email.include? "@ra.rockwell.com") --> 
 	  	<div class="card">
 		    
 		    <div class="card-body">
-		      <h5 class="card-title">System Integrator Resources</h5>
-		      <p class="card-text" style="margin-bottom:0px;">Lab License</p>
+		      <h5 class="card-title">License Request</h5>
+		      
 		      <p class="card-text" style="line-height: 12px;"><small class="text-muted">As a certified Integrator, you can request a complimentary 10-pack lab license for testing ThinManager.</small></p>
-		      <div align="right"><%= link_to "Request License", new_license_path({ :user_id => @current_user.id }), class: "btn btn-primary btn-sm" %>
-		      </div>
-		      <p class="card-text" style="margin-bottom:0px;">Web Listing</p>
+		      <div align="right"><%= link_to "Request License", new_license_path({ :user_id => @current_user.id }), class: "btn btn-primary btn-sm" %></div>
+		      
+		    </div>
+		</div>
+	  <% end %>
+
+
+
+
+	  <!--------- Web Listing Card ------------->
+	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %> 
+	  	<div class="card">
+		    
+		    <div class="card-body">
+		      <h5 class="card-title">Web Listing</h5>
+		      
 		      <p class="card-text" style="line-height: 12px; margin-bottom: 25px;"><small class="text-muted">Give us your details and get listed on the ThinManager.com website as a certified integrator.</small></p>
-		      <div align="right"><%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %>
-		      </div>
+		      <div align="right"><%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %></div>
 		    </div>
 		  </div>
 	  <% end %>
