@@ -2,7 +2,7 @@
 
   
 
-  <% if @terminals.any? %>
+  <% if @terminals.count > 0 %>
         <% @terminals.each do |t| %>
           <% @Manufacturer = Manufacturers.find(t.ManufacturerId) %>
           <% @type = TerminalType.find(t.TypeId) %>

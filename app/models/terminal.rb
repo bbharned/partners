@@ -1,13 +1,13 @@
 class Terminal < Termcap2
-	self.table_name = "Terminals"
-	belongs_to :Manufacturers, class_name: :Manufacturers, foreign_key: :ManufacturerId
-  has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
-  has_many :TerminalFirmwarePackages
+  	self.table_name = "Terminals"
+  	belongs_to :Manufacturers, class_name: :Manufacturers, foreign_key: :ManufacturerId
+    has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
+    has_many :TerminalFirmwarePackages
 
 
 
-# @terminals = Terminal.all
-# @terminals = @terminals.order(:Model)
+@terminals = self.all
+@terminals = @terminals.order(:Model)
 # @terminalsrev = @terminals.reverse
 # @terminalswhen = @terminals.order(:created_at)
 
@@ -53,7 +53,7 @@ scope :with_search_please, -> (search_string) {
   terms = terms.map { |e|
       ('%' + e + '%').gsub(/%+/, '%')
     }
-  where("Terminals.Model LIKE ?", terms)
+  Terminal.where("Terminals.Model LIKE ?", terms)
 }
 
 
