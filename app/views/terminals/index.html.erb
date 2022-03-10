@@ -26,10 +26,10 @@
 						
 						<div class="row">
 					  	
-							  <div class="col-sm-4">
+							  <!-- <div class="col-sm-4">
 							    <div class="form-label">Search</div>
 							    <%= f.text_field(:with_search_please, autofocus: true, class: 'filterrific-periodically-observed form-control') %>
-							  </div>
+							  </div> -->
 							  <div class="col-sm-4">
 							  	<div class="form-label">Manufacturer</div>
 							    <%= f.select(
@@ -46,10 +46,7 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-4">
+							  <div class="col-sm-4">
 							    <div class="form-label">Firmware Compatibility</div>
 							    <%= f.select(
 							      :with_firm,
@@ -57,6 +54,10 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
+						</div>
+
+						<div class="row">
+							
 							  <div class="col-sm-4">
 							    <div class="form-label">Monitor Display Ports</div>
 							    <%= f.select(
