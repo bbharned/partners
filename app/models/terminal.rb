@@ -4,10 +4,12 @@ class Terminal < Termcap2
   has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
   has_many :TerminalFirmwarePackages
 
-@terminals = self.all
-@terminals = @terminals.order(:Model)
-@terminalsrev = @terminals.reverse
-@terminalswhen = @terminals.order(:created_at)
+
+
+# @terminals = Terminal.all
+# @terminals = @terminals.order(:Model)
+# @terminalsrev = @terminals.reverse
+# @terminalswhen = @terminals.order(:created_at)
 
 
 filterrific(
