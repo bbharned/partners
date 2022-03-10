@@ -27,14 +27,14 @@
 						
 						<div class="row">
 					  	
-							  <div class="col-sm-4">
+							  <!-- <div class="col-sm-4">
 							    <div class="form-label">Search</div>
 							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 							    <%= f.text_field(
 							      :with_search, autofocus: true,
 							      class: 'filterrific-periodically-observed form-control'
 							    ) %>
-							  </div>
+							  </div> -->
 							  <div class="col-sm-4">
 							    <div class="form-label">Hardware Type</div>
 							    <%= f.select(
@@ -51,17 +51,18 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
+							  <div class="col-sm-4">
+							   <div class="form-label">Status</div>
+								   	<%= f.select(
+								      :with_hwstatus_id,
+								      @filterrific.select_options[:with_hwstatus_id],
+								      { include_blank: '- Any -' }, class: "form-control"
+								    ) %> 		
+							    </div>
 						</div>
 
 						<div class="row">
-							<div class="col-sm-4">
-							   <div class="form-label">Status</div>
-							   	<%= f.select(
-							      :with_hwstatus_id,
-							      @filterrific.select_options[:with_hwstatus_id],
-							      { include_blank: '- Any -' }, class: "form-control"
-							    ) %> 		
-						    </div>
+							
 						    <!-- <div class="col-sm-3">
 						    	<div class="form-label">Boot Type</div>
 							   	<%= f.select(
