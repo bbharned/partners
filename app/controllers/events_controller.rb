@@ -200,7 +200,7 @@ def create
 
     if @event.save
         flash[:success] = "Event has been created and saved"
-        redirect_to events_path
+        redirect_to event_admin_path
     else
         render 'new'
     end

@@ -11,7 +11,7 @@ class Terminal < Termcap2
 
 
 filterrific(
-   #default_filter_params: { sorted_by: 'model_asc' },
+   default_filter_params: { },
    available_filters: [
      #:sorted_by,
      :with_search_please,
@@ -25,25 +25,34 @@ filterrific(
 
 
 
-scope :with_search_please, lambda { |query|
-    return nil  if query.blank?
+# scope :with_search_please, lambda { |query|
+#     return nil  if query.blank?
 
-    terms = query.to_s.downcase.split(/\s+/)
+#     terms = query.to_s.downcase.split(/\s+/)
 
-    terms = terms.map { |e|
+#     terms = terms.map { |e|
+#       ('%' + e + '%').gsub(/%+/, '%')
+#     }
+
+#     num_or_conds = 1
+#     where(
+#       terms.map { |term|
+#         "(
+#         LOWER(Terminals.Model) LIKE ? 
+#         )"
+#       }.join(' AND '),
+#       *terms.map { |e| [e] * num_or_conds }.flatten
+#     )
+# } 
+
+scope :with_search_please, -> (search_string) {
+  return nil  if search_string.blank?
+  terms = search_string.to_s.downcase.split(/\s+/)
+  terms = terms.map { |e|
       ('%' + e + '%').gsub(/%+/, '%')
     }
-
-    num_or_conds = 1
-    where(
-      terms.map { |term|
-        "(
-        LOWER(Terminals.Model) LIKE ? 
-        )"
-      }.join(' AND '),
-      *terms.map { |e| [e] * num_or_conds }.flatten
-    )
-} 
+  where("Terminals.Model LIKE ?", terms)
+}
 
 
 # scope :sorted_by, ->(sort_option) {
