@@ -25,13 +25,13 @@
         <% if current_user.admin? %>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-label">Product License</div>
-                    <%= f.text_field :product_license, class: "form-control", placeholder: "Enter Product License" %>
-                </div>
                 <div class="col-md-6 license-dropdown">
                     <div class="form-label">Serial Number</div>
                     <%= f.text_field :serial_number, class: "form-control", placeholder: "Enter Serial Number" %>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-label">Product License</div>
+                    <%= f.text_field :product_license, class: "form-control", placeholder: "Enter Product License" %>
                 </div>
             </div>    
         </div>
