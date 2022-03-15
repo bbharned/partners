@@ -106,9 +106,9 @@ scope :with_live, lambda { |flag|
 
 scope :with_live_status, ->(status) {
     if status == 'Live Events'
-        where("events.live == ?", true)
+        where(live: true)
     elsif status == 'Draft Events'
-        where.not("events.live == ?", true)
+        where.not(live: true)
     else
         where.not("events.live == ?", nil)
     end
