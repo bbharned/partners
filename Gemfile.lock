@@ -55,6 +55,9 @@ GEM
     aws-sdk-kms (1.55.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-locationservice (1.20.0)
+      aws-sdk-core (~> 3, >= 3.127.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.113.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sdk-kms (~> 1)
@@ -87,6 +90,7 @@ GEM
     execjs (2.8.1)
     ffi (1.15.5)
     filterrific (5.2.2)
+    geocoder (1.7.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -207,6 +211,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (>= 5.2.4.5)
+  aws-sdk-locationservice (~> 1.4)
   aws-sdk-s3 (~> 1.96, >= 1.96.1)
   bcrypt (~> 3.1.7)
   bootstrap (~> 4.3.1)
@@ -215,6 +220,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   filterrific (~> 5.2, >= 5.2.2)
+  geocoder (~> 1.7, >= 1.7.5)
   icalendar (~> 2.3)
   jbuilder (~> 2.5)
   jquery-rails

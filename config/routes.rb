@@ -107,6 +107,8 @@ get 'flexforward/userbyname', to: 'flexforwards#userbyname'
 get 'flexforward/byuser', to: 'flexforwards#byuser'
 get 'flexforward/bydate', to: 'flexforwards#bydate'
 
+resources :companies
+
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
 delete 'logout', to: 'sessions#destroy'
