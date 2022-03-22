@@ -761,12 +761,19 @@ Very Light Blue: #e9f7fb;
 .company-form-row {
     margin-bottom: 10px;
 }
+.company-logo {
+    width: 100%; text-align: right;
+}
+.company-logo img {max-width: 100%;}
 
 
 
 @media all and (max-width: 768px) {
     .company-form-row .col-md-6, .company-form-row .col-md-8 {
         margin-bottom: 10px;
+    }
+    .company-logo {
+        display: none;
     }
 }
 

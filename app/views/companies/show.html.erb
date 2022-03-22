@@ -1,7 +1,91 @@
 <div class="container" style="padding-bottom: 100px;">
 
 <h1><%= @company.name %></h1>
-<hr />
+<hr style="margin-bottom: 35px;" />
+
+<div class="col-md-10 offset-md-1">
+	<div class="row">
+		<div class="col-md-6">
+			
+			<h5 style="margin-bottom:2px;">Address</h5>
+			<p>
+				<% if @company.street != nil %>
+					<%= @company.street %><% if @company.street2 != nil && @company.street2 != "" %>, <%= @company.street2 %><% end %>
+				<% end %>
+				 <br />
+				<% if @company.city != nil %>
+				 	<%= @company.city %>				
+				 <% end %>
+				 <% if @company.city != nil %>
+				 	, <%= @company.state %>
+				<% end %>
+				<% if @company.city != nil %>
+				 	<%= @company.postal_code %>
+				<% end %>
+				<br />
+				<%= @company.country %>
+				<br />
+				<% if @company.url != nil && @company.url != "" %>
+					<%= link_to "#{@company.url}", "#{@company.url}" , target: "_blank" %>
+				<% end %>
+			</p>
+			
+		</div>
+		<div class="col-md-6">
+			<% if @company.logo_path != "" && @company.logo_path != nil %>
+				<div class="company-logo"><img src="<%= @company.logo_path %>" alt="<%= @company.name %>"></div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<% if @company.phone != nil && @company.phone != "" %>
+				<h5 style="margin-bottom:2px;">Phone</h5>
+				<h6><%= link_to "#{@company.phone}", "tel:#{@company.phone}" %></h6>
+			<% end %>
+		</div>
+		<div class="col-md-6">
+			<% if @company.story_path != nil && @company.story_path != "" %>
+				<div class="float-right">
+					<%= link_to "Read Their Story", "#{@company.story_path}", class: "btn btn-sm btn-primary", target: "_blank" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<% if @company.description != nil && @company.description != "" %>
+	<div class="well" style="padding:25px 35px; border-radius: 10px; margin-top:35px;">
+		<div class="row">
+			<div class="col-md-12">
+				<h5>Company Bio</h5>
+			</div>
+			<div class="col-md-12">
+				<%= simple_format(@company.description) %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<% if logged_in? && current_user.admin? %>
+	<div class="row" style="margin-top:15px;">
+		<div class="col-6">
+			<div class="float-right">
+				<% if @company.latitude != nil %>
+					longitude: <%= @company.latitude %>
+				<% else %>
+					nil
+				<% end %>
+			</div>
+		</div>
+		<div class="col-6">
+			<% if @company.longitude != nil %>
+					latitude: <%= @company.longitude %>
+				<% else %>
+					nil
+				<% end %>
+		</div>
+	</div>
+	<% end %> 
+</div>
+
 
 
 </div>
