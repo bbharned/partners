@@ -1,16 +1,21 @@
 class Company < ActiveRecord::Base
 	geocoded_by :address 
-	after_validation :geocode, if: :address_changed?
+	after_validation :geocode
   before_save :find_country_code
   
   def address 
-    [street, state, country].compact.join(", ") 
+    if self.state != nil && self.state != ""
+      [street, state, country].compact.join(", ")
+    else
+      [street, city, country].compact.join(", ")
+    end
   end
 
   def find_country_code
     if self.country_code == nil && self.latitude != nil && self.longitude != nil
       query = Geocoder.search([self.latitude, self.longitude])
       self.country_code = query.first.country_code
+      self.postal_code = query.first.postal_code
     end
   end
 
