@@ -1,0 +1,416 @@
+<%= render 'shared/errors', obj: @company %>
+
+
+<div class="row">
+    <div class="col-sm-10 offset-sm-1">
+    <%= form_for(@company, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+        <div class="form-group">
+            
+                <div class="control-label col-md-12">
+                    <%= f.label "Company" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter Company Name" %>
+                </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="row company-form-row">
+                    <div class="col-md-6">
+                        <%= f.text_field :url, class: "form-control", placeholder: "Enter Company Website" %>
+                    </div>
+
+                    <div class="col-md-6">
+                        <%= f.text_field :phone, class: "form-control", placeholder: "Enter Company Phone Number" %>
+                    </div>
+                </div>
+
+                <div class="row company-form-row">
+                    <div class="col-md-8">
+                        <%= f.text_field :logo_path, class: "form-control", placeholder: "Path to company logo" %>
+                    </div>
+                    <div class="col-md-4 state-dropdown">
+                        <%= f.select :main_prt_type, options_for_select([
+                              ["Integrator"], 
+                              ["Distributor"],
+                              ["OEM"]
+                        ], @company.main_prt_type), {:prompt => '-- Select Type --'}, class: "form-control" %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+                
+                <div class="control-label col-sm-12">
+                    <%= f.label "Address" %>
+                </div>
+                <div class="col-sm-12 address-fields">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <%= f.text_field :street, class: "form-control",  placeholder: "Street" %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= f.text_field :street2, class: "form-control",  placeholder: "Apt/Suite/Bldg" %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <%= f.text_field :city, class: "form-control",  placeholder: "City" %>
+                        </div>
+                        <div class="col-md-3 state-dropdown">
+                            <%= f.select :state, options_for_select([
+                              
+                              ["Not in US", ""],
+                              ["AL", "Alabama"], 
+                              ["AK", "Alaska"], 
+                              ["AZ", "Arizona"], 
+                              ["AR", "Arkansas"], 
+                              ["CA", "California"],
+                              ["CO", "Colorado"],
+                              ["CT", "Connecticut"],
+                              ["DE", "Delaware"],
+                              ["FL", "Florida"],
+                              ["GA", "Georgia"],
+                              ["HI", "Hawaii"],
+                              ["ID", "Idaho"],
+                              ["IL", "Illinois"],
+                              ["IN", "Indiana"],
+                              ["IA", "Iowa"],
+                              ["KS", "Kansas"],
+                              ["KY", "Kentucky"],
+                              ["LA", "Louisiana"],
+                              ["ME", "Maine"],
+                              ["MD", "Maryland"],
+                              ["MA", "Massachusetts"],
+                              ["MI", "Michigan"],
+                              ["MN", "Minnesota"],
+                              ["MS", "Mississippi"],
+                              ["MO", "Missouri"],
+                              ["MT", "Montana"],
+                              ["NE", "Nebraska"],
+                              ["NV", "Nevada"],
+                              ["NH", "New Hampshire"],
+                              ["NJ", "New Jersey"],
+                              ["NM", "New Mexico"],
+                              ["NY", "New York"],
+                              ["NC", "North Carolina"],
+                              ["ND", "North Dakota"],
+                              ["OH", "Ohio"],
+                              ["OK", "Oklahoma"],
+                              ["OR", "Oregon"],
+                              ["PA", "Pennsylvania"],
+                              ["PR", "Puerto Rico"],
+                              ["RI", "Rhode Island"],
+                              ["SC", "South Carolina"],
+                              ["SD", "South Dakota"],
+                              ["TN", "Tennessee"],
+                              ["TX", "Texas"],
+                              ["UT", "Utah"],
+                              ["VT", "Vermont"],
+                              ["VA", "Virginia"],
+                              ["WA", "Washington"],
+                              ["WV", "West Virginia"],
+                              ["WI", "Wisconsin"],
+                              ["WY", "Wyoming"]
+
+                            ], @company.state), {:prompt => '-- Select State --'}, class: "form-control" %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= f.text_field :postal_code, class: "form-control",  placeholder: "Zip/Postal Code" %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <%= f.select :country, options_for_select([
+                              
+                               ["United States"],
+                               ["Afganistan"],
+                               ["Albania"],
+                               ["Algeria"],
+                               ["American Samoa"],
+                               ["Andorra"],
+                               ["Angola"],
+                               ["Anguilla"],
+                               ["Antigua & Barbuda"],
+                               ["Argentina"],
+                               ["Armenia"],
+                               ["Aruba"],
+                               ["Australia"],
+                               ["Austria"],
+                               ["Azerbaijan"],
+                               ["Bahamas"],
+                               ["Bahrain"],
+                               ["Bangladesh"],
+                               ["Barbados"],
+                               ["Belarus"],
+                               ["Belgium"],
+                               ["Belize"],
+                               ["Benin"],
+                               ["Bermuda"],
+                               ["Bhutan"],
+                               ["Bolivia"],
+                               ["Bonaire"],
+                               ["Bosnia & Herzegovina"],
+                               ["Botswana"],
+                               ["Brazil"],
+                               ["British Indian Ocean Ter"],
+                               ["Brunei"],
+                               ["Bulgaria"],
+                               ["Burkina Faso"],
+                               ["Burundi"],
+                               ["Cambodia"],
+                               ["Cameroon"],
+                               ["Canada"],
+                               ["Canary Islands"],
+                               ["Cape Verde"],
+                               ["Cayman Islands"],
+                               ["Central African Republic"],
+                               ["Chad"],
+                               ["Channel Islands"],
+                               ["Chile"],
+                               ["China"],
+                               ["Christmas Island"], 
+                               ["Cocos Island"],
+                               ["Colombia"],
+                               ["Comoros"],
+                               ["Congo"],
+                               ["Cook Islands"],
+                               ["Costa Rica"],
+                               ["Cote DIvoire"],
+                               ["Croatia"],
+                               ["Cuba"],
+                               ["Curaco"],
+                               ["Cyprus"],
+                               ["Czech Republic"],
+                               ["Denmark"],
+                               ["Djibouti"],
+                               ["Dominica"],
+                               ["Dominican Republic"],
+                               ["East Timor"],
+                               ["Ecuador"],
+                               ["Egypt"],
+                               ["El Salvador"],
+                               ["Equatorial Guinea"],
+                               ["Eritrea"],
+                               ["Estonia"],
+                               ["Ethiopia"],
+                               ["Falkland Islands"],
+                               ["Faroe Islands"],
+                               ["Fiji"],
+                               ["Finland"],
+                               ["France"],
+                               ["French Guiana"],
+                               ["French Polynesia"],
+                               ["French Southern Ter"],
+                               ["Gabon"],
+                               ["Gambia"],
+                               ["Georgia"],
+                               ["Germany"],
+                               ["Ghana"],
+                               ["Gibraltar"],
+                               ["Great Britain"],
+                               ["Greece"],
+                               ["Greenland"],
+                               ["Grenada"],
+                               ["Guadeloupe"],
+                               ["Guam"],
+                               ["Guatemala"],
+                               ["Guinea"],
+                               ["Guyana"],
+                               ["Haiti"],
+                               # ["Hawaii"],
+                               ["Honduras"],
+                               ["Hong Kong"],
+                               ["Hungary"],
+                               ["Iceland"],
+                               ["Indonesia"],
+                               ["India"],
+                               ["Iran"],
+                               ["Iraq"],
+                               ["Ireland"],
+                               ["Isle of Man"],
+                               ["Israel"],
+                               ["Italy"],
+                               ["Jamaica"],["Japan"],
+                               ["Jordan"],
+                               ["Kazakhstan"],
+                               ["Kenya"],
+                               ["Kiribati"],
+                               ["Korea North"],
+                               ["Korea Sout"],
+                               ["Kuwait"],
+                               ["Kyrgyzstan"],
+                               ["Laos"],
+                               ["Latvia"],
+                               ["Lebanon"],
+                               ["Lesotho"],
+                               ["Liberia"],
+                               ["Libya"],
+                               ["Liechtenstein"],
+                               ["Lithuania"],
+                               ["Luxembourg"],
+                               ["Macau"],
+                               ["Macedonia"],
+                               ["Madagascar"],
+                               ["Malaysia"],
+                               ["Malawi"],
+                               ["Maldives"],
+                               ["Mali"],
+                               ["Malta"],
+                               ["Marshall Islands"],
+                               ["Martinique"],
+                               ["Mauritania"],
+                               ["Mauritius"],
+                               ["Mayotte"],
+                               ["Mexico"],
+                               ["Midway Islands"],
+                               ["Moldova"],
+                               ["Monaco"],
+                               ["Mongolia"],
+                               ["Montserrat"],
+                               ["Morocco"],
+                               ["Mozambique"],
+                               ["Myanmar"],
+                               ["Nambia"],
+                               ["Nauru"],
+                               ["Nepal"],
+                               ["Netherland Antilles"],
+                               ["Netherlands"],
+                               ["Nevis"],
+                               ["New Caledonia"],
+                               ["New Zealand"],
+                               ["Nicaragua"],
+                               ["Niger"],
+                               ["Nigeria"],
+                               ["Niue"],
+                               ["Norfolk Island"],
+                               ["Norway"],
+                               ["Oman"],
+                               ["Pakistan"],
+                               ["Palau Island"],
+                               ["Palestine"],
+                               ["Panama"],
+                               ["Papua New Guinea"],
+                               ["Paraguay"],
+                               ["Peru"],
+                               ["Phillipines"],
+                               ["Pitcairn Island"],
+                               ["Poland"],
+                               ["Portugal"],
+                               ["Puerto Rico"],
+                               ["Qatar"],
+                               ["Republic of Montenegro"],
+                               ["Republic of Serbia"],
+                               ["Reunion"],
+                               ["Romania"],
+                               ["Russia"],
+                               ["Rwanda"],
+                               ["St Barthelemy"],
+                               ["St Eustatius"],
+                               ["St Helena"],
+                               ["St Kitts-Nevis"],
+                               ["St Lucia"],
+                               # <option value="St Maarten">St Maarten</option>
+                               # <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+                               # <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+                               # <option value="Saipan">Saipan</option>
+                               # <option value="Samoa">Samoa</option>
+                               # <option value="Samoa American">Samoa American</option>
+                               # <option value="San Marino">San Marino</option>
+                               # <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+                               # <option value="Saudi Arabia">Saudi Arabia</option>
+                               # <option value="Senegal">Senegal</option>
+                               # <option value="Seychelles">Seychelles</option>
+                               # <option value="Sierra Leone">Sierra Leone</option>
+                               # <option value="Singapore">Singapore</option>
+                               # <option value="Slovakia">Slovakia</option>
+                               # <option value="Slovenia">Slovenia</option>
+                               # <option value="Solomon Islands">Solomon Islands</option>
+                               # <option value="Somalia">Somalia</option>
+                               # <option value="South Africa">South Africa</option>
+                               # <option value="Spain">Spain</option>
+                               # <option value="Sri Lanka">Sri Lanka</option>
+                               # <option value="Sudan">Sudan</option>
+                               # <option value="Suriname">Suriname</option>
+                               # <option value="Swaziland">Swaziland</option>
+                               # <option value="Sweden">Sweden</option>
+                               # <option value="Switzerland">Switzerland</option>
+                               # <option value="Syria">Syria</option>
+                               # <option value="Tahiti">Tahiti</option>
+                               # <option value="Taiwan">Taiwan</option>
+                               # <option value="Tajikistan">Tajikistan</option>
+                               # <option value="Tanzania">Tanzania</option>
+                               # <option value="Thailand">Thailand</option>
+                               # <option value="Togo">Togo</option>
+                               # <option value="Tokelau">Tokelau</option>
+                               # <option value="Tonga">Tonga</option>
+                               # <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                               # <option value="Tunisia">Tunisia</option>
+                               # <option value="Turkey">Turkey</option>
+                               # <option value="Turkmenistan">Turkmenistan</option>
+                               # <option value="Turks & Caicos Is">Turks & Caicos Is</option>
+                               # <option value="Tuvalu">Tuvalu</option>
+                               # <option value="Uganda">Uganda</option>
+                               # <option value="United Kingdom">United Kingdom</option>
+                               # <option value="Ukraine">Ukraine</option>
+                               # <option value="United Arab Erimates">United Arab Emirates</option>
+                               # <option value="Uraguay">Uruguay</option>
+                               # <option value="Uzbekistan">Uzbekistan</option>
+                               # <option value="Vanuatu">Vanuatu</option>
+                               # <option value="Vatican City State">Vatican City State</option>
+                               # <option value="Venezuela">Venezuela</option>
+                               # <option value="Vietnam">Vietnam</option>
+                               # <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+                               # <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+                               # <option value="Wake Island">Wake Island</option>
+                               # <option value="Wallis & Futana Is">Wallis & Futana Is</option>
+                               # <option value="Yemen">Yemen</option>
+                               # <option value="Zaire">Zaire</option>
+                               # <option value="Zambia">Zambia</option>
+                               ["Zimbabwe"]
+                              
+                            ], @company.country), {:prompt => '-- Select Country --'}, class: "form-control" %>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="control-label col-md-12">
+                    <%= f.label "Success Story" %>
+                </div>
+                    <div class="col-md-12">
+                        <%= f.text_field :story_path, class: "form-control", placeholder: "Path to Company Success Story" %>
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group">
+                    <div class="control-label col-md-12">
+                    <%= f.label "Company Bio" %>
+                </div>
+                    <div class="col-md-12">
+                        <%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Company Description / Bio", tabindex: "20" %>
+                    </div>
+                </div>
+        </div>
+           
+        
+        <br /><br />
+        
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= f.submit(@company.new_record? ? "Create Company" : "Update Company", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+            </div>
+            
+            
+        </div>
+    <% end %>
+    </div>
+</div>

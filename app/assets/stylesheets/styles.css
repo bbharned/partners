@@ -757,12 +757,18 @@ Very Light Blue: #e9f7fb;
 
 
 
-/********************* Tags ****************************/
+/********************* Companies ****************************/
+.company-form-row {
+    margin-bottom: 10px;
+}
 
 
 
-
-
+@media all and (max-width: 768px) {
+    .company-form-row .col-md-6, .company-form-row .col-md-8 {
+        margin-bottom: 10px;
+    }
+}
 
 
 /************************ Licenses **************************/
