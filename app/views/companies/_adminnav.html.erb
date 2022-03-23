@@ -1,0 +1,8 @@
+<div class="flex-container admin-event-nav">
+	<span style="font-size: .7em; font-style:italic;">Admin Navigation</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to "All", companies_path, class: "flex-button" %>
+		<%= link_to "Integrators", company_search_path(:search => "Integrator"), class: "flex-button" %>
+		<%= link_to "Distributors", company_search_path(:search => "Distributor"), class: "flex-button" %>
+		<%= link_to "OEMs", company_search_path(:search => "OEM"), class: "flex-button" %>
+</div>
+<hr style="margin-bottom: 35px;" />

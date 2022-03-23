@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
 
 def index
 	@sort = [params[:sort]]
-    @companies = Company.paginate(page: params[:page], per_page: 25).order(@sort)
+    @companies = Company.paginate(page: params[:page], per_page: 12).order(:name)
 end
 
 
@@ -16,7 +16,8 @@ def search
     redirect_to companies_path and return
   else
     @parameter = params[:search].downcase
-    @companies = Company.where("lower(name||url||phone||street||street2||city||state||postal_code||country||country_code||main_prt_type) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:name)
+    @companies = Company.where('lower(name) LIKE :search OR lower(country) LIKE :search OR lower(country_code) LIKE :search OR lower(street) LIKE :search OR lower(city) LIKE :search OR lower(state) LIKE :search OR lower(main_prt_type) LIKE :search', 
+        search: "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:name)
   end
 
   respond_to do |format|

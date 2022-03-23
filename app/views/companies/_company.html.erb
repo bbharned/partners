@@ -2,8 +2,34 @@
 
 	<% @companies.each do |company| %>
 
-		<%= company.name %><br />
+		<div class="card company-card">
+			<div class="row">
+				<div class="col-8">
+					<div class="card-name"><%= link_to "#{company.name}", company_path(company), style: "color:inherit;" %></div>
+				</div>
+				<div class="col-4">
+					<div class="float-right">
+						<%= company.main_prt_type %>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-sm-4"><%= company.country %></div>
+				<div class="col-sm-4">Listings:</div>
+				<div class="col-sm-4">
+					<div class="float-right">
+                    	<%= link_to "edit", edit_company_path(company), style: "color: darkorange" %> | <%= link_to "view", company_path(company), style: "color: darkgreen;" %> | <%= link_to "delete", company_path(company), method: :delete, data: {confirm: "Are you sure you want to delete this Company?"}, style: "color:red;" %>
+                  	</div>
+				</div>
+			</div>
 
+			
+		</div>
 	<% end %>
+
+<% else %>
+
+<p style="color:orangered; text-align:center; margin-top:50px;">There are no Companies or results to display</p>
 
 <% end %>

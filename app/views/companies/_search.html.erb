@@ -1,10 +1,10 @@
 <div class="row company-search-box">
-	<div class="col-md-4 offset-md-4">
+	<div class="col-lg-4 offset-lg-4">
 		<%= form_tag(company_search_path, :mehtod => "get") do %>
 			<div class="input-group">
-				<%= search_field_tag :search, params[:search], placeholder: "search companies", class: "form-control" %>
+				<%= search_field_tag :search, params[:search], placeholder: "search partner companies", class: "form-control" %>
 				<div class="input-group-btn">
-					<%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search', :sort => :name %>
+					<%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search' %>
 				</div>
 			</div>
 		<% end %>

@@ -765,7 +765,14 @@ Very Light Blue: #e9f7fb;
     width: 100%; text-align: right;
 }
 .company-logo img {max-width: 100%;}
-
+.company-search-box {
+    margin-top: 25px; margin-bottom: 35px;
+}
+.company-card {
+    padding: 7px 20px; margin-bottom: 7px;
+}
+.company-card .card-name {margin-bottom: 0px; font-weight: bold;}
+.company-card hr {margin-top: 0; margin-bottom: 0;}
 
 
 @media all and (max-width: 768px) {
@@ -774,6 +781,9 @@ Very Light Blue: #e9f7fb;
     }
     .company-logo {
         display: none;
+    }
+    h1.title-get-smaller {
+        font-size: 1.85em;
     }
 }
 
