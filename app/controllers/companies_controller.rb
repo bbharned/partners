@@ -5,9 +5,25 @@ class CompaniesController < ApplicationController
 
 def index
 	@sort = [params[:sort]]
-    @companies = Maker.paginate(page: params[:page], per_page: 25).order(@sort)
+    @companies = Company.paginate(page: params[:page], per_page: 25).order(@sort)
 end
 
+
+def search
+  @parameter
+  if params[:search].blank?
+    @parameter = nil
+    redirect_to companies_path and return
+  else
+    @parameter = params[:search].downcase
+    @companies = Company.where("lower(name||url||phone||street||street2||city||state||postal_code||country||country_code||main_prt_type) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:name)
+  end
+
+  respond_to do |format|
+      format.html { render "search" }
+      # format.csv { send_data @users.to_csv, filename: "PartnerPortal_SearchedUsers-#{Date.today}.csv" }
+  end
+end
 
 
 def new

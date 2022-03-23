@@ -190,7 +190,7 @@ def search
     redirect_to users_path and return
   else
     @parameter = params[:search].downcase
-    @users = User.where("lower(firstname || lastname || company || email || channel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:lastname)
+    @users = User.where("lower(firstname||lastname||company||email||channel) LIKE ?", "%#{@parameter}%").paginate(page: params[:page], per_page: 25).order(:lastname)
   end
 
   respond_to do |format|

@@ -108,6 +108,8 @@ get 'flexforward/byuser', to: 'flexforwards#byuser'
 get 'flexforward/bydate', to: 'flexforwards#bydate'
 
 resources :companies
+get 'company/search', to: 'companies#search'
+post 'company/search', to: 'companies#search'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
