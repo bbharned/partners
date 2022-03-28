@@ -111,6 +111,8 @@ resources :companies
 get 'company/search', to: 'companies#search'
 post 'company/search', to: 'companies#search'
 
+resources :listings
+
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'
 delete 'logout', to: 'sessions#destroy'

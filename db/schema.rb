@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_18_133415) do
+ActiveRecord::Schema.define(version: 2022_03_24_151740) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -251,6 +251,33 @@ ActiveRecord::Schema.define(version: 2022_03_18_133415) do
     t.date "enddate"
     t.boolean "approved", default: false
     t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "company_id"
+    t.boolean "active", default: false
+    t.string "email"
+    t.string "phone"
+    t.integer "user_id"
+    t.string "street"
+    t.string "street2"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "country"
+    t.string "country_code"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "map_path"
+    t.string "story_path"
+    t.string "list_type"
+    t.integer "priority"
+    t.text "keywords"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

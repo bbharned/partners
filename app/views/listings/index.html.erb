@@ -1,0 +1,18 @@
+<div class="container" style="padding-bottom:100px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Partner Finder</h1>
+	</div>
+	<div class="col-md-3">
+		<% if logged_in? && current_user.admin? %>
+		<div class="float-right">
+			<%= link_to "Add Listing", new_listing_path, class: "btn btn-sm btn-primary", style: "margin-top:14px;" %>
+		</div>
+		<% end %>
+	</div>
+</div>
+<hr />
+
+
+</div>
