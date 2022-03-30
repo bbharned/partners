@@ -94,7 +94,12 @@
 	</div>
 	<% end %> 
 </div>
-
+<br /><br />
+<% if @listings.count > 0 %>
+	<% @listings.each do |listing| %>
+		<p align="center"><%= listing.firstname %> <%= listing.lastname %></p>
+	<% end %>
+<% end %>
 
 
 </div>

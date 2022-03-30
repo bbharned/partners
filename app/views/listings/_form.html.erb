@@ -6,32 +6,39 @@
     <%= form_for(@listing, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
         <div class="form-group">
-            
-                <div class="control-label col-md-12">
-                    <%= f.label "Company" %>
+            <div class="col-md-12">
+                <div class="row company-form-row">
+                    <div class="col-md-6">
+                        <div class="control-label "><%= f.label "First Name" %></div>
+                        <%= f.text_field :firstname, class: "form-control", placeholder: "Contact First Name" %>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="control-label "><%= f.label "Last Name" %></div>
+                        <%= f.text_field :lastname, class: "form-control", placeholder: "Contact Last Name" %>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <%= f.text_field :firstname, class: "form-control", placeholder: "Enter Company Name" %>
-                </div>
-
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
                 <div class="row company-form-row">
                     <div class="col-md-6">
-                        <%= f.text_field :lastname, class: "form-control", placeholder: "Enter Company Website" %>
+                        <div class="control-label "><%= f.label "Phone Number" %></div>
+                        <%= f.text_field :phone, class: "form-control", placeholder: "Listing Phone Number" %>
                     </div>
-
                     <div class="col-md-6">
-                        <%= f.text_field :phone, class: "form-control", placeholder: "Enter Company Phone Number" %>
+                        <div class="control-label "><%= f.label "Email" %></div>
+                        <%= f.text_field :email, class: "form-control", placeholder: "Enter Contact Email" %>
                     </div>
                 </div>
 
                 <div class="row company-form-row">
-                    <div class="col-md-8">
-                        
+                    <div class="col-md-6 state-dropdown">
+                        <div class="control-label "><%= f.label "Company" %></div>
+                        <%= f.select :company_id, @companies.collect {|company| [company.name, company.id]}, {:prompt => '-- Select Company --'}, class: "form-control" %>
                     </div>
-                    <div class="col-md-4 state-dropdown">
+                    <div class="col-md-6 state-dropdown">
+                        <div class="control-label "><%= f.label "Partner/Listing Type" %></div>
                         <%= f.select :list_type, options_for_select([
                               ["Integrator"], 
                               ["Distributor"],
@@ -378,23 +385,54 @@
                         </div>
                     </div>
                 </div>
+                
+
                 <br />
+
+
                 <div class="form-group">
-                    <div class="control-label col-md-12">
-                    <%= f.label "Success Story" %>
-                </div>
                     <div class="col-md-12">
-                        <%= f.text_field :story_path, class: "form-control", placeholder: "Path to Company Success Story" %>
+                        <div class="control-label "><%= f.label "Success Story" %></div>
+                        <%= f.text_field :story_path, class: "form-control", placeholder: "Path to Optional Success Story" %>
                     </div>
                 </div>
 
-                <br />
                 <div class="form-group">
-                    <div class="control-label col-md-12">
-                    <%= f.label "Company Bio" %>
-                </div>
                     <div class="col-md-12">
-                        <%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Company Description / Bio", tabindex: "20" %>
+                        <div class="control-label "><%= f.label "Description / Bio" %></div>
+                        <%= f.text_area :description, class: "form-control", rows: "8", placeholder: "Enter Optional Description / Bio", tabindex: "20" %>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="control-label "><%= f.label "Keywords" %></div>
+                        <%= f.text_field :keywords, class: "form-control", placeholder: "Enter Optional Search Keywords" %>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="control-label "><%= f.label "User Id" %></div>
+                                <%= f.text_field :user_id, class: "form-control", placeholder: "ID of linked User" %>
+                            </div>
+                            <div class="col-md-4 state-dropdown">
+                                <div class="control-label"><%= f.label "Priority" %></div>
+                                <%= f.select :priority, options_for_select([
+                                      ["5", 5], 
+                                      ["4", 4],
+                                      ["3", 3],
+                                      ["2", 2],
+                                      ["1", 1]
+                                ], @listing.priority), class: "form-control" %>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="control-label "><%= f.label "Activate Listing" %></div>
+                                <%= f.label "check to make active" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :active, class: "active_check" %>
+                            </div>
+                        </div>
                     </div>
                 </div>
         </div>

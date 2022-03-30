@@ -33,7 +33,7 @@ def new
 end
 
 def show
-
+    @listings = Listing.where(company_id: @company.id)
 end
 
 

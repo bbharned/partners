@@ -2,6 +2,8 @@ class Listing < ActiveRecord::Base
 	geocoded_by :address 
 	after_validation :geocode
   before_save :find_country_code
+  belongs_to :company
+
   
   def address 
     if self.state != nil && self.state != ""
