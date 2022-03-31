@@ -1,12 +1,12 @@
 class Listing < ActiveRecord::Base
-	geocoded_by :address 
+	geocoded_by :where_is
 	after_validation :geocode
   before_save :find_country_code
   belongs_to :company
   validates_uniqueness_of :user_id
 
   
-  def address 
+  def where_is 
     if self.state != nil && self.state != ""
       [street, state, country].compact.join(", ")
     else
@@ -28,9 +28,9 @@ class Listing < ActiveRecord::Base
 
   private
 
-  def address_changed? 
-    street_changed?||city_changed?||postal_code_changed?||state_changed?||country_changed?
-  end 
+  # def address_changed? 
+  #   street_changed?||city_changed?||postal_code_changed?||state_changed?||country_changed?
+  # end 
 
 
 end
