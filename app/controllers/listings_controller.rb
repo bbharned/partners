@@ -9,7 +9,8 @@ end
 
 
 def new
-	@listing = Listing.new(:user_id => params[:user_id], :firstname => params[:firstname])
+	@listing = Listing.new(:user_id => params[:user_id], :firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email], 
+		:phone => params[:cell], :street => params[:street], :street2 => params[:street2], :city => params[:city], :postal_code => params[:postal_code])
 	@companies = Company.all.order(:name)
 end
 
@@ -40,10 +41,18 @@ end
 
 def create
     @listing = Listing.new(listing_params)
-
+    if @listing.company == nil
+    	@no_company = Company.where(name: "No Company (Don't Delete)")
+    	@listing.company_id = @no_company.first.id
+    end
+    #@listings.user_id = @listing.user_id.to_i
     if @listing.save
-        flash[:success] = "Listing has been created and saved"
-        redirect_to listings_path
+        flash[:success] = "Web Listing has been requested and saved"
+        if current_user.admin?
+        	redirect_to listings_path
+        else
+        	redirect_to root_path
+        end
     else
         render 'new'
     end

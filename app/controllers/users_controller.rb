@@ -316,6 +316,7 @@ def show
      @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")
      @user_license = License.where(user_id: @user.id).limit(1)
      @user_registrations = EventAttendee.where(user_id: @user.id).where.not(canceled: true)
+     @postal_code = (@user.zip).to_s
      @user_events = []
      if @user_registrations.any?
         @user_registrations.each do |reg|

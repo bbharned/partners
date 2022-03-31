@@ -6,6 +6,11 @@
 		<div class="col-sm-4">
 			<% if @user.referred_by == "RAU" %>
 				<%= image_tag "rau-logo.png", class: "float-right-to-center" %>
+			<% end %>
+			<% if current_user.admin? %>
+				<div class="float-right" style="margin-top:10px;">
+					<%= link_to "Create Listing", new_listing_path(user_id: @user.id, firstname: @user.firstname, lastname: @user.lastname, email: @user.email, cell: @user.cell, street: @user.street, street2: @user.street2, city: @user.city, postal_code: @postal_code, list_type: @user.prttype), class: "btn btn-success btn-sm" %>
+				</div>
 			<% end %>	
 		</div>
 	</div>
@@ -26,11 +31,6 @@
 					<div class="col-12">
 						<%= link_to "edit", edit_user_path(@user) %>
 					</div>
-					<% if current_user.admin? %>
-					<div class="col-12">
-						<%= link_to "Create Listing", new_listing_path(user_id: @user.id, firstname: @user.firstname), class: "btn btn-success btn-sm" %>
-					</div>
-					<% end %>
 				</div>
 			</div>
 		</div>
