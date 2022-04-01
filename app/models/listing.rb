@@ -3,6 +3,7 @@ class Listing < ActiveRecord::Base
 	after_validation :geocode
   before_save :find_country_code
   belongs_to :company
+
   validates_uniqueness_of :user_id
 
   

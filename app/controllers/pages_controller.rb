@@ -33,6 +33,7 @@ end
 
 def dashboard
 	@user = current_user
+    @postal_code = (@user.zip).to_s
 	respond_to do |format| 
       format.html { render "dashboard" } 
     end

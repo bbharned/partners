@@ -309,7 +309,7 @@
 		      <p class="card-text" style="line-height: 12px; margin-bottom: 25px;"><small class="text-muted">Give us your details and get listed on the ThinManager.com website as a certified integrator.</small></p>
 		      <div align="right">
 		      	<!-- <%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %> -->
-		      	<%= link_to "Request Listing", new_listing_path(user_id: @user.id, firstname: @current_user.firstname, lastname: @current_user.lastname, email: @current_user.email, cell: @current_user.cell, street: @current_user.street, street2: @current_user.street2, city: @current_user.city, postal_code: @postal_code, list_type: @current_user.prttype), class: "btn btn-primary btn-sm" %>	
+		      	<%= link_to "Request Listing", new_listing_path(user_id: @user.id, firstname: @current_user.firstname, lastname: @current_user.lastname, email: @current_user.email, cell: @current_user.cell, street: @current_user.street, street2: @current_user.street2, city: @current_user.city, postal_code: @postal_code, list_type: @current_user.prttype, state_code: @current_user.state, list_type: @current_user.prttype), class: "btn btn-primary btn-sm" %>	
 		      </div>
 		    </div>
 		  </div>

@@ -10,8 +10,11 @@ end
 
 def new
 	@listing = Listing.new(:user_id => params[:user_id], :firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email], 
-		:phone => params[:cell], :street => params[:street], :street2 => params[:street2], :city => params[:city], :postal_code => params[:postal_code])
-	@companies = Company.all.order(:name)
+		:phone => params[:cell], :street => params[:street], :street2 => params[:street2], :city => params[:city], :postal_code => params[:postal_code], 
+        :list_type => params[:list_type]#, :state => params[:state_code]
+    )
+    
+    @companies = Company.all.order(:name)
 end
 
 

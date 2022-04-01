@@ -31,7 +31,7 @@
                         <%= f.text_field :email, class: "form-control", placeholder: "Enter Contact Email" %>
                     </div>
                 </div>
-                
+            <% if logged_in? && current_user.admin? %>    
                 <div class="row company-form-row">
                     <div class="col-md-6 state-dropdown">
                         <div class="control-label "><%= f.label "Company" %></div>
@@ -46,10 +46,12 @@
                         ], @listing.list_type), {:prompt => '-- Select Type --'}, class: "form-control" %>
                     </div>
                 </div>
-                
+            <% end %>    
             </div>
         </div>
-
+        <% if logged_in? && !current_user.admin? %>
+            <%= f.hidden_field(:list_type, :value => params[:list_type]) %>
+        <% end %>
         <br />
 
         <div class="form-group">
@@ -386,7 +388,7 @@
                     </div>
                 </div>
                 
-                
+                <% if logged_in? && current_user.admin? %>
                 <br />
 
 
@@ -435,13 +437,14 @@
                         </div>
                     </div>
                 </div>
-                
+                <% end %>
         </div>
            
         
         <br /><br />
-        
-
+        <% if logged_in? && !current_user.admin? %>
+            <%= f.hidden_field(:user_id, :value => params[:user_id]) %>
+        <% end %>
         <div class="form-group">
             <div class="col-sm-12">
                 <%= f.submit(@listing.new_record? ? "Create Listing" : "Update Listing", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
