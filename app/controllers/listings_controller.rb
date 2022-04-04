@@ -4,14 +4,24 @@ class ListingsController < ApplicationController
 
 
 def index
-	@listings = Listing.all
+	@listings = Listing.all.order("lastname desc")
+    @approved = Listing.joins(:user).where('certexpire >= ?', Date.today).where(:active => true)
+    @requested = Listing.where(:active => false)
+    # @expired = []
+    # @approved.each do |u|
+    #     if u.user.certexpire < Date.today
+    #         @expired.push u
+    #     end
+    # end
+    @expired = Listing.joins(:user).where('certexpire < ?', Date.today)
 end
 
 
 def new
+
 	@listing = Listing.new(:user_id => params[:user_id], :firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email], 
 		:phone => params[:cell], :street => params[:street], :street2 => params[:street2], :city => params[:city], :postal_code => params[:postal_code], 
-        :list_type => params[:list_type]#, :state => params[:state_code]
+        :list_type => params[:list_type], :state => params[:state_code]
     )
     
     @companies = Company.all.order(:name)

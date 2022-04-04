@@ -1,18 +1,105 @@
 <div class="container" style="padding-bottom:100px;">
 
-<div class="row">
-	<div class="col-md-9">
-		<h1>Partner Web Listings</h1>
-	</div>
-	<div class="col-md-3">
-		<% if logged_in? && current_user.admin? %>
-		<div class="float-right">
-			<%= link_to "Add Listing", users_path, class: "btn btn-sm btn-primary", style: "margin-top:14px;" %>
+	<div class="row">
+		<div class="col-md-9">
+			<h1>Partner Web Listings</h1>
 		</div>
-		<% end %>
+		<div class="col-md-3">
+			<% if logged_in? && current_user.admin? %>
+			<div class="float-right">
+				<%= link_to "Add Listing", users_path, class: "btn btn-sm btn-primary", style: "margin-top:14px;" %>
+			</div>
+			<% end %>
+		</div>
 	</div>
-</div>
-<hr />
+	<hr />
+
+	<div class="col-lg-12">	
+
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+		    <a class="nav-link active" id="list-requested" aria-current="page">Requested</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="list-approved">Active</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="list-expired">Expired</a>
+		  </li>
+		</ul>
+
+
+
+		<div class="main-listings-area">
+			
+				<div class="requested-listings">
+					<% if @requested.any? %>
+						<h3>Requested</h3>
+						<% @requested.each do | listing | %>
+							<%= listing.firstname %><br />
+						<% end %>
+					<% else %>
+						<p style="color:orangered; text-align:center; margin-top:35px;">There are current no Listings of this group.</p>
+					<% end %>
+				</div>
+
+				<div class="approved-listings">
+					<% if @approved.any? %>
+						<h3>Active</h3>
+						<% @approved.each do | listing | %>
+							<%= listing.firstname %><br />
+						<% end %>
+					<% else %>
+						<p style="color:orangered; text-align:center; margin-top:35px;">There are current no Listings of this group.</p>
+					<% end %>
+				</div>
+
+				<div class="expired-listings">
+					<% if @expired.any? %>
+						<h3>Expired Listings</h3>
+						<% @expired.each do | listing | %>
+							<%= listing.firstname %><br />
+						<% end %>
+					<% else %>
+						<p style="color:orangered; text-align:center; margin-top:35px;">There are current no Listings of this group.</p>
+					<% end %>
+				</div>
+			
+		</div>
+
+
+
+
+	</div>
 
 
 </div>
+
+<script>
+	$(document).on('ready turbolinks:load', function() {
+		$('#list-requested').on('click', function() {
+			$('#list-approved, #list-expired, #list-all').removeClass('active');
+			$('#list-requested').addClass('active');
+			$("#list-requested").attr("aria-current", "page");
+			$("#list-approved, #list-expired, #list-all").removeAttr("aria-current", "page");
+			$('.all-listings, .approved-listings, .expired-listings').hide();
+			$('.requested-listings').show();
+		});
+		$('#list-approved').on('click', function() {
+			$('#list-requested, #list-expired, #list-all').removeClass('active');
+			$('#list-approved').addClass('active');
+			$("#list-approved").attr("aria-current", "page");
+			$("#list-requested, #list-expired, #list-all").removeAttr("aria-current", "page");
+			$('.all-listings, .requested-listings, .expired-listings').hide();
+			$('.approved-listings').show();
+		});
+		$('#list-expired').on('click', function() {
+			$('#list-requested, #list-approved, #list-all').removeClass('active');
+			$('#list-expired').addClass('active');
+			$("#list-expired").attr("aria-current", "page");
+			$("#list-requested, #list-approved, #list-all").removeAttr("aria-current", "page");
+			$('.all-listings, .requested-listings, .approved-listings').hide();
+			$('.expired-listings').show();
+		});
+	})();
+</script>
