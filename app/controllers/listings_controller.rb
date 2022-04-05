@@ -1,13 +1,13 @@
 class ListingsController < ApplicationController
-	before_action :require_admin, except: [:new, :create, :show]
+	before_action :require_admin, except: [:new, :create, :show, :integrators, :distributors]
 	before_action :set_listing, only: [:edit, :update, :show]
 
 
 def index
 	# @listings = Listing.all.order("lastname desc")
- #    @approved = Listing.joins(:user).where('certexpire >= ?', Date.today).where(:active => true)
- #    @requested = Listing.where(:active => false)
- #    @expired = Listing.joins(:user).where('certexpire < ?', Date.today)
+    # @approved = Listing.joins(:user).where('certexpire >= ?', Date.today).where(:active => true)
+    # @requested = Listing.where(:active => false)
+    # @expired = Listing.joins(:user).where('certexpire < ?', Date.today)
 
     @filterrific = initialize_filterrific(
      Listing,
@@ -98,6 +98,16 @@ def destroy
 end
 
 
+
+def integrators
+    @listings = Listing.all
+end
+
+
+
+def distributors
+
+end
 
 
 

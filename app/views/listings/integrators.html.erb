@@ -1,0 +1,49 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<h1>Integrator Finder</h1>
+<hr />
+
+<p>This search tool is an easy and convenient way to find ThinManager Certified System Integrators in your area.</p>
+
+<div class="row listing-search-boxes">
+	<div class="col-md-5" style="margin-bottom:15px;">
+		<h5>Keyword Search</h5>
+		<%= form_tag(listing_integrators_path, :method => "get") do %>
+			<div class="input-group">
+				<%= search_field_tag :keyword_search, params[:keyword_search], placeholder: "enter keyword", class: "form-control" %>
+				<div class="input-group-btn">
+					<%= button_tag "Search", :class => 'btn btn-info' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-md-2 or">OR</div>
+	<div class="col-md-5" style="margin-bottom:15px;">
+		<h5>Address Search</h5>
+		<%= form_tag(listing_integrators_path, :method => "get") do %>
+			<div class="input-group">
+				<%= search_field_tag :address_search, params[:address_search], placeholder: "enter address", class: "form-control" %>
+				<div class="input-group-btn">
+					<%= button_tag "Search", :class => 'btn btn-info' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<hr style="margin-top:45px; margin-bottom: 5px;" />
+
+<div class="row" style="margin-bottom: 25px;">
+	<div class="col-md-12"><h4 style="padding-top:22px; margin-bottom: 0px;">Results</h4></div>	
+</div>
+
+<div class="col-12">
+	<% if @listings != nil %>
+		<%= render(
+			partial: 'listings/search_list',
+			locals: { listings: @listings }
+		) %>
+	<% end %>
+</div>
+
+</div>

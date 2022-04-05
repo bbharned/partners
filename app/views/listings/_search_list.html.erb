@@ -1,0 +1,53 @@
+<% if @listings.any? %>
+          
+      <p align="center"><%= pluralize(@listings.count, "found listing") %></p>
+      <% @listings.each do |l| %>
+      
+
+      <div class="card listings-card" style="margin-bottom:15px;">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-4">
+              <%= l.firstname %> <%= l.lastname %>
+            </div>
+            <div class="col-md-5">
+              <b><%= l.company.name %></b>
+            </div>
+            <div class="col-md-3">
+              <div class="float-right-to-left">
+                <%= l.list_type %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <%= l.where_is %>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        
+
+
+
+
+      <% end %>
+      
+
+      <% if @listings.count > 20 %>
+        <div class="paginate" style="margin-top:20px;">
+          <%= will_paginate(@listings, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+        </div>
+      <% end %>
+
+
+<% else %>
+
+  <p align="center" style="color:darkorange; margin-top:45px;">There are no listings or results to your query</p>
+
+<% end %>
+
+
