@@ -798,12 +798,13 @@ Very Light Blue: #e9f7fb;
 .active_check {
     margin-top: 10px;
 }
-.all-listings, 
-.approved-listings, .expired-listings {
-    display: none;
+.float-right-to-left {
+    text-align: right;
 }
-.main-listings-area {
-    padding: 35px 2.5%;
+@media all and (max-width: 768px) {
+    .float-right-to-left {
+        text-align: left;
+    }
 }
 
 

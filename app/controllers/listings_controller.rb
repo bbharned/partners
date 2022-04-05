@@ -4,16 +4,34 @@ class ListingsController < ApplicationController
 
 
 def index
-	@listings = Listing.all.order("lastname desc")
-    @approved = Listing.joins(:user).where('certexpire >= ?', Date.today).where(:active => true)
-    @requested = Listing.where(:active => false)
-    # @expired = []
-    # @approved.each do |u|
-    #     if u.user.certexpire < Date.today
-    #         @expired.push u
-    #     end
-    # end
-    @expired = Listing.joins(:user).where('certexpire < ?', Date.today)
+	# @listings = Listing.all.order("lastname desc")
+ #    @approved = Listing.joins(:user).where('certexpire >= ?', Date.today).where(:active => true)
+ #    @requested = Listing.where(:active => false)
+ #    @expired = Listing.joins(:user).where('certexpire < ?', Date.today)
+
+    @filterrific = initialize_filterrific(
+     Listing,
+     params[:filterrific],
+      select_options: {
+        listing_sort: Listing.options_for_listing_sort,
+        with_status: ['Requested Listings', 'Active Listings', 'Expired Listings'],
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:listing_sort, :listing_search, :with_status],
+      sanitize_params: true,
+   ) or return
+   @listings = @filterrific.find.paginate(page: params[:page], per_page: 20)
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
 end
 
 
