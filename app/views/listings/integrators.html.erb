@@ -8,7 +8,7 @@
 <div class="row listing-search-boxes">
 	<div class="col-md-5" style="margin-bottom:15px;">
 		<h5>Keyword Search</h5>
-		<%= form_tag(listing_integrators_path, :method => "get") do %>
+		<%= form_tag(listing_integrators_path, :method => "post") do %>
 			<div class="input-group">
 				<%= search_field_tag :keyword_search, params[:keyword_search], placeholder: "enter keyword", class: "form-control" %>
 				<div class="input-group-btn">
@@ -19,10 +19,10 @@
 	</div>
 	<div class="col-md-2 or">OR</div>
 	<div class="col-md-5" style="margin-bottom:15px;">
-		<h5>Address Search</h5>
-		<%= form_tag(listing_integrators_path, :method => "get") do %>
+		<h5>City Search <span style="font-size:.65em; font-weight:normal;">(ex. Atlanta, GA)</span></h5>
+		<%= form_tag(listing_integrators_path, :method => "post") do %>
 			<div class="input-group">
-				<%= search_field_tag :address_search, params[:address_search], placeholder: "enter address", class: "form-control" %>
+				<%= search_field_tag :q, params[:q], placeholder: "enter address", class: "form-control" %>
 				<div class="input-group-btn">
 					<%= button_tag "Search", :class => 'btn btn-info' %>
 				</div>
@@ -34,7 +34,15 @@
 <hr style="margin-top:45px; margin-bottom: 5px;" />
 
 <div class="row" style="margin-bottom: 25px;">
-	<div class="col-md-12"><h4 style="padding-top:22px; margin-bottom: 0px;">Results</h4></div>	
+	<div class="col-md-12">
+		<h4 style="padding-top:22px; margin-bottom: 0px;">Results
+			<span style="font-weight:normal; font-size:.5em;">
+				<% if @listings != nil %>
+					(Click Name or Company Name for more details)
+				<% end %>
+			</span>
+		</h4>
+	</div>	
 </div>
 
 <div class="col-12">
@@ -43,6 +51,8 @@
 			partial: 'listings/search_list',
 			locals: { listings: @listings }
 		) %>
+	<% else %>
+		<p align="center" style="margin-top:45px;">the results of your search will show here.</p>	
 	<% end %>
 </div>
 

@@ -8,10 +8,13 @@
         <div class="card-header">
           <div class="row">
             <div class="col-md-4">
-              <%= l.firstname %> <%= l.lastname %>
+              <b><%= link_to "#{l.firstname} #{l.lastname}", listing_path(l), style: "color:inherit;" %></b>
             </div>
             <div class="col-md-5">
-              <b><%= l.company.name %></b>
+              <b><%= link_to "#{l.company.name}", company_path(l.company) %></b>
+              <% if l.company.story_path != nil && l.company.story_path != "" %>
+                &nbsp;&nbsp;<span style="font-size:.75em;">[<%= link_to "Read Success Story", "#{l.company.story_path}", target: "_blank", style: "color: #333333;" %>]<span>
+              <% end %> 
             </div>
             <div class="col-md-3">
               <div class="float-right-to-left">
@@ -22,8 +25,13 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12">
-              <%= l.where_is %>
+            <div class="col-md-9">
+              <%= l.city %><% if l.state != "" && l.state != nil %>, <%= l.state %><% end %>
+            </div>
+            <div class="col-md-3">
+              <div class="float-right-to-left">
+                <%= l.email %>
+              </div>
             </div>
           </div>
         </div>

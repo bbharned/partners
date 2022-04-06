@@ -113,8 +113,9 @@ post 'company/search', to: 'companies#search'
 
 resources :listings
 get 'listing/integrators', to: 'listings#integrators'
-
+post 'listing/integrators', to: 'listings#integrators'
 get 'listing/distributors', to: 'listings#distributors'
+post 'listing/distributors', to: 'listings#distributors'
 
 get 'login', to: 'sessions#new'
 post 'login', to: 'sessions#create'

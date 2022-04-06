@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 2022_03_24_151740) do
   create_table "listings", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
+    t.string "fullname"
     t.integer "company_id"
     t.boolean "active", default: false
     t.string "email"

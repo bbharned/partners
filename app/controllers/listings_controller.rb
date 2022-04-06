@@ -100,7 +100,48 @@ end
 
 
 def integrators
-    @listings = Listing.all
+    begin
+        
+        @listings = nil
+        @key_parameter
+        @search_parameter
+        if params[:keyword_search].blank?
+          @key_parameter = nil
+          #redirect_to listing_integrators_path and return
+        else
+          @search_parameter = nil
+          @key_parameter = params[:keyword_search].downcase 
+          @listings = Listing.where(list_type: "Integrator").where(active: true)
+                        .joins(:company).joins(:user).where("users.certexpire > ?", Date.today)
+                        .where("lower(listings.firstname||listings.lastname||listings.fullname||listings.email||listings.street||listings.street2||listings.city||listings.state||listings.country||listings.country_code||listings.postal_code||listings.keywords||listings.description||companies.name||companies.url||users.silevel||users.channel) LIKE ?", "%#{@key_parameter}%")
+                        .paginate(page: params[:page], per_page: 25).order(:lastname)
+        end
+
+        if params[:q].blank?
+          @search_parameter = nil
+          #redirect_to listing_integrators_path and return
+        else
+          @key_parameter = nil
+          @search_parameter = params[:q] 
+          @listings = Listing.where(list_type: "Integrator").where(active: true)
+                      .joins(:user).where("users.certexpire > ?", Date.today)
+                      .near(@search_parameter, 200, min_radius: 40)
+                      .paginate(page: params[:page], per_page: 25).order(:lastname)
+
+        end
+
+        respond_to do |format|
+          format.html { render "integrators" }
+        end
+
+    
+    rescue
+        
+        flash[:danger] = "There was an error with your search. Try being less specific." 
+        render 'integrators'
+
+    end
+    
 end
 
 
@@ -116,7 +157,7 @@ end
 private
 
 	def listing_params
-        params.require(:listing).permit(:firstname, :lastname, :phone, :email, :user_id, :company_id, :list_type, :story_path, :street, :street2, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude, :map, :keywords, :description, :priority, :active)
+        params.require(:listing).permit(:firstname, :lastname, :fullname, :phone, :email, :user_id, :company_id, :list_type, :story_path, :street, :street2, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude, :map, :keywords, :description, :priority, :active)
     end
 
 

@@ -3,6 +3,7 @@ class CreateListings < ActiveRecord::Migration[5.2]
     create_table :listings do |t|
       t.string :firstname
       t.string :lastname
+      t.string :fullname
       t.integer :company_id
       t.boolean :active, default: false
       t.string :email

@@ -2,11 +2,11 @@ class Listing < ActiveRecord::Base
 	geocoded_by :where_is
 	after_validation :geocode
   before_save :find_country_code
+  before_save :get_fullname
   belongs_to :company
   belongs_to :user
 
   validates_uniqueness_of :user_id
-
   
   def where_is 
     if self.state != nil && self.state != ""
@@ -22,6 +22,10 @@ class Listing < ActiveRecord::Base
       self.country_code = query.first.country_code
       self.postal_code = query.first.postal_code
     end
+  end
+
+  def get_fullname
+    self.fullname = self.firstname + " " + self.lastname
   end
 
 
