@@ -26,6 +26,7 @@ def index
    respond_to do |format|
      format.html
      format.js
+     format.csv { send_data @listings.to_csv, filename: "ThinManager-Web-Listings_Portal-#{Date.today}.csv" }
    end
 
    rescue ActiveRecord::RecordNotFound => e
@@ -81,10 +82,11 @@ def create
     if @listing.save
         flash[:success] = "Web Listing has been requested and saved"
         if current_user.admin?
-        	# send email to admins that listing has been requested
             redirect_to listings_path
         else
             # send email to user that listing request has been received
+            # send email to admins that listing has been requested
+            current_user.send_listing_notification(@listing)
             redirect_to root_path
         end
     else

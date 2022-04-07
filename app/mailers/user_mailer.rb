@@ -232,4 +232,18 @@ class UserMailer < ApplicationMailer
   end
 
 
+  def listing_notification(user, listing)
+    @user = user
+    @listing = listing
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'New Web Listing Request Received', delivery_method_options: delivery_options)
+  end
+
+
 end

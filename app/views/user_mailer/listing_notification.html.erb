@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div style="font-family: 'Helvetica', san-serif; width:560px; padding: 20px; margin:auto; text-align: center;">
+        
+        <br />
+        
+        <div style="margin: auto;">
+          <div style="width:127px; height:100px; margin:auto;">
+            <img src="https://thinmanager.com/images/logo-thinmanager.png" width="126.14" height="100" /><br />
+          </div>
+          <div style="text-align: center;">
+            <h2 style="margin-bottom: 35px;">Web Listing Request</h2>
+          </div>
+        </div>
+
+        <p>Web Listing requested<br />from the ThinManager Portal</p>
+        
+        <p style="font-weight:bold; margin-top: 35px;">User Submitting Request</p>
+        <p>
+          <%= @user.firstname %> <%= @user.lastname %><br />
+          <%= @user.company %>
+        </p>
+        <br />
+        <h4>Web Listing Information</h4>
+
+        <p>
+          <%= @listing.firstname %> <%= @listing.lastname %><br />
+          <%= @listing.list_type %><br />
+          <%= @listing.country %>
+        </p>
+        
+        <br />
+        <p>Date Requested: <%= @listing.created_at.strftime("%m/%d/%Y") %>
+        
+    </div>
+  </body>
+</html>

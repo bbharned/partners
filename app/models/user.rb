@@ -128,6 +128,11 @@ end
         UserMailer.license_notification(self, license).deliver_now
     end
 
+#Listing Request Notification
+    def send_listing_notification(license)
+        UserMailer.listing_notification(self, license).deliver_now
+    end
+
 
 # Returns the hash digest of the given string.
     def User.digest(string)

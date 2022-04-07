@@ -3,7 +3,7 @@
   
 
     <% if @listings.any? %>
-          <p align="center"><%= pluralize(@listings.count, "found listing") %> &nbsp;<span style="font-size:.75em;"><%= link_to "(export csv)", "#" %></span></p>
+          <p align="center"><%= pluralize(@listings.count, "found listing") %> &nbsp;<span style="font-size:.75em;"><a href="/listings.csv">(export CSV)</a></span></p>
           <% @listings.each do |l| %>
           
 

@@ -90,6 +90,12 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.license_notification(@user, @license)
   end
 
+  def listing_request_internal
+    @user = User.find(3)
+    @listing = Listing.find(2)
+    UserMailer.listing_notification(@user, @listing)
+  end
+
 
 
 end

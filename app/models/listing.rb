@@ -29,6 +29,19 @@ class Listing < ActiveRecord::Base
   end
 
 
+  def self.to_csv
+      attributes = %w{id active firstname lastname email user_id company_id list_type created_at}
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |listing|
+          csv << attributes.map{ |attr| listing.send(attr) }
+        end
+      end
+  end
+
+
   filterrific(
    default_filter_params: { listing_sort: 'created_at_asc' },
    available_filters: [
