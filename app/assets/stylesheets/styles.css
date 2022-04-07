@@ -824,6 +824,12 @@ Very Light Blue: #e9f7fb;
 .listings-card .card-body {
     line-height: 15px; padding: 10px 15px;
 }
+.listing-show-card {
+    padding: 25px 2.5%;
+}
+.listing-show-card-footer {
+    margin: 0px -2.5% -25px -2.5%;
+}
 
 
 @media all and (max-width: 768px) {

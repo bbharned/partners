@@ -72,17 +72,20 @@ end
 
 def create
     @listing = Listing.new(listing_params)
+    
     if @listing.company == nil
-    	@no_company = Company.where(name: "No Company (Don't Delete)")
+    	@no_company = Company.where(name: "No Company")
     	@listing.company_id = @no_company.first.id
     end
-    #@listings.user_id = @listing.user_id.to_i
+
     if @listing.save
         flash[:success] = "Web Listing has been requested and saved"
         if current_user.admin?
-        	redirect_to listings_path
+        	# send email to admins that listing has been requested
+            redirect_to listings_path
         else
-        	redirect_to root_path
+            # send email to user that listing request has been received
+            redirect_to root_path
         end
     else
         render 'new'
@@ -125,7 +128,7 @@ def integrators
           @search_parameter = params[:q] 
           @listings = Listing.where(list_type: "Integrator").where(active: true)
                       .joins(:user).where("users.certexpire > ?", Date.today)
-                      .near(@search_parameter, 200, min_radius: 40)
+                      .near(@search_parameter, 150, min_radius: 40)
                       .paginate(page: params[:page], per_page: 25).order(:lastname)
 
         end
@@ -147,7 +150,44 @@ end
 
 
 def distributors
+    begin
+        
+        @listings = nil
+        @key_parameter
+        @search_parameter
+        if params[:keyword_search].blank?
+          @key_parameter = nil
+        else
+          @search_parameter = nil
+          @key_parameter = params[:keyword_search].downcase 
+          @listings = Listing.where(list_type: "Distributor").where(active: true)
+                        .joins(:company).joins(:user)
+                        .where("lower(listings.firstname||listings.lastname||listings.fullname||listings.email||listings.street||listings.street2||listings.city||listings.state||listings.country||listings.country_code||listings.postal_code||listings.keywords||listings.description||companies.name||companies.url||users.silevel||users.channel) LIKE ?", "%#{@key_parameter}%")
+                        .paginate(page: params[:page], per_page: 25).order(:lastname)
+        end
 
+        if params[:q].blank?
+          @search_parameter = nil
+        else
+          @key_parameter = nil
+          @search_parameter = params[:q] 
+          @listings = Listing.where(list_type: "Distributor").where(active: true)
+                      .near(@search_parameter, 150, min_radius: 40)
+                      .paginate(page: params[:page], per_page: 25).order(:lastname)
+
+        end
+
+        respond_to do |format|
+          format.html { render "distributors" }
+        end
+
+    
+    rescue
+        
+        flash[:danger] = "There was an error with your search. Try being less specific." 
+        render 'distributors'
+
+    end
 end
 
 

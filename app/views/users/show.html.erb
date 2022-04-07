@@ -8,9 +8,15 @@
 				<%= image_tag "rau-logo.png", class: "float-right-to-center" %>
 			<% end %>
 			<% if current_user.admin? %>
-				<div class="float-right" style="margin-top:10px;">
-					<%= link_to "Create Listing", new_listing_path(user_id: @user.id, firstname: @user.firstname, lastname: @user.lastname, email: @user.email, cell: @user.cell, street: @user.street, street2: @user.street2, city: @user.city, postal_code: @postal_code, list_type: @user.prttype), class: "btn btn-success btn-sm" %>
-				</div>
+				<% if @listing != nil %>
+					<div class="float-right" style="margin-top:10px;">
+						<%= link_to "Manage Web Listing", edit_listing_path(@listing), class: "btn btn-info btn-sm" %>
+					</div>
+				<% else %>
+					<div class="float-right" style="margin-top:10px;">
+						<%= link_to "Create Listing", new_listing_path(user_id: @user.id, firstname: @user.firstname, lastname: @user.lastname, email: @user.email, cell: @user.cell, street: @user.street, street2: @user.street2, city: @user.city, postal_code: @postal_code, list_type: @user.prttype), class: "btn btn-success btn-sm" %>
+					</div>
+				<% end %>
 			<% end %>	
 		</div>
 	</div>

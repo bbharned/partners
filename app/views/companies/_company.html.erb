@@ -1,7 +1,7 @@
 <% if @companies.any? %>
 
 	<% @companies.each do |company| %>
-
+		<% @listings = Listing.where(company_id: company.id) %>
 		<div class="card company-card">
 			<div class="row">
 				<div class="col-8">
@@ -16,7 +16,7 @@
 			<hr />
 			<div class="row">
 				<div class="col-sm-4"><%= company.country %></div>
-				<div class="col-sm-4">Listings:</div>
+				<div class="col-sm-4">Listings: <%= pluralize(@listings.count, "listing") %></div>
 				<div class="col-sm-4">
 					<div class="float-right">
                     	<%= link_to "edit", edit_company_path(company), style: "color: darkorange" %> | <%= link_to "view", company_path(company), style: "color: darkgreen;" %> | <%= link_to "delete", company_path(company), method: :delete, data: {confirm: "Are you sure you want to delete this Company?"}, style: "color:red;" %>

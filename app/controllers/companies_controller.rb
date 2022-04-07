@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
 
 
 def index
-	@sort = [params[:sort]]
+	#@sort = [params[:sort]]
     @companies = Company.paginate(page: params[:page], per_page: 12).order(:name)
 end
 
@@ -70,6 +70,13 @@ end
 
 def destroy
     @company = Company.find(params[:id])
+    @no_company = Company.where(name: "No Company").first
+    @listings = Listing.where(company_id: @company.id)
+    @listings.each do |l|
+        l.company_id = @no_company.id
+        l.active = false
+        l.save
+    end
     @company.destroy
     flash[:danger] = "Company has been deleted"
     redirect_to companies_path

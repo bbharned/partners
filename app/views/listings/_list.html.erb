@@ -18,7 +18,7 @@
                   <% end %> 
                 </div>
                 <div class="col-md-5">
-                  <b><%= l.company.name %></b>
+                  <b><%= link_to "#{l.company.name}", company_path(l.company), style: "color:inherit;" %></b>
                 </div>
                 <div class="col-md-3">
                   <div class="float-right-to-left">

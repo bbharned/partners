@@ -3,5 +3,82 @@
 <h1><%= @listing.firstname %> <%= @listing.lastname %></h1>
 <hr />
 
+<div class="card listings-card listing-show-card">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-8">
+				<h5 style="margin-bottom:0px;"><%= @listing.firstname %> <%= @listing.lastname %></h5>
+				<span style="font-size:.85em; font-weight: normal;">
+					<% if @listing.list_type != nil && @listing.list_type != "" %>
+						ThinManager <%= @listing.list_type %>
+					<% end %>
+				</span>
+				
+				<h3 style="margin-top:20px;"><%= link_to "#{@listing.company.name}", company_path(@listing.company), style: "color:inherit;" %></h3>
+			</div>
+			<div class="col-md-4 goAway">
+				<% if @listing.company.logo_path != nil && @listing.company.logo_path != "" %>
+					<div class="company-logo"><img src="<%= @listing.company.logo_path %>" /></div>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					<%= @listing.street %><br />
+					<%= @listing.city %>
+					<% if @listing.state != nil && @listing.state != "" %>
+						, <%= @listing.state %>
+					<% end %>
+					<% if @listing.postal_code != nil && @listing.postal_code != "" %>
+						&nbsp;<%= @listing.postal_code %>
+					<% end %><br />
+					<%= @listing.country %>
+				</p>
+			</div>
+		</div>
+		<% if @listing.description != nil && @listing.description != "" %>
+			<hr />
+			<div class="row" style="margin-top:25px; margin-bottom:25px;">
+				<div class="col-md-12">
+					<h5>Partner Bio</h5>
+					<%= simple_format(@listing.description) %>
+				</div>
+			</div>
+			<hr />
+		<% end %>
+		<div class="row" style="text-align:center; margin-top:20px; font-size: .75em;">
+			<div class="col-md-12">
+				<% if @listing.latitude != nil && @listing.latitude != "" %>
+					Lat: <%= @listing.latitude %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Lon: <%= @listing.longitude %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer listing-show-card-footer">
+		<div class="row">
+			<div class="col-md-6">
+				<% if @listing.email != nil && @listing.email != "" %>
+					Email: <%= link_to "#{@listing.email}", "mailto:#{@listing.email}" %>
+				<% end %>
+			</div>
+			<div class="col-md-6">
+				<div class="float-right-to-left">
+					<% if @listing.phone != nil && @listing.phone != "" %>
+						Phone: <%= link_to "#{@listing.phone}", "tel:#{@listing.phone}" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+
+
+
+
+
+
+
+<div style="margin-top: 12px;"><a href="javascript:history.back()">« Back</a></div>
 </div>

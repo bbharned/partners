@@ -48,7 +48,7 @@ scope :listing_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 20
+    num_or_conds = 21
     where(
       terms.map { |term|
         "(
@@ -64,6 +64,7 @@ scope :listing_search, lambda { |query|
         OR LOWER(listings.country) LIKE ?
         OR LOWER(listings.country_code) LIKE ?
         OR LOWER(listings.postal_code) LIKE ?
+        OR LOWER(listings.list_type) LIKE ?
         OR LOWER(companies.name) LIKE ?
         OR LOWER(companies.url) LIKE ?
         OR LOWER(companies.country) LIKE ?
