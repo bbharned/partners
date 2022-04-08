@@ -297,6 +297,17 @@ def rauusers
     end
 end
 
+def eventusers
+    @sort = [params[:sort]]
+    @users = User.where(referred_by: "Events").paginate(page: params[:page], per_page: 25).order(@sort)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "eventusers" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Events-#{Date.today}.csv" }
+    end
+end
+
 
 
 

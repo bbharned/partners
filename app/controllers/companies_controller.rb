@@ -33,7 +33,17 @@ def new
 end
 
 def show
-    @listings = Listing.where(company_id: @company.id)
+    @listings = []
+    @all = Listing.where(company_id: @company.id)
+    @all.each do |l|
+        if l.user.certexpire == nil || l.user.certexpire == ""
+            @listings.push l
+        elsif l.user.certexpire != nil && l.user.certexpire != "" && l.user.certexpire >= Date.today
+            @listings.push l
+        end
+    end
+
+    
 end
 
 

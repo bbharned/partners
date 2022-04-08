@@ -18,7 +18,7 @@ class User < ApplicationRecord
     has_many :event_attendees
     has_many :events, through: :event_attendees, dependent: :destroy
     has_one :user_badge
-    has_one :listing
+    has_one :listing, dependent: :destroy
     
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i 

@@ -80,7 +80,7 @@ def create
     end
 
     if @listing.save
-        flash[:success] = "Web Listing has been requested and saved"
+        flash[:success] = "Your ThinManager Web Listing has been received and will be reviewed for publishing. Thank you"
         if current_user.admin?
             redirect_to listings_path
         else
