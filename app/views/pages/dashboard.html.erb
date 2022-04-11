@@ -174,14 +174,8 @@
 	<div class="row">
 		<div class="col-md-6 inside-sales-pic" style="text-align: center;"><%= image_tag "inside-sales_22.png" %></div>
 		<div class="col-md-6"><p>We are invested in helping you succeed. Whether you are presenting ThinManager to a customer or looking to upgrade them to the newest version, we are here to help. Our talented and trained sales staff can help you with almost anything you need, and they are very easy to deal with. </p>
-		
-			<% if @current_user.admin? || @current_user.channel == "" || @current_user.channel == "Rockwell Automation" %>
-				<p><%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %></p>
-			<% elsif @current_user.channel == "Wonderware" %>
-				<p><%= link_to "ww_insidesales@thinmanager.com", "mailto:ww_insidesales@thinmanager.com" %></p>
-			<% elsif @current_user.channel == "GE" %>
-				<p><%= link_to "ge_insidesales@thinmanager.com", "mailto:ge_insidesales@thinmanager.com" %></p>
-			<% end %>
+		<p><%= link_to "customersuccess@thinmanager.com", "mailto:customersuccess@thinmanager.com" %></p>
+			
 		
 		</div>
 	</div>
@@ -544,14 +538,8 @@
 		      <h5 class="card-title">ThinManager Contact</h5>
 		      <p class="card-text">Looking for something specific? Confused with what you found? Have Questions? We can help.</p>
 		      <p class="card-text">Ph: 678-990-0945<br />Email: 
-		      	<% if @current_user.admin? || @current_user.channel == "" || @current_user.channel == "Rockwell Automation" %>
-					<%= link_to "insidesales@thinmanager.com", "mailto:insidesales@thinmanager.com" %></p>
-				<% elsif @current_user.channel == "Wonderware" %>
-					<%= link_to "ww_insidesales@thinmanager.com", "mailto:ww_insidesales@thinmanager.com" %></p>
-				<% elsif @current_user.channel == "GE" %>
-					<%= link_to "ge_insidesales@thinmanager.com", "mailto:ge_insidesales@thinmanager.com" %></p>
-			    <% end %>
-		    </div>
+		      	<%= link_to "customersuccess@thinmanager.com", "mailto:customersuccess@thinmanager.com" %></p>
+			</div>
 		</div>
 	<% end %>
 
