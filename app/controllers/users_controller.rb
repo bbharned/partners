@@ -107,6 +107,7 @@ def signup_evt
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
         @user.send_newuser_zap
+        # event registration here then redirect to user_path and change flash message
         flash[:success] = "Now that your account has been created, you can complete the registration by clicking the registration button below."
         redirect_to event_path(@event)
     else

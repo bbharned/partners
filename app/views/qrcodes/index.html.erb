@@ -12,13 +12,15 @@
 	
 	<div class="row" style="margin-bottom:7px;">
 				
-		<div class="col-md-7">
+		<div class="col-md-5">
 			<span style="padding-left:10px;"><b>QR Code Content</b></span>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<span><b>User</b></span>
 		</div>
-
+		<div class="col-md-2">
+			<span><b>Date Created</b></span>
+		</div>
 	</div>	
 
 
@@ -29,11 +31,14 @@
 		<div class="well well-space">
 			<div class="row">
 				
-				<div class="col-md-7">
+				<div class="col-md-5">
 					<%= link_to "#{qr.content}", qrcode_path(qr) %>
 				</div>
 				<div class="col-md-3">
 					<%= link_to "#{qr.user.firstname} #{qr.user.lastname}", user_path(qr.user) %>
+				</div>
+				<div class="col-md-2">
+					<%= qr.created_at.strftime("%m/%d/%Y") %>
 				</div>
 				<div class="col-md-1">
 					<%= link_to "Edit", edit_qrcode_path(qr), class: "float-right", style: "font-size:.8em; padding-top:2px;" %>
