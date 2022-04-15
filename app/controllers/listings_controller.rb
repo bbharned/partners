@@ -130,7 +130,7 @@ def integrators
           @search_parameter = params[:q] 
           @listings = Listing.where(list_type: "Integrator").where(active: true)
                       .joins(:user).where("users.certexpire > ?", Date.today)
-                      .near(@search_parameter, 150, min_radius: 40)
+                      .near(@search_parameter, 150)
                       .paginate(page: params[:page], per_page: 25).order(:lastname)
 
         end
@@ -174,7 +174,7 @@ def distributors
           @key_parameter = nil
           @search_parameter = params[:q] 
           @listings = Listing.where(list_type: "Distributor").where(active: true)
-                      .near(@search_parameter, 150, min_radius: 40)
+                      .near(@search_parameter, 150)
                       .paginate(page: params[:page], per_page: 25).order(:lastname)
 
         end
