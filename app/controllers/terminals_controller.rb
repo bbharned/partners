@@ -46,7 +46,7 @@ end
 def show
 	
   @terminal = Terminal.find(params[:id])
-  #@note = Note.find(3)
+  
   @note_id = Note.where(terminal_id: @terminal.id).first
   if @note_id
     @note = Note.find(@note_id.id)

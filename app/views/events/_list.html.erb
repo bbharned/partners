@@ -19,6 +19,8 @@
                   <% end %>
                   <% if !e.live %>
                     <span style="font-size:.75em; font-style:italic;">&nbsp;[event not live]</span>
+                  <% elsif e.starttime != nil && e.starttime != "" && e.endtime < Date.today %>
+                    <span style="font-size:.75em; font-style:italic; color:#666666;">&nbsp;[past event]</span>
                   <% end %>
                   </div>
                 <div class="col-4">

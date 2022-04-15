@@ -107,9 +107,24 @@ def signup_evt
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
         @user.send_newuser_zap
-        # event registration here then redirect to user_path and change flash message
-        flash[:success] = "Now that your account has been created, you can complete the registration by clicking the registration button below."
-        redirect_to event_path(@event)
+        @register = EventAttendee.new(:event_id => @event.id, :user_id => @user.id, :lastname => @user.lastname)
+        
+        if @register.save
+            # send confirmation emails here
+            @user.send_user_evt_registration(@event)
+            @user.send_event_reg_internal_notice(@event) 
+            
+            flash[:success] = "Your account has been created, and you have been registered for #{@event.name}."
+            redirect_to user_path(@user)
+
+        else
+
+            flash[:danger] = "Your account has been created, but we had a problem registering for #{@event.name}. Please click the Ragister button below to try again."
+            redirect_to event_path(@event)
+
+        end
+
+        
     else
         render :action => "evt", @event.id => params[:id]
     end
