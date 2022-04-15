@@ -67,7 +67,8 @@ scope :listing_search, lambda { |query|
         "(
         LOWER(listings.firstname) LIKE ?
         OR LOWER(listings.description) LIKE ?  
-        OR LOWER(listings.lastname) LIKE ? 
+        OR LOWER(listings.lastname) LIKE ?
+        OR LOWER(listings.fullname) LIKE ? 
         OR LOWER(listings.email) LIKE ? 
         OR LOWER(listings.street) LIKE ? 
         OR LOWER(listings.street2) LIKE ?
@@ -85,7 +86,6 @@ scope :listing_search, lambda { |query|
         OR LOWER(companies.description) LIKE ?
         OR LOWER(users.silevel) LIKE ?
         OR LOWER(users.channel) LIKE ?
-        OR LOWER(users.id) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
@@ -129,11 +129,7 @@ scope :with_status, ->(status) {
   end
 
 
-  private
-
-  # def address_changed? 
-  #   street_changed?||city_changed?||postal_code_changed?||state_changed?||country_changed?
-  # end 
+  
 
 
 end
