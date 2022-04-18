@@ -228,8 +228,18 @@
 
 	<% if @user_registrations.any? %>
 
-		<h4 align="center" style="margin-top: 55px;"><%= @user.firstname %>'s Event Registrations</h4>
-
+		<div class="row" style="margin-top:55px;">
+			<div class="col-md-9">
+				<h4><%= @user.firstname %>'s Event Registrations</h4>
+			</div>
+			<% if current_user.admin? %>
+			<div class="col-md-3">
+				<div class="float-right">
+					<%= link_to "Register User For Event", eventattendees_new_path(:user_id => @user.id), class: "btn btn-sm btn-primary" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
 		
 			<% @user_events.each do |event| %>
 				<div class="well well-sm" style="padding-left:10px; padding-right:10px; margin-bottom: 5px; border-radius: 5px;">
@@ -267,9 +277,20 @@
 		
 	<% else %>
 		
-		<h4 align="center" style="margin-top: 55px;"><%= @user.firstname %>'s Event Registrations</h4>
+		<div class="row" style="margin-top:55px;">
+			<div class="col-md-9">
+				<h4><%= @user.firstname %>'s Event Registrations</h4>
+			</div>
+			<% if current_user.admin? %>
+			<div class="col-md-3">
+				<div class="float-right">
+					<%= link_to "Register User For Event", eventattendees_new_path(:user_id => @user.id), class: "btn btn-sm btn-primary" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
 
-		<p align="center">You are currently registered for no events. <%= link_to "find events", events_path %></p>
+		<p>You are currently registered for no events. <%= link_to "find events", events_path %></p>
 		
 	<% end %>
 

@@ -98,6 +98,11 @@ get 'events/:id/sms', to: 'event_attendees#sms', as: 'sms'
 post 'events/:id/sms', to: 'event_attendees#sendit'
 post 'events/:id/deregister', to: 'event_attendees#destroy', as: 'deregister'
 
+get 'eventattendees/new', to: 'event_attendees#new', as: 'new'
+post 'eventattendees/new', to: 'event_attendees#create'
+
+
+
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'

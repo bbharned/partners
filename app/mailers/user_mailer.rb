@@ -199,7 +199,7 @@ class UserMailer < ApplicationMailer
                          authentication: 'plain',
                          enable_starttls_auto: true
                           }
-    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering', delivery_method_options: delivery_options)
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'You Are Registered!', delivery_method_options: delivery_options)
   end
 
 

@@ -1,0 +1,48 @@
+<%= render 'shared/errors', obj: @eventattendee %>
+
+
+<div class="row hardware-form" style="margin-top:0;">
+    <div class="col-md-10 offset-md-1">
+    <%= form_for url_for(action: 'create'), method: "post", :html => {class: "form-horizontal", role: "form"} do |f| %>
+    	<%= f.hidden_field(:user_id, :value => @user.id) %>
+    	<%= f.hidden_field(:lastname, :value => @user.lastname) %>
+    	<div class="form-group">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="row">
+		    			<div class="col-md-6">
+			    			<div class="form-label"><%= f.label "First Name" %></div>
+					    	<%= f.text_field :user, class: "form-control", placeholder: "#{@user.firstname}", disabled: true %>
+					    </div>
+					    <div class="col-md-6">
+					    	<div class="form-label"><%= f.label "Last Name" %></div>
+					    	<%= f.text_field :user, class: "form-control", placeholder: "#{@user.lastname}", disabled: true %>
+					    </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-label"><%= f.label "Email" %></div>
+					    	<%= f.text_field :user, class: "form-control", placeholder: "#{@user.email}", disabled: true %>
+						</div>
+					</div>
+			    </div>
+			    <div class="col-md-6">
+			    	<div class="form-label"><%= f.label "Event" %></div>
+			    	<%= f.collection_select :event_id, @events, :id, :name, { :include_blank=>true} , class: "form-control" %>	
+			    </div>
+    		</div>
+	    </div>
+
+	    <br /><br />
+        
+        <div class="form-group">
+            <div class="col-sm-12">
+                <%= f.submit "Register User", class: "btn btn-primary", style: "margin-left:-15px;" %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to "Cancel", :back %>
+            </div>
+        </div>
+
+    <% end %>
+    </div>
+</div>
