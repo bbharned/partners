@@ -76,6 +76,7 @@ scope :sort_this, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^starttime_/
+    #order("events.live asc").
     order("events.starttime #{direction}")
   when /^created_at_/
     order("events.created_at #{direction}")
@@ -129,7 +130,8 @@ scope :with_state, ->(date_ref) {
   # It is called in the controller as part of `initialize_filterrific`.
   def self.options_for_sort_this
     [
-      ["Start Time", "starttime_asc"],
+      ["Start Time (asc)", "starttime_asc"],
+      ["Start Time (desc)", "starttime_desc"],
       ["Newest - Oldest", "created_at_desc"],
       ["Oldest - Newest", "created_at_asc"],
     ]
