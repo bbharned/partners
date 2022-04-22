@@ -230,7 +230,7 @@ def register
                     # send confirmation emails here
                     current_user.send_user_evt_registration(@event)
                     current_user.send_event_reg_internal_notice(@event) 
-                    
+                    current_user.send_event_reminder(@event)
                     flash[:success] = "You have been registered for #{@event.name}"
                     redirect_to user_path(current_user)
                 else
@@ -252,6 +252,7 @@ def register
                 @registration.first.toggle!(:canceled)
                 @user.send_user_evt_registration(@event)
                 @user.send_event_reg_internal_notice(@event)
+                @user.send_event_reminder(@event)
                 flash[:success] = "You have been registered for #{@event.name}"
                 redirect_to user_path(current_user)
 

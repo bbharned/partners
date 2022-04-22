@@ -123,6 +123,11 @@ end
         UserMailer.event_reg_cancel(self, event).deliver_now
     end
 
+    def send_event_reminder(event)
+        @send_date = event.starttime-48.hours
+        UserMailer.event_reminder(self, event).deliver_later!(wait_until: @send_date)
+    end
+
 #License Request Notification
     def send_license_notification(license)
         UserMailer.license_notification(self, license).deliver_now

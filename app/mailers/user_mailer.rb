@@ -217,6 +217,19 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, from: 'ThinManager Portal', subject: 'Sorry You Had to Cancel', delivery_method_options: delivery_options)
   end
 
+  def event_reminder(user, event)
+    @user = user
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Events', subject: 'Upcoming ThinManager Training', delivery_method_options: delivery_options)
+  end
+
 
   def license_notification(user, license)
     @user = user

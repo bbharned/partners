@@ -77,6 +77,12 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.event_registration_user(@user, @event)
   end
 
+  def event_reminder
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_reminder(@user, @event)
+  end
+
 
   def event_cancelation_user_external
     @user = User.find(1)

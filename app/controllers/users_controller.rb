@@ -113,7 +113,7 @@ def signup_evt
             # send confirmation emails here
             @user.send_user_evt_registration(@event)
             @user.send_event_reg_internal_notice(@event) 
-            
+            @user.send_event_reminder(@event)
             flash[:success] = "Your account has been created, and you have been registered for #{@event.name}."
             redirect_to user_path(@user)
 

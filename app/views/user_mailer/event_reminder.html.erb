@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+      <!-- <img src="https://thinmanager.com/images/email_headers/EventRegisterNoticeHeader.jpg" width="100%" alt="Thank you for registering" /> -->
+
+
+      <div style="margin-top: 45px; padding-left:25px; padding-right: 25px;">
+        
+        <p>Dear <%= @user.firstname %>,</p>
+        
+        <p>This is a reminder that you have registered for an upcoiming event.</p>
+
+        <h3 style="margin-top:35px;">Event Details</h3>
+
+        <p style="line-height:18pt;">
+          <b>Name:</b> <%= @event.name %><br />
+          <b>Description:</b> <%= @event.description %><br />
+          <b>Date:</b> <%= @event.starttime.strftime("%m/%d/%Y") %>
+        </p>
+        <br />
+        <p>If additional information is needed for the "day of event" details, it will be emailed to you before the event.</p>
+        
+        <p>You can check your registration status and find additional event information by logging into your ThinManager Partner Portal account <%= link_to "here", "https://partners.thinmanager.com", target: "_blank" %>. If you need additional assistance, please contact the events team at <%= link_to "events@thinmanager.com", "mailto:events@thinmanager.com" %>.</p>
+        <br />
+        <p>Thank you,</p>
+
+        <p>The ThinManager Team</p>
+
+      </div>
+
+    </div>
+    
+    
+
+  </body>
+  </html>
