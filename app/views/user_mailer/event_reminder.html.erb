@@ -19,7 +19,7 @@
 
         <p style="line-height:18pt;">
           <b>Name:</b> <%= @event.name %><br />
-          <b>Description:</b> <%= @event.description %><br />
+          <b>Description:</b> <%= simple_format(@event.description) %><br />
           <b>Date:</b> <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
 
