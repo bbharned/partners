@@ -22,10 +22,13 @@
           <b>Description:</b> <%= @event.description %><br />
           <b>Date:</b> <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
+        <p>You can add the event to your calendar by visiting the <%= link_to "event page", event_url(@event), target: "_blank" %> and clicking the "Add to Calendar" link located towards the bottom of the page.</p>
         <br />
-        <p>If additional information is needed for the "day of event" details, it will be emailed to you before the event.</p>
+        <% if @event.virtual? %>
+          <p>If additional information is needed for the "day of event" details, it will be emailed to you before the event.</p>
+        <% end %>
         
-        <p>You can check your registration status and find additional event information by logging into your ThinManager Partner Portal account here. If you need additional assistance, please contact the events team at <%= link_to "events@thinmanager.com", "mailto:events@thinmanager.com" %>.</p>
+        <p>You can check your registration status and find additional event information by logging into your ThinManager Partner Portal account <%= link_to "here", "https://partners.thinmanager.com" %>. If you need additional assistance, please contact the events team at <%= link_to "events@thinmanager.com", "mailto:events@thinmanager.com" %>.</p>
         <br />
         <p>Thank you,</p>
 
