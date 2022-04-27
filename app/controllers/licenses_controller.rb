@@ -54,7 +54,7 @@ def create
             # Send internal email of license request nptification here unless admin created.
             @user.send_license_notification(@license)
         end
-        flash[:success] = "Your license request has been submitted, we will be in touch soon."
+        flash[:success] = "Your license request has been submitted. To process your license we will need you to enter your business address and details in your profile. Update this information #{view_context.link_to 'here', edit_user_path(@user)}."
         redirect_to root_path
     else
         render 'edit', params: {user_id: @user.id}

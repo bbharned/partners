@@ -98,6 +98,7 @@ end
 def signup_evt
   @user = User.new(user_params)
   @event = Event.find([params[:id]]).first
+  @registrations = EventAttendee.where(event_id: @event.id)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
   @user.referred_by = "Events"
@@ -107,19 +108,28 @@ def signup_evt
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
         @user.send_newuser_zap
-        @register = EventAttendee.new(:event_id => @event.id, :user_id => @user.id, :lastname => @user.lastname)
-        
-        if @register.save
-            # send confirmation emails here
-            @user.send_user_evt_registration(@event)
-            @user.send_event_reg_internal_notice(@event) 
-            @user.send_event_reminder(@event)
-            flash[:success] = "Your account has been created, and you have been registered for #{@event.name}."
-            redirect_to user_path(@user)
+
+        if @registrations.count < @event.capacity
+            @register = EventAttendee.new(:event_id => @event.id, :user_id => @user.id, :lastname => @user.lastname)
+            
+            if @register.save
+                # send confirmation emails here
+                @user.send_user_evt_registration(@event)
+                @user.send_event_reg_internal_notice(@event) 
+                @user.send_event_reminder(@event)
+                flash[:success] = "Your account has been created, and you have been registered for #{@event.name}."
+                redirect_to user_path(@user)
+
+            else
+
+                flash[:danger] = "Your account has been created, but we had a problem registering for #{@event.name}. Please click the Ragister button below to try again."
+                redirect_to event_path(@event)
+
+            end
 
         else
 
-            flash[:danger] = "Your account has been created, but we had a problem registering for #{@event.name}. Please click the Ragister button below to try again."
+            flash[:danger] = "Your account has been created, but #{@event.name} looks to have already reached full capacity."
             redirect_to event_path(@event)
 
         end
