@@ -98,7 +98,7 @@ end
 def signup_evt
   @user = User.new(user_params)
   @event = Event.find([params[:id]]).first
-  @registrations = EventAttendee.where(event_id: @event.id)
+  @registrations = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
   @user.referred_by = "Events"
