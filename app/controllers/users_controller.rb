@@ -43,15 +43,27 @@ end
 
 def evt
   @event = Event.find([params[:id]]).first
-  if (!logged_in?) 
-    @user = User.new
-  elsif (logged_in? and current_user.admin?) 
-    @user = User.new
-  elsif (logged_in? and !current_user.admin?)
-    flash[:warning] = "You have already signed up and have an account"
-    redirect_to root_path
-  end
-  @tm = 'Check the option that best describes your relationship to ThinManager'
+  @registrations = EventAttendee.where(:event_id => @event.id, :canceled => false)
+
+    if @event.capacity != nil && (@event.capacity > @registrations.count)
+
+          if (!logged_in?) 
+            @user = User.new
+          elsif (logged_in? and current_user.admin?) 
+            @user = User.new
+          elsif (logged_in? and !current_user.admin?)
+            flash[:warning] = "You have already signed up and have an account"
+            redirect_to root_path
+          end
+          @tm = 'Check the option that best describes your relationship to ThinManager'
+
+    else 
+
+        flash[:danger] = "This event is either at capacity or currently not accepting registrations."
+        redirect_to event_path(@event)
+
+    end
+
 end
 
 
