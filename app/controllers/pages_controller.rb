@@ -184,7 +184,10 @@ def reports
     @evt_registrations = EventAttendee.where(:canceled => false)
     @evt_reg_cancels = EventAttendee.where(:canceled => true)
     @event_attended = EventAttendee.where(:canceled => false).where(:checkedin => true)
-    @evt_average_attend = ((@event_attended.count).to_f / (@evt_registrations.count).to_f) * 100
+    @pastevts = Event.where("endtime < ?", Date.today)
+    @pastregistered = EventAttendee.joins(:event).where("endtime < ?", Date.today)
+    @pastattended = @pastregistered.where(:checkedin => true)
+    @evt_average_attend = ((@pastattended.count).to_f / (@pastregistered.count).to_f) * 100
 
 end
 
