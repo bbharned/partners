@@ -109,6 +109,26 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Certs Expired</h5>
+					<h1 class="huge"><%= @certexpired.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Certified SIs</h5>
+					<h1 class="huge"><%= @certsi.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Ceertified OEMs</h5>
+					<h1 class="huge"><%= @certoem.count %></h1>
+				</div>
+			</div>
+		</div>
 
 
 		<div class="row" style="margin-top: 50px;">
@@ -133,6 +153,23 @@
 					<h5>Total Event Cancelations</h5>
 					<h1 class="huge"><%= @evt_reg_cancels.count %></h1>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Events Created</h5>
+					<h1 class="huge"><%= Event.all.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Average Attendance</h5>
+					<h1 class="huge"><%= sprintf("%01.1f", @evt_average_attend) %>%</h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				
 			</div>
 		</div>
 

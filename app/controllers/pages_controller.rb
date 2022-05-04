@@ -123,7 +123,10 @@ def reports
     @quizthisyear = UserQuiz.where(created_at: 12.months.ago..Date.tomorrow)
     @loggedthisyear = User.where(lastlogin: Date.today.beginning_of_year..Date.today.end_of_year)
 
-    @certified = User.where.not(certexpire: nil)
+    @certified = User.where.not(certexpire: nil).where("certexpire >= ?", Date.today)
+    @certexpired = User.where.not(certexpire: nil).where("certexpire < ?", Date.today)
+    @certsi = User.where.not(certexpire: nil).where("certexpire >= ?", Date.today).where(prttype: "Integrator")
+    @certoem = User.where.not(certexpire: nil).where("certexpire >= ?", Date.today).where(prttype: "OEM")
     @certsignedup = User.where(cert_signup: true)
     @inprogress = User.where(cert_signup: true, needs_review: true)
     
@@ -180,6 +183,8 @@ def reports
     @evt_users = User.where(referred_by: "Events")
     @evt_registrations = EventAttendee.where(:canceled => false)
     @evt_reg_cancels = EventAttendee.where(:canceled => true)
+    @event_attended = EventAttendee.where(:canceled => false).where(:checkedin => true)
+    @evt_average_attend = ((@event_attended.count).to_f / (@evt_registrations.count).to_f) * 100
 
 end
 
