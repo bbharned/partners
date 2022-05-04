@@ -1,28 +1,29 @@
-class NotesController < ApplicationController
+class TermnotesController < ApplicationController
 	before_action :require_admin
 	before_action :set_note, only: [:edit, :update]
 
 def new
-	@note = Note.new
-	@terminal = Terminal.find(params[:terminal_id])
+	@note = Termnote.new
+	@terminal = Terminal.where(TermcapModel: params[:termcapmodel]).first
 end
 
 def edit
-	@note = Note.find(params[:id])
-	@terminal = Terminal.find(@note.terminal_id)
+	@note = Termnote.find(params[:id])
+	@terminal = Terminal.where(TermcapModel: @note.termcapmodel).first
 
 end
 
 
 def create
 
-    @note = Note.new(note_params)
+    @note = Termnote.new(termnote_params)
     #@terminal = Terminal.find(@note.)
     #@terminalnote = TerminalNote.new(terminal_id: @note.terminal_id, note_id: @note.id)
   
     if @note.save
         flash[:success] = "Note was sucessfully created"
-        redirect_to terminal_path(:id => @note.terminal_id)
+        @terminal = Terminal.where(TermcapModel: @note.termcapmodel).first
+        redirect_to terminal_path(@terminal)
     else
         flash[:danger] = "That didnt work"
         render 'new'
@@ -33,9 +34,10 @@ end
 
 
 def update
-	if @note.update(note_params)
+	if @note.update(termnote_params)
         flash[:success] = "Terminal note was successfully updated"
-        redirect_to terminal_path(@note.terminal_id)
+        @terminal = Terminal.where(TermcapModel: @note.termcapmodel).first
+        redirect_to terminal_path(@terminal)
     else
         render 'edit'
     end
@@ -46,12 +48,12 @@ end
 
 private
 
-	def note_params
-        params.require(:note).permit(:terminal_id, :note)
+	def termnote_params
+        params.require(:termnote).permit(:termcapmodel, :note)
     end
 
     def set_note
-        @note = Note.find(params[:id])
+        @note = Termnote.find(params[:id])
     end
 
     def require_admin

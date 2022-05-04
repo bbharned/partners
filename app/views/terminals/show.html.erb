@@ -55,36 +55,60 @@
 <div class="notes-area" style="margin-top: 35px; padding:0px 25px 25px 25px;">
 	
 	<div class="row">
-		<div class="col-3">
-			<h3>Additional Notes</h3>
-		</div>
-		<div class="col-9">
-			<span class="float-right">
-				<% if current_user && (current_user.admin || current_user.hw_admin) %>
-					<% if !@note %>
-						<%= link_to "Add Additional Note", new_note_path(:terminal_id => @terminal.Id), class: "btn btn-sm btn-outline-secondary", style: "margin-top:5px;" %>
-					<% else %>
-						<%= link_to "Edit Additional Note", edit_note_path(@note), class: "btn btn-sm btn-outline-secondary", style: "margin-top:5px;" %>
-					<% end %>
-				<% end %>
-			</span>
+		<div class="col-5">
+			<h5>Termcap Note</h5>
 		</div>
 	</div>
 
 	
-		<% if !@note %>
-			<span style="padding:20px;">
-				no additional notes for this terminal
+	<% if !@termcapnote %>
+		<span style="padding:20px;">
+			no system note for this terminal
+		</span>
+	<% elsif @termcapnote.Desription == "" %>
+		<span style="padding:20px;">
+			no system note for this terminal
+		</span> 
+	<% else %>
+		<span style="padding:20px;">
+			<%= simple_format(@termcapnote.Description) %>
+		</span>
+	<% end %>
+
+
+	<div class="row" style="margin-top:35px;">
+		<div class="col-5">
+			<h5>Additional Notes</h5>
+		</div>
+		<% if current_user && (current_user.admin || current_user.hw_admin) %>
+		<div class="col-7">
+			<span class="float-right">
+				
+				<% if !@note %>
+					<%= link_to "Add Additional Note", new_termnote_path(:termcapmodel => @terminal.TermcapModel), class: "btn btn-sm btn-outline-secondary", style: "margin-top:5px;" %>
+				<% else %>
+					<%= link_to "Edit Additional Note", edit_termnote_path(@note), class: "btn btn-sm btn-outline-secondary", style: "margin-top:5px;" %>
+				<% end %>
+				
 			</span>
-		<% elsif @note.note == "" %>
-			<span style="padding:20px;">
-				no additional notes for this terminal
-			</span> 
-		<% else %>
-			<span style="padding:20px;">
-				<%= simple_format(@note.note) %>
-			</span>
+		</div>
 		<% end %>
+	</div>
+
+	
+	<% if !@note %>
+		<span style="padding:20px;">
+			no additional notes for this terminal
+		</span>
+	<% elsif @note.note == "" %>
+		<span style="padding:20px;">
+			no additional notes for this terminal
+		</span> 
+	<% else %>
+		<span style="padding:20px;">
+			<%= simple_format(@note.note) %>
+		</span>
+	<% end %>
 	
 </div>
 

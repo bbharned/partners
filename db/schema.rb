@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_151740) do
+ActiveRecord::Schema.define(version: 2022_05_04_122426) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -292,13 +292,6 @@ ActiveRecord::Schema.define(version: 2022_03_24_151740) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notes", force: :cascade do |t|
-    t.integer "terminal_id"
-    t.text "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "qrcodes", force: :cascade do |t|
     t.string "content"
     t.integer "user_id"
@@ -345,6 +338,13 @@ ActiveRecord::Schema.define(version: 2022_03_24_151740) do
     t.integer "evtcategory_id"
     t.string "image_link"
     t.boolean "private", default: false
+  end
+
+  create_table "termnotes", force: :cascade do |t|
+    t.string "termcapmodel"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_badges", force: :cascade do |t|

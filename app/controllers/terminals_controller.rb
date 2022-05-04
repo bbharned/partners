@@ -46,10 +46,10 @@ end
 def show
 	
   @terminal = Terminal.find(params[:id])
-  
-  @note_id = Note.where(terminal_id: @terminal.id).first
+  @termcapnote = Note.where(TerminalId: @terminal.id).first
+  @note_id = Termnote.where(termcapmodel: @terminal.TermcapModel).first
   if @note_id
-    @note = Note.find(@note_id.id)
+    @note = Termnote.find(@note_id.id)
   end
   
   @manufacturer = Manufacturers.find(@terminal.ManufacturerId)
