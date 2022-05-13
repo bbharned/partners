@@ -1328,9 +1328,14 @@ Very Light Blue: #e9f7fb;
 .document-table .row:nth-child(even) {
     background-color: #e1e1e1;
 }
-
-
-
+.training-documents .row {
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 992px) {
+    .training-doc-column {
+        margin-top: 55px;
+    }
+}
 
 
 

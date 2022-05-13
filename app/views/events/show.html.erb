@@ -153,6 +153,7 @@
 								<span style="font-style:italic; color:gray; font-size: .85em;">This is a past event</span>
 							<% elsif @registration %>
 								<%= link_to "Registered", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
+								<div class="row"><small style="font-style:italic; font-size:.75em; text-align:right !important;">You are registered</small></div>
 							<% elsif @full == true %>
 								<%= link_to "Event Full", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 							<% else %>
@@ -173,6 +174,13 @@
 				<% if @ical != nil %>
 					<div class="row">
 						<div class="col" style="text-align:center;"><%= link_to "Add To Calendar", :controller => 'events', :action => :show, :format => :ics %></div>
+					</div>
+				<% end %>
+				<% if logged_in? && (@current_user.admin? || @registration) %>
+					<div class="row">
+						<div class="col" style="text-align:center; margin-top: 20px;">
+							<%= link_to "Training Materials", documents_path, class: "btn btn-sm btn-secondary" %>
+						</div>
 					</div>
 				<% end %>
 			</div>
