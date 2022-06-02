@@ -29,7 +29,7 @@ gem "puma", ">= 5.6.4"
 #gem 'sassc-rails'
 gem 'sassc'
 gem "nokogiri", ">= 1.13.4"
-gem "rack", ">= 2.0.8"
+gem "rack", ">= 2.2.3.1"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
