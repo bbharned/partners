@@ -1560,7 +1560,12 @@ span.badge {
 }
 .right-bluebox {
     background-color: #003366; color:#FFFFFF; border-radius: 10px;
-    padding: 25px;
+    padding: 25px; margin-top: 50px;
+}
+@media all and (max-width: 992px) {
+    .right-bluebox {
+        margin-top: 0px;
+    }
 }
 
 /*********** RAU Sign Up Page *****************/
