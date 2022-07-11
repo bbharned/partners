@@ -48,7 +48,9 @@ end
 
 
 def show
-
+    if (!logged_in? && !@listing.active?) || (logged_in? && !current_user.admin? && !@listing.active?) 
+        redirect_to listing_integrators_path
+    end
 end
 
 
