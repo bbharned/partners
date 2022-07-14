@@ -64,6 +64,12 @@ end
         UserMailer.cert_notice(self, score, wrongs).deliver_now
     end
 
+# Sends download conf external email.
+    def send_download_ext_notice
+        UserMailer.send_download_ext_notice(self).deliver_now
+    end
+
+
 # Sends cert notification email.
     def send_zap
         UserMailer.zap_zap(self).deliver_now

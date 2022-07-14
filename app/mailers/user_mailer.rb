@@ -136,6 +136,18 @@ class UserMailer < ApplicationMailer
     mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Lab Uploaded for certification', delivery_method_options: delivery_options)
   end
 
+  def send_download_ext_notice(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank you for downloading ThinManager', delivery_method_options: delivery_options)
+  end
+
   def event_reg_notice(user, event) #done
     @user = user
     @event = event
