@@ -5,7 +5,7 @@
   </head>
   <body>
 
-    <div style="width:100%; max-width: 700px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+    <div style="width:100%; max-width: 700px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif; padding-bottom:100px;">
       <img src="https://thinmanager.com/images/email_headers/demoDownloadHeader.jpg" width="100%" alt="Thank you for downloading" />
 
 
@@ -13,16 +13,78 @@
         
         <p>Dear <%= @user.firstname %>,</p>
         
-        <p>Thank you for taking the time to download ThinManager. We appreciate your interest and have several resources to get you started using ThinManager.</p>
+        <p>Thank you for taking the time to download ThinManager&reg;. We appreciate your interest and have several resources to get you started using ThinManager.</p>
 
-        <p>Our free demo code is a 30 preview for setting up ThinManager. After installing ThinManager locally, or on the machine you wish to host, create a demo code online by&nbsp;going&nbsp;<%= link_to "here", "#" %> then receiving your code via email.</p>
+        <p>By downloading ThinManager you have taken the first step to reducing downtime while boosting productivity, enhancing visualization, extending security and adding intelligent mobility.</p>
 
-        <p>Please see some additonal resources below.</p>
+        <p>Our free demo code is a 30 day preview for setting up ThinManager. After installing ThinManager locally, or on the machine you wish to host, create a demo code online.</p>
+
+        <p>Please see step-by-step instructions below.</p>
         <br />
         <hr style="opacity: .25;" />
 
-        <h3>Resources</h3>
+        <h3 align="center" style="margin-top:25px;">Activate Your ThinManager Demo...</h3>
+        <p align="center" style="margin-top:-10px;">The following steps will get you up and running quickly.</p>
 
+        
+
+        <h2>Step 1</h2>
+        <ol>
+          <li>Download ThinManager</li>
+          <li>Install ThinManager</li>
+          <li>Launch ThinManager</li>
+          <li>Retrieve installation ID at menu [ Install > Licenses ]</li>
+        </ol>
+        <p style="font-size:8.5pt;">Note: You will want to run ThinManager as an administrator. Unless you have a verified administrator credentials, do not enter a username and password during install. These can be configured later.</p>
+        
+        <br /> 
+
+        <h2>Step 2</h2>
+
+        <ol>
+          <li>Visit Licensing site <%= link_to "https://licensing.thinmanager.com", "https://licensing.thinmanager.com" %></li>
+          <li>Click “Get a Demo Code”</li>
+          <li>Fill form with installation ID as primary installation ID</li>
+          <li>Click “Create” → You will receive Demo Code via email</li>
+        </ol> 
+
+        <br />
+
+        <h2>Step 3</h2>
+
+        <ol>
+          <li>Copy Demo code from Email</li>
+          <li>Within ThinManager return to menu [ Install > Licenses ]</li>
+          <li>Click “Install Demo Code”</li>
+          <li>Paste Demo Code and click “OK”</li>
+        </ol>
+
+        <p style="font-size:8.5pt;">If you need further instruction, please click below to view these instructions online with the aid of example images and a downloadable detailed pdf as well.</p>
+
+
+        <a href="https://thinmanager.com/activate" target="_blank" style="color:#FFFFFF; text-decoration:none;"><div style="width: 90%; max-width: 200px; background-color:#118CBC; padding: 10px 15px; margin: auto; margin-top:35px; text-align: center; border-radius:7px; ">Detailed Instructions</div></a>
+
+        <br />
+        <hr style="opacity: .25;" />
+        <br />
+
+        <h3>Learn ThinManager</h3>
+
+        <p>Learning ThinManager can be challenging, but we have made it easier with a self paced video learning application. Simply register an account and get started with videos focused on individual ThinManager features categorized for easy understanding.</p>
+
+        <a href="https://learn.thinmanager.com" target="_blank" style="color:#FFFFFF; text-decoration:none;"><div style="width: 90%; max-width: 200px; background-color:#118CBC; padding: 10px 15px; margin: auto; margin-top:35px; text-align: center; border-radius:7px; ">Learn ThinManager</div></a>
+
+        <br />
+        <hr style="opacity: .25;" />
+        <br />
+
+        <h3>Knowledge Base</h3>
+
+        <p>The ThinManager knowledge base has answers to almost everything. Click below to access the knowledge base now. Still need help? <%= link_to "Email Support", "mailto:support@thinmanager.com" %></p>
+
+        <a href="https://kb.thinmanager.com/" target="_blank" style="color:#FFFFFF; text-decoration:none;"><div style="width: 90%; max-width: 200px; background-color:#118CBC; padding: 10px 15px; margin: auto; margin-top:35px; text-align: center; border-radius:7px; ">Knowledge Base</div></a>
+
+        <br />
       </div>
 
     </div>

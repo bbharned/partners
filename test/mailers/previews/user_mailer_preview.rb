@@ -102,9 +102,14 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.listing_notification(@user, @listing)
   end
 
-  def send_download_ext_notice
+  def download_ext_notice
     @user = User.find(3)
     UserMailer.send_download_ext_notice(@user)
+  end
+
+  def download_int_notice
+    @user = User.find(3)
+    UserMailer.send_download_int_notice(@user)
   end
 
 
