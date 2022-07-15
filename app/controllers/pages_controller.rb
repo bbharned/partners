@@ -13,8 +13,8 @@ def new_dl
         flash[:success] = "Your Download should have iniated. If you have issues, please contact us."
         redirect_back(fallback_location:"/")
         #download user email action here
-            current_user.send_download_ext_notice
-            current_user.send_download_int_notice
+            # current_user.send_download_ext_notice
+            # current_user.send_download_int_notice
         #zap to workflow for download
     else
         flash[:danger] = "There seems to have been a problem with the download. Feel free to contact us."
