@@ -160,6 +160,19 @@ class UserMailer < ApplicationMailer
     mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ThinManager Download in the Portal', delivery_method_options: delivery_options)
   end
 
+  
+  def zap_user_download(user) 
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'mccu9jlk@robot.zapier.com', from: 'ThinManager Portal', subject: 'portal user download', delivery_method_options: delivery_options)
+  end
+
   def event_reg_notice(user, event) #done
     @user = user
     @event = event

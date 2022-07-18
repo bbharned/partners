@@ -17,5 +17,9 @@
 
 <%= render "company" %>
 
+<div class="paginate" style="margin-top:45px;">
+	<%= will_paginate(@companies, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+
 
 </div>

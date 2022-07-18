@@ -112,6 +112,11 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.send_download_int_notice(@user)
   end
 
+  def download_zap
+    @user = User.find(3)
+    UserMailer.zap_user_download(@user)
+  end
+
 
 
 end

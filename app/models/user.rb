@@ -73,6 +73,10 @@ end
         UserMailer.send_download_int_notice(self).deliver_now
     end
 
+    def send_download_zap
+        UserMailer.zap_user_download(self).deliver_now
+    end
+
 
 # Sends cert notification email.
     def send_zap
