@@ -773,7 +773,13 @@ Very Light Blue: #e9f7fb;
 }
 .company-card .card-name {margin-bottom: 0px; font-weight: bold;}
 .company-card hr {margin-top: 0; margin-bottom: 0;}
+.company-details-nav {margin-top: 15px;}
+.company-details-nav, .company-details-nav .dropdown, 
+.company-details-nav .dropdown-menu { width:100%; }
 
+.company-details-nav .drop-down-full {
+    position: absolute;     
+}
 
 @media all and (max-width: 768px) {
     .company-form-row .col-md-6, .company-form-row .col-md-8 {
