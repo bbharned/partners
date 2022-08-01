@@ -762,7 +762,7 @@ Very Light Blue: #e9f7fb;
     margin-bottom: 10px;
 }
 .company-logo {
-    width: 100%; text-align: right;
+    width: 100%; text-align: right; margin-top: -20px;
 }
 .company-logo img {max-width: 100%;}
 .company-search-box {
@@ -780,6 +780,18 @@ Very Light Blue: #e9f7fb;
 .company-details-nav .drop-down-full {
     position: absolute;     
 }
+.the-locations {
+    text-align: center; background-color: #f1f1f1; padding: 25px; 
+    border-radius: 15px; margin-bottom: 15px;
+}
+.the-bio {
+    text-align: center; background-color: #f1f1f1; display: none;
+    padding: 25px; border-radius: 15px; margin-bottom: 15px;
+}
+.bio-dropdown, .bio-close, .locations-dropdown, .locations-close {cursor: pointer;}
+.bio-dropdown:hover, .bio-close:hover, .locations-dropdown:hover, .locations-close:hover {text-decoration: underline;}
+.locations-area h6 {color: cadetblue;}
+.bio-area h6 {color:  darkslateblue;}
 
 @media all and (max-width: 768px) {
     .company-form-row .col-md-6, .company-form-row .col-md-8 {

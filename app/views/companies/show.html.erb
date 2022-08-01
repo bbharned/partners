@@ -1,12 +1,12 @@
 <div class="container" style="padding-bottom: 100px;">
 
 <div class="row">
-	<div class="col-md-9">
-		<h1><%= @company.name %></h1>
+	<div class="col-md-6">
+		<h1><%= @company.name %><% if logged_in? && current_user.admin? %> <span style="font-size:.35em;"><%= link_to "(Edit)", edit_company_path(@company), style: "color:inherit;" %></span><% end %></h1>
 	</div>
-	<div class="col-md-3" style="padding-top:14px;">
-		<% if logged_in? && current_user.admin? %>
-			<%= link_to "Edit", edit_company_path(@company), class: "btn btn-sm float-right btn-warning" %>
+	<div class="col-md-6" style="padding-top:14px;">
+		<% if @company.logo_path != "" && @company.logo_path != nil %>
+			<div class="company-logo"><img src="<%= @company.logo_path %>" alt="<%= @company.name %>"></div>
 		<% end %>
 	</div>
 </div>
@@ -33,37 +33,76 @@
 				<% end %>
 				<br />
 				<%= @company.country %>
-				<br />
-				<% if @company.url != nil && @company.url != "" %>
-					<%= link_to "#{@company.url}", "#{@company.url}" , target: "_blank" %>
-				<% end %>
+				
 			</p>
 			
 		</div>
 		<div class="col-md-6">
-			<% if @company.logo_path != "" && @company.logo_path != nil %>
-				<div class="company-logo"><img src="<%= @company.logo_path %>" alt="<%= @company.name %>"></div>
-			<% end %>
+			<div class="float-right-to-left">
+				<% if @company.story_path != nil && @company.story_path != "" %>
+					<%= link_to "Read Their Story", "#{@company.story_path}", class: "btn btn-sm btn-primary", target: "_blank", style: "margin-bottom:15px; margin-top:10px;" %>
+				<% end %>
+				<br />
+				<h6>
+				<% if @company.phone != nil && @company.phone != "" %>
+					<%= link_to "#{@company.phone}", "tel:#{@company.phone}" %><br />
+				<% end %>
+				<% if @company.url != nil && @company.url != "" %>
+					<%= link_to "#{@company.url}", "#{@company.url}" , target: "_blank" %>
+				<% end %>
+				</h6>
+			</div>
 		</div>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6">
-			<% if @company.phone != nil && @company.phone != "" %>
-				<h5 style="margin-bottom:2px;">Phone</h5>
-				<h6><%= link_to "#{@company.phone}", "tel:#{@company.phone}" %></h6>
-			<% end %>
+			
 		</div>
 		<div class="col-md-6">
-			<% if @company.story_path != nil && @company.story_path != "" %>
-				<div class="float-right">
-					<%= link_to "Read Their Story", "#{@company.story_path}", class: "btn btn-sm btn-primary", target: "_blank" %>
-				</div>
-			<% end %>
+			
 		</div>
-	</div>
+	</div> -->
 	<% if @company.description != nil && @company.description != "" %>
+	<hr />
+	<h5 align="center">Additional Information</h5>
 	
-		<ul class="nabar-nav nav company-details-nav">
+
+	<!-- <div class="locations-area">
+		<h6 align="center" class="locations-dropdown">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16" style="margin-top: -2px;">
+			<path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+			</svg>
+			Additional Locations
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16" style="margin-top: -2px;">
+			<path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+			</svg>
+		</h6>
+		<div class="the-locations">
+			<div class="row">
+				<div class="col-md-4">123 Fake Street<br />Atlanta, GA 30040</div>
+				<div class="col-md-4">123 Fake Street<br />Atlanta, GA 30040</div>
+				<div class="col-md-4">123 Fake Street<br />Atlanta, GA 30040</div>
+			</div>
+		</div>
+	</div>	 -->
+	
+	<div class="bio-area">
+		<h6 align="center" class="bio-dropdown">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16" style="margin-top: -2px;">
+			<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+			</svg>
+			Company Bio 
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16" style="margin-top: -2px;">
+			<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+			</svg>
+		</h6>
+		<div class="the-bio">
+			<%= simple_format(@company.description) %>
+		</div>
+	</div>	
+
+
+		<!-- <ul class="nabar-nav nav company-details-nav">
 			<li class="nav-item dropdown">
 		    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:inherit;">Company Bio</a>
 			    <div class="dropdown-menu p-4 drop-down-full">
@@ -72,7 +111,7 @@
 					
 			    </div>
 			</li>
-		</ul>
+		</ul> -->
 	
 	<% end %>
 
@@ -98,6 +137,10 @@
 	</div>
 	<% end %> 
 </div>
+
+
+
+
 <!--<div style="margin-top: 12px;"><a href="javascript:history.back()">« Back</a></div>-->
 <br />
 <% if @listings.count > 0 %>
@@ -114,4 +157,51 @@
 
 
 </div>
+
+
+
+<script>
+(function(){
+
+	"use strict";
+
+	var open1 = false;
+	var open2 = true;
+	
+	
+	$(".bio-dropdown").on("click", function() {
+		if (open1 == false) {
+			$('.the-bio').slideDown(400);
+			$('.bi-caret-down-fill').css('transform', 'rotate(180deg)');
+			open1 = true;
+			return;
+		} 
+		if (open1 == true) {
+			$('.the-bio').slideUp(400);
+			$('.bi-caret-down-fill').css('transform', 'rotate(0deg)');
+			open1 = false;
+			return;
+		} 
+	});
+
+
+	$(".locations-dropdown").on("click", function() {
+		if (open2 == false) {
+			$('.the-locations').slideDown(400);
+			$('.bi-caret-up-fill').css('transform', 'rotate(0deg)');
+			open2 = true;
+			return;
+		} 
+		if (open2 == true) {
+			$('.the-locations').slideUp(400);
+			$('.bi-caret-up-fill').css('transform', 'rotate(180deg)');
+			open2 = false;
+			return;
+		} 
+	});
+	
+	
+
+})();
+</script>
 
