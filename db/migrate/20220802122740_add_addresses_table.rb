@@ -1,6 +1,7 @@
 class AddAddressesTable < ActiveRecord::Migration[5.2]
   def change
     create_table :addaddresses do |t|
+      t.integer :company_id
       t.string :street
       t.string :street2
       t.string :street3

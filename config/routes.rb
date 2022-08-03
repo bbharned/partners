@@ -65,7 +65,6 @@ resources :questions, except: [:show, :index]
 resources :answers, except: [:show, :index]
 resources :licenses
 
-
 resources :hardwares
 #get 'hardware', to: 'hardwares#index'
 resources :hardwares, :path => "hardware"
@@ -116,6 +115,9 @@ get 'flexforward/bydate', to: 'flexforwards#bydate'
 resources :companies
 get 'company/search', to: 'companies#search'
 post 'company/search', to: 'companies#search'
+resources :companies do
+  resources :addaddresses, only: [:new, :create, :edit, :update, :destroy]
+end
 
 resources :listings
 get 'listing/integrators', to: 'listings#integrators'

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_122740) do
   end
 
   create_table "addaddresses", force: :cascade do |t|
+    t.integer "company_id"
     t.string "street"
     t.string "street2"
     t.string "street3"

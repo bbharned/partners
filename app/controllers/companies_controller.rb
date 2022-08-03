@@ -33,6 +33,9 @@ def new
 end
 
 def show
+    if logged_in? && !current_user.admin && @company.name == "No Company" 
+        redirect_to root_path
+    end
     @listings = []
     @all = Listing.where(company_id: @company.id)
     @all.each do |l|
