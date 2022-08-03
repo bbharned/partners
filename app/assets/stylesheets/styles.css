@@ -781,7 +781,7 @@ Very Light Blue: #e9f7fb;
     position: absolute;     
 }
 .the-locations {
-    text-align: center; background-color: #f1f1f1; padding: 25px; 
+    text-align: center; background-color: #f1f1f1; padding: 0px 25px; 
     border-radius: 15px; margin-bottom: 15px;
 }
 .the-bio {

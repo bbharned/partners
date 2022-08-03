@@ -49,9 +49,10 @@ end
 
 def destroy
     @address = Addaddress.find(params[:id])
+    @company = Company.find(@address.company_id)
     @address.destroy
     flash[:danger] = "Company Address has been deleted"
-    redirect_to companies_path
+    redirect_to company_path(@company)
 end
 
 
