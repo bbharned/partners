@@ -342,7 +342,23 @@
                         </div>
                     </div>
                 </div>
-
+            <% if current_user.admin? %>
+            <br />
+            <hr />
+            <br />
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <div class="control-label col-sm-12">
+                            <%= f.label "Admin Notes" %>
+                        </div>
+                        <div class="col-sm-12">
+                            <%= f.text_area :notes, class: "form-control", rows: "8", placeholder: "Enter User Notes Here" %>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
             <br />
             <hr />
             <br />

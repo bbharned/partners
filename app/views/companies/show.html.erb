@@ -161,7 +161,12 @@
 	) %>
 <% end %>
 
-
+<% if (logged_in? && current_user.admin) && (@company.notes != nil && @company.notes != "") %>
+	<div style="margin-top: 45px;">
+		<span class="bold">Admin Notes:</span>
+		<span style="font-size: .85em;"><%= simple_format(@company.notes) %></span>	
+	</div>
+<% end %>
 </div>
 
 

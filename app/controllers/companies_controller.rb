@@ -106,7 +106,7 @@ end
 private
 
 	def company_params
-        params.require(:company).permit(:name, :url, :phone, :email, :logo_path, :story_path, :street, :street2, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude, :map, :main_prt_type, :description)
+        params.require(:company).permit(:name, :url, :phone, :email, :logo_path, :story_path, :street, :street2, :city, :state, :postal_code, :country, :country_code, :latitude, :longitude, :map, :main_prt_type, :description, :notes)
     end
 
 

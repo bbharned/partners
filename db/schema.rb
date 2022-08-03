@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_02_122740) do
+ActiveRecord::Schema.define(version: 2022_08_03_151710) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_122740) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -417,6 +418,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_122740) do
     t.integer "zip"
     t.string "cell"
     t.string "carrier"
+    t.text "notes"
   end
 
   create_table "venues", force: :cascade do |t|

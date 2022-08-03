@@ -117,6 +117,11 @@
 		</div>
 		<br />
 		<hr />
+		<% if (logged_in? && current_user.admin) && (@user.notes != nil && @user.notes != "") %>
+		<span class="bold">Admin Notes:</span>
+			<span style="font-size: .85em;"><%= simple_format(@user.notes) %></span>
+		<hr />
+		<% end %>
 		<div class="row">
 			<div class="col-md-12">
 				<p align="center">Need something changed that you can't edit yourself? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
