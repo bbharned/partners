@@ -99,6 +99,8 @@
 	</div>	
 	<% end %>
 
+
+	<% if (@company.description != nil && @company.description != "") %>
 	<div class="bio-area">
 		<h6 align="center" class="bio-dropdown" title="click to open/close section">
 			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16" style="margin-top: -2px;">
@@ -113,18 +115,9 @@
 			<%= simple_format(@company.description) %>
 		</div>
 	</div>	
+	<% end %>
 
-
-		<!-- <ul class="nabar-nav nav company-details-nav">
-			<li class="nav-item dropdown">
-		    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:inherit;">Company Bio</a>
-			    <div class="dropdown-menu p-4 drop-down-full">
-			      	
-						<%= simple_format(@company.description) %>
-					
-			    </div>
-			</li>
-		</ul> -->
+		
 	
 	<% end %>
 
