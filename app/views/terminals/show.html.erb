@@ -107,7 +107,7 @@
 	<% else %>
 		<span style="padding:20px;">
 			<%= simple_format(@note.note) %> 
-			<% if logged_in? && current_user.admin? %>
+			<% if logged_in? && (current_user.admin? || current_user.hw_admin) %>
 				<span style="font-size:.8em;">[ Note Last Modified: <%= @note.updated_at.strftime("%m/%d/%Y") %> ]</span>
 			<% end %>
 		</span>
