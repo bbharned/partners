@@ -82,7 +82,7 @@
 				
 
 
-				<% if current_user.channel == "Rockwell Automation" || current_user.admin %>
+				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 				<!-- Rockwell Product Profile -->
 				<div class="row">
 					<div class="col-md-10"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Rockwell)<% end %></span></div>
@@ -92,7 +92,7 @@
 				<% end %>
 
 
-				<% if current_user.channel != "Rockwell Automation" || current_user.admin %>
+				<% if (current_user.prttype != "Distributor" || current_user.channel != "Rockwell Automation") || current_user.admin %>
 				<!-- 3rd Party Product Profile -->
 				<div class="row">
 					<div class="col-md-10"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
