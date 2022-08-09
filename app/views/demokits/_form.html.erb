@@ -1,0 +1,75 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @demokit %>
+
+
+
+<%= form_for(@demokit, :html => {class: "form-horizontal demokit-form", role: "form"}) do |f| %>
+
+            
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                	<div class="form-label"><%= f.label :serial_number %></div>
+                    <%= f.text_field :serial_number, class: "form-control", placeholder: "Enter Serial Number", autofocus: true %>
+                </div>
+                <div class="col-sm-6 maker-dropdown">
+                    <div class="form-label"><%= f.label "Current Use" %></div>
+                    <%= f.select :reason, options_for_select([
+                          ["RAOTM","RAOTM"],
+                          ["Automation Fair","Automation Fair"], 
+                          ["ROK Live","ROK Live"],
+                          ["Distributor User", "Distributor Use"],
+                          ["Internal Use","Internal Use"],
+                          ["Other", "Other"]
+                        ], @demokit.reason), { :include_blank=>true}, class: "form-control" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-label"><%= f.label "Region" %></div>
+                    <%= f.select :region, options_for_select([
+                          ["NA","NA"],
+                          ["EMEA","EMEA"], 
+                          ["APAC","APAC"],
+                          ["LA", "LA"]
+                        ], @demokit.region), { :include_blank=>true}, class: "form-control" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><label>TM Version</label></div>
+                    <%= f.text_field :tmversion, class: "form-control", placeholder: "TM Version" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><label>ESXi Version</label></div>
+                    <%= f.text_field :esxiversion, class: "form-control", placeholder: "ESXi Version" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><%= f.label "Status" %></div>
+                    <%= f.select :status, options_for_select([
+                          ["In House","In House"],
+                          ["Checked Out","Checked Out"], 
+                          ["Broken","Broken"],
+                          ["Unaccounted For", "Unaccounted For"]
+                        ], @demokit.status), { :include_blank=>true}, class: "form-control" %>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+        <br /><br />
+        
+        <div class="form-group">
+            <%= f.submit(@demokit.new_record? ? "Register Kit" : "Update Kit", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+        </div>
+
+
+<% end %>
+
+
+
+</div>

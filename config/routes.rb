@@ -100,8 +100,7 @@ post 'events/:id/deregister', to: 'event_attendees#destroy', as: 'deregister'
 get 'eventattendees/new', to: 'event_attendees#new', as: 'new'
 post 'eventattendees/new', to: 'event_attendees#create'
 
-
-
+resources :demokits
 
 get 'flexforward', to: 'flexforwards#saved'
 get 'flexsaved', to: 'flexforwards#saved'
