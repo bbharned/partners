@@ -9,11 +9,11 @@
             
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                 	<div class="form-label"><%= f.label :serial_number %></div>
                     <%= f.text_field :serial_number, class: "form-control", placeholder: "Enter Serial Number", autofocus: true %>
                 </div>
-                <div class="col-sm-6 maker-dropdown">
+                <div class="col-sm-4 maker-dropdown">
                     <div class="form-label"><%= f.label "Current Use" %></div>
                     <%= f.select :reason, options_for_select([
                           ["RAOTM","RAOTM"],
@@ -23,6 +23,10 @@
                           ["Internal Use","Internal Use"],
                           ["Other", "Other"]
                         ], @demokit.reason), { :include_blank=>true}, class: "form-control" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><%= f.label "Date of Change" %></div>
+                    <%= f.date_field :change_date, class: "form-control" %>
                 </div>
             </div>
         </div>
@@ -49,7 +53,7 @@
                 <div class="col-sm-3">
                     <div class="form-label"><%= f.label "Status" %></div>
                     <%= f.select :status, options_for_select([
-                          ["In House","In House"],
+                          ["In ThinManager Office","In ThinManager Office"],
                           ["Checked Out","Checked Out"], 
                           ["Broken","Broken"],
                           ["Unaccounted For", "Unaccounted For"]
@@ -58,7 +62,140 @@
             </div>
         </div>
 
+        <h4 style="margin-top:45px;">Contact Information</h4>
 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-label"><%= f.label :firstname %></div>
+                    <%= f.text_field :firstname, class: "form-control", placeholder: "Enter First Name" %>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-label"><%= f.label :lastname %></div>
+                    <%= f.text_field :lastname, class: "form-control", placeholder: "Enter Last Name" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-label"><%= f.label "Company Name" %></div>
+                    <%= f.text_field :company, class: "form-control", placeholder: "Enter Company Name" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-label"><%= f.label :email %></div>
+                    <%= f.text_field :email, class: "form-control", placeholder: "Enter Email Address" %>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-label"><%= f.label :phone %></div>
+                    <%= f.text_field :phone, class: "form-control", placeholder: "Enter Phone Number" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">  
+
+            <div class="row">  
+                <div class="col-sm-8">
+                    <div class="form-label"><%= f.label :street %></div>
+                    <%= f.text_field :street, class: "form-control", placeholder: "Enter Street" %>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-label"><%= f.label :street2 %></div>
+                    <%= f.text_field :street2, class: "form-control", placeholder: "Enter Suite/#" %>
+                </div>
+            </div>
+         
+            <div class="row">  
+                <div class="col-sm-12">
+                    <div class="form-label"><%= f.label "Building" %></div>
+                    <%= f.text_field :street3, class: "form-control", placeholder: "Enter Additional Building/Complex Details" %>
+                </div>
+            </div>
+        
+            <div class="row">  
+                <div class="col-sm-6">
+                    <div class="form-label"><%= f.label :city %></div>
+                    <%= f.text_field :city, class: "form-control", placeholder: "Enter City" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><%= f.label :state %></div>
+                    <%= f.select :state, options_for_select([
+                              
+                              ["Not in US", ""],
+                              ["AL", "Alabama"], 
+                              ["AK", "Alaska"], 
+                              ["AZ", "Arizona"], 
+                              ["AR", "Arkansas"], 
+                              ["CA", "California"],
+                              ["CO", "Colorado"],
+                              ["CT", "Connecticut"],
+                              ["DE", "Delaware"],
+                              ["FL", "Florida"],
+                              ["GA", "Georgia"],
+                              ["HI", "Hawaii"],
+                              ["ID", "Idaho"],
+                              ["IL", "Illinois"],
+                              ["IN", "Indiana"],
+                              ["IA", "Iowa"],
+                              ["KS", "Kansas"],
+                              ["KY", "Kentucky"],
+                              ["LA", "Louisiana"],
+                              ["ME", "Maine"],
+                              ["MD", "Maryland"],
+                              ["MA", "Massachusetts"],
+                              ["MI", "Michigan"],
+                              ["MN", "Minnesota"],
+                              ["MS", "Mississippi"],
+                              ["MO", "Missouri"],
+                              ["MT", "Montana"],
+                              ["NE", "Nebraska"],
+                              ["NV", "Nevada"],
+                              ["NH", "New Hampshire"],
+                              ["NJ", "New Jersey"],
+                              ["NM", "New Mexico"],
+                              ["NY", "New York"],
+                              ["NC", "North Carolina"],
+                              ["ND", "North Dakota"],
+                              ["OH", "Ohio"],
+                              ["OK", "Oklahoma"],
+                              ["OR", "Oregon"],
+                              ["PA", "Pennsylvania"],
+                              ["PR", "Puerto Rico"],
+                              ["RI", "Rhode Island"],
+                              ["SC", "South Carolina"],
+                              ["SD", "South Dakota"],
+                              ["TN", "Tennessee"],
+                              ["TX", "Texas"],
+                              ["UT", "Utah"],
+                              ["VT", "Vermont"],
+                              ["VA", "Virginia"],
+                              ["WA", "Washington"],
+                              ["WV", "West Virginia"],
+                              ["WI", "Wisconsin"],
+                              ["WY", "Wyoming"]
+
+                            ], @demokit.state), {:prompt => '-- Select State --'}, class: "form-control" %>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-label"><%= f.label :postal_code %></div>
+                    <%= f.text_field :postal_code, class: "form-control", placeholder: "Postal Code" %>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-label"><%= f.label :notes %></div>
+                    <%= f.text_area :notes, class: "form-control", rows: "8", placeholder: "Enter Demo Kit Notes Here" %>
+                </div>
+            </div>
+        </div>
+        
         
 
         <br /><br />

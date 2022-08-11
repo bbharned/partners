@@ -1042,9 +1042,23 @@ Very Light Blue: #e9f7fb;
 
 /***************** Demokits *********************/
 
+.demokit-form .row .col-sm-6, .demokit-form .row .col-sm-3, 
+.demokit-form .row .col-sm-8, .demokit-form .row .col-sm-4, .demokit-form .row .col-sm-12 
+{
+    margin-bottom: 12px;
+}
+.demokit-form .form-label {
+    margin-bottom: 0px !important;
+}
+.demokit-form input, .demokit-form select {
+    margin-top: -5px !important;
+}
+
 
 @media screen and (max-width:767px) {
-    .demokit-form .row .col-sm-6, .demokit-form .row .col-sm-3 {
+    .demokit-form .row .col-sm-6, .demokit-form .row .col-sm-3, 
+    .demokit-form .row .col-sm-8, .demokit-form .row .col-sm-4 
+    {
         margin-bottom: 12px;
     }
     .demokit-form .form-group {
