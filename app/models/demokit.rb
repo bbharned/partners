@@ -1,5 +1,19 @@
 class Demokit < ActiveRecord::Base
-	
+  validates_uniqueness_of :serial_number
+
+
+def self.to_csv
+  attributes = %w{serial_number reason region tmversion esxiversion status firstname lastname email phone company street street2 street3 city state postal_code change_date notes created_at}
+
+  CSV.generate(headers: true) do |csv|
+    csv << attributes
+
+    all.each do |kit|
+      csv << attributes.map{ |attr| kit.send(attr) }
+    end
+  end
+end	
+
 
 filterrific(
    default_filter_params: { sort_dk: 'serial_number_asc' },
@@ -8,6 +22,7 @@ filterrific(
      :with_dk_search,
    ],
  )
+
 
 
 scope :with_dk_search, lambda { |query|
@@ -19,7 +34,7 @@ scope :with_dk_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 9
+    num_or_conds = 19
     where(
       terms.map { |term|
         "(
@@ -32,6 +47,16 @@ scope :with_dk_search, lambda { |query|
         OR LOWER(demokits.esxiversion) LIKE ?
         OR LOWER(demokits.firstname) LIKE ?
         OR LOWER(demokits.lastname) LIKE ?
+        OR LOWER(demokits.firstname + ' ' + demokits.lastname) LIKE ?
+        OR LOWER(demokits.email) LIKE ?
+        OR LOWER(demokits.city) LIKE ?
+        OR LOWER(demokits.state) LIKE ?
+        OR LOWER(demokits.street) LIKE ?
+        OR LOWER(demokits.street2) LIKE ?
+        OR LOWER(demokits.street3) LIKE ?
+        OR LOWER(demokits.postal_code) LIKE ?
+        OR LOWER(demokits.phone) LIKE ?
+        OR LOWER(demokits.notes) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten

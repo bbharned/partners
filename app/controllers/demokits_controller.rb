@@ -24,6 +24,7 @@ def index
    respond_to do |format|
      format.html
      format.js
+     format.csv { send_data @demokits.to_csv, filename: "ThinManager-Demokit-Search-#{Date.today}.csv" }
    end
 
    rescue ActiveRecord::RecordNotFound => e

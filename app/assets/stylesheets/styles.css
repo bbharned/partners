@@ -1042,8 +1042,8 @@ Very Light Blue: #e9f7fb;
 
 /***************** Demokits *********************/
 
-.demokit-form .row .col-sm-6, .demokit-form .row .col-sm-3, 
-.demokit-form .row .col-sm-8, .demokit-form .row .col-sm-4, .demokit-form .row .col-sm-12 
+.demokit-form .row .col-md-6, .demokit-form .row .col-md-3, .demokit-form .row .col-md-5,
+.demokit-form .row .col-md-8, .demokit-form .row .col-md-4, .demokit-form .row .col-md-12 
 {
     margin-bottom: 12px;
 }
@@ -1053,16 +1053,22 @@ Very Light Blue: #e9f7fb;
 .demokit-form input, .demokit-form select {
     margin-top: -5px !important;
 }
+.demo-show-card {
+    padding: 25px; border-radius: 15px;
+}
 
 
 @media screen and (max-width:767px) {
-    .demokit-form .row .col-sm-6, .demokit-form .row .col-sm-3, 
-    .demokit-form .row .col-sm-8, .demokit-form .row .col-sm-4 
+    .demokit-form .row .col-md-6, .demokit-form .row .col-md-3, .demokit-form .row .col-md-5, 
+    .demokit-form .row .col-md-8, .demokit-form .row .col-md-4 
     {
         margin-bottom: 12px;
     }
     .demokit-form .form-group {
         margin-bottom: 0px;
+    }
+    .kit-card {
+        border: 1px solid #c1c1c1; padding: 20px; margin-bottom: 20px; border-radius: 15px;
     }
 }
 

@@ -1,0 +1,69 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1>Demo Kit <%= @demokit.serial_number %></h1>	
+	</div>
+	<div class="col-md-3">
+		<div class="float-right" style="margin-top:7px;">
+			<%= link_to "Edit", edit_demokit_path(@demokit), class: "btn btn-warning" %>
+		</div>
+	</div>
+</div>
+
+<hr style="margin-bottom:5px;" />
+<div style="margin-bottom:25px;"><%= link_to "« Back", :back %></div>
+
+
+<div class="card demo-show-card">
+	
+	<h5>Contact:</h5>
+	<div class="row">
+		
+		<div class="col-md-6">
+			<%= @demokit.firstname %> <%= @demokit.lastname %><br />
+			<%= @demokit.company %><br />
+			<%= link_to "#{@demokit.email}", "mailto:#{@demokit.email}" %><br />
+			<%= @demokit.phone %>
+		</div>
+
+		<div class="col-md-6">
+			<div class="float-right-to-left">
+				<%= @demokit.street %> <% if @demokit.street2 != nil && @demokit.street2 != '' %>, <%= @demokit.street2 %><% end %><br />
+				<% if @demokit.street3 != nil && @demokit.street3 != '' %><%= @demokit.street3 %><br /><% end %>
+				<%= @demokit.city %>, <%= @demokit.state %> <%= @demokit.postal_code %>
+			</div>
+		</div>
+
+	</div>
+
+	<hr style="margin-top: 35px; margin-bottom: 35px; " />
+
+	<h5>Details:</h5>
+	<div class="row">
+		<div class="col-md-6">
+			Serial Number:&nbsp;&nbsp;&nbsp;<%= @demokit.serial_number %><br />
+			ThinManager Version:&nbsp;&nbsp;&nbsp;<%= @demokit.tmversion %><br />
+			ESXi Version:&nbsp;&nbsp;&nbsp;<%= @demokit.esxiversion %><br />
+		</div>
+		<div class="col-md-6">
+			<div class="float-right-to-left">
+				Status:&nbsp;&nbsp;&nbsp;<%= @demokit.status %><br />
+				Purpose:&nbsp;&nbsp;&nbsp;<%= @demokit.reason %><br />
+				Region:&nbsp;&nbsp;&nbsp;<%= @demokit.region %><br />
+				<% if @demokit.change_date != nil && @demokit.change_date != "" %>
+					Date of Action:&nbsp;&nbsp;&nbsp;<%= @demokit.change_date.strftime("%m/%d/%Y") %><br />
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<br />
+	<h5>Notes:</h5>
+	<% if @demokit.notes != nil && @demokit.notes != "" %>
+		<%= simple_format(@demokit.notes) %>
+	<% else %>
+		<p style="color:darkorange; font-style: italic;">There are no saved notes</p>
+	<% end %>
+</div>
+
+</div>
