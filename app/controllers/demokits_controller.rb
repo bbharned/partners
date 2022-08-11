@@ -4,7 +4,32 @@ class DemokitsController < ApplicationController
 
 
 def index
-	@demokits = Demokit.all
+	
+    # @demokits = Demokit.order("serial_number asc").paginate(page: params[:page], per_page: 25) 
+
+
+    @filterrific = initialize_filterrific(
+     Demokit,
+     params[:filterrific],
+      select_options: {
+        sort_dk: Demokit.options_for_sort_dk,
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:sort_dk, :with_dk_search],
+      sanitize_params: true,
+   ) or return
+   @demokits = @filterrific.find.paginate(page: params[:page], per_page: 25)
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
 end
 
 

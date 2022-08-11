@@ -12,6 +12,40 @@
 </div>
 <hr />
 
-<%= @demokits.count %>
+
+<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+<div class="row" style="margin-bottom:5px;">
+	<div class="col-sm-6 offset-sm-3">
+		<div class="form-label">Search</div>
+		<%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+		<%= f.text_field(
+		  :with_dk_search,
+		  class: 'filterrific-periodically-observed form-control',
+		  placeholder: 'Search Kits Here'
+		) %>
+		</div>
+	</div>
+<% end %>
+
+
+
+<div class="hw-loader"><%= render_filterrific_spinner %></div>
+
+<%= render(
+	partial: 'demokits/list',
+	locals: { demoits: @demokits }
+) %>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
