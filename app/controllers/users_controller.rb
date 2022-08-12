@@ -361,6 +361,7 @@ end
 
 
 def show
+     @demokits = Demokit.where(user_id: @user.id)
      @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
      @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")
      @user_license = License.where(user_id: @user.id).limit(1)

@@ -368,4 +368,15 @@
 		</div>
 		<% end %>
 	<% end %>
+
+
+
+	<!-- Demo kits registered to user -->
+	<% if @demokits.any? %>
+		<h4 align="center" style="margin-top: 45px;">Demo Kits Registered</h4>
+		<%= render(
+			partial: 'demokits/list',
+			locals: { demokits: @demokits }
+		) %>
+	<% end %>
 </div>

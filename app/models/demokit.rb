@@ -35,33 +35,32 @@ scope :with_dk_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 19
+    num_or_conds = 18
     where(
       terms.map { |term|
         "(
         LOWER(demokits.serial_number) LIKE ?
-        OR LOWER(demokits.company) LIKE ?  
+        OR LOWER(users.company) LIKE ?  
         OR LOWER(demokits.status) LIKE ? 
         OR LOWER(demokits.reason) LIKE ? 
         OR LOWER(demokits.region) LIKE ? 
         OR LOWER(demokits.tmversion) LIKE ?
         OR LOWER(demokits.esxiversion) LIKE ?
-        OR LOWER(demokits.firstname) LIKE ?
-        OR LOWER(demokits.lastname) LIKE ?
-        OR LOWER(demokits.firstname + ' ' + demokits.lastname) LIKE ?
-        OR LOWER(demokits.email) LIKE ?
-        OR LOWER(demokits.city) LIKE ?
-        OR LOWER(demokits.state) LIKE ?
-        OR LOWER(demokits.street) LIKE ?
-        OR LOWER(demokits.street2) LIKE ?
-        OR LOWER(demokits.street3) LIKE ?
-        OR LOWER(demokits.postal_code) LIKE ?
-        OR LOWER(demokits.phone) LIKE ?
         OR LOWER(demokits.notes) LIKE ?
+        OR LOWER(users.firstname) LIKE ?
+        OR LOWER(users.lastname) LIKE ?
+        OR LOWER(users.firstname + ' ' + users.lastname) LIKE ?
+        OR LOWER(users.email) LIKE ?
+        OR LOWER(users.city) LIKE ?
+        OR LOWER(users.state) LIKE ?
+        OR LOWER(users.street) LIKE ?
+        OR LOWER(users.street2) LIKE ?
+        OR LOWER(users.zip) LIKE ?
+        OR LOWER(users.cell) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    )
+    ).includes(:user).references(:users)
 } 
 
 
