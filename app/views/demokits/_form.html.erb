@@ -6,7 +6,12 @@
 
 <%= form_for(@demokit, :html => {class: "form-horizontal demokit-form", role: "form"}) do |f| %>
 
-            
+        <% if @demokit.new_record? %>
+            <%= f.hidden_field :user_id, value: params[:user_id] %>
+        <% else %>
+            <%= f.hidden_field :user_id, value: @demokit.user_id %>
+        <% end %>
+         
         <div class="form-group">
             <div class="row">
                 <div class="col-md-5">
@@ -61,135 +66,45 @@
                 </div>
             </div>
         </div>
+<br />
+        <hr />
 
-        <h4 style="margin-top:45px;">Contact Information</h4>
+            <h4 style="margin-top:30px; margin-bottom:35px;" align="center">Contact Information</h4>
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-label"><%= f.label :firstname %></div>
-                    <%= f.text_field :firstname, class: "form-control", placeholder: "Enter First Name" %>
+                <div class="row">
+                    <div class="col-md-5 offset-md-1">
+                        <% if @demokit.new_record? %>
+                            <span style="font-weight: bold;"><%= @user.firstname %> <%= @user.lastname %></span><br />
+                            <%= @user.company %><br />
+                            <%= @user.email %><br />
+                            <%= @user.cell %>
+                        <% else %>
+                            <span style="font-weight: bold;"><%= @demokit.user.firstname %> <%= @demokit.user.lastname %></span><br />
+                            <%= @demokit.user.company %><br />
+                            <%= @demokit.user.email %><br />
+                            <%= @demokit.user.cell %>
+                        <% end %>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="float-right-to-left">
+                        <% if @demokit.new_record? %>
+                            <%= @user.street %><% if @user.street2 != nil && @user.street2 != "" %>, <%= @user.street2 %><% end %><br />
+                            <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+                        <% else %>
+                            <%= @demokit.user.street %><% if @demokit.user.street2 != nil && @demokit.user.street2 != "" %>, <%= @demokit.user.street2 %><% end %><br />
+                            <%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
+                        <% end %>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-label"><%= f.label :lastname %></div>
-                    <%= f.text_field :lastname, class: "form-control", placeholder: "Enter Last Name" %>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-label"><%= f.label "Company Name" %></div>
-                    <%= f.text_field :company, class: "form-control", placeholder: "Enter Company Name" %>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-label"><%= f.label :email %></div>
-                    <%= f.text_field :email, class: "form-control", placeholder: "Enter Email Address" %>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-label"><%= f.label :phone %></div>
-                    <%= f.text_field :phone, class: "form-control", placeholder: "Enter Phone Number" %>
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group">  
-
-            <div class="row">  
-                <div class="col-md-8">
-                    <div class="form-label"><%= f.label :street %></div>
-                    <%= f.text_field :street, class: "form-control", placeholder: "Enter Street" %>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-label"><%= f.label :street2 %></div>
-                    <%= f.text_field :street2, class: "form-control", placeholder: "Enter Suite/#" %>
-                </div>
-            </div>
-         
-            <div class="row">  
-                <div class="col-md-12">
-                    <div class="form-label"><%= f.label "Building" %></div>
-                    <%= f.text_field :street3, class: "form-control", placeholder: "Enter Additional Building/Complex Details" %>
-                </div>
-            </div>
         
-            <div class="row">  
-                <div class="col-md-6">
-                    <div class="form-label"><%= f.label :city %></div>
-                    <%= f.text_field :city, class: "form-control", placeholder: "Enter City" %>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-label"><%= f.label :state %></div>
-                    <%= f.select :state, options_for_select([
-                              
-                              ["Not in US", ""],
-                              ["AL", "AL"], 
-                              ["AK", "AK"], 
-                              ["AZ", "AZ"], 
-                              ["AR", "AR"], 
-                              ["CA", "CA"],
-                              ["CO", "CO"],
-                              ["CT", "CT"],
-                              ["DE", "DE"],
-                              ["FL", "FL"],
-                              ["GA", "GA"],
-                              ["HI", "HI"],
-                              ["ID", "ID"],
-                              ["IL", "IL"],
-                              ["IN", "IN"],
-                              ["IA", "IA"],
-                              ["KS", "KS"],
-                              ["KY", "KY"],
-                              ["LA", "LA"],
-                              ["ME", "ME"],
-                              ["MD", "MD"],
-                              ["MA", "MA"],
-                              ["MI", "MI"],
-                              ["MN", "MN"],
-                              ["MS", "MS"],
-                              ["MO", "MO"],
-                              ["MT", "MT"],
-                              ["NE", "NE"],
-                              ["NV", "NV"],
-                              ["NH", "NH"],
-                              ["NJ", "NJ"],
-                              ["NM", "NM"],
-                              ["NY", "NY"],
-                              ["NC", "NC"],
-                              ["ND", "ND"],
-                              ["OH", "OH"],
-                              ["OK", "OK"],
-                              ["OR", "OR"],
-                              ["PA", "PA"],
-                              ["PR", "PR"],
-                              ["RI", "RI"],
-                              ["SC", "SC"],
-                              ["SD", "SD"],
-                              ["TN", "TN"],
-                              ["TX", "TX"],
-                              ["UT", "UT"],
-                              ["VT", "VT"],
-                              ["VA", "VA"],
-                              ["WA", "WA"],
-                              ["WV", "WV"],
-                              ["WI", "WI"],
-                              ["WY", "WY"]
-
-                            ], @demokit.state), {:prompt => '-- Select State --'}, class: "form-control" %>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-label"><%= f.label :postal_code %></div>
-                    <%= f.text_field :postal_code, class: "form-control", placeholder: "Postal Code" %>
-                </div>
-            </div>
-
-        </div>
 
         <br />
 
         <div class="form-group">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-10 offset-md-1">
                     <div class="form-label"><%= f.label :notes %></div>
                     <%= f.text_area :notes, class: "form-control", rows: "8", placeholder: "Enter Demo Kit Notes Here" %>
                 </div>
@@ -201,7 +116,11 @@
         <br /><br />
         
         <div class="form-group">
-            <%= f.submit(@demokit.new_record? ? "Register Kit" : "Update Kit", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <%= f.submit(@demokit.new_record? ? "Register Kit" : "Update Kit", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+                </div>
+            </div>            
         </div>
 
 

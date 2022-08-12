@@ -1,5 +1,6 @@
 class Demokit < ActiveRecord::Base
   validates_uniqueness_of :serial_number
+  belongs_to :user
 
 
 def self.to_csv

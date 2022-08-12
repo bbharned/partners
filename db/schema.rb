@@ -113,23 +113,13 @@ ActiveRecord::Schema.define(version: 2022_08_09_181442) do
   end
 
   create_table "demokits", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "serial_number"
     t.string "reason"
     t.string "region"
     t.string "tmversion"
     t.string "esxiversion"
     t.string "status"
-    t.string "firstname"
-    t.string "lastname"
-    t.string "email"
-    t.string "company"
-    t.string "street"
-    t.string "street2"
-    t.string "street3"
-    t.string "city"
-    t.string "state"
-    t.string "postal_code"
-    t.string "phone"
     t.date "change_date"
     t.text "notes"
     t.datetime "created_at", null: false

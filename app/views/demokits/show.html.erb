@@ -21,17 +21,16 @@
 	<div class="row">
 		
 		<div class="col-md-6">
-			<%= @demokit.firstname %> <%= @demokit.lastname %><br />
-			<%= @demokit.company %><br />
-			<%= link_to "#{@demokit.email}", "mailto:#{@demokit.email}" %><br />
-			<%= @demokit.phone %>
+			<%= @demokit.user.firstname %> <%= @demokit.user.lastname %><br />
+			<%= @demokit.user.company %><br />
+			<%= link_to "#{@demokit.user.email}", "mailto:#{@demokit.user.email}" %><br />
+			<%= @demokit.user.cell %>
 		</div>
 
 		<div class="col-md-6">
 			<div class="float-right-to-left">
-				<%= @demokit.street %> <% if @demokit.street2 != nil && @demokit.street2 != '' %>, <%= @demokit.street2 %><% end %><br />
-				<% if @demokit.street3 != nil && @demokit.street3 != '' %><%= @demokit.street3 %><br /><% end %>
-				<%= @demokit.city %>, <%= @demokit.state %> <%= @demokit.postal_code %>
+				<%= @demokit.user.street %> <% if @demokit.user.street2 != nil && @demokit.user.street2 != '' %>, <%= @demokit.user.street2 %><% end %><br />
+				<%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
 			</div>
 		</div>
 

@@ -37,12 +37,13 @@ end
 
 def new
 	@demokit = Demokit.new
+    @user = User.find(params[:user_id])
 end
 
 
 
 def edit
-
+    #@demokit.user = User.find(@demokit.user_id)
 end
 
 
@@ -54,6 +55,7 @@ end
 
 
 def update
+    #@demokit.user = User.find(params[:user_id])
     if @demokit.update(demokit_params)
         flash[:success] = "Demo kit was successfully updated"
         redirect_to demokits_path
@@ -90,7 +92,7 @@ end
 private
 
 	def demokit_params
-        params.require(:demokit).permit(:serial_number, :reason, :region, :tmversion, :esxiversion, :status, :firstname, :lastname, :email, :company, :street, :street2, :street3, :city, :state, :postal_code, :phone, :change_date, :notes)
+        params.require(:demokit).permit(:user_id, :serial_number, :reason, :region, :tmversion, :esxiversion, :status, :change_date, :notes)
     end
 
 
