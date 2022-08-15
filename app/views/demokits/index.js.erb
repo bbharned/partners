@@ -1,4 +1,4 @@
 <% js = escape_javascript(
-  render(partial: 'demokits/list', locals: { events: @demokits })
+  render(partial: 'demokits/list', locals: { demokits: @demokits })
 ) %>
 $("#filterrific_results").html("<%= js %>");
