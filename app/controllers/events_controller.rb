@@ -91,7 +91,7 @@ end
 
         respond_to do |format|
             format.html { render "show" }
-            format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{Date.today}.csv" }
+            format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv" }
             format.ics { send_data @cal_string, filename: "#{@event.name}.ics"}
         end
     end
