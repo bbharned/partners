@@ -49,7 +49,7 @@ scope :with_dk_search, lambda { |query|
         OR LOWER(demokits.notes) LIKE ?
         OR LOWER(users.firstname) LIKE ?
         OR LOWER(users.lastname) LIKE ?
-        OR LOWER(users.firstname + ' ' + users.lastname) LIKE ?
+        OR LOWER(users.firstname || ' ' || users.lastname) LIKE ?
         OR LOWER(users.email) LIKE ?
         OR LOWER(users.city) LIKE ?
         OR LOWER(users.state) LIKE ?
