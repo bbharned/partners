@@ -55,7 +55,7 @@ scope :with_dk_search, lambda { |query|
         OR LOWER(users.state) LIKE ?
         OR LOWER(users.street) LIKE ?
         OR LOWER(users.street2) LIKE ?
-        OR LOWER(users.zip) LIKE ?
+        OR LOWER(CAST(users.zip AS VARCHAR)) LIKE ?
         OR LOWER(users.cell) LIKE ?
         )"
       }.join(' AND '),
