@@ -59,8 +59,8 @@
 							</svg>
 							<br />
 						<% end %>
-						<span class="bold">Cell Number:</span> &nbsp;<%= @user.cell %><br />
-						<span class="bold">Cell Provider:</span> &nbsp;
+						<span class="bold">Phone Number:</span> &nbsp;<%= @user.cell %><br />
+						<span class="bold">Phone Provider:</span> &nbsp;
 						<% if @user.carrier != nil && @user.carrier != "" %>
 							<%= @user.carrier.upcase() %>
 						<% end %>

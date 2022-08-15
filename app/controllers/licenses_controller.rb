@@ -16,7 +16,12 @@ end
 def new 
     @license = License.new  
     @user = User.find(params[:user_id])
-
+    if ((@user.street == nil || @user.street == "") || (@user.city == nil || @user.city == "") || (@user.cell == nil || @user.cell == "")) && !@user.admin?
+        if !flash[:danger]
+            flash.now[:warning] = "Address and Phone number are needed for FTA License requests.  You may 
+            enter that #{view_context.link_to 'here', edit_user_path(@user)} and return to complete your license request."      
+        end
+    end
 end
 
 
@@ -49,15 +54,22 @@ def create
     @license = License.new(license_params)
     @user = User.find(@license.user_id)
 
-    if @license.save
-        if !current_user.admin?
-            # Send internal email of license request nptification here unless admin created.
-            @user.send_license_notification(@license)
-        end
-        flash[:success] = "Your license request has been submitted. To process your license we will need you to enter your business address and details in your profile. Update this information #{view_context.link_to 'here', edit_user_path(@user)}."
-        redirect_to root_path
+    if @license.activation_type == "FTA" && ((@user.street == nil || @user.street == "") || (@user.city == nil || @user.city == "") || (@user.cell == nil || @user.cell == "")) && !@user.admin?
+        flash[:danger] = "We could not process you FTA License request, your Address and Phone Number are needed.  You may 
+        enter that #{view_context.link_to 'here', edit_user_path(@user)} and return to complete your license request."
+        #render 'edit', params: {user_id: @user.id}
+        redirect_to new_license_path(user_id: @user.id)
     else
-        render 'edit', params: {user_id: @user.id}
+        if @license.save
+            if !current_user.admin?
+                # Send internal email of license request nptification here unless admin created.
+                @user.send_license_notification(@license)
+            end
+            flash[:success] = "Your license request has been submitted."
+            redirect_to root_path
+        else
+            render 'edit', params: {user_id: @user.id}
+        end
     end
 end
 
