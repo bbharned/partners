@@ -39,7 +39,7 @@ scope :with_dk_search, lambda { |query|
     where(
       terms.map { |term|
         "(
-        demokits.serial_number LIKE ?
+        LOWER(CAST(demokits.serial_number AS STRING)) LIKE ?
         OR LOWER(users.company) LIKE ?  
         OR LOWER(demokits.status) LIKE ? 
         OR LOWER(demokits.reason) LIKE ? 
