@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom:100px;">
 
 
 		<h1 class="page-header">Search Results <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
@@ -13,9 +13,7 @@
 <%= render'search' %>
 
 <br />
-	<div class="paginate">
-		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
-	</div>
+	
 		<%= render 'userTableTop' %>
 	<% if @users.any? %>
 	<% @users.each do |user| %>
@@ -43,7 +41,5 @@
 	<% end %>
 	<% end %>
 <br /><br />
-	<div class="paginate">
-		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
-	</div>
+	
 </div>
