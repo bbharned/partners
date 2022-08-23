@@ -309,7 +309,7 @@
 		      <div align="right">
 		      	<!-- <%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %> -->
 		      	<% if !@listing %>
-		      		<%= link_to "Request Listing", new_listing_path(user_id: @user.id, firstname: @current_user.firstname, lastname: @current_user.lastname, email: @current_user.email, cell: @current_user.cell, street: @current_user.street, street2: @current_user.street2, city: @current_user.city, postal_code: @postal_code, list_type: @current_user.prttype, list_type: @current_user.prttype), class: "btn btn-primary btn-sm" %>	
+		      		<%= link_to "Request Listing", new_listing_path(user_id: @user.id, firstname: @current_user.firstname, lastname: @current_user.lastname, email: @current_user.email, cell: @current_user.cell, street: @current_user.street, street2: @current_user.street2, city: @current_user.city, postal_code: @postal_code, list_type: @current_user.prttype), class: "btn btn-primary btn-sm" %>	
 		      	<% else %>
 		      		<%= link_to "Already Requested", new_listing_path, class: "btn btn-sm btn-primary disabled" %>
 		      	<% end %>
