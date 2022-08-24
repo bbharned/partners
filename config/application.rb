@@ -12,7 +12,15 @@ module Partners
 
     config.assets.paths << "#{Rails.root}/app/assets/videos"
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 5.2
+
+    config.active_record.cache_versioning = true
+    config.action_dispatch.use_authenticated_cookie_encryption = true
+    config.active_support.use_authenticated_message_encryption = true
+    config.action_controller.default_protect_from_forgery = true
+    config.active_record.sqlite3.represent_boolean_as_integer = true
+    config.active_support.use_sha1_digests = true
+    config.action_view.form_with_generates_ids = true
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
