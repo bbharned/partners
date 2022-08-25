@@ -10,7 +10,7 @@ def new_dl
 
     if @download.save
         
-        flash[:success] = "Your Download should have iniated. If you have issues, please contact us."
+        flash[:success] = "Your Download should have started. If you have issues, please contact us."
         redirect_back(fallback_location:"/")
         #download user email actions here
             current_user.send_download_ext_notice
