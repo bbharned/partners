@@ -266,6 +266,10 @@
       <li class="dropdown" style="<% if !current_user || !current_user.admin? %>padding-top: 5px;<% end %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
+              <% if logged_in? %>
+                <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+              <% end %>
               <li><a class="dropdown-item" href="https://thinmanager.com">ThinManager.com</a></li>
               <li><a class="dropdown-item" href="https://thinmanager.com/support/">ThinManager Support</a></li>
               <li><a class="dropdown-item" href="https://thinmanager.com/corp/contactus.php">Contact Us</a></li>
