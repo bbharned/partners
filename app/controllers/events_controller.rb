@@ -61,7 +61,7 @@ end
         end
         
         @allregistered = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true)
-        if @allregistered.any? && @allregistered.count >= @event.capacity
+        if ((@allregistered.any? && @allregistered.count >= @event.capacity) || (!@allregistered.any? && @event.capacity == 0))
             @full = true
         end
 
