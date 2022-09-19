@@ -28,7 +28,7 @@
 			    </div>
 			    <div class="col-md-6">
 			    	<div class="form-label"><%= f.label "Event" %></div>
-			    	<%= f.collection_select :event_id, @events, :id, :name, { :include_blank=>true} , class: "form-control" %>	
+			    	<%= f.collection_select :event_id, @events, :id, :formatted_name, { :include_blank=>true} , class: "form-control" %>	
 			    </div>
     		</div>
 	    </div>

@@ -15,6 +15,11 @@ class Event < ActiveRecord::Base
   before_save { self.viewer = viewer.downcase }
 
 
+def formatted_name
+  "#{name.truncate(35)} - #{starttime.strftime("%B %d, %Y")}"
+end
+
+
 def self.to_csv
   attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}
 
