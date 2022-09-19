@@ -120,11 +120,11 @@ def calcs
 
     # subscription pricing arrays
     if self.sub_exchange
-        @vfRedPrices = [402, 221.10, 201, 160.80, 140.70, 120.60]
-        @vfNonRedPrices = [400, 220, 200, 160, 140, 120]
+        @vfRedPrices = [412, 226.60, 206, 164.80, 144.20, 123.60]
+        @vfNonRedPrices = [410, 225.50, 205, 164, 143.50, 123]
         # for new on sub exchange
-        @vfNewSimpSubPrices = [820, 451, 410, 328, 287, 246]
-        @vfNewRedSubPrices = [1231, 677.05, 615.50, 492.40, 430.85, 369.30]
+        @vfNewSimpSubPrices = [844, 464.20, 422, 337.60, 295.40, 253.20]
+        @vfNewRedSubPrices = [1077, 592.35, 538.50, 430.80, 376.95, 323.10]
     end
 
 
