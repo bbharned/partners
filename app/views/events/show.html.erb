@@ -170,7 +170,7 @@
 				<div class="row">
 					<div class="col" style="text-align:center; color:red;">THIS EVENT IS AT FULL CAPACITY</div>
 				</div>
-				<!-- Special Code for Kendall -->
+				<!-- Special Code for Kendall, Remove if event 64 hits capacity. -->
 				<% if @event.id == 63 %>
 					<div class="row">
 						<div class="col" style="text-align:center;">We do have another event open for registration <%= link_to "here", event_path(64) %>.</div>

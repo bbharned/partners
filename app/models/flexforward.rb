@@ -113,9 +113,9 @@ def calcs
     end
     
     # updated 8/23/2021
-    @vfRedPrices = [3486, 1917.30, 1743, 1394.30, 1220.10, 1045.80]
-    @smrPrices = [412, 226.60, 206.00, 164.80, 144.20, 123.60]
-    @vfNonRedPrices = [2460, 1353, 1230, 984, 861, 738] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
+    @vfRedPrices = [3588, 1973.40, 1794, 1435.20, 1255.80, 1076.40]
+    @smrPrices = [422, 232.10, 211, 168.80, 147.70, 126.60]
+    @vfNonRedPrices = [2532, 1392.60, 1266, 1012.80, 886.20, 759.60] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
 
 
     # subscription pricing arrays
