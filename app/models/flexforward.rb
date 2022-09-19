@@ -180,8 +180,8 @@ def calcs
     
 
     #Trade up pricing
-    self.tr_pr_serv = (600 * self.currency.rate) * self.tr_serv #20
-    self.tr_pr_site = (600 * self.currency.rate) * self.tr_site #21
+    self.tr_pr_serv = (633 * self.currency.rate) * self.tr_serv #20
+    self.tr_pr_site = (633 * self.currency.rate) * self.tr_site #21
     
 
     if self.sub_exchange
