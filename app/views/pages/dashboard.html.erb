@@ -1,4 +1,5 @@
 <div class="container">
+<!-- banner announcements -->
 <% if current_user.admin? || current_user.prttype == "Distributor" || current_user.prttype == "Integrator" %>
 <div class="ad-space">
 	<% if current_user.admin? || (current_user.prttype == "Distributor" && current_user.continent == "NA") || (@current_user.continent == "North America" && @current_user.prttype == "Distributor") %> <!-- or email is rockwell -->
@@ -29,6 +30,9 @@
 	<% end %>
 </div>	
 <% end %>
+<!-- End banner announcements -->
+
+
 
 <% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire < Date.today) %>
 <!-- && (@current_user.certexpire < Date.today) -->
