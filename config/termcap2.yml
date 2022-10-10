@@ -31,5 +31,5 @@ production:
   encoding: unicode
   pool: 5
   timeout: 5000
-  url: <%= ENV['HEROKU_POSTGRESQL_BRONZE_URL'] %>
+  url: <%= ENV['HEROKU_POSTGRESQL_ORANGE_URL'] %>
   POSTGRES_PORT: 5432
