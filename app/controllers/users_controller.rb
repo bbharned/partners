@@ -294,18 +294,19 @@ end
 def distributor
     @sort = [params[:sort]]
     @users = User.where(prttype: "Distributor").paginate(page: params[:page], per_page: 25).order(@sort)
+    @alldist = User.where(prttype: "Distributor")
     @allusers = User.all
 
     respond_to do |format|
       format.html { render "distributor" }
-      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Distributors-#{Date.today}.csv" }
+      format.csv { send_data @alldist.to_csv, filename: "PartnerPortal_Distributors-#{Date.today}.csv" }
     end
 end
 
 def integrator
     @sort = [params[:sort]]
     @users = User.where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(@sort)
-    @allsi = @users.all
+    @allsi = User.where(prttype: "Integrator")
     @allusers = User.all
 
     respond_to do |format|
