@@ -305,11 +305,12 @@ end
 def integrator
     @sort = [params[:sort]]
     @users = User.where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(@sort)
+    @allsi = @users.all
     @allusers = User.all
 
     respond_to do |format|
       format.html { render "integrator" }
-      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Integrators-#{Date.today}.csv" }
+      format.csv { send_data @allsi.to_csv, filename: "PartnerPortal_Integrators-#{Date.today}.csv" }
     end
 end
 
