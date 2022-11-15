@@ -6,11 +6,11 @@
 <!-- <div class="appear"><span style="font-size:.75em;"><a href="/demokits.csv">(export CSV)</a></span></div> -->
 <div class="goAway">
 <div class="row" style="background-color:#f1f1f1; padding: 7px 0px; font-weight: bold; margin-bottom: 5px;">
-	<div class="col-1">Serial</div>
+	<div class="col-2">Serial</div>
 	<div class="col-3">Status</div>
 	<div class="col-3">Company</div>
 	<div class="col-2">Contact</div>
-	<div class="col-3">
+	<div class="col-2">
 		<div class="float-right-to-left"><span style="font-size:.75em;"><a href="/demokits.csv">(export CSV)</a></span></div>
 	</div>
 </div>
@@ -23,11 +23,11 @@
 
 	<% @demokits.each do |d| %>
 		<div class="row kit-card">
-			<div class="col-md-1"><%= link_to "#{d.serial_number}", demokit_path(d) %></div>
+			<div class="col-md-2"><%= link_to "#{d.serial_number}", demokit_path(d) %></div>
 			<div class="col-md-3"><%= d.status %></div>
 			<div class="col-md-3"><%= d.user.company %></div>
 			<div class="col-md-2"><%= link_to "#{d.user.firstname} #{ d.user.lastname}", user_path(d.user) %></div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<div class="float-right">
 	                <%= link_to "edit", edit_demokit_path(d), style: "color: darkorange" %> | <%= link_to "view", demokit_path(d), style: "color: darkgreen;" %> | <%= link_to "delete", demokit_path(d), method: :delete, data: {confirm: "Are you sure you want to delete this demo kit?"}, style: "color:red;" %>
 	            </div>
