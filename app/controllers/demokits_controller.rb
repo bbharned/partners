@@ -19,7 +19,7 @@ def index
       available_filters: [:sort_dk, :with_dk_search],
       sanitize_params: true,
    ) or return
-   @demokits = @filterrific.find.paginate(page: params[:page], per_page: 50).order("serial_number asc")
+   @demokits = @filterrific.find.all.order("serial_number asc")
 
    respond_to do |format|
      format.html
