@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_09_181442) do
+ActiveRecord::Schema.define(version: 2022_11_28_161655) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2022_08_09_181442) do
 
   create_table "demokits", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "serial_number"
+    t.string "serial_number"
     t.string "reason"
     t.string "region"
     t.string "tmversion"
