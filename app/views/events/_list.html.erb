@@ -49,10 +49,15 @@
                     No event date and time set.
                   <% end %>
                   </div>
-                <div class="col-md-4"><%= @reg_users.count %> registered of <%= e.capacity %></div>
-                <div class="col-md-4">
+                <div class="col-md-3"><%= @reg_users.count %> registered of <%= e.capacity %></div>
+                <div class="col-md-5">
                   <div class="float-right">
-                    <%= link_to "edit", edit_event_path(e), style: "color: darkorange" %> | <%= link_to "view", event_path(e), style: "color: darkgreen;" %> | <%= link_to "delete", event_path(e), method: :delete, data: {confirm: "Are you sure you want to delete this Event?"}, style: "color:red;" %>
+                    <%= link_to "edit", edit_event_path(e), style: "color: darkorange" %> | 
+                    <%= link_to "view", event_path(e), style: "color: darkgreen;" %> | 
+                    <%= link_to "duplicate", new_event_path(
+                      {:name => e.name, :description => e.description, :starttime => e.starttime, :endtime => e.endtime, :cost => e.cost, :capacity => e.capacity, :event_contact => e.event_contact, :event_email => e.event_email, :event_host => e.event_host, :event_phone => e.event_phone, :event_image => e.event_image, :private => e.private, :virtual => e.virtual, :viewer => e.viewer}
+                    ) %> | 
+                    <%= link_to "delete", event_path(e), method: :delete, data: {confirm: "Are you sure you want to delete this Event?"}, style: "color:red;" %>
                      
                   
                   </div>
@@ -61,12 +66,8 @@
             </div>
           </div>
             
-            
-
-
-
-
-          <% end %>
+          
+    <% end %>
           
 
     <% if @events.count > 10 %>

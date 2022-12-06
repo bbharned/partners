@@ -12,7 +12,13 @@ end
 
 
 def new
-    @event = Event.new
+    if params[:name] != nil
+        @name = "#{params[:name]} (copy)"
+    else
+        @name = ""
+    end
+    
+    @event = Event.new(:name => @name, :description => params[:description], :starttime => params[:starttime], :endtime => params[:endtime], :cost => params[:cost], :capacity => params[:capacity], :event_contact => params[:event_contact], :event_email => params[:event_email], :event_host => params[:event_host], :event_phone => params[:event_phone], :event_image => params[:event_image], :private => params[:private], :virtual => params[:virtual], :viewer => params[:viewer])
     @venues = Venue.all
 
 end
