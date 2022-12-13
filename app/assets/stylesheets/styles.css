@@ -1122,6 +1122,38 @@ Very Light Blue: #e9f7fb;
 
 
 /********************** Hardware Page ******************************/
+.download-flex-container-box {
+    width: 90%; max-width: 250px; border-radius:10px; float:right;
+    margin-bottom: -50px; margin-right: 2%; margin-top: -10px;
+    background-color: #FFFFFF; box-shadow: 1px 1px 5px #272727;
+    opacity: 0; animation-delay: 0.75s;
+    animation-name: fadeIt; animation-duration: 2s;
+    animation-iteration-count: 1; animation-timing-function: ease-in;
+    animation-fill-mode: forwards; 
+}
+@keyframes fadeIt {
+  0%   {opacity: 0; }
+  25%  {opacity: 0.25; }
+  50%  {opacity: 0.5; }
+  75%  {opacity: 0.75; }
+  100% {opacity: 1; }
+}
+.hardware-pdf-download {width:40px; margin-top: 4px;}
+.hardware-pdf-download img {width:100%;}
+.hd-flex-box-left { width:78%; margin-left: 1%; margin-right:1%; padding: 10px 10px; }
+.hd-flex-box-right { width:18%; margin-left: 1%; margin-right:1%; }
+.tiny-text {font-size: .6em; line-height: 10px;}
+@media all and (max-width:992px) {
+    .download-flex-container-box {
+        margin-bottom: -110px; margin-top: 60px; 
+    }
+}
+@media all and (max-width:768px) {
+    .download-flex-container-box {
+        display:none; 
+    }
+}
+
 
 .side-filters {
     width: 97%; padding: 0px 1%; border-right: 1px solid #d1d1d1; 
