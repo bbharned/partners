@@ -367,6 +367,22 @@
 
 
 
+	  <!----------------- Logix PinPoint ------------------->
+	  <% if @current_user.admin || (@current_user.prttype == "Distributor" && @current_user.channel == "Rockwell Automation") %>
+	  <div class="card" style="display:none;">
+	  	<%= image_tag "PinPoint_Dashcard.jpg", class: "card-img-top" %>
+	  	<div class="card-body">
+	  		<h5 class="card-title">ThinManager Logix PinPoint</h5>
+	  		<p class="card-text">Add amazing functionality for Logix users. PinPoint the exact location in your Logix code that an alert or problem has occurred with just a click.</p>
+	  		<div align="right"><%= link_to "Learn More", pinpoint_path, class: "btn btn-primary" %></div>
+	  	</div>
+	  </div>
+	  <% end %>
+
+
+
+
+
 	  <!-------------- ROI Download Card ------------->
 	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
 		  <div class="card">

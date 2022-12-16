@@ -1376,6 +1376,30 @@ Very Light Blue: #e9f7fb;
 
 
 
+/*********************** PinPoint Page *****************************/
+.pp-logo {
+    width:90%; max-width: 400px; 
+}
+.pp-logo img, .video-span iframe, .howWorks img {width:100%;}
+.video-span {
+    margin-bottom: 20px; background-color: #000000; 
+}
+.howWorks {
+    width:95%; max-width: 800px; margin: auto;
+    box-shadow: 2px 2px 5px #272727;
+}
+.seismic-icon img {max-width: 75px;}
+.seismic-icon {padding:0; text-align: right;}
+@media screen and (max-width: 992px) {
+    .pp-logo {
+        margin: auto;
+    }
+}
+
+
+
+
+
 
 
 
