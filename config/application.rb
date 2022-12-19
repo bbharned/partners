@@ -13,6 +13,7 @@ module Partners
     config.assets.paths << "#{Rails.root}/app/assets/videos"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.autoloader = :classic
 
     config.active_record.cache_versioning = true
     config.action_dispatch.use_authenticated_cookie_encryption = true
@@ -33,11 +34,11 @@ module Partners
     # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
 
     config.before_configuration do
-	  env_file = File.join(Rails.root, 'config', 'local_env.yml')
-	  YAML.load(File.open(env_file)).each do |key, value|
-	    ENV[key.to_s] = value
-	  end if File.exists?(env_file)
-	end
+  	  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  	  YAML.load(File.open(env_file)).each do |key, value|
+  	    ENV[key.to_s] = value
+  	  end if File.exists?(env_file)
+  	end
 
   end
 end
