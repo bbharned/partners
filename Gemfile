@@ -37,20 +37,22 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# gem 'webpacker', '~> 5.0'
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
+# Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
 gem "loofah", ">= 2.19.1"
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'mimemagic', '~> 0.3.10'
 
@@ -62,6 +64,11 @@ gem 'rails-html-sanitizer', '~> 1.4.4'
 
 gem 'net-http'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
+
+gem 'yarn'
+
 
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
@@ -71,11 +78,13 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
+  gem 'web-console', '>= 4.1.0'
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :production do #configured for Heroku
