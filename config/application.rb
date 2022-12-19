@@ -1,7 +1,7 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'csv'
-require 'rails/all'
+require "csv"
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,20 +12,23 @@ module Partners
 
     config.assets.paths << "#{Rails.root}/app/assets/videos"
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
 
     config.active_record.cache_versioning = true
     config.action_dispatch.use_authenticated_cookie_encryption = true
     config.active_support.use_authenticated_message_encryption = true
     config.action_controller.default_protect_from_forgery = true
-    config.active_record.sqlite3.represent_boolean_as_integer = true
+    #config.active_record.sqlite3.represent_boolean_as_integer = true
     config.active_support.use_sha1_digests = true
     config.action_view.form_with_generates_ids = true
     
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
 
     # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'
 

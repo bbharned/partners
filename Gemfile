@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
+gem 'rails', '~> 6.0'
 
 gem "activerecord", ">= 5.2.4.5"
 gem 'bootstrap', '~> 4.3.1'
@@ -60,8 +60,11 @@ gem 'geocoder', '~> 1.7', '>= 1.7.5'
 
 gem 'rails-html-sanitizer', '~> 1.4.4'
 
+gem 'net-http'
+
+
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.13'
+  gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
