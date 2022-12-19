@@ -13,7 +13,7 @@ module Partners
     config.assets.paths << "#{Rails.root}/app/assets/videos"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.autoloader = :classic
+    #config.autoloader = :classic
 
     config.active_record.cache_versioning = true
     config.action_dispatch.use_authenticated_cookie_encryption = true
@@ -28,7 +28,7 @@ module Partners
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    # config.time_zone = "Eastern Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # config.action_mailer.deliver_later_queue_name = 'default_mailer_queue'

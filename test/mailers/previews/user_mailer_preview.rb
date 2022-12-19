@@ -79,7 +79,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   def event_reminder
     @user = User.find(1)
-    @event = Event.find(10)
+    @event = Event.find(4)
     UserMailer.event_reminder(@user, @event)
   end
 
