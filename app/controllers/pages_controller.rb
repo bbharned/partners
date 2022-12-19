@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning, :labs, :upload, :upload_file]
+	before_action :must_login, only: [:dashboard, :pricing, :documents, :vflex, :flexforward, :mycert, :learning, :labs, :upload, :upload_file, :pinpoint]
 	before_action :can_see_pricing, only: [:pricing]
     before_action :can_print_cert, only: [:mycert]
     before_action :require_admin, only: [:uploads, :reports]
@@ -92,7 +92,9 @@ def learning
 end
 
 
+def pinpoint
 
+end
 
 
 
