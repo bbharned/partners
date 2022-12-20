@@ -123,12 +123,12 @@ def calcs
     # subscription pricing arrays updated 12/4/2022
     # ThinManager FlexForward Subscription Licensing - 8x5 Software Maintenance Prices
     if self.sub_exchange
-        @vfRedPrices = [434.96, 239.78, 217.98, 174.38, 152.59, 130.79]
+        @vfRedPrices = [434.96, 239.23, 217.48, 173.98, 152.24, 130.49]
         @vfNonRedPrices = [432.96, 238.13, 216.48, 173.18, 151.54, 129.89]
         # for new on sub exchange
         #ThinManager V-FLEX Subscription Licensing - 8x5 Software Maintenance Prices
         @vfNewSimpSubPrices = [887.05, 487.88, 443.53, 354.82, 310.47, 266.12]
-        @vfNewRedSubPrices = [1131.88, 623.09, 566.45, 453.15, 396.51, 339.87]
+        @vfNewRedSubPrices = [1131.88, 622.54, 565.95, 452.75, 396.16, 339.57]
     end
 
 
