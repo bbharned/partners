@@ -47,7 +47,7 @@ scope :with_search_please, lambda { |query|
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    ).includes(:Manufacturers).references(:ManufacturerId)
+    ).includes(:Manufacturers).references('Terminal.ManufacturerId')
 } 
 
 # scope :with_search_please, -> (search_string) {
