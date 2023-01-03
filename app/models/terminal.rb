@@ -35,7 +35,8 @@ scope :with_search_please, lambda { |query|
     terms = query.to_s.downcase.split(/\s+/)
 
     terms = terms.map { |e|
-      ('%' + e + '%').gsub(/%+/, '%')
+      #('%' + e + '%').gsub(/%+/, '%')
+      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
     }
 
     num_or_conds = 1
