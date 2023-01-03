@@ -40,12 +40,12 @@ scope :with_search_please, lambda { |query|
     }
 
     num_or_conds = 1
+    from(Terminal)
     where(
-      terms.map {
-        or_clauses = [
-          "LOWER(Manufacturers.Name) LIKE ?"
-       ].join(' OR ')
-      "(#{ or_clauses })"
+      terms.map { |term|
+        "(
+            LOWER(Manufacturers.Name) LIKE ?
+        )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
     ).includes(:Manufacturers).references('Terminal.ManufacturerId')
