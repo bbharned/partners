@@ -40,7 +40,7 @@ scope :with_search_please, lambda { |query|
     }
 
     num_or_conds = 1
-    from(Terminal)
+    from(Manufacturers)
     where(
       terms.map { |term|
         "(
