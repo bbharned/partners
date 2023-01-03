@@ -4,18 +4,21 @@
 
   <% if @terminals.count > 0 %>
         <% @terminals.each do |t| %>
-          <% @Manufacturer = Manufacturers.find(t.ManufacturerId) %>
+          
           <% @type = TerminalType.find(t.TypeId) %>
+          <% @terminal = Terminal.find(t.Id) %>
+          <% @Manufacturer = Manufacturers.find(@terminal.ManufacturerId) %>
+          
           <div class="card" style="margin-bottom:15px;">
             
             <div class="card-header">
-              <p style="font-weight:bold; font-size:.9em;"><%= @Manufacturer.Name %> <%= t.Model %></p>
+              <p style="font-weight:bold; font-size:.9em;"><%= @Manufacturer.Name %> <%= @terminal.Model %></p>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-4">
                   <span class="card-sm-title">MODEL</span><br />
-                  <span class="card-title"><%= link_to "#{t.Model}", terminal_path(t) %></span>
+                  <span class="card-title"><%= link_to "#{@terminal.Model}", terminal_path(@terminal) %></span>
                 </div>
                 <div class="col-4">
                   <span class="card-sm-title">MANUFACTURER</span><br />
