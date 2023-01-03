@@ -77,7 +77,7 @@ scope :sorted_by, ->(sort_option) {
 
 
 scope :with_manufacturer, ->(manufacturerIds) {
-	Terminal.where('ManufacturerId LIKE ?', manufacturerIds)
+	Terminal.where(ManufacturerId: manufacturerIds)
 }
 
 scope :with_boot_type, ->(typeIds) {
