@@ -42,8 +42,8 @@ scope :with_search_please, lambda { |query|
     where(
       terms.map { |term|
         "(
-        LOWER(Terminals.Model) LIKE ? OR
-        LOWER(Manufacturers.Name) LIKE ?
+        LOWER(terminals.Model) LIKE ? OR
+        LOWER(manufacturers.Name) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
