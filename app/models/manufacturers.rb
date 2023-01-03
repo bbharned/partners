@@ -1,7 +1,7 @@
 class Manufacturers < Termcap2
 	self.table_name = "Manufacturers"
 	self.primary_key = "Id"
-	has_many :terminals, class_name: :Terminal, foreign_key: :ManufacturerId
+	has_many :terminals, class_name: :Terminal
 
 
 	@manufacturers = self.all
