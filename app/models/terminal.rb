@@ -3,8 +3,8 @@ class Terminal < Termcap2
     self.primary_key = "Id"
   	belongs_to :Manufacturers, class_name: :Manufacturers, foreign_key: :ManufacturerId
     belongs_to :TerminalType, class_name: :TerminalType, foreign_key: :TypeId
-    has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
     has_many :TerminalFirmwarePackages, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
+    has_many :FirmwarePackages, through: :TerminalFirmwarePackages, class_name: :FirmwarePackage, foreign_key: :PackageId
 
 
 
@@ -44,13 +44,13 @@ scope :with_search_please, lambda { |query|
     where(
       terms.map { |term|
         "(
-            LOWER(manufacturers.Name) LIKE ? OR
-            LOWER(terminals.Model) LIKE ?
+            LOWER(Manufacturers.Name) LIKE ? OR
+            LOWER(Terminals.Model) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
     ).includes(:Manufacturers).references(:Manufacturers)
-    #.includes(:Manufacturers).references('Terminal.ManufacturerId')
+
 } 
 
 # scope :with_search_please, -> (search_string) {
@@ -77,11 +77,11 @@ scope :sorted_by, ->(sort_option) {
 
 
 scope :with_manufacturer, ->(manufacturerIds) {
-	Terminal.where(ManufacturerId: manufacturerIds)
+	self.where(ManufacturerId: manufacturerIds)
 }
 
 scope :with_boot_type, ->(typeIds) {
-  Terminal.where(TypeId: typeIds)
+  self.where(TypeId: typeIds)
 }
 
 scope :with_firm, ->(firmId) {
@@ -92,16 +92,15 @@ scope :with_firm, ->(firmId) {
       @terms.push join.TerminalId
     end
   end
-  #Terminal.where(Id: @joins.TerminalIds).includes(:TerminalFirmwarePackage)#.joins(:FirmwarePackage)
-  Terminal.where(Id: @terms)
+  self.where(Id: @terms)
 }
 
 scope :with_monitor_count, ->(monitorIds) {
-  Terminal.where(MaxMonitors: monitorIds)
+  self.where(MaxMonitors: monitorIds)
 }
 
 scope :with_ethernet_count, ->(ethernetIds) {
-  Terminal.where(EthernetCount: ethernetIds)
+  self.where(EthernetCount: ethernetIds)
 }
 
 

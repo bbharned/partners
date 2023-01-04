@@ -3,15 +3,13 @@
   
 
   <% if @terminals.count > 0 %>
+    
         <% @terminals.each do |t| %>
           
-          <% @type = TerminalType.find(t.TypeId) %>
-          <% @Manufacturer = Manufacturers.find(t.ManufacturerId) %>
-
           <div class="card" style="margin-bottom:15px;">
             
             <div class="card-header">
-              <p style="font-weight:bold; font-size:.9em;"><%= @Manufacturer.Name %> <%= t.Model %></p>
+              <p style="font-weight:bold; font-size:.9em;"><%= t.Manufacturers.Name %> <%= t.Model %></p>
             </div>
             <div class="card-body">
               <div class="row">
@@ -21,11 +19,11 @@
                 </div>
                 <div class="col-4">
                   <span class="card-sm-title">MANUFACTURER</span><br />
-                  <div class="card-text"><%= @Manufacturer.Name %></div>
+                  <div class="card-text"><%= t.Manufacturers.Name %></div>
                 </div>
                 <div class="col-4">
                   <span class="card-sm-title">BOOT TYPE</span><br />
-                  <div class="card-text"><%= @type.Type %></div>
+                  <div class="card-text"><%= t.TerminalType.Type %></div>
                 </div>
               </div>
               

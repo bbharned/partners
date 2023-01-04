@@ -22,10 +22,10 @@ def index
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:with_manufacturer, :with_boot_type, :with_firm, :with_monitor_count, :with_ethernet_count], #:sorted_by, :with_search_please, 
+      available_filters: [:with_manufacturer, :with_boot_type, :with_firm, :with_monitor_count, :with_ethernet_count], #:sorted_by, :with_search_please,
       sanitize_params: true,
    ) or return
-   @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10)
+   @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10).order("TermcapModel asc")
 
    respond_to do |format|
      format.html
@@ -36,9 +36,6 @@ def index
      # There is an issue with the persisted param_set. Reset it.
      puts "Had to reset filterrific params: #{e.message}"
      redirect_to(reset_filterrific_url(format: :html)) && return
-
-
-	#@terminals = Terminal.paginate(page: params[:page], per_page: 25).order(:Model)
 
 end
 
