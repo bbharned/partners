@@ -4,7 +4,7 @@ class Terminal < Termcap2
   	belongs_to :Manufacturers, class_name: :Manufacturers, foreign_key: :ManufacturerId
     belongs_to :TerminalType, class_name: :TerminalType, foreign_key: :TypeId
     has_many :FirmwarePackages, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :PackageId
-    has_many :TerminalFirmwarePackages
+    has_many :TerminalFirmwarePackages, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
 
 
 

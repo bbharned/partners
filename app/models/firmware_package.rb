@@ -1,6 +1,7 @@
 class FirmwarePackage < Termcap2
 	self.table_name = "FirmwarePackage"
-	has_many :TerminalFirmwarePackages
+	self.primary_key = "Id"
+	has_many :TerminalFirmwarePackages, class: :TerminalFirmwarePackage, foreign_key: :PackageId
   	has_many :Terminals, through: :TerminalFirmwarePackage, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
 
 	@packages = self.all
