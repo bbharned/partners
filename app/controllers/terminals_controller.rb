@@ -25,7 +25,7 @@ def index
       available_filters: [:with_manufacturer, :with_boot_type, :with_firm, :with_monitor_count, :with_ethernet_count], #:sorted_by, :with_search_please,
       sanitize_params: true,
    ) or return
-   @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10).order("TermcapModel asc")
+   @terminals = @filterrific.find.paginate(page: params[:page], per_page: 10).order("Terminals.TermcapModel asc")
 
    respond_to do |format|
      format.html
