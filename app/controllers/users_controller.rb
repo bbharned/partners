@@ -74,7 +74,7 @@ def signup
   @user.cert_signup = true
     if @user.save
         session[:user_id] = @user.id
-        @user.update_attribute(:lastlogin, Time.now)
+        @user.update(:lastlogin, Time.now)
         @user.send_signup_notice  #change for production
         @user.send_newuser_zap
         @user.send_user_signup_notice #change for production
@@ -94,7 +94,7 @@ def signup_rau
   @user.referred_by = "RAU"
     if @user.save
         session[:user_id] = @user.id
-        @user.update_attribute(:lastlogin, Time.now)
+        @user.update(:lastlogin, Time.now)
         @user.send_rau_notice
         @user.send_newuser_zap 
         @user.send_user_signup_notice #change for production
@@ -116,7 +116,7 @@ def signup_evt
   @user.referred_by = "Events"
     if @user.save
         session[:user_id] = @user.id
-        @user.update_attribute(:lastlogin, Time.now)
+        @user.update(:lastlogin, Time.now)
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
         @user.send_newuser_zap
@@ -172,7 +172,7 @@ def learn_signup
   @user.learn_signup = true
     if @user.save
         session[:user_id] = @user.id
-        @user.update_attribute(:lastlogin, Time.now)
+        @user.update(:lastlogin, Time.now)
         #@user.send_signup_notice  #change for production
         #user.send_newuser_zap
         #@user.send_user_signup_notice #change for production

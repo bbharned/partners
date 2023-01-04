@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @user.update(user_params)          # Case (4)
       session[:user_id] = @user.id
-      @user.update_attribute(:lastlogin, Time.now)
+      @user.update(:lastlogin, Time.now)
       flash[:success] = "Password has been reset."
       redirect_to root_path
     else
