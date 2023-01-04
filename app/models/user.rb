@@ -48,8 +48,8 @@ end
 # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update(:reset_digest,  User.digest(reset_token))
-    update(:reset_sent_at, Time.zone.now)
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
   end
 
 # Sends password reset email.
@@ -166,7 +166,7 @@ end
     # Remembers a user in the database for use in persistent sessions.
     def remember
         self.remember_token = User.new_token
-        update(:remember_digest, User.digest(remember_token))
+        update_attribute(:remember_digest, User.digest(remember_token))
     end
 
     def password_reset_expired?
