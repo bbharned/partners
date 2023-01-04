@@ -38,24 +38,24 @@
 					<div class="form-group">
 						
 						<div class="row">
-					  	
-							  
-							  <div class="col-sm-6">
-							  	<div class="form-label">Manufacturer</div>
+					  			
+						    <div class="col-sm-6">
+							  <div class="form-label">Manufacturer</div>
 							    <%= f.select(
 									:with_manufacturer,
 									@filterrific.select_options[:with_manufacturer],
 									{ include_blank: '- Any -' }, class: "form-control"
 								) %> 
-								</div>
-							  <div class="col-sm-6">
-							    <div class="form-label">Boot Type</div>
-							    <%= f.select(
-							      :with_boot_type,
-							      @filterrific.select_options[:with_boot_type],
-							      { include_blank: '- Any -' }, class: "form-control"
-							    ) %>
-							  </div>
+							</div>
+
+						  <div class="col-sm-6">
+						    <div class="form-label">Boot Type</div>
+						    <%= f.select(
+						      :with_boot_type,
+						      @filterrific.select_options[:with_boot_type],
+						      { include_blank: '- Any -' }, class: "form-control"
+						    ) %>
+						  </div>
 							  
 						</div>
 
