@@ -50,7 +50,7 @@ scope :with_search_please, lambda { |query|
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    ).joins(:Manufacturers).references(:Manufacturers)
+    ).includes(:Manufacturers).references(:Manufacturers)
 
 } 
 
