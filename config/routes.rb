@@ -67,7 +67,7 @@ resources :answers, except: [:show, :index]
 resources :licenses
 
 resources :hardwares
-#get 'hardware', to: 'hardwares#index'
+get 'tmc', to: 'pages#tmc'
 resources :hardwares, :path => "hardware"
 resources :makers
 resources :hwstatuses

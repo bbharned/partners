@@ -1121,6 +1121,47 @@ Very Light Blue: #e9f7fb;
 
 
 
+
+
+
+
+/********************* TMC Page ******************************/
+
+.tmc-page-content {
+
+}
+.atmc-span, .itmc-span {
+    padding: 15px 2.5% 30px 2.5%; 
+}
+.atmc-span h2, .itmc-span h2, .wintmc-span h2 {
+    margin-top: 25px;
+}
+.itmc-span {
+    background-color: #F1F1F1;
+}
+.wintmc-span {
+    padding: 45px 2.5% 50px 2.5%; 
+}
+.android, .ipad {
+    width:100%; max-width:500px; margin: auto;
+}
+.surface {
+    width:100%; max-width:400px; margin: auto;
+}
+.ipad {
+    margin-top: -35px; transform: rotate(15deg);
+}
+.android img, .ipad img, .surface img {width:100%;}
+
+
+
+
+
+
+
+
+
+
 /********************** Hardware Page ******************************/
 .download-flex-container-box {
     width: 90%; max-width: 250px; border-radius:10px; float:right;

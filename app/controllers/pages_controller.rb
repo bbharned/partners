@@ -47,6 +47,20 @@ def dashboard
     
 end 
 
+def tmc
+
+    @url = request.original_url
+
+    if @url.include? "hardware"
+        @bg = 'hardware'
+    elsif @url.include? "tmc"
+        @bg = 'tmc'
+    else
+        @bg = 'peripheral'
+    end
+
+end
+
 
 def learning
 

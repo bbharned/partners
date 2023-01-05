@@ -5,6 +5,8 @@ def index
   
   if @url.include? "hardware"
     @bg = 'hardware'
+  elsif @url.include? "tmc"
+    @bg = 'tmc'
   else
     @bg = 'peripheral'
   end

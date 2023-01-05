@@ -4,12 +4,19 @@
 		<% if @bg == 'hardware' %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path, style: "background-color:#c1c1c1;" %></span>
+			<span><%= link_to "Mobile TMC", tmc_path %></span>
 		<% elsif @bg == 'peripheral' %>
 			<span><%= link_to "Thin Clients", terminals_path, style: "background-color:#c1c1c1;" %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
+			<span><%= link_to "Mobile TMC", tmc_path %></span>
+		<% elsif @bg == 'tmc' %>
+			<span><%= link_to "Thin Clients", terminals_path %></span>
+			<span><%= link_to "Peripherals", hardwares_path %></span>
+			<span><%= link_to "Mobile TMC", tmc_path, style: "background-color:#c1c1c1;" %></span>
 		<% else %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
+			<span><%= link_to "Mobile TMC", tmc_path %></span>
 		<% end %>
 		
 	</div>
