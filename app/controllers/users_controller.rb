@@ -116,7 +116,7 @@ def signup_evt
   @user.referred_by = "Events"
     if @user.save
         session[:user_id] = @user.id
-        @user.update(:lastlogin, Time.now)
+        @user.update_attribute(:lastlogin, Time.now)
         @user.send_account_created_evt
         @user.send_acct_create_evt_internal
         @user.send_newuser_zap
