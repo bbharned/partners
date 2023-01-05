@@ -40,11 +40,12 @@ scope :with_search_please, lambda { |query|
       ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 1
-
+    num_or_conds = 2
+    from "Terminal", "Manufacturers"
     where(
       terms.map { |term|
         "(
+            LOWER(Manufacturers.Name) LIKE ? OR
             LOWER(Terminals.Model) LIKE ?
         )"
       }.join(' AND '),
