@@ -41,7 +41,7 @@ scope :with_search_please, lambda { |query|
     }
 
     num_or_conds = 2
-    from "Terminal", "Manufacturers"
+
     where(
       terms.map { |term|
         "(
@@ -50,7 +50,7 @@ scope :with_search_please, lambda { |query|
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    ).includes(:Manufacturers).references(:Manufacturers)
+    ).joins(:Manufacturers).references(:Manufacturers)
 
 } 
 
