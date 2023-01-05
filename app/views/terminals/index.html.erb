@@ -38,8 +38,13 @@
 					<div class="form-group">
 						
 						<div class="row">
+					  		
+							<div class="col-sm-4">
+								<div class="form-label">Search</div>
+								<%= f.text_field(:with_search_please, autofocus: true, class: 'filterrific-periodically-observed form-control') %>
+							</div>
 					  			
-						    <div class="col-sm-6">
+						    <div class="col-sm-4">
 							  <div class="form-label">Manufacturer</div>
 							    <%= f.select(
 									:with_manufacturer,
@@ -48,7 +53,7 @@
 								) %> 
 							</div>
 
-						  <div class="col-sm-6">
+						  <div class="col-sm-4">
 						    <div class="form-label">Boot Type</div>
 						    <%= f.select(
 						      :with_boot_type,
