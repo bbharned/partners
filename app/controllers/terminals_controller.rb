@@ -43,7 +43,8 @@ end
 def show
 	
   @terminal = Terminal.find(params[:id])
-  @termcapnote = Note.where(TerminalId: @terminal.id).first
+  #@termcapnote = Note.where(TerminalId: @terminal.id).first
+  @termcapnote = @terminal.Notes.first
   @note_id = Termnote.where(termcapmodel: @terminal.TermcapModel).first
   if @note_id
     @note = Termnote.find(@note_id.id)
