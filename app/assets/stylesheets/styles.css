@@ -1154,6 +1154,9 @@ Very Light Blue: #e9f7fb;
 .android img, .ipad img, .surface img {width:100%;}
 .play-button {width:125px;}
 
+.apple-logo img, .android-logo img, .windows-logo img {
+    width:45px; padding-top: 17px; margin-left: 20px;
+}
 @media screen and (max-width:1220px) {
     .ipad {
         margin-top: -5px; transform: rotate(15deg);
