@@ -1130,14 +1130,14 @@ Very Light Blue: #e9f7fb;
 .tmc-page-content {
 
 }
-.atmc-span, .itmc-span {
-    padding: 15px 2.5% 30px 2.5%; 
+.atmc-span {
+    padding: 15px 2.5% 45px 2.5%; 
 }
 .atmc-span h2, .itmc-span h2, .wintmc-span h2 {
     margin-top: 25px;
 }
 .itmc-span {
-    background-color: #F1F1F1;
+    background-color: #F1F1F1; padding: 15px 2.5% 30px 2.5%;
 }
 .wintmc-span {
     padding: 45px 2.5% 50px 2.5%; 
@@ -1152,7 +1152,23 @@ Very Light Blue: #e9f7fb;
     margin-top: -35px; transform: rotate(15deg);
 }
 .android img, .ipad img, .surface img {width:100%;}
+.play-button {width:125px;}
 
+@media screen and (max-width:1220px) {
+    .ipad {
+        margin-top: -5px; transform: rotate(15deg);
+    }
+}
+@media screen and (max-width:992px) {
+    .ipad {
+        margin-top: 0px; transform: rotate(15deg);
+    }
+}
+@media screen and (max-width:767px) {
+    .ipad {
+        margin-top: 35px; transform: rotate(5deg);
+    }
+}
 
 
 
