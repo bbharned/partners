@@ -1209,11 +1209,14 @@ Very Light Blue: #e9f7fb;
     }
 }
 @media all and (max-width:768px) {
-    .download-flex-container-box {
+    .download-flex-container-box, .hd-nav-text {
         display:none; 
     }
 }
-
+.hardware-nav-buttons span a {
+    padding: 7px 15px; background-color: #F1F1F1; margin-right: 5px; color: inherit;
+    border-radius: 5px; 
+}
 
 .side-filters {
     width: 97%; padding: 0px 1%; border-right: 1px solid #d1d1d1; 
