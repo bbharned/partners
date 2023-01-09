@@ -13,14 +13,7 @@ class Manufacturers < Termcap2
 			end
 		end
 	end
-	# @has_terminals = @manufacturers.where("#{@manufacturers.Terminals.count} > ?", 0)
-	# @terms = []
-	# if @has_terminals.any?
-	# 	@has_terminals.each do |m|
-	# 		@terms.push m
-	# 	end
-	# end
-	#@manufacturers = @manufacturers.order(:Name)
+	
 	@terms = @terms.sort_by { |m| m.Name }
 	
 	def self.options_for_select
