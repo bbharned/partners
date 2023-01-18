@@ -369,7 +369,7 @@
 
 	  <!----------------- Logix PinPoint ------------------->
 	  <% if @current_user.admin || (@current_user.prttype == "Distributor" && @current_user.channel == "Rockwell Automation") %>
-	  <div class="card" style="display:none;">
+	  <div class="card">
 	  	<%= image_tag "PinPoint_Dashcard.jpg", class: "card-img-top" %>
 	  	<div class="card-body">
 	  		<h5 class="card-title">ThinManager Logix PinPoint</h5>
