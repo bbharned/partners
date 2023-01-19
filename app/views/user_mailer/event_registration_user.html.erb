@@ -22,8 +22,10 @@
           <b>Description:</b> <%= simple_format(@event.description) %><br />
           <b>Date:</b> <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
-        <p>You can add the event to your calendar by visiting the <%= link_to "event page", event_url(@event), target: "_blank" %> and clicking the "Add to Calendar" link located towards the bottom of the page.</p>
         <br />
+        <div align="center"><%= link_to "Add Event To Your Calendar", "https://partners.thinmanager.com/events/#{@event.id}.ics", target: "_blank", style: "text-decoration:none; color:#FFFFFF; padding: 7px 20px; background-color: #003366; border-radius:10px;" %></div>
+        
+        <br /><br />
         <% if @event.virtual? %>
           <p>If additional information is needed for the "day of event" details, it will be emailed to you before the event.</p>
         <% end %>

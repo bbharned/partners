@@ -229,6 +229,7 @@ class UserMailer < ApplicationMailer
   def event_registration_user(user, event)
     @user = user
     @event = event
+
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: ENV["MAIL_USERNAME"],
