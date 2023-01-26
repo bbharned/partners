@@ -7,9 +7,41 @@
 
 <br />
 
+
+
+
 <div class="row">
 	<div class="col-lg-8">
 
+			<h4>White Papers</h4>
+			<div class="document-table">
+
+				<div class="row">
+					<div class="col-md-10"><span class="bold">ThinManager Events</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/whitepapers/ThinManagerEventsWhitepaper.pdf", target: "_blank" %></div>
+				</div>
+
+				<!-- White Paper - Industrial Network and Infrastructure Security with ThinManager -->
+				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
+					<div class="row">
+						<div class="col-md-10"><span class="bold">Industrial Network and Infrastructure Security with ThinManager <% if current_user.admin %>(Rockwell)<% end %></span></div>
+						<div class="col-md-1">PDF</div>
+						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCTvXqJtkUe0m0WF8d5JvFcg", target: "_blank" %></div>
+					</div>
+				<% end %>
+
+				<% if (current_user.channel != "Rockwell Automation") || current_user.admin %>
+					<div class="row">
+						<div class="col-md-10"><span class="bold">Industrial Network and Infrastructure Security with ThinManager <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
+						<div class="col-md-1">PDF</div>
+						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/paper/files/Industrial%20Network%20and%20Infrastructure%20Security%20Using%20ThinManager.pdf", target: "_blank" %></div>
+					</div>
+				<% end %>
+
+			</div>
+
+			<br /><br />
 			<h4>Knowledge Documents</h4>
 			<div class="document-table">
 
@@ -109,22 +141,7 @@
 				<% end %>
 
 
-				<!-- White Paper - Industrial Network and Infrastructure Security with ThinManager -->
-				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
-					<div class="row">
-						<div class="col-md-10"><span class="bold">Industrial Network and Infrastructure Security with ThinManager <% if current_user.admin %>(Rockwell)<% end %></span></div>
-						<div class="col-md-1">PDF</div>
-						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCTvXqJtkUe0m0WF8d5JvFcg", target: "_blank" %></div>
-					</div>
-				<% end %>
-
-				<% if (current_user.channel != "Rockwell Automation") || current_user.admin %>
-					<div class="row">
-						<div class="col-md-10"><span class="bold">Industrial Network and Infrastructure Security with ThinManager <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
-						<div class="col-md-1">PDF</div>
-						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/paper/files/Industrial%20Network%20and%20Infrastructure%20Security%20Using%20ThinManager.pdf", target: "_blank" %></div>
-					</div>
-				<% end %>
+				
 
 
 				<!-- White Paper - What sets ThinManager Apart -->
