@@ -1,6 +1,50 @@
 <div class="container" style="padding-bottom: 100px;">
 
-<h1>ThinManager Matrix Firmware Builds</h1>
-<hr /> 
+<div class="row">
+	<div class="col-md-9">
+		<h1>Feature Matrix - Firmware Builds</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="float-right">
+			<%= link_to "Add Build", new_firmwarebuild_path, class: "btn btn-md btn-primary" %>
+		</div>
+	</div>
+</div>
+<br /><br /> 
+
+<% if @firmwarebuilds.any? %>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">Build</th>
+	      <th scope="col">&nbsp;</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	<% @firmwarebuilds.each do |f| %>
+		
+		
+		    <tr>
+		      <th scope="row"><%= f.build %></th>
+		      <td>
+		      	<div class="float-right">
+		      		<%= link_to "edit", edit_firmwarebuild_path(f) %> &nbsp;&nbsp;|&nbsp;&nbsp; 
+		      		<%= link_to "delete", firmwarebuild_path(f), method: :delete, data: {confirm: "Are you sure you want to delete firmware build?"}, style: "color:red;" %>
+		      	</div>
+		      </td>
+		    </tr>
+		  
+
+	<% end %>
+
+	  </tbody>
+	</table>
+<% else %>
+
+<p>There no builds saved yet. <%= link_to "Create one?" %></p>
+
+<% end %>
 
 </div>

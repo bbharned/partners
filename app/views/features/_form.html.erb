@@ -1,0 +1,65 @@
+<%= render 'shared/errors', obj: @feature %>
+
+
+<div class="row feature-form">
+    <div class="col-md-10 offset-md-1">
+        <%= form_for(@feature, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-label"><%= f.label :name %><sup style="margin-left:3px; color:red;">*</sup></div>
+                        <%= f.text_field :name, class: "form-control", placeholder: "Enter Feature Name", autofocus: true %>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-12">
+                        <div class="form-label"><%= f.label :description %></div>
+                        <%= f.text_area :description, class: "form-control", rows: "6", placeholder: "Enter Description of Feature" %>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="well" style="border-radius:10px; padding:20px 35px 30px 35px; margin-top: 35px;">
+                    <div class="col-12">
+                        <div class="row">
+                            <%= f.label "ThinManager Minimum Version" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_tmversion_path %>)</span>
+                        </div>
+                        <div class="row">
+                            <%= f.collection_check_boxes :tmversion_ids, Tmversion.all, :id, :version do |cb| %>
+                            <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>    
+                            <% end %>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-12">
+                        <div class="row">
+                            <%= f.label "Compatible Firmware Builds" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_firmwarebuild_path %>)</span>
+                        </div>
+                        <div class="row">
+                            <%= f.collection_check_boxes :firmwarebuild_ids, Firmwarebuild.all, :id, :build do |cb| %>
+                            <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>    
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br /><br />
+        
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <%= f.submit(@feature.new_record? ? "Create Feature" : "Update Feature", class: "btn btn-primary btn-lg", style: "margin-left:-15px;") %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= link_to "Cancel", :back %>
+                </div>
+            </div>
+           
+
+        <% end %>
+    </div>
+</div>

@@ -4,7 +4,7 @@ class FirmwarebuildsController < ApplicationController
 	
 
 def index
-
+    @firmwarebuilds = Firmwarebuild.all
 end
 
 
