@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_19_172049) do
+ActiveRecord::Schema.define(version: 2023_01_31_175213) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -190,6 +190,37 @@ ActiveRecord::Schema.define(version: 2022_12_19_172049) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.string "image_link"
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "features_firmwarebuilds", id: false, force: :cascade do |t|
+    t.integer "feature_id", null: false
+    t.integer "firmwarebuild_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feature_id"], name: "index_features_firmwarebuilds_on_feature_id"
+    t.index ["firmwarebuild_id"], name: "index_features_firmwarebuilds_on_firmwarebuild_id"
+  end
+
+  create_table "features_tmversions", id: false, force: :cascade do |t|
+    t.integer "feature_id", null: false
+    t.integer "tmversion_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feature_id"], name: "index_features_tmversions_on_feature_id"
+    t.index ["tmversion_id"], name: "index_features_tmversions_on_tmversion_id"
+  end
+
+  create_table "firmwarebuilds", force: :cascade do |t|
+    t.string "build"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "firmwares", force: :cascade do |t|
@@ -383,6 +414,12 @@ ActiveRecord::Schema.define(version: 2022_12_19_172049) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tmversions", force: :cascade do |t|
+    t.string "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_badges", force: :cascade do |t|

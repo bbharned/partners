@@ -1,0 +1,29 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @firmwarebuild %>
+
+<%= form_for(@firmwarebuild, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+<div class="col-md-4">
+
+            <div class="form-group">
+                <div class="row">
+                    <%= f.label :build %>
+                </div>
+                <div class="row">
+                    <%= f.text_field :build, class: "form-control", placeholder: "Enter ThinManager Firmware Build Number", autofocus: true %>
+                </div>
+            </div>
+       
+
+        <br />
+        	<div class="row">
+	            <%= f.submit(@firmwarebuild.new_record? ? "Create Build" : "Update Build", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+	        </div>
+    <% end %>
+    
+
+
+
+
+</div>
