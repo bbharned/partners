@@ -5,15 +5,15 @@ class FeaturesController < ApplicationController
 
 
 def index
-	@features = Feature.all
+	@features = Feature.all.order("name asc")
 end
 
 
 
 def new
 	@feature = Feature.new
-	@tmversions = Tmversion.all
-	@firmwarebuilds = Firmwarebuild.all
+	@tmversions = Tmversion.all.order("version asc")
+	@firmwarebuilds = Firmwarebuild.all.order("build asc")
 end
 
 
@@ -69,7 +69,7 @@ end
 private
 
 	def feature_params
-        params.require(:feature).permit(:name, :description, tmversion_ids: [], firmwarebuild_ids: [])
+        params.require(:feature).permit(:name, :description, :more_link, :image_link, tmversion_ids: [], firmwarebuild_ids: [])
     end
 
 

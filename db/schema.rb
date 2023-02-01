@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_175213) do
   create_table "features", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "more_link"
+    t.string "image_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

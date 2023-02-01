@@ -14,7 +14,7 @@
 
 <% if @firmwarebuilds.any? %>
 	
-	<table class="table">
+	<table class="table table-striped">
 	  <thead>
 	    <tr>
 	      <th scope="col">Build</th>
@@ -43,7 +43,7 @@
 	</table>
 <% else %>
 
-<p>There no builds saved yet. <%= link_to "Create one?" %></p>
+<p>There no builds saved yet. <%= link_to "Create one?", new_firmwarebuild_path %></p>
 
 <% end %>
 

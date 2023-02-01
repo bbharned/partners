@@ -210,6 +210,21 @@
                           <%= link_to "Distributor Finder", listing_distributors_path, class: 'dropdown-item' %>
                       </div>
                     </div>
+
+
+                    <div class="dropdown-divider"></div>
+
+
+                    <div class="dropdown-submenu dropdown-menu-right">
+                      <a id="user-submenu" class="dropdown-toggle dropdown-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Feature Matrix <span class="caret"></span>
+                      </a>
+                      <div class="dropdown-menu">
+                          <%= link_to "Features", features_path, class: 'dropdown-item' %>
+                          <%= link_to "Firmware Builds", firmwarebuilds_path, class: 'dropdown-item' %>
+                          <%= link_to "TM Versions", tmversions_path, class: 'dropdown-item' %>
+                      </div>
+                    </div>
                     
                     
               </div>

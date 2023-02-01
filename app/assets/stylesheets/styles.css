@@ -993,6 +993,15 @@ Very Light Blue: #e9f7fb;
 
 
 
+/******************  Features Matrix ********************/
+.feature_image {width:100%;}
+.feature_image img {
+    width:100%; max-width: 250px;
+}
+
+
+
+
 
 
 /**************************** Reports Page ****************************/

@@ -3,7 +3,7 @@ class TmversionsController < ApplicationController
 	before_action :set_tmversion, only: [:edit, :update]
 
 def index
-    @tmversions = Tmversion.all
+    @tmversions = Tmversion.all.order("version asc")
 end
 
 

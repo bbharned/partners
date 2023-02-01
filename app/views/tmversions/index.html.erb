@@ -1,6 +1,50 @@
 <div class="container" style="padding-bottom: 100px;">
 
-<h1>ThinManager Versions - Feature Matrix</h1>
-<hr /> 
+<div class="row">
+	<div class="col-md-9">
+		<h1>ThinManager Versions - Feature Matrix</h1>
+	</div>
+	<div class="col-md-3">
+		<div class="float-right">
+			<%= link_to "Add Version", new_tmversion_path, class: "btn btn-md btn-primary" %>
+		</div>
+	</div>
+</div>
+<br /><br /> 
+
+<% if @tmversions.any? %>
+	
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">Version</th>
+	      <th scope="col">&nbsp;</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	<% @tmversions.each do |f| %>
+		
+		
+		    <tr>
+		      <th scope="row"><%= f.version %></th>
+		      <td>
+		      	<div class="float-right">
+		      		<%= link_to "edit", edit_tmversion_path(f) %> &nbsp;&nbsp;|&nbsp;&nbsp; 
+		      		<%= link_to "delete", tmversion_path(f), method: :delete, data: {confirm: "Are you sure you want to delete ThinManager Version?"}, style: "color:red;" %>
+		      	</div>
+		      </td>
+		    </tr>
+		  
+
+	<% end %>
+
+	  </tbody>
+	</table>
+<% else %>
+
+<p>There no versions saved yet. <%= link_to "Create one?", new_tmversion_path %></p>
+
+<% end %>
 
 </div>

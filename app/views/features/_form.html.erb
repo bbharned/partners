@@ -19,6 +19,18 @@
                         <%= f.text_area :description, class: "form-control", rows: "6", placeholder: "Enter Description of Feature" %>
                     </div>
                 </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-12">
+                        <div class="form-label"><%= f.label "Link to More Information" %></div>
+                        <%= f.text_field :more_link, class: "form-control", placeholder: "Enter link to learn more" %>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-12">
+                        <div class="form-label"><%= f.label "Feature Image" %></div>
+                        <%= f.text_field :image_link, class: "form-control", placeholder: "Enter path to image" %>
+                    </div>
+                </div>
             </div>
 
 
@@ -29,7 +41,7 @@
                             <%= f.label "ThinManager Minimum Version" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_tmversion_path %>)</span>
                         </div>
                         <div class="row">
-                            <%= f.collection_check_boxes :tmversion_ids, Tmversion.all, :id, :version do |cb| %>
+                            <%= f.collection_check_boxes :tmversion_ids, @tmversions, :id, :version do |cb| %>
                             <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>    
                             <% end %>
                         </div>
@@ -40,7 +52,7 @@
                             <%= f.label "Compatible Firmware Builds" %>&nbsp;&nbsp;<span style="font-size:.6em; padding-top:6px;">(<%= link_to "Create New", new_firmwarebuild_path %>)</span>
                         </div>
                         <div class="row">
-                            <%= f.collection_check_boxes :firmwarebuild_ids, Firmwarebuild.all, :id, :build do |cb| %>
+                            <%= f.collection_check_boxes :firmwarebuild_ids, @firmwarebuilds, :id, :build do |cb| %>
                             <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + " " + cb.text} %>    
                             <% end %>
                         </div>

@@ -1,0 +1,88 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="row">
+	<div class="col-md-9">
+		<h1><%= @feature.name %></h1>
+	</div>
+	<div class="col-md-3">
+		<% if logged_in? && current_user.admin? %>
+			<div class="float-right" style="margin-top:8px;">
+		  		<%= link_to "edit", edit_feature_path(@feature), class: "btn btn-md btn-warning" %>
+		  		<%= link_to "delete", feature_path(@feature), method: :delete, data: {confirm: "Are you sure you want to delete firmware build?"}, class: "btn btn-md btn-danger" %> 
+		  	</div>
+	  	<% end %>
+	</div>
+</div>
+
+<hr />
+
+
+<div class="well card" style="padding:25px; border-radius: 10px; margin-bottom:25px;">
+	<div class="row" style="margin-bottom:25px;">
+		<div class="col-9">
+			<h6 style="margin-bottom:0px;">Feature:</h6>
+			<p><%= @feature.name %></p>
+			<br />
+			<% if @feature.description != nil && @feature.description != "" %>
+				<h6 style="margin-bottom:0px;">Description:</h6>
+				<p style="margin-top:-15px;"><%= simple_format(@feature.description) %></p>
+			<% end %>
+		</div>
+		
+		<div class="col-3 feature_image">
+			<% if @feature.image_link != "" && @feature.image_link != nil %>
+				<%= image_tag "#{@feature.image_link}", alt: "#{@feature.name}" %>
+			<% end %>
+		</div>
+	</div>
+	<% if @feature.more_link != "" && @feature.more_link != nil %>
+	<div class="row" style="margin-bottom:10px;">
+		<div class="col" style="text-align:center;">
+			<%= link_to "Learn More", "#{@feature.more_link}", target: "_blank" %>&nbsp;
+			<svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top:-5px;">
+		  	<path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"/>
+			<path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"/>
+			</svg>
+		</div>
+	</div>
+	<% end %>
+	<div class="card-footer" style="margin: 0px -25px -25px -25px; border-radius:0px 0px 10px 10px;">
+		<div class="row">
+			<div class="col">
+				<% if @feature.tmversions.any? %>
+		      		<h6>ThinManager Version Required</h6>
+		      		<% if @feature.tmversions.count == 1 %>
+				      	<% @feature.tmversions.each do |v| %>
+				      		<%= v.version %>
+				      	<% end %>
+				    <% else %>
+				    	<% @feature.tmversions.each do |v| %>
+				      		<%= v.version %>,&nbsp;
+				      	<% end %>
+				    <% end %>
+		      	<% end %>
+	      	</div>
+
+	      	<div class="col">
+	      		<!-- <div class="float-right"> -->
+		      		<% if @feature.firmwarebuilds.any? %>
+		      			<h6 style="text-align:left;">Compatible Firmware Build</h6>
+			      		<% if @feature.firmwarebuilds.count == 1 %>
+					      	<% @feature.firmwarebuilds.each do |v| %>
+					      		<%= v.build %>
+					      	<% end %>
+					    <% else %>
+					    	<% @feature.firmwarebuilds.each do |v| %>
+					      		<%= v.build %>,&nbsp;
+					      	<% end %>
+					    <% end %>
+			      	<% end %>
+		      	<!-- </div> -->
+	      	</div>
+      	</div>
+	</div>
+</div>
+
+<div style="padding-left:15px;"><%= link_to "⇽ Back", :back %></div>
+
+</div>

@@ -132,7 +132,8 @@ delete 'logout', to: 'sessions#destroy'
 resources :password_resets, only: [:new, :create, :edit, :update]
 
 
-resources :features, except: [:show]
+resources :features
+#get 'matrix', to: 'features#index'
 resources :tmversions, except: [:show]
 resources :firmwarebuilds, except: [:show]
 

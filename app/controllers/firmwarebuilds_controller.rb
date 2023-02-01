@@ -4,7 +4,7 @@ class FirmwarebuildsController < ApplicationController
 	
 
 def index
-    @firmwarebuilds = Firmwarebuild.all
+    @firmwarebuilds = Firmwarebuild.all.order("build asc")
 end
 
 
