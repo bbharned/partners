@@ -4,7 +4,12 @@ class CreateMatrix < ActiveRecord::Migration[6.1]
     create_table :features do |t|
       t.string :name
       t.text :description
+      t.string :more_link_label
       t.string :more_link
+      t.string :more_more_link_label
+      t.string :more_more_link
+      t.string :more_more_more_link_label
+      t.string :more_more_more_link
       t.string :image_link
       t.timestamps
     end

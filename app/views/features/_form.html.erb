@@ -19,12 +19,31 @@
                         <%= f.text_area :description, class: "form-control", rows: "6", placeholder: "Enter Description of Feature" %>
                     </div>
                 </div>
+
+
                 <div class="row" style="margin-top:20px;">
-                    <div class="col-12">
-                        <div class="form-label"><%= f.label "Link to More Information" %></div>
-                        <%= f.text_field :more_link, class: "form-control", placeholder: "Enter link to learn more" %>
+                    <div class="col-md-4">
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Link Label 1" %></div>
+                        <%= f.text_field :more_link_label, class: "form-control", placeholder: "Enter label for learn more", style: "margin-bottom:10px;" %>
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Url 1" %></div>
+                        <%= f.text_field :more_link, class: "form-control", placeholder: "Enter link to learn more", style: "margin-bottom:10px;" %>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Link Label 2" %></div>
+                        <%= f.text_field :more_more_link_label, class: "form-control", placeholder: "Enter label for learn more", style: "margin-bottom:10px;" %>
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Url 2" %></div>
+                        <%= f.text_field :more_more_link, class: "form-control", placeholder: "Enter link to learn more", style: "margin-bottom:10px;" %>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Link Label 3" %></div>
+                        <%= f.text_field :more_more_more_link_label, class: "form-control", placeholder: "Enter label for learn more", style: "margin-bottom:10px;" %>
+                        <div class="form-label" style="margin-bottom: -5px;"><%= f.label "Url 3" %></div>
+                        <%= f.text_field :more_more_more_link, class: "form-control", placeholder: "Enter link to learn more", style: "margin-bottom:10px;" %>
                     </div>
                 </div>
+
+
+
                 <div class="row" style="margin-top:20px;">
                     <div class="col-12">
                         <div class="form-label"><%= f.label "Feature Image" %></div>

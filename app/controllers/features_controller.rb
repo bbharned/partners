@@ -69,7 +69,7 @@ end
 private
 
 	def feature_params
-        params.require(:feature).permit(:name, :description, :more_link, :image_link, tmversion_ids: [], firmwarebuild_ids: [])
+        params.require(:feature).permit(:name, :description, :more_link_label, :more_link, :more_more_link_label, :more_more_link, :more_more_more_link_label, :more_more_more_link, :image_link, tmversion_ids: [], firmwarebuild_ids: [])
     end
 
 
