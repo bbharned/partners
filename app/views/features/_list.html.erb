@@ -1,0 +1,72 @@
+<div id="filterrific_results">
+
+	<% if @features.any? %>
+
+
+		<div class="row">
+
+		<div class="col-12">
+	
+			<table class="table table-striped">
+			  <thead style="background-color: #272727; color:#FFFFFF;">
+			    <tr>
+			      <th scope="col">Feature Name</th>
+			      <th scope="col" style="text-align:center;">TM Version</th>
+			      <th scope="col">Compatible Firmware Builds</th>
+			    </tr>
+			  </thead>
+			  
+			  <tbody>
+
+				<% @features.each do |f| %>
+					
+					
+					    <tr>
+					      <th scope="row"><%= link_to "#{f.name}", feature_path(f), style: "color:inherit;" %></th>
+					      <td style="text-align:center;">
+					      	<% if f.tmversions.any? %>
+					      		<% if f.tmversions.count == 1 %>
+							      	<% f.tmversions.each do |v| %>
+							      		<%= v.version %>
+							      	<% end %>
+							    <% else %>
+							    	<% f.tmversions.each do |v| %>
+							      		<%= v.version %>,&nbsp;
+							      	<% end %>
+							    <% end %>
+					      	<% end %>
+					      </td>
+					      <td>
+					      	<% if f.firmwarebuilds.any? %>
+					      		<% if f.firmwarebuilds.count == 1 %>
+							      	<% f.firmwarebuilds.each do |v| %>
+							      		<%= v.build %>
+							      	<% end %>
+							    <% else %>
+							    	<% f.firmwarebuilds.each do |v| %>
+							      		<%= v.build %>,&nbsp;
+							      	<% end %>
+							    <% end %>
+					      	<% end %>
+					      </td>
+					    </tr>
+					  
+				<% end %>
+
+			  </tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+
+	<% else %>
+
+		<p align="center" style="color:darkorange; margin-top:45px;">There are no Features or results to your query</p>
+
+	<% end %>
+
+
+
+</div>

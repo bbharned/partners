@@ -4,85 +4,70 @@
 
 <div class="row">
 	<div class="col-md-9">
-		<h1>Feature &amp; Firmware Compatibility</h1>
+		<h3>Feature &amp; Firmware Compatibility</h3 align="center">
 	</div>
 	<div class="col-md-3">
 		<div class="float-right">
 			<% if logged_in? && current_user.admin? %>
-				<%= link_to "Add Feature", new_feature_path, class: "btn btn-md btn-primary", style: "margin-top:8px;" %>
+				<%= link_to "Add Feature", new_feature_path, class: "btn btn-md btn-primary", style: "margin-top:0px;" %>
 			<% end %>
 		</div>
 	</div>
 </div>
-<br /><br /> 
+<hr />
+<br /> 
 
 
-<% if @features.any? %>
+<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
+	<div class="container feature-filters" style="margin-bottom:40px;">			  
+		<div class="form-group">
+			
+			<div class="row">
+		  	
+				  <div class="col-md-4" style="margin-bottom:10px;">
+				    <div class="form-label">Search</div>
+				    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+				    <%= f.text_field(
+				      :with_search_feature,
+				      class: 'filterrific-periodically-observed form-control'
+				    ) %>
+				  </div>
+				  <div class="col-md-4" style="margin-bottom:10px;">
+				    <div class="form-label">TM Version</div>
+				    <%= f.select(
+				      :with_tmversion,
+				      @filterrific.select_options[:with_tmversion],
+				      { include_blank: '- Any -' }, class: "form-control"
+				    ) %>
+				  </div>
+				  <div class="col-md-4" style="margin-bottom:10px;">
+				    <div class="form-label">Firmware Build</div>
+				    <%= f.select(
+				      :with_firmwarebuild,
+				      @filterrific.select_options[:with_firmwarebuild],
+				      { include_blank: '- Any -' }, class: "form-control"
+				    ) %>
+				  </div>
+			</div>
 
-	<div class="row">
-
-		<div class="col-12">
-	
-			<table class="table table-striped">
-			  <thead style="background-color: #272727; color:#FFFFFF;">
-			    <tr>
-			      <th scope="col">Feature Name</th>
-			      <th scope="col" style="text-align:center;">TM Version</th>
-			      <th scope="col">Compatible Firmware Builds</th>
-			    </tr>
-			  </thead>
-			  
-			  <tbody>
-
-				<% @features.each do |f| %>
-					
-					
-					    <tr>
-					      <th scope="row"><%= link_to "#{f.name}", feature_path(f), style: "color:inherit;" %></th>
-					      <td style="text-align:center;">
-					      	<% if f.tmversions.any? %>
-					      		<% if f.tmversions.count == 1 %>
-							      	<% f.tmversions.each do |v| %>
-							      		<%= v.version %>
-							      	<% end %>
-							    <% else %>
-							    	<% f.tmversions.each do |v| %>
-							      		<%= v.version %>,&nbsp;
-							      	<% end %>
-							    <% end %>
-					      	<% end %>
-					      </td>
-					      <td>
-					      	<% if f.firmwarebuilds.any? %>
-					      		<% if f.firmwarebuilds.count == 1 %>
-							      	<% f.firmwarebuilds.each do |v| %>
-							      		<%= v.build %>
-							      	<% end %>
-							    <% else %>
-							    	<% f.firmwarebuilds.each do |v| %>
-							      		<%= v.build %>,&nbsp;
-							      	<% end %>
-							    <% end %>
-					      	<% end %>
-					      </td>
-					    </tr>
-					  
-				<% end %>
-
-			  </tbody>
-			</table>
+			<div class="row" style="margin-top:5px;">
+				<div class="col-sm-3 offset-sm-9">
+				    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>
+				</div>
+			</div>
 
 		</div>
-
 	</div>
 
-
-
-<% else %>
-
-<p>There no features saved yet. <% if logged_in? && current_user.admin? %><%= link_to "Create one?", new_feature_path %><% end %></p>
-
 <% end %>
+
+
+<div class="hw-loader"><%= render_filterrific_spinner %></div>
+
+<%= render(
+	partial: 'features/list',
+	locals: { features: @features }
+) %>
 
 </div>

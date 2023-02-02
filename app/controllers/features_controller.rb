@@ -5,7 +5,35 @@ class FeaturesController < ApplicationController
 
 
 def index
-	@features = Feature.all.order("name asc")
+	#@features = Feature.all.order("name asc")
+
+
+    @filterrific = initialize_filterrific(
+     Feature,
+     params[:filterrific],
+      select_options: {
+        sort_this_feature: Feature.options_for_sort_this_feature,
+        with_tmversion: Tmversion.options_for_select,
+        with_firmwarebuild: Firmwarebuild.options_for_select,
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:sort_this_feature, :with_search_feature, :with_tmversion, :with_firmwarebuild],
+      sanitize_params: true,
+   ) or return
+   
+   @features = @filterrific.find.page(params[:page]).order("name asc")
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
+
 end
 
 

@@ -5,4 +5,9 @@ class Firmwarebuild < ActiveRecord::Base
 	validates :build, presence: true, length: { minimum: 1, maximum: 25 }
 
 
+	def self.options_for_select
+	  order(Arel.sql("LOWER(build)")).map { |e| [e.build, e.id] }
+	end
+
+
 end

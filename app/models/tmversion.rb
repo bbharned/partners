@@ -5,4 +5,9 @@ class Tmversion < ActiveRecord::Base
 	validates :version, presence: true, length: { minimum: 3, maximum: 15 }
 
 
+	def self.options_for_select
+	  order(Arel.sql("LOWER(version)")).map { |e| [e.version, e.id] }
+	end
+
+
 end
