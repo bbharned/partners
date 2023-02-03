@@ -64,6 +64,8 @@ gem 'rails-html-sanitizer', '~> 1.4.4'
 
 gem 'net-http'
 
+gem 'sitemap_generator'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

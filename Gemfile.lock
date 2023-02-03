@@ -210,6 +210,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sitemap_generator (6.3.0)
+      builder (~> 3.0)
     spring (4.1.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -273,6 +275,7 @@ DEPENDENCIES
   rails-html-sanitizer (~> 1.4.4)
   rqrcode (~> 2.0)
   sassc
+  sitemap_generator
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
