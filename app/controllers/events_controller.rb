@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 def index
 	@sort = [params[:sort]]
     @events = Event.paginate(page: params[:page], per_page: 25).order(@sort)
-    @evtcategories = Evtcategory.all
+    @evtcategories = Evtcategory.where(private: false)
 end
 
 
@@ -286,7 +286,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

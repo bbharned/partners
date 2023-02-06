@@ -21,6 +21,14 @@
                     <%= f.text_field :image_link, class: "form-control", placeholder: "Path to Image for Type" %>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-label"><%= f.label "Private Type?" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="radio-buttons">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :private %>&nbsp;&nbsp;<%= f.label "Check for this event type to be private" %>
+                    </div>
+                </div>
+            </div>
        
 
         <br />

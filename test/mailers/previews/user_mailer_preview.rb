@@ -73,7 +73,7 @@ class UserMailerPreview < ActionMailer::Preview
 
   def event_registration_user_external
     @user = User.find(1)
-    @event = Event.find(9)
+    @event = Event.find(9) #event 67 has event url and is virtual and private, event 9 does not but is virtual
     UserMailer.event_registration_user(@user, @event)
   end
 
