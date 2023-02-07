@@ -42,6 +42,47 @@
 			</div>
 
 			<br /><br />
+
+			<h4>Learning Papers</h4>
+			<div class="document-table">
+
+				
+				<div class="row">
+					<div class="col-md-10"><span class="bold">TM and Active Directory</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LP-ThinManager-Active-Directory.pdf", target: "_blank" %></div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10"><span class="bold">NERC Compliance</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LP-NERC-Compliance.pdf", target: "_blank" %></div>
+				</div>
+
+				
+				<div class="row">
+					<div class="col-md-10"><span class="bold">ThinManager Solutions</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LP-101-Problems-Solutions.pdf", target: "_blank" %></div>
+				</div>
+			
+				<div class="row">
+					<div class="col-md-10"><span class="bold">Benefits vs. Unmanaged Solution</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LP-ThinManager-Benefits-vs-MS-Unmanaged-Solution.pdf", target: "_blank" %></div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10"><span class="bold">Real World ThinManager</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LP-Real-World-ThinManager.pdf", target: "_blank" %></div>
+				</div>
+				
+
+			</div>
+
+			<br /><br />
+
 			<h4>Knowledge Documents</h4>
 			<div class="document-table">
 
@@ -141,32 +182,52 @@
 				<% end %>
 
 
+				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
+				<!-- Rockwell ThinManager Ready vs Compatible -->
+				<div class="row">
+					<div class="col-md-10"><span class="bold">ThinManager Ready vs. Compatible <% if current_user.admin %>(Rockwell)<% end %></span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/ThinManagerReadyVsCompatible.pdf", target: "_blank" %></div>
+				</div>
+				<% end %>
+
+
+				<% if (current_user.prttype != "Distributor" || current_user.channel != "Rockwell Automation") || current_user.admin %>
+				<!-- 3rd Party ThinManager Ready vs Compatible -->
+				<div class="row">
+					<div class="col-md-10"><span class="bold">ThinManager Ready vs. Compatible <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/ThinManagerReadyVsCompatible_3P.pdf", target: "_blank" %></div>
+				</div>
+				<% end %>
+
+
 				
 
 
 				<!-- White Paper - What sets ThinManager Apart -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-10"><span class="bold">What Sets ThinManager Apart</span></div>
 					<div class="col-md-1">PDF</div>
 					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-What-Sets-ThinManager-Apart.pdf", target: "_blank" %></div>
-				</div>
+				</div> -->
 
 
 				<!-- White Paper - 101 Problems solved by ThinManager -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-10"><span class="bold">101 Problems solved by ThinManager</span></div>
 					<div class="col-md-1">PDF</div>
 					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/papers/LS-101-Problems-Solutions.pdf", target: "_blank" %></div>
-				</div>
+				</div> -->
 
 
 				<% if current_user.admin? %>
 				<!-- link to Video 	Learning series -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-10"><span class="bold">Video Learning</span></div>
 					<div class="col-md-1"></div>
 					<div class="col-md-1"><%= link_to image_tag("icon-play.png"), "https://learn.thinmanager.com", target: "_blank" %></div>
-				</div>
+				</div> -->
 				<% end %>
 
 			</div>
