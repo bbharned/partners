@@ -70,10 +70,40 @@ def learning
     @visquizzes = @quizzes.where(categories: { name: "Visualization" })
     @secquizzes = @quizzes.where(categories: { name: "Security" })
     @mobquizzes = @quizzes.where(categories: { name: "Mobility" })
+    @configquizzes = @quizzes.where(categories: { name: "Configuration" })
     @badge = UserBadge.where(user_id: @user.id).take
 
 
-    
+    #### Configuration Badge ####
+    @config_q_passed = 0
+    @configquizzes.each do |quiz|
+        @uqquery = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id)
+        if @uqquery != [] 
+            @config_q_passed += 1
+        end
+    end
+
+    if (@config_q_passed == @configquizzes.count) && @configquizzes.count > 0
+        if  @badge == nil
+            @newconfigbadge = UserBadge.new(user_id: @user.id, configuration: true)
+            if @newconfigbadge.save
+                flash[:success] = "You earned your CONFIGURATION badge!"
+                redirect_to learning_path 
+            end
+        elsif @badge != nil && !@badge.configuration
+            if @badge.update(configuration: true)
+                flash[:success] = "You earned your CONFIGURATION badge!"
+                redirect_to learning_path
+            else
+                flash[:danger] = "There was a problem awarding your badge."
+                redirect_to learning_path
+            end
+        end 
+    end
+    #### END Configuration Badge ####
+
+
+
     #### Productivity Badge ####
     @prod_q_passed = 0
     @prodquizzes.each do |quiz|
@@ -101,6 +131,100 @@ def learning
         end 
     end
     #### END Productivity Badge ####
+
+
+
+    #### Visualization Badge ####
+    @vis_q_passed = 0
+    @visquizzes.each do |quiz|
+        @uqquery = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id)
+        if @uqquery != [] 
+            @vis_q_passed += 1
+        end
+    end
+
+    if (@vis_q_passed == @visquizzes.count) && @visquizzes.count > 0
+        if  @badge == nil
+            @newvisbadge = UserBadge.new(user_id: @user.id, visualization: true)
+            if @newvisbadge.save
+                flash[:success] = "You earned your VISUALIZATION badge!"
+                redirect_to learning_path 
+            end
+        elsif @badge != nil && !@badge.visualization
+            if @badge.update(visualization: true)
+                flash[:success] = "You earned your VISUALIZATION badge!"
+                redirect_to learning_path
+            else
+                flash[:danger] = "There was a problem awarding your badge."
+                redirect_to learning_path
+            end
+        end 
+    end
+    #### END Visualization Badge ####
+
+
+
+
+    #### Security Badge ####
+    @sec_q_passed = 0
+    @secquizzes.each do |quiz|
+        @uqquery = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id)
+        if @uqquery != [] 
+            @sec_q_passed += 1
+        end
+    end
+
+    if (@sec_q_passed == @secquizzes.count) && @secquizzes.count > 0
+        if  @badge == nil
+            @newsecbadge = UserBadge.new(user_id: @user.id, security: true)
+            if @newsecbadge.save
+                flash[:success] = "You earned your SECURITY badge!"
+                redirect_to learning_path 
+            end
+        elsif @badge != nil && !@badge.security
+            if @badge.update(security: true)
+                flash[:success] = "You earned your SECURITY badge!"
+                redirect_to learning_path
+            else
+                flash[:danger] = "There was a problem awarding your badge."
+                redirect_to learning_path
+            end
+        end 
+    end
+    #### END Security Badge ####
+
+
+
+    #### Mobility Badge ####
+    @mob_q_passed = 0
+    @mobquizzes.each do |quiz|
+        @uqquery = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id)
+        if @uqquery != [] 
+            @mob_q_passed += 1
+        end
+    end
+
+    if (@mob_q_passed == @mobquizzes.count) && @mobquizzes.count > 0
+        if  @badge == nil
+            @newmobbadge = UserBadge.new(user_id: @user.id, mobility: true)
+            if @newmobbadge.save
+                flash[:success] = "You earned your MOBILITY badge!"
+                redirect_to learning_path 
+            end
+        elsif @badge != nil && !@badge.mobility
+            if @badge.update(mobility: true)
+                flash[:success] = "You earned your MOBILITY badge!"
+                redirect_to learning_path
+            else
+                flash[:danger] = "There was a problem awarding your badge."
+                redirect_to learning_path
+            end
+        end 
+    end
+    #### END Mobility Badge ####
+
+
+
     
 
 end

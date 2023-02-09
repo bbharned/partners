@@ -3,7 +3,7 @@
 <h1 class="page-header">Welcome <%= @user.firstname %></h1>
 <hr />
 
-<p class="learn-instructions">This series of videos is designed to teach the fundamentals of ThinManager&reg;. It covers features and basic use of the software. The videos are divided in to sections as it applies to the ThinManager platform (Productivity, Visualization, Security and Mobility). Each video has a quiz that will need to be passed to receive credit for that section. Upon completion of all the videos and quizzes you will gain a ThinManager certification. Certifications are valid for a period of two years.</p>
+<p class="learn-instructions">This series of videos is designed to teach the fundamentals of ThinManager&reg;. It covers features and basic use of the software. The videos are divided in to sections as it applies to the ThinManager platform (Configuration, Productivity, Visualization, Security, and Mobility). Each video has a quiz that will need to be passed to receive credit for that section.</p>
 
 
 <div class="row">
@@ -18,6 +18,15 @@
 			<hr/>
 			<h5 style="color:#777777;">Badges Earned <span style="font-size:.75em; font-style: italic; display:none;">(not all badges currently available)</span></h5>
 			<div class="dash-badges">	
+				<% if @badge != nil && @badge.configuration %>
+					<div class="d-badge">
+						<%= image_tag("badge-configuration.png") %>
+					</div>
+				<% else %>
+					<div class="d-badge-opacity">
+						<%= image_tag("badge-configuration.png") %>
+					</div>
+				<% end %>
 				<% if @badge != nil && @badge.productivity %>
 					<div class="d-badge">
 						<%= image_tag("badge-productivity.png") %>
@@ -71,17 +80,20 @@
 <% if @quizzes.any? %>
 	<div class="row icons">
 		
-			<div class="col-3">
-				<%= image_tag("icon-productivity.png") %> <span class="goAway">-</span> <span class="appear"><br /></span>Productivity
+			<div class="col">
+				<%= image_tag("icon-configuration.png") %> <span class="goAwaySooner">-</span> <span class="appear-sooner"><br /></span>Configuration
 			</div>
-			<div class="col-3">
-				<%= image_tag("icon-visualization.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Visualization
+			<div class="col">
+				<%= image_tag("icon-productivity.png") %> <span class="goAwaySooner">-</span> <span class="appear-sooner"><br /></span>Productivity
 			</div>
-			<div class="col-3">
-				<%= image_tag("icon-security.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Security
+			<div class="col">
+				<%= image_tag("icon-visualization.png") %> <span class="goAwaySooner">-</span> <span class="appear-sooner"><br /></span> Visualization
 			</div>
-			<div class="col-3">
-				<%= image_tag("icon-mobility.png") %> <span class="goAway">-</span> <span class="appear"><br /></span> Mobility
+			<div class="col">
+				<%= image_tag("icon-security.png") %> <span class="goAwaySooner">-</span> <span class="appear-sooner"><br /></span> Security
+			</div>
+			<div class="col">
+				<%= image_tag("icon-mobility.png") %> <span class="goAwaySooner">-</span> <span class="appear-sooner"><br /></span> Mobility
 			</div>
 		
 	</div>
@@ -92,6 +104,18 @@
 			<th width="70%">Name</th>
 			<th width="30%">Passed</th>
 		</tr>
+		<% @configquizzes.each do |quiz| %>
+			<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
+			<tr class="table-rows">
+				<td><%= image_tag("icon-configuration.png") %></td>
+				<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+				<% if @query.count > 0 %>
+					<td><%= image_tag "checked.png" %></td>
+				<% else %>
+					<td>&nbsp;</td>
+				<% end %>
+			</tr>
+		<% end %>
 		<% @prodquizzes.each do |quiz| %>
 			<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
 			<tr class="table-rows">
@@ -157,7 +181,11 @@
 
 
 
-
+<div class="award" id="configAward">
+	<h1>Congratulations!</h1>
+	<p>You earned a badge</p>
+	<div class="badge-image"><%= image_tag("badge-configuration.png") %></div>
+</div>
 
 <div class="award" id="prodAward">
 	<h1>Congratulations!</h1>
@@ -191,7 +219,17 @@
 
 
 <!-- js scripts -->
-<% if (flash[:success] == "You earned your PRODUCTIVITY badge!") %>
+<% if (flash[:success] == "You earned your CONFIGURATION badge!") %>
+	<script>
+		(function() {
+			$('#configAward').lightbox_me({
+			centered: true, 
+			zIndex: 9999,
+			overlayCSS: {background: '#000000', opacity:.85},
+			});
+		})();
+	</script>
+<% elsif (flash[:success] == "You earned your PRODUCTIVITY badge!") %>
 	<script>
 		(function() {
 			$('#prodAward').lightbox_me({
@@ -221,7 +259,7 @@
 			});
 		})();
 	</script>
-<% elsif (flash[:success] == "You earned your SECURITY badge!") %>
+<% elsif (flash[:success] == "You earned your MOBILITY badge!") %>
 	<script>
 		(function() {
 			$('#mobAward').lightbox_me({
