@@ -51,6 +51,25 @@
 				  </div>
 			</div>
 
+			<div class="row">
+				 <div class="col-md-6" style="margin-bottom:10px;">
+				 	<div class="form-label">Features Released After Version</div>
+				    <%= f.select(
+				      :greater_tmversion,
+				      @filterrific.select_options[:greater_tmversion],
+				      { include_blank: '- Any -' }, class: "form-control"
+				    ) %>
+				 </div>
+				 <div class="col-md-6" style="margin-bottom:10px;">
+				 	<div class="form-label">Features Released Before Version</div>
+				    <%= f.select(
+				      :less_tmversion,
+				      @filterrific.select_options[:less_tmversion],
+				      { include_blank: '- Any -' }, class: "form-control"
+				    ) %>
+				 </div>
+			</div>
+
 			<div class="row" style="margin-top:5px;">
 				<div class="col-sm-3 offset-sm-9">
 				    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>

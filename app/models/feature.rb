@@ -15,6 +15,8 @@ filterrific(
      :with_search_feature,
      :with_tmversion,
      :with_firmwarebuild,
+     :greater_tmversion,
+     :less_tmversion,
    ],
  )
 
@@ -61,6 +63,34 @@ scope :sort_this_feature, ->(sort_option) {
 
 scope :with_tmversion, ->(tmversion_ids) {
   joins(features_tmversions: :tmversion).where(features_tmversions: {tmversion_id: tmversion_ids})
+}
+
+scope :greater_tmversion, ->(tmversion_ids) {
+  @version = Tmversion.find(tmversion_ids).version
+  @features = Feature.all
+  @results = []
+  @features.each do |f|
+    @a = @version <=> f.tmversions.last.version
+    if @a < 0 
+      @results.push f
+    end
+  end
+  #joins(features_tmversions: :tmversion).includes(:tmversions).references(:versions).where("features.tmversions.last.version <=> ?", Tmversion.find(tmversion_ids).version)
+  where(id: @results)
+}
+
+scope :less_tmversion, ->(tmversion_ids) {
+  @version = Tmversion.find(tmversion_ids).version
+  @features = Feature.all
+  @results = []
+  @features.each do |f|
+    @a = @version <=> f.tmversions.last.version
+    if @a > 0 
+      @results.push f
+    end
+  end
+  #joins(features_tmversions: :tmversion).includes(:tmversions).references(:versions).where("features.tmversions.last.version <=> ?", Tmversion.find(tmversion_ids).version)
+  where(id: @results)
 }
 
 scope :with_firmwarebuild, ->(firmwarebuild_ids) {

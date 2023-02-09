@@ -15,10 +15,12 @@ def index
         sort_this_feature: Feature.options_for_sort_this_feature,
         with_tmversion: Tmversion.options_for_select,
         with_firmwarebuild: Firmwarebuild.options_for_select,
+        greater_tmversion: Tmversion.options_for_select,
+        less_tmversion: Tmversion.options_for_select,
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sort_this_feature, :with_search_feature, :with_tmversion, :with_firmwarebuild],
+      available_filters: [:sort_this_feature, :with_search_feature, :with_tmversion, :with_firmwarebuild, :greater_tmversion, :less_tmversion],
       sanitize_params: true,
    ) or return
    
