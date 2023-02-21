@@ -24,4 +24,36 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+
+
+  add '/', :changefreq => 'weekly', :priority => 1
+  add '/dashboard', :changefreq => 'weekly', :priority => 0.9
+  add '/pricing', :changefreq => 'monthly'
+  add '/learning'
+  add '/reports'
+  add '/users'
+  add '/flexforwards'
+  add '/labs'
+  add '/documents', :changefreq => 'weekly', :priority => 0.9
+  add '/vflex'
+  add '/pinpoint'
+  add '/downloads'
+  add '/calculators'
+  add '/flex'
+  add '/mycert'
+  add '/si'
+  add '/rau'
+  add '/learn'
+  add '/qrcodes', :changefreq => 'monthly', :priority => 0.8
+  add '/hardwares', :changefreq => 'weekly', :priority => 0.9
+  add '/terminals', :changefreq => 'weekly', :priority => 0.9
+  add '/events', :changefreq => 'weekly', :priority => 0.9
+  add '/companies'
+  add '/listings', :changefreq => 'weekly', :priority => 0.9
+  add '/features', :changefreq => 'weekly', :priority => 0.9
+  add '/demokits'
+  add '/tmc'
+  add '/quizzes'
+
+
 end
