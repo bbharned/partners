@@ -157,8 +157,14 @@
 							<% elsif @full == true %>
 								<%= link_to "Event Full", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 							<% else %>
-								<% if current_user %>
+								<% if current_user && @event.reg_required %>
 									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register, class: "btn btn-primary btn-sm" %> 
+								<% elsif !@event.reg_required %>
+									<% if @event.evt_link != nil && @event.evt_link != "" %>
+										<%= link_to "Join Event", "#{@event.evt_link}", class: "btn btn-primary btn-sm", target: "_blank" %>
+									<% else %>
+										<div class="row"><small style="font-style:italic; font-size:.75em; text-align:right !important;">Event Link Not Yet Posted &nbsp;</small></div>
+									<% end %>
 								<% else %>
 									<%= link_to "Register", event_path(@event), method: :register, class: "btn btn-primary btn-sm" %>
 								<% end %>

@@ -58,15 +58,18 @@
 	    </div>
 	    <div class="form-group">
 	    	<div class="row">
-	    		<div class="col-md-3" style="margin-bottom:20px;">
+	    		<div class="col-lg-3" style="margin-bottom:20px;">
 	    			<div class="form-label" style="margin-top:-15px;"><%= f.label :capacity %></div>
 			    	<%= f.text_field :capacity, class: "form-control", placeholder: "Max Register" %>
 		    	</div>
-	    		<div class="col-md-3 offset-md-2" style="margin-top:20px;">
-	                <%= f.label "Virtual Event?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :virtual %>
+	    		<div class="col-lg-2 offset-lg-1" style="margin-top:20px;">
+	                <%= f.label "Virtual?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :virtual %>
 	            </div>
-	            <div class="col-md-3 offset-md-1" style="margin-top:20px;">
-	                <%= f.label "Private Event?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :private %>
+	            <div class="col-lg-2" style="margin-top:20px;">
+	                <%= f.label "Private?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :private %>
+	            </div>
+	            <div class="col-lg-4" style="margin-top:20px;">
+	                <%= f.label "Registration Required?" %>&nbsp;&nbsp;&nbsp;<%= f.check_box :reg_required %>
 	            </div>
 	        </div>
 	    </div>

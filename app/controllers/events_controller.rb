@@ -223,7 +223,7 @@ end
 
 
 def register
-    if current_user
+    if current_user && @event.reg_required
         @user = User.find(params[:user_id])
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id)
         @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false)
@@ -271,9 +271,11 @@ def register
 
         end
 
-    else
+    elsif !current_user && @event.reg_required
         flash[:warning] = "You must have an account and be logged in to register for events. Please create your account"
         redirect_to evt_path(@event)
+    else
+        redirect_to event_path(@event)
     end
 
     
@@ -286,7 +288,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

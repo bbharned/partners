@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_09_144555) do
+ActiveRecord::Schema.define(version: 2023_02_23_150120) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2023_02_09_144555) do
     t.boolean "live", default: false
     t.string "viewer"
     t.string "evt_link"
+    t.boolean "reg_required", default: true
   end
 
   create_table "evtcategories", force: :cascade do |t|
