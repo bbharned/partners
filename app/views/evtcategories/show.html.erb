@@ -5,7 +5,21 @@
 </div>
 <div class="container" style="padding-bottom:150px;">
 
+
+<% if @etype.name == "Webinars" %>
+	<div class="row">
+		<div class="col-md-8">
+<% end %>
 <h1><%= @etype.name %></h1>
+<% if @etype.name == "Webinars" %>
+		</div>
+		<div class="col-md-4">
+			<div class="float-right" style="padding-top: 15px;">
+				<%= link_to "On Demand Webinars", "https://thinmanager.com/webinars", target: "_blank", class: "btn btn-sm btn-outline-primary" %>
+			</div>
+		</div>
+	</div>
+<% end %>
 <hr />
 
 <% if @groups.any? %>
