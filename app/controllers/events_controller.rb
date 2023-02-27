@@ -43,8 +43,11 @@ if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil &&
       if @event.event_host != ""
           e.organizer = @event.event_host
       end
+      if @event.evt_link != "" && @event.evt_link != nil
+        e.url = @event.evt_link
+      end
       
-      e.ip_class    = "PRIVATE"
+      e.ip_class = "PRIVATE"
     end
 
     @ical.publish

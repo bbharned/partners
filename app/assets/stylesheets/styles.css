@@ -1453,21 +1453,29 @@ Very Light Blue: #e9f7fb;
     width:90%; max-width: 400px; 
 }
 .pp-logo img, .video-span iframe, .howWorks img {width:100%;}
+.video-span iframe {height:150px;}
 .video-span {
-    margin-bottom: 20px; background-color: #000000; 
+    margin-bottom: 100px; border: 1px solid #999999;
 }
 .howWorks {
     width:95%; max-width: 800px; margin: auto;
     box-shadow: 2px 2px 5px #272727;
+}
+.pdf-icon {width:50px; margin: auto;}
+.pdf-icon img, .webinar-image img {width:100%;}
+.webinar-image {
+    width:90%; margin: auto;
 }
 .seismic-icon img {max-width: 75px;}
 .seismic-icon {padding:0; text-align: right;}
 @media screen and (max-width: 992px) {
     .pp-logo {
         margin: auto;
-    }
+    }  
 }
-
+@media screen and (max-width: 768px) {
+    .video-span iframe {height:300px;}
+}
 
 
 
