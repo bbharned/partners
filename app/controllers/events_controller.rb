@@ -47,6 +47,26 @@ if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil &&
         e.url = @event.evt_link
       end
       
+      @ical.timezone do |t|
+      t.tzid = "America/New_York"
+
+      t.daylight do |d|
+        d.tzoffsetfrom = "-0500"
+        d.tzoffsetto   = "-0600"
+        d.tzname       = "EDT"
+        d.dtstart      = "19700308T020000"
+        d.rrule        = "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU"
+      end
+
+      t.standard do |s|
+        s.tzoffsetfrom = "-0400"
+        s.tzoffsetto   = "-0500"
+        s.tzname       = "EST"
+        s.dtstart      = "19701101T020000"
+        s.rrule        = "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU"
+      end
+    end
+
       e.ip_class = "PRIVATE"
     end
 
