@@ -46,7 +46,7 @@ if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil &&
       if @event.evt_link != "" && @event.evt_link != nil
         e.url = @event.evt_link
       end
-      
+      e.tzname       = "EDT"
       e.ip_class = "PRIVATE"
     end
 
