@@ -239,6 +239,8 @@ def calcs
     @creditForServerLicensesNoSupport = (1-(0.2*self.ex_serv_nosup_years))*(self.ex_serv_nosup*61150 * self.currency.rate)
     if @creditForServerLicensesNoSupport < 0 
         @creditForServerLicensesNoSupport = 0
+    elsif @creditForServerLicensesNoSupport < 36690
+        @creditForServerLicensesNoSupport = 36690
     end
     self.tr_cred_serv = @creditForServerLicensesWithSupport + @creditForServerLicensesNoSupport
     if self.tr_cred_serv < 0
@@ -253,6 +255,8 @@ def calcs
     @creditForSiteLicensesNoSupport = (1-(0.2*self.ex_site_nosup_years))*(self.ex_site_nosup*134000 * self.currency.rate)
     if @creditForSiteLicensesNoSupport < 0 
         @creditForSiteLicensesNoSupport = 0
+    elsif @creditForSiteLicensesNoSupport < 80400
+        @creditForSiteLicensesNoSupport = 80400
     end
     self.tr_cred_site = @creditForSiteLicensesWithSupport + @creditForSiteLicensesNoSupport
     if self.tr_cred_site < 0
@@ -267,6 +271,8 @@ def calcs
     @creditForPackLicensesNoSupport = (1-(0.2*self.ex_simp_nosup_years))*(self.ex_simp_nosup*@tradeSimplexPricePer)
     if @creditForPackLicensesNoSupport < 0
         @creditForPackLicensesNoSupport = 0
+    elsif @creditForPackLicensesNoSupport < ((self.ex_simp_nosup*@tradeSimplexPricePer) * 0.6)
+        @creditForPackLicensesNoSupport = ((self.ex_simp_nosup*@tradeSimplexPricePer) * 0.6)
     end
     self.tr_cred_simp = @creditForPackLicensesWithSupport + @creditForPackLicensesNoSupport #No negative
     @trCreditSimp = self.tr_cred_simp
@@ -288,6 +294,8 @@ def calcs
     @creditForRPackLicensesNoSupport = (1-(0.2*self.ex_red_nosup_years))*(self.ex_red_nosup*@tradeCredRedPricePer)
     if @creditForRPackLicensesNoSupport < 0
         @creditForRPackLicensesNoSupport = 0
+    elsif @creditForRPackLicensesNoSupport < ((self.ex_red_nosup*@tradeCredRedPricePer) * 0.6)
+        @creditForRPackLicensesNoSupport = ((self.ex_red_nosup*@tradeCredRedPricePer) * 0.6)
     end
     self.tr_cred_red = @creditForRPackLicensesWithSupport + @creditForRPackLicensesNoSupport  #No negative
     
