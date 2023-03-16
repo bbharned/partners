@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
 	end
 
 	def edit
-		@question = Question.find(params[:id])
+		@question = Question.find(params['question_id'])
 		@answer = Answer.find(params[:id]) 
 	end 
 

@@ -15,7 +15,7 @@
 			</div>
 		</div>
 	<% end %>
-	<% if current_user.admin? || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) %>
+	<% if current_user.admin? || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire != nil && @current_user.certexpire > Date.today) %>
 		<div class="ad-banner si-banner">
 			<div class="container">
 				<div class="row">
@@ -34,7 +34,7 @@
 
 
 
-<% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire < Date.today) %>
+<% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire != nil && @current_user.certexpire < Date.today) %>
 <!-- && (@current_user.certexpire < Date.today) -->
 <br />
 
@@ -42,7 +42,7 @@
 		<div class="well recert-alert" style="margin-bottom:15px; border: 5px solid red; background-color:#F46767;">
 			<div class="row">
 				<div class="col-md-9">
-					<p><span class="bold">Your ThinManager Certification has expired</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
+					<p><span class="bold">Your ThinManager Certification has expired or has never been completed</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
 				</div>
 				<div class="col-md-3">
 					<div align="right"><%= link_to "Get Recertified", labs_path, class: "btn btn-danger" %></div>
@@ -52,7 +52,7 @@
 	</div>
 
 
-	<div class="row">
+	<div class="row" style="margin-bottom:55px;">
 		<div class="col-md-8 offset-md-4">
 			<%= link_to "Get Recertified", labs_path %>
 			&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -62,7 +62,7 @@
 
 
 
-<% else %>
+<% end %>
 
 
 
@@ -136,7 +136,7 @@
 
 <% if @current_user.prttype == "Integrator" && !@current_user.needs_review %>
 	
-	<% if (@current_user.certexpire != nil && @current_user.certexpire != "") && @current_user.certexpire < Date.today() + 180 %>	
+	<% if (@current_user.certexpire != nil && @current_user.certexpire != "") && @current_user.certexpire < Date.today() + 180 && Date.today() < @current_user.certexpire %>	
 		
 			<div class="well recert-alert" style="
 				<% if @current_user.certexpire < Date.today() + 32 %>
@@ -281,7 +281,7 @@
 
 
 	  <!--------- License Request Card ------------->
-	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %><!-- || (@current_user.email.include? "@ra.rockwell.com") --> 
+	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire != nil && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %><!-- || (@current_user.email.include? "@ra.rockwell.com") --> 
 	  	<div class="card">
 		    
 		    <div class="card-body">
@@ -303,7 +303,7 @@
 
 
 	  <!--------- Web Listing Card ------------->
-	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %> 
+	  <% if @current_user.admin? || (@current_user.prttype == "Integrator" && @current_user.certexpire != nil && @current_user.certexpire > Date.today) || (@current_user.prttype == "OEM" && @current_user.certexpire > Date.today) %> 
 	  	<div class="card">
 		    
 		    <div class="card-body">
@@ -596,7 +596,7 @@
 
 	
 
-<% end %> <!-- end of certification expiration check -->
+ <!-- end of certification expiration check -->
 	
 
 	<br /><br /><br /><br /><br />

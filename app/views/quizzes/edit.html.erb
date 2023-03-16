@@ -65,7 +65,7 @@
                                     <ul>
                                         <% q.answers.each do |a| %>
                                             
-                                                <li <% if a.correct? %>style="color:green;"<% end %>><%= a.answer %>&nbsp;&nbsp; <%= link_to "(edit) ", edit_answer_path(a, quiz_id: @quiz.id), style: "font-size:.8em; padding-top:3px;" %><%= link_to "(delete) ", answer_path(a), method: :delete, data: {confirm: "Are you sure you want to delete this answer?"}, style: "font-size:.8em; padding-top:3px; color:red; margin-left:7px;" %></li>
+                                                <li <% if a.correct? %>style="color:green;"<% end %>><%= a.answer %>&nbsp;&nbsp; <%= link_to "(edit) ", edit_answer_path(a, question_id: q.id), style: "font-size:.8em; padding-top:3px;" %><%= link_to "(delete) ", answer_path(a), method: :delete, data: {confirm: "Are you sure you want to delete this answer?"}, style: "font-size:.8em; padding-top:3px; color:red; margin-left:7px;" %></li>
                                             
                                         <% end %>
                                     </ul>

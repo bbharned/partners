@@ -215,7 +215,7 @@
 
 	<% if @event.evtcategories.count > 0 %>
 		
-			<% @event.evtcategories.each do |c| %>
+			<% @event.evtcategories.take(1).each do |c| %>
 				
 			<% if c.name.downcase.include?("roadshow") %>
 				
