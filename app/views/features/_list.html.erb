@@ -11,8 +11,9 @@
 			  <thead style="background-color: #272727; color:#FFFFFF;">
 			    <tr>
 			      <th scope="col">Feature Name</th>
-			      <th scope="col" style="text-align:center;">TM Version</th>
-			      <th scope="col">Compatible Firmware Builds</th>
+			      <th scope="col" width="20%" style="text-align:center;">ThinManager Version Minimum</th>
+			      <th scope="col" width="20%" style="text-align:center;">Minimum Firmware Version Package Prerequisite</th>
+			      <th scope="col" width="20%" style="text-align:center;">Minimum Compatible Firmware Version Platform</th>
 			    </tr>
 			  </thead>
 			  
@@ -36,7 +37,20 @@
 							    <% end %>
 					      	<% end %>
 					      </td>
-					      <td>
+					      <td style="text-align:center;">
+					      	<% if f.tmprereqs.any? %>
+					      		<% if f.tmprereqs.count == 1 %>
+							      	<% f.tmprereqs.each do |v| %>
+							      		<%= v.name %>
+							      	<% end %>
+							    <% else %>
+							    	<% f.tmprereqs.each do |v| %>
+							      		<%= v.name %>,&nbsp;
+							      	<% end %>
+							    <% end %>
+					      	<% end %>
+					      </td>
+					      <td style="text-align:center;">
 					      	<% if f.firmwarebuilds.any? %>
 					      		<% if f.firmwarebuilds.count == 1 %>
 							      	<% f.firmwarebuilds.each do |v| %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_150120) do
+ActiveRecord::Schema.define(version: 2023_03_29_191505) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -216,6 +216,15 @@ ActiveRecord::Schema.define(version: 2023_02_23_150120) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["feature_id"], name: "index_features_firmwarebuilds_on_feature_id"
     t.index ["firmwarebuild_id"], name: "index_features_firmwarebuilds_on_firmwarebuild_id"
+  end
+
+  create_table "features_tmprereqs", id: false, force: :cascade do |t|
+    t.integer "feature_id", null: false
+    t.integer "tmprereq_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feature_id"], name: "index_features_tmprereqs_on_feature_id"
+    t.index ["tmprereq_id"], name: "index_features_tmprereqs_on_tmprereq_id"
   end
 
   create_table "features_tmversions", id: false, force: :cascade do |t|
@@ -424,6 +433,12 @@ ActiveRecord::Schema.define(version: 2023_02_23_150120) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tmprereqs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tmversions", force: :cascade do |t|

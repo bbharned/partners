@@ -1,0 +1,29 @@
+<div class="container">
+
+<%= render 'shared/errors', obj: @tmprereq %>
+
+<%= form_for(@tmprereq, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+<div class="col-md-6">
+
+            <div class="form-group">
+                <div class="row">
+                    <%= f.label "Prerequisite" %>
+                </div>
+                <div class="row">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter ThinManager Firmware Prerequisite", autofocus: true %>
+                </div>
+            </div>
+       
+
+        <br />
+        	<div class="row">
+	            <%= f.submit(@tmprereq.new_record? ? "Create Prerequisite" : "Update Prerequisite", class: "btn btn-primary btn-lg") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back, style: "padding-top:12px;" %>
+	        </div>
+    <% end %>
+    
+
+
+
+
+</div>

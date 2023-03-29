@@ -43,6 +43,7 @@ end
 def new
 	@feature = Feature.new
 	@tmversions = Tmversion.all.order("version asc")
+    @tmprereqs = Tmprereq.all.order("name asc")
 	@firmwarebuilds = Firmwarebuild.all.order("build asc")
 end
 
@@ -50,6 +51,7 @@ end
 
 def edit
 	@tmversions = Tmversion.all
+    @tmprereqs = Tmprereq.all
 	@firmwarebuilds = Firmwarebuild.all
 end
 
@@ -99,7 +101,7 @@ end
 private
 
 	def feature_params
-        params.require(:feature).permit(:name, :description, :more_link_label, :more_link, :more_more_link_label, :more_more_link, :more_more_more_link_label, :more_more_more_link, :image_link, tmversion_ids: [], firmwarebuild_ids: [])
+        params.require(:feature).permit(:name, :description, :more_link_label, :more_link, :more_more_link_label, :more_more_link, :more_more_more_link_label, :more_more_more_link, :image_link, tmversion_ids: [], tmprereq_ids: [], firmwarebuild_ids: [])
     end
 
 

@@ -135,6 +135,7 @@ resources :password_resets, only: [:new, :create, :edit, :update]
 resources :features
 #get 'matrix', to: 'features#index'
 resources :tmversions, except: [:show]
+resources :tmprereqs, except: [:show]
 resources :firmwarebuilds, except: [:show]
 
 
