@@ -68,9 +68,9 @@
 	
 	<div class="card-footer" style="margin: 0px -25px -25px -25px; border-radius:0px 0px 10px 10px;">
 		<div class="row">
-			<div class="col">
+			<div class="col" style="text-align: center;">
 				<% if @feature.tmversions.any? %>
-		      		<h6>ThinManager Version Required</h6>
+		      		<h6>ThinManager Version Minimum</h6>
 		      		<% if @feature.tmversions.count == 1 %>
 				      	<% @feature.tmversions.each do |v| %>
 				      		<%= v.version %>
@@ -82,11 +82,28 @@
 				    <% end %>
 		      	<% end %>
 	      	</div>
+	      	
+	      	<div class="col" style="text-align: center;">
 
-	      	<div class="col">
-	      		<!-- <div class="float-right"> -->
+	      		<% if @feature.tmprereqs.any? %>
+	      			<h6>Minimum Firmware Version Package Prerequisite</h6>
+		      		<% if @feature.tmprereqs.count == 1 %>
+				      	<% @feature.tmprereqs.each do |v| %>
+				      		<%= v.name %>
+				      	<% end %>
+				    <% else %>
+				    	<% @feature.tmprereqs.each do |v| %>
+				      		<%= v.name %>,&nbsp;
+				      	<% end %>
+				    <% end %>
+		      	<% end %>
+
+	      	</div>
+
+	      	<div class="col" style="text-align: center;">
+	      		
 		      		<% if @feature.firmwarebuilds.any? %>
-		      			<h6 style="text-align:left;">Compatible Firmware Build</h6>
+		      			<h6>Minimum Compatible Firmware Version Platform</h6>
 			      		<% if @feature.firmwarebuilds.count == 1 %>
 					      	<% @feature.firmwarebuilds.each do |v| %>
 					      		<%= v.build %>
@@ -97,7 +114,7 @@
 					      	<% end %>
 					    <% end %>
 			      	<% end %>
-		      	<!-- </div> -->
+		      	
 	      	</div>
       	</div>
 	</div>
