@@ -74,7 +74,12 @@
 							<div class="col-md-9">
 								<% if @user.street != nil && @user.street != "" %> 
 									<%= @user.street %><% if @user.street2 != "" %>, <%= @user.street2 %><% end %><br />
-									<%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+									<%= @user.city %>, <%= @user.state %> 
+									<% if @user.zip.digits.length < 5 %> 
+										<%= "0#{@user.zip}" %>
+									<% else %>
+										<%= @user.zip %>
+									<% end %>
 								<% else %>
 									<%= link_to "Add Address", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %>
 								<% end %>
