@@ -2,11 +2,13 @@ class TerminalsController < ApplicationController
 
 def index
   @url = request.original_url
-  
+
   if @url.include? "hardware"
     @bg = 'hardware'
   elsif @url.include? "tmc"
     @bg = 'tmc'
+  elsif @url.include? "features"
+    @bg = 'features'  
   else
     @bg = 'peripheral'
   end

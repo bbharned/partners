@@ -99,6 +99,21 @@ scope :with_firmwarebuild, ->(firmwarebuild_ids) {
   joins(features_firmwarebuilds: :firmwarebuild).where(features_firmwarebuilds: {firmwarebuild_id: firmwarebuild_ids})
 }
 
+# scope :with_firmwarebuild, ->(firmwarebuild_ids) {
+#   @fw = Firmwarebuild.find(firmwarebuild_ids).build
+#   @features = Feature.all
+#   @results = []
+#   @features.each do |f|
+#     @a = @fw <=> f.firmwarebuilds.last.build
+#     if @a > 0 
+#       @results.push f
+#     end
+#   end
+#   joins(features_firmwarebuilds: :firmwarebuild).where(features_firmwarebuilds: {firmwarebuild_id: firmwarebuild_ids})
+#   #joins(features_tmversions: :tmversion).includes(:tmversions).references(:versions).where("features.tmversions.last.version <=> ?", Tmversion.find(tmversion_ids).version)
+#   where(id: @results)
+# }
+
 # This method provides select options for the `sorted_by` filter select input.
   # It is called in the controller as part of `initialize_filterrific`.
   def self.options_for_sort_this_feature

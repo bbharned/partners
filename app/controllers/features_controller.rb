@@ -7,6 +7,18 @@ class FeaturesController < ApplicationController
 def index
 	#@features = Feature.all.order("name asc")
 
+    @url = request.original_url
+
+    if @url.include? "hardware"
+        @bg = 'hardware'
+    elsif @url.include? "tmc"
+        @bg = 'tmc'
+    elsif @url.include? "features"
+        @bg = 'features'    
+    else
+        @bg = 'peripheral'
+    end
+
 
     @filterrific = initialize_filterrific(
      Feature,
@@ -58,6 +70,18 @@ end
 
 
 def show
+
+    @url = request.original_url
+
+    if @url.include? "hardware"
+        @bg = 'hardware'
+    elsif @url.include? "tmc"
+        @bg = 'tmc'
+    elsif @url.include? "features"
+        @bg = 'features'    
+    else
+        @bg = 'peripheral'
+    end
 
 end
 
