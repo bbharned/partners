@@ -36,7 +36,7 @@ def index
       sanitize_params: true,
    ) or return
    
-   @features = @filterrific.find.page(params[:page]).order("name asc")
+   @features = @filterrific.find.page(params[:page])
 
    respond_to do |format|
      format.html
