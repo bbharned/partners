@@ -205,9 +205,13 @@
 			<div class="card-footer">
 				Only <%= pluralize(@spotsleft, "spot") %> left!
 			</div>
-		<% elsif @spotsleft == 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
+		<% elsif @spotsleft == 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) && @event.capacity != nil && @event.capacity != "" %>
 			<div class="card-footer">
 				Registration is full
+			</div>
+		<% elsif @event.capacity == nil || @event.capacity == "" %>
+			<div class="card-footer">
+				Open Event - Registration not Required
 			</div>
 		<% end %>
 	</div>
