@@ -11,7 +11,7 @@ class Feature < ActiveRecord::Base
 
 
 filterrific(
-   default_filter_params: { sort_this_feature: 'tmversion_version_asc' },
+   default_filter_params: { sort_this_feature: 'name_asc' },
    available_filters: [
      :sort_this_feature,
      :with_search_feature,
@@ -55,10 +55,8 @@ scope :sort_this_feature, ->(sort_option) {
   when /^name_/
     #order("events.live asc").
     order("features.name #{direction}")
-  when /^tmversion_version_/
-    order("LOWER(tmversions.version) #{direction}").includes(:tmversions).references(:tmversions)
   when /^created_at_/
-    order("features.created_at_ #{direction}")
+    order("features.tmversions #{direction}")
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
@@ -120,7 +118,6 @@ scope :with_firmwarebuild, ->(firmwarebuild_ids) {
   # It is called in the controller as part of `initialize_filterrific`.
   def self.options_for_sort_this_feature
     [
-      ["TM Version (asc)", "tmversion_version_asc"],
       ["Name (asc)", "name_asc"],
       ["name (desc)", "name_desc"],
     ]
