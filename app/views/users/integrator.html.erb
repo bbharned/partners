@@ -25,8 +25,10 @@
 			<div class="row">
 				
 				<div class="col-md-3">
-					<% if user.certexpire < Date.today %>
+					<% if user.certexpire != nil && user.certexpire < Date.today %>
 						<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user), style: "color:red;" %>
+					<% elsif user.certexpire == nil || user.certexpire == "" %>
+						<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user), style: "color:cadetblue;" %>
 					<% else %>
 						<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
 					<% end %>

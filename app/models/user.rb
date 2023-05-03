@@ -110,6 +110,15 @@ end
         UserMailer.lab_upload_notice(self).deliver_now
     end
 
+#Learning Notices
+    def send_learning_register_notice
+        UserMailer.learning_register_notice(self).deliver_now
+    end
+
+    def send_learning_user_signup_notice
+        UserMailer.learning_acct_notice_internal(self).deliver_now
+    end
+
 #Event Norifications
     def send_account_created_evt
         UserMailer.event_account_creation(self).deliver_now

@@ -170,13 +170,14 @@ def learn_signup
   @user = User.new(user_params)
   @user.needs_review = true
   @user.learn_signup = true
+  @user.referred_by = "Video Learning"
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)
-        #@user.send_signup_notice  #change for production
-        #user.send_newuser_zap
-        #@user.send_user_signup_notice #change for production
-        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You will find and cab start Video Learning below."
+        @user.send_learning_register_notice
+        @user.send_newuser_zap
+        @user.send_learning_user_signup_notice
+        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You will find and can start Video Learning below."
         redirect_to root_path
     else
         render 'learn'

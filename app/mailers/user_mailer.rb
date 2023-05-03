@@ -124,6 +124,31 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering for the ThinManager Portal', delivery_method_options: delivery_options)
   end
 
+
+  def learning_register_notice(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering for Video Learning in the ThinManager Portal', delivery_method_options: delivery_options)
+  end
+
+  def learning_acct_notice_internal(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'Video Learning Account Created', delivery_method_options: delivery_options)
+  end
+
   def lab_upload_notice(user)
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
@@ -214,7 +239,7 @@ class UserMailer < ApplicationMailer
 
   def event_account_creation(user) 
     @user = user
-    @@user = User.find(1)
+    @user = User.find(1)
     delivery_options = { address: 'smtp.gmail.com',
                          port: 587,
                          user_name: ENV["MAIL_USERNAME"],

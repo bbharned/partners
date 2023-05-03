@@ -29,6 +29,16 @@ class UserMailerPreview < ActionMailer::Preview
   	UserMailer.partner_register_notice(@user)
   end
 
+  def learning_acct_confirmation_external
+    @user = User.find(20)
+    UserMailer.learning_register_notice(@user)
+  end
+
+  def learning_acct_confirmation_internal
+    @user = User.find(20)
+    UserMailer.learning_acct_notice_internal(@user)
+  end
+
   def certification_lab_upload_notice_internal
     @user = User.find(20)
     UserMailer.lab_upload_notice(@user)
