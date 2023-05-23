@@ -75,7 +75,9 @@
 								<% if @user.street != nil && @user.street != "" %> 
 									<%= @user.street %><% if @user.street2 != "" %>, <%= @user.street2 %><% end %><br />
 									<%= @user.city %>, <%= @user.state %> 
-									<% if @user.zip.digits.length < 5 %> 
+									<% if @user.zip == nil || @user.zip == "" %>
+									
+									<% elsif @user.zip.digits.length < 5 %> 
 										<%= "0#{@user.zip}" %>
 									<% else %>
 										<%= @user.zip %>
