@@ -21,16 +21,24 @@
 	<div class="row">
 		
 		<div class="col-md-6">
-			<%= @demokit.user.firstname %> <%= @demokit.user.lastname %><br />
-			<%= @demokit.user.company %><br />
-			<%= link_to "#{@demokit.user.email}", "mailto:#{@demokit.user.email}" %><br />
-			<%= @demokit.user.cell %>
+			<% if @demokit.user != nil %>
+				<%= @demokit.user.firstname %> <%= @demokit.user.lastname %><br />
+				<%= @demokit.user.company %><br />
+				<%= link_to "#{@demokit.user.email}", "mailto:#{@demokit.user.email}" %><br />
+				<%= @demokit.user.cell %>
+			<% else %>
+				No Assigned Contact for this Demo Kit
+			<% end %>
 		</div>
 
 		<div class="col-md-6">
 			<div class="float-right-to-left">
-				<%= @demokit.user.street %> <% if @demokit.user.street2 != nil && @demokit.user.street2 != '' %>, <%= @demokit.user.street2 %><% end %><br />
-				<%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
+				<% if @demokit.user != nil %>
+					<%= @demokit.user.street %> <% if @demokit.user.street2 != nil && @demokit.user.street2 != '' %>, <%= @demokit.user.street2 %><% end %><br />
+					<%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
+				<% else %>
+
+				<% end %>
 			</div>
 		</div>
 

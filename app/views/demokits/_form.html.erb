@@ -75,26 +75,30 @@
 
                 <div class="row">
                     <div class="col-md-5 offset-md-1">
-                        <% if @demokit.new_record? %>
+                        <% if (@demokit.new_record? && :user_id != nil) && (@demokit.new_record? && @user != nil) %>
                             <span style="font-weight: bold;"><%= @user.firstname %> <%= @user.lastname %></span><br />
                             <%= @user.company %><br />
                             <%= @user.email %><br />
                             <%= @user.cell %>
-                        <% else %>
+                        <% elsif (!@demokit.new_record? && :user_id != nil) && (!@demokit.new_record? && @user != nil) %>
                             <span style="font-weight: bold;"><%= @demokit.user.firstname %> <%= @demokit.user.lastname %></span><br />
                             <%= @demokit.user.company %><br />
                             <%= @demokit.user.email %><br />
                             <%= @demokit.user.cell %>
+                        <% else %>
+                            <p>No User Associated yet.</p>
                         <% end %>
                     </div>
                     <div class="col-md-5">
                         <div class="float-right-to-left">
-                        <% if @demokit.new_record? %>
+                        <% if (@demokit.new_record? && :user_id != nil) && (@demokit.new_record? && @user != nil) %>
                             <%= @user.street %><% if @user.street2 != nil && @user.street2 != "" %>, <%= @user.street2 %><% end %><br />
                             <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-                        <% else %>
+                        <% elsif (!@demokit.new_record? && :user_id != nil) && (!@demokit.new_record? && @user != nil) %>
                             <%= @demokit.user.street %><% if @demokit.user.street2 != nil && @demokit.user.street2 != "" %>, <%= @demokit.user.street2 %><% end %><br />
                             <%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
+                        <% else %>
+                            <p>Associate User</p>
                         <% end %>
                         </div>
                     </div>

@@ -37,13 +37,21 @@ end
 
 def new
 	@demokit = Demokit.new
-    @user = User.find(params[:user_id])
+    if params[:user_id]
+        @user = User.find(params[:user_id])
+    else
+        @user = nil
+    end
 end
 
 
 
 def edit
-    #@demokit.user = User.find(@demokit.user_id)
+    if @demokit.user_id != nil
+        @user = User.find(@demokit.user_id)
+    else 
+        @user = nil
+    end
 end
 
 
