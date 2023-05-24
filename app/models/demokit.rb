@@ -4,15 +4,28 @@ class Demokit < ActiveRecord::Base
 
 
 def self.to_csv
-  attributes = %w{serial_number reason region tmversion esxiversion status firstname lastname email phone company street street2 street3 city state postal_code change_date notes created_at}
+  
+  attributes = %w{serial_number user_id user.firstname user.lastname user.email user.company reason region tmversion esxiversion status change_date notes created_at}
 
-  CSV.generate(headers: true) do |csv|
-    csv << attributes
+  # CSV.generate(headers: true, write_nil_value: nil, write_empty_value: "") do |csv|
+  #   csv << attributes
 
-    all.each do |kit|
-      csv << attributes.map{ |attr| kit.send(attr) }
+  #   all.each do |kit|
+  #     csv << attributes.map{ |attr| kit.send(attr) }
+  #   end
+
+  # end
+
+  CSV.generate(write_headers: true, write_nil_value: nil, headers: attributes) do |csv|
+    method_chains = attributes.map { |a| a.split('.') }
+
+    find_each do |user|
+      csv << method_chains.map do |chain| 
+        chain.reduce(user) { |obj, method_name| obj = obj.try(method_name.to_sym) }
+      end
     end
   end
+
 end	
 
 

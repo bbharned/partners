@@ -113,6 +113,7 @@ def signup_evt
   @registrations = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
+  @user.event_signup = true
   @user.referred_by = "Events"
     if @user.save
         session[:user_id] = @user.id

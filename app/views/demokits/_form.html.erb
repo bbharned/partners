@@ -98,15 +98,24 @@
                             <%= @demokit.user.street %><% if @demokit.user.street2 != nil && @demokit.user.street2 != "" %>, <%= @demokit.user.street2 %><% end %><br />
                             <%= @demokit.user.city %>, <%= @demokit.user.state %> <%= @demokit.user.zip %>
                         <% else %>
-                            <p>Associate User</p>
+                            
                         <% end %>
                         </div>
                     </div>
                 </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-5 offset-md-1">
+                        <h6 style="">Change Associated User</h6>
+                        <p>To change or set the user associated to this Demo Kit, insert or change the user ID and save the kit.</p>
+                    </div>
+                    <div class="col-md-2 offset-md-3">
+                        <h6 align="center">User ID</h6>
+                        <%= f.text_field :user_id, class: "form-control", style: "text-align:center;" %>
+                    </div>
+                </div>
 
-        
-
-        <br />
+        <br /><br />
 
         <div class="form-group">
             <div class="row">
