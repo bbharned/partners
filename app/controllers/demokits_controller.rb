@@ -39,6 +39,7 @@ def new
 	@demokit = Demokit.new
     if params[:user_id]
         @user = User.find(params[:user_id])
+        @demokit.user_id = @user.id
     else
         @user = nil
     end
