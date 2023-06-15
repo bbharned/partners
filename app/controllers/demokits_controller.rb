@@ -1,5 +1,6 @@
 class DemokitsController < ApplicationController
-	before_action :require_admin
+	before_action :require_admin, except: :show
+    before_action :set_viewers, only: :show
 	before_action :set_demokit, only: [:edit, :update, :show]
 
 
@@ -107,6 +108,21 @@ private
 
     def set_demokit
         @demokit = Demokit.find(params[:id])
+    end
+
+    def set_viewers
+        @demokit = Demokit.find(params[:id])
+        if @demokit.user_id != nil
+            @user = User.find(@demokit.user_id)
+        end
+        
+        if @user && (logged_in? && !current_user.admin? && @user.id != current_user.id)
+            flash[:danger] = "Sorry, you can't view that page"
+            redirect_to root_path
+        elsif !@user && !current_user.admin?
+            flash[:danger] = "Sorry, you can't view that page"
+            redirect_to root_path
+        end
     end
 
 
