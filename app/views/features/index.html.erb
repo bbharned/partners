@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="float-right">
-			<% if logged_in? && current_user.admin? %>
+			<% if (logged_in? && current_user.admin?) || (logged_in? && current_user.hw_admin?) %>
 				<%= link_to "Add Feature", new_feature_path, class: "btn btn-md btn-primary", style: "margin-top:0px;" %>
 			<% end %>
 		</div>
