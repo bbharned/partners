@@ -73,6 +73,7 @@ def learning
     @secquizzes = @quizzes.where(categories: { name: "Security" })
     @mobquizzes = @quizzes.where(categories: { name: "Mobility" })
     @configquizzes = @quizzes.where(categories: { name: "Configuration" })
+    @advancedquizzes = @quizzes.where(categories: { name: "Advanced" })
     @badge = UserBadge.where(user_id: @user.id).take
 
 

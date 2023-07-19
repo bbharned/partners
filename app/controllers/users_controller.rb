@@ -178,8 +178,8 @@ def learn_signup
         @user.send_learning_register_notice
         @user.send_newuser_zap
         @user.send_learning_user_signup_notice
-        flash[:success] = "Welcome to the ThinManger Portal. Your account has been created. This is the Dashboard. You will find and can start Video Learning below."
-        redirect_to root_path
+        flash[:success] = "Welcome to the ThinManger Portal and the Video Training Course. As you complete each section you will receive a badge and be one step closer to a ThinManager expert!"
+        redirect_to learning_path
     else
         render 'learn'
     end

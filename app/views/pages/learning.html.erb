@@ -167,6 +167,33 @@
 			
 
 	</table>
+
+
+	<!-- Insert Advanced Videos Table Here. Include if advanced videos statement, otherwise blank -->
+	<% if @advancedquizzes.any? %>
+		<h5 align="center" style="margin-top:100px;">Additional Advanced Videos</h5>
+		<table width="100%" class="learning-table advanced-vid-table">
+			<tr class="learn-table-heading">
+			<th>&nbsp;</th>
+			<th width="70%">Name</th>
+			<th width="30%">Passed</th>
+		</tr>
+		<% @advancedquizzes.each do |quiz| %>
+		<% @query = UserQuiz.where(user_id: @user.id, quiz_id: quiz.id) %>
+		<tr class="table-rows">
+			<td><%= image_tag("icon-thinman.png") %></td>
+			<td><%= link_to quiz.name, quiz_path(quiz) %></td>
+			<% if @query.count > 0 %>
+				<td><%= image_tag "checked.png" %></td>
+			<% else %>
+				<td>&nbsp;</td>
+			<% end %>
+		</tr>
+		<% end %>
+		</table>
+	<% end %>
+
+
 <% else %>
 <p>There no quizzes yet assigned for learning</p>
 <% end %>
