@@ -160,8 +160,8 @@ ul.pagination {
     margin-top: 25px;
 }
 .cert-plug-box {
-    width:100%; background-color: #f1f1f1;
-    padding: 10px 20px; border-radius: 10px;
+    width:100%; background-color: #f1f1f1; 
+    padding: 10px 20px; border-radius: 10px; height:100%;
 }
 .cert-plug-box h6 {
     margin-bottom: 3px;
