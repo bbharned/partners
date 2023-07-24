@@ -7,32 +7,39 @@
 
 
 <%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-<div class="row" style="margin-bottom:5px;">
-	<div class="col-md-6 offset-md-1">
-		<div class="form-label">Search</div>
-		<%= f.text_field(
-		  :with_badge_search,
-		  class: 'filterrific-periodically-observed form-control',
-		  placeholder: 'Search Badges Here'
-		) %>
+
+<div class="form-group">
+	<div class="row" style="margin-bottom:5px;">
+		<div class="col-md-6 offset-md-1">
+			<div class="form-label">Search</div>
+			<%= f.text_field(
+			  :with_badge_search,
+			  class: 'filterrific-periodically-observed form-control',
+			  placeholder: 'Search Badges Here'
+			) %>
+		</div>
+		
+		<div class="col-md-4">
+		    <div class="form-label">Badge Type</div>
+		    <%= f.select(
+		      :with_badge_type,
+		      @filterrific.select_options[:with_badge_type],
+		      { include_blank: '- Any -' }, class: "form-control"
+		    ) %>
+		</div>
 	</div>
-	
-	<div class="col-md-4">
-	    <div class="form-label">Badge Type</div>
-	    <%= f.select(
-	      :with_badge_type,
-	      @filterrific.select_options[:with_badge_type],
-	      { include_blank: '- Any -' }, class: "form-control"
-	    ) %>
+</div>
+
+<div class="form-group">
+	<div class="row" style="margin-top:10px;">
+		<div class="col-sm-3 offset-sm-8">
+		    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>
+		</div>
 	</div>
 </div>
 
 
-<div class="row" style="margin-top:10px;">
-	<div class="col-sm-3 offset-sm-8">
-	    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>
-	</div>
-</div>
+
 <% end %>
 
 

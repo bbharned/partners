@@ -4,13 +4,16 @@
 
     <% if @badges.any? %>
           
-          <br />
           <hr />
-          
 
-          <p>(<%= pluralize(@badges.count, "results of users with badges") %>) &nbsp;<span style="font-size:.75em; display:none;"><a href="/badges.csv">(export CSV)</a></span></p>
+          <div class="row">
+            <div class="col-md-9">
+              <%= pluralize(@badges.count, "results of users with badges") %>
+            </div>
+            
+          </div>
 
-          <br />
+          <br /><br />
 
 
           <div class="row" style="padding-left:10px; padding-right:10px; font-weight: bold; margin-bottom:5px;">
@@ -101,7 +104,6 @@
 
     <% else %>
 
-      <br />
       <hr />
 
       <p align="center" style="color:darkorange; margin-top:45px;">There are no Badges matching that criteria</p>
