@@ -48,6 +48,7 @@ post 'uploads', to: 'pages#destroy_labfile'
 get 'rau', to: 'users#rau'
 post 'rau', to: 'users#signup_rau'
 get 'user/rauusers', to: 'users#rauusers'
+get 'user/videousers', to: 'users#videousers'
 get 'learn', to: 'users#learn'
 post 'learn', to: 'users#learn_signup'
 

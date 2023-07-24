@@ -38,6 +38,7 @@ end
 
 def dashboard
 	@user = current_user
+    @badge = UserBadge.where(user_id: @user.id).take 
     @license = License.where(user_id: current_user.id).first
     @listing = Listing.where(user_id: current_user.id).first
     @postal_code = (@user.zip).to_s
@@ -242,11 +243,12 @@ end
 def reports
     @users = User.all
     @allquizzed = UserQuiz.all
+    @configbadges = UserBadge.where(configuration: true)
     @prodbadges = UserBadge.where(productivity: true)
     @visbadges = UserBadge.where(visualization: true)
     @secbadges = UserBadge.where(security: true)
     @mobbadges = UserBadge.where(mobility: true)
-    @badgesearned = @prodbadges.count + @visbadges.count + @secbadges.count + @mobbadges.count
+    @badgesearned = @configbadges.count + @prodbadges.count + @visbadges.count + @secbadges.count + @mobbadges.count
     
     #@userslastmonth = User.where(created_at: 1.month.ago..Date.tomorrow)
     @distributors = User.where(prttype: "Distributor")
@@ -336,6 +338,8 @@ def reports
     @pastregistered = EventAttendee.joins(:event).where("endtime < ?", Date.today)
     @pastattended = @pastregistered.where(:checkedin => true)
     @evt_average_attend = ((@pastattended.count).to_f / (@pastregistered.count).to_f) * 100
+
+    @learn_users = User.where(referred_by: "Video Learning")
 
 end
 

@@ -34,35 +34,7 @@
 
 
 
-<% if (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire == nil) || (!@current_user.admin && @current_user.prttype == "Integrator" && @current_user.certexpire != nil && @current_user.certexpire < Date.today) %>
-<!-- && (@current_user.certexpire < Date.today) -->
-<br />
 
-	<div class="col-md-8 offset-md-2">
-		<div class="well recert-alert" style="margin-bottom:15px; border: 5px solid red; background-color:#F46767;">
-			<div class="row">
-				<div class="col-md-9">
-					<p><span class="bold">Your ThinManager Certification has expired or has never been completed</span>.  <span class="goAway"><br /> </span>You need to get recertified.  Don't&nbsp;worry, this should be pretty easy.</p>
-				</div>
-				<div class="col-md-3">
-					<div align="right"><%= link_to "Get Recertified", labs_path, class: "btn btn-danger" %></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="row" style="margin-bottom:55px;">
-		<div class="col-md-8 offset-md-4">
-			<%= link_to "Get Recertified", labs_path %>
-			&nbsp;&nbsp;|&nbsp;&nbsp;
-			<%= link_to "Contact Us with Questions", "mailto:info@thinmanager.com" %>
-		</div>
-	</div>
-
-
-
-<% end %>
 
 
 
@@ -90,19 +62,6 @@
 	</div>
 	
 
-
-	<% if @current_user.admin || 
-		(@current_user.certexpire != nil && @current_user.certexpire > Date.today && !@current_user.needs_review) %>
-		<div class="row cert-get-button">
-			<div class="col-md-12">
-				<%= link_to "View Certificate", mycert_path, class: "btn btn-info" %>
-			</div>
-		</div>
-	<% end %>
-	
-
-
-
 	<hr />
 	
 
@@ -122,13 +81,102 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
 <br />
+
+	<!----------------- Knowledge Progress ---------------->
+	<div class="well progress-well">
+		<div class="row">
+			<div class="col-12">
+				<h3 style="text-align:center;">ThinManager Knowledge Progress</h3>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="row align-items-center">
+				<div class="col-md-3 dash-cert-col">
+					<h5>Certification</h5>
+					<!-- functional dynamic button for certification -->
+					<% if @user.certexpire != nil && @user.certexpire > Date.today %>
+						<%= link_to "View Certificate", mycert_path, class: "btn btn-info" %>
+					<% elsif @user.certexpire != nil && @user.certexpire < Date.today %>
+						<%= link_to "Get Recertified", labs_path, class: "btn btn-danger btn-sm" %>
+					<% else %>
+						<%= link_to "Get Certified", labs_path, class: "btn btn-outline-primary btn-sm" %>
+					<% end %>
+				</div>
+				
+				<div class="col-md-9">
+				
+					<div class="row align-items-center">
+						<div class="col-md-5">
+							<div class="right-to-center">
+								<h5>Video Training Progress</h5>
+								<% if @badge != nil && @badge.configuration && @badge.productivity && @badge.visualization && @badge.security && @badge.mobility %>
+									<span style="color:#e27a13;">ALL BADGES COMPLETE!!</span>
+								<% else %>
+									<%= link_to "Video Training", learning_path, class: "btn btn-outline-primary btn-sm" %>
+								<% end %>
+							</div>
+						</div>
+						<div class="col-md-7 dash-badge-row">
+							<div class="profile-badges">	
+								<% if @badge != nil && @badge.configuration %>
+									<div class="d-badge">
+										<%= image_tag("badge-configuration.png") %>
+									</div>
+								<% else %>
+									<div class="d-badge-opacity">
+										<%= image_tag("badge-configuration.png") %>
+									</div>
+								<% end %>
+								<% if @badge != nil && @badge.productivity %>
+									<div class="d-badge">
+										<%= image_tag("badge-productivity.png") %>
+									</div>
+								<% else %>
+									<div class="d-badge-opacity">
+										<%= image_tag("badge-productivity.png") %>
+									</div>
+								<% end %>
+								<% if @badge != nil && @badge.visualization %>
+									<div class="d-badge">
+										<%= image_tag("badge-visualization.png") %>
+									</div>
+								<% else %>
+									<div class="d-badge-opacity">
+										<%= image_tag("badge-visualization.png") %>
+									</div>	
+								<% end %>
+								<% if @badge != nil && @badge.security %>
+									<div class="d-badge">
+										<%= image_tag("badge-security.png") %>
+									</div>
+								<% else %>
+									<div class="d-badge-opacity">
+										<%= image_tag("badge-security.png") %>
+									</div>
+								<% end %>
+								<% if @badge != nil && @badge.mobility %>
+									<div class="d-badge">
+										<%= image_tag("badge-mobility.png") %>
+									</div>
+								<% else %>
+									<div class="d-badge-opacity">
+										<%= image_tag("badge-mobility.png") %>
+									</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+<br /><br />
 
 
 

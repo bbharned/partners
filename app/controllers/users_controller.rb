@@ -350,6 +350,17 @@ def eventusers
     end
 end
 
+def videousers
+    @sort = [params[:sort]]
+    @users = User.where(referred_by: "Video Learning").paginate(page: params[:page], per_page: 25).order(@sort)
+    @allusers = User.all
+
+    respond_to do |format|
+      format.html { render "videousers" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_Events-#{Date.today}.csv" }
+    end
+end
+
 
 
 
@@ -365,6 +376,10 @@ end
 
 
 def show
+     
+     @badge = UserBadge.where(user_id: @user.id).take   
+
+
      @demokits = Demokit.where(user_id: @user.id)
      @user_certs = Certification.where(user_id: @user.id).order("date_earned desc")   
      @user_flexs = Flexforward.where(user_id: @user.id).limit(10).order("id desc")

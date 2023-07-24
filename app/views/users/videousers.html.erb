@@ -1,0 +1,51 @@
+<div class="container" style="padding-bottom:100px;">
+
+
+<h1 class="page-header">Video Training Sign Ups<span style="font-size: .4em; font-style: italic; font-weight:normal;"> &nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
+
+<div class="right-to-center-button">
+	<a href="/user/videousers.csv" class="btn">Export (CSV)</a>
+</div>
+	
+<hr />
+<%= render 'user_filters' %>
+
+<%= render'search' %>
+<br />
+
+
+
+	<div class="paginate">
+		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+	</div>
+		<%= render 'userTableTop' %>
+	<% if @users.any? %>
+	<% @users.each do |user| %>
+		<div class="well well-space">
+			<div class="row">
+				
+				<div class="col-md-3">
+					<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
+				</div>
+				<div class="col-md-3">
+					<%= user.company %>
+				</div>
+				<div class="col-md-2">
+					<%= user.prttype %>
+				</div>
+				<div class="col-md-2">
+					<%= user.channel %>
+				</div>
+				<div class="col-md-2 delete-action">
+					<%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete this partner?"}, style: "color:red; font-size:.8em;" %>
+				</div>
+			</div>	
+		</div>
+		
+	<% end %>
+	<% end %>
+<br /><br />
+	<div class="paginate">
+		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+	</div>
+</div>

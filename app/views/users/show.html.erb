@@ -42,6 +42,66 @@
 				</div>
 			</div>
 		</div>
+		<hr  style="margin-bottom:0px;" />
+
+		<div class="row align-items-center">
+			<div class="col-md-5">
+				<div class="left-to-center">
+					<h5>Video Training Progress</h5>
+					<%= link_to "Video Training", learning_path, class: "btn btn-outline-primary btn-sm" %>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="profile-badges">	
+					<% if @badge != nil && @badge.configuration %>
+						<div class="d-badge">
+							<%= image_tag("badge-configuration.png") %>
+						</div>
+					<% else %>
+						<div class="d-badge-opacity">
+							<%= image_tag("badge-configuration.png") %>
+						</div>
+					<% end %>
+					<% if @badge != nil && @badge.productivity %>
+						<div class="d-badge">
+							<%= image_tag("badge-productivity.png") %>
+						</div>
+					<% else %>
+						<div class="d-badge-opacity">
+							<%= image_tag("badge-productivity.png") %>
+						</div>
+					<% end %>
+					<% if @badge != nil && @badge.visualization %>
+						<div class="d-badge">
+							<%= image_tag("badge-visualization.png") %>
+						</div>
+					<% else %>
+						<div class="d-badge-opacity">
+							<%= image_tag("badge-visualization.png") %>
+						</div>	
+					<% end %>
+					<% if @badge != nil && @badge.security %>
+						<div class="d-badge">
+							<%= image_tag("badge-security.png") %>
+						</div>
+					<% else %>
+						<div class="d-badge-opacity">
+							<%= image_tag("badge-security.png") %>
+						</div>
+					<% end %>
+					<% if @badge != nil && @badge.mobility %>
+						<div class="d-badge">
+							<%= image_tag("badge-mobility.png") %>
+						</div>
+					<% else %>
+						<div class="d-badge-opacity">
+							<%= image_tag("badge-mobility.png") %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
 		<hr />
 		<br />
 		<div class="row">
