@@ -139,5 +139,6 @@ resources :tmversions, except: [:show]
 resources :tmprereqs, except: [:show]
 resources :firmwarebuilds, except: [:show]
 
+get 'userbadges', to: 'userbadges#index'
 
 end

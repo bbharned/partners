@@ -1,0 +1,110 @@
+<div id="filterrific_results">
+
+  
+
+    <% if @badges.any? %>
+          
+          <br />
+          <hr />
+          
+
+          <p>(<%= pluralize(@badges.count, "results of users with badges") %>) &nbsp;<span style="font-size:.75em; display:none;"><a href="/badges.csv">(export CSV)</a></span></p>
+
+          <br />
+
+
+          <div class="row" style="padding-left:10px; padding-right:10px; font-weight: bold; margin-bottom:5px;">
+            <div class="col-md-4">User Name</div>
+            <div class="col-md-4">Company Name</div>
+            <div class="col-md-4">Badges Earned</div>
+          </div>
+
+          <% @badges.each do |b| %>
+          
+
+            <div class="well-sm" style="border-radius:7px; padding-left:10px; padding-right:10px;">
+              <div class="row align-items-center">
+                <div class="col-md-4">
+                  <%= link_to "#{b.user.firstname} #{b.user.lastname}", user_path(b.user) %>
+                </div>
+                <div class="col-md-4">
+                  <%= b.user.company %>
+                </div>
+                <div class="col-md-4">
+                  <div class="float-right">
+                    <div class="profile-badges profile-badges-small"> 
+                        <% if b.configuration %>
+                          <div class="d-badge">
+                            <%= image_tag("badge-configuration.png") %>
+                          </div>
+                        <% else %>
+                          <div class="d-badge-opacity">
+                            <%= image_tag("badge-configuration.png") %>
+                          </div>
+                        <% end %>
+                        <% if b.productivity %>
+                          <div class="d-badge">
+                            <%= image_tag("badge-productivity.png") %>
+                          </div>
+                        <% else %>
+                          <div class="d-badge-opacity">
+                            <%= image_tag("badge-productivity.png") %>
+                          </div>
+                        <% end %>
+                        <% if b.visualization %>
+                          <div class="d-badge">
+                            <%= image_tag("badge-visualization.png") %>
+                          </div>
+                        <% else %>
+                          <div class="d-badge-opacity">
+                            <%= image_tag("badge-visualization.png") %>
+                          </div>  
+                        <% end %>
+                        <% if b.security %>
+                          <div class="d-badge">
+                            <%= image_tag("badge-security.png") %>
+                          </div>
+                        <% else %>
+                          <div class="d-badge-opacity">
+                            <%= image_tag("badge-security.png") %>
+                          </div>
+                        <% end %>
+                        <% if b.mobility %>
+                          <div class="d-badge">
+                            <%= image_tag("badge-mobility.png") %>
+                          </div>
+                        <% else %>
+                          <div class="d-badge-opacity">
+                            <%= image_tag("badge-mobility.png") %>
+                          </div>
+                        <% end %>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+
+
+
+
+          <% end %>
+          
+
+          <% if @badges.count > 20 %>
+            <div class="paginate" style="margin-top:20px;">
+              <%= will_paginate(@badges, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+            </div>
+          <% end %>
+
+
+    <% else %>
+
+      <br />
+      <hr />
+
+      <p align="center" style="color:darkorange; margin-top:45px;">There are no Badges matching that criteria</p>
+
+    <% end %>
+
