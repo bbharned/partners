@@ -206,8 +206,9 @@
 				<div class="well centered">
 					<h5>Missed Most All Time</h5>
 					<% if @question_missed_most != nil %>
-						<p><%= @question_missed_most %></p>
-						<p>[ Question ID: <%= link_to "#{@mostmissed}", edit_question_path(id: @mostmissed, quiz_id: @most_missed_quiz) %> ]</p>
+						<p><%= @question_missed_most %><br />
+						[ Question ID: <%= link_to "#{@mostmissed}", edit_question_path(id: @mostmissed, quiz_id: @most_missed_quiz) %> ]</p>
+						<p>Quiz: <%= link_to "#{@most_missed_quiz.name}", quiz_path(@most_missed_quiz) %></p>
 					<% else %>
 						<p>&nbsp;</p>
 					<% end %>
@@ -217,8 +218,9 @@
 				<div class="well centered">
 					<h5>Most Last 30 days</h5>
 					<% if @question_missed_most_month != nil %>
-						<p><%= @question_missed_most_month %></p>
-						<p>[ Question ID: <%= link_to "#{@mostmissed_month}", edit_question_path(id: @mostmissed_month, quiz_id: @most_missed_quiz_month) %> ]</p>
+						<p><%= @question_missed_most_month %><br />
+						[ Question ID: <%= link_to "#{@mostmissed_month}", edit_question_path(id: @mostmissed_month, quiz_id: @most_missed_quiz_month) %> ]</p>
+						<p>Quiz: <%= link_to "#{@most_missed_quiz_month.name}", quiz_path(@most_missed_quiz_month) %></p>
 					<% else %>
 						<p>&nbsp;</p>
 					<% end %>
