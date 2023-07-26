@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-	before_action :require_admin, except: [:index, :show, :register, :reg_cancel]
+	before_action :require_admin, except: [:index, :show, :register, :reg_cancel, :hosted]
 	before_action :set_event, only: [:edit, :update, :show, :register], except: [:destroy_reg]
+    before_action :require_host, only: :hosted
 
 
 def index
@@ -79,9 +80,10 @@ end
     if (current_user == nil && !@event.live) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && !@event.live)
         flash[:warning] = "You can not view this event."
         redirect_to events_path
-    elsif (current_user == nil && @event.starttime < Date.today) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && @event.starttime < Date.today)
+    elsif (current_user == nil && @event.starttime < Date.today) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && @event.starttime < Date.today && @event.viewer != current_user.email)
         flash[:warning] = "You can not view this event."
         redirect_to events_path
+
     else
         
         @full = false
@@ -306,6 +308,11 @@ end
 
 
 
+def hosted
+
+end
+
+
 
 
 private
@@ -317,6 +324,13 @@ private
 
     def set_event
         @event = Event.find(params[:id])
+    end
+
+    def require_host
+        if logged_in? and has_events.count < 1
+            flash[:danger] = "You are not permitted to view that page. You are not the host of any events."
+            redirect_to root_path
+        end
     end
 
 

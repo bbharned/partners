@@ -1,0 +1,85 @@
+<div id="filterrific_results">
+
+  
+
+    <% if has_events.any? %>
+          
+          <% has_events.each do |e| %>
+          <% @reg_users = EventAttendee.where(event_id: e.id, canceled: false) %>
+
+          <div class="card" style="margin-bottom:15px;">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-4"><%= link_to "#{e.name}", event_path(e) %></div>
+                <div class="col-4">
+                  <% e.tags.each do |tag| %>
+                    <% if tag.name.include? "Internal" || "internal" %>
+                      <span style="color:red; font-size:.8em;">INTERNAL RA EVENT</span>
+                    <% end %>
+                  <% end %>
+                  <% if !e.live %>
+                    <span style="font-size:.75em; font-style:italic;">&nbsp;[event not live]</span>
+                  <% elsif e.starttime != nil && e.starttime != "" && e.endtime < Date.today %>
+                    <span style="font-size:.75em; font-style:italic; color:#666666;">&nbsp;[past event]</span>
+                  <% end %>
+                  </div>
+                <div class="col-4">
+                  <div class="float-right">
+                    <% if e.evtcategories.any? %>
+                      <% if e.evtcategories.count >1 %>
+                        <% e.evtcategories.each do |cat| %>
+                          <%= cat.name %>,&nbsp;
+                        <% end %>
+                      <% else %>
+                        <% e.evtcategories.each do |cat| %>
+                          <%= cat.name %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <% if e.starttime != nil && e.starttime != "" %>
+                    <%= e.starttime.strftime("%m/%d/%Y") %> at <%= e.starttime.strftime("%I:%M %P")  %>
+                  <% else %>
+                    No event date and time set.
+                  <% end %>
+                  </div>
+                <div class="col-md-3"><%= @reg_users.count %> registered of <%= e.capacity %></div>
+                <div class="col-md-5">
+                  <div class="float-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+          
+    <% end %>
+          
+
+    <% if has_events.count > 10 %>
+      <div class="paginate" style="margin-top:20px;">
+        <%= will_paginate(@events, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+      </div>
+    <% end %>
+
+
+    <% else %>
+
+      <p align="center" style="color:darkorange; margin-top:45px;">There are no events or results to your query</p>
+
+    <% end %>
+
+
+
+
+
+
+</div>
+

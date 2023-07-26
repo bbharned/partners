@@ -1,0 +1,21 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<h1 class="page-header">Your Hosted Events</h1>
+<hr />
+
+<% if has_events.any? %>
+
+
+	<%= render(
+	partial: 'events/hostedlist',
+	locals: { events: has_events }
+) %>
+
+
+
+<% else %>
+
+	<p>You have no events that you are hosting.</p>
+
+<% end %>
+</div>

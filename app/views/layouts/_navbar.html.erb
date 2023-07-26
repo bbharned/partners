@@ -87,6 +87,10 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "All Events", events_path, class: 'dropdown-item' %>
                 <%= link_to "My Events", user_path(current_user), class: 'dropdown-item' %>
+                <% if has_events.count > 0 %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "My Hosted Events", event_hosted_path, class: 'dropdown-item' %>
+                <% end %>
               </div>
             </li>
             

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-helper_method :current_user, :logged_in?
+helper_method :current_user, :logged_in?, :has_events
 
 	  def current_user
 	    @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -21,7 +21,9 @@ helper_method :current_user, :logged_in?
 	    end
 	  end
 
-
+	  def has_events
+	  	@admin_events = Event.where(viewer: current_user.email)
+	  end
 
 
 end
