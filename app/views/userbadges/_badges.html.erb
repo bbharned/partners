@@ -96,7 +96,7 @@
           
 
           <% if @badges.count > 20 %>
-            <div class="paginate" style="margin-top:20px;">
+            <div class="paginate" style="margin-top:35px;">
               <%= will_paginate(@badges, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
             </div>
           <% end %>

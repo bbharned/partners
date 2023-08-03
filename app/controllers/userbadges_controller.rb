@@ -17,7 +17,7 @@ def index
       available_filters: [:sort_badge, :with_badge_search, :with_badge_type],
       sanitize_params: true,
    ) or return
-   @badges = @filterrific.find.all
+   @badges = @filterrific.find.paginate(page: params[:page], per_page: 20)
 
    respond_to do |format|
      format.html
