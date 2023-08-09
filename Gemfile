@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.7', '>= 6.1.7.3'
+gem 'rails', '~> 6.1.7', '>= 6.1.7.4'
 
 gem "activerecord", ">= 5.2.4.5"
 gem 'bootstrap', '~> 4.3.1'
@@ -65,6 +65,8 @@ gem 'rails-html-sanitizer', '~> 1.4.4'
 gem 'net-http'
 
 gem 'sitemap_generator'
+
+gem 'uri', '>= 0.12.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
