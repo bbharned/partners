@@ -248,6 +248,7 @@ def reports
     @visbadges = UserBadge.where(visualization: true)
     @secbadges = UserBadge.where(security: true)
     @mobbadges = UserBadge.where(mobility: true)
+    @allbadgesearned = UserBadge.where(configuration: true, productivity: true, visualization: true, security: true, mobility: true)
     @badgesearned = @configbadges.count + @prodbadges.count + @visbadges.count + @secbadges.count + @mobbadges.count
     
     #@userslastmonth = User.where(created_at: 1.month.ago..Date.tomorrow)
