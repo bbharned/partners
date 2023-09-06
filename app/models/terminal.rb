@@ -6,6 +6,7 @@ class Terminal < Termcap2
     has_many :TerminalFirmwarePackages, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
     has_many :FirmwarePackages, through: :TerminalFirmwarePackages, class_name: :FirmwarePackage, foreign_key: :PackageId
     has_many :Notes, class_name: :Note, foreign_key: :TerminalId
+    # has_many :termnotes, foreign_key: :termcapmodel
 
 
 
@@ -30,38 +31,32 @@ filterrific(
 
 
 
-scope :with_search_please, lambda { |query|
-    return nil  if query.blank?
-
-    terms = query.to_s.downcase.split(/\s+/)
-
-    terms = terms.map { |e|
+scope :with_search_please, -> (search_string) {
+  return nil  if search_string.blank?
+  terms = search_string.to_s.downcase.split(/\s+/)
+  terms = terms.map { |e|
       #('%' + e + '%').gsub(/%+/, '%')
       ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
     }
-
-    num_or_conds = 2
-
+  num_or_conds = 6
     where(
       terms.map { |term|
         "(
-            LOWER(Manufacturers.Name) LIKE ? OR
-            LOWER(Terminals.Model) LIKE ?
+        LOWER(Terminals.Model) LIKE ?
+        OR LOWER(Terminals.TermcapModel) LIKE ?
+        OR LOWER(Manufacturers.Name) LIKE ?
+        OR LOWER(TerminalType.Type) LIKE ?
+        OR LOWER(Note.Description) LIKE ?
+        OR LOWER(FirmwarePackage.Version) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
-    ).includes(:Manufacturers).references(:Manufacturers)
-
-} 
-
-# scope :with_search_please, -> (search_string) {
-#   return nil  if search_string.blank?
-#   terms = search_string.to_s.downcase.split(/\s+/)
-#   terms = terms.map { |e|
-#       ('%' + e + '%').gsub(/%+/, '%')
-#     }
-#   Terminal.where("Terminals.Model LIKE ?", terms)
-# }
+    )
+    .joins(:Manufacturers).references(:ManufacturerIds)
+    .joins(:TerminalType).references(:TypeIds)
+    .includes(:Notes).references(:TerminalIds)
+    .joins(:FirmwarePackages).references(:TerminalFirmwarePackages)
+}
 
 
 scope :sorted_by, ->(sort_option) {
