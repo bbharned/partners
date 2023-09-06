@@ -20,7 +20,7 @@ filterrific(
    default_filter_params: { },
    available_filters: [
      # :sorted_by,
-     # :with_search_please,
+     :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -39,7 +39,7 @@ scope :with_search_please, -> (search_string) {
       ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
     }
   num_or_conds = 6
-    where(
+  self.where(
       terms.map { |term|
         "(
         LOWER(Terminals.Model) LIKE ?
