@@ -20,7 +20,7 @@ filterrific(
    default_filter_params: { },
    available_filters: [
      # :sorted_by,
-     # :with_search_please,
+     :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -31,31 +31,47 @@ filterrific(
 
 
 
+# scope :with_search_please, -> (search_string) {
+#   return nil  if search_string.blank?
+#   terms = search_string.to_s.downcase.split(/\s+/)
+#   terms = terms.map { |e|
+#       #('%' + e + '%').gsub(/%+/, '%')
+#       ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+#     }
+#   num_or_conds = 6
+#   self.where(
+#       terms.map { |term|
+#         "(
+#         LOWER(Terminals.Model) LIKE ?
+#         OR LOWER(Terminals.TermcapModel) LIKE ?
+#         OR LOWER(Manufacturers.Name) LIKE ?
+#         OR LOWER(TerminalType.Type) LIKE ?
+#         OR LOWER(Note.Description) LIKE ?
+#         OR LOWER(FirmwarePackage.Version) LIKE ?
+#         )"
+#       }.join(' AND '),
+#       *terms.map { |e| [e] * num_or_conds }.flatten
+#     )
+#     .joins(:Manufacturers).references(:ManufacturerIds)
+#     .joins(:TerminalType).references(:TypeIds)
+#     .includes(:Notes).references(:TerminalIds)
+#     .joins(:FirmwarePackages).references(:TerminalFirmwarePackages)
+# }
+
+
 scope :with_search_please, -> (search_string) {
+  
   return nil  if search_string.blank?
-  terms = search_string.to_s.downcase.split(/\s+/)
-  terms = terms.map { |e|
-      #('%' + e + '%').gsub(/%+/, '%')
-      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
-  num_or_conds = 6
-  self.where(
-      terms.map { |term|
-        "(
-        LOWER(Terminals.Model) LIKE ?
-        OR LOWER(Terminals.TermcapModel) LIKE ?
-        OR LOWER(Manufacturers.Name) LIKE ?
-        OR LOWER(TerminalType.Type) LIKE ?
-        OR LOWER(Note.Description) LIKE ?
-        OR LOWER(FirmwarePackage.Version) LIKE ?
-        )"
-      }.join(' AND '),
-      *terms.map { |e| [e] * num_or_conds }.flatten
-    )
-    .joins(:Manufacturers).references(:ManufacturerIds)
-    .joins(:TerminalType).references(:TypeIds)
-    .includes(:Notes).references(:TerminalIds)
-    .joins(:FirmwarePackages).references(:TerminalFirmwarePackages)
+  
+  searchterm = search_string.to_s.downcase
+
+  Terminal.where("lower(Model) LIKE ? OR lower(Model) LIKE ?", "#{searchterm}%", "%#{searchterm}%")
+  .or(Terminal.where("lower(TermcapModel) LIKE ? OR lower(TermcapModel) LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
+  .or(Terminal.where("lower(Manufacturers.Name) LIKE ? OR lower(Manufacturers.Name) LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
+  .includes(:Manufacturers).references(:ManufacturerIds)
+  .includes(:Notes).references(:TerminalIds)
+  .joins(:TerminalType).references(:TypeIds)
+
 }
 
 
