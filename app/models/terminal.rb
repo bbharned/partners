@@ -65,9 +65,9 @@ scope :with_search_please, -> (search_string) {
   
   searchterm = search_string.to_s.downcase
 
-  Terminal.where("lower(Model) LIKE ? OR lower(Model) LIKE ?", "#{searchterm}%", "%#{searchterm}%")
-  .or(Terminal.where("lower(TermcapModel) LIKE ? OR lower(TermcapModel) LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
-  .or(Terminal.where("lower(Manufacturers.Name) LIKE ? OR lower(Manufacturers.Name) LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
+  Terminal.where("Model LIKE ? OR Model LIKE ?", "#{searchterm}%", "%#{searchterm}%")
+  .or(Terminal.where("TermcapModel LIKE ? OR TermcapModel LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
+  .or(Terminal.where("Manufacturers.Name LIKE ? OR Manufacturers.Name LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
   .includes(:Manufacturers).references(:ManufacturerIds)
   .includes(:Notes).references(:TerminalIds)
   .joins(:TerminalType).references(:TypeIds)
