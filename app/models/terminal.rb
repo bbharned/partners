@@ -20,7 +20,7 @@ filterrific(
    default_filter_params: { },
    available_filters: [
      # :sorted_by,
-     # :with_search_please,
+     :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -69,9 +69,9 @@ scope :with_search_please, -> (search_string) {
   Terminal.where("Terminals.Model LIKE ? OR Terminals.Model LIKE ?", "#{searchterm}%", "%#{searchterm}%")
   .or(Terminal.where("Terminals.TermcapModel LIKE ? OR Terminals.TermcapModel LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
   # .or(Terminal.where("Manufacturers.Name LIKE ? OR Manufacturers.Name LIKE ?", "#{searchterm}%", "%#{searchterm}%"))
-  .includes(:Manufacturers).references(:ManufacturerIds)
-  .includes(:Notes).references(:TerminalIds)
-  .joins(:TerminalType).references(:TypeIds)
+  # .includes(:Manufacturers).references(:ManufacturerIds)
+  # .includes(:Notes).references(:TerminalIds)
+  # .joins(:TerminalType).references(:TypeIds)
 
 }
 
