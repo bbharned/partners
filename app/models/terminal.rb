@@ -19,8 +19,8 @@ class Terminal < Termcap2
 filterrific(
    default_filter_params: { },
    available_filters: [
-     :sorted_by,
-     :with_search_please,
+     # :sorted_by,
+     # :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
