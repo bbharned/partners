@@ -23,13 +23,13 @@
 	</div>
 	<hr style="margin-bottom:12px;" />
 	<div class="container">
-		<p><small>Welcome to the ThinManager Hardware Finder. Use the filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system.</small></p>
+		<p style="line-height:14px;"><small>Welcome to the ThinManager Hardware Finder. Use the search and filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system and sometimes less is more for results.</small></p>
 	</div>
 
 
 <% if @terminals.any? %>
 
-<div class="hardware-container" style="padding-bottom:70px; margin-top: 25px;">
+<div class="hardware-container" style="padding-bottom:70px; margin-top: 35px;">
 		
 		
 			<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -39,8 +39,8 @@
 						
 						<div class="row">
 
-							<div class="col-md-4">
-							    <div class="form-label">Search Model</div>
+							<div class="col-md-6">
+							    <div class="form-label">Search Model Name</div>
 							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 							    <%= f.text_field(
 							      :with_search_please,
@@ -48,7 +48,20 @@
 							    ) %>
 							</div>
 
-							<div class="col-sm-4">
+							<div class="col-md-6">
+							    <div class="form-label">Search ThinManager Termcap Notes</div>
+							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+							    <%= f.text_field(
+							      :with_note_search,
+							      class: 'filterrific-periodically-observed form-control'
+							    ) %>
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-6">
 							  <div class="form-label">Manufacturer</div>
 							    <%= f.select(
 									:with_manufacturer,
@@ -57,7 +70,7 @@
 								) %> 
 							</div>
 
-						    <div class="col-sm-4">
+						    <div class="col-md-6">
 						      <div class="form-label">Boot Type</div>
 						      <%= f.select(
 						        :with_boot_type,
@@ -70,7 +83,7 @@
 
 						<div class="row">
 							
-							  <div class="col-sm-4">
+							  <div class="col-md-4">
 							    <div class="form-label">Firmware Compatibility</div>
 							    <%= f.select(
 							      :with_firm,
@@ -79,7 +92,7 @@
 							    ) %>
 							  </div>
 
-							  <div class="col-sm-4">
+							  <div class="col-md-4">
 							    <div class="form-label">Max Display Ports</div>
 							    <%= f.select(
 							      :with_monitor_count,
@@ -88,7 +101,7 @@
 							    ) %>
 							  </div>
 							  
-							  <div class="col-sm-4">
+							  <div class="col-md-4">
 							    <div class="form-label">Max Ethernet Ports</div>
 							    <%= f.select(
 							      :with_ethernet_count,
@@ -96,6 +109,12 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
+						</div>
+
+						<div class="row">
+
+							
+
 						</div>
 
 						

@@ -6,7 +6,7 @@ class Terminal < Termcap2
     has_many :TerminalFirmwarePackages, class_name: :TerminalFirmwarePackage, foreign_key: :TerminalId
     has_many :FirmwarePackages, through: :TerminalFirmwarePackages, class_name: :FirmwarePackage, foreign_key: :PackageId
     has_many :Notes, class_name: :Note, foreign_key: :TerminalId
-    # has_many :termnotes, foreign_key: :termcapmodel
+    has_one :termnote, foreign_key: :termcapmodel
 
 
 
@@ -21,6 +21,7 @@ filterrific(
    available_filters: [
      # :sorted_by,
      :with_search_please,
+     :with_note_search,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -94,6 +95,22 @@ scope :with_search_please, ->(search_string) {
     # .left_joins(:Notes)
     # .joins(:FirmwarePackages)
 }
+
+
+scope :with_note_search, ->(search_string) {
+  return none if search_string.blank? # A scope should not return nil
+
+  search_columns = [
+    Note.arel_table[:Description]
+  ]
+
+  terms = search_string.to_s
+          .gsub("*","%")
+
+  where('Description LIKE ?', "%#{terms}%")
+    .left_joins(:Notes)
+}
+
 
 
 scope :sorted_by, ->(sort_option) {

@@ -15,10 +15,10 @@
 	</div>
 	<hr style="margin-bottom:12px;" />
 	<div class="container">
-		<p><small>Welcome to the ThinManager Hardware Finder. Use the filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system.</small></p>
+		<p style="line-height:14px;"><small>Welcome to the ThinManager Hardware Finder. Use the filter fields below to find the results custom to exactly what you are looking for as it pertains to known ThinManager compatible hardware. Be aware that this is a "narrow-down" filtering result system.</small></p>
 	</div>
 
-	<div class="hardware-container" style="padding-bottom:70px; margin-top: 25px;">
+	<div class="hardware-container" style="padding-bottom:70px; margin-top: 35px;">
 		
 		
 			<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -27,15 +27,16 @@
 						
 						<div class="row">
 					  	
-							  <!-- <div class="col-sm-4">
+							  <div class="col-sm-6">
 							    <div class="form-label">Search</div>
 							    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 							    <%= f.text_field(
 							      :with_search, autofocus: true,
 							      class: 'filterrific-periodically-observed form-control'
 							    ) %>
-							  </div> -->
-							  <div class="col-sm-4">
+							  </div>
+
+							  <div class="col-sm-6">
 							    <div class="form-label">Hardware Type</div>
 							    <%= f.select(
 							      :with_hwtype_id,
@@ -43,7 +44,8 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
-							  <div class="col-sm-4">
+
+							  <div class="col-sm-6">
 							    <div class="form-label">Hardware Brand</div>
 							    <%= f.select(
 							      :with_maker_id,
@@ -51,7 +53,8 @@
 							      { include_blank: '- Any -' }, class: "form-control"
 							    ) %>
 							  </div>
-							  <div class="col-sm-4">
+
+							  <div class="col-sm-6">
 							   <div class="form-label">Status</div>
 								   	<%= f.select(
 								      :with_hwstatus_id,
