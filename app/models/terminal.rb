@@ -21,7 +21,6 @@ filterrific(
    available_filters: [
      # :sorted_by,
      :with_search_please,
-     :with_note_search,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -97,19 +96,19 @@ scope :with_search_please, ->(search_string) {
 }
 
 
-scope :with_note_search, ->(search_string) {
-  return none if search_string.blank? # A scope should not return nil
+# scope :with_note_search, ->(search_string) {
+#   return none if search_string.blank? # A scope should not return nil
 
-  search_columns = [
-    Note.arel_table[:Description]
-  ]
+#   search_columns = [
+#     Note.arel_table[:Description]
+#   ]
 
-  terms = search_string.to_s
-          .gsub("*","%")
+#   terms = search_string.to_s
+#           .gsub("*","%")
 
-  where('Description LIKE ?', "%#{terms}%")
-    .left_joins(:Notes)
-}
+#   where('Description LIKE ?', "%#{terms}%")
+#     .left_joins(:Notes)
+# }
 
 
 
