@@ -76,9 +76,8 @@ scope :with_search_please, ->(search_string) {
 
   search_columns = [
     Terminal.arel_table[:Model],
-    Terminal.arel_table[:TermcapModel]
-    # Terminal.arel_table[:ManuModel]
-    # Manufacturers.arel_table[:Name]
+    Terminal.arel_table[:TermcapModel],
+    Manufacturers.arel_table[:Name]
     # TerminalType.arel_table[:Type],
     # Note.arel_table[:Description]
     # FirmwarePackage.arel_table[:Version]
@@ -90,7 +89,7 @@ scope :with_search_please, ->(search_string) {
           .map {|term| "%#{term}%"}
 
   where(search_columns.map {|c| c.matches_any(terms)}.reduce(:and))
-    # .joins(:Manufacturers)
+    .joins(:Manufacturers)
     # .joins(:TerminalType)
     # .left_joins(:Notes)
     # .joins(:FirmwarePackages)
