@@ -20,7 +20,7 @@ filterrific(
    default_filter_params: { },
    available_filters: [
      # :sorted_by,
-     # :with_search_please,
+     :with_search_please,
      :with_manufacturer,
      :with_boot_type,
      :with_firm,
@@ -31,32 +31,32 @@ filterrific(
 
 
 
-scope :with_search_please, ->(search_string) {
-  return nil  if search_string.blank?
-  terms = search_string.to_s.downcase.split(/\s+/)
-  terms = terms.map { |e|
-      #('%' + e + '%').gsub(/%+/, '%')
-      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
-  num_or_conds = 6
-  self.where(
-      terms.map { |term|
-        "(
-        LOWER(Terminals.Model) LIKE ?
-        OR LOWER(Terminals.TermcapModel) LIKE ?
-        OR LOWER(Manufacturers.Name) LIKE ?
-        OR LOWER(TerminalType.Type) LIKE ?
-        OR LOWER(Note.Description) LIKE ?
-        OR LOWER(FirmwarePackage.Version) LIKE ?
-        )"
-      }.join(' AND '),
-      *terms.map { |e| [e] * num_or_conds }.flatten
-    )
-    .joins(:Manufacturers).references(:ManufacturerIds)
-    .joins(:TerminalType).references(:TypeIds)
-    .includes(:Notes).references(:TerminalIds)
-    .joins(:FirmwarePackages).references(:TerminalFirmwarePackages)
-}
+# scope :with_search_please, ->(search_string) {
+#   return nil  if search_string.blank?
+#   terms = search_string.to_s.downcase.split(/\s+/)
+#   terms = terms.map { |e|
+#       #('%' + e + '%').gsub(/%+/, '%')
+#       ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+#     }
+#   num_or_conds = 6
+#   self.where(
+#       terms.map { |term|
+#         "(
+#         LOWER(Terminals.Model) LIKE ?
+#         OR LOWER(Terminals.TermcapModel) LIKE ?
+#         OR LOWER(Manufacturers.Name) LIKE ?
+#         OR LOWER(TerminalType.Type) LIKE ?
+#         OR LOWER(Note.Description) LIKE ?
+#         OR LOWER(FirmwarePackage.Version) LIKE ?
+#         )"
+#       }.join(' AND '),
+#       *terms.map { |e| [e] * num_or_conds }.flatten
+#     )
+#     .joins(:Manufacturers).references(:ManufacturerIds)
+#     .joins(:TerminalType).references(:TypeIds)
+#     .includes(:Notes).references(:TerminalIds)
+#     .joins(:FirmwarePackages).references(:TerminalFirmwarePackages)
+# }
 
 
 # scope :with_search_please, ->(search_string) {
@@ -69,6 +69,32 @@ scope :with_search_please, ->(search_string) {
 #   self.where("Model LIKE ?", "#{searchterm}%").or(Terminal.where("Model LIKE ?", "%#{searchterm}%"))
 
 # }
+
+
+scope :with_search_please, ->(search_string) {
+  return none if search_string.blank? # A scope should not return nil
+
+  search_columns = [
+    Terminal.arel_table[:Model],
+    Terminal.arel_table[:TermcapModel]
+    # Terminal.arel_table[:ManuModel]
+    # Manufacturers.arel_table[:Name]
+    # TerminalType.arel_table[:Type],
+    # Note.arel_table[:Description]
+    # FirmwarePackage.arel_table[:Version]
+  ]
+
+  terms = search_string.to_s
+          .gsub("*","%")
+          .split
+          .map {|term| "%#{term}%"}
+
+  where(search_columns.map {|c| c.matches_any(terms)}.reduce(:and))
+    # .joins(:Manufacturers)
+    # .joins(:TerminalType)
+    # .left_joins(:Notes)
+    # .joins(:FirmwarePackages)
+}
 
 
 scope :sorted_by, ->(sort_option) {
