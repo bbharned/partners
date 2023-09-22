@@ -413,6 +413,19 @@
 
 
 
+	  <!------------------ Mr. Demo Doc and PCDC Instructions -------------------------->
+	  <% if @current_user.admin || @current_user.prttype == "Distributor" %>
+	  	<div class="card">
+	  		<%= image_tag "MrDemo_Dashcard.jpg", class: "card-img-top" %>
+		  	<div class="card-body">
+		  		<h5 class="card-title">MR Demo Kit</h5>
+		  		<p class="card-text">Need to upgrade your MR Demo Kit? We have put together a great resource Document to walk you through how to get it taken care of.</p>
+		  		<div align="right"><%= link_to "Download PDF", "https://thinmanager.com/partner-resources/ThinManager_v13.1_2023_VirtualImage_UpdateProcedure.pdf", target: "_blank", class: "btn btn-primary" %></div>
+		  	</div>
+	  	</div>
+	  <% end %>
+
+
 
 
 	  <!----------------- Logix PinPoint ------------------->

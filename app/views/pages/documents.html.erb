@@ -12,6 +12,24 @@
 
 <div class="row">
 	<div class="col-lg-8">
+			<% if @current_user.admin? || @current_user.prttype == "Distributor" %>
+				<h4>MR Demo Kits</h4>
+			<div class="document-table">
+
+				<div class="row">
+					<div class="col-md-10"><span class="bold">MR Demo Kit 13.1 Upgrade Procedure Information</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_v13.1_2023_VirtualImage_UpdateProcedure.pdf", target: "_blank" %></div>
+				</div>
+				<div class="row">
+					<div class="col-md-10"><span class="bold">MR Demo Kit Information Update Form</span></div>
+					<div class="col-md-1">LINK</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-link.png"), "https://thinmanager.com/mydemokit/", target: "_blank" %></div>
+				</div>
+
+			</div>
+			<br /><br />
+			<% end %>
 
 			<h4>White Papers</h4>
 			<div class="document-table">
