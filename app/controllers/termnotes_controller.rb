@@ -17,16 +17,14 @@ end
 def create
 
     @note = Termnote.new(termnote_params)
-    #@terminal = Terminal.find(@note.)
-    #@terminalnote = TerminalNote.new(terminal_id: @note.terminal_id, note_id: @note.id)
+    @terminal = Terminal.where(TermcapModel: @note.termcapmodel).first
   
     if @note.save
         flash[:success] = "Note was sucessfully created"
-        @terminal = Terminal.where(TermcapModel: @note.termcapmodel).first
         redirect_to terminal_path(@terminal)
     else
         flash[:danger] = "That didnt work"
-        render 'new'
+        redirect_to terminal_path(@terminal)
     end
 
 end
