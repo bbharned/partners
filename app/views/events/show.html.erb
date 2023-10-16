@@ -55,7 +55,7 @@
 			                <%= link_to "Take Attendance", checkin_path(@event), class: "btn btn-default btn-sm btn-outline-primary" %>
 			                <% @registered = EventAttendee.where(:event_id => @event.id, :canceled => false) %>
 			                <a href="mailto:<% @registered.each do |student| %><%= student.user.email %>,<% end %>" class="btn btn-default btn-sm btn-outline-primary">Email Registrants</a>
-			                <%= link_to "SMS", sms_path(@event), class: "btn btn-default btn-sm btn-outline-primary" %>   
+			                <!-- <%= link_to "SMS", sms_path(@event), class: "btn btn-default btn-sm btn-outline-primary" %>    -->
 			            </div>
 			        <% end %>
         
