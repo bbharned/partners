@@ -315,6 +315,22 @@
 
 
 
+	  <!-- ThinManager Upgrade Instructions Card -->
+	  <% if !@current_user.needs_review %>
+		  <div class="card">
+		    <div class="card-body">
+		      <h5 class="card-title">Upgrading ThinManager?</h5>
+		      <p class="card-text">Are you upgrading your version of ThinManager and would like step-by-step instructions? We have you covered.</p>
+		      	<div align="right">
+		      		<%= link_to 'See Instructions', "https://thinmanager.com/partner-resources/ThinManagerUpgradeInstructions.pdf", target: "_blank", class: "btn btn-primary" %>
+		  		</div>
+		    </div>
+		  </div>
+	  <% end %>
+
+
+
+
 	  <!-- ThinManager Events Card -->
 	  <div class="card">
 	  	<%= image_tag "events_dashcard.jpg", class: "card-img-top" %>
