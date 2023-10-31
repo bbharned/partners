@@ -43,7 +43,7 @@
 					<% if group.name.downcase.include? "certification" %>
 						<%= link_to "Learn More »", si_path, class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
 					<% elsif group.name.downcase.include? "video learning" %>
-						<%= link_to "Learn More »", learning_path, class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
+						<%= link_to "Learn More »", learn_path, class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
 					<% else %>
 						<%= link_to "Learn More »", tag_path(group), class: "btn btn-primary btn-sm", style: "margin-top:15px;"  %>
 					<% end %>
