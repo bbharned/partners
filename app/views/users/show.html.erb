@@ -178,6 +178,9 @@
 					<span class="bold">Certification Expiration:</span> 
 						<% if @user.certexpire < Date.today %>
 							&nbsp;<spa style="color:red;"><%= @user.certexpire.strftime("%m/%d/%Y") %></span><br />
+							<% if current_user == @user %>
+								<br /><%= link_to "Renew Now", labs_path, class: "btn btn-danger" %><br />
+							<% end %>
 						<% else %>
 							&nbsp;<%= @user.certexpire.strftime("%m/%d/%Y") %><br />
 						<% end %>
