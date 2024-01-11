@@ -73,6 +73,10 @@
 
 			<% end %>
 
+		<% elsif @events.count == 0 && @etype.name == "Roadshows" %>
+
+			<%= render "roadshows.html.erb" %>
+
 		<% else %>
 			<p style="color:darkorange;">We are in the scheduling process. Please check back soon.</p>
 		<%end %>
