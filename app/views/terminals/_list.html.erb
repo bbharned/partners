@@ -44,7 +44,7 @@
             
 
   <% end %>
-    <% if @terminals.count > 20 %>
+    <% if @terminals.count > 10 %>
     <div class="paginate" style="margin-top:40px;">
       <%= will_paginate(@terminals, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
     </div>
