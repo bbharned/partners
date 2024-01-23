@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+      <img src="https://thinmanager.com/images/email_headers/LicenseRequestNoticeHeader.jpg" width="100%" alt="Thank you for creating your account" />
+
+      <div style="padding:5px;">
+        <h1 align="center" style="margin-bottom:50px;">Thank You<br />for Requesting a ThinManager&nbsp;License</h1>
+        <p>Dear <%= @user.firstname %>,</p>
+
+        <p>This email is simply to confirm that you have requested a lab or project license for ThinManager. We should have that ready for you within two business days.</p>
+
+        <p>As a reminder, if your request was for a lab licenses, they are issued for a period of 1 year. Project licenses are available upon request and are valid for 90 days. If you feel you have requested the wrong type of license, please <a href="mailto:certification@thinmanager.com">email us</a>.</p>
+
+        <p>In the meantime, the <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> is also a great place to find documentation, presentations, and other partner resources like <b>Video Learning</b>, the <b>QR Code Generator</b>, and <b>Hardware Finder</b>.</p>
+
+        
+        <p>Thank you again!</p>
+        <br />
+        <h3  style="margin-bottom: 0px;">Tom Jordan</h3>
+        <p  style="margin-top: 2px;">Marketing Lead<br />
+        <a href="mailto:tjordan@thinmanager.com">tjordan@thinmanager.com</a></p>
+        <br /><br />
+      </div>
+    </div>
+      
+  </body>
+</html>

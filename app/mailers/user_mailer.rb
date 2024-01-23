@@ -308,6 +308,20 @@ class UserMailer < ApplicationMailer
   end
 
 
+
+  def license_request_confirmation(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'License Request Has Been Received', delivery_method_options: delivery_options)
+  end
+
+
   def listing_notification(user, listing)
     @user = user
     @listing = listing

@@ -112,6 +112,11 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.listing_notification(@user, @listing)
   end
 
+  def license_request_notice
+    @user = User.find(3)
+    UserMailer.license_request_confirmation(@user)
+  end
+
   def download_ext_notice
     @user = User.find(3)
     UserMailer.send_download_ext_notice(@user)
