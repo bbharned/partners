@@ -64,6 +64,7 @@ def create
             if !current_user.admin?
                 # Send internal email of license request nptification here unless admin created.
                 @user.send_license_notification(@license)
+                @user.send_license_request_confirmation
             end
             flash[:success] = "Your license request has been submitted."
             redirect_to root_path

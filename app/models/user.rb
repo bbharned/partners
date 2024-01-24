@@ -154,6 +154,10 @@ end
         UserMailer.license_notification(self, license).deliver_now
     end
 
+    def send_license_request_confirmation
+        UserMailer.license_request_confirmation(self).deliver_now
+    end
+
 #Listing Request Notification
     def send_listing_notification(license)
         UserMailer.listing_notification(self, license).deliver_now
