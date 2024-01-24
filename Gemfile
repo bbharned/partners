@@ -23,7 +23,7 @@ gem 'aws-sdk-s3', '~> 1.96', '>= 1.96.1', require: false
 gem "rqrcode", "~> 2.0"
 
 # Use Puma as the app server
-gem "puma", ">= 6.3.1"
+gem "puma", ">= 6.4.2"
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 5.0'
 #gem 'sassc-rails'

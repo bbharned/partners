@@ -1,0 +1,29 @@
+{
+  "name": "partners",
+  "version": "1.0.0",
+  "description": "ThinManager Portal",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "engines": {
+    "node": "20.x",
+    "yarn": "1.x"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbharned/partners.git"
+  },
+  "author": "ThinManager",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbharned/partners/issues"
+  },
+  "homepage": "https://github.com/bbharned/partners#readme"
+}
