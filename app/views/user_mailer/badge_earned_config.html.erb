@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+
+      <% if @badge != nil && @badge.configuration %>
+      
+      <div style="width:100%; margin-bottom:25px;">
+        <img src="https://thinmanager.com/images/email_headers/header_config_badge.jpg" alt="Congratulations" style="width:100%;" />
+      </div>
+
+      <h2 align="center">CONGRATULATIONS!</h2>
+
+      <p>Dear <%= @user.firstname %>,</p>
+
+      <p>Congratulations on earning the ThinManager <%= @specific %> Badge! You have done something that not alot of people can brag about. You may think you were just watching videos and answering a few questions but you are actually learning important steps toward the deployment and use of an amazingly scalable and secure visualization platform, unmatched in the industry.</p>
+
+      <% if @badge != nil && @badge.configuration && @badge.productivity && @badge.visualization && @badge.security && @badge.mobility %>
+     
+        <p>This was your last badge (cue the confetti and bring out the cake) and you are now probably quite knowledgable of how to set up and use ThinManager. You can now easily go get <b>ThinManager certified</b> by jumping back in to the <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> and clicking "Get Certified" from the main dashboard.</p>
+
+        <p>Perhaps you are ready to begin a ThinManager project, installation, or expansion.  <%= link_to "Reach out", "mailto:customersuccess@thinmanager.com", target: "_blank" %> and let us know what you are starting so we can help.</p>
+      
+      <% else %>
+      
+        <p><b>You are not done yet!</b> There are more badges left for you to earn.  Keep watching through the videos and taking the quizzes. Ready for more? <%= link_to "Return to the Portal", "https://partners.thinmanager.com", target: "_blank" %> and click on "Video Training".</p>
+      
+      <% end %>
+
+      <p>Lastly, if you have any questions or maybe would like to suggest a video be added, we are all ears.  Shoot over an <%= link_to "email", "mailto:certification@thinmanager.com?subject=question about video learning", target: "_blank" %> and we will see how we can help.</p>
+
+      <p>Thank you for learning and supporting ThinManager!</p>
+
+      <p>Sincerely,</p>
+
+      <p>The ThinManager Team</p>
+
+      <% else %>
+
+        <p align="center">There seems to be a problem.<br />You have not earned any training badges to warrant this email.</p>
+
+        <p align="center">Please disregard</p>
+
+      <% end %>
+
+      
+    </div>
+      
+  </body>
+</html>

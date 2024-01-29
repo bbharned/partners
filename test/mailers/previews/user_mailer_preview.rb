@@ -39,6 +39,20 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.learning_acct_notice_internal(@user)
   end
 
+  def badge_earned_config
+    @user = User.find(3) ## user 1 is all done ##
+    @badge = UserBadge.where(user_id: @user.id).take
+    @specific = "Configuration"
+    UserMailer.badge_earned_config(@user, @specific, @badge)
+  end
+
+  def badge_earned_prod
+    @user = User.find(3) ## user 1 is all done ##
+    @badge = UserBadge.where(user_id: @user.id).take
+    @specific = "Productivity"
+    UserMailer.badge_earned_prod(@user, @specific, @badge)
+  end
+
   def certification_lab_upload_notice_internal
     @user = User.find(20)
     UserMailer.lab_upload_notice(@user)

@@ -92,11 +92,18 @@ def learning
             @newconfigbadge = UserBadge.new(user_id: @user.id, configuration: true)
             if @newconfigbadge.save
                 flash[:success] = "You earned your CONFIGURATION badge!"
+                ### Send Config Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Configuration"
+                    @user.send_badge_earned_config(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.configuration
             if @badge.update(configuration: true)
                 flash[:success] = "You earned your CONFIGURATION badge!"
+                ### Send Config Badge Email ###
+                    @specific = "Configuration"
+                    @user.send_badge_earned_config(@specific, @badge)
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -122,11 +129,13 @@ def learning
             @newprodbadge = UserBadge.new(user_id: @user.id, productivity: true)
             if @newprodbadge.save
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
+                ### Send Prod Badge Email ###
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.productivity
             if @badge.update(productivity: true)
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
+                ### Send Prod Badge Email ###
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -152,11 +161,13 @@ def learning
             @newvisbadge = UserBadge.new(user_id: @user.id, visualization: true)
             if @newvisbadge.save
                 flash[:success] = "You earned your VISUALIZATION badge!"
+                ### Send Vis Badge Email ###
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.visualization
             if @badge.update(visualization: true)
                 flash[:success] = "You earned your VISUALIZATION badge!"
+                ## Send Vis Badge Email ###
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -183,11 +194,13 @@ def learning
             @newsecbadge = UserBadge.new(user_id: @user.id, security: true)
             if @newsecbadge.save
                 flash[:success] = "You earned your SECURITY badge!"
+                ## Send Security Badge Email ###
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.security
             if @badge.update(security: true)
                 flash[:success] = "You earned your SECURITY badge!"
+                ## Send Security Badge Email ###
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -213,11 +226,13 @@ def learning
             @newmobbadge = UserBadge.new(user_id: @user.id, mobility: true)
             if @newmobbadge.save
                 flash[:success] = "You earned your MOBILITY badge!"
+                ## Send Mobility Badge Email ###
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.mobility
             if @badge.update(mobility: true)
                 flash[:success] = "You earned your MOBILITY badge!"
+                ## Send Mobility Badge Email ###
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -227,9 +242,6 @@ def learning
     end
     #### END Mobility Badge ####
 
-
-
-    
 
 end
 

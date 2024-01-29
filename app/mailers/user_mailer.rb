@@ -149,6 +149,36 @@ class UserMailer < ApplicationMailer
     mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'Video Learning Account Created', delivery_method_options: delivery_options)
   end
 
+  def badge_earned_config(user, specific, badge)
+    @user = user
+    @specific = specific
+    @badge = badge
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'You earned your ' + @specific + ' Badge!', delivery_method_options: delivery_options)
+  end
+
+
+  def badge_earned_prod(user, specific, badge)
+    @user = user
+    @specific = specific
+    @badge = badge
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'You earned your ' + @specific + ' Badge!', delivery_method_options: delivery_options)
+  end
+
+
   def lab_upload_notice(user)
     @user = user
     delivery_options = { address: 'smtp.gmail.com',
