@@ -102,8 +102,9 @@ def learning
             if @badge.update(configuration: true)
                 flash[:success] = "You earned your CONFIGURATION badge!"
                 ### Send Config Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
                     @specific = "Configuration"
-                    @user.send_badge_earned_config(@specific, @badge)
+                    @user.send_badge_earned_config(@specific, @badgenew)
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
