@@ -317,6 +317,26 @@ def integrator
     end
 end
 
+def siexpired
+    @sort = [params[:sort]]
+    @users = User.where.not(certexpire: nil).where("certexpire < ?", Date.today).where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(@sort)
+
+    respond_to do |format|
+      format.html { render "siexpired" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_IntegratorsExpired-#{Date.today}.csv" }
+    end
+end
+
+def siabouttoexpire
+    @sort = [params[:sort]]
+    @users = User.where.not(certexpire: nil).where("certexpire >= ?", Date.today).where("certexpire < ?", Date.today+90).where(prttype: "Integrator").paginate(page: params[:page], per_page: 25).order(@sort)
+
+    respond_to do |format|
+      format.html { render "siabouttoexpire" }
+      format.csv { send_data @users.to_csv, filename: "PartnerPortal_IntegratorsExpired-#{Date.today}.csv" }
+    end
+end
+
 def admin
     @sort = [params[:sort]]
     @users = User.where(admin: true).paginate(page: params[:page], per_page: 25).order(@sort)

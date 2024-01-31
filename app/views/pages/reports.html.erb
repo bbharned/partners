@@ -129,6 +129,22 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>SIs Expired</h5>
+					<h1 class="huge"><%= @sicertexpired.count %></h1>
+				</div>
+				<div class="card-footer" style="margin-top:-20px; text-align:center; padding:2px 0px;"><%= link_to "View User List", user_siexpired_path({ :sort => "lastname" }), class: "nav-link" %></div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>SIs expiring within 90 Days</h5>
+					<h1 class="huge"><%= @siabouttoexpire.count %></h1>
+				</div>
+				<div class="card-footer" style="margin-top:-20px; text-align:center; padding:2px 0px;"><%= link_to "View User List", user_siabouttoexpire_path({ :sort => "lastname" }), class: "nav-link" %></div>
+			</div>
+		</div>
 
 
 		<div class="row" style="margin-top: 50px;">
