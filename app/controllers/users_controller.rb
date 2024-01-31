@@ -335,7 +335,7 @@ def siabouttoexpire
 
     respond_to do |format|
       format.html { render "siabouttoexpire" }
-      format.csv { send_data @allforcsv.to_csv, filename: "PartnerPortal_IntegratorsExpired-#{Date.today}.csv" }
+      format.csv { send_data @allforcsv.to_csv, filename: "PartnerPortal_SIsAboutToExpire-#{Date.today}.csv" }
     end
 end
 
