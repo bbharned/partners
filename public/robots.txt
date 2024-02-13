@@ -3,3 +3,14 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 User-agent: *
 Disallow: /
+Allow: /terminals
+Allow: /hardwares
+Allow: /tmc
+Allow: /features
+Allow: /events
+Allow: /listing/integrators
+Allow: /evtcategories
+Allow: /si
+Allow: /learn
+
+Sitemap: https://partners.thinmanager.com/sitemap.xml.gz
