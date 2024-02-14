@@ -28,7 +28,7 @@ gem "puma", ">= 6.4.2"
 #gem 'sass-rails', '~> 5.0'
 #gem 'sassc-rails'
 gem 'sassc'
-gem "nokogiri", ">= 1.14.3"
+gem "nokogiri", ">= 1.16.2"
 gem "rack", ">= 2.2.6.3"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
