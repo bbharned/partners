@@ -120,13 +120,10 @@ end
         UserMailer.learning_acct_notice_internal(self).deliver_now
     end
 
-    def send_badge_earned_config(specific, badge)
-        UserMailer.badge_earned_config(self, specific, badge).deliver_now
+    def send_badge_earned(specific, badge)
+        UserMailer.badge_earned(self, specific, badge).deliver_now
     end
 
-    def send_badge_earned_prod(specific, badge)
-        UserMailer.badge_earned_prod(self, specific, badge).deliver_now
-    end
 
 
 

@@ -69,6 +69,26 @@ def badgeAwardEmailCheck(user, specific, userbadge)
 
 end
 
+def badgecount(badge)
+    @bcount = 0 
+      if badge.configuration
+        @bcount += 1
+      end
+      if badge.productivity
+        @bcount += 1
+      end
+      if badge.visualization
+        @bcount += 1
+      end
+      if badge.security
+        @bcount += 1
+      end
+      if badge.mobility
+        @bcount += 1
+      end
+    return @bcount
+end
+
 
 def learning
 
@@ -82,6 +102,7 @@ def learning
     @advancedquizzes = @quizzes.where(categories: { name: "Advanced" })
     @badge = UserBadge.where(user_id: @user.id).take
 
+    # @count = badgecount(@badge)
 
     #### Configuration Badge ####
     @config_q_passed = 0
@@ -98,18 +119,20 @@ def learning
             if @newconfigbadge.save
                 flash[:success] = "You earned your CONFIGURATION badge!"
                 ### Check Progress possibly Send Badge Email ###
-                    # @badgenew = UserBadge.where(user_id: @user.id).take
-                    # @specific = "Configuration"
-                    # @user.send_badge_earned_config(@specific, @badgenew)
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Configuration"
+                    @user.send_badge_earned(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.configuration
             if @badge.update(configuration: true)
                 flash[:success] = "You earned your CONFIGURATION badge!"
                 ### Check Progress possibly Send Badge Email ###
-                    # @badgenew = UserBadge.where(user_id: @user.id).take
-                    # @specific = "Configuration"
-                    # @user.send_badge_earned_config(@specific, @badgenew)
+                    @count = badgecount(@badge) 
+                    if @count == 3 || @count == 5
+                        @specific = "Configuration"
+                        @user.send_badge_earned(@specific, @badge)
+                    end 
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -136,12 +159,20 @@ def learning
             if @newprodbadge.save
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 ### Check Progress possibly Send Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Productivity"
+                    @user.send_badge_earned(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.productivity
             if @badge.update(productivity: true)
                 flash[:success] = "You earned your PRODUCTIVITY badge!"
                 ### Check Progress possibly Send Badge Email ###
+                    @count = badgecount(@badge) 
+                    if @count == 3 || @count == 5
+                        @specific = "Configuration"
+                        @user.send_badge_earned(@specific, @badge)
+                    end
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -168,12 +199,20 @@ def learning
             if @newvisbadge.save
                 flash[:success] = "You earned your VISUALIZATION badge!"
                 ### Check Progress possibly Send Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Visualization"
+                    @user.send_badge_earned(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.visualization
             if @badge.update(visualization: true)
                 flash[:success] = "You earned your VISUALIZATION badge!"
                 ## Check Progress possibly Send Badge Email ###
+                    @count = badgecount(@badge) 
+                    if @count == 3 || @count == 5
+                        @specific = "Visualization"
+                        @user.send_badge_earned(@specific, @badge)
+                    end
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -201,12 +240,20 @@ def learning
             if @newsecbadge.save
                 flash[:success] = "You earned your SECURITY badge!"
                 ## Check Progress possibly Send Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Security"
+                    @user.send_badge_earned(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.security
             if @badge.update(security: true)
                 flash[:success] = "You earned your SECURITY badge!"
                 ## Check Progress possibly Send Badge Email ###
+                    @count = badgecount(@badge) 
+                    if @count == 3 || @count == 5
+                        @specific = "Security"
+                        @user.send_badge_earned(@specific, @badge)
+                    end
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
@@ -233,12 +280,20 @@ def learning
             if @newmobbadge.save
                 flash[:success] = "You earned your MOBILITY badge!"
                 ## Check Progress possibly Send Badge Email ###
+                    @badgenew = UserBadge.where(user_id: @user.id).take
+                    @specific = "Mobility"
+                    @user.send_badge_earned(@specific, @badgenew)
                 redirect_to learning_path 
             end
         elsif @badge != nil && !@badge.mobility
             if @badge.update(mobility: true)
                 flash[:success] = "You earned your MOBILITY badge!"
                 ## Check Progress possibly Send Badge Email ###
+                    @count = badgecount(@badge) 
+                    if @count == 3 || @count == 5
+                        @specific = "Mobility"
+                        @user.send_badge_earned(@specific, @badge)
+                    end
                 redirect_to learning_path
             else
                 flash[:danger] = "There was a problem awarding your badge."
