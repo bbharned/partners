@@ -38,26 +38,26 @@
 
       <% if @bcount > 0 && @bcount < 3 %>
 
-      <p>Congratulations on earning the ThinManager <%= @specific %> Badge! You have done something that not a lot of people can brag about. You may think you were just watching videos and answering a few questions, but you were actually taking important steps toward the deployment of an amazingly scalable and secure visualization platform, unmatched in the industry.</p>
+      <p>Congratulations on earning the ThinManager Configuration Badge! You have done something that not a lot of people can brag about. You may think you were just watching videos and answering a few questions, but you were taking important steps toward the deployment of an amazingly scalable and secure visualization platform, unmatched in the industry.</p>
 
-      <p><b>You are not done yet!</b> You have only just begun. There are more badges left for you to earn. 4 of them to be exact. Keep watching through the videos and taking the quizzes. Ready for more? <%= link_to "Return to the Portal", "https://partners.thinmanager.com", target: "_blank" %> and click on "Video Training".</p>
+      <p><b>You are not done yet!</b> You have only just begun. There are more badges left for you to earn. Four of them to be exact. Keep watching the videos and taking the quizzes. Ready for more? <%= link_to "Return to the Portal", "https://partners.thinmanager.com", target: "_blank" %> and click on "Video Training".</p>
 
       <% elsif @bcount >= 3 && @bcount < 5 %>
 
-      <p>What can be said? You are crushing it! Congrats on earning your <%= @specific %> badge, you are cruising along through the video training. Hopefully you are starting to see the power and control that ThinManager offers as a management and visualization platform.</p>
+      <p>What can be said? You are crushing it! Congrats on earning your <%= @specific %> badge &#8212; you are cruising along through the video training. Hopefully, you are starting to see the power and control that ThinManager offers as a management and visualization platform.</p>
 
-      <p><b>You are not done yet!</b> You are getting close, but there are just a couple more badges left for you to earn.  Keep watching through the videos and taking the quizzes. Ready for more? <%= link_to "Return to the Portal", "https://partners.thinmanager.com", target: "_blank" %> and click on "Video Training".</p>
+      <p><b>You are not done yet!</b> You are getting close, but there are just a couple more badges left for you to earn.  Keep watching the videos and taking the quizzes. Ready for more? <%= link_to "Return to the Portal", "https://partners.thinmanager.com", target: "_blank" %> and click on "Video Training".</p>
 
       <% elsif @bcount == 5 %>
 
-        <p>Simply amazing and a sincere thank you from the ThinManager Team. You have earned your last badge from the ThinManager Video Training (cue the confetti and bring out the cake) and you are now probably quite knowledgable of how to set up and use ThinManager. You can now easily go get <b>ThinManager certified</b> by jumping back in to the <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> and clicking "Get Certified" from the main dashboard.</p>
+        <p>Your progress is simply amazing and we offer a sincere thank you from the ThinManager Team. You have earned your last badge from the ThinManager Video Training (cue the confetti and bring out the cake) and you should now be quite knowledgeable of how to set up and use ThinManager. You can now easily go get <b>ThinManager certified</b> by jumping back in to the <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> and clicking "Get Certified" from the main dashboard.</p>
 
         <p>Perhaps you are ready to begin a ThinManager project, installation, or expansion.  <%= link_to "Reach out", "mailto:customersuccess@thinmanager.com", target: "_blank" %> and let us know what you are starting so we can help.</p>
       
       
       <% end %>
 
-      <p>If you have any questions or maybe would like to suggest a video be added, we are all ears.  Shoot over an <%= link_to "email", "mailto:certification@thinmanager.com?subject=question about video learning", target: "_blank" %> and we will see how we can help.</p>
+      <p>If you have any questions or maybe would like to suggest a video be added, we are all ears.  Send us an <%= link_to "email", "mailto:certification@thinmanager.com?subject=question about video learning", target: "_blank" %> and we will see how we can help.</p>
 
       <p>Thank you for learning and supporting ThinManager!</p>
 
