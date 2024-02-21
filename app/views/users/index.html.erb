@@ -1,49 +1,82 @@
 <div class="container">
 
 
-		<h1 class="page-header">All Partners <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@users.count, "total user") %> )</span></h1>
+	<h1 class="page-header">Portal Users</h1>
 	
 	<div class="right-to-center-button">
-		<a href="/users.csv" class="btn">Export (CSV)</a>&nbsp;&nbsp;&nbsp;<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
+		<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
 	</div>
 	
 <hr />
-<%= render 'user_filters' %>
 
-<%= render'search' %>
+<!-- removed old code here -->
 
-<br />
-	<div class="paginate">
-		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
-	</div>
-		<%= render 'userTableTop' %>
-	<% if @users.any? %>
-	<% @users.each do |user| %>
-		<div class="well well-space">
-			<div class="row">
+<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+
+
+<div class="container user-filters">			  
+			<div class="form-group">
 				
-				<div class="col-md-3">
-					<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
+				<div class="row">
+			  	
+					  <div class="col-md-4" style="margin-bottom:10px;">
+					    <div class="form-label">Search</div>
+					    <%= f.text_field(
+					      :user_search,
+					      class: 'filterrific-periodically-observed form-control'
+					    ) %>
+					  </div>
+
+					  <div class="col-md-4" style="margin-bottom:10px;">
+					  	<div class="form-label">Channel</div>
+					  	<%= f.select(
+					      :with_channel,
+					      @filterrific.select_options[:with_channel],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					  </div>
+
+					  <div class="col-md-4" style="margin-bottom:10px;">
+					  	<div class="form-label">Partner Type</div>
+					  	
+					  </div>
+
 				</div>
-				<div class="col-md-3">
-					<%= user.company %>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-sm-3 offset-sm-9">
+					    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<%= user.prttype %>
-				</div>
-				<div class="col-md-2">
-					<%= user.channel %>
-				</div>
-				<div class="col-md-2 delete-action">
-					<%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete this partner?"}, style: "color:red; font-size:.8em;" %>
-				</div>
-			</div>	
-		</div>
-		
-	<% end %>
-	<% end %>
-<br /><br />
-	<div class="paginate">
-		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
+			
+			</div>
+
+			<hr style="margin-top:25px; margin-bottom: 15px; border-color: #818181;" />
+
 	</div>
+
+	<div class="form-group" >
+		<div class="row" style="margin-bottom: 15px;">
+			<div class="col-8"><h4 style="padding-top:15px; margin-bottom: 0px;">Results</h4></div>	
+			  <div class="col-4 sort-options">
+			    <div class="form-label">Sorted by</div>
+			    <%= f.select(:user_sort, @filterrific.select_options[:user_sort], class: "form-control") %>
+		   </div>
+		</div>
+	</div>
+
+
+<% end %>
+
+
+</div>
+
+<div class="wider-container" style="padding-bottom:100px;">
+
+<div class="hw-loader"><%= render_filterrific_spinner %></div>
+
+<%= render(
+	partial: 'users/user-row',
+	locals: { users: @users }
+) %>
+
 </div>

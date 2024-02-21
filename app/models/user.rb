@@ -180,7 +180,7 @@ end
         BCrypt::Password.create(string, cost: cost)
     end
 
-    # Returns a random token.
+# Returns a random token.
     def User.new_token
         SecureRandom.urlsafe_base64
     end
@@ -194,6 +194,111 @@ end
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
     end
+
+
+
+## filterrific ##
+
+filterrific(
+   default_filter_params: { user_sort: 'lastname_asc' },
+   available_filters: [
+     :user_sort,
+     :user_search,
+     :with_channel,
+   ],
+ )
+
+
+scope :user_search, lambda { |query|
+    return nil  if query.blank?
+
+    terms = query.to_s.downcase.split(/\s+/)
+
+    terms = terms.map { |e|
+      ('%' + e + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conds = 14
+    where(
+      terms.map { |term|
+        "(
+        LOWER(users.firstname) LIKE ?
+        OR LOWER(users.lastname) LIKE ? 
+        OR LOWER(users.company) LIKE ?
+        OR LOWER(users.channel) LIKE ?
+        OR LOWER(users.email) LIKE ? 
+        OR LOWER(users.prttype) LIKE ?
+        OR LOWER(users.continent) LIKE ?
+        OR LOWER(users.street) LIKE ?
+        OR LOWER(users.city) LIKE ?
+        OR LOWER(users.state) LIKE ?
+        OR LOWER(users.zip) LIKE ?
+        OR LOWER(users.cell) LIKE ?
+        OR LOWER(users.carrier) LIKE ?
+        OR LOWER(users.notes) LIKE ?
+        )"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+      )
+} 
+
+
+scope :user_sort, ->(sort_option) {
+  direction = /desc$/.match?(sort_option) ? "desc" : "asc"
+  case sort_option.to_s
+  when /^lastname_/
+    order("users.lastname #{direction}")
+  when /^created_at_/
+    order("users.created_at #{direction}")
+  when /^lastlogin_/
+    order("users.lastlogin #{direction}")
+  else
+    raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
+  end
+}
+
+scope :with_channel, ->(channels) {
+  where(channel: [*channels])
+}
+
+# scope :with_channel, ->(channel) {
+#   if channel == "Rockwell Automation"
+#     User.where(:channel, "Rockwell Automation")
+#   elsif channel == "Wonderware"
+#     User.where(:channel, "Wonderware")
+#   elsif channel == "Aveva"
+#     User.where(:channel, "Aveva")
+#   elsif channel == "GE"
+#     User.where(:channel, "GE")
+#   elsif channel == "Independent"
+#     User.where(:channel, "Independent")
+#   end
+# }
+
+# scope :with_status, ->(status) {
+#     if status == 'Active Listings'
+#         Listing.joins(:user).where('certexpire >= ?', Date.today).where(active: true)
+#     elsif status == 'Requested Listings'
+#         where.not(active: true)
+#     elsif status == 'Expired Listings'
+#         Listing.joins(:user).where('certexpire < ?', Date.today)
+#     end
+# }   
+
+
+
+def self.options_for_user_sort
+    [
+      ["Last Name (A-Z)", "lastname_asc"],
+      ["Last Name (Z-A)", "lastname_desc"],
+      ["Newest - Oldest", "created_at_desc"],
+      ["Oldest - Newest", "created_at_asc"],
+      ["Last Logged In", "lastlogin_desc"],
+    ]
+end
+
+## end Filterrific ##
+
 
 
 

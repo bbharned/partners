@@ -5,14 +5,37 @@ class UsersController < ApplicationController
 
 
 def index
-    @sort = [params[:sort]]
-    @users = User.paginate(page: params[:page], per_page: 25).order(@sort)
-    @allusers = User.all
+    # @sort = [params[:sort]]
+    # @users = User.paginate(page: params[:page], per_page: 25).order(@sort)
+    # @allusers = User.all
 
-    respond_to do |format|
-      format.html { render "index" }
-      format.csv { send_data @allusers.to_csv, filename: "PartnerPortal_AllUsers-#{Date.today}.csv" }
-    end
+
+    @filterrific = initialize_filterrific(
+     User,
+     params[:filterrific],
+      select_options: {
+        user_sort: User.options_for_user_sort,
+        with_channel: ['Rockwell Automation', 'Wonderware', 'Aveva', 'GE', 'Independent'],
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:user_sort, :user_search, :with_channel],
+      sanitize_params: true,
+   ) or return
+   @userexport = @filterrific.find
+   @users = @filterrific.find.paginate(page: params[:page], per_page: 25)
+
+   respond_to do |format|
+     format.html { render "index" }
+     format.js
+     format.csv { send_data @userexport.to_csv, filename: "ThinManagerPortal_UsersQuery-#{Date.today}.csv" }
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
+
 end
 
 

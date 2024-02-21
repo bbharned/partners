@@ -1,0 +1,50 @@
+<div id="filterrific_results">
+
+	<% if @users.any? %>
+
+			<p align="center"><%= pluralize(@users.count, "found user") %> &nbsp;<span style="font-size:.75em;"><a href="/users.csv">(export CSV)</a></span></p>
+			<%= render ("users/resultTopper") %>
+			<% @users.each do |user| %>
+
+			<div class="well well-space">
+			<div class="row">
+				
+				<div class="col-md-3">
+					<%= link_to "#{user.lastname}, #{user.firstname}", user_path(user) %>
+				</div>
+				<div class="col-md-2">
+					<%= user.company %>
+				</div>
+				<div class="col-md-2">
+					<%= user.prttype %>
+				</div>
+				<div class="col-md-2">
+					<%= user.channel %>
+				</div>
+				<div class="col-md-2">
+					<%= user.lastlogin.strftime("%b %d, %Y") if user.lastlogin %>
+				</div>
+				<div class="col-md-1 delete-action">
+					<%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete this partner?"}, style: "color:red; font-size:.8em;" %>
+				</div>
+			</div>	
+		</div>
+
+		<% end %>
+
+		<% if @users.count > 25 %>
+	      <div class="paginate" style="margin-top:20px;">
+	        <%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+	      </div>
+	    <% end %>
+
+
+	<% else %>
+
+
+		<p align="center" style="color:darkorange; margin-top:45px;">There are no users or results to your query</p>
+
+
+	<% end %>
+
+</div>

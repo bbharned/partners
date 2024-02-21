@@ -61,7 +61,10 @@ Extra extra large   xxl ≥1400px
 
 }
 
-
+.wider-container {
+    width:96%; padding:0 2%; margin: auto;
+    max-width: 1600px;
+}
 
 
 
