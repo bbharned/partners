@@ -11,15 +11,15 @@ get 'learning', to: 'pages#learning'
 get 'reports', to: 'pages#reports'
 
 resources :users
-get 'user/company-sorted', to: 'users#company'
-get 'user/type', to: 'users#type'
-get 'user/active', to: 'users#active'
-get 'user/inactive', to: 'users#inactive'
-get 'user/lastlogin', to: 'users#lastlogin'
-get 'user/integrator', to: 'users#integrator'
+get 'user/company-sorted', to: 'users#company' #can possibly delete
+get 'user/type', to: 'users#type' #can possibly delete
+get 'user/active', to: 'users#active' #can possibly delete
+get 'user/inactive', to: 'users#inactive' #can possibly delete
+get 'user/lastlogin', to: 'users#lastlogin' #can possibly delete
+get 'user/integrator', to: 'users#integrator' #can possibly delete
 get 'user/siexpired', to: 'users#siexpired'
 get 'user/siabouttoexpire', to: 'users#siabouttoexpire'
-get 'user/distributor', to: 'users#distributor'
+get 'user/distributor', to: 'users#distributor' #can possibly delete
 get 'user/admin', to: 'users#admin'
 get 'user/search', to: 'users#search'
 post 'user/search', to: 'users#search'

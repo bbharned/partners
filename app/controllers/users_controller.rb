@@ -16,10 +16,14 @@ def index
       select_options: {
         user_sort: User.options_for_user_sort,
         with_channel: ['Rockwell Automation', 'Wonderware', 'Aveva', 'GE', 'Independent'],
+        with_prttype: ['Distributor', 'Integrator', 'OEM', 'End User'],
+        with_active: ['Active', 'Inactive'],
+        with_region: ['North America', 'Latin America', 'EMEA', 'Asia Pacific', 'Unknown'],
+        with_cert: ['Active Certified', 'Expired Certified', 'Never Certified'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:user_sort, :user_search, :with_channel],
+      available_filters: [:user_sort, :user_search, :with_channel, :with_prttype, :with_active, :with_region, :with_cert],
       sanitize_params: true,
    ) or return
    @userexport = @filterrific.find

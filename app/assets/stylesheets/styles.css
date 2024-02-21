@@ -1133,7 +1133,7 @@ Very Light Blue: #e9f7fb;
 }
 .license-dropdown select,
 .sort-options select {
-    width: 100%; padding-top: 7px; padding-bottom: 7px; padding-left: 5px; 
+    width: 100%; padding-top: 7px !important; padding-bottom: 7px !important; padding-left: 5px !important; 
     border-radius: 7px;
     border-color: #d1d1d1; margin-left: 0 !important;
 }

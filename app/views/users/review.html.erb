@@ -5,10 +5,8 @@
 		<a href="/user/review.csv" class="btn">Export (CSV)</a>&nbsp;&nbsp;&nbsp;<%= link_to "Create User", new_user_path, class: "btn btn-primary" %>
 	</div>
 	<hr />
-	<%= render 'user_filters' %>
-
-	<%= render'search' %>
-	<br />
+	
+	
 
 	<div class="paginate">
 		<%= will_paginate(@users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>

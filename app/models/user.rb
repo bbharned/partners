@@ -205,6 +205,10 @@ filterrific(
      :user_sort,
      :user_search,
      :with_channel,
+     :with_prttype,
+     :with_active,
+     :with_region,
+     :with_cert
    ],
  )
 
@@ -261,31 +265,41 @@ scope :with_channel, ->(channels) {
   where(channel: [*channels])
 }
 
-# scope :with_channel, ->(channel) {
-#   if channel == "Rockwell Automation"
-#     User.where(:channel, "Rockwell Automation")
-#   elsif channel == "Wonderware"
-#     User.where(:channel, "Wonderware")
-#   elsif channel == "Aveva"
-#     User.where(:channel, "Aveva")
-#   elsif channel == "GE"
-#     User.where(:channel, "GE")
-#   elsif channel == "Independent"
-#     User.where(:channel, "Independent")
-#   end
-# }
+scope :with_prttype, ->(prttypes) {
+  where(prttype: [*prttypes])
+}
 
-# scope :with_status, ->(status) {
-#     if status == 'Active Listings'
-#         Listing.joins(:user).where('certexpire >= ?', Date.today).where(active: true)
-#     elsif status == 'Requested Listings'
-#         where.not(active: true)
-#     elsif status == 'Expired Listings'
-#         Listing.joins(:user).where('certexpire < ?', Date.today)
-#     end
-# }   
+scope :with_active, ->(status) {
+    if status == "Active"
+        where(active: true)
+    elsif status == "Inactive"
+        where(active: false)
+    end
+} 
 
+scope :with_region, ->(region) {
+    if region == "North America"
+        where(continent: "NA")
+    elsif region == "Latin America"
+        where(continent: "LA")
+    elsif region == "EMEA"
+        where(continent: "EMEA")
+    elsif region == "Asia Pacific"
+        where(continent: "AP")
+    elsif region == "Unknown"
+        where(continent: "")
+    end
+} 
 
+scope :with_cert, ->(cert) {
+    if cert == "Active Certified"
+        where("users.certexpire >= ?", Date.today)
+    elsif cert == "Expired Certified"
+        where("users.certexpire < ?", Date.today)
+    elsif cert == "Never Certified"
+        where(certdate: nil)
+    end
+} 
 
 def self.options_for_user_sort
     [
