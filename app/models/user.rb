@@ -255,7 +255,10 @@ scope :user_sort, ->(sort_option) {
   when /^created_at_/
     order("users.created_at #{direction}")
   when /^lastlogin_/
-    order("users.lastlogin #{direction}")
+    #order("users.lastlogin #{direction} NULLS LAST") # Postgres NULLs come last
+    #order("users.lastlogin IS NULL, users.lastlogin #{direction}") # PostgreSQL and MySQL specific
+    #order("CASE WHEN users.lastlogin IS NULL THEN 1 ELSE 0 END, users.lastlogin") #Universal?
+    order(lastlogin: direction)
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
