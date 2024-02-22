@@ -222,7 +222,7 @@ scope :user_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 14
+    num_or_conds = 13
     where(
       terms.map { |term|
         "(
@@ -236,7 +236,6 @@ scope :user_search, lambda { |query|
         OR LOWER(users.street) LIKE ?
         OR LOWER(users.city) LIKE ?
         OR LOWER(users.state) LIKE ?
-        OR LOWER(users.zip) LIKE ?
         OR LOWER(users.cell) LIKE ?
         OR LOWER(users.carrier) LIKE ?
         OR LOWER(users.notes) LIKE ?
