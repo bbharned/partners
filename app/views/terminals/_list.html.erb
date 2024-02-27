@@ -3,13 +3,52 @@
   
 
   <% if @terminals.count > 0 %>
+
+
+        <div class="form-group" >
+          <div class="row">
+          <div class="col-sm-8"><h4 style="padding-top:30px; margin-bottom: 0px;">Results <span style="font-weight:normal !important; font-size: 0.65em !important;">(<%= pluralize(@terminals.count, "found terminal") %>)</span></h4></div>  
+            <div class="col-sm-4 sort-options">
+              <!-- <div class="form-label">Sorted by</div> -->
+              
+            </div>
+            
+          </div>
+        </div>
+
     
         <% @terminals.each do |t| %>
           
           <div class="card" style="margin-bottom:15px;">
-            
+            <%
+
+              @firmpktg = TerminalFirmwarePackage.where(TerminalId: t.id)
+              @firmwares = []
+              if @firmpktg.any?
+                @firmpktg.each do |f|
+                  @pktg = FirmwarePackage.find(f.PackageId)
+                  @firmwares.push @pktg
+                end
+              end
+              @firmsort = @firmwares.sort_by {|k, v| -k.Version }
+
+            %>
             <div class="card-header">
-              <p style="font-weight:bold; font-size:.9em;"><%= t.Manufacturers.Name %> <%= t.Model %></p>
+              <div class="row">
+                <div class="col-lg-7">
+                  <p style="font-weight:bold; font-size:.9em;"><%= t.Manufacturers.Name %> <%= t.Model %></p>
+                </div>
+                <div class="col-lg-5">
+                  <div class="float-right">
+                    <span style="font-size:.75em;">
+                      Compatible ThinManager Firmware:&nbsp;&nbsp;
+                      <% @firmsort.each do |f| %>
+                        <%= f.Version %>,&nbsp;
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="row">
@@ -27,6 +66,7 @@
                 </div>
               </div>
               
+              <!--
               <div class="row">
                 <div class="col-4">
 
@@ -38,6 +78,8 @@
                   
                 </div>
               </div>
+              -->
+
             </div>
 
           </div>
