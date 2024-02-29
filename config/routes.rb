@@ -144,4 +144,12 @@ resources :firmwarebuilds, except: [:show]
 
 get 'userbadges', to: 'userbadges#index'
 
+resources :surveys
+get 'survey/results', to: 'surveys#results'
+post 'surveys/:id', to: 'surveys#submit'
+resources :survey_questions, except: [:show, :index]
+resources :survey_answers, except: [:show, :index]
+resources :survey_results, except: [:edit, :index]
+
+
 end

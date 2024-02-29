@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_24_131222) do
+ActiveRecord::Schema.define(version: 2024_02_29_181709) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 2023_05_24_131222) do
     t.string "viewer"
     t.string "evt_link"
     t.boolean "reg_required", default: true
+    t.integer "survey_id"
   end
 
   create_table "evtcategories", force: :cascade do |t|
@@ -416,6 +417,48 @@ ActiveRecord::Schema.define(version: 2023_05_24_131222) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "survey_answers", force: :cascade do |t|
+    t.integer "survey_question_id"
+    t.string "answer"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["survey_question_id"], name: "index_survey_answers_on_survey_question_id"
+  end
+
+  create_table "survey_questions", force: :cascade do |t|
+    t.integer "survey_id"
+    t.string "question"
+    t.string "image_url"
+    t.string "answer_type"
+    t.integer "possible_answers", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["survey_id"], name: "index_survey_questions_on_survey_id"
+  end
+
+  create_table "survey_results", force: :cascade do |t|
+    t.integer "survey_id"
+    t.integer "survey_question_id"
+    t.integer "survey_answer_id"
+    t.integer "user_id"
+    t.text "user_input"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "exp_date"
+    t.string "image_url"
+    t.boolean "randomize", default: false
+    t.boolean "required_user", default: true
+    t.boolean "live", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
