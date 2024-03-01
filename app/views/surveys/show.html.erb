@@ -1,0 +1,27 @@
+<div class="container" style="padding-bottom: 100px;">
+
+<div class="row">	
+	<div class="col-md-8">
+		<h1><%= @survey.title %></h1>
+	</div>
+	<div class="col-md-4">
+		
+		<% if current_user && current_user.admin? %>
+			<div class="add_currency_btn"><%= link_to "Edit Survey", edit_survey_path(@survey), class: "btn btn-primary" %></div>
+			<div class="add_currency_btn" style="margin-right:5px;"><%= link_to "All Surveys", surveys_path, class: "btn btn-secondary" %></div>
+		<% end %>
+		
+	</div>
+</div>
+
+<hr />
+<% if @survey.image_url != nil && @survey.image_url != "" %>
+	<div class="survey-image" style="width:100%; margin-bottom: 10px; margin-top: -15px;">
+		<img src="<%= @survey.image_url %>" alt="<%= @survey.title %>" style="width:100%;" />
+	</div>
+<% end %>
+<p><%= @survey.description %></p>
+
+
+
+</div>
