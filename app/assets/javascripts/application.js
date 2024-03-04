@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery3
-//= require jquery.lightbox_me
 //= require popper
+//= require turbolinks
+//= require jquery.lightbox_me
+//= require bootstrap
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require filterrific/filterrific-jquery

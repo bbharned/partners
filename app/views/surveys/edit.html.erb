@@ -44,13 +44,83 @@
             </div>
         </div> 
 
+        <br />
 
+        <hr />
 
-        <h2>Survey Question interface here</h2>
+        	<div class="form-group">
+                <div class="col-sm-12">
+                	<div class="row">
+                		<div class="col-md-8">
+				        	<h4>Survey Questions</h4>
+				        </div>
+				        <div class="col-md-4">
+				        	<div class="float-right">
+				        		<%= link_to "Add Question", new_survey_question_path(:survey_id => @survey.id), class: "btn btn-outline-primary btn-sm" %>
+				        	</div>
+				        </div>
+			        </div>
+		        	<% if @questions.any? %>
+		        		
+		        			<% @questions.each do |q| %>
+			        			<div class="well" style="border-radius: 10px; margin-bottom: 7px; padding-bottom: 0px;">
+			        				<div class="row">
+			        					<div class="col-md-12">
+			        						<div style="margin-bottom:20px;">
+			        							<div class="row">
+			        								<div class="col-md-8">
+					        							<span style="font-weight:bold;"><%= q.question %></span>
+					        						</div>
+					        						<div class="col-md-4">
+					        							<div class="float-right">
+								        					<span style="font-size:.65em;">(<%= link_to "edit", edit_survey_question_path(q, :survey_id => @survey.id) %>)&nbsp;&nbsp;&nbsp;<%= link_to "(delete) ", survey_question_path(q), method: :delete, data: {confirm: "Are you sure you want to delete this question?"}, style: "color:red;" %></span>
+								        				</div>
+							        				</div>
+							        			</div>
+						        				<div class="row" style="font-size:.65em; border-top:1px solid lightgrey; padding-top: 3px; padding-bottom: 7px;">
+						        					<div class="col-12"><b>Answer Type:</b> 
+						        						<% if q.answer_type != nil && q.answer_type != "" %>
+						        							<%= q.answer_type %>
+						        						<% else %>
+						        							no type given
+						        						<% end %>
+						        					</div>
+						        				</div>
+						        				<% if q.survey_answers.any? %>
+						        				<ul>
+						        					<% q.survey_answers.each do |a| %>
+						        						<li>
+						        							<%= a.answer %>&nbsp;&nbsp;&nbsp;
+						        							<span style="font-size:.5em;">
+						        								(<%= link_to "edit", edit_survey_answer_path(q, :survey_question_id => q.id) %>)
+							        							&nbsp;&nbsp;&nbsp;<%= link_to "(delete) ", survey_answer_path(a), method: :delete, data: {confirm: "Are you sure you want to delete this answer?"}, style: "color:red;" %>
+							        						</span>
+						        						</li>
+						        					<% end %>
+						        				</ul>
+						        				<% else %>
+						        					<span style="font-style: italic; font-size:.65em; color:orange;">No Answers created yet for question.</span>	
+						        				<% end %>
+						        				<div class="row">
+						        					<div class="col-md-12">
+							        					<div class="float-right">
+							        						<%= link_to "Add Answer", new_survey_answer_path(:survey_question_id => q.id), style: "font-size:.65em;", class: "btn btn-sm btn-info" %>
+							        					</div>
+							        				</div>
+						        				</div>
+					        				</div>
+					        			</div>
+				        			</div>
+			        			</div>
+			        		<% end %>
+		        			
+		        	<% else %>
+		        		<p>There are no questions created for this survey</p>
+		        	<% end %>
+		        </div>
+		    </div>
 
-
-
-            
+        <hr />    	
         <br />
             <div class="form-group">
                 <div class="col-sm-12">

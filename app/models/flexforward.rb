@@ -239,7 +239,7 @@ def calcs
     @creditForServerLicensesNoSupport = (1-(0.2*self.ex_serv_nosup_years))*(self.ex_serv_nosup*61150 * self.currency.rate)
     if @creditForServerLicensesNoSupport < 0 
         @creditForServerLicensesNoSupport = 0
-    elsif @creditForServerLicensesNoSupport < 36690
+    elsif @creditForServerLicensesNoSupport > 0 && @creditForServerLicensesNoSupport < 36690
         @creditForServerLicensesNoSupport = 36690
     end
     self.tr_cred_serv = @creditForServerLicensesWithSupport + @creditForServerLicensesNoSupport
@@ -255,7 +255,7 @@ def calcs
     @creditForSiteLicensesNoSupport = (1-(0.2*self.ex_site_nosup_years))*(self.ex_site_nosup*134000 * self.currency.rate)
     if @creditForSiteLicensesNoSupport < 0 
         @creditForSiteLicensesNoSupport = 0
-    elsif @creditForSiteLicensesNoSupport < 80400
+    elsif @creditForSiteLicensesNoSupport > 0 && @creditForSiteLicensesNoSupport < 80400
         @creditForSiteLicensesNoSupport = 80400
     end
     self.tr_cred_site = @creditForSiteLicensesWithSupport + @creditForSiteLicensesNoSupport
