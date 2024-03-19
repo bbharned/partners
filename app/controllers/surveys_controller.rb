@@ -7,7 +7,32 @@ class SurveysController < ApplicationController
 
 
 def index
-	@surveys = Survey.all
+	
+    @filterrific = initialize_filterrific(
+     Survey,
+     params[:filterrific],
+      select_options: {
+        survey_sort: Survey.options_for_survey_sort,
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:survey_sort, :survey_search],
+      sanitize_params: true,
+   ) or return
+   #@surveyexport = @filterrific.find
+   @surveys = @filterrific.find.paginate(page: params[:page], per_page: 10)
+
+   respond_to do |format|
+     format.html { render "index" }
+     format.js
+     #format.csv { send_data @surveyexport.to_csv, filename: "ThinManagerPortal_SurveysQuery-#{Date.today}.csv" }
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
+
 end
 
 

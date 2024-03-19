@@ -20,8 +20,10 @@
                         <div class="col-md-4">
                             <%= f.label "Answer Type" %>
                             <%= f.select :answer_type, options_for_select([
-                                      ["Radio Select"], 
-                                      ["Multiple Choice"],
+                                      ["Radio Select"],
+                                      ["Dropdown Select One"],
+                                      ["Dropdown Select Multiple"],
+                                      ["Choose All That Apply"],
                                       ["Fill In Answer"],
                                 ], @survey_question.answer_type), {:default => 'Radio Select'}, class: "form-control answer_type" %>
                         </div>
@@ -30,7 +32,13 @@
                                 <%= f.select :possible_answers, options_for_select([
                                       ["1", 1], 
                                       ["2", 2],
-                                      ["3", 3]
+                                      ["3", 3],
+                                      ["4", 4],
+                                      ["5", 5],
+                                      ["6", 6],
+                                      ["7", 7],
+                                      ["8", 8],
+                                      ["9", 9],
                                 ], @survey_question.possible_answers), {:default => '1'}, class: "form-control possible_answers", disabled: "true" %>
                         </div>
                         <div class="col-md-5">
