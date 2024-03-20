@@ -16,17 +16,23 @@
 						<%= link_to "#{survey.title}", survey_path(survey) %>
 					</div>
 					
-					<div class="col-2">
-						<div class="float-right">
-							<%= link_to "Edit", edit_survey_path(survey), style: "color:green; font-size:.8em;" %> 
-							 |  
-							<%= link_to "Delete", survey_path(survey), method: :delete, data: {confirm: "Are you sure you want to delete this survey?"}, style: "color:red; font-size:.8em;" %>
-						</div>
+					<div class="col-3 text-right">
+						<%= link_to "Edit", edit_survey_path(survey), style: "color:green; font-size:.8em;" %> 
+						&nbsp;|&nbsp;  
+						<%= link_to "Delete", survey_path(survey), method: :delete, data: {confirm: "Are you sure you want to delete this survey? This can not be undone!"}, style: "color:red; font-size:.8em;" %>
 					</div>
 				</div>	
 			</div>
-			<div class="card-body">
-				other info
+			<div class="card-body" style="font-size: .8em;">
+				<% @results = SurveyResult.where(survey_id: survey.id).select(:user_id).distinct %>
+				<div class="row">
+					<div class="col-3">
+						Number of Submissions: <%= @results.count %>
+					</div>
+					<div class="col-3">Date Created: <%= survey.created_at.strftime("%m/%d/%Y") %></div>
+					<div class="col-3">Exp Date: <% if survey.exp_date %><%= survey.exp_date.strftime("%m/%d/%Y") %><% else %>not&nbsp;set<% end %></div>
+					<div class="col-3 text-right"><%= link_to "See Results »", "", style: "color:purple;" %></div>
+				</div>
 			</div>
 		</div>
 
