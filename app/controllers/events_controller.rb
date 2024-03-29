@@ -184,10 +184,12 @@ def admin
         with_venue: Venue.options_for_select,
         with_state: ['Upcoming Events', 'Past Events'],
         with_live_status: ['Live Events', 'Draft Events'],
+        by_year: ['2024', '2023', '2022', '2021'],
+        as_archived: ['Not Archived', 'Archived'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:sort_this, :with_search, :with_evtcategory, :with_live, :with_state, :with_live_status, :with_tag, :with_venue],
+      available_filters: [:sort_this, :with_search, :with_evtcategory, :with_live, :with_state, :with_live_status, :with_tag, :with_venue, :by_year, :as_archived],
       sanitize_params: true,
    ) or return
    @events = @filterrific.find.paginate(page: params[:page], per_page: 10)
@@ -318,7 +320,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :archive, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

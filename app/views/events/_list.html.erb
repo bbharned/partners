@@ -10,7 +10,7 @@
           <div class="card" style="margin-bottom:15px;">
             <div class="card-header">
               <div class="row">
-                <div class="col-4"><%= link_to "#{e.name}", event_path(e) %></div>
+                <div class="col-4"><%= link_to "#{e.name}", event_path(e) %>&nbsp;&nbsp;<%= e.starttime %></div>
                 <div class="col-4">
                   <% e.tags.each do |tag| %>
                     <% if tag.name.include? "Internal" || "internal" %>
@@ -21,6 +21,9 @@
                     <span style="font-size:.75em; font-style:italic;">&nbsp;[event not live]</span>
                   <% elsif e.starttime != nil && e.starttime != "" && e.endtime < Date.today %>
                     <span style="font-size:.75em; font-style:italic; color:#666666;">&nbsp;[past event]</span>
+                  <% end %>
+                  <% if e.archive %>
+                    <span style="font-size:.75em; font-style:italic; color:#666666;">&nbsp;[archived event]</span>
                   <% end %>
                   </div>
                 <div class="col-4">

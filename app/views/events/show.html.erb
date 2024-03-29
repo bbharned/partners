@@ -12,6 +12,9 @@
 			<% if @event.starttime != nil && @event.starttime < Date.today %>
 				(Past Event)
 			<% end %>
+			<% if current_user.admin && @event.archive %>
+				(Archived Event)
+			<% end %>
 		</div>
 		<div class="col-sm-4">
 			<% if current_user && (current_user.admin? || current_user.evt_admin?) %>

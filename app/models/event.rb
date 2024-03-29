@@ -43,6 +43,8 @@ filterrific(
      :with_live_status,
      :with_tag,
      :with_venue,
+     :by_year,
+     :as_archived,
    ],
  )
 
@@ -110,6 +112,21 @@ scope :with_live, lambda { |flag|
   where(live: true)
 }
 
+# scope :as_archived, lambda { |flag|
+#   return nil  if 0 == flag # checkbox unchecked
+#   where(archive: true)
+# }
+
+scope :as_archived, ->(status) {
+    if status == 'Archived'
+        where(archive: true)
+    elsif status == 'Not Archived'
+        where.not(archive: true)
+    else
+        where.not("events.archive == ?", nil)
+    end
+}  
+
 scope :with_live_status, ->(status) {
     if status == 'Live Events'
         where(live: true)
@@ -128,8 +145,34 @@ scope :with_state, ->(date_ref) {
     else
         where.not("events.starttime == ?", nil)
     end
-}       
+} 
 
+require 'date'   
+
+scope :by_year, ->(date_ref) {
+  
+  if date_ref == 2024
+    dtb = DateTime.new(2024, 1, 1, 00, 01, 00)
+    dte = DateTime.new(2025, 1, 1, 00, 01, 00)
+    where("events.starttime >= ?", dtb).where("events.starttime < ?", dte)
+  elsif date_ref == 2023
+    dtb = DateTime.new(2023, 1, 1, 00, 01, 00)
+    dte = DateTime.new(2024, 1, 1, 00, 01, 00)
+    where("events.starttime >= ?", dtb).where("events.starttime < ?", dte)
+  elsif date_ref == 2022
+    dtb = DateTime.new(2022, 1, 1, 00, 01, 00)
+    dte = DateTime.new(2023, 1, 1, 00, 01, 00)
+    where("events.starttime >= ?", dtb).where("events.starttime < ?", dte)
+  elsif date_ref == 2021
+    dtb = DateTime.new(2021, 1, 1, 00, 01, 00)
+    dte = DateTime.new(2022, 1, 1, 00, 01, 00)
+    where("events.starttime >= ?", dtb).where("events.starttime < ?", dte)
+  end
+
+} 
+     
+#if date_ref == '2021'
+    #     where('extract(year from starttime ) = ?', date_ref)
 
   # This method provides select options for the `sorted_by` filter select input.
   # It is called in the controller as part of `initialize_filterrific`.

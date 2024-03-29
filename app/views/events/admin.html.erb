@@ -17,7 +17,6 @@
 <hr />
 
 
-
 <%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 				
 		<div class="container event-filters">			  
@@ -77,6 +76,30 @@
 					      { include_blank: '- Any -' }, class: "form-control"
 					    ) %>
 					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4">
+					    <div class="form-label">Event Year</div>
+					    <%= f.select(
+					      :by_year,
+					      @filterrific.select_options[:by_year],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					</div>
+					<div class="col-md-4">
+					    <div class="form-label">Archive Status</div>
+					    <%= f.select(
+					      :as_archived,
+					      @filterrific.select_options[:as_archived],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					</div>    
+					<div class="col-md-4">
+					    &nbsp;
+					</div>
+
 				</div>
 
 				
