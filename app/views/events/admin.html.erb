@@ -93,7 +93,7 @@
 					    <%= f.select(
 					      :as_archived,
 					      @filterrific.select_options[:as_archived],
-					      { include_blank: '- Any -' }, class: "form-control"
+					      { default: 'Not Archived' }, class: "form-control"
 					    ) %>
 					</div>    
 					<div class="col-md-4">

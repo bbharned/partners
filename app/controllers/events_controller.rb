@@ -185,7 +185,7 @@ def admin
         with_state: ['Upcoming Events', 'Past Events'],
         with_live_status: ['Live Events', 'Draft Events'],
         by_year: ['2024', '2023', '2022', '2021'],
-        as_archived: ['Not Archived', 'Archived'],
+        as_archived: ['Not Archived', 'Archived', 'All'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},

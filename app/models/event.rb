@@ -122,8 +122,8 @@ scope :as_archived, ->(status) {
         where(archive: true)
     elsif status == 'Not Archived'
         where.not(archive: true)
-    else
-        where.not("events.archive == ?", nil)
+    elsif status == 'All'
+        where.not(archive: nil)
     end
 }  
 
