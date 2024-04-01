@@ -188,7 +188,7 @@ def admin
         as_archived: ['Not Archived', 'Archived', 'All'],
       },
       persistence_id: "shared_key",
-      default_filter_params: {},
+      default_filter_params: {:as_archived => 'Not Archived'},
       available_filters: [:sort_this, :with_search, :with_evtcategory, :with_live, :with_state, :with_live_status, :with_tag, :with_venue, :by_year, :as_archived],
       sanitize_params: true,
    ) or return
