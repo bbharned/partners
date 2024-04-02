@@ -33,7 +33,7 @@ def self.to_csv
 end
 
 filterrific(
-   default_filter_params: { sort_this: 'starttime_asc' },
+   default_filter_params: { sort_this: 'starttime_asc', as_archived: 'Not Archived' },
    available_filters: [
      :sort_this,
      :with_search,
