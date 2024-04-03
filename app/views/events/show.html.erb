@@ -12,7 +12,7 @@
 			<% if @event.starttime != nil && @event.starttime < Date.today %>
 				(Past Event)
 			<% end %>
-			<% if current_user.admin && @event.archive %>
+			<% if logged_in? && current_user.admin && @event.archive %>
 				(Archived Event)
 			<% end %>
 		</div>
