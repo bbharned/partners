@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_29_131531) do
+ActiveRecord::Schema.define(version: 2024_04_08_195208) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -544,7 +544,7 @@ ActiveRecord::Schema.define(version: 2024_03_29_131531) do
     t.string "street2"
     t.string "city"
     t.string "state"
-    t.integer "zip"
+    t.string "zip"
     t.string "cell"
     t.string "carrier"
     t.text "notes"
@@ -556,7 +556,7 @@ ActiveRecord::Schema.define(version: 2024_03_29_131531) do
     t.string "street"
     t.string "city"
     t.string "state"
-    t.integer "zipcode"
+    t.string "zipcode"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
