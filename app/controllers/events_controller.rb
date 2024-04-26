@@ -82,7 +82,7 @@ if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil &&
   #@cal_tz = @tz.local_time(@event.starttime).utc
 
   @tzid = @event.tzid 
-  #@tzid = "America/Chicago"
+  #@tzid = "Africa/Accra"
   @tz = TZInfo::Timezone.get(@tzid)
 
   # new icalendar event 

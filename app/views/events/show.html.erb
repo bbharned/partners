@@ -55,6 +55,8 @@
 								<i>[Mountain Time]</i>
 							<% elsif @event.tzid == "America/Los_Angeles" %>
 								<i>[Pacific Time]</i>
+							<% else %>
+								<i>[<%= @event.tzid %> Time]</i>
 							<% end %>
 						<% else %>
 							No times have been set for this event
