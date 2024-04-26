@@ -33,7 +33,7 @@
 	    </div>
 	    <div class="form-group">
 	    	<div class="row">
-	    		<div class="col-md-5">
+	    		<div class="col-lg-4">
                     <div class="control-label">
                         <%= f.label "Start Date/Time" %>
                     </div>
@@ -41,7 +41,7 @@
                         <%= f.datetime_local_field :starttime, class: "form-control" %>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-4">
                     <div class="control-label">
                         <%= f.label "End Date/Time" %>
                     </div>
@@ -49,7 +49,22 @@
                         <%= f.datetime_local_field :endtime, class: "form-control" %>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-lg-4">
+                	<div class="control-label">
+                        <%= f.label "Time Zone" %>
+                    </div>
+                    <div class="tz-dropdown" style="margin-bottom:20px;">
+                                <%= f.select :tzid, options_for_select([
+                                  ["Eastern Time", "America/New_York"],
+                                  ["Central Time", "America/Chicago"],
+                                  ["Mountain Time", "America/Denver"],
+                                  ["Pacific Time", "America/Los_Angeles"]
+                                  ], @event.tzid), {:prompt => '-- Select Timezone --'}, class: "form-control" %>
+                            </div>
+                </div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="col-md-2">
                 	<div class="control-label">
                         <%= f.label :cost %>
                     </div>
@@ -58,6 +73,9 @@
                     </div>
                 </div>
 	    	</div>
+	    </div>
+	    <div class="form-group">
+	    	
 	    </div>
 	    <div class="form-group">
 	    	<div class="row">

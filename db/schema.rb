@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_08_195208) do
+ActiveRecord::Schema.define(version: 2024_04_26_154651) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 2024_04_08_195208) do
     t.boolean "reg_required", default: true
     t.integer "survey_id"
     t.boolean "archive", default: false
+    t.string "tzid", default: "America/New_York"
   end
 
   create_table "evtcategories", force: :cascade do |t|

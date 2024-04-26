@@ -19,57 +19,108 @@ def new
         @name = ""
     end
     
-    @event = Event.new(:name => @name, :description => params[:description], :starttime => params[:starttime], :endtime => params[:endtime], :cost => params[:cost], :capacity => params[:capacity], :event_contact => params[:event_contact], :event_email => params[:event_email], :event_host => params[:event_host], :event_phone => params[:event_phone], :event_image => params[:event_image], :private => params[:private], :virtual => params[:virtual], :viewer => params[:viewer])
+    @event = Event.new(:name => @name, :description => params[:description], :starttime => params[:starttime], :endtime => params[:endtime], :cost => params[:cost], :capacity => params[:capacity], :event_contact => params[:event_contact], :event_email => params[:event_email], :event_host => params[:event_host], :event_phone => params[:event_phone], :event_image => params[:event_image], :tzid => params[:tzid], :private => params[:private], :virtual => params[:virtual], :viewer => params[:viewer])
     @venues = Venue.all
 
 end
 
 def show
 
-    require 'icalendar'
+    require 'icalendar/tzinfo'
 
 # if statement for iCal
 if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil && @event.endtime != ""
 
     @ical = Icalendar::Calendar.new
+    @zones = TZInfo::Timezone.all_identifiers
+    #@tz = TZInfo::Timezone.get(@zones[26])
+    # Older Code commented out for time zone testing
+    # @local_time = @tz.to_local(@event.starttime).utc
+    # @stop_time = @tz.to_local(@event.endtime).utc
 
-    @ical.event do |e|
-      e.dtstart     = Icalendar::Values::DateTime.new(@event.starttime)
-      e.dtend       = Icalendar::Values::DateTime.new(@event.endtime)
-      e.summary     = @event.name
-      e.description = @event.description
-      if @event.venues.any?
-          e.location = @event.venues[0].name
-      end
-      if @event.event_host != ""
-          e.organizer = @event.event_host
-      end
-      if @event.evt_link != "" && @event.evt_link != nil
-        e.url = @event.evt_link
-      end
+    # @ical.event do |e|
+    #   e.dtstart     = Icalendar::Values::DateTime.new(@event.starttime)
+    #   e.dtend       = Icalendar::Values::DateTime.new(@event.endtime)
+    #   e.summary     = @event.name
+    #   e.description = @event.description
+    #   if @event.venues.any?
+    #       e.location = @event.venues[0].name
+    #   end
+    #   if @event.event_host != ""
+    #       e.organizer = @event.event_host
+    #   end
+    #   if @event.evt_link != "" && @event.evt_link != nil
+    #     e.url = @event.evt_link
+    #   end
       
-      @ical.timezone do |t|
-      t.tzid = "America/New_York"
+    # @ical.timezone do |t|
+    #   t.tzid = "America/New_York"
 
-      t.daylight do |d|
-        d.tzoffsetfrom = "-0500"
-        d.tzoffsetto   = "-0600"
-        d.tzname       = "EDT"
-        d.dtstart      = "19700308T020000"
-        d.rrule        = "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU"
-      end
+    #   t.daylight do |d|
+    #     d.tzoffsetfrom = "-0500"
+    #     d.tzoffsetto   = "-0600"
+    #     d.tzname       = "EDT"
+    #     d.dtstart      = "19700308T020000"
+    #     d.rrule        = "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU"
+    #   end
 
-      t.standard do |s|
-        s.tzoffsetfrom = "-0400"
-        s.tzoffsetto   = "-0500"
-        s.tzname       = "EST"
-        s.dtstart      = "19701101T020000"
-        s.rrule        = "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU"
-      end
+    #   t.standard do |s|
+    #     s.tzoffsetfrom = "-0400"
+    #     s.tzoffsetto   = "-0500"
+    #     s.tzname       = "EST"
+    #     s.dtstart      = "19701101T020000"
+    #     s.rrule        = "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU"
+    #   end
+    # end
+
+    #   e.ip_class = "PRIVATE"
+    # end
+
+     # Define default time
+  #@time_zone = 'UTC'
+  #@cal_tz = TZInfo::Timezone.get(@time_zone)
+  #@cal_tz = @tz.local_time(@event.starttime).utc
+
+  @tzid = @event.tzid 
+  #@tzid = "America/Chicago"
+  @tz = TZInfo::Timezone.get(@tzid)
+
+  # new icalendar event 
+    event = Icalendar::Event.new
+
+  # event start date
+    event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
+
+  # event end date
+    event.dtend = Icalendar::Values::DateTime.new @event.endtime, 'tzid' => @tzid
+
+  # event organizer
+    event.organizer = Icalendar::Values::CalAddress.new("mailto:" + @event.event_email)
+
+  # event created date
+    event.created = DateTime.now
+
+  # event location
+    if @event.venues.any?
+      event.location =  @event.venues[0].name
     end
 
-      e.ip_class = "PRIVATE"
+  # if there's an external link e.g, google meet
+    if @event.evt_link != "" && @event.evt_link != nil
+        event.uid = event.url = @event.evt_link
     end
+
+
+  # event title
+    event.summary = @event.name
+
+
+  # event description
+    event.description = @event.description
+
+
+  # attach the configured event to icalendar class
+    @ical.add_event(event)
 
     @ical.publish
     @cal_string = @ical.to_ical
@@ -320,7 +371,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :archive, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :archive, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :tzid, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

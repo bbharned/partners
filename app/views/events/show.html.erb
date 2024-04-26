@@ -46,6 +46,16 @@
 					<div class="card-subtitle">
 						<% if @event.starttime != nil && @event.starttime != "" %>
 							<%= @event.starttime.strftime("%I:%M %P") %> to <%= @event.endtime.strftime("%I:%M %P") %>
+							&nbsp;&nbsp;
+							<% if @event.tzid == "America/New_York" %>
+								<i>[Eastern Time]</i>
+							<% elsif @event.tzid == "America/Chicago" %>
+								<i>[Central Time]</i>
+							<% elsif @event.tzid == "America/Denver" %>
+								<i>[Mountain Time]</i>
+							<% elsif @event.tzid == "America/Los_Angeles" %>
+								<i>[Pacific Time]</i>
+							<% end %>
 						<% else %>
 							No times have been set for this event
 						<% end %>
@@ -367,8 +377,9 @@
 			<% end %>
 	<% end %>
 <% end %>	 
-	
 
+
+<br />
 	
 	
 

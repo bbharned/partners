@@ -58,6 +58,7 @@ gem 'mimemagic', '~> 0.3.10'
 
 gem 'filterrific', '~> 5.2', '>= 5.2.2'
 gem 'icalendar', '~> 2.3'
+gem 'tzinfo', '~> 2.0'
 gem 'geocoder', '~> 1.7', '>= 1.7.5'
 
 gem 'rails-html-sanitizer', '~> 1.4.4'
