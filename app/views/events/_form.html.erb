@@ -54,13 +54,13 @@
                         <%= f.label "Time Zone" %>
                     </div>
                     <div class="tz-dropdown" style="margin-bottom:20px;">
-                                <%= f.select :tzid, options_for_select([
-                                  ["Eastern Time", "America/New_York"],
-                                  ["Central Time", "America/Chicago"],
-                                  ["Mountain Time", "America/Denver"],
-                                  ["Pacific Time", "America/Los_Angeles"]
-                                  ], @event.tzid), {:prompt => '-- Select Timezone --'}, class: "form-control" %>
-                            </div>
+                        <%= f.select :tzid, options_for_select([
+                          ["Eastern Time", "America/New_York"],
+                          ["Central Time", "America/Chicago"],
+                          ["Mountain Time", "America/Denver"],
+                          ["Pacific Time", "America/Los_Angeles"]
+                          ], @event.tzid), class: "form-control tz-possibles" %>
+                    </div>
                 </div>
 	    	</div>
 	    	<div class="row">

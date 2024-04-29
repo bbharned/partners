@@ -757,6 +757,10 @@ Very Light Blue: #e9f7fb;
 .third-card {
     height: 100%;
 }
+.tz-dropdown select {
+    width:100%; font-size: 2em !important;
+    margin-top: 4px;
+}
 
 /*** Event Admin Search Cards *****/
 
