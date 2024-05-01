@@ -16,7 +16,7 @@
                 
                     <div class="col-md-3 currency-select">
                         <div class="control-label"><%= f.label "Select Currency" %></div>
-                        <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, class: "form-control", id: "field39", tabindex: "2" %>
+                        <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, {}, class: "form-control", id: "field39", tabindex: "2" %>
                     </div>
                     <div class="col-md-3">
                         <div class="control-label"><%= f.label "Maintenance Exp" %></div>
