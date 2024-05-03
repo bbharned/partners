@@ -43,11 +43,11 @@
 		<div class="col-md-9">
 			<h1 class="page-header">Welcome <%= "#{@current_user.firstname}" %></h1>
 			<% if @current_user.admin? %>
-				<p>User Type: <span style="font-weight:bold;">Admin</span></p>
+				<p>User Type: <span class="bold">Admin</span></p>
 			<% elsif @current_user.prttype != "" && @current_user.prttype != nil %>
-				<p>Partner Type: <span style="font-weight:bold;"><%= "#{@current_user.prttype}" %></span>
+				<p>Partner Type: <span class="bold"><%= "#{@current_user.prttype}" %></span>
 			<% if (@current_user.certexpire != nil && @current_user.certexpire != "") %>
-					&nbsp;&nbsp;|&nbsp;&nbsp;Certification Expiration: <span style="font-weight:bold;"><%= @current_user.certexpire %></span>
+					&nbsp;&nbsp;|&nbsp;&nbsp;Certification Expiration: <span class="bold"><%= @current_user.certexpire %></span>
 			<% end %>
 				</p>
 			<% end %>
@@ -72,11 +72,11 @@
 	<div class="row">
 		<div class="col">
 			<% if @current_user.needs_review || @current_user.prttype == "End User" %>
-				<p style="font-size: .65em;">Portal access is provided for ThinManager users as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
+				<p class="disclaimer-p">Portal access is provided for ThinManager users as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
 			<% elsif !@current_user.needs_review && (@current_user.prttype == "OEM" || @current_user.prttype == "Integrator") %>
-				<p style="font-size: .65em;">Portal access is provided for our ThinManager certified partners as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
+				<p class="disclaimer-p">Portal access is provided for our ThinManager certified partners as a resource for managing your ThinManager certification. This and other available resources are provided to enhance your ThinManager experience.</p>
 			<% else %>
-				<p style="font-size: .65em;">By using this partner portal, you agree that any information viewed, copied and/or downloaded will remain as non-disclosable information. This includes, but is not limited to, the ThinManager product price list, partner-specific videos, strategic information such as product path planning, etc. This portal is for the sole benefit of your specific channel and access to confidential information in the portal is only meant to be shared within the ThinManager/Channel Partner relationship.</p>
+				<p class="disclaimer-p">By using this partner portal, you agree that any information viewed, copied and/or downloaded will remain as non-disclosable information. This includes, but is not limited to, the ThinManager product price list, partner-specific videos, strategic information such as product path planning, etc. This portal is for the sole benefit of your specific channel and access to confidential information in the portal is only meant to be shared within the ThinManager/Channel Partner relationship.</p>
 			<% end %>
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 	<div class="well progress-well">
 		<div class="row">
 			<div class="col-12">
-				<h3 style="text-align:center;">ThinManager Knowledge Progress</h3>
+				<h3 class="knowledge-progress-h3">ThinManager Knowledge Progress</h3>
 			</div>
 		</div>
 		<hr />
@@ -112,7 +112,7 @@
 							<div class="right-to-center">
 								<h5>Video Training Progress</h5>
 								<% if @badge != nil && @badge.configuration && @badge.productivity && @badge.visualization && @badge.security && @badge.mobility %>
-									<span style="color:#e27a13;">ALL BADGES COMPLETE!!</span>
+									<span class="badge-complete-span">ALL BADGES COMPLETE!!</span>
 								<% else %>
 									<%= link_to "Video Training", learning_path, class: "btn btn-outline-primary btn-sm" %>
 								<% end %>
@@ -186,14 +186,14 @@
 	
 	<% if (@current_user.certexpire != nil && @current_user.certexpire != "") && @current_user.certexpire < Date.today() + 180 && Date.today() < @current_user.certexpire %>	
 		
-			<div class="well recert-alert" style="
+			<div class="well recert-alert 
 				<% if @current_user.certexpire < Date.today() + 32 %>
-					background-color: #EA604E !important;  border: 5px solid #C91C05; 
+					 recert-alert-bg 
 				<% end %>
 			">
 				<div class="row">
 				<div class="col-md-9">
-					<p>Your ThinManager certification expires on <span class="bold" style="font-size:1.25em;"><%= @current_user.certexpire.strftime('%B %d, %Y') %></span>.</p>
+					<p>Your ThinManager certification expires on <span class="bold size-125"><%= @current_user.certexpire.strftime('%B %d, %Y') %></span>.</p>
 					<p>You can easily renew your certification by completing the latest On-Demand ThinManager certification process. Simply complete the labs, as required, and submit them for grading.</p>
 					<p><span class="bold">Ready to go? Click the button!</span></p>
 				</div>
@@ -220,11 +220,11 @@
 <% if (@current_user.admin || @current_user.prttype == "Distributor") && !@current_user.needs_review %>
 
 	<div class="row">
-		<h4 style="padding-left: 1.5%;">Here and Happy to Help <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Distributors)</span><% end %></h4>
+		<h4 class="padding-left-1point5per">Here and Happy to Help <% if @current_user.admin %><span class="light-size-65">&nbsp;&nbsp;(Distributors)</span><% end %></h4>
 	</div>
 	<br />
 	<div class="row">
-		<div class="col-md-6 inside-sales-pic" style="text-align: center;"><%= image_tag "inside-sales_22.png" %></div>
+		<div class="col-md-6 inside-sales-pic center"><%= image_tag "inside-sales_22.png" %></div>
 		<div class="col-md-6"><p>We are invested in helping you succeed. Whether you are presenting ThinManager to a customer or looking to upgrade them to the newest version, we are here to help. Our talented and trained Customer Success Team can help you with almost anything you need, and they are very easy to deal with. </p>
 		<p><%= link_to "customersuccess@thinmanager.com", "mailto:customersuccess@thinmanager.com" %></p>
 			
@@ -245,14 +245,14 @@
 <% if (@current_user.admin || @current_user.prttype == "Integrator") && !current_user.needs_review %>
 
 	<div class="row">
-		<h4 style="padding-left: 1.5%;">We Are Here If You Need <% if @current_user.admin %><span style="font-size:.65em; font-weight: lighter;">&nbsp;&nbsp;(Integrators)</span><% end %></h4>
+		<h4 class="padding-left-1point5per">We Are Here If You Need <% if @current_user.admin %><span class="light-size-65">&nbsp;&nbsp;(Integrators)</span><% end %></h4>
 	</div>
 	<br />
 	<div class="row">
-		<div class="col-md-6 inside-sales-pic" style="text-align: center;">
+		<div class="col-md-6 inside-sales-pic center">
 			<%= image_tag "TM-Partner-Badge.png" %>	
 		</div>
-		<div class="col-md-6"><p style="padding-top: 10px;">Integration of the ThinManager software is the life blood of getting our customers up and keeping them running. Your knowledge and understanding of ThinManager is vital to our success.</p>
+		<div class="col-md-6"><p class="padding-top-10px">Integration of the ThinManager software is the life blood of getting our customers up and keeping them running. Your knowledge and understanding of ThinManager is vital to our success.</p>
 		<p>If you can't find what you are looking for here and need help with questions, <%= link_to "contact us", "mailto:certification@thinmanager.com" %>. We are here and happy to help.</p>
 		</div>
 	</div>
@@ -285,7 +285,7 @@
 
 	  <!-- Flex Forward Card -->
 	  <% if @current_user.admin? || (@current_user.prttype == "Distributor" && @current_user.channel != nil && @current_user.channel != "" && !current_user.needs_review) %>
-		  	<div class="card" style="padding-top: 20px;">
+		  	<div class="card padding-top-20px">
 			    <%= image_tag "ff-logo.png", class: "card-img-top" %>
 			    <div class="card-body">
 			      <h5 class="card-title">Flex Forward Calculator</h5> 
@@ -336,7 +336,7 @@
 	  	<%= image_tag "events_dashcard.jpg", class: "card-img-top" %>
 	    <div class="card-body">
 	      <h5 class="card-title">ThinManager Events</h5>
-	      <p class="card-text" style="margin-bottom:25px;">Our team hosts many events each year.  ThinManager Training, Webinars, and Roadshows. Learn more, sign up and get ready to learn more about ThinManager.</p>
+	      <p class="card-text margin-bottom-25px">Our team hosts many events each year.  ThinManager Training, Webinars, and Roadshows. Learn more, sign up and get ready to learn more about ThinManager.</p>
 	      <div align="right"><%= link_to "Manage My Events", user_path(current_user), class: "btn btn-sm" %>&nbsp;&nbsp;<%= link_to "See Events", events_path, class: "btn btn-primary" %></div>
 	    </div>
 	  </div>
@@ -351,7 +351,7 @@
 		    <div class="card-body">
 		      <h5 class="card-title">License Request</h5>
 		      
-		      <p class="card-text" style="line-height: 12px;"><small class="text-muted">As a certified Integrator, you can request a complimentary 10-pack lab license for testing ThinManager.</small></p>
+		      <p class="card-text line-height-12px"><small class="text-muted">As a certified Integrator, you can request a complimentary 10-pack lab license for testing ThinManager.</small></p>
 
 		      <div align="right">
 		      	<% if !@license %>
@@ -373,7 +373,7 @@
 		    <div class="card-body">
 		      <h5 class="card-title">Web Listing</h5>
 		      
-		      <p class="card-text" style="line-height: 12px; margin-bottom: 25px;"><small class="text-muted">Give us your details and get listed on the ThinManager.com website as a certified integrator.</small></p>
+		      <p class="card-text line-height-12px margin-bottom-25px"><small class="text-muted">Give us your details and get listed on the ThinManager.com website as a certified integrator.</small></p>
 		      <div align="right">
 		      	<!-- <%= link_to "Request Listing", "https://thinmanager.com/weblisting", class: "btn btn-primary btn-sm", target: "_blank" %> -->
 		      	<% if !@listing %>
@@ -467,8 +467,8 @@
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager ROI Calculator</h5>
 		      <p class="card-text">Download our ROI Calculator</p>
-		      <p class="card-text" style="line-height: 12px;"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
-		      	<div align="right" style="margin-top: 22px;">
+		      <p class="card-text line-height-12px"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
+		      	<div align="right margin-top-25px">
 		      		<%= link_to 'Download Now', calculators_path(current_user), method: :new_calc, class: "btn btn-primary", onclick: "window.open('https://thinmanager.com/roi/program/version2020/Signed/ThinManagerROI.exe' + location.search)" %>
 		  		</div>
 		    </div>
@@ -483,7 +483,7 @@
 	  	<!----------------- Feature Spotlight Card ------------------>
 		  <div class="card">
 		  	<div class="card-body">
-		  		<h5 class="card-title" style="margin-bottom: 4px;">Feature Snapshot</h5>
+		  		<h5 class="card-title">Feature Snapshot</h5>
 		  		<h6 class="card-subtitle text-muted">5 New Features of ThinManager</h6>
 		  		<br />
 		  		<ul class="list-group list-group-flush">
@@ -497,24 +497,24 @@
 		  </div>
 
 		  <!----------------- Featured Hardware Card ------------------>
-		  <div class="card" style="text-align: center;">
+		  <div class="card center">
 		  	<%= image_tag "hardware-card-image.jpg", class: "card-img-top" %>
 		  	<div class="card-body">
-		  		<h5 class="card-title" style="">Featured Hardware</h5> 
+		  		<h5 class="card-title">Featured Hardware</h5> 
 		  		<ul class="list-group list-group-flush">
 		  			<li class="list-group-item">Allen-Bradley VersaView
-		  				<ul style="list-style: none; margin-left: -15%;">
+		  				<ul class="hardware-list-style">
 		  					<small><li><%= link_to "Learn More »", "https://ab.rockwellautomation.com/Computers/Thin-Clients", target: "_blank" %></li></small>
-		  				</ul>
+		  				</ul class="hardware-list-style">
 		  			</li>
 		  				
 		  			<li class="list-group-item">OnLogic Supply Industrial clients
-		  				<ul style="list-style: none; margin-left: -15%;">
+		  				<ul class="hardware-list-style">
 		  					<small><li><%= link_to "Learn More »", "https://www.logicsupply.com/markets/manufacturing/industrial-thin-clients/", target: "_blank" %></li></small>
 		  				</ul>
 		  			</li>
 		  			<li class="list-group-item">Stratus ztC Edge servers
-		  				<ul style="list-style: none; margin-left: -15%;">
+		  				<ul class="hardware-list-style">
 		  					<small><li><%= link_to "Learn More »", "https://www.stratus.com/solutions/platforms/ztc-edge/", target: "_blank" %></li></small>
 		  				</ul>
 		  			</li>

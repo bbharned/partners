@@ -3,7 +3,7 @@
       <div class="ra-links">
         <ul>
           <a href="http://www.rockwellautomation.com" target="_blank"><li id="rockwell-logo"><img src="https://thinmanager.com/images/RA-topbar-logo.png" alt="Rockwell Automation" /></li></a>
-          <li class="divider-bar" style="margin-top: -4px; margin-left: 5px; margin-right: 12px;">|</li>
+          <li class="divider-bar divider-bar-margining">|</li>
           <a href="http://www.rockwellautomation.com/rockwellsoftware/overview.page" target="_blank"><li id="rockwell-software"><img src="https://thinmanager.com/images/RA_FT-topbar.png" alt="Rockwell Software" /></li></a>
         </ul>
       </div>
@@ -24,7 +24,7 @@
   </div>
   <% if current_user != nil %>
   <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="burger" style="margin-right:0px;"><%= image_tag "burger.png" %></span>
+  <span class="burger margin-right-0"><%= image_tag "burger.png" %></span>
   </button>
   <% end %>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -289,9 +289,9 @@
   <div class="goAwaySoonest">
     <ul class="nav navbar-nav navbar-right">
       <% if !current_user || !current_user.admin? %>
-      <li style="font-style:italic; padding-right:50px; font-size: .85em;"><a href="mailto:bharned@thinmanager.com?subject=Portal Web App Issue Report" class="nav-link">Having technical issues?</a></li>
+      <li class="nav-support-link"><a href="mailto:bharned@thinmanager.com?subject=Portal Web App Issue Report" class="nav-link">Having technical issues?</a></li>
       <% end %>
-      <li class="dropdown" style="<% if !current_user || !current_user.admin? %>padding-top: 5px;<% end %>">
+      <li class="dropdown <% if !current_user || !current_user.admin? %>padding-top-5px<% end %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="appear">Support </span><span class="goAway glyphicon glyphicon-option-vertical" aria-hidden="true"></span> <span class="appear"><span class="caret"></span></span><span class="burger"><%= image_tag "burger.png" %></span></a>
             <ul class="dropdown-menu nav-right-options">
               <% if logged_in? %>

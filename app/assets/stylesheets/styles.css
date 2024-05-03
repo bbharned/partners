@@ -71,6 +71,7 @@ Extra extra large   xxl ≥1400px
     width:96%; padding:0 2%; margin: auto;
     max-width: 1600px;
 }
+.center {text-align: center;}
 
 
 
@@ -78,6 +79,15 @@ Extra extra large   xxl ≥1400px
 
 
 /**** Global ***/
+.main-content-area {
+    min-height: 800px;
+}
+.page-container {
+    padding-bottom:150px;
+}
+.pluralize-style {
+    font-size: .4em; font-style: italic; font-weight:normal;
+}
 .appear, .appear-sooner {
     display: none;
 }
@@ -276,6 +286,12 @@ ul.pagination {
     position:absolute; left:-160px; margin-top:0px;
 }
 .main-nav .nav-right-options li a {color: #272727 !important;}
+.margin-right-0 {margin-right:0px !important;}
+.nav-support-link {
+    font-style:italic; padding-right:50px; font-size: .85em;
+}
+.padding-top-5px {padding-top:5px !important;}
+.divider-bar-margining {margin-top: -4px; margin-left: 5px; margin-right: 12px;}
 
 button.navbar-toggler span {
     /*overwriting*/
@@ -324,13 +340,31 @@ button.navbar-toggler span {
     background-position: right center; border: 5px solid #f5b218; 
     margin-bottom: 35px; display: none;
 }
-
+.disclaimer-p {font-size:.65em;}
+.knowledge-progress-h3 {text-align: center;}
 .progress-well {
     background-color:#f1f1f1; border:5px solid grey;
     border-radius:10px;
 }
 .dash-cert-col {
     border-right:1px inset #adadad; text-align: center;
+}
+.badge-complete-span {color:#e27a13;}
+
+.size-125 _{font-size: 1.25em;}
+.recert-alert-bg {
+    background-color: #EA604E !important;  border: 5px solid #C91C05;
+}
+.padding-left-1point5per {padding-left:1.5%;}
+.padding-left-1point5per span.light-size-65 {font-size: .65em !important; font-weight:lighter !important;}
+.padding-top-10px {padding-top:10px;}
+.padding-top-20px {padding-top:20px;}
+.margin-bottom-25px {margin-bottom:25px;}
+.line-height-12px {line-height: 12px;}
+.margin-top-22px {margin-top: 22px;}
+.margin-top-25px {margin-top: 25px;}
+.hardware-list-style {
+    list-style: none !important; margin-left: -15% !important
 }
 
 @media screen and (max-width:768px) {
@@ -1464,7 +1498,7 @@ Very Light Blue: #e9f7fb;
 
 /*********************** Currencies Pages ************************/
 .add_currency_btn {
-    float:right; margin-top: 10px;
+    float:right; margin-top: 10px; margin-left: 5px;
 }
 
 

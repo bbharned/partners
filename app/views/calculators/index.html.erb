@@ -1,7 +1,7 @@
 <div class="container">
 
 
-		<h1 class="page-header">ROI Calculator Downloads <span style="font-size: .4em; font-style: italic; font-weight:normal;">&nbsp;( <%= pluralize(@calculators.count, "total ROI downloads") %> )</span></h1>
+		<h1 class="page-header">ROI Calculator Downloads <span class="pluralize-style">&nbsp;( <%= pluralize(@calculators.count, "total ROI downloads") %> )</span></h1>
 	
 	
 	
@@ -10,7 +10,7 @@
 <%= will_paginate(@calculators, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "justify-content-center") %>
 <br />
 	
-<div class="row" style="font-weight:bold;">
+<div class="row bold">
 	<div class="col-md-2">Name</div>
 	<div class="col-md-4">Company</div>
 	<div class="col-md-4">Email</div>

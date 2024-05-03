@@ -8,6 +8,21 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  config.action_dispatch.default_headers = {
+    'Content-Security-Policy' =>
+      "default-src 'self'; " \
+      "img-src 'self' https://thinmanager.com https://rockwellautomation.com; " \
+      "frame-src youtube.com www.youtube.com googletagmanager.com; "\
+      "media-src 'none'; " \
+      "object-src 'none'; " \
+      "script-src 'self' https://partners.thinmanager.com https://www.googletagmanager.com; " \
+      "style-src 'self' https://partners.thinmanager.com; ",
+    'Referrer-Policy' => 'strict-origin-when-cross-origin',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-Frame-Options' => 'SAMEORIGIN',
+    'X-XSS-Protection' => '1; mode=block'
+  }
+
   # Do not eager load code on boot.
   config.eager_load = false
 
