@@ -6,7 +6,7 @@
 		<div class="card company-card">
 			<div class="row">
 				<div class="col-8">
-					<div class="card-name"><%= link_to "#{company.name}", company_path(company), style: "color:inherit;" %></div>
+					<div class="card-name"><%= link_to "#{company.name}", company_path(company), class: "colorInherit" %></div>
 				</div>
 				<div class="col-4">
 					<div class="float-right">
@@ -19,12 +19,12 @@
 				<div class="col-sm-4"><%= company.country %></div>
 				<div class="col-sm-4">Listings: <%= pluralize(@listings.count, "listing") %>&nbsp; 
 					<% if @expired.any? %>
-						<span style="color:red;">[ <%= @expired.count %> expired ]</span>
+						<span class="red">[ <%= @expired.count %> expired ]</span>
 					<% end %>
 				</div>
 				<div class="col-sm-4">
 					<div class="float-right">
-                    	<%= link_to "edit", edit_company_path(company), style: "color: darkorange" %> | <%= link_to "view", company_path(company), style: "color: darkgreen;" %> | <%= link_to "delete", company_path(company), method: :delete, data: {confirm: "Are you sure you want to delete this Company?"}, style: "color:red;" %>
+                    	<%= link_to "edit", edit_company_path(company), class: "darkOrange" %> | <%= link_to "view", company_path(company), class: "darkGreen" %> | <%= link_to "delete", company_path(company), method: :delete, data: {confirm: "Are you sure you want to delete this Company?"}, class: "red" %>
                   	</div>
 				</div>
 			</div>
@@ -35,6 +35,6 @@
 
 <% else %>
 
-<p style="color:orangered; text-align:center; margin-top:50px;">There are no Companies or results to display</p>
+	<p class="center margin-top-50 orangeRed">There are no Companies or results to display</p>
 
 <% end %>

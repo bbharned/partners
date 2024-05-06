@@ -1,12 +1,12 @@
 <%= render 'adminnav' %>
-<div class="container" style="padding-bottom:100px;">
+<div class="container page-container">
 
 <div class="row">
 	<div class="col-md-9">
-		<h1 class="title-get-smaller">Company Results <span style="font-size:.35em; font-style:italic; font-weight:normal;">(searched <%= @parameter %>) (<%= pluralize(@companies.count, "results") %>)</span></h1>
+		<h1 class="title-get-smaller">Company Results <span class="spanPoint4Italic">(searched <%= @parameter %>) (<%= pluralize(@companies.count, "results") %>)</span></h1>
 	</div>
-	<div class="col-md-3" style="padding-top: 14px;">
-		<%= link_to "Add Company", new_company_path, class: "btn btn-sm btn-primary float-right" %>
+	<div class="col-md-3">
+		<%= link_to "Add Company", new_company_path, class: "btn btn-sm btn-primary float-right marginTop14" %>
 	</div>
 </div>
 
@@ -17,7 +17,7 @@
 
 <%= render "company" %>
 
-<div class="paginate" style="margin-top:45px;">
+<div class="paginate" class="margin-top-50">
 	<%= will_paginate(@companies, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>
 

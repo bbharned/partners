@@ -10,13 +10,14 @@ Rails.application.configure do
 
   config.action_dispatch.default_headers = {
     'Content-Security-Policy' =>
-      "default-src 'self'; " \
+      "default-src 'self' https://analytics.google.com https://www.google-analytics.com; " \
+      "connect-src 'self' https://analytics.google.com https://www.google-analytics.com https://www.googletagmanager.com; " \
       "img-src 'self' https://thinmanager.com https://rockwellautomation.com; " \
       "frame-src youtube.com www.youtube.com googletagmanager.com; "\
-      "media-src 'none'; " \
+      "media-src 'self'; " \
       "object-src 'none'; " \
       "script-src 'self' https://partners.thinmanager.com https://www.googletagmanager.com; " \
-      "style-src 'self' https://partners.thinmanager.com; ",
+      "style-src 'self' 'unsafe-inline' https://partners.thinmanager.com youtube.com www.youtube.com; ",
     'Referrer-Policy' => 'strict-origin-when-cross-origin',
     'X-Content-Type-Options' => 'nosniff',
     'X-Frame-Options' => 'SAMEORIGIN',

@@ -10,11 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery3
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery3
 //= require jquery.lightbox_me
+//= require company-infoslides
+//= require pricing-question
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker

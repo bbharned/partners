@@ -72,8 +72,51 @@ Extra extra large   xxl ≥1400px
     max-width: 1600px;
 }
 .center {text-align: center;}
-
-
+span.spanPoint4Italic {
+    font-size: .4em; font-style: italic; font-weight:normal;
+}
+.red {
+    color:red;
+}
+.darkGreen {
+    color: darkgreen;
+}
+.darkOrange {
+    color: darkorange
+}
+.orangeRed {
+    color: orangered;
+}
+.colorInherit {
+    color: inherit;
+}
+.paddingTop14 {
+    padding-top: 14px !important;
+}
+.marginTop14 {
+    margin-top: 14px !important;
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+.margin-top-50 {
+    margin-top: 50px !important;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+.margin-bottom-35 {
+    margin-bottom: 35px;
+}
+.margin-bottom-2 {
+    margin-bottom: 2px;
+}
+.font-size-point75 {
+    font-size: .75em;
+}
 
 
 
@@ -83,7 +126,7 @@ Extra extra large   xxl ≥1400px
     min-height: 800px;
 }
 .page-container {
-    padding-bottom:150px;
+    min-height:700px; padding-bottom:150px;
 }
 .pluralize-style {
     font-size: .4em; font-style: italic; font-weight:normal;

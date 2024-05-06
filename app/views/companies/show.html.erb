@@ -1,24 +1,24 @@
 <%= render 'listings/findernav' %>
-<div class="container" style="padding-bottom: 100px;">
+<div class="container page-container">
 
 <div class="row">
 	<div class="col-md-6">
-		<h1><%= @company.name %><% if logged_in? && current_user.admin? %> <span style="font-size:.35em;"><%= link_to "(Edit)", edit_company_path(@company), style: "color:inherit;" %></span><% end %></h1>
+		<h1><%= @company.name %><% if logged_in? && current_user.admin? %> <span class="spanPoint4Italic"><%= link_to "(Edit)", edit_company_path(@company), style: "color:inherit;" %></span><% end %></h1>
 	</div>
-	<div class="col-md-6" style="padding-top:14px;">
+	<div class="col-md-6">
 		<% if @company.logo_path != "" && @company.logo_path != nil %>
-			<div class="company-logo"><img src="<%= @company.logo_path %>" alt="<%= @company.name %>"></div>
+			<div class="company-logo" class="margin-top-15"><img src="<%= @company.logo_path %>" alt="<%= @company.name %>"></div>
 		<% end %>
 	</div>
 </div>
-<hr style="margin-bottom: 35px;" />
+<hr class="margin-bottom-35" />
 
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-md-6">
 			
-			<h5 style="margin-bottom:2px;">Address</h5>
-			<p style="margin-bottom:2px;">
+			<h5 class="margin-bottom-2">Address</h5>
+			<p class="margin-bottom-2">
 				<% if @company.street != nil %>
 					<%= @company.street %><% if @company.street2 != nil && @company.street2 != "" %>, <%= @company.street2 %><% end %>
 				<% end %>
@@ -37,7 +37,7 @@
 				
 			</p>
 			<% if logged_in? && current_user.admin? %>
-			<span style="font-size:.75em;">
+			<span class="font-size-point75">
 				<%= link_to "(add additonal address)", new_company_addaddress_path(:company_id => @company.id) %>
 			</span>
 			<% end %>
@@ -45,7 +45,7 @@
 		<div class="col-md-6">
 			<div class="float-right-to-left">
 				<% if @company.story_path != nil && @company.story_path != "" %>
-					<%= link_to "Read Their Story", "#{@company.story_path}", class: "btn btn-sm btn-primary", target: "_blank", style: "margin-bottom:15px; margin-top:10px;" %>
+					<%= link_to "Read Their Story", "#{@company.story_path}", class: "btn btn-sm btn-primary margin-bottom-15 margin-top-10", target: "_blank" %>
 				<% end %>
 				<br />
 				<h6>
@@ -123,7 +123,7 @@
 
 
 	<% if logged_in? && current_user.admin? %>
-	<div class="row" style="margin-top:15px;">
+	<div class="row" class="margin-top-15">
 		<div class="col-6">
 			<div class="float-right">
 				<% if @company.latitude != nil %>
@@ -169,10 +169,8 @@
 <% end %>
 </div>
 
-
-
 <script>
-(function(){
+<%# (function(){
 
 	"use strict";
 
@@ -180,7 +178,7 @@
 	var open2 = true;
 	
 	
-	$(".bio-dropdown").on("click", function() {
+	$('.bio-dropdown').on('click', function() {
 		if (open1 == false) {
 			$('.the-bio').slideDown(400);
 			$('.bi-caret-down-fill').css('transform', 'rotate(180deg)');
@@ -196,7 +194,7 @@
 	});
 
 
-	$(".locations-dropdown").on("click", function() {
+	$('.locations-dropdown').on('click', function() {
 		if (open2 == false) {
 			$('.the-locations').slideDown(400);
 			$('.bi-caret-up-fill').css('transform', 'rotate(0deg)');
@@ -213,6 +211,6 @@
 	
 	
 
-})();
+})(); %>
 </script>
 
