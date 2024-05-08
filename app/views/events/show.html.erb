@@ -189,7 +189,14 @@
 				</div>
 				<% if @full == true %>
 				<div class="row">
-					<div class="col" style="text-align:center; color:red;">THIS EVENT IS AT FULL CAPACITY</div>
+					<div class="col" style="text-align:center;">
+						<p style="color:red;">THIS EVENT IS AT FULL CAPACITY<br />
+						<% if current_user %>	
+							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register %>
+						<% else %>
+							<%= link_to "Join The Waitlist", event_path(@event), method: :register %>
+						<% end %></p>
+					</div>
 				</div>
 				<!-- Special Code for Kendall, Remove if event 64 hits capacity. -->
 				<% if @event.id == 63 %>
@@ -325,6 +332,34 @@
 	<% if @canceled.any? %>
 		<% @canceled.each do |u| %>
 				
+			<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
+				<div class="row">
+					<div class="col-md-4">
+						<%= u.user.firstname %> <%= u.user.lastname %>
+					</div>
+					<div class="col-md-4">
+						<%= u.user.company %>
+					</div>
+					<div class="col-md-4">
+						<div class="float-right">
+							<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %> &nbsp;|&nbsp; 
+							<%= link_to "Re-Register", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to re-register this user?"} %>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+		<% end %>
+	<% else %>
+		<p align="center">There are no cancelations</p>
+	<% end %>
+
+	<% if @full %>
+	<h2 align="center" style="margin-top: 35px;">Event Waitlist</h2>
+
+		<% if @waitlist.any? %>
+			<% @waitlist.each do |u| %>
+					
 				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
 					<div class="row">
 						<div class="col-md-4">
@@ -335,15 +370,19 @@
 						</div>
 						<div class="col-md-4">
 							<div class="float-right">
-								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %> &nbsp;|&nbsp; 
-								<%= link_to "Re-Register", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to re-register this user?"} %>
+								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+					
 			<% end %>
+		<% else %>
+			<p align="center">Waitlist is Empty</p>
+		<% end %>
+
 	<% end %>
+
 <% end %>
 
 

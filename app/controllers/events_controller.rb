@@ -28,105 +28,58 @@ def show
 
     require 'icalendar/tzinfo'
 
-# if statement for iCal
-if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil && @event.endtime != ""
+    # if statement for iCal
+    if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil && @event.endtime != ""
 
-    @ical = Icalendar::Calendar.new
-    @zones = TZInfo::Timezone.all_identifiers
-    #@tz = TZInfo::Timezone.get(@zones[26])
-    # Older Code commented out for time zone testing
-    # @local_time = @tz.to_local(@event.starttime).utc
-    # @stop_time = @tz.to_local(@event.endtime).utc
+        @ical = Icalendar::Calendar.new
+        @zones = TZInfo::Timezone.all_identifiers
 
-    # @ical.event do |e|
-    #   e.dtstart     = Icalendar::Values::DateTime.new(@event.starttime)
-    #   e.dtend       = Icalendar::Values::DateTime.new(@event.endtime)
-    #   e.summary     = @event.name
-    #   e.description = @event.description
-    #   if @event.venues.any?
-    #       e.location = @event.venues[0].name
-    #   end
-    #   if @event.event_host != ""
-    #       e.organizer = @event.event_host
-    #   end
-    #   if @event.evt_link != "" && @event.evt_link != nil
-    #     e.url = @event.evt_link
-    #   end
-      
-    # @ical.timezone do |t|
-    #   t.tzid = "America/New_York"
+      @tzid = @event.tzid 
+      #@tzid = "Africa/Accra"
+      @tz = TZInfo::Timezone.get(@tzid)
 
-    #   t.daylight do |d|
-    #     d.tzoffsetfrom = "-0500"
-    #     d.tzoffsetto   = "-0600"
-    #     d.tzname       = "EDT"
-    #     d.dtstart      = "19700308T020000"
-    #     d.rrule        = "FREQ=YEARLY;BYMONTH=3;BYDAY=2SU"
-    #   end
+      # new icalendar event 
+        event = Icalendar::Event.new
 
-    #   t.standard do |s|
-    #     s.tzoffsetfrom = "-0400"
-    #     s.tzoffsetto   = "-0500"
-    #     s.tzname       = "EST"
-    #     s.dtstart      = "19701101T020000"
-    #     s.rrule        = "FREQ=YEARLY;BYMONTH=11;BYDAY=1SU"
-    #   end
-    # end
+      # event start date
+        event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
 
-    #   e.ip_class = "PRIVATE"
-    # end
+      # event end date
+        event.dtend = Icalendar::Values::DateTime.new @event.endtime, 'tzid' => @tzid
 
-     # Define default time
-  #@time_zone = 'UTC'
-  #@cal_tz = TZInfo::Timezone.get(@time_zone)
-  #@cal_tz = @tz.local_time(@event.starttime).utc
+      # event organizer
+        event.organizer = Icalendar::Values::CalAddress.new("mailto:" + @event.event_email)
 
-  @tzid = @event.tzid 
-  #@tzid = "Africa/Accra"
-  @tz = TZInfo::Timezone.get(@tzid)
+      # event created date
+        event.created = DateTime.now
 
-  # new icalendar event 
-    event = Icalendar::Event.new
+      # event location
+        if @event.venues.any?
+          event.location =  @event.venues[0].name
+        end
 
-  # event start date
-    event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
+      # if there's an external link e.g, google meet
+        if @event.evt_link != "" && @event.evt_link != nil
+            event.uid = event.url = @event.evt_link
+        end
 
-  # event end date
-    event.dtend = Icalendar::Values::DateTime.new @event.endtime, 'tzid' => @tzid
 
-  # event organizer
-    event.organizer = Icalendar::Values::CalAddress.new("mailto:" + @event.event_email)
+      # event title
+        event.summary = @event.name
 
-  # event created date
-    event.created = DateTime.now
 
-  # event location
-    if @event.venues.any?
-      event.location =  @event.venues[0].name
+      # event description
+        event.description = @event.description
+
+
+      # attach the configured event to icalendar class
+        @ical.add_event(event)
+
+        @ical.publish
+        @cal_string = @ical.to_ical
+
     end
-
-  # if there's an external link e.g, google meet
-    if @event.evt_link != "" && @event.evt_link != nil
-        event.uid = event.url = @event.evt_link
-    end
-
-
-  # event title
-    event.summary = @event.name
-
-
-  # event description
-    event.description = @event.description
-
-
-  # attach the configured event to icalendar class
-    @ical.add_event(event)
-
-    @ical.publish
-    @cal_string = @ical.to_ical
-
-end
-# end if    
+    # end if    
     
     if (current_user == nil && !@event.live) || (current_user != nil && !current_user.admin? && !current_user.evt_admin && !@event.live)
         flash[:warning] = "You can not view this event."
@@ -142,7 +95,7 @@ end
             @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id, :canceled => false).first
         end
         
-        @allregistered = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true)
+        @allregistered = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where.not(:waitlist => true)
         if ((@allregistered.any? && @allregistered.count >= @event.capacity) || (!@allregistered.any? && @event.capacity == 0))
             @full = true
         end
@@ -158,6 +111,7 @@ end
         end
 
         @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
+        @waitlist = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where(:waitlist => true)
 
         @evtusers = []
         if @allregistered.any?
@@ -304,7 +258,7 @@ def register
     if current_user && @event.reg_required
         @user = User.find(params[:user_id])
         @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id)
-        @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false)
+        @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false, :waitlist => false)
         if @registration.count == 0
 
             if @totalregs.count < @event.capacity
@@ -324,8 +278,23 @@ def register
             
             else
 
-                flash[:danger] = "This event has reached capacity"
-                redirect_to event_path(@event)
+                # add waitlist logic here
+                @register = EventAttendee.new(:event_id => @event.id, :user_id => current_user.id, :lastname => current_user.lastname, :waitlist => true)
+                
+                if @register.save
+                    # send confirmation emails here
+                    # current_user.send_user_evt_registration(@event)
+                    # current_user.send_event_reg_internal_notice(@event) 
+                    # current_user.send_event_reminder(@event)
+                    flash[:success] = "You have been added to the waitlist for #{@event.name}"
+                    redirect_to user_path(current_user)
+                else
+                    flash[:danger] = "You appear to already be registered or on the waitlist for this event"
+                    redirect_to user_path(current_user)
+                end
+
+                # flash[:danger] = "This event has reached capacity"
+                # redirect_to event_path(@event)
 
             end
         
@@ -342,6 +311,7 @@ def register
 
             else
 
+                # add waitlist logic here
                 flash[:danger] = "This event has reached capacity"
                 redirect_to event_path(@event)
 
@@ -351,7 +321,7 @@ def register
 
     elsif !current_user && @event.reg_required
         flash[:warning] = "You must have an account and be logged in to register for events. Please create your account"
-        redirect_to evt_path(@event)
+        redirect_to evt_path(@event) #add wait list to create and waitlist
     else
         redirect_to event_path(@event)
     end

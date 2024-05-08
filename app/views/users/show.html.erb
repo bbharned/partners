@@ -317,7 +317,11 @@
 					<div class="row">
 						<div class="col-md-4">
 							<% if event.starttime != nil && event.starttime != "" && event.starttime >= Date.today %>
-								<%= link_to "#{event.name}", event_path(event) %>
+								<%= link_to "#{event.name}", event_path(event) %> 
+								<% @reg = EventAttendee.where(:event_id => event.id, :user_id => @user.id).first %>
+								<% if @reg.waitlist %>
+									&nbsp;[waitlisted]
+								<% end %>
 							<% elsif current_user.admin || current_user.evt_admin %>
 								<%= link_to "#{event.name}", event_path(event), style: "color:black;" %>
 							<% else %>

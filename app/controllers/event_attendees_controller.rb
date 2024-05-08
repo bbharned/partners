@@ -115,6 +115,7 @@ class EventAttendeesController < ApplicationController
           
           else
 
+              # waitlist logic here, has account, never registered previously
               flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
               redirect_to user_path(@user)
 
@@ -137,6 +138,7 @@ class EventAttendeesController < ApplicationController
 
           else
 
+              # waitlist logic here, has account, was previously registered and canceled, now joining waitlist
               flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
               redirect_to user_path(@user)
 
@@ -158,7 +160,7 @@ class EventAttendeesController < ApplicationController
     # end
 
     def ea_params
-        params.require(:eventattendee).permit(:user_id, :event_id, :lastname, :checked_in, :canceled)
+        params.require(:eventattendee).permit(:user_id, :event_id, :lastname, :checked_in, :canceled, :waitlist)
     end
 
     def send_sms(number, subject, carrier, message)

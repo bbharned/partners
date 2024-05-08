@@ -68,9 +68,11 @@ def rau
   @tm = 'Check the option that best describes your relationship to ThinManager'
 end
 
+
+
 def evt
   @event = Event.find([params[:id]]).first
-  @registrations = EventAttendee.where(:event_id => @event.id, :canceled => false)
+  @registrations = EventAttendee.where(:event_id => @event.id, :canceled => false, :waitlist => false)
 
     if @event.capacity != nil && (@event.capacity > @registrations.count)
 
@@ -84,10 +86,20 @@ def evt
           end
           @tm = 'Check the option that best describes your relationship to ThinManager'
 
-    else 
+    else #waitlist
 
-        flash[:danger] = "This event is either at capacity or currently not accepting registrations."
-        redirect_to event_path(@event)
+        
+        if (!logged_in?) 
+            @user = User.new
+          elsif (logged_in? and current_user.admin?) 
+            @user = User.new
+          elsif (logged_in? and !current_user.admin?)
+            flash[:warning] = "You have already signed up and have an account"
+            redirect_to root_path
+          end
+          @tm = 'Check the option that best describes your relationship to ThinManager'
+        # flash[:danger] = "This event is either at capacity or currently not accepting registrations."
+        # redirect_to event_path(@event)
 
     end
 
@@ -137,7 +149,8 @@ end
 def signup_evt
   @user = User.new(user_params)
   @event = Event.find([params[:id]]).first
-  @registrations = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
+  @registrations = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
+  @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where(waitlist: true)
   #@receiver = User.find(1) #remove for production
   @user.needs_review = true
   @user.event_signup = true
@@ -169,8 +182,31 @@ def signup_evt
 
         else
 
-            flash[:danger] = "Your account has been created, but #{@event.name} looks to have already reached full capacity."
-            redirect_to event_path(@event)
+            if @waitlist.count < 50
+
+                @register = EventAttendee.new(:event_id => @event.id, :user_id => @user.id, :lastname => @user.lastname, :waitlist => true)
+
+                if @register.save
+                    # send confirmation emails here
+                    #@user.send_user_evt_registration(@event) # waitlist email
+                    #@user.send_event_reg_internal_notice(@event) # internal waitlist email
+                    #@user.send_event_reminder(@event)
+                    flash[:success] = "Your account has been created, and you have been added to the waitlist for #{@event.name}."
+                    redirect_to user_path(@user)
+
+                else
+
+                    flash[:danger] = "Your account has been created, but we had a problem adding you to the waitlist for #{@event.name}. Please click the waitlist link below to try again."
+                    redirect_to event_path(@event)
+
+                end
+
+            else
+
+                flash[:danger] = "Your account has been created, but the waitlist for #{@event.name} looks to have already reached capacity."
+                redirect_to event_path(@event)
+
+            end
 
         end
 
