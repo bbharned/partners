@@ -91,8 +91,14 @@ def show
     else
         
         @full = false
-        if logged_in?
-            @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id, :canceled => false).first
+        if current_user
+            @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).where.not(canceled: true).first
+        end
+
+        if @registration != nil && @registration.waitlist == true
+            @iswaitlisted = true
+        else
+            @iswaitlisted = false
         end
         
         @allregistered = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where.not(:waitlist => true)
@@ -111,7 +117,7 @@ def show
         end
 
         @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
-        @waitlist = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where(:waitlist => true)
+        @waitlist = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where(:waitlist => true).order(:updated_at)
 
         @evtusers = []
         if @allregistered.any?
@@ -135,43 +141,112 @@ def show
 end
 
 
+def fill_event
+    
+    @event = Event.find(params[:id])
+    @registered = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
+    @spots = @event.capacity - @registered.count
+    @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where(waitlist: true).order(:updated_at)
+    @wcount = @waitlist.count
+    
+    if @waitlist.count >= @spots
+        @waitlist.each_slice(@spots) do | wl |
+            wl.each do |u| 
+                u.toggle!(:waitlist)
+            end
+        end
+        flash[:success] = "Filled #{@spots} spots"
+    elsif @waitlist.count < @spots
+        @waitlist.each do |w|
+            w.toggle!(:waitlist)
+        end
+        flash[:success] = "Filled #{@wcount} spots"
+    end
+
+    redirect_to event_path(@event)
+
+end
+
+
+def waitlist_check(event)
+    @capacity = event.capacity
+    @registered = EventAttendee.where(event_id: event.id).where.not(canceled: true).where.not(waitlist: true)
+    if @registered.count < @capacity
+        @waitlist = EventAttendee.where(event_id: event.id).where.not(canceled: true).where(waitlist: true).order(:updated_at)
+        if @waitlist.any?
+            @change = @waitlist.first
+            @change.waitlist = false
+            if @change.save
+                # send emails to change user for coming off the waitlist
+            else
+                puts "registration from waitlist didnt change"
+            end
+        end 
+        return
+    end
+end
+
+
 def reg_cancel
     @event = Event.find(params[:id])
     @attendee = EventAttendee.where(event_id: @event.id, user_id: params[:user_id]).first
     @user = User.find(@attendee.user_id)
-    @allregistered = EventAttendee.where(event_id: @event, canceled: false)
-    #@e = Event.find(@event.to_i)
+    @allregistered = EventAttendee.where(event_id: @event, canceled: false).where.not(waitlist: true)
+    @waitlist = EventAttendee.where(event_id: @event, canceled: false).where(waitlist: true)
     
-    if @attendee.canceled? && (@allregistered.count >= @event.capacity)
+    if @attendee.canceled? && (@allregistered.count >= @event.capacity) # re-enrolling but at capacity
 
-        flash[:danger] = "This event has reached capacity"
-        redirect_to event_path(@event)
-
-    elsif @attendee.canceled? && (@allregistered.count < @event.capacity)
-
-        #@user = User.find(@attendee.first.user_id)
+        # flash[:danger] = "This event has reached capacity"
+        # redirect_to event_path(@event)
         @attendee.toggle!(:canceled)
-        @user.send_user_evt_registration(@event)
-        @user.send_event_reg_internal_notice(@event)
-        flash[:success] = "You have been registered for #{@event.name}"
-        redirect_to user_path(@user)
+        @attendee.waitlist = true
+        if @attendee.save
+            # send email of waitlisted user
+            # @user.send_user_evt_registration(@event)
+            # @user.send_event_reg_internal_notice(@event)
+            flash[:success] = "Since the event is full, you have been moved to the waitlist for #{@event.name}"
+            redirect_to user_path(@user)
+        else
+            flash[:danger] = "Something didnt quite work correctly"
+            redirect_to user_path(@user)
+        end
+        
+
+    elsif @attendee.canceled? && (@allregistered.count < @event.capacity) # re-enrolling still room
+
+        
+        @attendee.toggle!(:canceled)
+        @attendee.waitlist = false
+        if @attendee.save
+            @user.send_user_evt_registration(@event)
+            @user.send_event_reg_internal_notice(@event)
+            flash[:success] = "You have been registered for #{@event.name}"
+            redirect_to user_path(@user)
+        else
+            flash[:danger] = "Something didnt quite work correctly"
+            redirect_to user_path(@user)
+        end
+        
 
     else
-
+        #was enrolled and now canceling
         
         @attendee.toggle!(:canceled)
-        #email notices
-        @user.send_event_reg_cancel(@event)
-        @user.send_event_canceled_internal_notice(@event)
-        
-        flash[:success] = "Registration changed"
-        redirect_to event_path(@event)
+        @attendee.waitlist = false
+        if @attendee.save
+            #email notices
+            @user.send_event_reg_cancel(@event)
+            @user.send_event_canceled_internal_notice(@event)
+            flash[:success] = "Your Registration change request has completed."
+            self.waitlist_check(@event)
+            redirect_to event_path(@event)
+        else
+            flash[:danger] = "Something didnt quite work correectly"
+            redirect_to event_path(@event)
+        end
 
     end
 
-    # @attendee.first.toggle!(:canceled)
-    # flash[:success] = "Registration changed"
-    # redirect_to event_path(@event)
     
 end
 

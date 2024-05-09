@@ -6,7 +6,7 @@ class EventAttendeesController < ApplicationController
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
         @users = User.all.order(:lastname)
-        @attendees = EventAttendee.where(event_id: @event.id, :canceled => false).order(:lastname)
+        @attendees = EventAttendee.where(event_id: @event.id, :canceled => false, :waitlist => false).order(:lastname)
       else
         @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"
@@ -113,11 +113,21 @@ class EventAttendeesController < ApplicationController
                   redirect_to user_path(@user)
               end
           
-          else
+          else #waitlist
 
+              @eventattendee.waitlist = true
               # waitlist logic here, has account, never registered previously
-              flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
-              redirect_to user_path(@user)
+              
+              if @eventattendee.save
+                  # send waitlist confirmation email to user
+                  #@user.send_user_evt_registration(@event) #Email to User Registered
+                  flash[:success] = "Waitlist addition has been saved and notification has been emailed for #{@event.name}."
+                  redirect_to user_path(@user)
+              else
+                  flash[:danger] = "This user may already be registered for this event"
+                  redirect_to user_path(@user)
+              end
+
 
           end
       
@@ -128,7 +138,6 @@ class EventAttendeesController < ApplicationController
               if @registrations.first.canceled == true 
                 @registrations.first.toggle!(:canceled)
                 @user.send_user_evt_registration(@event) #Email to User Registered
-                #@user.send_event_reg_internal_notice(@event)
                 flash[:success] = "User Registration has been saved and notification has been emailed for #{@event.name}."
                 redirect_to user_path(@user)
               else
@@ -136,11 +145,22 @@ class EventAttendeesController < ApplicationController
                 redirect_to user_path(@user)
               end
 
-          else
+          else #waitlist
 
               # waitlist logic here, has account, was previously registered and canceled, now joining waitlist
-              flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
-              redirect_to user_path(@user)
+              # flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
+              # redirect_to user_path(@user)
+
+              if @registrations.first.canceled == true 
+                @registrations.first.toggle!(:canceled)
+                @registrations.first.toggle!(:waitlist)
+                #@user.send_user_evt_registration(@event) # send waitlist confirmation email to user
+                flash[:success] = "User Registration has been updated and waitlist notification has been emailed for #{@event.name}."
+                redirect_to user_path(@user)
+              else
+                flash[:danger] = "This user may already be registered for this event"
+                redirect_to user_path(@user)
+              end
 
           end
 

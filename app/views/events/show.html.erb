@@ -191,19 +191,23 @@
 				<div class="row">
 					<div class="col" style="text-align:center;">
 						<p style="color:red;">THIS EVENT IS AT FULL CAPACITY<br />
-						<% if current_user %>	
+						<% if current_user && !@registration %>	
 							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register %>
+						<% elsif current_user && @registration && @iswaitlisted == false %>
+							
+						<% elsif current_user && @registration && @iswaitlisted == true %>
+							<span style="color:black;">You are Currently on the Waitlist for this Event</span>
 						<% else %>
 							<%= link_to "Join The Waitlist", event_path(@event), method: :register %>
 						<% end %></p>
 					</div>
 				</div>
-				<!-- Special Code for Kendall, Remove if event 64 hits capacity. -->
-				<% if @event.id == 63 %>
-					<div class="row">
-						<div class="col" style="text-align:center;">We do have another event open for registration <%= link_to "here", event_path(64) %>.</div>
-					</div>
-				<% end %>
+					<!-- Special Code for Kendall, Remove if event 64 hits capacity. -->
+					<% if @event.id == 63 %>
+						<div class="row">
+							<div class="col" style="text-align:center;">We do have another event open for registration <%= link_to "here", event_path(64) %>.</div>
+						</div>
+					<% end %>
 				<% end %>
 				<% if @ical != nil && @event.id != 63 %>
 					<div class="row">
@@ -302,7 +306,6 @@
 							<div class="float-right">
 								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %> &nbsp;|&nbsp; 
 								<%= link_to "Cancel Registration", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to cancel this registration?"}, style: "color:red;" %>
-								<!-- <%= link_to "Delete Registration", deregister_path(:reg => u) , method: :destroy, data: { confirm: "You sure? "}, style: "color:red;" %> -->
 							</div>
 						</div>
 					</div>
@@ -326,8 +329,9 @@
 		</div>
 	</div>
 
+	<hr style="margin-top:50px;" />
 
-	<h2 align="center" style="margin-top: 35px;">Canceled Registrations</h2>
+	<h4 style="margin-top: 35px;">Canceled Registrations</h4>
 
 	<% if @canceled.any? %>
 		<% @canceled.each do |u| %>
@@ -354,8 +358,16 @@
 		<p align="center">There are no cancelations</p>
 	<% end %>
 
-	<% if @full %>
-	<h2 align="center" style="margin-top: 35px;">Event Waitlist</h2>
+	<div class="row" style="margin-top: 35px;">
+		<div class="col-6">
+			<h4>Event Waitlist</h4>
+		</div>
+		<div class="col-6">
+			<% if @waitlist.any? && !@full %>
+				<%= link_to "Fill Event from Waitlist", fill_event_path(@event), method: :fill_event, data: {confirm: "Are you sure want to fill the remaining event spots from the waitlist?"}, class: "float-right btn btn-sm btn-outline-primary" %>
+			<% end %> 
+		</div>
+	</div>
 
 		<% if @waitlist.any? %>
 			<% @waitlist.each do |u| %>
@@ -371,6 +383,8 @@
 						<div class="col-md-4">
 							<div class="float-right">
 								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %>
+								&nbsp;|&nbsp;
+								<%= link_to "Remove", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to remove from waitlist?"}, style: "color:red;" %>
 							</div>
 						</div>
 					</div>
@@ -381,7 +395,7 @@
 			<p align="center">Waitlist is Empty</p>
 		<% end %>
 
-	<% end %>
+	
 
 <% end %>
 

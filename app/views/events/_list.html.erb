@@ -5,7 +5,8 @@
     <% if @events.any? %>
           
           <% @events.each do |e| %>
-          <% @reg_users = EventAttendee.where(event_id: e.id, canceled: false) %>
+          <% @reg_users = EventAttendee.where(event_id: e.id, canceled: false).where.not(waitlist: true) %>
+          <% @waitlisters = EventAttendee.where(event_id: e.id, canceled: false).where.not(waitlist: false) %>
 
           <div class="card" style="margin-bottom:15px;">
             <div class="card-header">
@@ -52,7 +53,7 @@
                     No event date and time set.
                   <% end %>
                   </div>
-                <div class="col-md-3"><%= @reg_users.count %> registered of <%= e.capacity %></div>
+                <div class="col-md-3"><%= @reg_users.count %> registered of <%= e.capacity %> <% if @waitlisters.any? %>&nbsp;<span style="font-size:.75em; color:mediumpurple;">[<%= @waitlisters.count %> waitlisted]</span><% end %></div>
                 <div class="col-md-5">
                   <div class="float-right">
                     <%= link_to "edit", edit_event_path(e), style: "color: darkorange" %> | 

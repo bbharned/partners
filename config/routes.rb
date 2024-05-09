@@ -87,6 +87,7 @@ resources :events
 get 'event/admin', to: 'events#admin'
 post 'events/:id', to: 'events#register'
 post 'events/:id/reg_cancel', to: 'events#reg_cancel', as: 'reg_cancel'
+post 'events/:id/fill_event', to: 'events#fill_event', as: 'fill_event'
 get 'user/eventusers', to: 'users#eventusers'
 get 'event/hosted', to: 'events#hosted'
 
