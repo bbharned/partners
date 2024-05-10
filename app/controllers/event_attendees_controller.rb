@@ -95,8 +95,8 @@ class EventAttendeesController < ApplicationController
       @eventattendee = EventAttendee.new(:user_id => @user.id, :lastname => @user.lastname, :event_id => @event.id)
       
 
-      @registrations = EventAttendee.where(:event_id => @event.id, :user_id => @user.id)
-      @totalregs = EventAttendee.where(:event_id => @event.id, :canceled => false)
+      @registrations = EventAttendee.where(event_id: @event.id).where(user_id: @user.id)
+      @totalregs = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
       if @registrations.count == 0
 
           if @totalregs.count < @event.capacity
@@ -147,14 +147,10 @@ class EventAttendeesController < ApplicationController
 
           else #waitlist
 
-              # waitlist logic here, has account, was previously registered and canceled, now joining waitlist
-              # flash[:danger] = "Sorry, this event has reached full capacity, could not register this user."
-              # redirect_to user_path(@user)
-
               if @registrations.first.canceled == true 
                 @registrations.first.toggle!(:canceled)
                 @registrations.first.toggle!(:waitlist)
-                #@user.send_user_evt_registration(@event) # send waitlist confirmation email to user
+                # send waitlist confirmation email to user
                 flash[:success] = "User Registration has been updated and waitlist notification has been emailed for #{@event.name}."
                 redirect_to user_path(@user)
               else

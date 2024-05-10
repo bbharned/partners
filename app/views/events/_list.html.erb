@@ -5,8 +5,9 @@
     <% if @events.any? %>
           
           <% @events.each do |e| %>
-          <% @reg_users = EventAttendee.where(event_id: e.id, canceled: false).where.not(waitlist: true) %>
-          <% @waitlisters = EventAttendee.where(event_id: e.id, canceled: false).where.not(waitlist: false) %>
+          
+          <% @reg_users = EventAttendee.where(event_id: e.id).where.not(canceled: true).where.not(waitlist: true)#.where("canceled = ? AND waitlist = ?", false, false) %>
+          <% @waitlisters = EventAttendee.where(event_id: e.id).where.not(canceled: true).where.not(waitlist: false) %>
 
           <div class="card" style="margin-bottom:15px;">
             <div class="card-header">
