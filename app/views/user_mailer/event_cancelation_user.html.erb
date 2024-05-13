@@ -13,7 +13,7 @@
         
         <p>Dear <%= @user.firstname %>,</p>
         
-        <p>This message is simply to confirm that you have canceled your registration for an upcoming event with our team. Please check the details below.</p>
+        <p>This message is simply to confirm that you have canceled your registration, or place on the waitlist, for an upcoming event with our team. Please check the details below.</p>
 
         <h3 style="margin-top:35px;">Event Details</h3>
 
@@ -23,9 +23,8 @@
           <b>Date:</b> <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
         <br />
-        <p>As long as there is still open reservation space in the event, please feel free to re-register if your schedule allows. Also, if you did not mean for this cancelation to occur, please <%= link_to "contact us", "mailto:events@thinmanager.com" %>.</p>
+        <p>Please feel free to re-register if your schedule allows or join the waitlist if the event is full. Also, if you did not mean for this cancelation to occur, please <%= link_to "contact us", "mailto:events@thinmanager.com" %>.</p>
 
-        <p>To view more events upcoming with ThinManager, please check <a href="https://partners.thinmanager.com/events" target="_blank">here</a>.</p>
         <br />
         <p>Thank you,</p>
 

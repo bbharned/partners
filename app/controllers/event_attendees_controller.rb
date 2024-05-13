@@ -6,7 +6,7 @@ class EventAttendeesController < ApplicationController
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
         @users = User.all.order(:lastname)
-        @attendees = EventAttendee.where(event_id: @event.id, :canceled => false, :waitlist => false).order(:lastname)
+        @attendees = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true).order(:lastname)
       else
         @event = Event.find(params[:id])
         flash[:danger] = "Only admins can perform that action"
@@ -24,7 +24,7 @@ class EventAttendeesController < ApplicationController
     def sms 
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
-        @attendees = EventAttendee.where(event_id: @event.id).where.not(:canceled => true)
+        @attendees = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
         @evt_users = []
         @attendees.each do |u|
           @user = User.find(u.user_id)
@@ -49,7 +49,7 @@ class EventAttendeesController < ApplicationController
       @message = params[:message][:sms_message]
       @subject = params[:message][:sms_subject]
       @event = Event.find(params[:id])
-      @attendees = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
+      @attendees = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
       @evt_users = []
       @attendees.each do |u|
         @user = User.find(u.user_id)
@@ -120,7 +120,7 @@ class EventAttendeesController < ApplicationController
               
               if @eventattendee.save
                   # send waitlist confirmation email to user
-                  #@user.send_user_evt_registration(@event) #Email to User Registered
+                  @user.send_user_evt_waitlist(@event) # waitlisted user email - external
                   flash[:success] = "Waitlist addition has been saved and notification has been emailed for #{@event.name}."
                   redirect_to user_path(@user)
               else
@@ -151,6 +151,7 @@ class EventAttendeesController < ApplicationController
                 @registrations.first.toggle!(:canceled)
                 @registrations.first.toggle!(:waitlist)
                 # send waitlist confirmation email to user
+                @user.send_user_evt_waitlist(@event) # waitlisted user email - external
                 flash[:success] = "User Registration has been updated and waitlist notification has been emailed for #{@event.name}."
                 redirect_to user_path(@user)
               else

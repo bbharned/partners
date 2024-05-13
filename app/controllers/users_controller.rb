@@ -188,9 +188,8 @@ def signup_evt
 
             if @register.save
                 # send confirmation emails here
-                #@user.send_user_evt_registration(@event) # waitlist email
-                #@user.send_event_reg_internal_notice(@event) # internal waitlist email
-                #@user.send_event_reminder(@event)
+                @user.send_user_evt_waitlist(@event) # waitlisted user email - external
+                @user.send_event_reg_waitlist_internal_notice(@event) # waitlisted user - internal notification
                 flash[:success] = "Your account has been created, and you have been added to the waitlist for #{@event.name}."
                 redirect_to user_path(@user)
 

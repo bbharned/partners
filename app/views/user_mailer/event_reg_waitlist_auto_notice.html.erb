@@ -11,9 +11,9 @@
         <br /><br />
         </div>
 
-        <h2>Video training Account</h2>
+        <h2>Event User moved<br />from WAITLIST Automatically</h2>
 
-        <p>An account has been created in the Portal for Video Training</p>
+        <p>A user was moved from an event waitlist automatically to the event registrants automatically in the Portal</p>
         
         <p style="font-weight:bold; margin-top: 35px;">User Information</p>
         <p>
@@ -22,22 +22,17 @@
           <%= @user.email %>
         </p>
         
-        <p>Self Identified as:&nbsp;
-          <% if @user.distributor %>
-              Distributor
-            <% elsif @user.integrator %>
-              Integrator
-            <% elsif @user.end_user %>
-              End User
-            <% elsif @user.oem %>
-              OEM
-            <% else %> 
-              &nbsp;
-          <% end %>
+        
+
+        <p style="font-weight:bold; margin-top: 55px;">Event Details</p>
+
+        <p>
+          <%= @event.name %><br />
+          <%= @event.evtcategories.first.name %><br />
+          <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
 
-        
-        <p align="center" style="margin-top:45px;">Created on: <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+        <p align="center" style="margin-top:45px;">Registration change occurred: <%= Date.today.strftime("%m/%d/%Y") %></p>
     
     </div>
   </body>

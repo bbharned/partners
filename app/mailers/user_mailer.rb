@@ -226,6 +226,32 @@ class UserMailer < ApplicationMailer
     mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Registration', delivery_method_options: delivery_options)
   end
 
+  def event_reg_waitlist_notice(user, event) #done
+    @user = user
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Waitlist Registration', delivery_method_options: delivery_options)
+  end
+
+  def event_reg_waitlist_auto_notice(user, event) #done
+    @user = user
+    @event = event
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'events@thinmanager.com', from: 'ThinManager Portal', subject: 'Event Waitlist Auto to Registration', delivery_method_options: delivery_options)
+  end
+
   def event_reg_cancel(user, event) #done
     @user = user
     @event = event
@@ -267,6 +293,20 @@ class UserMailer < ApplicationMailer
 
 
   def event_registration_user(user, event)
+    @user = user
+    @event = event
+
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'You Are Registered!', delivery_method_options: delivery_options)
+  end
+
+  def event_registration_waitlist_user(user, event)
     @user = user
     @event = event
 

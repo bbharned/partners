@@ -141,8 +141,20 @@ end
         UserMailer.event_registration_user(self, event).deliver_now
     end
 
+    def send_user_evt_waitlist(event)
+        UserMailer.event_registration_waitlist_user(self, event).deliver_now
+    end
+
     def send_event_reg_internal_notice(event)
         UserMailer.event_reg_notice(self, event).deliver_now
+    end
+
+    def send_event_reg_waitlist_internal_notice(event)
+        UserMailer.event_reg_waitlist_notice(self, event).deliver_now
+    end
+
+    def send_event_reg_waitlist_auto_internal_notice(event)
+        UserMailer.event_reg_waitlist_auto_notice(self, event).deliver_now
     end
 
     def send_event_reg_cancel(event)

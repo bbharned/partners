@@ -66,6 +66,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.zap_lab_upload(@user)
   end
 
+#events
+
   def event_reg_notice_internal
     @user = User.find(1)
     @event = Event.find(9)
@@ -107,9 +109,31 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.event_cancelation_user(@user, @event)
   end
 
+#events Waitlist
+
+  def event_reg_waitlist_notice_internal
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_reg_waitlist_notice(@user, @event)
+  end
+
+  def event_reg_from_waitlist_Automatic_internal
+    @user = User.find(1)
+    @event = Event.find(9)
+    UserMailer.event_reg_waitlist_auto_notice(@user, @event)
+  end
+
+  def event_registration_waitlist_user_external
+    @user = User.find(1)
+    @event = Event.find(9) #event 67 has event url and is virtual and private, event 9 does not but is virtual
+    UserMailer.event_registration_waitlist_user(@user, @event)
+  end
+
+
+
   def license_request_internal
     @user = User.find(3)
-    @license = License.find(1)
+    @license = License.find(3)
     UserMailer.license_notification(@user, @license)
   end
 

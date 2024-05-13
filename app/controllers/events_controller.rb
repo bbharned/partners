@@ -117,7 +117,7 @@ def show
         end
 
         @canceled = EventAttendee.where(:event_id => @event.id).where(:canceled => true)
-        @waitlist = EventAttendee.where(:event_id => @event.id).where.not(:canceled => true).where(:waitlist => true).order(:updated_at)
+        @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: false).order(:updated_at)
 
         @evtusers = []
         if @allregistered.any?
@@ -146,21 +146,25 @@ def fill_event
     @event = Event.find(params[:id])
     @registered = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
     @spots = @event.capacity - @registered.count
-    @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where(waitlist: true).order(:updated_at)
+    @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: false).order(:updated_at)
     @wcount = @waitlist.count
     
     if @waitlist.count >= @spots
         @waitlist.each_slice(@spots) do | wl |
             wl.each do |u| 
+                @user = u.user
                 u.toggle!(:waitlist)
                 # send Waitlist emails
+                @user.send_user_evt_registration(@event)
             end
         end
         flash[:success] = "Filled #{@spots} spots"
     elsif @waitlist.count < @spots
         @waitlist.each do |w|
+            @user = w.user
             w.toggle!(:waitlist)
             # send Waitlist emails
+            @user.send_user_evt_registration(@event)
         end
         flash[:success] = "Filled #{@wcount} spots"
     end
@@ -174,12 +178,15 @@ def waitlist_check(event)
     @capacity = event.capacity
     @registered = EventAttendee.where(event_id: event.id).where.not(canceled: true).where.not(waitlist: true)
     if @registered.count < @capacity
-        @waitlist = EventAttendee.where(event_id: event.id).where.not(canceled: true).where(waitlist: true).order(:updated_at)
+        @waitlist = EventAttendee.where(event_id: event.id).where.not(canceled: true).where.not(waitlist: false).order(:updated_at)
         if @waitlist.any?
             @change = @waitlist.first
+            @user = @change.user
             @change.waitlist = false
             if @change.save
                 # send emails to change user for coming off the waitlist
+                @user.send_user_evt_registration(event)
+                @user.send_event_reg_waitlist_auto_internal_notice(event)
             else
                 puts "registration from waitlist didnt change"
             end
@@ -193,8 +200,8 @@ def reg_cancel
     @event = Event.find(params[:id])
     @attendee = EventAttendee.where(event_id: @event.id, user_id: params[:user_id]).first
     @user = User.find(@attendee.user_id)
-    @allregistered = EventAttendee.where(event_id: @event, canceled: false).where.not(waitlist: true)
-    @waitlist = EventAttendee.where(event_id: @event, canceled: false).where(waitlist: true)
+    @allregistered = EventAttendee.where(event_id: @event).where.not(canceled: true).where.not(waitlist: true)
+    @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: false)
     
     if @attendee.canceled == true && (@allregistered.count >= @event.capacity) # re-enrolling but at capacity
 
@@ -204,8 +211,8 @@ def reg_cancel
         @attendee.waitlist = true
         if @attendee.save
             # send email of waitlisted user
-            # @user.send_user_evt_registration(@event)
-            # @user.send_event_reg_internal_notice(@event)
+            @user.send_user_evt_waitlist(@event) # waitlisted user email - external
+            @user.send_event_reg_waitlist_internal_notice(@event) # waitlisted user - internal notification
             flash[:success] = "Since the event is full, you have been moved to the waitlist for #{@event.name}"
             redirect_to user_path(@user)
         else
@@ -334,8 +341,8 @@ end
 def register
     if current_user && @event.reg_required
         @user = User.find(params[:user_id])
-        @registration = EventAttendee.where(event_id: @event.id).where(user_id: current_user.id) #(:event_id => @event.id, :user_id => current_user.id)
-        @totalregs = EventAttendee.where(event_id: @event.id).where(canceled: false).where(waitlist: false)  #(:event_id => @event.id, :canceled => false, :waitlist => false)
+        @registration = EventAttendee.where(event_id: @event.id).where(user_id: current_user.id) 
+        @totalregs = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)  
         if @registration.count == 0
 
             if @totalregs.count < @event.capacity
@@ -360,7 +367,8 @@ def register
                 
                 if @register.save
                     # send waitlist emails here
-                    # emails here
+                    @user.send_user_evt_waitlist(@event) # waitlisted user email - external
+                    @user.send_event_reg_waitlist_internal_notice(@event) # waitlisted user - internal notification
                     flash[:success] = "You have been added to the waitlist for #{@event.name}"
                     redirect_to user_path(current_user)
                 else
@@ -390,7 +398,8 @@ def register
                 @registration.first.toggle!(:canceled)
                 @registration.first.toggle!(:waitlist)
                 # send waitlist emails
-
+                @user.send_user_evt_waitlist(@event) # waitlisted user email - external
+                @user.send_event_reg_waitlist_internal_notice(@event) # waitlisted user - internal notification
                 flash[:success] = "You have been added to the waitlist for #{@event.name}"
                 redirect_to user_path(current_user)
 

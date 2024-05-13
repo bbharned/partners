@@ -8,21 +8,21 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.action_dispatch.default_headers = {
-    'Content-Security-Policy' =>
-      "default-src 'self' https://analytics.google.com https://www.google-analytics.com; " \
-      "connect-src 'self' https://analytics.google.com https://www.google-analytics.com https://stats.g.doubleclick.net; " \
-      "img-src 'self' https://thinmanager.com https://rockwellautomation.com; " \
-      "frame-src youtube.com www.youtube.com googletagmanager.com; "\
-      "media-src 'self'; " \
-      "object-src 'none'; " \
-      "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; " \
-      "style-src 'self' 'unsafe-inline' youtube.com www.youtube.com; ",
-    'Referrer-Policy' => 'strict-origin-when-cross-origin',
-    'X-Content-Type-Options' => 'nosniff',
-    'X-Frame-Options' => 'SAMEORIGIN',
-    'X-XSS-Protection' => '1; mode=block'
-  }
+  # config.action_dispatch.default_headers = {
+  #   'Content-Security-Policy' =>
+  #     "default-src 'self' https://analytics.google.com https://www.google-analytics.com; " \
+  #     "connect-src 'self' https://analytics.google.com https://www.google-analytics.com https://stats.g.doubleclick.net; " \
+  #     "img-src 'self' https://thinmanager.com https://rockwellautomation.com; " \
+  #     "frame-src youtube.com www.youtube.com googletagmanager.com; "\
+  #     "media-src 'self'; " \
+  #     "object-src 'none'; " \
+  #     "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; " \
+  #     "style-src 'self' 'unsafe-inline' youtube.com www.youtube.com; ",
+  #   'Referrer-Policy' => 'strict-origin-when-cross-origin',
+  #   'X-Content-Type-Options' => 'nosniff',
+  #   'X-Frame-Options' => 'SAMEORIGIN',
+  #   'X-XSS-Protection' => '1; mode=block'
+  # }
 
   # Do not eager load code on boot.
   config.eager_load = false

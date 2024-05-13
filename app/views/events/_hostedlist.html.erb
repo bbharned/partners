@@ -7,8 +7,8 @@
           
           <% has_events.each do |e| %>
 
-          <% @waitlisters = EventAttendee.where(event_id: e.id).where(canceled: false).where(waitlist: true) %>
-          <% @reg_users = EventAttendee.where(event_id: e.id).where(canceled: false).where(waitlist: false) %>
+          <% @waitlisters = EventAttendee.where(event_id: e.id).where.not(canceled: true).where.not(waitlist: false) %>
+          <% @reg_users = EventAttendee.where(event_id: e.id).where.not(canceled: true).where.not(waitlist: true) %>
           
 
           <div class="card" style="margin-bottom:15px;">
