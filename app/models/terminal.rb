@@ -66,10 +66,6 @@ scope :with_search_please, ->(search_string) {
           .map {|term| "%#{term}%"}
 
   where(search_columns.map {|c| c.matches_any(terms)}.reduce(:and))
-    # .joins(:Manufacturers)
-    # .joins(:TerminalType)
-    # .left_joins(:Notes)
-    # .joins(:FirmwarePackages)
 }
 
 
