@@ -9,13 +9,6 @@ class Terminal < Termcap2
     
 
 
-
-# @terminals = self.all
-# @terminals = @terminals.order(:Model)
-# @terminalsrev = @terminals.reverse
-# @terminalswhen = @terminals.order(:created_at)
-
-
 filterrific(
    default_filter_params: { },
    available_filters: [
@@ -59,28 +52,12 @@ filterrific(
 # }
 
 
-# scope :with_search_please, ->(search_string) {
-  
-#   return nil  if search_string.blank?
-  
-#   searchterm = search_string
-#   # .downcase
-
-#   self.where("Model LIKE ?", "#{searchterm}%").or(Terminal.where("Model LIKE ?", "%#{searchterm}%"))
-
-# }
-
-
 scope :with_search_please, ->(search_string) {
   return none if search_string.blank? # A scope should not return nil
 
   search_columns = [
     Terminal.arel_table[:Model],
     Terminal.arel_table[:TermcapModel]
-    # Manufacturers.arel_table[:Name]
-    # TerminalType.arel_table[:Type],
-    # Note.arel_table[:Description]
-    # FirmwarePackage.arel_table[:Version]
   ]
 
   terms = search_string.to_s
@@ -96,29 +73,12 @@ scope :with_search_please, ->(search_string) {
 }
 
 
-# scope :with_note_search, ->(search_string) {
-#   return none if search_string.blank? # A scope should not return nil
-
-#   search_columns = [
-#     Note.arel_table[:Description]
-#   ]
-
-#   terms = search_string.to_s
-#           .gsub("*","%")
-
-#   where('Description LIKE ?', "%#{terms}%")
-#     .left_joins(:Notes)
-# }
-
-
 
 scope :sorted_by, ->(sort_option) {
   direction = /desc$/.match?(sort_option) ? "desc" : "asc"
   case sort_option.to_s
   when /^model_/
     order("Model #{direction}")
-  # when /^created_at_/
-  #   order("created_at #{direction}")
   else
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
