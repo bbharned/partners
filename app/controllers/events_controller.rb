@@ -127,13 +127,30 @@ def show
                 end
             end
         end
+
+        @waitlisters = []
+        if @waitlist.any?
+            @waitlist.each do |w|
+                if !w.canceled
+                    @waitlisters.push w.user_id
+                end
+            end
+        end
         
         @allusers = User.where(id: @evtusers)
-
+        @waitlistusers = User.where(id: @waitlisters)
 
         respond_to do |format|
             format.html { render "show" }
-            format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv" }
+            #format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv" }
+            #format.csv { send_data @waitlist.to_csv, filename: "Waitlist_#{@event.name}-#{@event.starttime}.csv" }
+            format.csv do 
+                if (params[:format_data] == 'registered')
+                  send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv"
+                elsif (params[:format_data] == 'waitlist')
+                  send_data @waitlistusers.to_csv, filename: "Waitlist_#{@event.name}-#{@event.starttime}.csv" 
+                end
+              end
             format.ics { send_data @cal_string, filename: "#{@event.name}.ics"}
         end
     end
