@@ -363,7 +363,7 @@
 	<div class="row" style="margin-top: 35px;">
 		<div class="col-6">
 			<h4>Event Waitlist
-				<% if @waitlist.any? %><span style="font-size:.5em;">&nbsp;&nbsp;<%= link_to "Expost (CSV)", event_path({:format => :csv, format_data: "waitlist"}) %></span><% end %>
+				<% if @waitlist.any? %><span style="font-size:.5em;">&nbsp;&nbsp;<%= link_to "Export (CSV)", event_path({:format => :csv, format_data: "waitlist"}) %></span><% end %>
 			</h4>
 		</div>
 		<div class="col-6">
