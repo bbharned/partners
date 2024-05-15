@@ -408,7 +408,9 @@
 	<h2 align="center" style="margin-top: 35px;">Registration Details</h2>
 	<% if @allregistered.any? %>
 		<div class="small-sub-title"><%= @allregistered.count %> of <%= @event.capacity %> possible</div>
-		<div class="csv-link"><a href="/events/<%= @event.id %>.csv">Export (CSV)</a></div>
+		<div class="csv-link">
+			<%= link_to "Export (CSV)", event_path({:format => :csv, format_data: "registered"}) %>
+		</div>
 		<div class="row" style="margin-bottom:5px;">
 				<div class="col-md-4">
 					<b style="padding-left:15px;">Name</b>
