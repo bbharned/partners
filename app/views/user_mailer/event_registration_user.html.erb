@@ -13,7 +13,7 @@
         
         <p>Dear <%= @user.firstname %>,</p>
         
-        <p>This message is confirmation that you are now registered for an upcoming ThinManager event. You may have been moved from our event waitlist. Please check the details below.</p>
+        <p>This message is confirmation that you are registered for an upcoming ThinManager event. If you were previously on the event waitlist you are now officially registered and no longer on the waitlist. Please check the details below.</p>
 
         <br />
         <div align="center"><%= link_to "Add Event To Your Calendar", "https://partners.thinmanager.com/events/#{@event.id}.ics", target: "_blank", style: "text-decoration:none; color:#FFFFFF; padding: 7px 20px; background-color: #003366; border-radius:10px;" %></div>
