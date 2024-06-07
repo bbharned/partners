@@ -116,39 +116,39 @@ def calcs
 
     # updated 6/4/2023
     #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance Prices
-    @vfRedPrices = [3803.38, 2091.86, 1901.69, 1521.35, 1331.19, 1141.02]
-    @smrPrices = [447.30, 246.02, 223.65, 178.92, 156.56, 134.19]
-    @vfNonRedPrices = [2683.82, 1476.10, 1341.91, 1073.53, 939.34, 805.15] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
+    # @vfRedPrices = [3803.38, 2091.86, 1901.69, 1521.35, 1331.19, 1141.02]
+    # @smrPrices = [447.30, 246.02, 223.65, 178.92, 156.56, 134.19]
+    # @vfNonRedPrices = [2683.82, 1476.10, 1341.91, 1073.53, 939.34, 805.15] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
 
 
     # updated 6/9/2024
     #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance Prices
-    #@vfRedPrices = [3910, 2150.50, 1955, 1564, 1368.50, 1173]
-    #@smrPrices = [460, 253, 230, 184, 161, 138]
-    #@vfNonRedPrices = [2760, 1518, 1380, 1104, 966, 828] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
+    @vfRedPrices = [3910, 2150.50, 1955, 1564, 1368.50, 1173]
+    @smrPrices = [460, 253, 230, 184, 161, 138]
+    @vfNonRedPrices = [2760, 1518, 1380, 1104, 966, 828] #ThinManager V-FLEX Perpetual Licensing - 8x5 Software Maintenance
 
 
     # subscription pricing arrays updated 6/4/2023
     # ThinManager FlexForward Subscription Licensing - 8x5 Software Maintenance Prices
-    if self.sub_exchange
-        @vfRedPrices = [438.30, 241.07, 219.15, 175.32, 153.41, 131.49]
-        @vfNonRedPrices = [436.30, 239.97, 218.15, 174.52, 152.71, 130.89]
-        # for new on sub exchange
-        #ThinManager V-FLEX Subscription Licensing - 8x5 Software Maintenance Prices
-        @vfNewSimpSubPrices = [894.61, 492.04, 447.31, 357.84, 313.11, 268.38]
-        @vfNewRedSubPrices = [1141.61, 627.89, 570.81, 456.64, 399.56, 342.48]
-    end
+    # if self.sub_exchange
+    #     @vfRedPrices = [438.30, 241.07, 219.15, 175.32, 153.41, 131.49]
+    #     @vfNonRedPrices = [436.30, 239.97, 218.15, 174.52, 152.71, 130.89]
+    #     # for new on sub exchange
+    #     #ThinManager V-FLEX Subscription Licensing - 8x5 Software Maintenance Prices
+    #     @vfNewSimpSubPrices = [894.61, 492.04, 447.31, 357.84, 313.11, 268.38]
+    #     @vfNewRedSubPrices = [1141.61, 627.89, 570.81, 456.64, 399.56, 342.48]
+    # end
 
     # subscription pricing arrays updated 6/9/2024
     # ThinManager FlexForward Subscription Licensing - 8x5 Software Maintenance Prices
-    #if self.sub_exchange
-        #@vfRedPrices = [463, 254.65, 231.50, 185.20, 162.05, 138.90]
-        #@vfNonRedPrices = [461, 253.55, 230.50, 184.40, 161.35, 138.30]
+    if self.sub_exchange
+        @vfRedPrices = [463, 254.65, 231.50, 185.20, 162.05, 138.90]
+        @vfNonRedPrices = [461, 253.55, 230.50, 184.40, 161.35, 138.30]
         # for new on sub exchange
-        #ThinManager V-FLEX Subscription Licensing - 8x5 Software Maintenance Prices
-        #@vfNewSimpSubPrices = [920, 506, 460, 368, 322, 276]
-        #@vfNewRedSubPrices = [1380, 759, 690, 552, 483, 414]
-    #end
+        # ThinManager V-FLEX Subscription Licensing - 8x5 Software Maintenance Prices
+        @vfNewSimpSubPrices = [920, 506, 460, 368, 322, 276]
+        @vfNewRedSubPrices = [1380, 759, 690, 552, 483, 414]
+    end
 
 
     if self.sm_exp == nil
