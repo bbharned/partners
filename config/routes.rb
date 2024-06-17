@@ -54,6 +54,8 @@ get 'user/videousers', to: 'users#videousers'
 get 'learn', to: 'users#learn'
 post 'learn', to: 'users#learn_signup'
 
+#resources :rois
+get 'roi', to: 'rois#index'
 
 resources :currencies
 resources :flexforwards
