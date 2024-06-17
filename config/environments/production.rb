@@ -57,6 +57,7 @@ Rails.application.configure do
       "frame-src youtube.com www.youtube.com googletagmanager.com; "\
       "media-src 'self'; " \
       "object-src 'none'; " \
+      "form-action 'self' 'default-src'; " \
       "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; " \
       "style-src 'self' 'unsafe-inline' youtube.com www.youtube.com; ",
     'Referrer-Policy' => 'strict-origin-when-cross-origin',
