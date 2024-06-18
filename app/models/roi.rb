@@ -1,4 +1,4 @@
-class Roi < ApplicationRecord::Base
+class Roi < ActiveRecord::Base
 	
 
 

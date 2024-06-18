@@ -1,0 +1,75 @@
+<%= render 'shared/errors', obj: @roi %>
+<%= form_for(@roi, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+<!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-fill" id="roiTabs" role="tablist">
+    <li role="presentation" class="nav-item"><a href="#scenerio" class="nav-link active" aria-controls="scenerio" role="tab" data-toggle="tab">Scenerio</a></li>
+    <li role="presentation" class="nav-item"><a href="#general" class="nav-link" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+    <li role="presentation" class="nav-item"><a href="#labor" class="nav-link" aria-controls="labor" role="tab" data-toggle="tab">Labor Cost</a></li>
+    <li role="presentation" class="nav-item"><a href="#pcstats" class="nav-link" aria-controls="pcstats" role="tab" data-toggle="tab">PC Stats</a></li>
+    <li role="presentation" class="nav-item"><a href="#tcstats" class="nav-link" aria-controls="tcstats" role="tab" data-toggle="tab">Thin Client Stats</a></li>
+    <li role="presentation" class="nav-item"><a href="#rdservers" class="nav-link" aria-controls="rdservers" role="tab" data-toggle="tab">RD Servers</a></li>
+    <li role="presentation" class="nav-item"><a href="#thinmanager" class="nav-link" aria-controls="thinmanager" role="tab" data-toggle="tab">ThinManager</a></li>
+  </ul>
+
+
+
+
+
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="scenerio">
+      
+      <div class="form-group" id="ff-form-group">
+        <div class="row">
+          <div class="col-md-6">
+                <div class="control-label"><%= f.label :name %></div>
+                <%= f.text_field :name, class: "form-control", placeholder: "Enter Name for ROI", autofocus: true, tabindex: "1" %>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="general">
+      
+      <p align="center" style="margin-top:50px;">General</p>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="labor"><p align="center" style="margin-top:50px;">Labor Cost</p></div>
+    <div role="tabpanel" class="tab-pane" id="pcstats"><p align="center" style="margin-top:50px;">PC Stats</p></div>
+    <div role="tabpanel" class="tab-pane" id="tcstats"><p align="center" style="margin-top:50px;">Thin Client Stats</p></div>
+    <div role="tabpanel" class="tab-pane" id="rdservers"><p align="center" style="margin-top:50px;">RD Servers</p></div>
+    <div role="tabpanel" class="tab-pane" id="thinmanager"><p align="center" style="margin-top:50px;">ThinManager</p></div>
+  </div>
+
+
+
+<% end %>
+<!-- Button trigger modal -->
+<!-- <div style="text-align: center;">
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin:75px auto;">
+  Show Calculations
+</button>
+</div>
+-->
+<!-- Modal -->
+<!--
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <div class="float-right">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
