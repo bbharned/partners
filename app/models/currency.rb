@@ -3,7 +3,7 @@ class Currency < ApplicationRecord
 	validates :symbol, presence: true
 	validates :rate, presence: true
 	has_many :flexforwards
-
+	has_many :rois
 
 
 

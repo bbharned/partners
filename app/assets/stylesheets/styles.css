@@ -424,6 +424,15 @@ button.navbar-toggler span {
 
 
 
+
+
+
+
+
+
+
+
+
 /****************** recert alert *********************/
 
 .recert-alert {
@@ -435,6 +444,39 @@ button.navbar-toggler span {
     border:5px solid #C91C05;*/
     background-color: #EAEA0F;  border: 5px solid #f0ad4e;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************** ROI Section ************************/
+.tabbed-form-group {
+    padding:45px 5%;
+}
+.scenario-box {
+    padding: 20px 5% 35px 5%; border:2px solid #000000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -458,6 +500,16 @@ button.navbar-toggler span {
 .user-sorting li a:hover {
     text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

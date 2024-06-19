@@ -20,12 +20,38 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="scenerio">
       
-      <div class="form-group" id="ff-form-group">
+      <div class="form-group tabbed-form-group">
         <div class="row">
           <div class="col-md-6">
-                <div class="control-label"><%= f.label :name %></div>
-                <%= f.text_field :name, class: "form-control", placeholder: "Enter Name for ROI", autofocus: true, tabindex: "1" %>
+            
+            <p>This ROI calculator assumes that you are planning to install or put in place a thin client architecture for your ThinManager installation by replacing existing PC workstations with thin clients.</p>
+
+                    <p>Two general types of thin clients can be used - ThinManager ready clients or ones that would boot by means of PXE boot. The convenience and time savings of ThinManager ready thin clients are not weighed in this calculator.</p>
+
+                    <p>Fill in all the details you can in order to get the most accurate results.</p>
+
+                    <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
+
+          </div>
+          <div class="col-md-6">
+            <div class="scenario-box">
+                <h4 align="center">Choose Your ROI Scenario</h4>
+                <div class="control-label"><%= f.label "Currency" %></div>
+                <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, {}, class: "form-control", tabindex: "1" %>
+
+                <div class="control-label" style="margin-top:12px;"><%= f.label "License Type" %></div>
+                <%= f.select :activation_type, options_for_select([
+                    ["Subscription", "Subscription"],
+                    ["Perpetual", "Perpetual"]
+                ], @roi.activation_type), {}, class: "form-control" %>
+
+                <div class="control-label" style="margin-top:12px;"><%= f.label "Support Level" %></div>
+                <%= f.select :support_level, options_for_select([
+                    ["8 x 5", "8 x 5"],
+                    ["24 x 7", "24 x 7"]
+                ], @roi.support_level), {}, class: "form-control" %>
             </div>
+          </div>
         </div>
       </div>
 
