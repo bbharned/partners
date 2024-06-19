@@ -463,11 +463,11 @@ button.navbar-toggler span {
     padding:45px 5%;
 }
 .scenario-box {
-    padding: 20px 5% 35px 5%; border:2px solid #000000;
+    padding: 20px 5% 35px 5%; border:2px solid #787878;
 }
-
-
-
+.top-m-12 {
+    margin-top:12px;
+}
 
 
 

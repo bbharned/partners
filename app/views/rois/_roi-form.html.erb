@@ -18,6 +18,8 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
+
+    <!-- Scenario Tab of ROI -->
     <div role="tabpanel" class="tab-pane active" id="scenerio">
       
       <div class="form-group tabbed-form-group">
@@ -43,24 +45,84 @@
                 <%= f.select :activation_type, options_for_select([
                     ["Subscription", "Subscription"],
                     ["Perpetual", "Perpetual"]
-                ], @roi.activation_type), {}, class: "form-control" %>
+                ], @roi.activation_type), {}, class: "form-control", tabindex: "2" %>
 
                 <div class="control-label" style="margin-top:12px;"><%= f.label "Support Level" %></div>
                 <%= f.select :support_level, options_for_select([
                     ["8 x 5", "8 x 5"],
                     ["24 x 7", "24 x 7"]
-                ], @roi.support_level), {}, class: "form-control" %>
+                ], @roi.support_level), {}, class: "form-control", tabindex: "3" %>
             </div>
           </div>
         </div>
       </div>
 
     </div>
+
+
+    <!-- General Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="general">
       
-      <p align="center" style="margin-top:50px;">General</p>
-
+        <div class="form-group tabbed-form-group">
+          <div class="row">
+              <div class="col-md-7 offset-md-1">
+                <div class="control-label"><%= f.label "ROI/Project Name" %></div>
+                <%= f.text_field :name, class: "form-control", placeholder: "Name of Business for ROI", tabindex: "1" %>
+              </div>
+              <div class="col-md-3">
+                <div class="control-label"><%= f.label "Years projecting" %></div>
+                <%= f.text_field :projected_years, class: "form-control", placeholder: "Enter years out being projected", tabindex: "6" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Planned Terminals/workstations" %></div>
+                <%= f.text_field :planned_terminals, class: "form-control", placeholder: "Enter Number of Terminals Expected", tabindex: "2" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Station Uptime (hours)" %></div>
+                <%= f.text_field :station_uptime, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "3" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Utility Power Cost (per kilowatt hour)" %></div>
+                <%= f.text_field :kilowatt_power_cost, class: "form-control", placeholder: "Enter price per kilowatt hour", tabindex: "4" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Per hour cost of downtime due to station failure" %></div>
+                <%= f.text_field :downtime_cost_hour, class: "form-control", placeholder: "Enter cost per hour incurred if station is down", tabindex: "5" %>
+              </div>
+          </div>
+          
+          <br />
+          <div class="row">
+            <div class="col-md-10 offset-md-1 top-m-12">
+              <div class="scenario-box">
+                <h5>Additional Savings</h5>
+                <div class="row">
+                  <div class="col-md-8">
+                    <p>Enter an amount of savings that will be deducted from the overall operating costs for the entire projection time. This is at the discretion of the person calculating this return on investment. This is a one off cost, not annual.</p>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.text_field :additional_savings, class: "form-control", tabindex: "7" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="control-label"><%= f.label "Savings Notes" %></div>
+                    <%= f.text_area :additional_savings_note, class: "form-control", placeholder: "Enter any notes about the additinal savings added", tabindex: "8" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    
     </div>
+
+
+    <!-- Labor Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="labor"><p align="center" style="margin-top:50px;">Labor Cost</p></div>
     <div role="tabpanel" class="tab-pane" id="pcstats"><p align="center" style="margin-top:50px;">PC Stats</p></div>
     <div role="tabpanel" class="tab-pane" id="tcstats"><p align="center" style="margin-top:50px;">Thin Client Stats</p></div>
@@ -68,7 +130,25 @@
     <div role="tabpanel" class="tab-pane" id="thinmanager"><p align="center" style="margin-top:50px;">ThinManager</p></div>
   </div>
 
-
+  <div class="form-group">
+        <div class="row">
+          <div class="col-sm-12 center">
+              <%= f.submit(@roi.new_record? ? "Save for ROI Results" : "Update ROI", class: "btn btn-primary btn-md", tabindex: "21") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+          </div>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <% if @roi.new_record? %>
+          <div class="row">
+            <div class="col-sm-12 center">
+              <%= link_to "Clear & Start Over", new_roi_path, class: "btn btn-outline-danger btn-md" %> 
+            </div>
+          </div>
+        <% end %>
+      </div>
+        
+    </div>
 
 <% end %>
 <!-- Button trigger modal -->
