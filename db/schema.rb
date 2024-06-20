@@ -426,7 +426,7 @@ ActiveRecord::Schema.define(version: 2024_06_18_175734) do
     t.integer "user_id"
     t.integer "currency_id"
     t.string "name"
-    t.string "activation_type"
+    t.string "activation_type", default: "Subscription"
     t.string "support_level"
     t.integer "planned_terminals", default: 100
     t.decimal "station_uptime", precision: 10, scale: 2, default: "16.0"

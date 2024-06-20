@@ -5,7 +5,7 @@ class CreateRoiTable < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :currency_id
       t.string :name
-      t.string :activation_type
+      t.string :activation_type, default: "Subscription"
       t.string :support_level
 
       #General
