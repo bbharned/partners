@@ -28,18 +28,18 @@
             
             <p>This ROI calculator assumes that you are planning to install or put in place a thin client architecture for your ThinManager installation by replacing existing PC workstations with thin clients.</p>
 
-                    <p>Two general types of thin clients can be used - ThinManager ready clients or ones that would boot by means of PXE boot. The convenience and time savings of ThinManager ready thin clients are not weighed in this calculator.</p>
+            <p>Two general types of thin clients can be used - ThinManager ready clients or ones that would boot by means of PXE boot. The convenience and time savings of ThinManager ready thin clients are not weighed in this calculator.</p>
 
-                    <p>Fill in all the details you can in order to get the most accurate results.</p>
+            <p>Fill in all the details you can in order to get the most accurate results.</p>
 
-                    <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
+            <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
 
           </div>
           <div class="col-md-6">
             <div class="scenario-box">
                 <h4 align="center">Choose Your ROI Scenario</h4>
                 <div class="control-label"><%= f.label "Currency" %></div>
-                <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, {}, class: "form-control", tabindex: "1" %>
+                <%= f.select :currency_id, Currency.all.collect {|currency| [currency.name, currency.id]}, {}, class: "form-control currency-select", tabindex: "1" %>
 
                 <div class="control-label" style="margin-top:12px;"><%= f.label "License Type" %></div>
                 <%= f.select :activation_type, options_for_select([
@@ -55,6 +55,7 @@
             </div>
           </div>
         </div>
+        <%= @roi.currency_id %>
       </div>
 
     </div>
@@ -65,11 +66,11 @@
       
         <div class="form-group tabbed-form-group">
           <div class="row">
-              <div class="col-md-7 offset-md-1">
+              <div class="col-md-7 offset-md-1 top-m-12">
                 <div class="control-label"><%= f.label "ROI/Project Name" %></div>
                 <%= f.text_field :name, class: "form-control", placeholder: "Name of Business for ROI", tabindex: "1" %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 top-m-12">
                 <div class="control-label"><%= f.label "Years projecting" %></div>
                 <%= f.text_field :projected_years, class: "form-control", placeholder: "Enter years out being projected", tabindex: "6" %>
               </div>
@@ -123,10 +124,142 @@
 
 
     <!-- Labor Tab of ROI -->
-    <div role="tabpanel" class="tab-pane" id="labor"><p align="center" style="margin-top:50px;">Labor Cost</p></div>
-    <div role="tabpanel" class="tab-pane" id="pcstats"><p align="center" style="margin-top:50px;">PC Stats</p></div>
-    <div role="tabpanel" class="tab-pane" id="tcstats"><p align="center" style="margin-top:50px;">Thin Client Stats</p></div>
+    <div role="tabpanel" class="tab-pane" id="labor">
+      
+      <div class="form-group tabbed-form-group">
+        <p align="center" style="color:darkorange;">Disabled Fields will recalculate on save/update</p>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Base Labor Cost per Year" %></div>
+                <%= f.text_field :base_labor_per_year, class: "form-control", placeholder: "Worker base pay per year", tabindex: "1" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Base Labor Cost per Hour" %></div>
+                <%= f.text_field :base_labor_per_hour, class: "form-control", placeholder: "Worker base pay per hour", tabindex: "2", disabled: "true" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Overhead rate (percent of base cost)" %></div>
+                <%= f.text_field :labor_overhead, class: "form-control", placeholder: "percent overhead of base pay for employee", tabindex: "3", value: "#{@roi.labor_overhead} %" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Total yearly labor cost" %></div>
+                <%= f.text_field :total_labor_per_year, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "4", disabled: "true" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Total hourly labor cost" %></div>
+                <%= f.text_field :total_labor_per_hour, class: "form-control", placeholder: "Enter price per kilowatt hour", tabindex: "5", disabled: "true" %>
+              </div>
+              
+          </div>
+       </div>
+
+    </div>
+
+
+    <!-- PC Stats Tab of ROI -->
+    <div role="tabpanel" class="tab-pane" id="pcstats">
+      
+      <div class="form-group tabbed-form-group">
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Average PC Cost (including OS)" %></div>
+                <%= f.text_field :pc_ave_cost, class: "form-control", tabindex: "1" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Prep time per PC (hours, including installs)" %></div>
+                <%= f.text_field :pc_prep_time, class: "form-control", tabindex: "2" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Monthly Maintenance Time (hours)" %></div>
+                <%= f.text_field :pc_monthly_maint, class: "form-control", tabindex: "3" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Replacement inventory count" %></div>
+                <%= f.text_field :pc_inventory_count, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "4" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Rate of failure per year(%)" %></div>
+                <%= f.text_field :pc_percent_fail_rate, class: "form-control", value: "#{@roi.pc_percent_fail_rate} %", tabindex: "5" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Power consumption (watts)" %></div>
+                <%= f.text_field :pc_watt_power_comsumption, class: "form-control", tabindex: "6" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Average lifespan (months)" %></div>
+                <%= f.text_field :pc_month_ave_life, class: "form-control", tabindex: "7" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Average PC Replacement Time (hours)" %></div>
+                <%= f.text_field :pc_ave_replace_time, class: "form-control", tabindex: "8" %>
+              </div>
+          </div>
+       </div>
+
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="tcstats">
+      
+      <div class="form-group tabbed-form-group">
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Average Thin Client Cost (including OS)" %></div>
+                <%= f.text_field :tc_ave_cost, class: "form-control", tabindex: "1" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Prep time per client (hours, including installs)" %></div>
+                <%= f.text_field :tc_prep_time, class: "form-control", tabindex: "2" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Monthly Maintenance Time (hours)" %></div>
+                <%= f.text_field :tc_monthly_maint, class: "form-control", tabindex: "3" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Replacement inventory count" %></div>
+                <%= f.text_field :tc_inventory_count, class: "form-control", tabindex: "4" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Rate of failure per year(%)" %></div>
+                <%= f.text_field :tc_percent_fail_rate, class: "form-control", value: "#{@roi.tc_percent_fail_rate} %", tabindex: "5" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Power consumption (watts)" %></div>
+                <%= f.text_field :tc_watt_power_comsumption, class: "form-control", tabindex: "6" %>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-5 offset-md-1 top-m-12">
+                <div class="control-label"><%= f.label "Average lifespan (months)" %></div>
+                <%= f.text_field :tc_month_ave_life, class: "form-control", tabindex: "7" %>
+              </div>
+              <div class="col-md-5 top-m-12">
+                <div class="control-label"><%= f.label "Average Thin Client Replacement Time (hours)" %></div>
+                <%= f.text_field :tc_ave_replace_time, class: "form-control", tabindex: "8" %>
+              </div>
+          </div>
+       </div>
+
+    </div>
+
+
     <div role="tabpanel" class="tab-pane" id="rdservers"><p align="center" style="margin-top:50px;">RD Servers</p></div>
+
+
     <div role="tabpanel" class="tab-pane" id="thinmanager"><p align="center" style="margin-top:50px;">ThinManager</p></div>
   </div>
 
