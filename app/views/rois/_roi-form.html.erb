@@ -25,15 +25,25 @@
       <div class="form-group tabbed-form-group">
         <div class="row">
           <div class="col-md-6">
+            <% if @roi.new_record? %>
+              
+              <p>This ROI calculator assumes that you are planning to install or put in place a thin client architecture for your ThinManager installation by replacing existing PC workstations with thin clients.</p>
+
+              <p>Two general types of thin clients can be used - ThinManager ready clients or ones that would boot by means of PXE boot. The convenience and time savings of ThinManager ready thin clients are not weighed in this calculator.</p>
+
+              <p>Fill in all the details you can in order to get the most accurate results.</p>
+
+              <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
             
-            <p>This ROI calculator assumes that you are planning to install or put in place a thin client architecture for your ThinManager installation by replacing existing PC workstations with thin clients.</p>
+            <% else %> <!-- Editing ROI -->
 
-            <p>Two general types of thin clients can be used - ThinManager ready clients or ones that would boot by means of PXE boot. The convenience and time savings of ThinManager ready thin clients are not weighed in this calculator.</p>
+              <h4 style="color:limegreen;">Edit Mode</h4>
+              <br />
+              <p>You are editing your saved Return on Investment.</p>
 
-            <p>Fill in all the details you can in order to get the most accurate results.</p>
-
-            <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
-
+              <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
+            
+            <% end %>
           </div>
           <div class="col-md-6">
             <div class="scenario-box">
@@ -55,10 +65,11 @@
             </div>
           </div>
         </div>
-        <%= @roi.currency_id %>
+        
       </div>
 
     </div>
+
 
 
     <!-- General Tab of ROI -->
@@ -103,7 +114,7 @@
                 <h5>Additional Savings</h5>
                 <div class="row">
                   <div class="col-md-8">
-                    <p>Enter an amount of savings that will be deducted from the overall operating costs for the entire projection time. This is at the discretion of the person calculating this return on investment. This is a one off cost, not annual.</p>
+                    <p>Enter an amount of savings that will be deducted from the overall operating costs for the entire projection time. This is at the discretion of the person calculating this return on investment. This is a one off cost, not annual. (example: 2,000)</p>
                   </div>
                   <div class="col-md-4">
                     <%= f.text_field :additional_savings, class: "form-control", tabindex: "7" %>
@@ -112,7 +123,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="control-label"><%= f.label "Savings Notes" %></div>
-                    <%= f.text_area :additional_savings_note, class: "form-control", placeholder: "Enter any notes about the additinal savings added", tabindex: "8" %>
+                    <%= f.text_area :additional_savings_note, class: "form-control", placeholder: "Enter any notes about the additional savings added", tabindex: "8" %>
                   </div>
                 </div>
               </div>
@@ -121,6 +132,8 @@
       </div>
     
     </div>
+
+
 
 
     <!-- Labor Tab of ROI -->
@@ -158,6 +171,8 @@
        </div>
 
     </div>
+
+
 
 
     <!-- PC Stats Tab of ROI -->
@@ -208,6 +223,8 @@
 
     </div>
 
+
+
     <!-- TC Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="tcstats">
       
@@ -256,13 +273,16 @@
 
     </div>
 
+
+
+
     <!-- RDS Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="rdservers">
       
       <div class="form-group tabbed-form-group">
           <div class="row">
               <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Remote Desktop Server Cost (including OS, per server)" %></div>
+                <div class="control-label"><%= f.label(:ds_ave_cost, "RD Server Cost (including OS, per server)") %></div>
                 <%= f.text_field :rds_ave_cost, class: "form-control", tabindex: "1" %>
               </div>
               <div class="col-md-5 top-m-12">
@@ -306,7 +326,7 @@
                 <%= f.text_field :rds_month_ave_life, class: "form-control", tabindex: "7" %>
               </div>
               <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Average Thin Client Replacement Time (hours)" %></div>
+                <div class="control-label"><%= f.label "Replacement Time (hours)" %></div>
                 <%= f.text_field :rds_ave_replace_time, class: "form-control", tabindex: "8" %>
               </div>
           </div>
@@ -315,29 +335,62 @@
   </div>
 
 
+
+
     <!-- ThinManager Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="thinmanager">
       
       <div class="form-group tabbed-form-group">
           <div class="row">
-            <div class="col-md-8 offset-md-2 top-m-12">
+            <div class="col-md-10 offset-md-1 top-m-12">
               <div class="control-label"><%= f.label(:thinmanager_cost, "Annual Cost of ThinManager (Quoted by Distributor)") %></div>
+              <span class="teeny-float-left">Total Cost if Perpetual license, Annual if Subscription</span>
               <%= f.text_field :thinmanager_cost, class: "form-control", tabindex: "1" %>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 offset-md-3 top-m-12">
-              <div class="control-label"><%= f.label(:thinmanager_redundancy, "Annual Redundancy Adder (Quoted by Distributor)") %></div>
-              <%= f.text_field :thinmanager_redundancy, class: "form-control", tabindex: "2" %>
+            <div class="col-md-10 offset-md-1 top-m-12">
+              <div class="control-label"><%= f.label(:thinmanager_redundancy, "Annual Redundancy (Quoted by Distributor)") %></div>
+              <span class="teeny-float-left">Total Cost if Perpetual license, Annual if Subscription</span>
+              <%= f.text_field :thinmanager_redundancy, class: "form-control", tabindex: "2", placeholder: "Use only if adding redundant licenses" %>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 offset-md-3 top-m-12">
-              <div class="control-label"><%= f.label(:thinmanager_maintenance, "Software Maintenance (Perpetual License Only)") %></div>
-              <%= f.text_field :thinmanager_maintenance, class: "form-control", tabindex: "3" %>
+            <div class="col-md-10 offset-md-1 top-m-12">
+              <div class="control-label"><%= f.label(:thinmanager_maintenance, "Annual Software Maintenance (Perpetual License Only)") %></div>
+              <span class="teeny-float-left">Included with Subscription, first year included for perpetual</span>
+              <%= f.text_field :thinmanager_maintenance, class: "form-control", tabindex: "3", placeholder: "Use only for Perpetual Licenses" %>
             </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div class="col-md-10 offset-md-1 top-m-12">
+                  <div class="rois-grey-box">
+                    <p>ThinManager cost is provided by your Distributor. Additional licenses can be purchased after install, but V-FLEX licensing allows bulk rate discounts over purchasing one at a time.</p>
+                            
+                    <p>Redundancy per client can be added at a greatly reduced price per seat.</p>
+
+                    <p>Lastly, Software Maintenance is included for the first year with all purchases. Software Maintenance will be charged yearly on perpetual licenses. Software Maintenance is included on subscription licensing at all times.</p>
+                  </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-10 offset-md-1 top-m-12">
+              <div class="row">
+                <div class="col-md-8">
+                  <p><span class="bold">Management Time Savings (Hours/Month/Thin Client)</span></p>
+                  <p>This is used to evaluate the time that is saved using the standard features of ThinManager such as terminal shadowing, authentication configuration, software installs and upkeep.<br />(Example: 0.25 = 15 minutes per month per terminal)</p>
+                </div>
+                <div class="col-md-4">
+                  <%= f.text_field :management_time_saved_per_month, class: "form-control", tabindex: "4" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
 
     </div>
   </div>

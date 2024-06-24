@@ -469,12 +469,15 @@ button.navbar-toggler span {
     margin-top:12px;
 }
 .camel {text-transform: capitalize;}
-
-
-
-
-
-
+.rois-grey-box {
+    margin-top: 35px; margin-bottom: 35px; padding: 30px 4% 15px 4%;
+    background-color: #f1f1f1;
+}
+.teeny-float-left {font-size: .65em; color:red; float:left; margin-top: -2px;}
+.negative-number {color:red; font-style: italic;}
+.tab-pane-modal {padding:25px 2.5%; font-size: .8em; border-left: 1px solid #787878; border-right: 1px solid #787878;}
+#breakdownTabs .nav-item .nav-link {border-bottom-color:#787878 !important; background-color: #F1f1f1;}
+#breakdownTabs .nav-item .nav-link.active {border-color:#787878 !important; background-color: #FFFFFF; border-bottom:none;}
 
 
 
