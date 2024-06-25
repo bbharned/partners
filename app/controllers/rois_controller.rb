@@ -46,7 +46,7 @@ end
 
 
 def show
-
+    @tcMaintCosts = @roi.planned_terminals * (@roi.tc_monthly_maint * 12) * @roi.projected_years * @roi.total_labor_per_hour
 end
 
 

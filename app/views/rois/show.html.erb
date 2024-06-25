@@ -1,35 +1,174 @@
 <div class="container" style="padding-bottom: 150px;">
 
-<h1>ROI for <%= @roi.name %></h1>
+<div class="row">
+	<div class="col-sm-9">
+		<h1><%= @roi.name %></h1>
+		<h5 style="font-size:1.2em; color:grey; margin-top: -10px;">Return on Investment</h5>
+	</div>
+	<div class="col-sm-3">
+		<div class="edit_ff_btn"><%= link_to "Edit", edit_roi_path(@roi), class: "btn btn-primary" %></div>
+	</div>
+</div>
 <hr />
 
-<p>
-Capital Cost Saving:&nbsp;&nbsp;<%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol, :separator => ".", :delimiter => ",",:format => "%u %n",  :negative_format => "%u - %n") %>
-<br />
-Preperation Cost Saving:&nbsp;&nbsp;<%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol, :separator => ".", :delimiter => ",",:format => "%u %n",  :negative_format => "%u - %n") %><br />
-</p>
 
 
-<!-- Button trigger modal -->
-<div style="text-align: center;">
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#capitalcosts " style="margin:75px auto;">
-  Show Calculations
-</button>
+<div class="row roi-result-card">
+	<div class="col-md-10 offset-md-1">
+		<div class="card">
+		  <h5 class="card-header">Capital Costs</h5>
+		  <div class="card-body">
+		    <div class="row">
+		    	<div class="col-8">PC Workstations with local applications</div>
+		    	<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.result_capcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-8">Thin clients with RD Servers</div>
+		    	<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <div class="row">
+		    	<div class="col-8"><b>Savings</b></div>
+		    	<% if @roi.savings_capcost.negative? %>
+		    		<div class="col-4"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% else %>
+		    		<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% end %>
+		    </div>
+		  </div>
+		  <div class="card-footer">
+		    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#capitalcosts">
+					Show Calculations
+				</button>
+		  </div>
+		</div>
+	</div>
 </div>
 
-<!-- Modal -->
+<div class="row roi-result-card">
+	<div class="col-md-10 offset-md-1">
+		<div class="card">
+		  <h5 class="card-header">Preperation Costs</h5>
+		  <div class="card-body">
+		    <div class="row">
+		    	<div class="col-6">PC Workstations with local applications</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_prepcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-6">Thin clients with RD Servers</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <div class="row">
+		    	<div class="col-6"><b>Savings</b></div>
+		    	<% if @roi.savings_prepcost.negative? %>
+		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% else %>
+		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% end %>
+		    </div>
+		  </div>
+		  <div class="card-footer">
+		    
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="row roi-result-card">
+	<div class="col-md-10 offset-md-1">
+		<div class="card">
+		  <h5 class="card-header">Operating Costs</h5>
+		  <div class="card-body">
+		    <div class="row">
+		    	<div class="col-6">PC Workstations with local applications</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_opcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-6">Thin clients with RD Servers</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_opcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <div class="row">
+		    	<div class="col-6"><b>Savings</b></div>
+		    	<% if @roi.savings_opcost.negative? %>
+		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% else %>
+		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% end %>
+		    </div>
+		  </div>
+		  <div class="card-footer">
+		    
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="row roi-result-card">
+	<div class="col-md-10 offset-md-1">
+		<div class="card">
+		  <h5 class="card-header">Refresh Costs</h5>
+		  <div class="card-body">
+		    <div class="row">
+		    	<div class="col-6">PC Workstations with local applications</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_refreshcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-6">Thin clients with RD Servers</div>
+		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_refreshcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    </div>
+		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <div class="row">
+		    	<div class="col-6"><b>Savings</b></div>
+		    	<% if @roi.savings_refreshcost.negative? %>
+		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% else %>
+		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></div></div>
+		    	<% end %>
+		    </div>
+		  </div>
+		  <div class="card-footer">
+		    
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---------------------------- Modals --------------------------------->
+<!-- Capital Cost Modal -->
 <div class="modal fade" id="capitalcosts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Workstation Capital Costs</h4>
+        <h4 class="modal-title">Capital Cost Calculations</h4>
         <div class="float-right">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
       </div>
       <div class="modal-body">
         <div class="tab-content">
-	        <ul class="nav nav-tabs nav-fill" id="breakdownTabs" role="tablist">
+	        <ul class="nav nav-tabs nav-fill breakdownTabs" id="breakdownTab1" role="tablist">
 			    <li role="presentation" class="nav-item"><a href="#pc" class="nav-link active" aria-controls="pc" role="tab" data-toggle="tab">PC Stations</a></li>
 			    <li role="presentation" class="nav-item"><a href="#tc" class="nav-link" aria-controls="tc" role="tab" data-toggle="tab">Thin Clients & RDS</a></li>
 			  </ul>
