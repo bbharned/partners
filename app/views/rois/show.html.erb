@@ -1,38 +1,98 @@
 <div class="container" style="padding-bottom: 150px;">
 
 <div class="row">
-	<div class="col-sm-9">
+	<div class="col-lg-9">
 		<h1><%= @roi.name %></h1>
 		<h5 style="font-size:1.2em; color:grey; margin-top: -10px;">Return on Investment</h5>
 	</div>
-	<div class="col-sm-3">
-		<div class="edit_ff_btn"><%= link_to "Edit", edit_roi_path(@roi), class: "btn btn-primary" %></div>
+	<div class="col-lg-3">
+		<div class="edit_ff_btn">
+			<%= link_to "Edit", edit_roi_path(@roi), class: "btn btn-primary", style: "margin-right:2px;" %>
+			<%= link_to "Print", "#", class: "btn btn-info btn-md", id: "print" %>
+		</div>
 	</div>
 </div>
 <hr />
 
+<div class="row" style="margin-top:35px;">
+	<h3>Results</h3>
+</div>
+<div class="row">
+<div class="col-md-6">
+	<div class="row">
+		<div class="col-md-6">
+			<p>Projected cost over <%= @roi.projected_years %> years using a solution based with PCs and locaized applications.</p>
+		</div>
+		<div class="col-md-5" style="margin-bottom:35px;">
+			<div class="float-right">
+				<b><%= number_to_currency(@roi.result_total_pc, :unit => @roi.currency.symbol) %></b>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<p>Projected cost over <%= @roi.projected_years %> using ThinManager, thin clients, and centralized applications and management.</p>
+		</div>
+		<div class="col-md-5" style="margin-bottom:35px;">
+			<div class="float-right">
+				<b><%= number_to_currency(@roi.result_total_tc_rds, :unit => @roi.currency.symbol) %></b>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6 align-items-center">
+	<% if @roi.savings_total > 0 %>
+		<div class="well text-center" style="border-radius: 10px; box-shadow:1px 1px 10px #272727; height:100%; background-color: palegreen;">	
+			<div class="row align-items-center" style="height:100%;">
+				<div class="col">
+					<h2>Savings</h2>
+					<h2><%= number_to_currency(@roi.savings_total, :unit => @roi.currency.symbol) %></h2>
+				</div>
+			</div>
+		</div>
+	<% else %>
+		<div class="well text-center" style="border-radius: 10px; box-shadow:1px 1px 10px #272727; height:100%; background-color: indianred;">	
+			<div class="row align-items-center" style="height:100%;">
+				<div class="col">
+					<h2>Savings</h2>
+					<h2><%= number_to_currency(@roi.savings_total, :unit => @roi.currency.symbol) %></h2>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+	
+</div>
+
+
+
+
+<hr style="margin-top:45px; margin-bottom: 35px;" />
+
 
 
 <div class="row roi-result-card">
-	<div class="col-md-10 offset-md-1">
+	<div class="col-md-6">
 		<div class="card">
 		  <h5 class="card-header">Capital Costs</h5>
 		  <div class="card-body">
 		    <div class="row">
-		    	<div class="col-8">PC Workstations with local applications</div>
-		    	<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.result_capcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">PC Workstations with local applications</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_capcost_pc, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
 		    <div class="row">
-		    	<div class="col-8">Thin clients with RD Servers</div>
-		    	<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
-		    	<div class="col-8"><b>Savings</b></div>
+		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_capcost.negative? %>
-		    		<div class="col-4"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right" style="color:red;"><p class="card-text"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% else %>
-		    		<div class="col-4"><div class="float-right"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% end %>
 		    </div>
 		  </div>
@@ -43,93 +103,95 @@
 		  </div>
 		</div>
 	</div>
-</div>
 
-<div class="row roi-result-card">
-	<div class="col-md-10 offset-md-1">
+	<div class="col-md-6">
 		<div class="card">
 		  <h5 class="card-header">Preperation Costs</h5>
 		  <div class="card-body">
 		    <div class="row">
-		    	<div class="col-6">PC Workstations with local applications</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_prepcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">PC Workstations with local applications</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_prepcost_pc, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
 		    <div class="row">
-		    	<div class="col-6">Thin clients with RD Servers</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
-		    	<div class="col-6"><b>Savings</b></div>
+		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_prepcost.negative? %>
-		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right" style="color:red;"><p class="card-text"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% else %>
-		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.savings_prepcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% end %>
 		    </div>
 		  </div>
 		  <div class="card-footer">
-		    
+		    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#prepcosts">
+					Show Calculations
+				</button>
 		  </div>
 		</div>
 	</div>
 </div>
 
 <div class="row roi-result-card">
-	<div class="col-md-10 offset-md-1">
+	<div class="col-md-6">
 		<div class="card">
 		  <h5 class="card-header">Operating Costs</h5>
 		  <div class="card-body">
 		    <div class="row">
-		    	<div class="col-6">PC Workstations with local applications</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_opcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">PC Workstations with local applications</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_opcost_pc, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
 		    <div class="row">
-		    	<div class="col-6">Thin clients with RD Servers</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_opcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_opcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
-		    	<div class="col-6"><b>Savings</b></div>
+		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_opcost.negative? %>
-		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right" style="color:red;"><p class="card-text"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% else %>
-		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.savings_opcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% end %>
 		    </div>
 		  </div>
 		  <div class="card-footer">
-		    
+		    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#operatingcosts">
+					Show Calculations
+				</button>
 		  </div>
 		</div>
 	</div>
-</div>
 
-<div class="row roi-result-card">
-	<div class="col-md-10 offset-md-1">
+	<div class="col-md-6">
 		<div class="card">
 		  <h5 class="card-header">Refresh Costs</h5>
 		  <div class="card-body">
 		    <div class="row">
-		    	<div class="col-6">PC Workstations with local applications</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_refreshcost_pc, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">PC Workstations with local applications</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_refreshcost_pc, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
 		    <div class="row">
-		    	<div class="col-6">Thin clients with RD Servers</div>
-		    	<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.result_refreshcost_tc_rds, :unit => @roi.currency.symbol) %></div></div>
+		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
+		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_refreshcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:20%; float: right; margin-top: 3px; margin-bottom: 3px;" />
+		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
-		    	<div class="col-6"><b>Savings</b></div>
+		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_refreshcost.negative? %>
-		    		<div class="col-6"><div class="float-right" style="color:red;"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right" style="color:red;"><p class="card-text"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% else %>
-		    		<div class="col-6"><div class="float-right"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></div></div>
+		    		<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.savings_refreshcost, :unit => @roi.currency.symbol) %></p></div></div>
 		    	<% end %>
 		    </div>
 		  </div>
 		  <div class="card-footer">
-		    
+		    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#refreshcosts">
+					Show Calculations
+				</button>
 		  </div>
 		</div>
 	</div>
@@ -200,5 +262,330 @@
 
 
 
+<!-- Preperations Cost Modal -->
+<div class="modal fade" id="prepcosts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Preperation Cost Calculations</h4>
+        <div class="float-right">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+	        <ul class="nav nav-tabs nav-fill breakdownTabs" id="breakdownTab2" role="tablist">
+			    <li role="presentation" class="nav-item"><a href="#ppc" class="nav-link active" aria-controls="pc" role="tab" data-toggle="tab">PC Stations</a></li>
+			    <li role="presentation" class="nav-item"><a href="#ptc" class="nav-link" aria-controls="tc" role="tab" data-toggle="tab">Thin Clients & RDS</a></li>
+			  </ul>
+					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="ppc">
+						<table border="1" cellpadding="2" width="100%">
+							<tr>
+								Something
+							</tr>
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane tab-pane-modal" id="ptc">
+						<table border="1" cellpadding="2" width="100%">
+							<tr>
+								Something Else
+							</tr>
+						</table>
+					</div>
+	      </div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Operating Cost Modal -->
+<div class="modal fade" id="operatingcosts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Operating Cost Calculations</h4>
+        <div class="float-right">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+	        <ul class="nav nav-tabs nav-fill breakdownTabs" id="breakdownTab3" role="tablist">
+			    <li role="presentation" class="nav-item"><a href="#oppc" class="nav-link active" aria-controls="pc" role="tab" data-toggle="tab">PC Stations</a></li>
+			    <li role="presentation" class="nav-item"><a href="#optc" class="nav-link" aria-controls="tc" role="tab" data-toggle="tab">Thin Clients & RDS</a></li>
+			  </ul>
+					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="oppc">
+						<table border="1" cellpadding="2" width="100%">
+								<tr>
+									<td>PC Maintenance Costs</td>
+									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.pc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@pcMaintCosts, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>PCs Failed Unit Count</td>
+									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.pc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@pcFailUnitCount}" %></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>PCs Failed Unit Count Replacement Cost</td>
+									<td>(Failed Unit Count) x (Hardware Cost)</td>
+									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_ave_cost}" %></td>
+									<td><%= number_to_currency(@pcFailedCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>PCs Failed Unit Count Prep Labor Cost</td>
+									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
+									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@pcFailedPrepCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>PCs Failed Unit Count Replacement Labor Cost</td>
+									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
+									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@pcFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>PCs Downtime Cost</td>
+									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
+									<td><%= "#{@pcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.pc_ave_replace_time}" %></td>
+									<td><%= number_to_currency(@pcDowntimeCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>PCs Energy Consumption</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.pc_watt_power_comsumption}/1000)=#{@pcEnergyUse}KWh" %></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>PCs Energy Cost</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.pc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= number_to_currency(@pcEnergyCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td><b>Total Operating Costs</b></td>
+									<td></td>
+									<td></td>
+									<td><b><%= number_to_currency(@roi.result_opcost_pc, :unit => @roi.currency.symbol) %></b></td>
+								</tr>
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane tab-pane-modal" id="optc">
+						<table border="1" cellpadding="2" width="100%">
+								<tr>
+									<td>TC Maintenance Costs</td>
+									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@tcMaintCosts, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>TCs Failed Unit Count</td>
+									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@tcFailUnitCount}" %></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>TCs Failed Unit Count Replacement Cost</td>
+									<td>(Failed Unit Count) x (Hardware Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_cost}" %></td>
+									<td><%= number_to_currency(@tcFailedCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>TCs Failed Unit Count Prep Labor Cost</td>
+									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@tcFailedPrepCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>TCs Failed Unit Count Replacement Labor Cost</td>
+									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@tcFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>TCs Downtime Cost</td>
+									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.tc_ave_replace_time}" %></td>
+									<td><%= number_to_currency(@tcDowntimeCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>TCs Energy Consumption</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)=#{@tcEnergyUse}KWh" %></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>TCs Energy Cost</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= number_to_currency(@tcEnergyCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Maintenance Costs</td>
+									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@rdsMaintCosts, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Failed Unit Count</td>
+									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@rdsFailUnitCount}" %></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>RDS Failed Unit Count Replacement Cost</td>
+									<td>(Failed Unit Count) x (Hardware Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_cost}" %></td>
+									<td><%= number_to_currency(@rdsFailedCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Failed Unit Count Prep Labor Cost</td>
+									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@rdsFailedPrepCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Failed Unit Count Replacement Labor Cost</td>
+									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= number_to_currency(@rdsFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Downtime Cost</td>
+									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
+									<td><%= "#{@tcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.tc_ave_replace_time}" %></td>
+									<td><%= number_to_currency(@rdsDowntimeCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<tr>
+									<td>RDS Energy Consumption</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)=#{@rdsEnergyUse}KWh" %></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>RDS Energy Cost</td>
+									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
+									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= number_to_currency(@rdsEnergyCost, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<% if @roi.activation_type == "Subscription" %>
+								<tr>
+									<td>ThinManager Subscription Cost</td>
+									<td></td>
+									<td></td>
+									<td><%= number_to_currency(@tmSubscription, :unit => @roi.currency.symbol) %></td>
+								</tr>
+								<% end %>
+								<tr>
+									<td>Management Time Savings</td>
+									<td></td>
+									<td></td>
+									<td>(<%= number_to_currency(@managementSavings, :unit => @roi.currency.symbol) %>)</td>
+								</tr>
+								<% if @roi.additional_savings > 0 %>
+								<tr>
+									<td>Additonal Savings</td>
+									<td></td>
+									<td></td>
+									<td>(<%= number_to_currency(@roi.additional_savings, :unit => @roi.currency.symbol) %>)</td>
+								</tr>
+								<% end %>
+								<tr>
+									<td><b>Total Operating Costs</b></td>
+									<td></td>
+									<td></td>
+									<td><b><%= number_to_currency(@roi.result_opcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
+								</tr>
+						</table>
+					</div>
+	      </div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Refresh Cost Modal -->
+<div class="modal fade" id="refreshcosts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Refresh Cost Calculations</h4>
+        <div class="float-right">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+	        <ul class="nav nav-tabs nav-fill breakdownTabs" id="breakdownTab4" role="tablist">
+			    <li role="presentation" class="nav-item"><a href="#rpc" class="nav-link active" aria-controls="pc" role="tab" data-toggle="tab">PC Stations</a></li>
+			    <li role="presentation" class="nav-item"><a href="#rtc" class="nav-link" aria-controls="tc" role="tab" data-toggle="tab">Thin Clients & RDS</a></li>
+			  </ul>
+					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="rpc">
+						<table border="1" cellpadding="2" width="100%">
+								
+								<tr>Something</tr>
+						
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane tab-pane-modal" id="rtc">
+						<table border="1" cellpadding="2" width="100%">
+							
+							<tr>
+								Something Else
+							</tr>
+
+						</table>
+					</div>
+	      </div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
+
+<script>
+	$("#print").click(function() {
+        print();
+        return false;
+    });
+</script>

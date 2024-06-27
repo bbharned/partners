@@ -98,14 +98,9 @@ else
 end
 @tmManagementSavings = self.planned_terminals * (self.management_time_saved_per_month * 12) * self.projected_years * self.total_labor_per_hour
 if self.activation_type != "Subscription" #Perpetual License
-	self.result_opcost_tc_rds = @tcMaintCosts + @tcFailedReplaceCosts + @tcFailedUnitPrepLabor + @tcFailedUnitReplaceLaborCost
-	 + @tcDowntimeCost + @tcEnergyCost + @servMaintCosts + @servFailedReplaceCosts + @servFailedUnitPrepLabor + @servFailedUnitReplaceLaborCost
-	  + @servDowntimeCost + @servEnergyCost + @softMaintCostTotal - @tmManagementSavings - self.additional_savings
+	self.result_opcost_tc_rds = @tcMaintCosts + @tcFailedReplaceCosts + @tcFailedUnitPrepLabor + @tcFailedUnitReplaceLaborCost + @tcDowntimeCost + @tcEnergyCost + @servMaintCosts + @servFailedReplaceCosts + @servFailedUnitPrepLabor + @servFailedUnitReplaceLaborCost + @servDowntimeCost + @servEnergyCost + @softMaintCostTotal - @tmManagementSavings - self.additional_savings
 else
-	self.result_opcost_tc_rds = @tcMaintCosts + @tcFailedReplaceCosts + @tcFailedUnitPrepLabor + @tcFailedUnitReplaceLaborCost
-	 + @tcDowntimeCost + @tcEnergyCost + @servMaintCosts + @servFailedReplaceCosts + @servFailedUnitPrepLabor + @servFailedUnitReplaceLaborCost
-	  + @servDowntimeCost + @servEnergyCost + @softMaintCostTotal - @tmManagementSavings - self.additional_savings +
-	(self.thinmanager_cost * self.projected_years) + (self.thinmanager_redundancy * self.projected_years)
+	self.result_opcost_tc_rds = @tcMaintCosts + @tcFailedReplaceCosts + @tcFailedUnitPrepLabor + @tcFailedUnitReplaceLaborCost + @tcDowntimeCost + @tcEnergyCost + @servMaintCosts + @servFailedReplaceCosts + @servFailedUnitPrepLabor + @servFailedUnitReplaceLaborCost + @servDowntimeCost + @servEnergyCost + @softMaintCostTotal - (@tmManagementSavings + self.additional_savings) + ((self.thinmanager_cost + self.thinmanager_redundancy) * self.projected_years)
 end
 self.savings_opcost = self.result_opcost_pc - self.result_opcost_tc_rds
 

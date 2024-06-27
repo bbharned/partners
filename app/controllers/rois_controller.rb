@@ -46,7 +46,44 @@ end
 
 
 def show
+    # Capital Costs
+    
+
+    #Operating Costs
+    @pcMaintCosts = @roi.planned_terminals * (@roi.pc_monthly_maint * 12) * @roi.projected_years * @roi.total_labor_per_hour
+    @pcFailUnitCount = @roi.planned_terminals * (@roi.pc_percent_fail_rate/100) * @roi.projected_years
+    @pcFailedCost = @pcFailUnitCount * @roi.pc_ave_cost
+    @pcFailedPrepCost = @pcFailUnitCount * @roi.pc_prep_time * @roi.total_labor_per_hour
+    @pcFailedReplaceCost = @pcFailUnitCount * @roi.pc_ave_replace_time * @roi.total_labor_per_hour
+    @pcDowntimeCost = @pcFailUnitCount * @roi.pc_ave_replace_time * @roi.downtime_cost_hour
+    @pcEnergyUse = @roi.planned_terminals * (@roi.station_uptime*365*@roi.projected_years) * (@roi.pc_watt_power_comsumption/1000)
+    @pcEnergyCost = @pcEnergyUse * @roi.kilowatt_power_cost
+    #TCs#
     @tcMaintCosts = @roi.planned_terminals * (@roi.tc_monthly_maint * 12) * @roi.projected_years * @roi.total_labor_per_hour
+    @tcFailUnitCount = @roi.planned_terminals * (@roi.tc_percent_fail_rate/100) * @roi.projected_years
+    @tcFailedCost = @tcFailUnitCount * @roi.tc_ave_cost
+    @tcFailedPrepCost = @tcFailUnitCount * @roi.tc_prep_time * @roi.total_labor_per_hour
+    @tcFailedReplaceCost = @tcFailUnitCount * @roi.tc_ave_replace_time * @roi.total_labor_per_hour
+    @tcDowntimeCost = @tcFailUnitCount * @roi.tc_ave_replace_time * @roi.downtime_cost_hour
+    @tcEnergyUse = @roi.planned_terminals * (@roi.station_uptime*365*@roi.projected_years) * (@roi.tc_watt_power_comsumption/1000)
+    @tcEnergyCost = @tcEnergyUse * @roi.kilowatt_power_cost
+    #RDS#
+    if @roi.planned_terminals % @roi.rds_sessions_number == 0
+        @rdserversneeded = @roi.planned_terminals / @roi.rds_sessions_number
+    else
+        @rdserversneeded = ((@roi.planned_terminals.to_f/@roi.rds_sessions_number.to_f).ceil).to_i
+    end 
+    @rdsMaintCosts = @rdserversneeded * (@roi.rds_monthly_maint * 12) * @roi.projected_years * @roi.total_labor_per_hour
+    @rdsFailUnitCount = @rdserversneeded * (@roi.rds_percent_fail_rate/100) * @roi.projected_years
+    @rdsFailedCost = @rdsFailUnitCount * @roi.rds_ave_cost
+    @rdsFailedPrepCost = @rdsFailUnitCount * @roi.rds_prep_time * @roi.total_labor_per_hour
+    @rdsFailedReplaceCost = @rdsFailUnitCount * @roi.rds_ave_replace_time * @roi.total_labor_per_hour
+    @rdsDowntimeCost = @rdsFailUnitCount * @roi.rds_ave_replace_time * @roi.downtime_cost_hour
+    @rdsEnergyUse = @rdserversneeded * (@roi.rds_uptime*365*@roi.projected_years) * (@roi.rds_watt_power_comsumption/1000)
+    @rdsEnergyCost = @rdsEnergyUse * @roi.kilowatt_power_cost
+    @tmSubscription = (@roi.thinmanager_cost + @roi.thinmanager_redundancy) * @roi.projected_years
+    @managementSavings = @roi.planned_terminals * (@roi.management_time_saved_per_month*12*@roi.projected_years) * @roi.total_labor_per_hour
+
 end
 
 

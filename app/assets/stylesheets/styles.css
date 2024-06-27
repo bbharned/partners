@@ -478,11 +478,11 @@ button.navbar-toggler span {
 .tab-pane-modal {padding:25px 2.5%; font-size: .8em; border-left: 1px solid #787878; border-right: 1px solid #787878;}
 .breakdownTabs .nav-item .nav-link {border-bottom-color:#787878 !important; background-color: #F1f1f1;}
 .breakdownTabs .nav-item .nav-link.active {border-color:#787878 !important; background-color: #FFFFFF; border-bottom:none;}
-.roi-result-card {margin-bottom: 25px;}
-.roi-result-card .card {padding: 0;}
+.tab-pane-modal table {font-size:.75em;}
+.roi-result-card .card {padding: 0; margin-bottom: 25px;}
 .roi-result-card .card-body {font-size:.9em;}
 .roi-result-card .card-footer {background-color: inherit; text-align: center; padding: 5px;} 
-
+.roi-result-card .card-body .card-text {line-height: 18px; margin-bottom: 10px;}
 
 
 

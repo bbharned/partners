@@ -1,9 +1,26 @@
 <div class="container" style="padding-bottom: 150px;">
 
-<h1>Return on Investment</h1>
+
+<div class="row">
+	<div class="col-sm-9">
+		<h1>ROI Projects Created</h1>
+	</div>
+	<div class="col-sm-3">
+		<div class="float-right" style="margin-top:7px;"><%= link_to "Add ROI", new_roi_path, class: "btn btn-primary" %></div>
+	</div>
+</div>
 <hr />
 
+<% if @rois.any? %>
 
+<% @rois.each do |r| %>
 
+<% end %>
+
+<% else %>
+
+	<p align="center" style="margin-top:35px;">There are no Return on Investment projects created yet</p>
+
+<% end %>
 
 </div>
