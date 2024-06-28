@@ -17,7 +17,7 @@
 <div class="row" style="margin-top:35px;">
 	<h3>Results</h3>
 </div>
-<div class="row">
+<div class="row results-area">
 <div class="col-md-6">
 	<div class="row">
 		<div class="col-md-6">
@@ -42,8 +42,8 @@
 </div>
 
 <div class="col-md-6 align-items-center">
-	<% if @roi.savings_total > 0 %>
-		<div class="well text-center" style="border-radius: 10px; box-shadow:1px 1px 10px #272727; height:100%; background-color: palegreen;">	
+	
+		<div class="well text-center" style="<% if !@roi.savings_total.negative? %> background-color: palegreen; <% else %> background-color: indianred; <% end %>">
 			<div class="row align-items-center" style="height:100%;">
 				<div class="col">
 					<h2>Savings</h2>
@@ -51,16 +51,6 @@
 				</div>
 			</div>
 		</div>
-	<% else %>
-		<div class="well text-center" style="border-radius: 10px; box-shadow:1px 1px 10px #272727; height:100%; background-color: indianred;">	
-			<div class="row align-items-center" style="height:100%;">
-				<div class="col">
-					<h2>Savings</h2>
-					<h2><%= number_to_currency(@roi.savings_total, :unit => @roi.currency.symbol) %></h2>
-				</div>
-			</div>
-		</div>
-	<% end %>
 </div>
 
 	
@@ -86,8 +76,8 @@
 		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
 		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
-		    <div class="row">
+		    <hr style="width:100%; margin-top: 3px; margin-bottom: 13px;" />
+			  <div class="row">
 		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_capcost.negative? %>
 		    		<div class="col-4"><div class="float-right" style="color:red;"><p class="card-text"><%= number_to_currency(@roi.savings_capcost, :unit => @roi.currency.symbol) %></p></div></div>
@@ -116,7 +106,7 @@
 		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
 		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
+		    <hr style="width:100%; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
 		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_prepcost.negative? %>
@@ -148,7 +138,7 @@
 		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
 		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_opcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
+		    <hr style="width:100%; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
 		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_opcost.negative? %>
@@ -178,7 +168,7 @@
 		    	<div class="col-8"><p class="card-text">Thin clients with RD Servers</p></div>
 		    	<div class="col-4"><div class="float-right"><p class="card-text"><%= number_to_currency(@roi.result_refreshcost_tc_rds, :unit => @roi.currency.symbol) %></p></div></div>
 		    </div>
-		    <hr style="width:35%; float: right; margin-top: 3px; margin-bottom: 13px;" />
+		    <hr style="width:100%; margin-top: 3px; margin-bottom: 13px;" />
 		    <div class="row">
 		    	<div class="col-8"><b><p class="card-text">Savings</p></b></div>
 		    	<% if @roi.savings_refreshcost.negative? %>
@@ -240,19 +230,55 @@
 						<td>Workstation PC Hardware</td>
 						<td>(Hardware Count x Hardware Cost)</td>
 						<td><%= @roi.planned_terminals %> x <%= @roi.pc_ave_cost %></td>
-						<% @pcHardwareCosts = @roi.planned_terminals * @roi.pc_ave_cost %>
-						<td><%= number_to_currency(@pcHardwareCosts, :unit => @roi.currency.symbol, :separator => ".", :delimiter => ",",:format => "%u %n",  :negative_format => "%u - %n") %></td>
+						<td><%= number_to_currency(@pcHardwareCosts, :unit => @roi.currency.symbol) %></td>
 					</tr>
 					<tr>
 						<td>Inventory Workstation PC Hardware</td>
 						<td>(Hardware Count x Hardware Cost)</td>
 						<td><%= @roi.pc_inventory_count %> x <%= @roi.pc_ave_cost %></td>
-						<td></td>
+						<td><%= number_to_currency(@pcInventoryCosts, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<tr>
+						<td><b>Total Capital Costs</b></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td><b><%= number_to_currency(@roi.result_capcost_pc, :unit => @roi.currency.symbol) %></b></td>
 					</tr>
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane tab-pane-modal" id="tc">
-				<p>Something Else</p>
+				<table border="1" cellpadding="2" width="100%">
+					<tr>
+						<td>Thin Client Hardware</td>
+						<td>(Hardware Count x Hardware Cost)</td>
+						<td><%= @roi.planned_terminals %> x <%= @roi.tc_ave_cost %></td>
+						<td><%= number_to_currency(@tcHardwareCosts, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<tr>
+						<td>Inventory Thin Client Hardware</td>
+						<td>(Hardware Count x Hardware Cost)</td>
+						<td><%= @roi.tc_inventory_count %> x <%= @roi.tc_ave_cost %></td>
+						<td><%= number_to_currency(@tcInventoryCosts, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<tr>
+						<td>RD Server Hardware</td>
+						<td>(Server Count Required x Hardware Cost)</td>
+						<td><%= @rdserversneeded %> x <%= @roi.rds_ave_cost %></td>
+						<td><%= number_to_currency(@rdsHardwareCosts, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<tr>
+						<td>Inventory RD Server Hardware</td>
+						<td>(Hardware Count x Hardware Cost)</td>
+						<td><%= @roi.rds_inventory_count %> x <%= @roi.rds_ave_cost %></td>
+						<td><%= number_to_currency(@rdsInventoryCosts, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<tr>
+						<td><b>Total Capital Costs</b></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td><b><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
+					</tr>
+				</table>
 			</div>
 	      </div>
 	  </div>
@@ -492,7 +518,11 @@
 								<% if @roi.additional_savings > 0 %>
 								<tr>
 									<td>Additonal Savings</td>
-									<td></td>
+									<td>
+										<% if @roi.additional_savings_note != nil && @roi.additional_savings_note != "" %>
+											<%= @roi.additional_savings_note %>
+										<% end %>
+									</td>
 									<td></td>
 									<td>(<%= number_to_currency(@roi.additional_savings, :unit => @roi.currency.symbol) %>)</td>
 								</tr>
