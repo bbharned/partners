@@ -20,4 +20,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require filterrific/filterrific-jquery
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .

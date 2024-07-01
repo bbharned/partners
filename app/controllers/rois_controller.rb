@@ -6,7 +6,31 @@ class RoisController < ApplicationController
 
 
 def index
-	@rois = Roi.all
+	#@rois = Roi.paginate(page: params[:page], per_page: 15).order("id desc")
+
+    @filterrific = initialize_filterrific(
+     Roi,
+     params[:filterrific],
+      select_options: {
+        rois_sort: Roi.options_for_listing_sort
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:rois_sort, :rois_search],
+      sanitize_params: true,
+   ) or return
+   @rois = @filterrific.find.paginate(page: params[:page], per_page: 15)
+
+   respond_to do |format|
+     format.html
+     format.js
+     #format.csv { send_data @listings.to_csv, filename: "ThinManager-Web-Listings_Portal-#{Date.today}.csv" }
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
 end
 
 
@@ -61,7 +85,12 @@ def show
         @rdsInventoryCosts = @roi.rds_inventory_count * @roi.rds_ave_cost
 
     #Prep Costs
-
+        @pcPrepCosts = @roi.planned_terminals * @roi.pc_prep_time * @roi.total_labor_per_hour
+        @pcInvPrepCosts = @roi.pc_inventory_count * @roi.pc_prep_time * @roi.total_labor_per_hour
+        @tcPrepCosts = @roi.planned_terminals * @roi.tc_prep_time * @roi.total_labor_per_hour
+        @tcInvPrepCosts = @roi.tc_inventory_count * @roi.tc_prep_time * @roi.total_labor_per_hour
+        @rdsPrepCosts = @rdserversneeded * @roi.rds_prep_time * @roi.total_labor_per_hour
+        @rdsInvPrepCosts = @roi.rds_inventory_count * @roi.rds_prep_time * @roi.total_labor_per_hour
 
     #Operating Costs
         @pcMaintCosts = @roi.planned_terminals * (@roi.pc_monthly_maint * 12) * @roi.projected_years * @roi.total_labor_per_hour
@@ -95,7 +124,18 @@ def show
         @managementSavings = @roi.planned_terminals * (@roi.management_time_saved_per_month*12*@roi.projected_years) * @roi.total_labor_per_hour
 
     #Refresh Costs
-    
+        #PC#
+        @numberOfPCrefreshes = (@roi.projected_years * 12) / @roi.pc_month_ave_life
+        @pc_refresh_hardware = (@pcHardwareCosts + @pcInventoryCosts) * @numberOfPCrefreshes
+        @pc_refresh_prep = (@pcPrepCosts * @numberOfPCrefreshes) + (@pcInvPrepCosts * @numberOfPCrefreshes)
+        #TC#
+        @numberOfTCrefreshes = (@roi.projected_years * 12) / @roi.tc_month_ave_life
+        @tc_refresh_hardware = (@tcHardwareCosts + @tcInventoryCosts) * @numberOfTCrefreshes
+        @tc_refresh_prep = (@tcPrepCosts * @numberOfTCrefreshes) + (@tcInvPrepCosts * @numberOfTCrefreshes)
+        #RDS#
+        @numberOfRDSrefreshes = (@roi.projected_years * 12) / @roi.rds_month_ave_life
+        @rds_refresh_hardware = (@rdsHardwareCosts + @rdsInventoryCosts) * @numberOfRDSrefreshes
+        @rds_refresh_prep = (@rdsPrepCosts * @numberOfRDSrefreshes) + (@rdsInvPrepCosts * @numberOfRDSrefreshes)
 
 end
 

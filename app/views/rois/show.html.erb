@@ -1,4 +1,20 @@
-<div class="container" style="padding-bottom: 150px;">
+<style>
+@media print {
+	.ra-top-bar, 
+	#footer, 
+	#disclaimer, 
+	.roi-result-card .card-footer,
+	.edit_ff_btn,
+	.buttons {
+		display:none !important;
+	}
+	.well {
+		background-color: transparent !important;
+	}
+	.page-container {padding-bottom: 25px;}
+}
+</style>
+<div class="container page-container">
 
 <div class="row">
 	<div class="col-lg-9">
@@ -272,12 +288,22 @@
 						<td><%= @roi.rds_inventory_count %> x <%= @roi.rds_ave_cost %></td>
 						<td><%= number_to_currency(@rdsInventoryCosts, :unit => @roi.currency.symbol) %></td>
 					</tr>
+					<% if @roi.activation_type != "Subscription" %>
+					<% @tmperpetualtotal = @roi.thinmanager_cost + @roi.thinmanager_redundancy %>
+					<tr>
+						<td>ThinManager Software Cost</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td><%= number_to_currency(@tmperpetualtotal, :unit => @roi.currency.symbol) %></td>
+					</tr>
+					<% end %>
 					<tr>
 						<td><b>Total Capital Costs</b></td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td><b><%= number_to_currency(@roi.result_capcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
 					</tr>
+					
 				</table>
 			</div>
 	      </div>
@@ -307,14 +333,56 @@
 					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="ppc">
 						<table border="1" cellpadding="2" width="100%">
 							<tr>
-								Something
+								<td>Workstation PCs Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @roi.planned_terminals %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@pcPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>Inventory Workstation PCs Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @roi.pc_inventory_count %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@pcInvPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td><b>Total Preperation Costs</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><b><%= number_to_currency(@roi.result_prepcost_pc, :unit => @roi.currency.symbol) %></b></td>
 							</tr>
 						</table>
 					</div>
 					<div role="tabpanel" class="tab-pane tab-pane-modal" id="ptc">
 						<table border="1" cellpadding="2" width="100%">
 							<tr>
-								Something Else
+								<td>Thin Client Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @roi.planned_terminals %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@tcPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>Inventory Thin Client Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @roi.tc_inventory_count %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@tcInvPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>RD Server Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @rdserversneeded %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@rdsPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>RD Server Inventory Thin Client Preperation Costs</td>
+								<td>Hardware Count x Prep Time x Labor Cost</td>
+								<td><%= @roi.rds_inventory_count %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %></td>
+								<td><%= number_to_currency(@rdsInvPrepCosts, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td><b>Total Preperation Costs</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><b><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
 							</tr>
 						</table>
 					</div>
@@ -350,49 +418,49 @@
 								<tr>
 									<td>PC Maintenance Costs</td>
 									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.pc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.pc_monthly_maint} x 12 x #{@roi.projected_years}) x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@pcMaintCosts, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>PCs Failed Unit Count</td>
 									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.pc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@pcFailUnitCount}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.pc_percent_fail_rate}/100) x #{@roi.projected_years} = #{@pcFailUnitCount}" %></td>
 									<td></td>
 								</tr>
 								<tr>
 									<td>PCs Failed Unit Count Replacement Cost</td>
 									<td>(Failed Unit Count) x (Hardware Cost)</td>
-									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_ave_cost}" %></td>
+									<td><%= "#{@pcFailUnitCount} x #{@roi.pc_ave_cost}" %></td>
 									<td><%= number_to_currency(@pcFailedCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>PCs Failed Unit Count Prep Labor Cost</td>
 									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
-									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@pcFailUnitCount} x #{@roi.pc_prep_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@pcFailedPrepCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>PCs Failed Unit Count Replacement Labor Cost</td>
 									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
-									<td><%= "#{@pcFailUnitCount}*#{@roi.pc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@pcFailUnitCount} x #{@roi.pc_ave_replace_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@pcFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>PCs Downtime Cost</td>
 									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
-									<td><%= "#{@pcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.pc_ave_replace_time}" %></td>
+									<td><%= "#{@pcFailUnitCount} x #{@roi.downtime_cost_hour} x #{@roi.pc_ave_replace_time}" %></td>
 									<td><%= number_to_currency(@pcDowntimeCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>PCs Energy Consumption</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.pc_watt_power_comsumption}/1000)=#{@pcEnergyUse}KWh" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.station_uptime} x 365 x #{@roi.projected_years}) x (#{@roi.pc_watt_power_comsumption}/1000) = #{@pcEnergyUse}KWh" %></td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td>PCs Energy Cost</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.pc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.station_uptime} x 365 x #{@roi.projected_years}) x (#{@roi.pc_watt_power_comsumption}/1000) x #{@roi.kilowatt_power_cost}" %></td>
 									<td><%= number_to_currency(@pcEnergyCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
@@ -408,97 +476,97 @@
 								<tr>
 									<td>TC Maintenance Costs</td>
 									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.tc_monthly_maint} x 12 x #{@roi.projected_years}) x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@tcMaintCosts, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>TCs Failed Unit Count</td>
 									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@tcFailUnitCount}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.tc_percent_fail_rate}/100) x #{@roi.projected_years} = #{@tcFailUnitCount}" %></td>
 									<td></td>
 								</tr>
 								<tr>
 									<td>TCs Failed Unit Count Replacement Cost</td>
 									<td>(Failed Unit Count) x (Hardware Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_cost}" %></td>
+									<td><%= "#{@tcFailUnitCount} x #{@roi.tc_ave_cost}" %></td>
 									<td><%= number_to_currency(@tcFailedCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>TCs Failed Unit Count Prep Labor Cost</td>
 									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@tcFailUnitCount} x #{@roi.tc_prep_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@tcFailedPrepCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>TCs Failed Unit Count Replacement Labor Cost</td>
 									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@tcFailUnitCount} x #{@roi.tc_ave_replace_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@tcFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>TCs Downtime Cost</td>
 									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.tc_ave_replace_time}" %></td>
+									<td><%= "#{@tcFailUnitCount} x #{@roi.downtime_cost_hour} x #{@roi.tc_ave_replace_time}" %></td>
 									<td><%= number_to_currency(@tcDowntimeCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>TCs Energy Consumption</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)=#{@tcEnergyUse}KWh" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.station_uptime} x 365 x #{@roi.projected_years}) x (#{@roi.tc_watt_power_comsumption}/1000) = #{@tcEnergyUse}KWh" %></td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td>TCs Energy Cost</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= "#{@roi.planned_terminals} x (#{@roi.station_uptime} x 365#{@roi.projected_years}) x (#{@roi.tc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
 									<td><%= number_to_currency(@tcEnergyCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Maintenance Costs</td>
 									<td>(Hardware Count) x (Maintenance per month) x 12 x (Years) x (Labor Cost)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_monthly_maint}*12*#{@roi.projected_years})*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@rdserversneeded} x (#{@roi.rds_monthly_maint} x 12 x #{@roi.projected_years}) x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@rdsMaintCosts, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Failed Unit Count</td>
 									<td>(Hardware Count) x (Failure Rate per year) x (Years)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.tc_percent_fail_rate}/100)*#{@roi.projected_years}=#{@rdsFailUnitCount}" %></td>
+									<td><%= "#{@rdserversneeded} x (#{@roi.rds_percent_fail_rate}/100) x #{@roi.projected_years} = #{@rdsFailUnitCount}" %></td>
 									<td></td>
 								</tr>
 								<tr>
 									<td>RDS Failed Unit Count Replacement Cost</td>
 									<td>(Failed Unit Count) x (Hardware Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_cost}" %></td>
+									<td><%= "#{@rdsFailUnitCount} x #{@roi.rds_ave_cost}" %></td>
 									<td><%= number_to_currency(@rdsFailedCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Failed Unit Count Prep Labor Cost</td>
 									<td>(Failed Unit Count) x (Prep Time) x (Labor Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_prep_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@rdsFailUnitCount} x #{@roi.rds_prep_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@rdsFailedPrepCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Failed Unit Count Replacement Labor Cost</td>
 									<td>(Failed Unit Count) x (Replacement Time) x (Labor Cost)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.tc_ave_replace_time}*#{@roi.total_labor_per_hour}" %></td>
+									<td><%= "#{@rdsFailUnitCount} x #{@roi.rds_ave_replace_time} x #{@roi.total_labor_per_hour}" %></td>
 									<td><%= number_to_currency(@rdsFailedReplaceCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Downtime Cost</td>
 									<td>(Failed Unit Count) x (Downtime Cost per Hour) x (Downtime)</td>
-									<td><%= "#{@tcFailUnitCount}*#{@roi.downtime_cost_hour}*#{@roi.tc_ave_replace_time}" %></td>
+									<td><%= "#{@rdsFailUnitCount} x #{@roi.downtime_cost_hour} x #{@roi.rds_ave_replace_time}" %></td>
 									<td><%= number_to_currency(@rdsDowntimeCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<tr>
 									<td>RDS Energy Consumption</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)=#{@rdsEnergyUse}KWh" %></td>
+									<td><%= "#{@rdserversneeded} x (#{@roi.rds_uptime} x 365 x #{@roi.projected_years}) x (#{@roi.rds_watt_power_comsumption}/1000) = #{@rdsEnergyUse}KWh" %></td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td>RDS Energy Cost</td>
 									<td>(Hardware Count) x (Uptime x 365 x Years) x (Energy Consumption in KWh) x (Price per KWh)</td>
-									<td><%= "#{@roi.planned_terminals}*(#{@roi.station_uptime}*365*#{@roi.projected_years})*(#{@roi.tc_watt_power_comsumption}/1000)*#{@roi.kilowatt_power_cost}" %></td>
+									<td><%= "#{@rdserversneeded} x (#{@roi.rds_uptime} x 365 x #{@roi.projected_years}) x (#{@roi.rds_watt_power_comsumption}/1000) x #{@roi.kilowatt_power_cost}" %></td>
 									<td><%= number_to_currency(@rdsEnergyCost, :unit => @roi.currency.symbol) %></td>
 								</tr>
 								<% if @roi.activation_type == "Subscription" %>
@@ -563,18 +631,58 @@
 			  </ul>
 					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="rpc">
 						<table border="1" cellpadding="2" width="100%">
-								
-								<tr>Something</tr>
-						
+							<tr>
+								<td>Workstation PCs Capital Costs</td>
+								<td>(Hardware Count x Hardware Cost + Inventory Count x Inventory Hardware Cost) x (Number of Refreshes)</td>
+								<td>((<%= @roi.planned_terminals %> x <%= @roi.pc_ave_cost %>) + (<%= @roi.pc_inventory_count %> x <%= @roi.pc_ave_cost %>)) x <%= @numberOfPCrefreshes %></td>
+								<td><%= number_to_currency(@pc_refresh_hardware, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>Workstation PCs Preperation Costs</td>
+								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
+								<td>(<%= @roi.planned_terminals %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfPCrefreshes %>) + (<%= @roi.pc_inventory_count %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfPCrefreshes %>)</td>
+								<td><%= number_to_currency(@pc_refresh_prep, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td><b>Total Refresh Costs</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><b><%= number_to_currency(@roi.result_refreshcost_pc, :unit => @roi.currency.symbol) %></b></td>
+							</tr>	
 						</table>
 					</div>
 					<div role="tabpanel" class="tab-pane tab-pane-modal" id="rtc">
 						<table border="1" cellpadding="2" width="100%">
-							
 							<tr>
-								Something Else
+								<td>Thin Clients Capital Costs</td>
+								<td>(Hardware Count x Hardware Cost + Inventory Count x Inventory Hardware Cost) x (Number of Refreshes)</td>
+								<td>((<%= @roi.planned_terminals %> x <%= @roi.tc_ave_cost %>) + (<%= @roi.tc_inventory_count %> x <%= @roi.tc_ave_cost %>)) x <%= @numberOfTCrefreshes %></td>
+								<td><%= number_to_currency(@tc_refresh_hardware, :unit => @roi.currency.symbol) %></td>
 							</tr>
-
+							<tr>
+								<td>Thin Clients Preperation Costs</td>
+								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
+								<td>(<%= @roi.planned_terminals %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfTCrefreshes %>) + (<%= @roi.tc_inventory_count %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfTCrefreshes %>)</td>
+								<td><%= number_to_currency(@tc_refresh_prep, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>RD Servers Capital Costs</td>
+								<td>(Hardware Count x Hardware Cost + Inventory Count x Inventory Hardware Cost) x (Number of Refreshes)</td>
+								<td>((<%= @rdserversneeded %> x <%= @roi.rds_ave_cost %>) + (<%= @roi.rds_inventory_count %> x <%= @roi.rds_ave_cost %>)) x <%= @numberOfRDSrefreshes %></td>
+								<td><%= number_to_currency(@rds_refresh_hardware, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td>RD Servers Preperation Costs</td>
+								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
+								<td>(<%= @rdserversneeded %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfRDSrefreshes %>) + (<%= @roi.rds_inventory_count %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfRDSrefreshes %>)</td>
+								<td><%= number_to_currency(@rds_refresh_prep, :unit => @roi.currency.symbol) %></td>
+							</tr>
+							<tr>
+								<td><b>Total Refresh Costs</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><b><%= number_to_currency(@roi.result_refreshcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
+							</tr>	
 						</table>
 					</div>
 	      </div>
@@ -585,29 +693,40 @@
 
 
 
+<!------------------------------ Graphical Section --------------------------------> 
 
 
+<hr style="margin-bottom:25px;" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3 align="center">Results Chart</h3>
+<br />
+<!-- Graph -->
+<%= column_chart [
+		{
+			data: {
+				"Capital Costs" => @roi.result_capcost_pc,
+				"Preperation Costs" => @roi.result_prepcost_pc,
+				"Operating Costs" => @roi.result_opcost_pc,
+				"Refresh Costs" => @roi.result_refreshcost_pc
+			},
+			name: "PC Solution"
+		}, 
+		{
+			data: {
+				"Capital Costs" => @roi.result_capcost_tc_rds,
+				"Preperation Costs" => @roi.result_prepcost_tc_rds,
+				"Operating Costs" => @roi.result_opcost_tc_rds,
+				"Refresh Costs" => @roi.result_refreshcost_tc_rds
+			},
+			name: "ThinManager Solution"
+		}
+	], 
+	colors: ["#272727", "#003366"],
+	prefix: @roi.currency.symbol,
+	thousands: ",",
+	round: 2, 
+	zeros: true,
+	height: "350px" %>
 
 
 

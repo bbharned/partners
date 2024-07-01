@@ -5,8 +5,62 @@ class Roi < ActiveRecord::Base
 	validates :name, presence: true, length: { minimum: 1, maximum: 50 }
 
 
+filterrific(
+   default_filter_params: { rois_sort: 'created_at_desc' },
+   available_filters: [
+     :rois_sort,
+     :rois_search,
+   ],
+ )
 
 
+scope :rois_search, lambda { |query|
+    return nil  if query.blank?
+
+    terms = query.to_s.downcase.split(/\s+/)
+
+    terms = terms.map { |e|
+      ('%' + e + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conds = 5
+    where(
+      terms.map { |term|
+        "(
+        LOWER(users.company) LIKE ?  
+        OR LOWER(users.firstname) LIKE ? 
+        OR LOWER(users.lastname) LIKE ?
+        OR LOWER(users.firstname || ' ' || users.lastname) LIKE ? 
+        OR LOWER(rois.name) LIKE ? 
+        )"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+    ).includes(:user).references(:users)
+} 
+
+
+
+scope :rois_sort, ->(sort_option) {
+  direction = /desc$/.match?(sort_option) ? "desc" : "asc"
+  case sort_option.to_s
+  when /^name_/
+    order("rois.name #{direction}")
+  when /^created_at_/
+    order("rois.created_at #{direction}")
+  else
+    raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
+  end
+}
+
+
+def self.options_for_listing_sort
+	[
+	  ["Name (A-Z)", "name_asc"],
+	  ["Name (Z-A)", "name_desc"],
+	  ["Newest - Oldest", "created_at_desc"],
+	  ["Oldest - Newest", "created_at_asc"],
+	]
+end
 
 
 private
@@ -113,7 +167,7 @@ self.savings_opcost = self.result_opcost_pc - self.result_opcost_tc_rds
 ##TCs##
 @numberOfTCrefreshes = (self.projected_years * 12) / self.tc_month_ave_life
 @tc_refresh_hardware = (@tcHardwareCosts + @tcInvCosts) * @numberOfTCrefreshes
-@tc_refresh_prep = (@RDSprepCosts * @numberOfTCrefreshes) + (@TCInventoryPrepCosts * @numberOfTCrefreshes)
+@tc_refresh_prep = (@TCprepCosts * @numberOfTCrefreshes) + (@TCInventoryPrepCosts * @numberOfTCrefreshes)
 ##RDS##
 @numberOfRDSrefreshes = (self.projected_years * 12) / self.rds_month_ave_life
 @rds_refresh_hardware = (@rdsserverTotalCost + @rdservInvCosts) * @numberOfRDSrefreshes
