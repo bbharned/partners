@@ -39,7 +39,9 @@
 
               <h4 style="color:limegreen;">Edit Mode</h4>
               <br />
-              <p>You are editing your saved Return on Investment.</p>
+              <p>You are editing your saved Return on Investment. You may wish to create a new ROI project if you are looking to compare different scenerios side by side.</p>
+
+              <p>V-Flex license pricing does offer a discounted rate per license when purchasing in larger quantities.</p>
 
               <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
             
@@ -345,21 +347,21 @@
             <div class="col-md-10 offset-md-1 top-m-12">
               <div class="control-label"><%= f.label(:thinmanager_cost, "Annual Cost of ThinManager (Quoted by Distributor)") %></div>
               <span class="teeny-float-left">Total Cost if Perpetual license, Annual if Subscription</span>
-              <%= f.text_field :thinmanager_cost, class: "form-control", tabindex: "1" %>
+              <%= f.text_field :thinmanager_cost, class: "form-control", tabindex: "1", title: "Do not use commas or monitary symbols" %>
             </div>
           </div>
           <div class="row">
             <div class="col-md-10 offset-md-1 top-m-12">
               <div class="control-label"><%= f.label(:thinmanager_redundancy, "Annual Redundancy (Quoted by Distributor)") %></div>
               <span class="teeny-float-left">Total Cost if Perpetual license, Annual if Subscription</span>
-              <%= f.text_field :thinmanager_redundancy, class: "form-control", tabindex: "2", placeholder: "Use only if adding redundant licenses" %>
+              <%= f.text_field :thinmanager_redundancy, class: "form-control", tabindex: "2", placeholder: "Use only if adding redundant licenses", title: "Do not use commas or monitary symbols" %>
             </div>
           </div>
           <div class="row">
             <div class="col-md-10 offset-md-1 top-m-12">
               <div class="control-label"><%= f.label(:thinmanager_maintenance, "Annual Software Maintenance (Perpetual License Only)") %></div>
               <span class="teeny-float-left">Included with Subscription, first year included for perpetual</span>
-              <%= f.text_field :thinmanager_maintenance, class: "form-control", tabindex: "3", placeholder: "Use only for Perpetual Licenses" %>
+              <%= f.text_field :thinmanager_maintenance, class: "form-control", tabindex: "3", placeholder: "Use only for Perpetual Licenses", title: "Do not use commas or monitary symbols" %>
             </div>
           </div>
 

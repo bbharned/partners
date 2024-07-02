@@ -29,12 +29,14 @@
 	</div>
 </div>
 <hr />
-
-<div class="row" style="margin-top:35px;">
-	<h3>Results</h3>
+<div class="row tiny-details text-center">
+	<div class="col"><%= @roi.activation_type %> License</div>
+	<div class="col"><%= @roi.support_level %> Support</div>
 </div>
+
 <div class="row results-area">
 <div class="col-md-6">
+	<h3>Results</h3>
 	<div class="row">
 		<div class="col-md-6">
 			<p>Projected cost over <%= @roi.projected_years %> years using a solution based with PCs and locaized applications.</p>

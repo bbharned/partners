@@ -30,11 +30,21 @@
 					  </div>
 
 					  <div class="col-md-3" style="margin-bottom:10px;">
-					  	
+					  	<div class="form-label">Planned Terminals</div>
+					    <%= f.select(
+					      :term_count,
+					      @filterrific.select_options[:term_count],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
 					  </div>
 
 					  <div class="col-md-3" style="margin-bottom:10px;">
-					  	
+					  	<div class="form-label">Savings Projected</div>
+					  	<%= f.select(
+					      :shows_savings,
+					      @filterrific.select_options[:shows_savings],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
 					  </div>
 
 				</div>

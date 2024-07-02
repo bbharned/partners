@@ -1,6 +1,7 @@
 class Roi < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :currency
+	before_validation :sanitize
 	before_save :calcs
 	validates :name, presence: true, length: { minimum: 1, maximum: 50 }
 
@@ -10,6 +11,8 @@ filterrific(
    available_filters: [
      :rois_sort,
      :rois_search,
+     :term_count,
+     :shows_savings,
    ],
  )
 
@@ -53,6 +56,29 @@ scope :rois_sort, ->(sort_option) {
 }
 
 
+scope :term_count, ->(terminals) {
+    if terminals == '0 - 100'
+        where("rois.planned_terminals <= ?", 100)
+    elsif terminals == '101 - 250'
+        where("rois.planned_terminals <= ?", 250).where.not("rois.planned_terminals <= ?", 100)
+    elsif terminals == '> 250'
+        where.not("rois.planned_terminals < ?", 251)
+    else
+        where.not("rois.planned_terminals == ?", nil)
+    end
+}  
+
+scope :shows_savings, ->(option) {
+    if option == 'Yes'
+        where("rois.savings_total > ?", 0)
+    elsif option == 'No'
+        where("rois.savings_total <= ?", 0)
+    else
+        where.not("rois.savings_total == ?", nil)
+    end
+}  
+
+
 def self.options_for_listing_sort
 	[
 	  ["Name (A-Z)", "name_asc"],
@@ -63,7 +89,19 @@ def self.options_for_listing_sort
 end
 
 
+
+
+
+
+
+
+
 private
+
+def sanitize
+	# self.thinmanager_cost =  
+end
+
 
 def calcs
 ######### Capital Costs #########

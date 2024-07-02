@@ -483,10 +483,14 @@ button.navbar-toggler span {
 .roi-result-card .card-body {font-size:.9em;}
 .roi-result-card .card-footer {background-color: inherit; text-align: center; padding: 5px;} 
 .roi-result-card .card-body .card-text {line-height: 18px; margin-bottom: 10px;}
+.results-area {margin-top: 35px;}
 .results-area .well {border-radius:10px; height:100%;}
 .roi-index-card {margin-bottom: 20px;}
 .roi-index-card .card-header, .roi-index-card .card-body {padding-bottom:5px; padding-top:5px;}
 .roi-index-card .card-body {font-size: .75em;}
+.tiny-details {
+    font-size:.7em; margin-top: -10px;
+}
 
 
 

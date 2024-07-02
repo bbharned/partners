@@ -6,17 +6,17 @@ class RoisController < ApplicationController
 
 
 def index
-	#@rois = Roi.paginate(page: params[:page], per_page: 15).order("id desc")
-
-    @filterrific = initialize_filterrific(
+	@filterrific = initialize_filterrific(
      Roi,
      params[:filterrific],
       select_options: {
-        rois_sort: Roi.options_for_listing_sort
+        rois_sort: Roi.options_for_listing_sort,
+        term_count: ['0 - 100', '101 - 250', '> 250'],
+        shows_savings: ['Yes', 'No'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:rois_sort, :rois_search],
+      available_filters: [:rois_sort, :rois_search, :term_count, :shows_savings],
       sanitize_params: true,
    ) or return
    @rois = @filterrific.find.paginate(page: params[:page], per_page: 15)
@@ -24,7 +24,6 @@ def index
    respond_to do |format|
      format.html
      format.js
-     #format.csv { send_data @listings.to_csv, filename: "ThinManager-Web-Listings_Portal-#{Date.today}.csv" }
    end
 
    rescue ActiveRecord::RecordNotFound => e
@@ -153,7 +152,10 @@ def destroy
 end
 
 
-
+def saved
+    @rois = Roi.where(:user_id => current_user.id).paginate(page: params[:page], per_page: 10).order("id desc")
+    @user = current_user
+end
 
 
 
