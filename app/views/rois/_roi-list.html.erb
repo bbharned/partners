@@ -5,7 +5,7 @@
     <% if @rois.any? %>
           
           
-
+          <p style="font-size:.65em; margin-top: -20px; margin-bottom: 5px;">(<%= pluralize(@rois.count, "result") %>)</p>
           <% @rois.each do |r| %>
           
             <div class="card roi-index-card">

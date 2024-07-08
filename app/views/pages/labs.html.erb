@@ -8,28 +8,31 @@
 
 		<div class="col-md-6">
 			<div class="card get-start-card">
-
 				<h4>Getting Started</h4>
 				<p><span class="lab-steps">Step 1:</span> First, you need to download ThinManager and activate a 30-day demo code. This will allow you time to work through the labs at your own pace. When you are ready, click the button below to start downloading ThinManager.</p>
 
 				<%= link_to 'ThinManager Download', download_path(current_user), method: :new_dl, class: "btn btn-primary", onclick: "window.open('https://downloadsapi.thinmanager.com/api/Files/14.0.0-ThinManager-Web.exe' + location.search)" %>
-
-				<h4 style="margin-top: 30px;">Create &amp; Install Demo Code</h4>
-				<p><span class="lab-steps">Step 2:</span> Once installed you will need to get your Primary Install ID. From your copy of ThinManager, go to [Install > Licenses], and copy the Primary Installation ID.</p> 
-
-				<p>Click the "Create Demo Code" button below and paste the Primary Installation ID into the form and complete to generate a demo code. You will receive your demo code via email, so be sure to use a valid email address. Copy the new demo code. Return to your ThinManager installation and go to [Install > Licenses], click Install Demo Code, paste new demo code. Click OK.</p>
-
-				<%= link_to "Create Demo Code", "https://licensing.thinmanager.com/DemoCode/Create", target: "_blank", class: "btn btn-success" %>
-
 			</div>
+
+			<div class="card get-start-card">
+				<h4>Get Lab File</h4>
+				<p><span class="lab-steps">Step 2:</span> Download the lab file by clicking below. You will want to do this before installing and activating ThinManager.</p>
+				<p>This lab file walks you through getting started with ThinManager as well as the fundamental parts and configuration of the platform.</p>
+				<%= link_to "Lab File", "https://thinmanager.com/si/files/ThinManagerOnDemandCertification_Labs.pdf", target: "_blank", class: "btn btn-dark", style: "width:100px;" %>
+			</div>
+			
 		</div>
 
 		<div class="col-md-6">
 			<div class="card get-start-card">
-				<h4>Get Lab File</h4>
-				<p><span class="lab-steps">Step 3:</span> Download the lab file by clicking below.</p>
-				<%= link_to "Lab File", "https://thinmanager.com/si/files/ThinManagerOnDemandCertification_Labs.pdf", target: "_blank", class: "btn btn-dark", style: "width:100px;" %>
+				<h4>Create &amp; Install Demo Code</h4>
+				<p><span class="lab-steps">Step 3:</span> Once installed you will need to get your Primary Install ID. From your copy of ThinManager, go to [Install > Licenses], and copy the Primary Installation ID.</p> 
+
+				<p>Click the "Create Demo Code" button below and paste the Primary Installation ID into the form and complete to generate a demo code. You will receive your demo code via email, so be sure to use a valid email address. Copy the new demo code. Return to your ThinManager installation and go to [Install > Licenses], click Install Demo Code, paste new demo code. Click OK.</p>
+
+				<%= link_to "Create Demo Code", "https://licensing.thinmanager.com/DemoCode/Create", target: "_blank", class: "btn btn-success" %>
 			</div>
+
 			<div class="card get-start-card">
 				<h4>Upload Results</h4>
 				<p><span class="lab-steps">Step 4:</span> Once you have completed the 5 labs file, backup your ThinManager configuration, as instructed at the end of the labs, and upload it here.</p>
