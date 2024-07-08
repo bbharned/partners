@@ -114,7 +114,7 @@
 
 	<div class="col-md-6">
 		<div class="card">
-		  <h5 class="card-header">Preperation Costs</h5>
+		  <h5 class="card-header">Preparation Costs</h5>
 		  <div class="card-body">
 		    <div class="row">
 		    	<div class="col-8"><p class="card-text">PC Workstations with local applications</p></div>
@@ -316,12 +316,12 @@
 
 
 
-<!-- Preperations Cost Modal -->
+<!-- Preparations Cost Modal -->
 <div class="modal fade" id="prepcosts" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Preperation Cost Calculations</h4>
+        <h4 class="modal-title">Preparation Cost Calculations</h4>
         <div class="float-right">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
@@ -335,19 +335,19 @@
 					<div role="tabpanel" class="tab-pane active tab-pane-modal" id="ppc">
 						<table border="1" cellpadding="2" width="100%">
 							<tr>
-								<td>Workstation PCs Preperation Costs</td>
+								<td>Workstation PCs Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @roi.planned_terminals %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@pcPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>Inventory Workstation PCs Preperation Costs</td>
+								<td>Inventory Workstation PCs Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @roi.pc_inventory_count %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@pcInvPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td><b>Total Preperation Costs</b></td>
+								<td><b>Total Preparation Costs</b></td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td><b><%= number_to_currency(@roi.result_prepcost_pc, :unit => @roi.currency.symbol) %></b></td>
@@ -357,31 +357,31 @@
 					<div role="tabpanel" class="tab-pane tab-pane-modal" id="ptc">
 						<table border="1" cellpadding="2" width="100%">
 							<tr>
-								<td>Thin Client Preperation Costs</td>
+								<td>Thin Client Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @roi.planned_terminals %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@tcPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>Inventory Thin Client Preperation Costs</td>
+								<td>Inventory Thin Client Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @roi.tc_inventory_count %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@tcInvPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>RD Server Preperation Costs</td>
+								<td>RD Server Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @rdserversneeded %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@rdsPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>RD Server Inventory Thin Client Preperation Costs</td>
+								<td>RD Server Inventory Thin Client Preparation Costs</td>
 								<td>Hardware Count x Prep Time x Labor Cost</td>
 								<td><%= @roi.rds_inventory_count %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %></td>
 								<td><%= number_to_currency(@rdsInvPrepCosts, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td><b>Total Preperation Costs</b></td>
+								<td><b>Total Preparation Costs</b></td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td><b><%= number_to_currency(@roi.result_prepcost_tc_rds, :unit => @roi.currency.symbol) %></b></td>
@@ -640,7 +640,7 @@
 								<td><%= number_to_currency(@pc_refresh_hardware, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>Workstation PCs Preperation Costs</td>
+								<td>Workstation PCs Preparation Costs</td>
 								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
 								<td>(<%= @roi.planned_terminals %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfPCrefreshes %>) + (<%= @roi.pc_inventory_count %> x <%= @roi.pc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfPCrefreshes %>)</td>
 								<td><%= number_to_currency(@pc_refresh_prep, :unit => @roi.currency.symbol) %></td>
@@ -662,7 +662,7 @@
 								<td><%= number_to_currency(@tc_refresh_hardware, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>Thin Clients Preperation Costs</td>
+								<td>Thin Clients Preparation Costs</td>
 								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
 								<td>(<%= @roi.planned_terminals %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfTCrefreshes %>) + (<%= @roi.tc_inventory_count %> x <%= @roi.tc_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfTCrefreshes %>)</td>
 								<td><%= number_to_currency(@tc_refresh_prep, :unit => @roi.currency.symbol) %></td>
@@ -674,7 +674,7 @@
 								<td><%= number_to_currency(@rds_refresh_hardware, :unit => @roi.currency.symbol) %></td>
 							</tr>
 							<tr>
-								<td>RD Servers Preperation Costs</td>
+								<td>RD Servers Preparation Costs</td>
 								<td>(Hardware Count x Prep Time x Labor Cost x Number of Refreshes) + (Inventory Count x Prep Time x Labor Cost x Number of Refreshes)</td>
 								<td>(<%= @rdserversneeded %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfRDSrefreshes %>) + (<%= @roi.rds_inventory_count %> x <%= @roi.rds_prep_time %> x <%= @roi.total_labor_per_hour %> x <%= @numberOfRDSrefreshes %>)</td>
 								<td><%= number_to_currency(@rds_refresh_prep, :unit => @roi.currency.symbol) %></td>
@@ -707,7 +707,7 @@
 		{
 			data: {
 				"Capital Costs" => @roi.result_capcost_pc,
-				"Preperation Costs" => @roi.result_prepcost_pc,
+				"Preparation Costs" => @roi.result_prepcost_pc,
 				"Operating Costs" => @roi.result_opcost_pc,
 				"Refresh Costs" => @roi.result_refreshcost_pc
 			},
@@ -716,7 +716,7 @@
 		{
 			data: {
 				"Capital Costs" => @roi.result_capcost_tc_rds,
-				"Preperation Costs" => @roi.result_prepcost_tc_rds,
+				"Preparation Costs" => @roi.result_prepcost_tc_rds,
 				"Operating Costs" => @roi.result_opcost_tc_rds,
 				"Refresh Costs" => @roi.result_refreshcost_tc_rds
 			},
