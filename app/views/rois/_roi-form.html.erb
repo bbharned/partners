@@ -41,7 +41,7 @@
               <br />
               <p>You are editing your saved Return on Investment. You may wish to create a new ROI project if you are looking to compare different scenarios side by side.</p>
 
-              <p>V-Flex license pricing does offer a discounted rate per license when purchasing in larger quantities.</p>
+              <p>V-Flex license pricing does offer a discounted rate per license when purchasing in larger bulk quantities.</p>
 
               <p>Questions?  Feel free to <%= link_to "contact us", "mailto:info@thinmanager.com" %>.</p>
             
@@ -77,9 +77,11 @@
     <!-- General Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="general">
       
+      <div class="row">
+        <div class="col-lg-9">
         <div class="form-group tabbed-form-group">
           <div class="row">
-              <div class="col-md-7 offset-md-1 top-m-12">
+              <div class="col-md-9 top-m-12">
                 <div class="control-label"><%= f.label "ROI/Project Name" %></div>
                 <%= f.text_field :name, class: "form-control", placeholder: "Name of Business for ROI", tabindex: "1" %>
               </div>
@@ -89,29 +91,29 @@
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Planned Terminals/workstations" %></div>
                 <%= f.text_field :planned_terminals, class: "form-control", placeholder: "Enter Number of Terminals Expected", tabindex: "2" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Station Uptime (hours)" %></div>
                 <%= f.text_field :station_uptime, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "3" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Utility Power Cost (per kilowatt hour)" %></div>
                 <%= f.text_field :kilowatt_power_cost, class: "form-control", placeholder: "Enter price per kilowatt hour", tabindex: "4" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Per hour cost of downtime due to station failure" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Cost/hour of station downtime" %></div>
                 <%= f.text_field :downtime_cost_hour, class: "form-control", placeholder: "Enter cost per hour incurred if station is down", tabindex: "5" %>
               </div>
           </div>
           
           <br />
           <div class="row">
-            <div class="col-md-10 offset-md-1 top-m-12">
+            <div class="col-md-12 top-m-12">
               <div class="scenario-box">
                 <h5>Additional Savings</h5>
                 <div class="row">
@@ -132,7 +134,16 @@
             </div>
           </div>
       </div>
-    
+      </div>
+      <div class="col-lg-3">
+        <div class="right-info-box">
+          <p class="bold">Do not use currency symbols or commas.</p>
+          <p>Default figures are averages found by internet search and through discussions with end users and companies that we partner with.</p>
+          <p>Per kilowatt utility energy costs vary regionally and can be found by looking up the energy cost in a specific area.</p>
+          <p>Other variables are subject to change based on the proposed configuration and specifics of each customer.</p>
+        </div>
+      </div>
+      </div>
     </div>
 
 
@@ -141,37 +152,47 @@
     <!-- Labor Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="labor">
       
-      <div class="form-group tabbed-form-group">
-        <p align="center" style="color:darkorange;">Disabled Fields will recalculate on save/update</p>
-          <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Base Labor Cost per Year" %></div>
-                <%= f.text_field :base_labor_per_year, class: "form-control", placeholder: "Worker base pay per year", tabindex: "1" %>
-              </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Base Labor Cost per Hour" %></div>
-                <%= f.text_field :base_labor_per_hour, class: "form-control", placeholder: "Worker base pay per hour", tabindex: "2", disabled: "true" %>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Overhead rate (percent of base cost)" %></div>
-                <%= f.text_field :labor_overhead, class: "form-control", placeholder: "percent overhead of base pay for employee", tabindex: "3", value: "#{@roi.labor_overhead} %" %>
-              </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Total yearly labor cost" %></div>
-                <%= f.text_field :total_labor_per_year, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "4", disabled: "true" %>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Total hourly labor cost" %></div>
-                <%= f.text_field :total_labor_per_hour, class: "form-control", placeholder: "Enter price per kilowatt hour", tabindex: "5", disabled: "true" %>
-              </div>
-              
-          </div>
+      <div class="row">
+        <div class="col-lg-9">
+        <div class="form-group tabbed-form-group">
+          <p align="center" style="color:darkorange;">Disabled Fields will recalculate on save/update</p>
+            <div class="row">
+                <div class="col-md-6 top-m-12">
+                  <div class="control-label"><%= f.label "Base Labor Cost per Year" %></div>
+                  <%= f.text_field :base_labor_per_year, class: "form-control", placeholder: "Worker base pay per year", tabindex: "1" %>
+                </div>
+                <div class="col-md-6 top-m-12">
+                  <div class="control-label"><%= f.label "Base Labor Cost per Hour" %></div>
+                  <%= f.text_field :base_labor_per_hour, class: "form-control", placeholder: "Worker base pay per hour", tabindex: "2", disabled: "true" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 top-m-12">
+                  <div class="control-label"><%= f.label "Overhead rate (percent of base cost)" %></div>
+                  <%= f.text_field :labor_overhead, class: "form-control", placeholder: "percent overhead of base pay for employee", tabindex: "3", value: "#{@roi.labor_overhead} %" %>
+                </div>
+                <div class="col-md-6 top-m-12">
+                  <div class="control-label"><%= f.label "Total yearly labor cost" %></div>
+                  <%= f.text_field :total_labor_per_year, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "4", disabled: "true" %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 top-m-12">
+                  <div class="control-label"><%= f.label "Total hourly labor cost" %></div>
+                  <%= f.text_field :total_labor_per_hour, class: "form-control", placeholder: "Enter price per kilowatt hour", tabindex: "5", disabled: "true" %>
+                </div>
+                
+            </div>
+         </div>
        </div>
-
+       <div class="col-lg-3">
+         <div class="right-info-box">
+          <p class="bold">Do not use currency symbols or commas.</p>
+          <p>Per hour and total figures are calculated on save based on base salary and overhead rate entered.</p>
+          <p>Overhead percentage differs depending on industry and location.</p>
+         </div>
+       </div>
+     </div>
     </div>
 
 

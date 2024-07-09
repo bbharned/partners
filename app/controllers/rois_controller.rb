@@ -11,7 +11,7 @@ def index
      params[:filterrific],
       select_options: {
         rois_sort: Roi.options_for_listing_sort,
-        term_count: ['0 - 100', '101 - 250', '> 250'],
+        term_count: ['0 - 100', '101 - 250', '250 and up'],
         shows_savings: ['Yes', 'No'],
       },
       persistence_id: "shared_key",

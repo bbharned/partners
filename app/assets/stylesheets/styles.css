@@ -491,7 +491,15 @@ button.navbar-toggler span {
 .tiny-details {
     font-size:.7em; margin-top: -10px;
 }
-
+.right-info-box {
+    width:100%; height: calc(100% - 45px); margin: 45px 0px 5% 0px; padding: 25px 25px 15px 25px; 
+    background-color: #084673; color: #FFFFFF;
+}
+@media all and (max-width:992px) {
+    .right-info-box {
+        margin: 0px 0px 5% 0px; padding: 25px; 
+    }
+}
 
 
 /****************************** User Pages and Filtering ***********************/

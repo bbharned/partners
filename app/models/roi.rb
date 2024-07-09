@@ -57,12 +57,12 @@ scope :rois_sort, ->(sort_option) {
 
 
 scope :term_count, ->(terminals) {
-    if terminals == '0 - 100'
+    if terminals == "0 - 100"
         where("rois.planned_terminals <= ?", 100)
-    elsif terminals == '101 - 250'
+    elsif terminals == "101 - 250"
         where("rois.planned_terminals <= ?", 250).where.not("rois.planned_terminals <= ?", 100)
-    elsif terminals == '> 250'
-        where("rois.planned_terminals > ?", 250)
+    elsif terminals == "250 and up"
+        where("rois.planned_terminals >= ?", 251)
     else
         where.not("rois.planned_terminals == ?", nil)
     end
