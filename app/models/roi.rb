@@ -62,7 +62,7 @@ scope :term_count, ->(terminals) {
     elsif terminals == '101 - 250'
         where("rois.planned_terminals <= ?", 250).where.not("rois.planned_terminals <= ?", 100)
     elsif terminals == '> 250'
-        where.not("rois.planned_terminals < ?", 251)
+        where("rois.planned_terminals > ?", 250)
     else
         where.not("rois.planned_terminals == ?", nil)
     end
