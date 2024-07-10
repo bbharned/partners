@@ -460,16 +460,32 @@
 
 
 
-	  <!-------------- ROI Download Card ------------->
+	  <!-------------- Old ROI Download Card ------------->
 	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
-		  <div class="card">
+		  <div class="card" style="display:none;">
 		    
 		    <div class="card-body">
 		      <h5 class="card-title">ThinManager ROI Calculator</h5>
 		      <p class="card-text">Download our ROI Calculator</p>
-		      <p class="card-text line-height-12px"><small class="text-muted">Enter your customer's costs and information. Let the calulator show you what ThinManager can mean for your project.</small></p>
+		      <p class="card-text line-height-12px"><small class="text-muted">Enter your customer's costs and information. Let the calculator show you what ThinManager can mean for your project.</small></p>
 		      	<div align="right margin-top-25px">
 		      		<%= link_to 'Download Now', calculators_path(current_user), method: :new_calc, class: "btn btn-primary", onclick: "window.open('https://thinmanager.com/roi/program/version2020/Signed/ThinManagerROI.exe' + location.search)" %>
+		  		</div>
+		    </div>
+		  </div>
+	  <% end %>
+
+
+	  <!-------------- New ROI Download Card ------------->
+	  <% if @current_user.admin || (@current_user.prttype == "Distributor" || @current_user.prttype == "OEM" || @current_user.prttype == "Integrator") && !@current_user.needs_review %>
+		  <div class="card">
+		    <%= image_tag "ROI_dashcard.jpg", class: "card-img-top" %>
+		    <div class="card-body text-center">
+		      <h5 class="card-title">ThinManager ROI Calculations</h5>
+		      <p class="card-text">Check the Return on Investment of&nbsp;ThinManager.</p>
+		      <p class="card-text line-height-12px"><small class="text-muted">A great tool for checking different scenerios of buying as well as generally switching from a PC centric environment to a centralized content delivery with thin clients and ThinManager.</small></p>
+		      	<div align="right margin-top-25px">
+		      		<%= link_to 'Get Started', new_roi_path, class: "btn btn-primary" %>
 		  		</div>
 		    </div>
 		  </div>
