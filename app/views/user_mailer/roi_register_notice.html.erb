@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <div style="width:100%; max-width: 750px; margin:auto; margin-top: 0px !important; padding-top:0px !important; font-family: 'Helvetica', san-serif;">
+      <img src="https://thinmanager.com/images/email_headers/PartnerRegisterNoticeHeader.jpg" width="100%" alt="Thank you for creating your account" />
+
+      <div style="padding:25px;">
+        <h1 align="center" style="margin-bottom:50px;">You Are Ready to Learn ThinManager</h1>
+        <p>Dear <%= @user.firstname %>,</p>
+
+        <p>We are so pleased that you have taken the time to create your ThinManager Portal account and get started with our Return on Investment Calculations. To get started, go to the Dashboard and navigate to the ThinManager ROI block and click "Get Started". You can also find a link in the "Tools" menu to "ROI Calculations".</p>
+
+        <p>The <%= link_to "ThinManager Portal", "https://partners.thinmanager.com", target: "_blank" %> is also a great place to find documentation, presentations, and other partner resources like the <b>QR Code Generator</b> and <b>Hardware Finder</b>.</p>
+
+        
+        <p>Thank you again!</p>
+        <br />
+        <h3  style="margin-bottom: 0px;">Tom Jordan</h3>
+        <p  style="margin-top: 2px;">Marketing Lead<br />
+        <a href="mailto:tjordan@thinmanager.com">tjordan@thinmanager.com</a></p>
+        <br /><br />
+      </div>
+    </div>
+      
+  </body>
+</html>

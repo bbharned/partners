@@ -39,6 +39,16 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.learning_acct_notice_internal(@user)
   end
 
+  def roi_acct_confirmation_external
+    @user = User.find(20)
+    UserMailer.roi_register_notice(@user)
+  end
+
+  def roi_acct_confirmation_internal
+    @user = User.find(20)
+    UserMailer.roi_acct_notice_internal(@user)
+  end
+
   def badge_earned
     @user = User.find(1) ## user 1 is all done ##
     @badge = UserBadge.where(user_id: @user.id).take

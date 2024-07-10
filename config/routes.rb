@@ -57,6 +57,9 @@ post 'learn', to: 'users#learn_signup'
 resources :rois
 get 'roi/roisaved', to: 'rois#saved'
 
+get 'roi', to: 'users#roi'
+post 'roi', to: 'users#signup_roi'
+
 resources :currencies
 resources :flexforwards
 resources :certifications

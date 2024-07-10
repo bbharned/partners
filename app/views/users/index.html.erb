@@ -50,7 +50,7 @@
 
 				<div class="row">
 			  	
-					  <div class="col-md-4" style="margin-bottom:10px;">
+					  <div class="col-md-3" style="margin-bottom:10px;">
 					    <div class="form-label">Account Status</div>
 					    <%= f.select(
 					      :with_active,
@@ -59,7 +59,7 @@
 					    ) %>
 					  </div>
 
-					  <div class="col-md-4" style="margin-bottom:10px;">
+					  <div class="col-md-3" style="margin-bottom:10px;">
 					    <div class="form-label">Service Territory</div>
 					    <%= f.select(
 					      :with_region,
@@ -68,11 +68,20 @@
 					    ) %>
 					  </div>
 
-					  <div class="col-md-4" style="margin-bottom:10px;">
-					    <div class="form-label">Certification Status</div>
+					  <div class="col-md-3" style="margin-bottom:10px;">
+					    <div class="form-label">Cert Status</div>
 					    <%= f.select(
 					      :with_cert,
 					      @filterrific.select_options[:with_cert],
+					      { include_blank: '- Any -' }, class: "form-control"
+					    ) %>
+					  </div>
+
+					  <div class="col-md-3" style="margin-bottom:10px;">
+					    <div class="form-label">Enrollment Reason</div>
+					    <%= f.select(
+					      :with_why,
+					      @filterrific.select_options[:with_why],
 					      { include_blank: '- Any -' }, class: "form-control"
 					    ) %>
 					  </div>

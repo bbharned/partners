@@ -149,6 +149,32 @@ class UserMailer < ApplicationMailer
     mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'Video Learning Account Created', delivery_method_options: delivery_options)
   end
 
+
+  def roi_register_notice(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: @user.email, from: 'ThinManager Portal', subject: 'Thank You for Registering to use our ROI tool in the ThinManager Portal', delivery_method_options: delivery_options)
+  end
+
+  def roi_acct_notice_internal(user)
+    @user = user
+    delivery_options = { address: 'smtp.gmail.com',
+                         port: 587,
+                         user_name: ENV["MAIL_USERNAME"],
+                         password: ENV["MAIL_PASSWORD"],
+                         authentication: 'plain',
+                         enable_starttls_auto: true
+                          }
+    mail(to: 'certification@thinmanager.com', from: 'ThinManager Portal', subject: 'ROI Account Created', delivery_method_options: delivery_options)
+  end
+
+
   def badge_earned(user, specific, badge)
     @user = user
     @specific = specific

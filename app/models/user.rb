@@ -124,7 +124,14 @@ end
         UserMailer.badge_earned(self, specific, badge).deliver_now
     end
 
+#ROI Mailers
+    def send_roi_register_notice
+        UserMailer.roi_register_notice(self).deliver_now
+    end
 
+    def send_roi_user_signup_notice
+        UserMailer.roi_acct_notice_internal(self).deliver_now
+    end
 
 
 
@@ -220,7 +227,8 @@ filterrific(
      :with_prttype,
      :with_active,
      :with_region,
-     :with_cert
+     :with_cert,
+     :with_why
    ],
  )
 
@@ -300,6 +308,22 @@ scope :with_region, ->(region) {
         where(continent: "AP")
     elsif region == "Unknown"
         where(continent: "")
+    end
+} 
+
+scope :with_why, ->(reason) {
+    if reason == "Certification"
+        where(cert_signup: true)
+    elsif reason == "RAU"
+        where(referred_by: "RAU")
+    elsif reason == "Video Training"
+        where(learn_signup: true)
+    elsif reason == "Event Attendee"
+        where(event_signup: true)
+    elsif reason == "ROI Calculator"
+        where(roi_signup: true)
+    elsif reason == "Unknown"
+        where(cert_signup: false).where(learn_signup: false).where(event_signup: false).where(roi_signup: false).where.not(referred_by: "RAU")
     end
 } 
 

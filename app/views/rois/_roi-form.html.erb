@@ -82,7 +82,7 @@
         <div class="form-group tabbed-form-group">
           <div class="row">
               <div class="col-md-9 top-m-12">
-                <div class="control-label"><%= f.label "ROI/Project Name" %></div>
+                <div class="control-label"><%= f.label :name, "ROI/Project Name" %></div>
                 <%= f.text_field :name, class: "form-control", placeholder: "Name of Business for ROI", tabindex: "1" %>
               </div>
               <div class="col-md-3 top-m-12">
@@ -153,7 +153,7 @@
     <div role="tabpanel" class="tab-pane" id="labor">
       
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-8">
         <div class="form-group tabbed-form-group">
           <p align="center" style="color:darkorange;">Disabled Fields will recalculate on save/update</p>
             <div class="row">
@@ -185,11 +185,16 @@
             </div>
          </div>
        </div>
-       <div class="col-lg-3">
+       <div class="col-lg-4">
          <div class="right-info-box">
           <p class="bold">Do not use currency symbols or commas.</p>
-          <p>Per hour and total figures are calculated on save based on base salary and overhead rate entered.</p>
-          <p>Overhead percentage differs depending on industry and location.</p>
+          <p>Base labor and overhead percentage differ depending on industry and location.</p>
+          <p style="margin-bottom:5px;">US based averages:</p>
+          <ul style="margin-left:-20px; font-size: .8em;">
+            <li>Maintenance Technician - 50000&nbsp;per&nbsp;year</li>
+            <li>Controls Engineer - 100000&nbsp;per&nbsp;year</li>
+            <li>IT Specialist - 75000&nbsp;per&nbsp;year</li>
+          </ul>
          </div>
        </div>
      </div>
@@ -201,49 +206,59 @@
     <!-- PC Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="pcstats">
       
+      <div class="row">
+      <div class="col-lg-9">
       <div class="form-group tabbed-form-group">
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Average PC Cost (including OS)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave PC Cost (including OS)" %></div>
                 <%= f.text_field :pc_ave_cost, class: "form-control", tabindex: "1" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Prep time per PC (hours, including installs)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Prep time per PC (hrs, include installs)" %></div>
                 <%= f.text_field :pc_prep_time, class: "form-control", tabindex: "2" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Monthly Maintenance Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Monthly Maintenance Time (hrs)" %></div>
                 <%= f.text_field :pc_monthly_maint, class: "form-control", tabindex: "3" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Replacement inventory count" %></div>
                 <%= f.text_field :pc_inventory_count, class: "form-control", placeholder: "Enter hours per day that station is used", tabindex: "4" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Rate of failure per year(%)" %></div>
                 <%= f.text_field :pc_percent_fail_rate, class: "form-control", value: "#{@roi.pc_percent_fail_rate} %", tabindex: "5" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Power consumption (watts)" %></div>
                 <%= f.text_field :pc_watt_power_comsumption, class: "form-control", tabindex: "6" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Average lifespan (months)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave lifespan (months)" %></div>
                 <%= f.text_field :pc_month_ave_life, class: "form-control", tabindex: "7" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Average PC Replacement Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave PC Replacement Time (hours)" %></div>
                 <%= f.text_field :pc_ave_replace_time, class: "form-control", tabindex: "8" %>
               </div>
           </div>
        </div>
-
+      </div>
+      <div class="col-lg-3">
+        <div class="right-info-box">
+          <p class="bold">Do not use currency symbols or commas.</p>
+          <p>Industrial PC prices vary greatly and this should be based on the current machines implemented and in use.</p>
+          <p>Power Consumption does not include monitors</p>
+        </div>
+      </div>
+      </div>
     </div>
 
 
@@ -251,49 +266,59 @@
     <!-- TC Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="tcstats">
       
+      <div class="row">
+      <div class="col-lg-9">
       <div class="form-group tabbed-form-group">
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Average Thin Client Cost (per terminal)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label :tc_ave_cost, "Ave thin client cost (per terminal)" %></div>
                 <%= f.text_field :tc_ave_cost, class: "form-control", tabindex: "1" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Prep time per client (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Prep time per client (hrs)" %></div>
                 <%= f.text_field :tc_prep_time, class: "form-control", tabindex: "2" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Monthly Maintenance Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Monthly Maintenance Time (hrs)" %></div>
                 <%= f.text_field :tc_monthly_maint, class: "form-control", tabindex: "3" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Replacement inventory count" %></div>
                 <%= f.text_field :tc_inventory_count, class: "form-control", tabindex: "4" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Rate of failure per year (%)" %></div>
                 <%= f.text_field :tc_percent_fail_rate, class: "form-control", value: "#{@roi.tc_percent_fail_rate} %", tabindex: "5" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Power consumption (watts)" %></div>
                 <%= f.text_field :tc_watt_power_comsumption, class: "form-control", tabindex: "6" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Average lifespan (months)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave lifespan (months)" %></div>
                 <%= f.text_field :tc_month_ave_life, class: "form-control", tabindex: "7" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Average Thin Client Replacement Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave Thin Client Replacement Time (hrs)" %></div>
                 <%= f.text_field :tc_ave_replace_time, class: "form-control", tabindex: "8" %>
               </div>
           </div>
        </div>
-
+      </div>
+      <div class="col-lg-3">
+        <div class="right-info-box">
+          <p class="bold">Do not use currency symbols or commas.</p>
+          <p>Thin client prices vary greatly and this should be based on the hardware brand and model being proposed for implementation.</p>
+          <p>Power Consumption does not include monitors</p>
+        </div>
+      </div>
+      </div>
     </div>
 
 
@@ -302,57 +327,69 @@
     <!-- RDS Stats Tab of ROI -->
     <div role="tabpanel" class="tab-pane" id="rdservers">
       
+      <div class="row">
+      <div class="col-lg-9">
       <div class="form-group tabbed-form-group">
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label(:ds_ave_cost, "RD Server Cost (including OS, per server)") %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label :ds_ave_cost, "RD Server Cost (including OS, per server)" %></div>
                 <%= f.text_field :rds_ave_cost, class: "form-control", tabindex: "1" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Prep time per server (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Prep time per server (hrs)" %></div>
                 <%= f.text_field :rds_prep_time, class: "form-control", tabindex: "2" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label(:rds_sessions_number, "Number of Sessions per RD Server") %></div>
                 <%= f.text_field :rds_sessions_number, class: "form-control", tabindex: "3" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Server uptime per day (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Server uptime per day (hrs)" %></div>
                 <%= f.text_field :rds_uptime, class: "form-control", tabindex: "3" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Monthly Maintenance Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Monthly Maintenance Time (hrs)" %></div>
                 <%= f.text_field :rds_monthly_maint, class: "form-control", tabindex: "3" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Replacement inventory count" %></div>
                 <%= f.text_field :rds_inventory_count, class: "form-control", tabindex: "4" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Rate of failure per year(%)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Rate of failure per year (%)" %></div>
                 <%= f.text_field :rds_percent_fail_rate, class: "form-control", value: "#{@roi.rds_percent_fail_rate} %", tabindex: "5" %>
               </div>
-              <div class="col-md-5 top-m-12">
+              <div class="col-md-6 top-m-12">
                 <div class="control-label"><%= f.label "Power consumption (watts)" %></div>
                 <%= f.text_field :rds_watt_power_comsumption, class: "form-control", tabindex: "6" %>
               </div>
           </div>
           <div class="row">
-              <div class="col-md-5 offset-md-1 top-m-12">
-                <div class="control-label"><%= f.label "Average lifespan (months)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Ave lifespan (months)" %></div>
                 <%= f.text_field :rds_month_ave_life, class: "form-control", tabindex: "7" %>
               </div>
-              <div class="col-md-5 top-m-12">
-                <div class="control-label"><%= f.label "Replacement Time (hours)" %></div>
+              <div class="col-md-6 top-m-12">
+                <div class="control-label"><%= f.label "Replacement Time (hrs)" %></div>
                 <%= f.text_field :rds_ave_replace_time, class: "form-control", tabindex: "8" %>
               </div>
           </div>
+        </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="right-info-box">
+            <p class="bold">Do not use currency symbols or commas.</p>
+            <p>Server needs vary per customer and is dependant on brand, capacity, and current implementation which might already include remote desktop needs.</p>
+            <p>This should be adjusted based on the needs and current assets of each customer.</p>
+          </div>
+        </div>
+        
     </div>
 
   </div>

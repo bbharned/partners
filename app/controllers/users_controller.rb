@@ -20,10 +20,11 @@ def index
         with_active: ['Active', 'Inactive'],
         with_region: ['North America', 'Latin America', 'EMEA', 'Asia Pacific', 'Unknown'],
         with_cert: ['Active Certified', 'Expired Certified', 'Never Certified'],
+        with_why: ['Certification', 'RAU', 'Video Training', 'Event Attendee', 'ROI Calculator'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:user_sort, :user_search, :with_channel, :with_prttype, :with_active, :with_region, :with_cert],
+      available_filters: [:user_sort, :user_search, :with_channel, :with_prttype, :with_active, :with_region, :with_cert, :with_why],
       sanitize_params: true,
    ) or return
    @userexport = @filterrific.find
@@ -237,6 +238,38 @@ def learn_signup
         redirect_to learning_path
     else
         render 'learn'
+    end
+end
+
+
+def roi
+  if (!logged_in?) 
+    @user = User.new
+  elsif (logged_in? and current_user.admin?) 
+    @user = User.new
+  elsif (logged_in? and !current_user.admin?)
+    flash[:warning] = "You have already signed up and have an account"
+    redirect_to root_path
+  end
+  @tm = 'Check the option that best describes your relationship to ThinManager'
+end
+
+
+def signup_roi
+  @user = User.new(user_params)
+  @user.needs_review = true
+  @user.roi_signup = true
+  @user.referred_by = "ROI"
+    if @user.save
+        session[:user_id] = @user.id
+        @user.update_attribute(:lastlogin, Time.now)
+        @user.send_roi_register_notice #external
+        @user.send_newuser_zap
+        @user.send_roi_user_signup_notice #internal
+        flash[:success] = "Welcome to the ThinManger Portal! You can find the ROI calculator in the 'Tools' menu or below on the dashboard."
+        redirect_to root_path
+    else
+        render 'roi'
     end
 end
 

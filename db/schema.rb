@@ -430,30 +430,30 @@ ActiveRecord::Schema.define(version: 2024_06_18_175734) do
     t.string "support_level"
     t.integer "planned_terminals", default: 100
     t.decimal "station_uptime", precision: 10, scale: 2, default: "16.0"
-    t.decimal "kilowatt_power_cost", precision: 10, scale: 4, default: "0.1319"
+    t.decimal "kilowatt_power_cost", precision: 10, scale: 4, default: "0.1688"
     t.decimal "downtime_cost_hour", precision: 10, scale: 4, default: "10000.0"
     t.integer "projected_years", default: 10
     t.decimal "additional_savings", precision: 10, scale: 2, default: "0.0"
     t.text "additional_savings_note"
     t.decimal "base_labor_per_year", precision: 10, scale: 2, default: "50000.0"
     t.decimal "base_labor_per_hour", precision: 10, scale: 2, default: "24.04"
-    t.decimal "labor_overhead", precision: 10, scale: 2, default: "52.0"
-    t.decimal "total_labor_per_year", precision: 10, scale: 2, default: "76000.0"
-    t.decimal "total_labor_per_hour", precision: 10, scale: 2, default: "36.54"
-    t.decimal "pc_ave_cost", precision: 10, scale: 2, default: "1000.0"
+    t.decimal "labor_overhead", precision: 10, scale: 2, default: "40.0"
+    t.decimal "total_labor_per_year", precision: 10, scale: 2, default: "70000.0"
+    t.decimal "total_labor_per_hour", precision: 10, scale: 2, default: "33.65"
+    t.decimal "pc_ave_cost", precision: 10, scale: 2, default: "1250.0"
     t.decimal "pc_prep_time", precision: 10, scale: 2, default: "4.0"
     t.decimal "pc_monthly_maint", precision: 10, scale: 2, default: "1.0"
     t.integer "pc_inventory_count", default: 5
-    t.decimal "pc_percent_fail_rate", precision: 10, scale: 2, default: "5.0"
-    t.decimal "pc_watt_power_comsumption", precision: 10, scale: 2, default: "75.0"
+    t.decimal "pc_percent_fail_rate", precision: 10, scale: 2, default: "10.0"
+    t.decimal "pc_watt_power_comsumption", precision: 10, scale: 2, default: "100.0"
     t.integer "pc_month_ave_life", default: 36
     t.decimal "pc_ave_replace_time", precision: 10, scale: 2, default: "2.0"
-    t.decimal "tc_ave_cost", precision: 10, scale: 2, default: "500.0"
+    t.decimal "tc_ave_cost", precision: 10, scale: 2, default: "750.0"
     t.decimal "tc_prep_time", precision: 10, scale: 2, default: "0.0"
     t.decimal "tc_monthly_maint", precision: 10, scale: 2, default: "0.5"
     t.integer "tc_inventory_count", default: 2
-    t.decimal "tc_percent_fail_rate", precision: 10, scale: 2, default: "1.0"
-    t.decimal "tc_watt_power_comsumption", precision: 10, scale: 2, default: "15.0"
+    t.decimal "tc_percent_fail_rate", precision: 10, scale: 2, default: "2.0"
+    t.decimal "tc_watt_power_comsumption", precision: 10, scale: 2, default: "12.0"
     t.integer "tc_month_ave_life", default: 60
     t.decimal "tc_ave_replace_time", precision: 10, scale: 2, default: "0.25"
     t.decimal "rds_ave_cost", precision: 10, scale: 2, default: "10000.0"
@@ -618,6 +618,7 @@ ActiveRecord::Schema.define(version: 2024_06_18_175734) do
     t.string "carrier"
     t.text "notes"
     t.boolean "event_signup", default: false
+    t.boolean "roi_signup", default: false
   end
 
   create_table "venues", force: :cascade do |t|
