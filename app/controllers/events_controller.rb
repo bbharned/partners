@@ -152,8 +152,6 @@ def show
 
         respond_to do |format|
             format.html { render "show" }
-            #format.csv { send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv" }
-            #format.csv { send_data @waitlist.to_csv, filename: "Waitlist_#{@event.name}-#{@event.starttime}.csv" }
             format.csv do 
                 if (params[:format_data] == 'registered')
                   send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv"
@@ -203,7 +201,7 @@ def fill_event
 end
 
 
-def waitlist_check(event)
+def waitlist_check(event) #only if within cutoff
     @capacity = event.capacity
     @registered = EventAttendee.where(event_id: event.id).where.not(canceled: true).where.not(waitlist: true)
     if @registered.count < @capacity
@@ -281,7 +279,7 @@ def reg_cancel
             @user.send_event_reg_cancel(@event)
             @user.send_event_canceled_internal_notice(@event)
             flash[:success] = "Your Registration change request has completed."
-            self.waitlist_check(@event)
+            self.waitlist_check(@event) ##only if within cutoff 
             redirect_to event_path(@event)
         else
             flash[:danger] = "Something didnt quite work correectly"
