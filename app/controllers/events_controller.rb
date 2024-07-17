@@ -136,9 +136,19 @@ def show
                 end
             end
         end
+
+        @passedcert = []
+        if @allregistered.any?
+            @allregistered.each do |w|
+                if w.passed
+                    @passedcert.push w.user_id
+                end
+            end
+        end
         
         @allusers = User.where(id: @evtusers)
         @waitlistusers = User.where(id: @waitlisters)
+        @passedcertusers = User.where(id: @passedcert)
 
         respond_to do |format|
             format.html { render "show" }
@@ -149,6 +159,8 @@ def show
                   send_data @allusers.to_csv, filename: "Registration_#{@event.name}-#{@event.starttime}.csv"
                 elsif (params[:format_data] == 'waitlist')
                   send_data @waitlistusers.to_csv, filename: "Waitlist_#{@event.name}-#{@event.starttime}.csv" 
+                elsif (params[:format_data] == 'passed')
+                  send_data @passedcertusers.to_csv, filename: "Certified From_#{@event.name}-#{@event.starttime}.csv"  
                 end
               end
             format.ics { send_data @cal_string, filename: "#{@event.name}.ics"}
@@ -212,6 +224,11 @@ def waitlist_check(event)
     end
 end
 
+def passed
+    @attendee = EventAttendee.where(event_id: params[:event_id], user_id: params[:user_id])
+    @attendee.first.toggle!(:passed)
+    redirect_to checkin_path(params[:event_id])
+end
 
 def reg_cancel
     @event = Event.find(params[:id])

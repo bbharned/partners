@@ -6,7 +6,7 @@ class EventAttendee < ActiveRecord::Base
 
 
 def self.to_csv
-      attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}
+      attributes = %w{id active firstname lastname email company attended passed prttype channel continent created_at lastlogin}
 
       CSV.generate(headers: true) do |csv|
         csv << attributes

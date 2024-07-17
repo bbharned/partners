@@ -22,18 +22,24 @@
     <br />
     <% @attendees.where(event_id: @event.id).each do | attendee | %>
     <div class="row attendee-checkin-row">
-        <div class="col-md-3 col-md-offset-1"><span class="goAwaySooner glyphicon glyphicon-user" aria-hidden="true">&nbsp;&nbsp;</span><span style="font-weight:bold;"><%= attendee.user.lastname %>, <%= attendee.user.firstname %></span></div>
+        <div class="col-md-3"><span class="goAwaySooner glyphicon glyphicon-user" aria-hidden="true">&nbsp;&nbsp;</span><span style="font-weight:bold;"><%= attendee.user.lastname %>, <%= attendee.user.firstname %></span></div>
         <div class="col-md-4"><%= attendee.user.company %></div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             <% if !attendee.checkedin %>
                 <%= link_to "Check In", checkin_path(:user_id => attendee.user.id, :event_id => @event.id), method: :attended, class: "btn btn-primary btn-sm"  %>
             <% else %>
                 <%= link_to "Checked In", checkin_path, class: "btn btn-success btn-sm disabled", style: "opacity:.4;"  %>
             <% end %>
-        </div>
-        <div class="col-md-2">
+        
             <% if attendee.checkedin %>
                 <%= link_to "Cancel Check In", checkin_path(:user_id => attendee.user.id, :event_id => @event.id), method: :attended, class: "btn btn-danger btn-sm"  %>
+            <% end %>
+        </div>
+        <div class="col-md-1">
+            <% if !attendee.passed %>
+                <span class="passed-label">passed?</span><%= link_to image_tag("icon-emptycheck.png"), passed_event_path(:user_id => attendee.user.id, :event_id => @event.id), method: :put %>
+            <% else %>
+                <span class="passed-label">passed?</span><%= link_to image_tag("icon-checkedcheck.png"), passed_event_path(:user_id => attendee.user.id, :event_id => @event.id), method: :put %>
             <% end %>
         </div>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_18_175734) do
+ActiveRecord::Schema.define(version: 2024_07_16_173854) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2024_06_18_175734) do
     t.string "lastname"
     t.boolean "canceled", default: false
     t.boolean "waitlist", default: false
+    t.boolean "passed", default: false
   end
 
   create_table "event_categories", force: :cascade do |t|

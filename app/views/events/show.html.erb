@@ -321,12 +321,20 @@
 
 
 	<h2 align="center" style="margin-top: 35px;">Attendance</h2>
-
+	<% if logged_in? && current_user.admin? %>
+		<div class="csv-link-passed">
+			<%= link_to "Export Certified/Passed List", event_path({:format => :csv, format_data: "passed"}) %>
+		</div>
+	<% end %>
 	<div class="well">
 		<div class="row">
 			<div class="col" style="text-align:center;">
-				<% @checkedin = @allregistered.where(:checkedin => true) %>
-				<%= @checkedin.count %> users attended of the <%= @allregistered.count %> registered.
+				<% 
+					@checkedin = @allregistered.where(:checkedin => true) 
+					@passed = @allregistered.where(:passed => true) 
+				%>
+
+				<%= @checkedin.count %> users attended of the <%= @allregistered.count %> registered. (<%= @passed.count %> passed)
 			</div>
 		</div>
 	</div>

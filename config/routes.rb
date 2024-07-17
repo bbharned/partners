@@ -88,7 +88,13 @@ resources :termnotes, except: [:show, :index]
 
 resources :evtcategories
 resources :venues
-resources :events
+resources :events do
+  member do
+    patch :passed
+    put :passed
+  end
+end 
+
 get 'event/admin', to: 'events#admin'
 post 'events/:id', to: 'events#register'
 post 'events/:id/reg_cancel', to: 'events#reg_cancel', as: 'reg_cancel'

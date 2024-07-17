@@ -21,6 +21,8 @@ class EventAttendeesController < ApplicationController
       redirect_to checkin_path(params[:event_id])
     end
 
+    
+
     def sms 
       if (logged_in? && current_user.admin?) || (logged_in? && current_user.evt_admin?)
         @event = Event.find(params[:id])
