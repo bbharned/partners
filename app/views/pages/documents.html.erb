@@ -123,7 +123,7 @@
 
 				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 					<!-- Rockwell Technical Presentation -->
-					<div class="row">
+					<div class="row" style="display:none;">
 						<div class="col-md-10"><span class="bold">Technical Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
 						<div class="col-md-1">PPTX</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCjjMf4cpPQhqG2BpqgJWggdfB83", target: "_blank" %></div>
@@ -131,7 +131,7 @@
 				<% end %>
 				<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 					<!-- 3rd Party Technical Presentation -->
-					<div class="row">
+					<div class="row" style="display:none;">
 						<div class="col-md-10"><span class="bold">Technical Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 						<div class="col-md-1">PPTX</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Version131_TechnicalPresentation_3p.pptx", target: "_blank" %></div>
@@ -140,7 +140,7 @@
 
 				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 					<!-- Rockwell Sales Presentation -->
-					<div class="row">
+					<div class="row" style="display:none;">
 						<div class="col-md-10"><span class="bold">Sales Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
 						<div class="col-md-1">PPTX</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCmMDpBpVHhg98mV3mqCHQ7Hqmgd", target: "_blank" %></div>
@@ -149,10 +149,29 @@
 				
 				<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 					<!-- 3rd Party Sales Presentation -->
-					<div class="row">
+					<div class="row" style="display:none;">
 						<div class="col-md-10"><span class="bold">Sales Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 						<div class="col-md-1">PPTX</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Version131_CommercialPresentation_3p.pptx", target: "_blank" %></div>
+					</div>
+				<% end %>
+
+
+				<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
+					<!-- Rockwell Sales Presentation -->
+					<div class="row">
+						<div class="col-md-10"><span class="bold">Version 14 Release Presentation <% if current_user.admin %>(Rockwell)<% end %></span></div>
+						<div class="col-md-1">PPTX</div>
+						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCfgBF8jbTq3H8QDV293JPfRHQJB", target: "_blank" %></div>
+					</div>
+				<% end %>
+				
+				<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
+					<!-- 3rd Party Sales Presentation -->
+					<div class="row">
+						<div class="col-md-10"><span class="bold">Version 14 Release Presentation <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
+						<div class="col-md-1">PPTX</div>
+						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Version14_ReleasePresentation_public.pptx", target: "_blank" %></div>
 					</div>
 				<% end %>
 
@@ -173,6 +192,7 @@
 						<div class="col-md-10"><span class="bold">Selling Guide <% if current_user.admin %>(Rockwell)<% end %></span></div>
 						<div class="col-md-1">PDF</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCTJ4mqPTPTPb8WHRJhQV2M8c96j", target: "_blank" %></div>
+						<!-- Needs updated to v14 in seismic -->
 					</div>
 				<% end %>
 
@@ -181,7 +201,7 @@
 					<div class="row">
 						<div class="col-md-10"><span class="bold">Selling Guide <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 						<div class="col-md-1">PDF</div>
-						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager-Selling-Guide-TM-SP001F-EN-P-3p.pdf", target: "_blank" %></div>
+						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager-Selling-Guide-TM-SP001H-EN-P Generic.pdf", target: "_blank" %></div>
 					</div>
 				<% end %>
 
@@ -195,9 +215,9 @@
 				
 				<!-- User Guide - Latest ThinManager -->
 				<div class="row">
-					<div class="col-md-10"><span class="bold">Version 13.2 User Guide</span></div>
+					<div class="col-md-10"><span class="bold">Version 14.0 User Guide</span></div>
 					<div class="col-md-1">PDF</div>
-					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/support/manuals/files/ThinManager-v132-UserGuide_TM-UM001-EN-P.pdf", target: "_blank" %></div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/support/manuals/files/ThinManager-v14-UserGuide_TM-UM001J-EN-P.pdf", target: "_blank" %></div>
 				</div>
 
 
@@ -217,7 +237,7 @@
 				<div class="row">
 					<div class="col-md-10"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Rockwell)<% end %></span></div>
 					<div class="col-md-1">PDF</div>
-					<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCFTgRTR6c4jTG4TTbc3BJ8FHDdd", target: "_blank" %></div>
+					<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCXDg63ThFq928fXJTDXbGd2Fm4V", target: "_blank" %></div>
 				</div>
 				<% end %>
 
@@ -227,7 +247,7 @@
 				<div class="row">
 					<div class="col-md-10"><span class="bold">ThinManager Product Profile <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 					<div class="col-md-1">PDF</div>
-					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/media/datasheets/RA-v13-2022/ThinManager-Full-Profile-v132-2023_3p.pdf", target: "_blank" %></div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "ThinManager_Version14_ProductProfile_3p_20240718.pdf", target: "_blank" %></div>
 				</div>
 				<% end %>
 
@@ -252,6 +272,12 @@
 				<% end %>
 
 
+				<!-- NYMI Doc/Guide -->
+				<div class="row">
+					<div class="col-md-10"><span class="bold">NYMI Application &amp; Setup Guide</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_Nymi-HowToSetup.pdf", target: "_blank" %></div>
+				</div>
 				
 
 
