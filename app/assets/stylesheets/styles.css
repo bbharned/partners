@@ -902,6 +902,7 @@ Very Light Blue: #e9f7fb;
 .passed-label {
     font-size:.65em; float:left; margin-left: -50px; line-height: 30px; margin-right: 0;
 }
+.event-close-statement {font-size: .75em; font-style: italic; margin-bottom: 0;}
 @media all and (max-width: 768px) {
     .passed-label {
         float:none; margin-left:0px; line-height: 30px; margin-right: 7px;

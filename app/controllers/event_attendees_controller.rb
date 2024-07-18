@@ -98,7 +98,7 @@ class EventAttendeesController < ApplicationController
       
 
       @registrations = EventAttendee.where(event_id: @event.id).where(user_id: @user.id)
-      @totalregs = EventAttendee.where(event_id: @event.id).where.not(canceled: true)
+      @totalregs = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
       if @registrations.count == 0
 
           if @totalregs.count < @event.capacity

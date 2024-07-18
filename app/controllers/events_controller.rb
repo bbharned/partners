@@ -26,6 +26,9 @@ end
 
 def show
 
+    @stadjusted
+    @currentTime
+
     require 'icalendar/tzinfo'
 
     # if statement for iCal
@@ -43,6 +46,8 @@ def show
 
       # event start date
         event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
+        @stadjusted = event.dtstart
+        @currentTime = Icalendar::Values::DateTime.new Time.current
 
       # event end date
         event.dtend = Icalendar::Values::DateTime.new @event.endtime, 'tzid' => @tzid
@@ -91,6 +96,10 @@ def show
     else
         
         @full = false
+        @close = (@stadjusted - @event.cutoff.hours)
+
+        
+
         if current_user
             @registration = EventAttendee.where(:event_id => @event.id, :user_id => current_user.id).where.not(canceled: true).first
         end
@@ -229,11 +238,33 @@ def passed
 end
 
 def reg_cancel
+       
+       require 'icalendar/tzinfo'
+
     @event = Event.find(params[:id])
     @attendee = EventAttendee.where(event_id: @event.id, user_id: params[:user_id]).first
     @user = User.find(@attendee.user_id)
     @allregistered = EventAttendee.where(event_id: @event).where.not(canceled: true).where.not(waitlist: true)
     @waitlist = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: false)
+
+    @stadjusted
+    @currentTime
+
+    if @event.starttime != nil && @event.starttime != "" && @event.endtime != nil && @event.endtime != ""
+
+        @ical = Icalendar::Calendar.new
+        @zones = TZInfo::Timezone.all_identifiers
+        @tzid = @event.tzid 
+        event = Icalendar::Event.new
+
+        event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
+        @stadjusted = event.dtstart
+        @currentTime = Icalendar::Values::DateTime.new Time.current
+
+    end
+
+    @close = (@stadjusted - @event.cutoff.hours)
+
     
     if @attendee.canceled == true && (@allregistered.count >= @event.capacity) # re-enrolling but at capacity
 
@@ -279,7 +310,11 @@ def reg_cancel
             @user.send_event_reg_cancel(@event)
             @user.send_event_canceled_internal_notice(@event)
             flash[:success] = "Your Registration change request has completed."
-            self.waitlist_check(@event) ##only if within cutoff 
+            
+            ## only if cutoff hasnt occured
+            if @event.cutoff != nil && @event.starttime != nil && @event.starttime > @currentTime && @currentTime < @close
+                self.waitlist_check(@event)
+            end
             redirect_to event_path(@event)
         else
             flash[:danger] = "Something didnt quite work correectly"
@@ -461,7 +496,7 @@ end
 private
 
 	def event_params
-        params.require(:event).permit(:name, :live, :archive, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :tzid, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
+        params.require(:event).permit(:name, :live, :archive, :description, :starttime, :endtime, :cost, :capacity, :event_contact, :event_email, :event_host, :event_phone, :event_image, :private, :virtual, :viewer, :evt_link, :reg_required, :tzid, :cutoff, :survey_id, evtcategory_ids: [], venue_ids: [], tag_ids: [])
     end
 
 

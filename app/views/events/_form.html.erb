@@ -66,6 +66,14 @@
 	    	<div class="row">
 	    		<div class="col-md-2">
                 	<div class="control-label">
+                        <%= f.label "Cutoff (hrs)" %>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <%= f.text_field :cutoff , class: "form-control" %>
+                    </div>
+                </div>
+	    		<div class="col-md-2">
+                	<div class="control-label">
                         <%= f.label :cost %>
                     </div>
                     <div style="margin-bottom: 20px;">

@@ -1,6 +1,7 @@
 <% if current_user && (current_user.admin? || current_user.evt_admin?) %> 
 	<%= render 'adminnav' %>
 <% end %>
+
 <div class="container" style="padding-bottom: 150px;">
 
 	<div class="row">
@@ -76,6 +77,19 @@
         
 				</div>
 			</div>
+			<% if @event.cutoff != nil && @event.starttime != nil && @event.starttime > @currentTime && @currentTime < @close %>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="event-close-statement">* Registration will close <%= @event.cutoff %> hours before event start.</p>
+				</div>
+			</div>
+			<% elsif @event.cutoff != nil && @event.starttime != nil && @event.starttime > @currentTime && @currentTime > @close %>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="event-close-statement">* Registration has closed.</p>
+				</div>
+			</div>
+			<% end %>
 		</div>
 		<div class="card-body">
 			<div class="card-text">
@@ -111,12 +125,6 @@
 								</span>
 							<% end %>
 						<% end %>
-						<p>
-							
-							<b>Event Contact: </b>&nbsp;<%= @event.event_contact %><br />
-							<b>Contact Phone: </b>&nbsp;<%= @event.event_phone %><br />
-							<b>Contact Email: </b>&nbsp;<%= @event.event_email %><br />
-						</p>
 					</div>
 					<div class="col-md-4 event-image">
 						<%= image_tag "#{@event.event_image}" %>
@@ -150,8 +158,6 @@
 							<% end %>
 						<% end %>
 						<p>
-							
-							
 							<b>Event Contact: </b>&nbsp;<%= @event.event_contact %><br />
 							<b>Contact Phone: </b>&nbsp;<%= @event.event_phone %><br />
 							<b>Contact Email: </b>&nbsp;<%= @event.event_email %><br />
@@ -164,8 +170,13 @@
 						<div class="float-right">
 							<% if !@event.live %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This event is not live</span>
-							<% elsif @event.starttime != nil && @event.starttime < Date.today %>
+							<% elsif @event.starttime != nil && @event.starttime < @currentTime %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This is a past event</span>
+							<% elsif @event.starttime != nil && @event.starttime > @currentTime && @currentTime > @close && !@registration %>
+								<span style="font-style:italic; color:gray; font-size: .85em;">This event has closed</span>
+							<% elsif @event.starttime != nil && @event.starttime > @currentTime && @currentTime > @close && @registration %>
+								<span style="font-style:italic; color:gray; font-size: .85em;">This event has closed.</span>
+								<span style="font-style:italic; color:blue; font-size: .85em; margin-top: -5px !important;"> You are registered!</span>
 							<% elsif @registration %>
 								<%= link_to "Registered", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 								<div class="row"><small style="font-style:italic; font-size:.75em; text-align:right !important;">You are registered</small></div>
@@ -191,13 +202,13 @@
 				<div class="row">
 					<div class="col" style="text-align:center;">
 						<p style="color:red;">THIS EVENT IS AT FULL CAPACITY<br />
-						<% if current_user && !@registration %>	
+						<% if current_user && !@registration && @currentTime < @close %>	
 							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register %>
 						<% elsif current_user && @registration && @iswaitlisted == false %>
 							
 						<% elsif current_user && @registration && @iswaitlisted == true %>
 							<span style="color:black;">You are Currently on the Waitlist for this Event</span>
-						<% else %>
+						<% elsif Date.current < @close %>
 							<%= link_to "Join The Waitlist", event_path(@event), method: :register %>
 						<% end %></p>
 					</div>
