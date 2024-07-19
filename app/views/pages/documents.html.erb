@@ -192,13 +192,12 @@
 						<div class="col-md-10"><span class="bold">Selling Guide <% if current_user.admin %>(Rockwell)<% end %></span></div>
 						<div class="col-md-1">PDF</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-seismic-new-small.png"), "https://ra.seismic.com/Link/Content/DCTJ4mqPTPTPb8WHRJhQV2M8c96j", target: "_blank" %></div>
-						<!-- Needs updated to v14 in seismic -->
 					</div>
 				<% end %>
 
 				<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 					<!-- 3rd Party Selling Guide -->
-					<div class="row">
+					<div class="row" style="display:none;">
 						<div class="col-md-10"><span class="bold">Selling Guide <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 						<div class="col-md-1">PDF</div>
 						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager-Selling-Guide-TM-SP001H-EN-P Generic.pdf", target: "_blank" %></div>
