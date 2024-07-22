@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require jquery.lightbox_me
 //= require company-infoslides
+//= require banner
 //= require pricing-question
 //= require popper
 //= require bootstrap-sprockets

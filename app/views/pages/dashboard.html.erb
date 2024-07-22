@@ -1,3 +1,23 @@
+<% if current_user.admin %>
+<div class="full-drop-banner-ad">
+	<div class="container ad-Content">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="partner-ad-logo"><%= image_tag("pf_logo.png") %></div>
+				<div class="ad-body">
+					<p>Introducing the first ever ThinManager Ready industrial tablet.</p>
+					<p>No underlying operating system to manage. A truly mobile thin client, and only from Pepperl+Fuchs and ThinManager.</p>
+					<p><%= link_to "Learn More", "#" %></p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="ad-tablet-image"><%= image_tag("PF_tablet_example.png") %></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="open_close">Open/Close Ad</div>
+<% end %>
 <div class="container">
 <!-- banner announcements -->
 <% if current_user.admin? || current_user.prttype == "Distributor" || current_user.prttype == "Integrator" %>
