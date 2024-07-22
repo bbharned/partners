@@ -1,7 +1,7 @@
 $( document ).on('turbolinks:load', function() {
 
 	var open = false;
-	var bannerRun = true;
+	var bannerRun = false;
 
 	if (top.location.pathname === '/' && bannerRun == true) {
 		$( '.alert' ).css({
