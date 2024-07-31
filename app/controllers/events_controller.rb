@@ -186,13 +186,19 @@ def fill_event
     @wcount = @waitlist.count
     
     if @waitlist.count >= @spots
-        @waitlist.each_slice(@spots) do | wl |
-            wl.each do |u| 
-                @user = u.user
-                u.toggle!(:waitlist)
-                # send Waitlist emails
-                @user.send_user_evt_registration(@event)
-            end
+        # @waitlist.each_slice(@spots) do | wl |
+        #     wl.each do |u| 
+        #         @user = u.user
+        #         u.toggle!(:waitlist)
+        #         # send Waitlist emails
+        #         @user.send_user_evt_registration(@event)
+        #     end
+        # end
+        @tofill = @waitlist.limit(@spots)
+        @tofill.each do |w|
+            w.toggle!(:waitlist)
+            # send Waitlist emails
+            w.user.send_user_evt_registration(@event)
         end
         flash[:success] = "Filled #{@spots} spots"
     elsif @waitlist.count < @spots
@@ -224,7 +230,7 @@ def waitlist_check(event) #only if within cutoff
                 @user.send_user_evt_registration(event)
                 @user.send_event_reg_waitlist_auto_internal_notice(event)
             else
-                puts "registration from waitlist didnt change"
+                puts "registration from waitlist didn't change"
             end
         end 
         return
@@ -239,7 +245,7 @@ end
 
 def reg_cancel
        
-       require 'icalendar/tzinfo'
+    require 'icalendar/tzinfo'
 
     @event = Event.find(params[:id])
     @attendee = EventAttendee.where(event_id: @event.id, user_id: params[:user_id]).first

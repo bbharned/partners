@@ -184,7 +184,7 @@
 								<%= link_to "Event Full", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 							<% else %>
 								<% if current_user && @event.reg_required %>
-									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register, class: "btn btn-primary btn-sm" %> 
+									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register,  data: {confirm: "This will register you for this event.  Proceed?"}, class: "btn btn-primary btn-sm" %> 
 								<% elsif !@event.reg_required %>
 									<% if @event.evt_link != nil && @event.evt_link != "" %>
 										<%= link_to "Join Event", "#{@event.evt_link}", class: "btn btn-primary btn-sm", target: "_blank" %>
@@ -203,7 +203,7 @@
 					<div class="col" style="text-align:center;">
 						<p style="color:red;">THIS EVENT IS AT FULL CAPACITY<br />
 						<% if current_user && !@registration && @currentTime < @close %>	
-							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register %>
+							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register,  data: {confirm: "This will add you to the event waitlist.  Proceed?"} %>
 						<% elsif current_user && @registration && @iswaitlisted == false %>
 							
 						<% elsif current_user && @registration && @iswaitlisted == true %>
@@ -424,6 +424,7 @@
 
 
 <% if current_user && current_user.email == @event.viewer %>
+	
 	<h2 align="center" style="margin-top: 35px;">Registration Details</h2>
 	<% if @allregistered.any? %>
 		<div class="small-sub-title"><%= @allregistered.count %> of <%= @event.capacity %> possible</div>
@@ -431,21 +432,21 @@
 			<%= link_to "Export (CSV)", event_path({:format => :csv, format_data: "registered"}) %>
 		</div>
 		<div class="row" style="margin-bottom:5px;">
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<b style="padding-left:15px;">Name</b>
 				</div>
-				<div class="col-md-4"><b style="padding-left:5px;">Company</b></div>
+				<div class="col-md-7"><b style="padding-left:5px;">Company</b></div>
 			</div>
 			<% @allregistered.each do |u| %>
 				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<%= u.user.firstname %> <%= u.user.lastname %>
 						</div>
 						<div class="col-md-4">
 							<%= u.user.company %>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="float-right">
 								<% if u.checkedin %>
 									Attended
@@ -456,6 +457,32 @@
 				</div>
 			<% end %>
 	<% end %>
+
+	<h2 align="center" style="margin-top:55px; margin-bottom:15px;">Event Waitlist</h2>
+	<% if @waitlist.any? %>
+			<div class="row" style="margin-bottom:5px;">
+				<div class="col-md-5">
+					<b style="padding-left:15px;">Name</b>
+				</div>
+				<div class="col-md-7"><b style="padding-left:5px;">Company</b></div>
+			</div>
+			<% @waitlist.each do |u| %>
+					
+				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
+					<div class="row">
+						<div class="col-md-5">
+							<%= u.user.firstname %> <%= u.user.lastname %>
+						</div>
+						<div class="col-md-7">
+							<%= u.user.company %>
+						</div>
+					</div>
+				</div>
+					
+			<% end %>
+		<% else %>
+			<p align="center">Waitlist is Empty</p>
+		<% end %>
 <% end %>	 
 
 
