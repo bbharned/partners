@@ -412,6 +412,9 @@ end
 
 
 def register
+    
+    @event = Event.find(params[:id])
+
     if current_user && @event.reg_required
         @user = User.find(params[:user_id])
         @registration = EventAttendee.where(event_id: @event.id).where(user_id: current_user.id) 
