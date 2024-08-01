@@ -184,7 +184,7 @@
 								<%= link_to "Event Full", event_path(@event), class: "disabled btn btn-secondary btn-sm" %>
 							<% else %>
 								<% if current_user && @event.reg_required %>
-									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register,  data: {confirm: "This will register you for this event.  Proceed?"}, class: "btn btn-primary btn-sm" %> 
+									<%= link_to "Register", event_path(@event, :user_id => current_user.id), method: :register, class: "btn btn-primary btn-sm" %> 
 								<% elsif !@event.reg_required %>
 									<% if @event.evt_link != nil && @event.evt_link != "" %>
 										<%= link_to "Join Event", "#{@event.evt_link}", class: "btn btn-primary btn-sm", target: "_blank" %>
@@ -203,7 +203,7 @@
 					<div class="col" style="text-align:center;">
 						<p style="color:red;">THIS EVENT IS AT FULL CAPACITY<br />
 						<% if current_user && !@registration && @currentTime < @close %>	
-							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register,  data: {confirm: "This will add you to the event waitlist.  Proceed?"} %>
+							<%= link_to "Join The Waitlist", event_path(@event, :user_id => current_user.id), method: :register %>
 						<% elsif current_user && @registration && @iswaitlisted == false %>
 							
 						<% elsif current_user && @registration && @iswaitlisted == true %>
@@ -486,8 +486,7 @@
 <% end %>	 
 
 
-<br />
-	
+<br />	
 	
 
 </div>
