@@ -89,6 +89,12 @@
 					<p class="event-close-statement">* Registration has closed.</p>
 				</div>
 			</div>
+			<% elsif ((@currentTime > @stadjusted) && (@currentTime < @etadjusted)) %>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="event-close-statement">* Registration has closed.</p>
+				</div>
+			</div>
 			<% end %>
 		</div>
 		<div class="card-body">
@@ -170,11 +176,11 @@
 						<div class="float-right">
 							<% if !@event.live %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This event is not live</span>
-							<% elsif @event.starttime != nil && @event.starttime < @currentTime %>
+							<% elsif @event.starttime != nil && @stadjusted < @currentTime %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This is a past event</span>
-							<% elsif @event.starttime != nil && @event.starttime > @currentTime && @currentTime > @close && !@registration %>
+							<% elsif @event.starttime != nil && @stadjusted > @currentTime && @currentTime > @close && !@registration %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This event has closed</span>
-							<% elsif @event.starttime != nil && @event.starttime > @currentTime && @currentTime > @close && @registration %>
+							<% elsif @event.starttime != nil && @stadjusted > @currentTime && @currentTime > @close && @registration %>
 								<span style="font-style:italic; color:gray; font-size: .85em;">This event has closed.</span>
 								<span style="font-style:italic; color:blue; font-size: .85em; margin-top: -5px !important;"> You are registered!</span>
 							<% elsif @registration %>
@@ -208,7 +214,7 @@
 							
 						<% elsif current_user && @registration && @iswaitlisted == true %>
 							<span style="color:black;">You are Currently on the Waitlist for this Event</span>
-						<% elsif Date.current < @close %>
+						<% elsif @currentTime < @close %>
 							<%= link_to "Join The Waitlist", event_path(@event), method: :register %>
 						<% end %></p>
 					</div>
@@ -238,7 +244,7 @@
 			<div class="card-footer">
 				Registered: <%= @allregistered.count %> of <%= @event.capacity %>
 			</div>
-		<% elsif @spotsleft < 6 && @spotsleft > 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) %>
+		<% elsif @spotsleft < 6 && @spotsleft > 0 && (!current_user || !current_user.admin || !current_user.evt_admin?) && @currentTime < @close %>
 			<div class="card-footer">
 				Only <%= pluralize(@spotsleft, "spot") %> left!
 			</div>
@@ -398,14 +404,14 @@
 				<div class="well-sm" style="margin-bottom:2px; padding: 5px 15px; <% if u.checkedin? %>background-color:palegreen;<% end %>">
 					<div class="row">
 						<div class="col-md-4">
-							<%= u.user.firstname %> <%= u.user.lastname %>
+							<%= link_to "#{u.user.firstname} #{u.user.lastname}", user_path(u.user) %>
 						</div>
 						<div class="col-md-4">
 							<%= u.user.company %>
 						</div>
 						<div class="col-md-4">
 							<div class="float-right">
-								<%= link_to "User Profile", user_path(u.user), style: "color: #0fbfef;" %>
+								<%= link_to "Move to registered", admin_move_path(@event, :user => u.user), method: :admin_add_to_event, data: {confirm: "Are you sure want to move this user from waitlist to active registered?"}, style: "color: #0fbfef;" %>
 								&nbsp;|&nbsp;
 								<%= link_to "Remove", reg_cancel_path(@event, :user_id => u.user.id), method: :reg_cancel, data: {confirm: "Are you sure want to remove from waitlist?"}, style: "color:red;" %>
 							</div>

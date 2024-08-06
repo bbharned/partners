@@ -99,6 +99,7 @@ get 'event/admin', to: 'events#admin'
 post 'events/:id', to: 'events#register'
 post 'events/:id/reg_cancel', to: 'events#reg_cancel', as: 'reg_cancel'
 post 'events/:id/fill_event', to: 'events#fill_event', as: 'fill_event'
+post 'events/:id/admin_move', to: 'events#admin_add_to_event', as: 'admin_move'
 get 'user/eventusers', to: 'users#eventusers'
 get 'event/hosted', to: 'events#hosted'
 

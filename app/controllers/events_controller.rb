@@ -47,6 +47,8 @@ def show
       # event start date
         event.dtstart = Icalendar::Values::DateTime.new @event.starttime, 'tzid' => @tzid
         @stadjusted = event.dtstart
+        event.dtend = Icalendar::Values::DateTime.new @event.endtime, 'tzid' => @tzid
+        @etadjusted = event.dtend
         @currentTime = Icalendar::Values::DateTime.new Time.current
 
       # event end date
@@ -237,6 +239,28 @@ def waitlist_check(event) #only if within cutoff
     end
 end
 
+
+def admin_add_to_event
+    @event = Event.find(params[:id])
+    @user = User.find(params[:user])
+    @registered = EventAttendee.where(event_id: @event.id).where.not(canceled: true).where.not(waitlist: true)
+    if @registered.count < @event.capacity
+        @toToggle = EventAttendee.where(event_id: @event.id).where(user_id: @user.id).first
+        if @toToggle != nil
+            @toToggle.toggle!(:waitlist)
+            flash[:success] = "Moved to registered from the waitlist"
+            redirect_to event_path(@event)
+        else
+            flash[:danger] = "Something did not work..."
+            redirect_to event_path(@event)
+        end
+    else
+        flash[:warning] = "The event is at full capacity"
+        redirect_to event_path(@event)
+    end
+end
+
+
 def passed
     @attendee = EventAttendee.where(event_id: params[:event_id], user_id: params[:user_id])
     @attendee.first.toggle!(:passed)
@@ -269,7 +293,8 @@ def reg_cancel
 
     end
 
-    @close = (@stadjusted - @event.cutoff.hours)
+    @duration = @event.endtime - @event.starttime
+    @close = @stadjusted - @event.cutoff.hours
 
     
     if @attendee.canceled == true && (@allregistered.count >= @event.capacity) # re-enrolling but at capacity
