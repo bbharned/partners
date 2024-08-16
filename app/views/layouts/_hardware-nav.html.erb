@@ -1,30 +1,30 @@
 <div class="flex-container-center-nav" style="margin-bottom: 25px;">
 	<div class="nav-buttons hardware-nav-buttons">
-		<span style="font-size:.65em; font-style:italic;" class="hd-nav-text">Search for:&nbsp;&nbsp;</span>
+		<!--<span style="font-size:.65em; font-style:italic;" class="hd-nav-text">Search for:&nbsp;&nbsp;</span>-->
 		<% if @bg == 'hardware' %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path, style: "background-color:#c1c1c1;" %></span>
-			<span><%= link_to "Mobile TMC", tmc_path %></span>
+			<span><%= link_to "TMC", tmc_path %></span>
 			<span><%= link_to "Features", features_path %></span>
 		<% elsif @bg == 'peripheral' %>
 			<span><%= link_to "Thin Clients", terminals_path, style: "background-color:#c1c1c1;" %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
-			<span><%= link_to "Mobile TMC", tmc_path %></span>
+			<span><%= link_to "TMC", tmc_path %></span>
 			<span><%= link_to "Features", features_path %></span>
 		<% elsif @bg == 'tmc' %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
-			<span><%= link_to "Mobile TMC", tmc_path, style: "background-color:#c1c1c1;" %></span>
+			<span><%= link_to "TMC", tmc_path, style: "background-color:#c1c1c1;" %></span>
 			<span><%= link_to "Features", features_path %></span>
 		<% elsif @bg == 'features' %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
-			<span><%= link_to "Mobile TMC", tmc_path %></span>
+			<span><%= link_to "TMC", tmc_path %></span>
 			<span><%= link_to "Features", features_path, style: "background-color:#c1c1c1;" %></span>
 		<% else %>
 			<span><%= link_to "Thin Clients", terminals_path %></span>
 			<span><%= link_to "Peripherals", hardwares_path %></span>
-			<span><%= link_to "Mobile TMC", tmc_path %></span>
+			<span><%= link_to "TMC", tmc_path %></span>
 			<span><%= link_to "Features", features_path %></span>
 		<% end %>
 		

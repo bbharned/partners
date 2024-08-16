@@ -40,7 +40,9 @@
 
         <p>
           <%= @event.name %><br />
-          <%= @event.evtcategories.first.name %><br />
+          <% if @event.evtcategories.any? %>
+            <%= @event.evtcategories.first.name %><br />
+          <% end %>
           <%= @event.starttime.strftime("%m/%d/%Y") %>
         </p>
 

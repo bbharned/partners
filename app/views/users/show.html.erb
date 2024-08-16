@@ -164,7 +164,7 @@
 					<% if @user.silevel != nil && @user.silevel != "" %>
 						<span class="bold">Level:</span> 
 							<% if @user.certexpire < Date.today %>
-								&nbsp;<span style="color:red;"><%= @user.silevel %></span><br />
+								&nbsp;<span style="color:red;">Certification needs renewing</span><br />
 							<% else %>
 								&nbsp;<%= @user.silevel %><br />
 							<% end %>
@@ -173,11 +173,20 @@
 						<% if @user.certexpire < Date.today %>
 							&nbsp;<spa style="color:red;"><%= @user.certexpire.strftime("%m/%d/%Y") %></span><br />
 							<% if current_user == @user %>
-								<br /><%= link_to "Renew Now", labs_path, class: "btn btn-danger" %><br />
+								<br /><%= link_to "Renew Certification", labs_path, class: "btn btn-danger" %><br />
 							<% end %>
 						<% else %>
 							&nbsp;<%= @user.certexpire.strftime("%m/%d/%Y") %><br />
 						<% end %>
+				<% end %>
+				<br />
+				<!-- functional dynamic button for certification -->
+				<% if @user.certexpire != nil && @user.certexpire > Date.today %>
+					<%= link_to "View Certificate", mycert_path, class: "btn btn-info" %>
+				<% elsif @user.certexpire != nil && @user.certexpire < Date.today %>
+					
+				<% else %>
+					<%= link_to "Get Certified", labs_path, class: "btn btn-outline-primary btn-sm" %>
 				<% end %>
 			</div>
 		</div>

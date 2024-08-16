@@ -12,14 +12,23 @@
 
 <div class="row">
 	<div class="col-lg-8">
-			<% if @current_user.admin? || @current_user.prttype == "Distributor" %>
+			<% if (current_user.prttype == "Distributor" && current_user.channel == "Rockwell Automation") || current_user.admin %>
 				<h4>MR Demo Kits</h4>
 			<div class="document-table">
-
+				<div class="row">
+					<div class="col-md-10"><span class="bold">MR Demo User Guide - v14</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager%20MR%20Demo%20User%20Guide%20v14.pdf", target: "_blank", title: "v14 Mr Demo User Guide" %></div>
+				</div>
 				<div class="row">
 					<div class="col-md-10"><span class="bold">MR Demo Kit 13.1 Upgrade Procedure Information</span></div>
 					<div class="col-md-1">PDF</div>
-					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_v13.1_2023_VirtualImage_UpdateProcedure.pdf", target: "_blank" %></div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager_v13.1_2023_VirtualImage_UpdateProcedure.pdf", target: "_blank", title: "v13.1 Upgrade Procedure" %></div>
+				</div>
+				<div class="row">
+					<div class="col-md-10"><span class="bold">MR Demo Kit 14 Upgrade Procedure Information</span></div>
+					<div class="col-md-1">PDF</div>
+					<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager%20MR%20Demo%20Virtual%20Image%20Update%20Procedure%20v14.pdf", target: "_blank", title: "v14 Upgrade Procedure" %></div>
 				</div>
 				<div class="row">
 					<div class="col-md-10"><span class="bold">MR Demo Kit Information Update Form</span></div>
@@ -197,10 +206,10 @@
 
 				<% if (current_user.prttype == "Distributor" && current_user.channel != "Rockwell Automation") || current_user.admin %>
 					<!-- 3rd Party Selling Guide -->
-					<div class="row" style="display:none;">
+					<div class="row">
 						<div class="col-md-10"><span class="bold">Selling Guide <% if current_user.admin %>(Not Rockwell)<% end %></span></div>
 						<div class="col-md-1">PDF</div>
-						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager-Selling-Guide-TM-SP001H-EN-P Generic.pdf", target: "_blank" %></div>
+						<div class="col-md-1"><%= link_to image_tag("icon-download.png"), "https://thinmanager.com/partner-resources/ThinManager-Selling-Guide-TM-SP001H-EN-P%20Generic.pdf", target: "_blank" %></div>
 					</div>
 				<% end %>
 
