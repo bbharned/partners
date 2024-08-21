@@ -4,13 +4,15 @@ def index
   @url = request.original_url
 
   if @url.include? "hardware"
-    @bg = 'hardware'
+      @bg = 'hardware'
+  elsif @url.include? "tablets"
+      @bg = 'tablets'
   elsif @url.include? "tmc"
-    @bg = 'tmc'
+      @bg = 'tmc'
   elsif @url.include? "features"
-    @bg = 'features'  
+      @bg = 'features'    
   else
-    @bg = 'peripheral'
+      @bg = 'peripheral'
   end
 	
 	@filterrific = initialize_filterrific(

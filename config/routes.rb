@@ -76,6 +76,7 @@ resources :licenses
 
 resources :hardwares
 get 'tmc', to: 'pages#tmc'
+get 'tablets', to: 'pages#tablets'
 resources :hardwares, :path => "hardware"
 resources :makers
 resources :hwstatuses

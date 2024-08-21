@@ -11,6 +11,8 @@ def index
 
     if @url.include? "hardware"
         @bg = 'hardware'
+    elsif @url.include? "tablets"
+        @bg = 'tablets'
     elsif @url.include? "tmc"
         @bg = 'tmc'
     elsif @url.include? "features"

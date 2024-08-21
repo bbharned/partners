@@ -378,7 +378,7 @@ button.navbar-toggler span {
 }
 .full-drop-banner-ad .ad-Content .partner-ad-logo img,
 .full-drop-banner-ad .ad-Content .ad-tablet-image img {width:100%;}
-.ad-tablet-image {max-width: 350px; margin: auto;}
+.ad-tablet-image {width:100%; max-width: 400px; margin: auto;}
 .hp-cards .card-img-top {
     /*max-height: 200px;*/
 }
