@@ -114,6 +114,7 @@ def signup
   @user = User.new(user_params)
   @user.needs_review = true
   @user.cert_signup = true
+  @user.referred_by = "Certification"
     if @user.save
         session[:user_id] = @user.id
         @user.update_attribute(:lastlogin, Time.now)

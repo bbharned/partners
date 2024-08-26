@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
 
 def self.to_csv
-      attributes = %w{id active firstname lastname email company prttype certexpire channel city state continent created_at lastlogin}
+      attributes = %w{id active firstname lastname email company prttype referred_by cert_signup certexpire channel city state continent created_at lastlogin}
 
       CSV.generate(headers: true) do |csv|
         csv << attributes
