@@ -10,120 +10,67 @@
 </div>
 <hr />
 
-<div class="row">
-
-<div class="col-lg-12">	
-
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" id="requested" aria-current="page">Requested</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="approved">Approved</a>
-  </li>
-</ul>
 
 
+<%= form_for_filterrific(@filterrific, :html => {class: "form-horizontal", role: "form"}) do |f| %>
 
-<div class="main-stage" style="padding: 35px;">
-	
-	<div class="requested-licenses">
-		<% if @requested.any? %>
-			<div class="row license-list-header" style="margin-bottom:5px;">
-				<div class="col-md-3"><b>User Name</b></div>
-				<div class="col-md-3"><b>Type</b></div>
-				<div class="col-md-2"><b>Activation</b></div>
-				<div class="col-md-4"><div class="float-right"><b>Actions</b></div></div>
-			</div>
-			<% @requested.each do |license| %>
-				<% @user = User.find(license.user_id) %>
+
+	<div class="container listings-filters">			  
+			<div class="form-group">
+				
 				<div class="row">
-					<div class="col-md-3"><%= @user.firstname %> <%= @user.lastname %> 
-						<%= link_to image_tag("icon-profile.png"), user_path(@user) %>
-					</div>
-					<div class="col-md-3"><%= license.license_type %></div>
-					<div class="col-md-2"><%= license.activation_type %></div>
-					<div class="col-md-4">
-						<div class="float-right">
-							<%= link_to "View", license_path(license), style: "color: limegreen" %> | 
-							<%= link_to "Edit", edit_license_path(license) %> | 
-							<%= link_to "Delete", license_path(license), method: :delete, data: {confirm: "Are you sure you want to delete this license?"}, style: "color:red;" %>
-						</div>
+			  	
+					  <div class="col-md-6" style="margin-bottom:10px;">
+					    <div class="form-label">Search</div>
+					    <%= f.text_field(
+					      :license_search,
+					      class: 'filterrific-periodically-observed form-control'
+					    ) %>
+					  </div>
+
+					  
+
+				</div>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-sm-3 offset-sm-9">
+					    <%= link_to 'Reset filters', reset_filterrific_url, class: "float-right" %>
 					</div>
 				</div>
-			<% end %>
-		<% else %>
-			There are no licenses currently requested
-		<% end %>
-	</div>
-	
-
-	<div class="approved-licenses" >
-		<% if @approved.any? %>
-			<div class="row license-list-header" style="margin-bottom:5px;">
-				<div class="col-md-3"><b>User Name</b></div>
-				<div class="col-md-3"><b>Type</b></div>
-				<div class="col-md-2"><b>Activation</b></div>
-				<div class="col-md-4"><div class="float-right"><b>Actions</b></div></div>
+			
 			</div>
-			<% @approved.each do |license| %>
-				<% @user = User.find(license.user_id) %>
-				<div class="row">
-					<div class="col-md-3"><%= @user.firstname %> <%= @user.lastname %>
-						<%= link_to image_tag("icon-profile.png"), user_path(@user) %>
-					</div>
-					<div class="col-md-3"><%= license.license_type %></div>
-					<div class="col-md-2"><%= license.activation_type %></div>
-					<div class="col-md-4">
-						<div class="float-right">
-							<%= link_to "View", license_path(license), style: "color: limegreen" %> | 
-							<%= link_to "Edit", edit_license_path(license) %> | 
-							<%= link_to "Delete", license_path(license), method: :delete, data: {confirm: "Are you sure you want to delete this license?"}, style: "color:red;" %>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		<% else %>
-			There are no licenses approved
-		<% end %>
+
+			<hr style="margin-top:25px; margin-bottom: 25px; border-color: #818181;" />
+
 	</div>
 
+	<div class="form-group" >
+		<div class="row" style="margin-bottom: 35px;">
+			<div class="col-md-8"><h4 style="padding-top:22px; margin-bottom: 0px;">Results</h4></div>	
+			  <div class="col-md-4 sort-options">
+			    <div class="form-label">Sorted by</div>
+			    <%= f.select(:license_sorted, @filterrific.select_options[:license_sorted], class: "form-control") %>
+		   </div>
+		</div>
+	</div>
+
+<% end %>
+
+
+<div class="hw-loader"><%= render_filterrific_spinner %></div>
+
+
+<div class="col-12">
+
+	<%= render(
+		partial: 'licenses/list',
+		locals: { licenses: @licenses }
+	) %>
+
 </div>
 
 
 
 
 
-
-
-
 </div>
-
-</div>
-
-</div>
-
-<script>
-	$(document).on('ready turbolinks:load', function() {
-		$("#requested-licenses").css('display', 'inline');
-	});
-	$(document).on('ready turbolinks:load', function() {
-		$('#requested').on('click', function() {
-			$('#approved').removeClass('active');
-			$('#requested').addClass('active');
-			$("#requested").attr("aria-current", "page");
-			$("#approved").removeAttr("aria-current", "page");
-			$('.approved-licenses').hide();
-			$('.requested-licenses').show();
-		});
-		$('#approved').on("click", function() {
-			$("#approved").addClass("active");
-			$("#requested").removeClass("active");
-			$("#approved").attr("aria-current", "page");
-			$("#requested").removeAttr("aria-current", "page");
-			$('.approved-licenses').show();
-			$('.requested-licenses').hide();
-		});
-	})();
-</script>
 

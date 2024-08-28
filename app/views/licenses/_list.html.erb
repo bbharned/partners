@@ -1,0 +1,80 @@
+<div id="filterrific_results">
+
+
+
+
+    <% if @licenses.any? %>
+    	<p align="center"><%= pluralize(@licenses.count, "found licenses") %> &nbsp;<span style="font-size:.75em;"><a href="/licenses.csv">(export CSV)</a></span></p>
+          <% @licenses.each do |l| %>
+
+
+          	<div class="card" style="margin-bottom:15px;">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-4">
+                  <%= link_to "#{l.user.firstname} #{l.user.lastname}", user_path(l.user) %>
+                </div>
+                <div class="col-md-5">
+                  <%= l.license_type %>
+                </div>
+                <div class="col-md-3">
+                  <div class="float-right-to-left">
+                    <%= l.activation_type %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <% if l.approved %>
+                  	Approved
+                  <% else %>
+                  	Requested
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                	Expiration: 
+                	<% if l.enddate != nil && l.enddate != "" %>
+                		<% if l.enddate < Date.today %>
+                			<span style="color:red;"><%= l.enddate.strftime("%m/%d/%Y") %> [expired]</span>
+                		<% else %>
+                			<%= l.enddate.strftime("%m/%d/%Y") %>
+                		<% end %>
+                	<% else %>
+                		<span style="color:grey; font-style: italic;">Not listed</span>
+                	<% end %>
+                </div>
+                <div class="col-md-4">
+                  <div class="float-right">
+                    <%= link_to "edit", edit_license_path(l), style: "color: darkorange" %> | <%= link_to "view", license_path(l), style: "color: darkgreen;" %> | <%= link_to "delete", license_path(l), method: :delete, data: {confirm: "Are you sure you want to delete this License?"}, style: "color:red;" %>
+                     
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <% end %>
+
+
+          <% if @licenses.count > 20 %>
+            <div class="paginate" style="margin-top:20px;">
+              <%= will_paginate(@licenses, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+            </div>
+          <% end %>
+
+
+    <% else %>
+
+    	<p align="center" style="color:darkorange; margin-top:45px;">There are no licenses or results to your query</p>
+
+    <% end %>
+
+
+
+
+</div>

@@ -5,9 +5,35 @@ class LicensesController < ApplicationController
 
 
 def index
-	@licenses = License.all
-    @approved = License.where(approved: true).order("created_at desc")
-    @requested = License.where(approved: false).order("created_at desc")
+	# @licenses = License.all
+    # @approved = License.where(approved: true).order("created_at desc")
+    # @requested = License.where(approved: false).order("created_at desc")
+
+
+    @filterrific = initialize_filterrific(
+     License,
+     params[:filterrific],
+      select_options: {
+        license_sorted: License.options_for_license_sorted,
+        # with_status: ['Requested Listings', 'Active Listings', 'Expired Listings'],
+      },
+      persistence_id: "shared_key",
+      default_filter_params: {},
+      available_filters: [:license_sorted, :license_search],
+      sanitize_params: true,
+   ) or return
+   @licenses = @filterrific.find.paginate(page: params[:page], per_page: 20)
+
+   respond_to do |format|
+     format.html
+     format.js
+     format.csv { send_data @licenses.to_csv, filename: "ThinManager-Portal_Licenses-#{Date.today}.csv" }
+   end
+
+   rescue ActiveRecord::RecordNotFound => e
+     # There is an issue with the persisted param_set. Reset it.
+     puts "Had to reset filterrific params: #{e.message}"
+     redirect_to(reset_filterrific_url(format: :html)) && return
     
 end
 

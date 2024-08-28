@@ -34,3 +34,7 @@
 
 # Ignore local custom env variables
 /config/local_env.yml
+
+
+#pages to ignore
+/app/views/licenses/xindex.html.erb

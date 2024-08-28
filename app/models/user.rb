@@ -19,6 +19,7 @@ class User < ApplicationRecord
     has_many :events, through: :event_attendees, dependent: :destroy
     has_one :user_badge
     has_one :listing, dependent: :destroy
+    has_one :license, dependent: :destroy
     has_many :demokits, dependent: :destroy
     
     
