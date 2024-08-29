@@ -64,12 +64,14 @@ scope :license_search, lambda { |query|
 
 
 scope :with_type, ->(type) {
-    if type == 'TMA'
-        where('activation_type == ?', 'TMA')
-    elsif type == 'FTA'
-        where('activation_type == ?', 'FTA')
-    else
-        where.not("activation_type == ?", nil)
+    if type == "TMA"
+        where(activation_type: "TMA")
+    elsif type == "FTA"
+        where(activation_type: "FTA")
+    elsif type == ""
+        where(activation_type: "")
+    else type == nil
+        where(activation_type: nil)
     end
 } 
 
