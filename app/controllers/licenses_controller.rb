@@ -15,11 +15,13 @@ def index
      params[:filterrific],
       select_options: {
         license_sorted: License.options_for_license_sorted,
-        # with_status: ['Requested Listings', 'Active Listings', 'Expired Listings'],
+        with_type: ['TMA', 'FTA'],
+        with_approved: ['Requested', 'Approved'],
+        with_exp: ['Active', 'Expired'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:license_sorted, :license_search],
+      available_filters: [:license_sorted, :license_search, :with_type, :with_approved, :with_exp],
       sanitize_params: true,
    ) or return
    @licenses = @filterrific.find.paginate(page: params[:page], per_page: 20)

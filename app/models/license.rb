@@ -8,14 +8,13 @@ class License < ApplicationRecord
 
 
 def self.to_csv
-  attributes = %w{self.user.firstname id activation_type license_type approved created_at}
+  attributes = %w{activation_type license_type approved created_at enddate}
 
   CSV.generate(headers: true) do |csv|
-    csv << attributes
+    csv << ["First Name"] + ["Last Name"] + ["Email"] + ["Company"] + attributes
 
     all.each do |license|
-		csv << [license.user && license.user.firstname] + license.attributes.values_at(*attributes)
-		#csv << license.attributes.values_at(license.id + license.activation_type + license.license_type + license.approved + license.user.firstname + license.created_at)
+		csv << ([license.user.firstname] + [license.user.lastname] + [license.user.email] + [license.user.company]) + license.attributes.values_at(*attributes)
     end
   end
 end
@@ -27,6 +26,9 @@ filterrific(
    available_filters: [
      :license_sorted,
      :license_search,
+     :with_type,
+     :with_approved,
+     :with_exp,
    ],
  )
 
@@ -40,18 +42,57 @@ scope :license_search, lambda { |query|
       ('%' + e + '%').gsub(/%+/, '%')
     }
 
-    num_or_conds = 4
+    num_or_conds = 8
     where(
       terms.map { |term|
         "(
         LOWER(licenses.license_type) LIKE ?
         OR LOWER(licenses.activation_type) LIKE ? 
+        OR LOWER(licenses.note) LIKE ?
         OR LOWER(users.firstname) LIKE ? 
         OR LOWER(users.lastname) LIKE ? 
+        OR LOWER(licenses.serial_number) LIKE ?
+        OR LOWER(licenses.product_license) LIKE ?
+        OR LOWER(users.company) LIKE ?
         )"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
       ).joins(:user).references(:user)
+} 
+
+
+
+
+scope :with_type, ->(type) {
+    if type == 'TMA'
+        where('activation_type == ?', 'TMA')
+    elsif type == 'FTA'
+        where('activation_type == ?', 'FTA')
+    else
+        where.not("activation_type == ?", nil)
+    end
+} 
+
+
+scope :with_approved, ->(status) {
+    if status == 'Approved'
+        where(approved: true)
+    elsif status == 'Requested'
+        where.not(approved: true)
+    else
+        where.not("licenses.approved == ?", nil)
+    end
+}          
+
+
+scope :with_exp, ->(date_ref) {
+    if date_ref == 'Active'
+        where("licenses.enddate >= ?", Date.today)
+    elsif date_ref == 'Expired'
+        where("licenses.enddate < ?", Date.today)
+    else
+        where.not("licenses.enddate == ?", nil)
+    end
 } 
 
 
@@ -68,11 +109,6 @@ scope :license_sorted, ->(sort_option) {
     raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
   end
 }
-
-
-
-
-
 
 # This method provides select options for the `sorted_by` filter select input.
   # It is called in the controller as part of `initialize_filterrific`.

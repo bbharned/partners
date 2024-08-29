@@ -42,7 +42,7 @@ class Listing < ActiveRecord::Base
   end
 
 
-  filterrific(
+filterrific(
    default_filter_params: { listing_sort: 'lastname_asc' },
    available_filters: [
      :listing_sort,

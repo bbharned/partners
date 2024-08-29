@@ -28,6 +28,35 @@
 					    ) %>
 					  </div>
 
+					  <div class="col-md-6" style="margin-bottom:10px;">
+						  <div class="form-label">License Status</div>
+						    <%= f.select(
+						      :with_approved,
+						      @filterrific.select_options[:with_approved],
+						      { include_blank: '- Any -' }, class: "form-control"
+						    ) %>
+					  </div>
+
+				</div>
+				<div class="row">
+
+					  <div class="col-md-6" style="margin-bottom:10px;">
+						  <div class="form-label">License Type</div>
+						    <%= f.select(
+						      :with_type,
+						      @filterrific.select_options[:with_type],
+						      { include_blank: '- Any -' }, class: "form-control"
+						    ) %>
+					  </div>
+
+					  <div class="col-md-6" style="margin-bottom:10px;">
+						  <div class="form-label">License Exp Status</div>
+						    <%= f.select(
+						      :with_exp,
+						      @filterrific.select_options[:with_exp],
+						      { include_blank: '- Any -' }, class: "form-control"
+						    ) %>
+					  </div>
 					  
 
 				</div>

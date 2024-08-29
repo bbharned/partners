@@ -1,10 +1,7 @@
 <div class="container" style="padding-bottom: 100px;">
 
 <div class="row">
-	<div class="col-md-8">
-		<h1>ThinManager License</h1>
-	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 offset-md-8">
 		<% if current_user.admin %>
 			<div class="float-right">
 				<%= link_to "Edit", edit_license_path(@license) %> | 
@@ -13,58 +10,113 @@
 		<% end %>
 	</div>
 </div>
-<hr />
 
-
-
-<div class="row">
-	<div class="col-md-4">
-		<h5>License Type</h5>
-		<%= @license.license_type %>
-	</div>
-	<div class="col-md-4">
-		<h5>Activation Type</h5>
-		<%= @license.activation_type %>
-	</div>
-	<div class="col-md-4">
-		<h5>Status</h5>
-		<% if @license.approved %>
-			Approved
-		<% else %>
-			Pending
-		<% end %>
-	</div>
-</div>
 <br />
-<div class="row">
-	<div class="col-md-4">
-		<h5>License Number</h5>
-		<%= @license.product_license %>
+
+<div class="card">
+	
+	<div class="card-header text-center">
+		<h2>ThinManager License</h2>
+		<div class="row">
+			<div class="col-md-4">
+				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+				  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+				</svg> &nbsp;<%= @license.user.firstname %> <%= @license.user.lastname %>
+			</div>
+			<div class="col-md-4">
+				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-building-fill" viewBox="0 0 16 16">
+				  <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+				</svg> &nbsp;<%= @license.user.company %>
+			</div>
+			<div class="col-md-4">
+				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+				  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+				</svg> &nbsp;<%= link_to "#{@license.user.email}", "mailto:#{@license.user.email}" %>
+			</div>
+		</div>
 	</div>
-	<div class="col-md-4">
-		<% if @license.activation_type == "FTA" %>
-			<h5>Serial Number</h5>
-			<%= @license.serial_number %>
-		<% end %>
-	</div>
-	<div class="col-md-4">
-		<h5>Expiration Date</h5>
-		<% if @license.enddate != nil && @license.enddate != '' %>
-			<%= @license.enddate.strftime("%m/%d/%Y") %>
-		<% else %>
-			No Expiration Date
-		<% end %>
-	</div>
+
+
+
+		<div class="card-body" style="padding:35px 20px 55px 20px;">
+
+
+			<div class="row">
+				<div class="col-2">
+					<div class="award-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+						  <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"/>
+						  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+						</svg>
+					</div>
+				</div>
+
+				<div class="col-10 main-license-body">
+
+						<div class="row">
+								<div class="col-md-4">
+									<h5>License Type</h5>
+									<%= @license.license_type %>
+								</div>
+								<div class="col-md-4">
+									<h5>Activation Type</h5>
+									<%= @license.activation_type %>
+								</div>
+								<div class="col-md-4">
+									<h5>Status</h5>
+									<% if @license.approved %>
+										Approved
+									<% else %>
+										Pending
+									<% end %>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-4">
+									<h5>License Number</h5>
+									<%= @license.product_license %>
+								</div>
+								<div class="col-md-4">
+									<% if @license.activation_type == "FTA" %>
+										<h5>Serial Number</h5>
+										<%= @license.serial_number %>
+									<% end %>
+								</div>
+								<div class="col-md-4">
+									<h5>Expiration Date</h5>
+									<% if @license.enddate != nil && @license.enddate != '' %>
+										<%= @license.enddate.strftime("%m/%d/%Y") %>
+									<% else %>
+										No Expiration Date
+									<% end %>
+								</div>
+							</div>
+
+					</div>
+
+			</div>
+
+			
+		</div>
+					
+
+		<div class="card-footer">
+			<div class="row">
+				<div class="col-md-12">
+					<h5>Notes</h5>
+					<%= simple_format(@license.note) %>
+				</div>
+			</div>
+		</div>
+
+
 </div>
-<br /><br />
-<div class="row">
-	<div class="col-md-12">
-		<h5>Notes</h5>
-		<%= simple_format(@license.note) %>
-	</div>
-</div>
-<br />
-<hr />
-<div style="margin-top: 12px;"><%= link_to "« Back", :back %></div>
+
+
+
+
+
+<div style="margin-top: 35px;"><%= link_to "« Back", :back %></div>
 
 </div>

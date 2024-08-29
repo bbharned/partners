@@ -1084,6 +1084,19 @@ Very Light Blue: #e9f7fb;
 .approved-licenses {
     display: none;
 }
+.award-icon {
+    width:55px; margin: auto;
+}
+.award-icon svg {
+    width:100%;
+}
+.main-license-body h5 {
+    margin-bottom: 0;
+}
+.main-license-body .col-md-4 {
+    margin-bottom: 15px;
+}
+
 @media all and (max-width: 768px) {
     .main-stage .license-list-header, .away-at-md-break, .license-actions {
         display: none;
