@@ -19,6 +19,12 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="well centered">
+					<h5>Active Users</h5>
+					<h1 class="huge"><%= @users.where(:active => true).count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
 					<h5>Distributors</h5>
 					<h1 class="huge"><%= @distributors.count %></h1>
 				</div>
@@ -39,6 +45,12 @@
 				<div class="well centered">
 					<h5>End Users</h5>
 					<h1 class="huge"><%= @endusers.count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>RAU Users</h5>
+					<h1 class="huge"><%= @users.where(:referred_by => "RAU").count %></h1>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -166,12 +178,16 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="well centered">
+					<h5>Registrations Waitlisted</h5>
+					<h1 class="huge"><%= @evt_registrations.where(waitlist: true).count %></h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well centered">
 					<h5>Total Event Cancelations</h5>
 					<h1 class="huge"><%= @evt_reg_cancels.count %></h1>
 				</div>
 			</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-4">
 				<div class="well centered">
 					<h5>Total Events Created</h5>
@@ -338,6 +354,22 @@
 					<% else %>
 						<p>&nbsp;</p>
 					<% end %>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="row" style="margin-top: 50px;">
+			<h4>Return on Investments</h4>
+			<% @rois = Roi.all %>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well centered">
+					<h5>Total Created</h5>
+					<h1 class="huge"><%= @rois.count %></h1>
 				</div>
 			</div>
 		</div>
