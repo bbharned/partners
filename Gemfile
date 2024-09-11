@@ -11,8 +11,7 @@ end
 gem 'rails', '~> 6.1.7', '>= 6.1.7.8'
 
 gem "activerecord", ">= 5.2.4.5"
-gem "bootstrap", ">= 5.0.0"
-gem 'dartsass-sprockets'
+gem 'bootstrap', '~> 4.3.1'
 
 gem 'will_paginate', '~> 3.1', '>=3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
