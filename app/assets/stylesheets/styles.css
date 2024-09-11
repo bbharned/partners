@@ -1245,7 +1245,11 @@ h5.graph-title {
     margin-top: 20px;
 }
 
-
+@media screen and (max-width:992px) {
+    .report-well .user-channel-pie-chart {
+        margin-top: 55px;
+    }
+}
 
 
 
