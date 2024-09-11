@@ -15,20 +15,20 @@
 								<h2 class="headr">Users</h2>
 							</div>
 							<div class="row user-stat-row">
-								<div class="col-lg-3"><b>Total Users:</b> <%= @users.count %></div>
-								<div class="col-lg-3"><b>Active Users:</b> <%= @users.where(:active => true).count %></div>
-								<div class="col-lg-3"><b>Inactive Users:</b> <%= @users.where.not(:active => true).count %></div>
-								<div class="col-lg-3"><b>Base Users:</b> <%= @baseusers.count %></div>
+								<div class="col-lg-3"><b>Total:</b> <%= @users.count %></div>
+								<div class="col-lg-3"><b>Active:</b> <%= @users.where(:active => true).count %></div>
+								<div class="col-lg-3"><b>Inactive:</b> <%= @users.where.not(:active => true).count %></div>
+								<div class="col-lg-3"><b>Base:</b> <%= @baseusers.count %></div>
 							</div>
 							
 							<div class="row">
 								<h5 class="sub-headr">User Types</h5>
 							</div>
 							<div class="row user-stat-row">
-								<div class="col-lg-3"><b>Distributors:</b> <%= @distributors.count %></div>
-								<div class="col-lg-3"><b>Integrators:</b> <%= @integrators.count %></div>
-								<div class="col-lg-3"><b>OEMs:</b> <%= @oems.count %></div>
-								<div class="col-lg-3"><b>End Users:</b> <%= @endusers.count %></div>
+								<div class="col-lg-3"><b>Distributor:</b> <%= @distributors.count %></div>
+								<div class="col-lg-3"><b>Integrator:</b> <%= @integrators.count %></div>
+								<div class="col-lg-3"><b>OEM:</b> <%= @oems.count %></div>
+								<div class="col-lg-3"><b>End User:</b> <%= @endusers.count %></div>
 							</div>
 							
 							<div class="row">
@@ -36,12 +36,12 @@
 							</div>
 							<div class="row user-stat-row">
 								<div class="col-lg-4"><b>RAU:</b> <%= @users.where(:referred_by => "RAU").count %></div>
-								<div class="col-lg-4"><b>Events:</b> <%= @users.where(:referred_by => "Events").count %></div>
+								<div class="col-lg-4"><b>Event:</b> <%= @users.where(:referred_by => "Events").count %></div>
 								<div class="col-lg-4"><b>Certification:</b> <%= @certsignedup.count %></div>
 							</div>
 							<div class="row user-stat-row margin-top-10">
-								<div class="col-lg-6"><b>Video Learning:</b> <%= @learn_users.count %></div>
-								<div class="col-lg-6"><b>ROI:</b> <%= @users.where(referred_by: "ROI").count %></div>
+								<div class="col-lg-4"><b>Vid Learn:</b> <%= @learn_users.count %></div>
+								<div class="col-lg-4"><b>ROI:</b> <%= @users.where(referred_by: "ROI").count %></div>
 							</div>
 							
 							<div class="row">
