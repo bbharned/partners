@@ -61,6 +61,7 @@ gem 'icalendar', '~> 2.3'
 gem 'tzinfo', '~> 2.0'
 gem 'geocoder', '~> 1.7', '>= 1.7.5'
 gem "chartkick"
+gem "groupdate"
 
 
 gem 'rails-html-sanitizer', '~> 1.4.4'

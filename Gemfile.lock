@@ -111,6 +111,8 @@ GEM
     geocoder (1.8.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.4.0)
+      activesupport (>= 6.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     icalendar (2.8.0)
@@ -262,6 +264,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   filterrific (~> 5.2, >= 5.2.2)
   geocoder (~> 1.7, >= 1.7.5)
+  groupdate
   icalendar (~> 2.3)
   jbuilder (~> 2.7)
   jquery-rails

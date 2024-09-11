@@ -7,97 +7,101 @@
 		
 
 
+		
+				<div class="well report-well">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="row">
+								<h2 class="headr">Users</h2>
+							</div>
+							<div class="row">
+								<b>Total Users:</b>&nbsp;&nbsp;<%= @users.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Active Users:</b>&nbsp;&nbsp;<%= @users.where(:active => true).count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Inactive Users:</b>&nbsp;&nbsp;<%= @users.where.not(:active => true).count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Base Users:</b>&nbsp;&nbsp;<%= @baseusers.count %>
+							</div>
+							
+							<div class="row">
+								<h5 class="sub-headr">User Types</h5>
+							</div>
+							<div class="row">
+								<b>Distributors:</b>&nbsp;&nbsp;<%= @distributors.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Integrators:</b>&nbsp;&nbsp;<%= @integrators.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>OEMs:</b>&nbsp;&nbsp;<%= @oems.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>End Users:</b>&nbsp;&nbsp;<%= @endusers.count %>
+							</div>
+							
+							<div class="row">
+								<h5 class="sub-headr">Referred Source</h5>
+							</div>
+							<div class="row">
+								<b>RAU:</b>&nbsp;&nbsp;<%= @users.where(:referred_by => "RAU").count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Events:</b>&nbsp;&nbsp;<%= @users.where(:referred_by => "Events").count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Certification:</b>&nbsp;&nbsp;<%= @certsignedup.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>Video Learning:</b>&nbsp;&nbsp;<%= @learn_users.count %>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+								<b>ROI:</b>&nbsp;&nbsp;<%= @users.where(referred_by: "ROI").count %>
+							</div>
+							
+							<div class="row">
+								<h5 class="sub-headr">Activity</h5>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="row">
+										<b>New user last 30 days:</b>&nbsp;&nbsp;<%= @usersthismonth.count %>
+									</div>
+									<div class="row">
+										<b>New user last 90 days:</b>&nbsp;&nbsp;<%= @usersthisquarter.count %>
+									</div>
+									<div class="row">
+										<b>New user this year:</b>&nbsp;&nbsp;<%= @usersthisyear.count %>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<b>Logged in this month:</b>&nbsp;&nbsp;<%= @loggedthismonth.count %>
+									</div>
+									<div class="row">
+										<b>Logged in this quarter:</b>&nbsp;&nbsp;<%= @loggedthisquarter.count %>
+									</div>
+									<div class="row">
+										<b>Logged in this year:</b>&nbsp;&nbsp;<%= @loggedthisyear.count %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<%= pie_chart @users.where.not(channel: "").group(:channel).count %>
+						</div>
+					</div>
+				</div>
+
+				<br />
+
 		<div class="row">
-			<h4>Users</h4>
+			<%= line_chart User.group_by_month(:created_at).count %>
+			
 		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Total Users</h5>
-					<h1 class="huge"><%= @users.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Active Users</h5>
-					<h1 class="huge"><%= @users.where(:active => true).count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Distributors</h5>
-					<h1 class="huge"><%= @distributors.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Integrators</h5>
-					<h1 class="huge"><%= @integrators.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>OEMs</h5>
-					<h1 class="huge"><%= @oems.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>End Users</h5>
-					<h1 class="huge"><%= @endusers.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>RAU Users</h5>
-					<h1 class="huge"><%= @users.where(:referred_by => "RAU").count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Base Users</h5>
-					<h1 class="huge"><%= @baseusers.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>New last 30 days</h5>
-					<h1 class="huge"><%= @usersthismonth.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>New last 90 days</h5>
-					<h1 class="huge"><%= @usersthisquarter.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>New in last year</h5>
-					<h1 class="huge"><%= @usersthisyear.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Logged in this month</h5>
-					<h1 class="huge"><%= @loggedthismonth.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Logged in this quarter</h5>
-					<h1 class="huge"><%= @loggedthisquarter.count %></h1>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="well centered">
-					<h5>Logged in this year</h5>
-					<h1 class="huge"><%= @loggedthisyear.count %></h1>
-				</div>
+		<div class="row text-center">
+			<div class="col">
+				<h5 class="graph-title">Users created by month</h5>
 			</div>
 		</div>
 
+		<br />
 
+
+		
 		<div class="row" style="margin-top: 50px;">
 			<h4>Certification</h4>
 		</div>

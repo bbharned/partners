@@ -1232,6 +1232,18 @@ Very Light Blue: #e9f7fb;
 .reports-container .well {
     margin-bottom: 20px; min-height: 165px;
 }
+.report-well {
+    padding: 35px 55px;
+}
+.report-well h2.headr {
+    margin-left: -7px; color:#003366; font-weight: bold;
+}
+.report-well h5.sub-headr {
+    margin-top: 18px; margin-left:-7px; font-weight: lighter;
+}
+h5.graph-title {
+    margin-top: 20px;
+}
 
 
 
