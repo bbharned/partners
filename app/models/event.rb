@@ -21,13 +21,20 @@ end
 
 
 def self.to_csv
-  attributes = %w{id active firstname lastname email company prttype channel continent created_at lastlogin}
+  #attributes = %w{id name description starttime endtime tzid event_host event_contact reg_required capacity live created_at}
 
   CSV.generate(headers: true) do |csv|
-    csv << attributes
+    #csv << attributes
+    csv << ["Id"] + ["Event Name"] + ["Event Desciription"] + ["Event Start"] + ["Event End"] + ["Time Zone"] + ["Host Company"] + ["Contact"] + ["Registration Required"] + ["Capacity"] + ["Registered"] + ["Attended"] + ["Past Cert"] + ["Waitlisted"] + ["Canceled"] + ["Live?"] + ["Created At"] 
 
-    all.each do |user|
-      csv << attributes.map{ |attr| user.send(attr) }
+    all.each do |event|
+      registered = event.event_attendees.where.not(canceled: true).where.not(waitlist: true).count
+      attended = event.event_attendees.where.not(canceled: true).where.not(waitlist: true).where(checkedin: true).count
+      waitlisted = event.event_attendees.where.not(canceled: true).where(waitlist: true).count
+      canceled = event.event_attendees.where(canceled: true).count
+      certified = event.event_attendees.where(checkedin: true).where(passed: true).count
+      #csv << attributes.map{ |attr| event.send(attr) }
+      csv << ([event.id] + [event.name] + [event.description] + [event.starttime] + [event.endtime] + [event.tzid] + [event.event_host] + [event.event_contact] + [event.reg_required] + [event.capacity] + [registered] + [attended] + [certified] + [waitlisted] + [canceled] + [event.live] + [event.created_at])
     end
   end
 end

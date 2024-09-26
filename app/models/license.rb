@@ -14,7 +14,7 @@ def self.to_csv
     csv << ["First Name"] + ["Last Name"] + ["Email"] + ["Company"] + attributes
 
     all.each do |license|
-		csv << ([license.user.firstname] + [license.user.lastname] + [license.user.email] + [license.user.company]) + license.attributes.values_at(*attributes)
+        csv << ([license.user.firstname] + [license.user.lastname] + [license.user.email] + [license.user.company]) + license.attributes.values_at(*attributes)
     end
   end
 end

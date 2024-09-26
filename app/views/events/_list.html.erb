@@ -3,7 +3,8 @@
   
 
     <% if @events.any? %>
-          
+          <p align="center"><%= pluralize(@events.count, "found events") %> &nbsp;<span style="font-size:.75em;"><a href="/event/admin.csv">(export CSV)</a></span></p>
+
           <% @events.each do |e| %>
           
           <% @reg_users = EventAttendee.where(event_id: e.id).where.not(canceled: true).where.not(waitlist: true)#.where("canceled = ? AND waitlist = ?", false, false) %>

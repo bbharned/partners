@@ -384,6 +384,7 @@ def admin
    respond_to do |format|
      format.html
      format.js
+     format.csv { send_data @events.to_csv, filename: "ThinManagerPortal_EventsReport-#{Date.today}.csv" }
    end
 
    rescue ActiveRecord::RecordNotFound => e
