@@ -14,11 +14,11 @@ def index
      params[:filterrific],
       select_options: {
         listing_sort: Listing.options_for_listing_sort,
-        with_status: ['Requested Listings', 'Active Listings', 'Expired Listings'],
+        with_listing_status: ['Requested Listings', 'Active Listings', 'Expired Listings'],
       },
       persistence_id: "shared_key",
       default_filter_params: {},
-      available_filters: [:listing_sort, :listing_search, :with_status],
+      available_filters: [:listing_sort, :listing_search, :with_listing_status],
       sanitize_params: true,
    ) or return
    @listings = @filterrific.find.paginate(page: params[:page], per_page: 20)

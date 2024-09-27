@@ -47,7 +47,7 @@ filterrific(
    available_filters: [
      :listing_sort,
      :listing_search,
-     :with_status,
+     :with_listing_status,
    ],
  )
 
@@ -106,13 +106,15 @@ scope :listing_sort, ->(sort_option) {
   end
 }
 
-scope :with_status, ->(status) {
+scope :with_listing_status, ->(status) {
     if status == 'Active Listings'
-        Listing.joins(:user).where('certexpire >= ?', Date.today).where(active: true)
+        #joins(:user).where('certexpire >= ?', Date.today).where(active: true)
+        #joins(:user).where("(certexpire >= ? and active = ?) or prttype = ?", Date.today, true, "Distributor")
+        joins(:user).where('prttype = ? or certexpire >= ?', "Distributor", Date.today).where(active: true)
     elsif status == 'Requested Listings'
         where.not(active: true)
     elsif status == 'Expired Listings'
-        Listing.joins(:user).where('certexpire < ?', Date.today)
+        joins(:user).where('certexpire < ?', Date.today)
     end
 }   
 
