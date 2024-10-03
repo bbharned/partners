@@ -17,6 +17,7 @@
 //= require company-infoslides
 //= require banner
 //= require pricing-question
+//= require tablet-pops
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker

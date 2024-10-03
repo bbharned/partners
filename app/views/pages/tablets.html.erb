@@ -5,16 +5,46 @@
 
 
 
-<div class="container">
+
+<div class="jumbotron tm-jumbotron">
 	<div class="row">
-		<div class="col-md-12">
-			<h3>ThinManager Ready Tablets</h3>
+		<div class="col-md-7">
+			<h1 class="display-4">ThinManager Ready&nbsp;Tablets</h1>
+			<p class="lead">This may be the easiest and most secure way to add mobility to your industrial or production environment. ThinManager Ready means seamless integration in to your existing ThinManager configuration.</p>
+			<hr class="my-4">
+			<p>ThinManager has given our users complete control of their content for over 25 years. ThinManager Ready Tablets offer the same control and security as any terminal in your configuration, but with the added flexibility of being mobile. Maybe the best part? No third party operating system. <b>It's an IT dream!</b></p>
+			<br />
+		</div>
+		<div class="col-md-5 jumbo-tablet-image">
+			<%= image_tag("TM_PF_Pad-Ex_Optix") %>
 		</div>
 	</div>
-</div>	
+	<div class="row provider-logos">
+		<div class="col-md-3"><%= image_tag("pf_logo_black") %></div>
+	</div>
+</div>
 
-<hr style="width: 98%; margin: auto; margin-bottom:12px; margin-top: 8px;" />
 
+<div class="row card-row">
+	
+	<div class="card">
+	  <div class="card-header bg-warning"><h5>ThinManager Ready</h5></div>
+	  <div class="card-body">
+		<%# <h5 class="card-title">ThinManager Ready</h5> %>
+	    <h6 class="card-subtitle mb-2 text-muted">Out of the box, let's go!</h6>
+	    <p class="card-text">Getting started means simply connecting to the WiFi. ThinManager and your device are ready.</p>
+	    <div class="first-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	  </div>
+	</div>
+	
+	<div class="card">
+	  <div class="card-header bg-warning"><h5>ThinManager is your only OS</h5></div>
+	  <div class="card-body">
+	    <h6 class="card-subtitle mb-2 text-muted">Full control as expected</h6>
+	    <p class="card-text">Like any other thin client, there is no operating system to manage.</p>
+	    <div class="second-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	  </div>
+	</div>
 
 
 
@@ -22,3 +52,54 @@
 
 
 </div>
+
+
+
+
+
+
+
+
+<!-- Right off-canvas sidebar for card 1 -->
+<div class="bs-canvas bs-first-canvas-right position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-info overflow-auto">
+    	<button type="button" class="bs-canvas-close float-left close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+        <h4 class="d-inline-block text-light mb-0 float-right">ThinManager Ready</h4>
+    </header>
+    <div class="bs-canvas-content">
+    	<h3>ThinManager Ready</h3>
+    	<p>ThinManager Ready means that this device, once connected to your network, will be looking for your ThinServer, configuration and information needed to get booted securely and quickly.</p>
+
+    	<p>ThinManager Ready devices make setup a snap. We offer many devices from many manufacturers that are ThinManager Ready and capable of many different configurations and environments.</p>
+
+    	<p>Questions? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
+    	
+    	<hr />
+    	<h5>Quick Links</h5>
+    	<ul>
+	    	<li>Find a <%= link_to "Distributor", "https://thinmanager.com/partners/var-world.php" %></li>
+	    	<li>Search additional compatible <%= link_to "Hardware", terminals_path %></li>
+	    	<li>Learn about our <%= link_to "TMC Mobile Apps", tmc_path %></li>
+	    </ul>
+    </div>    
+</div>
+
+
+
+<div class="bs-canvas bs-second-canvas-right position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-info overflow-auto">
+    	<button type="button" class="bs-canvas-close float-left close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+        <h4 class="d-inline-block text-light mb-0 float-right">No Underlying OS</h4>
+    </header>
+    <div class="bs-canvas-content">
+    	<!-- Place your sidebar content -->
+    	this is content for second topic
+    </div>    
+</div>
+
+
+
+</div>
+
+
+
