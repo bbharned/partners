@@ -10,9 +10,9 @@
 	<div class="row">
 		<div class="col-md-7">
 			<h1 class="display-4">ThinManager Ready&nbsp;Tablets</h1>
-			<p class="lead">This may be the easiest and most secure way to add mobility to your industrial or production environment. ThinManager Ready means seamless integration in to your existing ThinManager configuration.</p>
+			<p class="lead">One of the simplest and most secure ways to add mobility to your industrial environment. ThinManager-Ready means seamless integration into your existing ThinManager configuration.</p>
 			<hr class="my-4">
-			<p>ThinManager has given our users complete control of their content for over 25 years. ThinManager Ready Tablets offer the same control and security as any terminal in your configuration, but with the added flexibility of being mobile. Maybe the best part? No third party operating system. <b>It's an IT dream!</b></p>
+			<p>ThinManager has given you complete control over your content for over 25 years. ThinManager-Ready Tablets offer the same centralized management and security as other ThinManger-Ready terminals in your configuration, but with the added flexibility of being mobile. But the best part is no local OS resides on the device. It boots over your wireless network. <b>It's an IT dream for enabling a mobile OT workforce!</b></p>
 			<br />
 		</div>
 		<div class="col-md-5 jumbo-tablet-image">
@@ -20,7 +20,11 @@
 		</div>
 	</div>
 	<div class="row provider-logos">
-		<div class="col-md-3"><%= image_tag("pf_logo_black") %></div>
+		<div class="col-md-3">
+			<%= link_to image_tag("pf_logo_black"), "https://www.pepperl-fuchs.com", target: "_blank"  %><br />
+			<cite class="cited-small"><%= link_to "[ View Hardware ]", "https://www.pepperl-fuchs.com", class: "text-centered", target: "_blank" %></cite>
+		</div>
+		
 	</div>
 </div>
 
@@ -28,21 +32,25 @@
 <div class="row card-row">
 	
 	<div class="card">
-	  <div class="card-header bg-warning"><h5>ThinManager Ready</h5></div>
+	  <div class="card-header bg-info"><h5>ThinManager Ready</h5></div>
 	  <div class="card-body">
 		<%# <h5 class="card-title">ThinManager Ready</h5> %>
 	    <h6 class="card-subtitle mb-2 text-muted">Out of the box, let's go!</h6>
-	    <p class="card-text">Getting started means simply connecting to the WiFi. ThinManager and your device are ready.</p>
-	    <div class="first-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	    <p class="card-text">Getting started means simply connecting to your WiFi network. ThinManager and your device are ready.</p>
+	  </div>
+	  <div class="card-footer">
+	  	<div class="first-card float-right btn btn-sm btn-outline-info">Learn More</div>
 	  </div>
 	</div>
 	
 	<div class="card">
-	  <div class="card-header bg-warning"><h5>ThinManager is your only OS</h5></div>
+	  <div class="card-header bg-info"><h5>ThinManager is your only OS</h5></div>
 	  <div class="card-body">
 	    <h6 class="card-subtitle mb-2 text-muted">Full control as expected</h6>
 	    <p class="card-text">Like any other thin client, there is no operating system to manage.</p>
-	    <div class="second-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	  </div>
+	  <div class="card-footer">
+	  	<div class="second-card float-right btn btn-sm btn-outline-info">Learn More</div>
 	  </div>
 	</div>
 
@@ -51,39 +59,47 @@
 	  <div class="card-header bg-info"><h5>Enable Your Own Tablet</h5></div>
 	  <div class="card-body">
 	    <h6 class="card-subtitle mb-2 text-muted">Have Preferred Hardware?</h6>
-	    <p class="card-text">Depending on the specifications, we might be able to enable the ThinManager EFI app and firmware on your devices to use.</p>
-	    <div class="enable-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	    <p class="card-text">Depending on the specifications, we might be able to enable the ThinManager EFI app and firmware on your devices so they can be ThinManager-Ready too.</p>
+	  </div>
+	  <div class="card-footer">
+	   	<div class="enable-card float-right btn btn-sm btn-outline-info">Learn More</div>
 	  </div>
 	</div>
 
-	<div class="card">
+	<%# <div class="card">
 	  <div class="card-header bg-info"><h5>How to Choose</h5></div>
 	  <div class="card-body">
 	    <h6 class="card-subtitle mb-2 text-muted">Which ThinManager Solution Fits Best?</h6>
-	    <p class="card-text">We work with ThinManager Ready tablets, but there are also the ThinManager TMC applications for iOS, Android and Windows.</p>
-	    <div class="choice-card float-right btn btn-sm btn-outline-info">How to Choose</div>
+	    <p class="card-text">You can choose between ThinManager-Ready tablets or the ThinManager TMC applications for iOS, Android and Windows devices.</p>
+	  </div>
+	  <div class="card-footer">
+	   	<div class="choice-card float-right btn btn-sm btn-outline-info">How to Choose</div>
 	  </div>
 	</div>
 
 
 	<div class="card">
-	  <div class="card-header bg-secondary"><h5>Expected Behavior</h5></div>
+	  <div class="card-header bg-info"><h5>Expected Behavior</h5></div>
 	  <div class="card-body">
 	    <h6 class="card-subtitle mb-2 text-muted">It's Ready, Now What?</h6>
 	    <p class="card-text"></p>
-	    <div class="behavior-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	  </div>
+	  <div class="card-footer">
+	   	<div class="behavior-card float-right btn btn-sm btn-outline-info">Learn More</div>
 	  </div>
 	</div>
 
 
 	<div class="card">
-	  <div class="card-header bg-secondary"><h5>Expanding with Modules</h5></div>
+	  <div class="card-header bg-info"><h5>Expanding with Modules</h5></div>
 	  <div class="card-body">
 	    <h6 class="card-subtitle mb-2 text-muted">Boost your Functionality</h6>
 	    <p class="card-text"></p>
-	    <div class="expand-card float-right btn btn-sm btn-outline-info">Learn More</div>
 	  </div>
-	</div>
+	  <div class="card-footer">
+	   	<div class="expand-card float-right btn btn-sm btn-outline-info">Learn More</div>
+	  </div>
+	</div> %>
 
 
 
@@ -108,10 +124,10 @@
         <h4 class="d-inline-block text-light mb-0 float-right">ThinManager Ready</h4>
     </header>
     <div class="bs-canvas-content">
-    	<h3>ThinManager Ready</h3>
-    	<p>ThinManager Ready means that this device, once connected to your network, will be looking for your ThinServer, configuration and information needed to get booted securely and quickly.</p>
+    	<h3>ThinManager-Ready</h3>
+    	<p>ThinManager-Ready devices make setup a snap. ThinManager-Ready means that this device, once connected to your network, will look for your ThinServer configuration and information needed to boot securely and quickly.</p>
 
-    	<p>ThinManager Ready devices make setup a snap. We offer many devices from many manufacturers that are ThinManager Ready and capable of many different configurations and environments.</p>
+    	<p>We’ve enable many devices, from multiple manufacturers, that are ThinManager-Ready. These devices are capable of supporting virtually every type of automated environment.</p>
 
     	<p>Questions? <%= link_to "Contact Us", "mailto:info@thinmanager.com" %></p>
     	
@@ -120,7 +136,7 @@
     	<ul>
 	    	<li>Find a <%= link_to "Distributor", "https://thinmanager.com/partners/var-world.php" %></li>
 	    	<li>Search additional compatible <%= link_to "Hardware", terminals_path %></li>
-	    	<li>Learn about our <%= link_to "TMC Mobile Apps", tmc_path %></li>
+	    	<li>Learn about our <%= link_to "TMC Mobile Apps", tmc_path %> for use with Android, Apple and Windows.</li>
 	    </ul>
     </div>    
 </div>
@@ -133,8 +149,16 @@
         <h4 class="d-inline-block text-light mb-0 float-right">No Underlying OS</h4>
     </header>
     <div class="bs-canvas-content">
-    	<!-- Place your sidebar content -->
-    	this is content for No OS topic
+    	<p>One of the more complicated issues IT has with tablets in the network environment is the addition of another operating system (OS).  Regardless of the OS, it wil require updates and maintenance as well as security meassures such as profiles and rules.</p>
+    	<p>This is where the beauty of the ThinManager-Ready tablet really shows. The tablet is booted, managed and 100% operated by ThinManager. This means zero risk of corruption, lost data, or malicious acts of vulnerabilty to manage. If taken outside of your ThinManager configured environment, the device will not be of any use to the person in possession of it.</p>
+
+    	<hr />
+    	<h5>Quick Links</h5>
+    	<ul>
+	    	<li>Find a <%= link_to "Distributor", "https://thinmanager.com/partners/var-world.php" %></li>
+	    	<li>Search additional compatible <%= link_to "Hardware", terminals_path %></li>
+	    	<li>Learn about our <%= link_to "TMC Mobile Apps", tmc_path %> for use with Android, Apple and Windows.</li>
+	    </ul>
     </div>    
 </div>
 
@@ -148,8 +172,16 @@
         <h4 class="d-inline-block text-light mb-0 float-right">Enabling Devices</h4>
     </header>
     <div class="bs-canvas-content">
-    	<!-- Place your sidebar content -->
-    	this is content for Device Enablement and steps to take.
+    	<h3>Bring Your Own Device?</h3>
+    	<p>ThinManager requires certain specificatios in it's hardware to be able to boot, run and be manage by the ThinManager platform.</p>
+
+    	<p>Can the tablets you have or are considering be ThinManager-Ready? We can definitely find out.</p>
+
+    	<hr />
+
+    	<p>To get started, we would like to fill out a form telling us about your hardware.  We will want you to send in one of the units to our team to test, if we initially think your device can be ThinManager-Ready.</p>
+
+    	<p>Fill in the <%= link_to "Request Form", "#" %> and we will be in contact shortly.</p>
     </div>    
 </div>
 
