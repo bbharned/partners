@@ -888,8 +888,8 @@ Very Light Blue: #e9f7fb;
     margin-bottom: 20px;
 }
 .nav-buttons span a {
-    padding: 10px 25px; background-color: #F1F1F1; margin-right: 5px; color: inherit;
-    border-radius: 5px; 
+    padding: 10px 25px; background-color: #F1F1F1; color: inherit;
+    border-radius: 5px;
 }
 .nav-buttons span a:hover {
     text-decoration: none; background-color: #666666; color: #FFFFFF;
@@ -911,8 +911,8 @@ Very Light Blue: #e9f7fb;
     .event-card {
         width:98%; 
     }
-    .hardware-nav-buttons span {
-        margin-bottom: 20px;
+    .hardware-nav-buttons span a {
+        margin-bottom: 20px !important;
     }
 }
 
