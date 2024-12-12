@@ -50,7 +50,7 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def badge_earned
-    @user = User.find(1) ## user 1 is all done ##
+    @user = User.find(3) ## user 1 is all done ##
     @badge = UserBadge.where(user_id: @user.id).take
     @specific = "Configuration"
     UserMailer.badge_earned(@user, @specific, @badge)
